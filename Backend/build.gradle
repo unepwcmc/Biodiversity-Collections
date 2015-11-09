@@ -1,0 +1,80 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'spring-boot'
+apply plugin: 'sonar-runner'
+
+springBoot {
+    executable = true
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repository.gbif.org/content/groups/gbif" }
+        maven { url "http://dl.bintray.com/readytalk/maven" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.0.RC1")
+    }
+}
+
+repositories {
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://repository.gbif.org/content/groups/gbif" }
+    maven { url "http://dl.bintray.com/readytalk/maven" }
+}
+
+dependencies {
+    // Compile dependencies
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework:spring-aspects:4.1.6.RELEASE")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    compile("org.hibernate:hibernate-search-orm:5.2.0.Final")
+    compile("org.hibernate:hibernate-entitymanager:4.3.10.Final")
+    compile("com.mysema.querydsl:querydsl-jpa:3.6.6")
+    compile("net.sf.ehcache:ehcache:2.9.0")
+    compile("io.jsonwebtoken:jjwt:0.5")
+    compile("org.springframework:spring-context-support")
+    compile("javax.mail:mail:1.4.1")
+    compile("org.apache.velocity:velocity:1.6.2")
+    compile("commons-beanutils:commons-beanutils:1.9.2")
+    compile("com.google.guava:guava:18.0")
+    compile("com.mangofactory:swagger-springmvc:1.0.2")
+    compile("io.dropwizard.metrics:metrics-core")
+    // Runtime dependencies
+    runtime("org.postgresql:postgresql:9.4-1201-jdbc41")
+    // Testing dependencies
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("junit:junit")
+}
+
+bootRun {
+    systemProperties = System.properties
+}
+
+war {
+    baseName = 'biodiversity-collections'
+}
+
+jar {
+    baseName = 'biodiversity-collections'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
