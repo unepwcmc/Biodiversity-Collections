@@ -1,0 +1,248 @@
+.search-result{
+	
+	h5{
+		font-weight: 400;
+		border-bottom: 2px solid #bbb;
+		margin-bottom: 0;
+		padding: 0 12px;
+		position: relative;
+
+		a{
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+	}
+	.search-bar{
+		height: 140px;
+		width: 100%;
+		background: url('../images/greenBg.jpg') 0 0 repeat-x;
+		margin-bottom: 20px;
+
+		h4{
+			margin: 20px 0 6px 0;
+			color: #fff;
+		}
+
+		input[type="text"]{
+			height: 39px;
+			width: 460px;
+			padding: 0 20px 0 12px;
+			border: none;
+		}
+		.s-reset{
+			margin: 0 10px 0 -28px;
+			background: transparent;
+			border: none;
+			color: $green;
+			position: relative;
+			z-index: 100;
+		}
+	}
+	.sidepane{
+		background-color: #f8f8f8;
+	
+		.sidebar-inner{
+			border-bottom: 1px solid #bbb;
+			cursor: default;
+
+			h6{
+				border-top: 1px solid #bbb;
+				margin: 0;
+				padding: 16px 18px 16px 12px;
+				font-size: 14px;
+				line-height: $base-line-height;
+				font-weight: 500;
+				color:#303030;
+				position: relative;
+
+				&:first-child{
+					border:none;
+				}
+				&:focus{
+					outline:none;
+				}
+				i{
+					position: absolute;
+					right: 10px;
+					color: $green;
+					font-size: 16px;
+
+					&:before{
+						content: "\f0d7";
+					}
+				}
+			}
+			.ui-accordion-header-active{
+				background-color: #dfe0e1;
+
+				i:before{
+					content: "\f0d8";
+				}
+
+			}
+			.acc-content-main{
+				margin-left: 10px;
+				padding: 12px 0;
+				height: auto;
+
+				h6{
+					border: none;
+				}
+				.ui-accordion-header-active{
+					background-color: transparent;
+
+				}
+			}
+
+			.acc-content-main,
+			.acc-content{
+				font-weight: 400;
+			}
+			.acc-content{
+				margin-left: 10px;
+			}
+		}
+
+
+
+	}
+	.result-list{
+			padding: 0 12px;
+
+		input#check_all{
+			display: none;
+		}
+		input#check_all + label{
+			margin-left: 14px;
+			line-height: 18px;
+		&:hover{
+			opacity: 0.8;
+		}
+		}
+		input#check_all + label:before{
+			display: inline-block;
+			position: absolute;
+		  	font-family: FontAwesome;
+			content: "\f00c";
+			color: #fff;
+			border: 1px solid #8c8c8c;
+			margin: 0px 10px 0 -26px;
+			width: 16px;
+			height: 16px;
+			font-size: 10px;
+			text-align: center;
+			background-color: #fff;
+			line-height: 15px;
+		}
+		input#check_all:checked + label:before{
+			content: "\f00c";
+			color: $green;
+		}
+
+		.list-item{
+				font-family: $font-1;
+				margin-bottom: 20px;
+				padding-left: 10px;
+			h6{
+				color: $green;
+				font-size: 18px;
+				font-weight: 400;
+
+				em{
+					font-weight: 500;
+					font-style: italic;
+				}
+				input[type="checkbox"]{
+					display: none;
+				}
+				input[type="checkbox"]+label:before{
+					display: inline-block;
+					position: absolute;
+				  	font-family: FontAwesome;
+					content: "\f00c";
+					color: #fff;
+					border: 1px solid #8c8c8c;
+					margin: -10px 10px 0 -22px;
+					width: 16px;
+					height: 16px;
+					font-size: 10px;
+					text-align: center;
+					background-color: #fff;
+					line-height: 15px;
+				}
+				input[type="checkbox"]:checked + label:before{
+					content: "\f00c";
+					color: $green;
+				}
+
+			}
+
+			p{
+				font-size: 14px;
+				font-weight: 400;
+				color: #666;
+			}
+			span:after{
+				content: "";
+				height: 12px;
+				width: 12px;
+				display: inline-block;
+				border-radius: 50%;
+				margin-left: 8px;
+			}
+			span.cend:after{
+				background-color: #d80000;
+			}
+			span.end:after{
+				background-color: #ff7f00;
+			}
+			span.nthreat:after{
+				background-color: #ffe500;
+			}
+			span.datadef:after{
+				background-color: $green;
+			}
+			span.notevl:after{
+				background-color: transparent;
+				border: 1px solid $green;
+			}
+		}
+
+		
+	}
+	hr{
+			background: url('../../../app/images/hrBg.png') transparent;
+			height: 6px;
+			border: none;
+		}
+
+		.filter-tags{
+			padding: 20px 10px 0 10px;
+
+			.ft{
+				background-color: #f2f2f2;
+				display: inline-block;
+				margin-right: 20px;
+				position: relative;
+				padding: 0 36px 0 12px;
+				font-weight: 300;
+				margin-bottom: 6px;
+				line-height: 30px;
+				cursor: default;
+
+				span{
+					font-weight: 500;
+				}
+			}
+			.rem{
+				position: absolute;
+				right: 3px;
+				border: none;
+				background: transparent;
+			}
+			button.clr-btn{
+				margin-top: 0;
+			}
+		}
+}

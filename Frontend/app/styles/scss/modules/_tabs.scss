@@ -1,0 +1,49 @@
+/** TABS */
+#tabs{
+	
+	& > ul{
+		
+		height: 40px;
+		border-bottom: 1px solid #dfe0e1;
+
+		li{
+
+			a{
+				color: $font-color;
+				height: 40px;
+				line-height: 40px;
+				padding: 0px 10px;
+				display: block;
+				outline: none;
+				text-decoration: none;
+				position: relative;
+				font-family: $font-1;
+
+				&:hover{
+					color: #33a15f;
+				}
+			}
+
+			&.ui-state-active a{
+				color: $green;
+
+				&:after{
+					// font-family: 'FontAwesome';
+					background: url('../../../app/images/angle-up.png') #fff no-repeat 0 7px;
+					width: 12px;
+					height: 15px;
+					content: " ";
+					// content: "\f106";
+					position: absolute;
+					bottom: -1px;
+					left: 50%;
+					margin-left: -7.5px;
+					font-size: 20px;
+					line-height: 21px;
+					color: #dfe0e1;
+					text-align: left !important;
+				}
+			}
+		}
+	}
+}

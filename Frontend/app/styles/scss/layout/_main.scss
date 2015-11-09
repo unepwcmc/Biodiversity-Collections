@@ -1,0 +1,40 @@
+a:focus{
+	outline: none;
+}
+/** MAIN */
+.l-main{
+	
+	.page-header{
+		border-bottom: none;
+
+		h3{
+			margin-top: 0px;
+		}
+	}
+}
+
+.loading{
+	background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 4000;
+
+	img{
+		position: absolute;
+		z-index: 4000;
+		top: 48%;
+		width: 32px;
+		height: 32px;
+	}
+}
+.txt-center{
+	text-align: center;
+}
+body.noscroll{
+	position: fixed;
+	overflow: hidden;
+	width: 100%;
+}
