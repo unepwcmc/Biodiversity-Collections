@@ -1,0 +1,35 @@
+#! /bin/sh
+# chkconfig: 2345 20 80
+# description: SysVInit script for WSO2 API Manager
+
+export JAVA_HOME=/usr/java/default
+export MODE=service
+export JAVA_OPTS=-Dspring.profiles.active=dev
+export SPRING_BOOT_PROJECT='/opt/Taxonomic-Database-Application/Backend/build/libs/taxonomic-db-spring-boot.jar'
+export SERVICE_NAME='taxonomic-db'
+
+startcmd="$SPRING_BOOT_PROJECT start > /dev/null &"
+restartcmd="$SPRING_BOOT_PROJECT restart > /dev/null &"
+stopcmd="$SPRING_BOOT_PROJECT stop > /dev/null &"
+statuscmd="$SPRING_BOOT_PROJECT status > /dev/null &"
+
+case "$1" in
+start)
+   echo "Starting $SERVICE_NAME ..."
+   su -c "${startcmd}" $USER
+;;
+restart)
+   echo "Re-starting $SERVICE_NAME ..."
+   su -c "${restartcmd}" $USER
+;;
+stop)
+   echo "Stopping $SERVICE_NAME ..."
+   su -c "${stopcmd}" $USER
+;;
+status)
+   su -c "${stopcmd}" $USER
+;;
+*)
+   echo "Usage: $0 {start|stop|restart|status}"
+exit 1
+esac
