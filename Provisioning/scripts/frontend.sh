@@ -3,7 +3,7 @@
 # Install Nginx
 sudo apt-get install -y nginx
 sudo rm /etc/nginx/sites-enabled/default
-mv /vagrant/config/nginx/default /etc/nginx/sites-enabled/default
+cp /vagrant/config/nginx/default /etc/nginx/sites-enabled/default
 
 # Add nodejs repo
 sudo add-apt-repository -y ppa:chris-lea/node.js
@@ -19,7 +19,7 @@ sudo npm install -g bower
 sudo npm install -g grunt-cli
 
 #Install Frontend Dependencies
-cd /opt/Taxonomic-Database-Application
+cd /opt/Biodiversity-Collections
 #Update script for new releases
 chmod +x update.sh
 

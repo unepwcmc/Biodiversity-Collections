@@ -12,7 +12,6 @@ iptables -F
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT #SSH
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT #Web Server
 iptables -A INPUT -p tcp --dport 8080 -j ACCEPT #REST API
-iptables -A INPUT -p tcp --dport 9443 -j ACCEPT #WSO2 ESB Console
 iptables -A INPUT -p tcp --dport 5432 -j ACCEPT #PostgreSQL
 #
 # Set default policies for INPUT, FORWARD and OUTPUT chains

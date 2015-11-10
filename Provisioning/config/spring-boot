@@ -1,11 +1,11 @@
 #! /bin/sh
 # chkconfig: 2345 20 80
-# description: SysVInit script for WSO2 API Manager
+# description: SysVInit script for Biodiversity Collections
 
 export JAVA_HOME=/usr/java/default
 export MODE=service
 export JAVA_OPTS=-Dspring.profiles.active=dev
-export SPRING_BOOT_PROJECT='/opt/Taxonomic-Database-Application/Backend/build/libs/taxonomic-db-spring-boot.jar'
+export SPRING_BOOT_PROJECT='/opt/Biodiversity-Collections/Backend/build/libs/biodiversity-collections.jar'
 export SERVICE_NAME='taxonomic-db'
 
 startcmd="$SPRING_BOOT_PROJECT start > /dev/null &"

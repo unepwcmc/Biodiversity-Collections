@@ -2,4 +2,4 @@
 
 cd /opt
 
-git clone -b release https://github.com/unepwcmc/Taxonomic-Database-Application.git
+git clone https://github.com/unepwcmc/Biodiversity-Collections.git

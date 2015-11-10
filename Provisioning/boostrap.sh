@@ -18,9 +18,6 @@ sudo /vagrant/scripts/java.sh
 #Install PostgreSQL
 sudo /vagrant/scripts/postgres.sh
 
-#Install WSO2
-sudo /vagrant/scripts/wso2-esb.sh
-
 #Git clone
 sudo /vagrant/scripts/git_clone.sh
 
@@ -31,4 +28,4 @@ sudo /vagrant/scripts/frontend.sh
 sudo /vagrant/scripts/backend.sh
 
 # Victory!
-echo "You're all done! Your TaxonomicDB server is now running."
+echo "You're all done! Your Biodiversity Collections server is now running."
