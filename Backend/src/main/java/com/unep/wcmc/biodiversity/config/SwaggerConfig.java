@@ -30,11 +30,11 @@ public class SwaggerConfig {
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
                 //Root level documentation
                 .apiInfo(new ApiInfo(
-                        "Taxonomy Database Service JSON API",
-                        "This service provides a JSON representation of the Taxonomy Database API",
+                        "Biodiversity Collections Service JSON API",
+                        "This service provides a JSON representation of the Biodiversity Collections API",
                         null, null, null, null))
                         // Map the specific URL patterns into Swagger
-                .includePatterns("/species.*");
+                .includePatterns("/*");
     }
 
 }
