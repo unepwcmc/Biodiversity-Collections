@@ -11,14 +11,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 	config.vm.provider "vmware_fusion" do |v|
 		v.gui=false
-    v.name="taxonomic-db-server"
+    v.name="biodiversity-collections"
     v.vmx["memsize"]="2048"
     v.vmx["numvcpus"]="2"
   end
 
 	config.vm.provider :virtualbox do |vb|
 		vb.gui=false
-		vb.name="taxonomic-db-server"
+		vb.name="biodiversity-collections"
 		vb.customize ["modifyvm", :id, "--cpus", "2"]
 		vb.customize ["modifyvm", :id, "--memory", "2048"]
 	end
@@ -29,8 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       aws.keypair_name = 'xxx'
       aws.ami = 'ami-53f14e4e' #'ami-7f805b62'
       aws.region = 'sa-east-1'
-      aws.tags = { "Name" => "Taxonomic-DB-Server" }
-      override.vm.box = 'taxonomic-db-aws'
+      aws.tags = { "Name" => "Biodiversity-Collections" }
+      override.vm.box = 'biodiversity-collections-aws'
       override.vm.box_url = 'https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box'
       override.ssh.username = 'ubuntu'
       override.ssh.private_key_path = 'xxx.pem'
