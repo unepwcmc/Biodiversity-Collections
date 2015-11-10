@@ -25,7 +25,7 @@ chmod +x update.sh
 
 cd ./Frontend
 npm install
-sudo bower install --no-interactive --allow-root
+sudo bower install --no-interactive --allow-root --config.interactive=false
 grunt setup
 grunt deploy --force
 
