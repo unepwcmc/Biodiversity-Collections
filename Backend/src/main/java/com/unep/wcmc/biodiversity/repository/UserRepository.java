@@ -15,7 +15,4 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Page<User> findByFirstNameContaining(String firstName, Pageable pageable);
 
-    List<User> findByUserRoleRole(String role);
-
-    User findByApiToken(String token);
 }
