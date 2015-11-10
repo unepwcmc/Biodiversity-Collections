@@ -5,8 +5,8 @@
 export JAVA_HOME=/usr/java/default
 export MODE=service
 export JAVA_OPTS=-Dspring.profiles.active=dev
-export SPRING_BOOT_PROJECT='/opt/Biodiversity-Collections/Backend/build/libs/biodiversity-collections.jar'
-export SERVICE_NAME='taxonomic-db'
+export SPRING_BOOT_PROJECT='/opt/Biodiversity-Collections/Backend/build/libs/biodiversity-collections.war'
+export SERVICE_NAME='biodiversity'
 
 startcmd="$SPRING_BOOT_PROJECT start > /dev/null &"
 restartcmd="$SPRING_BOOT_PROJECT restart > /dev/null &"
