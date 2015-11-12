@@ -1,7 +1,8 @@
 package com.unep.wcmc.biodiversity.service;
 
-import com.unep.wcmc.biodiversity.repository.UserRepository;
 import com.unep.wcmc.biodiversity.model.User;
+import com.unep.wcmc.biodiversity.repository.UserRepository;
+import com.unep.wcmc.biodiversity.support.AbstractService;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,16 +11,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * User service api
- * 
- * @author Adriano Braga Alencar (adriano.alencar@integritas.com)
- *                               (adrianobragaalencar@gmail.com)
- *
  */
 @Service
 public final class UserService extends AbstractService<User, UserRepository> implements UserDetailsService {
 
     private final AccountStatusUserDetailsChecker detailsChecker = new AccountStatusUserDetailsChecker();
-    
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -30,6 +26,5 @@ public final class UserService extends AbstractService<User, UserRepository> imp
         detailsChecker.check(user);
         return user;
     }
-    
 
 }

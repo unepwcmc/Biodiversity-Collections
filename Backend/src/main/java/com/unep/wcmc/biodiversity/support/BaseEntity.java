@@ -1,4 +1,4 @@
-package com.unep.wcmc.biodiversity.model;
+package com.unep.wcmc.biodiversity.support;
 
 import java.io.Serializable;
 

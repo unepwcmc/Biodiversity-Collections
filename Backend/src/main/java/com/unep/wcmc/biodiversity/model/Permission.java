@@ -1,5 +1,7 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.unep.wcmc.biodiversity.support.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

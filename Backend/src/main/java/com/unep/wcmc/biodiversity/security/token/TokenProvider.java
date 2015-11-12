@@ -1,9 +1,10 @@
-package com.unep.wcmc.biodiversity.service;
+package com.unep.wcmc.biodiversity.security.token;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unep.wcmc.biodiversity.dto.TokenResponse;
 import com.unep.wcmc.biodiversity.exception.InvalidAuthenticationTokenException;
 import com.unep.wcmc.biodiversity.model.User;
+import com.unep.wcmc.biodiversity.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,7 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,14 +26,12 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * Service responsible for taking care of all token generation as well as evicting
- * and persistence
- * 
+ * Service responsible for taking care of all token generation as well as evicting and persistence
  */
-@Service
-public final class TokenAuthenticationService {
+@Component
+public class TokenProvider {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TokenAuthenticationService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TokenProvider.class);
 
     public  static final String AUTH_HEADER_NAME = "X-AUTH-TOKEN";
 
@@ -59,9 +58,9 @@ public final class TokenAuthenticationService {
     }
 
     public String addAuthentication(HttpServletResponse response, Authentication authentication) throws IOException {
-        final User user = (User)authentication.getDetails();
-        final String token = createTokenForUser(user);
-        authTokenCache.put(new Element(token, getAuthentication(user), getTimeToIdle(), getTimeToLive()));
+        User user = (User) authentication.getDetails();
+        String token = createTokenForUser(user);
+        authTokenCache.put(new Element(token, authentication, getTimeToIdle(), getTimeToLive()));
         response.addHeader(AUTH_HEADER_NAME, token);
         TokenResponse tokenResponse = new TokenResponse(token, user);
         String tokenJsonResponse = new ObjectMapper().writeValueAsString(tokenResponse);
@@ -79,11 +78,7 @@ public final class TokenAuthenticationService {
         authTokenCache.remove(token);
     }
 
-    public Authentication getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(AUTH_HEADER_NAME);
-        if (token == null) {
-            token = (String) request.getAttribute(AUTH_HEADER_NAME);
-        }
+    public Authentication getAuthentication(String token) {
         if (token != null) {
             Element element = authTokenCache.get(token);
             if (element != null) {
@@ -103,22 +98,22 @@ public final class TokenAuthenticationService {
         }
         return null;
     }
-    
+
+    public Authentication getAuthentication(HttpServletRequest request) {
+        String token = request.getHeader(AUTH_HEADER_NAME);
+        if (token == null) {
+            token = (String) request.getAttribute(AUTH_HEADER_NAME);
+        }
+        return getAuthentication(token);
+    }
+
     private Authentication getAuthentication(UserDetails user) {
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
         authenticationToken.setDetails(user);
         return authenticationToken;
     }
-    
-    private UserDetails parseUserFromToken(String token) {
-        final String username = Jwts.parser()
-                                    .setSigningKey(tokenSecret)
-                                    .parseClaimsJws(token)
-                                    .getBody()
-                                    .getSubject();
-        return userService.loadUserByUsername(username);
-    }
- 
+
     public String createTokenForUser(User user) {
         return Jwts.builder()
                     .setSubject(user.getUsername())

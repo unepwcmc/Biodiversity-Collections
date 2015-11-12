@@ -1,6 +1,7 @@
 package com.unep.wcmc.biodiversity.security;
 
-import com.unep.wcmc.biodiversity.service.TokenAuthenticationService;
+import com.unep.wcmc.biodiversity.security.token.TokenProvider;
+import com.unep.wcmc.biodiversity.security.token.XAuthTokenConfigurer;
 import com.unep.wcmc.biodiversity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,8 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
- * Configuration responsible for setting all authorized 
- * requests as well as login service
+ * Configuration responsible for setting all authorized requests as well as login service
  *
  */
 @Order(1)
@@ -36,8 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
+
     @Autowired
-    private TokenAuthenticationService tokenAuthenticationService;
+    private TokenProvider tokenProvider;
+
+    @Autowired
+    private Http401UnauthorizedEntryPoint authenticationEntryPoint;
 
     public SecurityConfig() {
         super(true);
@@ -45,27 +50,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        final LogoutHandler logoutHandler = new LogoutHandler(tokenAuthenticationService);
+        // Security filters
         httpSecurity.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class);
-        httpSecurity.exceptionHandling().accessDeniedHandler(new AccessDeniedHandlerImpl())
-                .and().anonymous().and().servletApi().and().headers().cacheControl();
-        httpSecurity.authorizeRequests()
+        httpSecurity.addFilterBefore(new LoginFilter("/login", tokenProvider,
+                userService, authenticationManager()), UsernamePasswordAuthenticationFilter.class);
+        // Security configuration
+        httpSecurity.exceptionHandling()
+                .accessDeniedHandler(new AccessDeniedHandlerImpl())
+                .authenticationEntryPoint(authenticationEntryPoint)
+            .and().csrf().disable().headers().frameOptions().disable()
+            .and().headers().cacheControl().disable()
+            .and().anonymous()
+            .and().servletApi()
+            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/login").denyAll()
-                .antMatchers(HttpMethod.GET, "/media/image/**").permitAll();
+                .antMatchers(HttpMethod.GET, "/media/image/**").permitAll()
+            .and().apply(securityConfigurerAdapter());
+        // Logout process
+        LogoutHandler logoutHandler = new LogoutHandler(tokenProvider);
         httpSecurity.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
                 .logoutSuccessHandler(logoutHandler)
                 .addLogoutHandler(logoutHandler);
-        httpSecurity.csrf().disable();
-        httpSecurity.addFilterBefore(new LoginFilter("/login", tokenAuthenticationService,
-                userService, authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new AuthenticationFilter(tokenAuthenticationService),
-                        UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService);
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -83,4 +95,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    private XAuthTokenConfigurer securityConfigurerAdapter() {
+        return new XAuthTokenConfigurer(tokenProvider);
+    }
+
 }

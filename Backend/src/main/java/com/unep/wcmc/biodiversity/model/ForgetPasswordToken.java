@@ -1,5 +1,7 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.unep.wcmc.biodiversity.support.BaseEntity;
+
 import java.util.Calendar;
 import java.util.Date;
 
