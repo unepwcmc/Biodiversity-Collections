@@ -1,5 +1,7 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.unep.wcmc.biodiversity.support.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,8 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Model that defines an application's permission
- * access
+ * Model that defines an application's permission access
  *
  */
 @Entity

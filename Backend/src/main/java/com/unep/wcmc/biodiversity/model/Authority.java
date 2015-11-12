@@ -12,16 +12,16 @@ import javax.persistence.*;
 @IdClass(Authority.class)
 public class Authority implements GrantedAuthority {
 
-    private static final long serialVersionUID = -3291119889078747200L;
-
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     private UserRole userRoleId;
+
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     private Permission permissionId;
     
     public Authority() {
+        super();
     }
     
     public Authority(UserRole userRoleId) {

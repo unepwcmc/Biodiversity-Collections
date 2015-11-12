@@ -1,7 +1,6 @@
-package com.unep.wcmc.biodiversity.service;
+package com.unep.wcmc.biodiversity.support;
 
 import com.google.common.collect.Lists;
-import com.unep.wcmc.biodiversity.model.BaseEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,7 @@
-package com.unep.wcmc.biodiversity.controller;
+package com.unep.wcmc.biodiversity.support;
 
-import com.unep.wcmc.biodiversity.model.BaseEntity;
 import com.unep.wcmc.biodiversity.dto.SuccessResponse;
 import com.unep.wcmc.biodiversity.dto.ErrorMessage;
-import com.unep.wcmc.biodiversity.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,12 +1,9 @@
 package com.unep.wcmc.biodiversity.security;
 
-import java.io.IOException;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.unep.wcmc.biodiversity.model.User;
+import com.unep.wcmc.biodiversity.security.token.TokenProvider;
+import com.unep.wcmc.biodiversity.service.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,10 +14,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unep.wcmc.biodiversity.model.User;
-import com.unep.wcmc.biodiversity.service.TokenAuthenticationService;
-import com.unep.wcmc.biodiversity.service.UserService;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Filter that intercepts any login/authentication operation
@@ -28,15 +26,15 @@ import com.unep.wcmc.biodiversity.service.UserService;
  */
 public final class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
-    private final TokenAuthenticationService tokenAuthenticationService;
+    private final TokenProvider tokenProvider;
     private final UserService userService;
     
-    public LoginFilter(String urlMapping, 
-                       TokenAuthenticationService tokenAuthenticationService,
-                       UserService userService, 
+    public LoginFilter(String urlMapping,
+                       TokenProvider tokenAuthenticationService,
+                       UserService userService,
                        AuthenticationManager authManager) {
         super(new AntPathRequestMatcher(urlMapping, "POST"));
-        this.tokenAuthenticationService = tokenAuthenticationService;
+        this.tokenProvider = tokenAuthenticationService;
         this.userService = userService;
         setAuthenticationManager(authManager);
     }
@@ -56,13 +54,13 @@ public final class LoginFilter extends AbstractAuthenticationProcessingFilter {
                                             FilterChain chain, 
                                             Authentication authentication) throws IOException, ServletException {
         try {
-            final UserDetails authenticatedUser = userService.loadUserByUsername(authentication.getName());
-            final UsernamePasswordAuthenticationToken userAuthentication = new UsernamePasswordAuthenticationToken(authenticatedUser.getUsername(), 
-                                                                                                                   authenticatedUser.getPassword(),
-                                                                                                                   authenticatedUser.getAuthorities());
+            UserDetails authenticatedUser = userService.loadUserByUsername(authentication.getName());
+            UsernamePasswordAuthenticationToken userAuthentication =
+                    new UsernamePasswordAuthenticationToken(authenticatedUser.getUsername(),
+                            authenticatedUser.getPassword(), authenticatedUser.getAuthorities());
             userAuthentication.setDetails(authenticatedUser);
-            String token = tokenAuthenticationService.addAuthentication(response, userAuthentication);
-            request.setAttribute(TokenAuthenticationService.AUTH_HEADER_NAME, token);
+            String token = tokenProvider.addAuthentication(response, userAuthentication);
+            request.setAttribute(TokenProvider.AUTH_HEADER_NAME, token);
             SecurityContextHolder.getContext().setAuthentication(userAuthentication);
         } catch (InternalAuthenticationServiceException internalAuthenticationServiceException) {
             SecurityContextHolder.clearContext();
