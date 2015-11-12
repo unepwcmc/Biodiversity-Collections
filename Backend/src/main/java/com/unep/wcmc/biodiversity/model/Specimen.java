@@ -16,6 +16,10 @@ public class Specimen implements BaseEntity {
     @Column(name = "specimen_count")
     private Long count;
 
+    @ManyToOne
+    @JoinColumn(name = "collection_id")
+    private BiodiversityCollection collection;
+
     @Override
     public Long getId() {
         return id;
@@ -42,4 +46,11 @@ public class Specimen implements BaseEntity {
         this.count = count;
     }
 
+    public BiodiversityCollection getCollection() {
+        return collection;
+    }
+
+    public void setCollection(BiodiversityCollection collection) {
+        this.collection = collection;
+    }
 }

@@ -45,6 +45,9 @@ public class BiodiversityCollection implements BaseEntity {
     @OneToMany(mappedBy = "collection")
     private Set<Sample> samples;
 
+    @OneToMany(mappedBy = "collection")
+    private Set<Specimen> specimens;
+
     @OneToMany
     @JoinColumn(name = "collection_id")
     private Set<Document> documents;
@@ -153,5 +156,13 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setDocuments(Set<Document> documents) {
         this.documents = documents;
+    }
+
+    public Set<Specimen> getSpecimens() {
+        return specimens;
+    }
+
+    public void setSpecimens(Set<Specimen> specimens) {
+        this.specimens = specimens;
     }
 }
