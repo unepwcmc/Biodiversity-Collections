@@ -216,3 +216,7 @@ body.noscroll {
       line-height: 21px;
       color: #dfe0e1;
       text-align: left !important; }
+
+.horizontal-line{
+  width: 80%;
+}

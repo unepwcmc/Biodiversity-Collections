@@ -14,11 +14,16 @@ require.config({
         'angular-sanitize': 'ext/angular-sanitize',
         'angular-toastr': 'ext/angular-toastr',
         'angular-toastr-tpl': 'ext/angular-toastr.tpls',
+        'angular-cookies': 'ext/angular-cookies',
         'angularAMD': 'ext/angularAMD',
         'ngload': 'ext/ng-load',
         'angular-resource': 'ext/angular-resource',
         'bootstrap' : 'ext/bootstrap',
-        'underscore': 'ext/underscore'
+        'underscore': 'ext/underscore',
+        'nemLogging': 'ext/angular-simple-logger',
+        'leaflet-directive' : 'ext/angular-leaflet-directive',
+        'leaflet' : 'ext/leaflet',
+        'leaflet.markercluster': 'ext/leaflet.markercluster'
     },
 
     // Add angular modules that does not support AMD out of the box, put it in a shim
@@ -37,7 +42,12 @@ require.config({
         'angular-sanitize':{ deps: ['angular']},
         'angular-toastr':{ deps: ['angular']},
         'angular-toastr-tpl':{ deps: ['angular-toastr']},
-        'bootstrap': { exports: 'bootstrap', deps: ['jquery']}
+        'angular-cookies': { deps: ['angular']},
+        'bootstrap': { exports: 'bootstrap', deps: ['jquery']},
+        'nemLogging':  { deps: ['angular','angular-sanitize']},
+        'leaflet-directive' : { deps: ['angular','angular-sanitize']},
+        'leaflet' : { exports: 'leaflet', deps: ['angular','angular-sanitize']},
+        'leaflet.markercluster': { deps: ['angular','angular-sanitize', 'leaflet-directive']}
     },
 
     // kick start application
