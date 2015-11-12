@@ -11,19 +11,25 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">&nbsp;</div>
-                <div class="col-md-4">
-                    <form class="form-inline">
-
-                        <input type="text" placeholder="{{ 'SEARCH' | translate }}" class="form-control">
-                        <select class="form-control">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
-                        </select>
-                        <a style="cursor: pointer"><i class="fa fa-search"></i></a>
-
+                <div class="col-md-3">&nbsp;</div>
+                <div class="col-md-6">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-6 home-search">
+                                <input type="text" placeholder="{{ 'SEARCH' | translate }}" class="form-control">
+                            </div>
+                            <div class="col-md-3 home-search">
+                                <select select-wrap data-ng-model="search_type" >
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="mercedes">Mercedes</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 home-search">
+                                <button type="button" class="btn btn-primary" style="cursor: pointer"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-4">&nbsp;</div>
