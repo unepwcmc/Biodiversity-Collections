@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Profile;
 @ComponentScan
 @EnableAutoConfiguration
 @EnableSwagger
-@Profile({"qa", "dev"})
+//@Profile({"qa", "dev"})
 public class SwaggerConfig {
 
     @Autowired
@@ -34,7 +34,7 @@ public class SwaggerConfig {
                         "This service provides a JSON representation of the Biodiversity Collections API",
                         null, null, null, null))
                         // Map the specific URL patterns into Swagger
-                .includePatterns("/*");
+                .includePatterns("/collection.*");
     }
 
 }
