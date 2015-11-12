@@ -9,8 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Model that defines an application's permission
- * access
+ * Model that defines an application's permission access
  *
  */
 @Entity

@@ -13,17 +13,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Model that represents an user within Fichas de Especies
  *
  */
 @Entity
-@Table(name = "users",
-        uniqueConstraints = {
+@Table(name = "users", uniqueConstraints = {
                 @UniqueConstraint(columnNames = { "username" }),
-                @UniqueConstraint(columnNames = { "email" }), })
-public final class User implements UserDetails, BaseEntity {
+                @UniqueConstraint(columnNames = { "email" })})
+public class User implements UserDetails, BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,7 +54,21 @@ public final class User implements UserDetails, BaseEntity {
     @Column(nullable = false)
     private boolean enabled;
 
+    @ManyToOne
+    @JoinColumn(name = "institution_id")
+    private Institution institution;
+
+    @Temporal(TemporalType.DATE)
+    private Date birthDate;
+
+    private String jobTitle;
+
+    private String phoneNumber;
+
+    private String mobileNumber;
+
     public User() {
+        super();
     }
     
     @Override
@@ -149,6 +163,46 @@ public final class User implements UserDetails, BaseEntity {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public Institution getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     @Override
