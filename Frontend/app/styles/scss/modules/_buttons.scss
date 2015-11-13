@@ -28,12 +28,12 @@
 	}
 
 	&.btn-primary{
-		background-color: #008937;
-		border: 1px solid #008937;
+		background-color: #666666;
+		border: 1px solid #EAEAEA;
 
 		&.hollow{
 			background-color: transparent;
-			color: #008937 !important;
+			color: #666666 !important;
 		}
 
 		&.inset{
@@ -53,14 +53,14 @@
 		}
 
 		&:hover{
-			background-color: #33a15f;
-			border: 1px solid #33a15f;
+			background-color: #606670;
+			border: 1px solid #606670;
 			color: #fff !important;
 		}
 
 		&:active{
-			background-color: #00692a;
-			border: 1px solid #00692a;
+			background-color: #666666;
+			border: 1px solid #666666;
 			color: #fff !important;
 		}
 	}

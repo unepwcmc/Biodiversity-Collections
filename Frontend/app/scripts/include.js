@@ -12,6 +12,7 @@ define(
         'core/directives/core.translate.directive',
         'core/directives/core.map.directive',
         'core/filters/core.pagination.filter',
+        'core/controllers/BaseController',
         'auth/directives/auth.username.box.directive'
     ],
     function (angularAMD) {

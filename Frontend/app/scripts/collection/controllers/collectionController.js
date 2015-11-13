@@ -6,6 +6,6 @@ define(['app'], function () {
 
         angular.extend($scope, BaseController);
 
-        $scope.info('Welcome to Home Page');
+        $scope.info('Welcome to Collection Page');
     }];
 });
