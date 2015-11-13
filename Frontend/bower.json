@@ -39,6 +39,7 @@
     "angular-simple-logger": "~0.1.4"
   },
   "resolutions": {
-    "angular": "~1.4.x"
+    "angular": "~1.4.x",
+    "angular-simple-logger": "~0.1.4"
   }
 }
