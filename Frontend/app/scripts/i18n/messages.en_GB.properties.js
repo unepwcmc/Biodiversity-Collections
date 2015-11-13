@@ -8,7 +8,12 @@ define([],function ( ) {
     'PORTUGUESE':'Portuguese',
     'SEARCH':'Search',
     'BRAZIL_BIODIVERSITY_COLLECTION':'Brazil Biodiversity Collection',
-    'NEWS':'News'
+    'NEWS':'News',
+    'HOME':'Home',
+    'SEARCH_RESULTS':'Search Results',
+    'RESULT_FOR_COLLECTION':'result for Collection',
+    'PREVIOUS':'Previous',
+    'NEXT':'Next'
   }
 
 });
