@@ -1,4 +1,4 @@
-define(['app'], function () {
+define(['app', 'core/directives/core.map.directive'], function () {
 
     'use strict';
 

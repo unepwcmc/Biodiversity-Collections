@@ -10,8 +10,8 @@ define(
         'core/directives/core.select.wrap.directive',
         'core/directives/core.dialog.confirm.directive',
         'core/directives/core.translate.directive',
-        'core/directives/core.map.directive',
         'core/directives/core.main.directive',
+        'core/directives/core.breadcrumbs.directive',
         'core/filters/core.pagination.filter',
         'core/controllers/BaseController',
         'auth/directives/auth.username.box.directive'
