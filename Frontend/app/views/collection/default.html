@@ -16,7 +16,7 @@
 
     <section class="page-content">
         <div class="container">
-            <h3><strong>Nulla Vitae Ex covalli</strong> <span><a class="btn btn-small btn-primary">Collections</a></span></h3>
+            <h3><strong>Nulla Vitae Ex covalli</strong> <span><a class="btn btn-small btn-primary">{{ 'COLLECTIONS'| translate}}</a></span></h3>
         </div>
     </section>
 
@@ -28,17 +28,17 @@
                     <div class="small-field">
 
                         <div class="form-group ">
-                            <label class="col-sm-3">Collection ID</label>
+                            <label class="col-sm-3">{{ 'COLLECTION_ID' | translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control"></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">Curator</label>
+                            <label class="col-sm-3">{{ 'CURATOR' |  translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control"></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">Institution</label>
+                            <label class="col-sm-3">{{ 'INSTITUTION' | translate  }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control"></div>
                         </div>
 
@@ -48,22 +48,22 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">Preservation methods</label>
+                            <label class="col-sm-3">{{ 'PRESERVATION_METHODS' |  translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control"></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">Researches</label>
+                            <label class="col-sm-3">{{ 'RESEARCHES' | translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control"></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">Curatorial Unit/ Lodge</label>
+                            <label class="col-sm-3">{{ 'CURATORIAL_UNIT_LODGE' | translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control"></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">Collection Website</label>
+                            <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control"></div>
                         </div>
                     </div>
@@ -88,9 +88,9 @@
     <section class="page-content">
         <div class="container">
             <div class="row">
-                <div class="col-md-2"><h5><strong>Specimens</strong></h5></div>
-                <div class="col-md-2"><h6><strong>Estimeted specimens in collections</strong></h6></div>
-                <div class="col-md-2"><h6><strong>102 specimens</strong></h6></div>
+                <div class="col-md-2"><h5><strong>{{ 'SPECIMENS' | translate }}</strong></h5></div>
+                <div class="col-md-2"><h6><strong>{{ 'ESTIMATED_SPECIMENS_IN_COLLECTIONS' | translate }}</strong></h6></div>
+                <div class="col-md-2"><h6><strong>102 {{ 'SPECIMENS' | translate }}</strong></h6></div>
             </div>
             <div class="row">
                 <div class="col-md-2"></div>
@@ -98,8 +98,8 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Type</th>
-                                <th>Count of type</th>
+                                <th>{{ 'TYPE' | translate }}</th>
+                                <th>{{ 'COUNT_OF_TYPE' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,13 +132,13 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-2"><h5><strong>Samples</strong></h5></div>
+                <div class="col-md-2"><h5><strong>{{ 'SAMPLES' | translate }}</strong></h5></div>
                 <div class="col-md-6">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Sample</th>
-                                <th>id</th>
+                                <th>{{ 'SAMPLE' | translate }}</th>
+                                <th>{{ 'ID' | translate }}</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -181,7 +181,7 @@
                     <div class="pull-right">
                         <form class="form-inline">
                             <div class="form-group">
-                                <label>Row per page</label>
+                                <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
                             </div>
                             <div class="form-group" style="width: 100px">
                                 <select class="col-md-5" select-wrap ng-model="navigation.size" >
@@ -193,7 +193,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>1-5 of 14</label>
+                                <label>1-5 {{ 'OF' | translate }} 14</label>
                             </div>
                             <button type="submit" class="btn btn-default"><strong style="color: #666"> < </strong></button>
                             <button type="submit" class="btn btn-default"><strong style="color: #666"> > </strong></button>
@@ -209,15 +209,15 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-2"><h5><strong>Associated publications/ documents</strong></h5></div>
+                <div class="col-md-2"><h5><strong>{{ 'ASSOCIATED_PUBLICATIONS_DOCUMENTS' | translate }}</strong></h5></div>
                 <div class="col-md-10">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Type</th>
-                                <th>Format</th>
+                                <th>{{ 'TITLE' | translate }}</th>
+                                <th>{{ 'AUTHOR' | translate }}</th>
+                                <th>{{ 'TYPE' | translate }}</th>
+                                <th>{{ 'FORMAT' | translate }}</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -260,7 +260,7 @@
                 <div class="pull-right">
                     <form class="form-inline">
                         <div class="form-group">
-                            <label>Row per page</label>
+                            <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
                         </div>
                         <div class="form-group" style="width: 100px">
                             <select class="col-md-5" select-wrap ng-model="navigation.size" >
@@ -272,7 +272,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>1-5 of 14</label>
+                            <label>1-5 {{ 'OF' | translate }} 14</label>
                         </div>
                         <button type="submit" class="btn btn-default"><strong style="color: #666"> < </strong></button>
                         <button type="submit" class="btn btn-default"><strong style="color: #666"> > </strong></button>
@@ -289,7 +289,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-2"><h5><strong>Networks</strong></h5></div>
+                <div class="col-md-2"><h5><strong>{{ 'NETWORKS' | translate }}</strong></h5></div>
                 <div class="col-md-10">
                     <table class="table table-hover">
                         <thead>
@@ -378,7 +378,7 @@
                 <div class="pull-right">
                     <form class="form-inline">
                         <div class="form-group">
-                            <label>Row per page</label>
+                            <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
                         </div>
                         <div class="form-group" style="width: 100px">
                             <select class="col-md-5" select-wrap ng-model="navigation.size" >
@@ -390,7 +390,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>1-5 of 14</label>
+                            <label>1-5 {{ 'OF' | translate }} 14</label>
                         </div>
                         <button type="submit" class="btn btn-default"><strong style="color: #666"> < </strong></button>
                         <button type="submit" class="btn btn-default"><strong style="color: #666"> > </strong></button>
