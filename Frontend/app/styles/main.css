@@ -759,15 +759,6 @@ body.noscroll {
   .home-search input.form-control {
     height: 40px; }
 
-/*
-.btn-sm .fa,
-.btn-xs .fa,
-small .fa,
-.btn-group-sm .fa,
-.btn-group-xs .fa,
-.input-group-sm .fa,
-.input-group-xs .fa
-{
-  font-size: 14px;
-}*/
-
+h5.collection.section-header {
+  margin-top: 0;
+  line-height: 25px; }
