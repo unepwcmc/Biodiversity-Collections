@@ -758,3 +758,16 @@ body.noscroll {
   margin-right: 5px; }
   .home-search input.form-control {
     height: 40px; }
+
+/*
+.btn-sm .fa,
+.btn-xs .fa,
+small .fa,
+.btn-group-sm .fa,
+.btn-group-xs .fa,
+.input-group-sm .fa,
+.input-group-xs .fa
+{
+  font-size: 14px;
+}*/
+

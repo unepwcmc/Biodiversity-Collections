@@ -11,6 +11,7 @@ define(
         'core/directives/core.dialog.confirm.directive',
         'core/directives/core.translate.directive',
         'core/directives/core.map.directive',
+        'core/directives/core.main.directive',
         'core/filters/core.pagination.filter',
         'core/controllers/BaseController',
         'auth/directives/auth.username.box.directive'

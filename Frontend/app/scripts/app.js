@@ -21,7 +21,7 @@ define(['include', 'language'], function (angularAMD, language) {
                     }))
                 .state('search', angularAMD.route(
                     {
-                        url: '/search/:id',
+                        url: '/search',
                         templateUrl: 'views/search/default.html',
                         controllerUrl: 'search/controllers/searchController'
                     }))
@@ -30,6 +30,12 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/collection/:id',
                         templateUrl: 'views/collection/default.html',
                         controllerUrl: 'collection/controllers/collectionController'
+                    }))
+                .state('sample', angularAMD.route(
+                    {
+                        url: '/sample/:id',
+                        templateUrl: 'views/sample/default.html',
+                        controllerUrl: 'sample/controllers/sampleController'
                     }));
 
             $provide.factory('authInterceptor', ['$rootScope', '$q', '$window',

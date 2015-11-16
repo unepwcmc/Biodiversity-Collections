@@ -30,13 +30,6 @@ define(['angularAMD'], function (angularAMD) {
                                       attribution:  '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                   }
                               }
-                          },
-                          overlays: {
-                              occurrences: {
-                                  name: 'occurrences',
-                                  type: 'markercluster',
-                                  visible: true
-                              }
                           }
                       },
                       center: {

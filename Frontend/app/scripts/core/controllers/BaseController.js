@@ -8,7 +8,7 @@ define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.factory('BaseController', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
+    angularAMD.factory('BaseController', ['$http', '$rootScope', '$log','$state', function ($http, $rootScope, $log, $state) {
 
         return {
 
