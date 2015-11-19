@@ -18,7 +18,7 @@
                         <form class="form-inline" ng-submit="searchCollection()">
                             <div class="form-group">
                                 <div class="form-group">
-                                    <input type="text" placeholder="{{ 'SEARCH' | translate }}" class="form-control" ng-model="search.query">
+                                    <input type="text" ng-model-options="{debounce:500}" placeholder="{{ 'SEARCH' | translate }}" class="form-control" ng-model="query" ng-keydown="">
                                 </div>
                                 <div class="form-group">
                                     <select select-wrap data-ng-model="search.type" >

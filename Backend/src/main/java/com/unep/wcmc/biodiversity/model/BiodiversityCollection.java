@@ -21,6 +21,8 @@ public class BiodiversityCollection implements BaseEntity {
 
     private String webSite;
 
+    private String curatorialLodge;
+
     @Enumerated(EnumType.STRING)
     private CollectionType type;
 
@@ -167,5 +169,13 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setSpecimens(Set<Specimen> specimens) {
         this.specimens = specimens;
+    }
+
+    public String getCuratorialLodge() {
+        return curatorialLodge;
+    }
+
+    public void setCuratorialLodge(String curatorialLodge) {
+        this.curatorialLodge = curatorialLodge;
     }
 }
