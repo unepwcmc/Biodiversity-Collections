@@ -25,7 +25,7 @@ define(['angularAMD','core/factory/documentFactory'], function (angularAMD) {
                         $scope.documents.load($scope.collection, $scope.page.number, $scope.page.size);
 
                         $scope.$on('NETWORK_LOADED', function( ) {
-                            console.log('Networks Loaded...');
+                            console.log('Publications Loaded...');
 
                             $scope.page.number = $scope.documents.number;
                             $scope.page.size = $scope.documents.size;

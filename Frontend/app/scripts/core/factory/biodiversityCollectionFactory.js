@@ -39,15 +39,34 @@ define(['app'], function (app) {
 
                     .success(function (data) {
                         if (data.message == 'no matches found') {
-                            $rootScope.$broadcast("BiodiversityLoadError");
+                            $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
                         } else {
                             self.setData(data);
-                            $rootScope.$broadcast("BiodiversityLoaded");
+                            $rootScope.$broadcast("BIODIVERSITY_LOADED");
                         }
                     })
                     .error(function (message) {
                         $log.error(message);
-                        $rootScope.$broadcast("BiodiversityLoadError");
+                        $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
+                    });
+            },
+            get: function( id){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "collections/" + id )
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("BIODIVERSITY_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
                     });
             }
         };

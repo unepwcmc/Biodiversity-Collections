@@ -12,8 +12,7 @@ define(['app','collection/directives/collection.networks.directive',
            function ($scope, BaseController, BiodiversityCollection, $stateParams) {
                 angular.extend($scope, BaseController);
 
-
-                $scope.collections = new BiodiversityCollection();
+                $scope.collection = new BiodiversityCollection();
 
                /**
                 * Listener when the view
@@ -22,6 +21,7 @@ define(['app','collection/directives/collection.networks.directive',
                    console.log('view Content Loaded...');
 
                    $scope.id = $stateParams.id;
+                   $scope.collection.get( $scope.id);
                });
 
                 $scope.info('Welcome to Collection Page');
