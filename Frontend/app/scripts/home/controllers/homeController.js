@@ -7,7 +7,6 @@ define(['app', 'core/directives/core.map.directive'], function () {
         angular.extend($scope, BaseController);
 
         $scope.info('Welcome to Home Page');
-
         /**
          * Listener when the state is changed
          */
