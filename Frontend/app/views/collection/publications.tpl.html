@@ -15,35 +15,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>Julis Venture</td>
-                        <td>publication</td>
-                        <td>.pdf</td>
-                        <td><a class="btn btn-inverse"> ... </a></td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>Julis Venture</td>
-                        <td>publication</td>
-                        <td>.pdf</td>
-                        <td><a class="btn btn-inverse"> ... </a></td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>Julis Venture</td>
-                        <td>publication</td>
-                        <td>.pdf</td>
-                        <td><a class="btn btn-inverse"> ... </a></td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>Julis Venture</td>
-                        <td>publication</td>
-                        <td>.pdf</td>
-                        <td><a class="btn btn-inverse"> ... </a></td>
-                    </tr>
-
+                        <tr ng-repeat="publication in documents.content">
+                            <td>{{publication.title}}</td>
+                            <td>{{publication.author}}</td>
+                            <td>{{publication.type}}</td>
+                            <td>.{{publication.contentType}}</td>
+                            <td><a class="btn btn-inverse"> ... </a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -56,19 +34,29 @@
                         <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
                     </div>
                     <div class="form-group" style="width: 100px">
-                        <select class="col-md-5" select-wrap ng-model="navigation.size" >
-                            <option value="5" selected>5</option>
-                            <option value="5">10</option>
-                            <option value="5">15</option>
-                            <option value="5">20</option>
-                            <option value="5">25</option>
-                        </select>
+                        <div class="select-wrapper">
+                            <select class="col-md-5" id="network-size-box">
+                                <option value="5" selected>5</option>
+                                <option value="5">10</option>
+                                <option value="5">15</option>
+                                <option value="5">20</option>
+                                <option value="5">25</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>1-5 {{ 'OF' | translate }} 14</label>
+                        <label>{{page.number + 1}} {{ 'OF' | translate }} {{page.totalPages}}</label>
                     </div>
-                    <button type="submit" class="btn btn-default"><strong style="color: #666"> < </strong></button>
-                    <button type="submit" class="btn btn-default"><strong style="color: #666"> > </strong></button>
+
+                    <span  ng-class="{disabled: page.number === 0}">
+                        <a type="submit" class="btn btn-default" ng-show="page.number !== 0" ng-click="paginate(page.number - 1,page.size)"><strong style="color: #666"> < </strong></a>
+                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="page.number === 0"><strong style="color: #666"> < </strong></button>
+                    </span>
+                    <span ng-class="{disabled: page.number === page.totalPages - 1}">
+                        <a type="submit" class="btn btn-default" ng-show="page.number !== page.totalPages - 1" ng-click="paginate(page.number + 1,page.size)"><strong style="color: #666"> > </strong></a>
+                        <button disabled="disabled" class="btn btn-default" ng-show="page.number === page.totalPages - 1"><strong style="color: #666"> > </strong></button>
+                    </span>
+
                 </form>
             </div>
         </div>
