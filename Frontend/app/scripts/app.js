@@ -2,7 +2,7 @@ define(['include', 'language'], function (angularAMD, language) {
 
     'use strict';
 
-    var app = angular.module('TaxonomicDB', ['ui.router', 'ngResource', 'ngSanitize','ngCookies', 'toastr', 'pascalprecht.translate','leaflet-directive']);
+    var app = angular.module('TaxonomicDB', ['ui.router', 'ngResource', 'ngSanitize','ngCookies', 'toastr', 'pascalprecht.translate','leaflet-directive','angucomplete-alt']);
 
     app.config(['$stateProvider', '$provide', '$urlRouterProvider', '$httpProvider',
 

@@ -23,7 +23,8 @@ require.config({
         'nemLogging': 'ext/angular-simple-logger',
         'leaflet-directive' : 'ext/angular-leaflet-directive',
         'leaflet' : 'ext/leaflet',
-        'leaflet.markercluster': 'ext/leaflet.markercluster'
+        'leaflet.markercluster': 'ext/leaflet.markercluster',
+        'angucomplete-alt':'ext/angucomplete-alt'
     },
 
     // Add angular modules that does not support AMD out of the box, put it in a shim
@@ -45,6 +46,7 @@ require.config({
         'angular-cookies': { deps: ['angular']},
         'bootstrap': { exports: 'bootstrap', deps: ['jquery']},
         'nemLogging':  { deps: ['angular','angular-sanitize']},
+        'angucomplete-alt': { deps: ['angular']},
         'leaflet-directive' : { deps: ['angular','angular-sanitize']},
         'leaflet' : { exports: 'leaflet', deps: ['angular','angular-sanitize']},
         'leaflet.markercluster': { deps: ['angular','angular-sanitize', 'leaflet-directive']}

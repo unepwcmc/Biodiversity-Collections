@@ -762,3 +762,10 @@ body.noscroll {
 h5.collection.section-header {
   margin-top: 0;
   line-height: 25px; }
+
+
+.angucomplete-dropdown {
+  overflow-y: auto;
+  max-height: 200px;
+  border: solid 1px #cccccc;
+}

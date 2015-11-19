@@ -36,7 +36,9 @@
     "bootstrap-sass-official": "~3.2.0",
     "leaflet.markercluster": "~0.4.0",
     "angular-leaflet-directive": "~0.8.8",
-    "angular-simple-logger": "~0.1.4"
+    "angular-simple-logger": "~0.1.4",
+    "angucomplete": "https://github.com/darylrowland/angucomplete.git",
+    "angucomplete-alt": "~2.1.0"
   },
   "resolutions": {
     "angular": "~1.4.x",

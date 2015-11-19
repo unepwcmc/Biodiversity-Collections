@@ -36,7 +36,8 @@ define([],function ( ) {
     'AUTHOR':'Author',
     'FORMAT':'Format',
     'NETWORKS':'Networks',
-    'OF':'of'
+    'OF':'of',
+    'NAME':'Name'
   }
 
 });

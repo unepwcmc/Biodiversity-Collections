@@ -527,3 +527,16 @@ input[type="number"]:disabled{
   		border: 2px solid #dfe0e1;
   	}
 }
+
+textarea.autoresize,
+form.form-block.view-mode textarea[readonly="readonly"]{
+  min-height: 2px;
+  resize: none;
+  overflow: hidden !important;
+}
+
+form.form-block.view-mode textarea.importanceCollection,
+form.form-block.edit-mode textarea.importanceCollection{
+  height: 230px;
+  overflow: auto !important;
+}
