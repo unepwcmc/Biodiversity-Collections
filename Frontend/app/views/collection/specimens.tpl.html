@@ -16,22 +16,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>12</td>
-                    </tr>
+                        <tr ng-repeat="specimen in specimens.content">
+                            <td>{{specimen.type}}</td>
+                            <td>{{specimen.count}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

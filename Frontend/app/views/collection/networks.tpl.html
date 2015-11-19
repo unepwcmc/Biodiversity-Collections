@@ -12,76 +12,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <p class="text-left small"><strong>Network onec a ultricies nunc  | id: 4578</strong><p>
-                            <p class="text-justify small">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer...</p>
-                        </td>
-                        <td>
-                            <svg width="78" height="44" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
-                                <g>
-                                    <rect stroke-opacity="0" id="svg_1" height="44" width="78" y="1" x="0" stroke-width="0" stroke="#000000" fill="#7f7f7f"/>
-                                </g>
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="text-left small"><strong>Network onec a ultricies nunc  | id: 4578</strong><p>
-                            <p class="text-justify small">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer...</p>
-                        </td>
-                        <td>
-                            <svg width="78" height="44" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
-                                <g>
-                                    <rect stroke-opacity="0" id="svg_1" height="44" width="78" y="1" x="0" stroke-width="0" stroke="#000000" fill="#7f7f7f"/>
-                                </g>
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="text-left small"><strong>Network onec a ultricies nunc  | id: 4578</strong><p>
-                            <p class="text-justify small">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer...</p>
-                        </td>
-                        <td>
-                            <svg width="78" height="44" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
-                                <g>
-                                    <rect stroke-opacity="0" id="svg_1" height="44" width="78" y="1" x="0" stroke-width="0" stroke="#000000" fill="#7f7f7f"/>
-                                </g>
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="text-left small"><strong>Network onec a ultricies nunc  | id: 4578</strong><p>
-                            <p class="text-justify small">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer...</p>
-                        </td>
-                        <td>
-                            <svg width="78" height="44" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
-                                <g>
-                                    <rect stroke-opacity="0" id="svg_1" height="44" width="78" y="1" x="0" stroke-width="0" stroke="#000000" fill="#7f7f7f"/>
-                                </g>
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="text-left small"><strong>Network onec a ultricies nunc  | id: 4578</strong><p>
-                            <p class="text-justify small">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer...</p>
-                        </td>
-                        <td>
-                            <svg width="78" height="44" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
-                                <g>
-                                    <rect stroke-opacity="0" id="svg_1" height="44" width="78" y="1" x="0" stroke-width="0" stroke="#000000" fill="#7f7f7f"/>
-                                </g>
-                            </svg>
-                        </td>
-                    </tr>
+                        <tr ng-repeat="network in networks.content">
+                            <td>
+                                <p class="text-left small"><strong>{{network.name}}  | id: {{network.id}}</strong><p>
+                                <p class="text-justify small">{{network.description}}</p>
+                            </td>
+                            <td>
+                                <svg width="78" height="44" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+                                    <g>
+                                        <rect stroke-opacity="0" id="svg_1" height="44" width="78" y="1" x="0" stroke-width="0" stroke="#000000" fill="#7f7f7f"/>
+                                    </g>
+                                </svg>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -94,21 +38,33 @@
                         <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
                     </div>
                     <div class="form-group" style="width: 100px">
-                        <select class="col-md-5" select-wrap ng-model="navigation.size" >
-                            <option value="5" selected>5</option>
-                            <option value="5">10</option>
-                            <option value="5">15</option>
-                            <option value="5">20</option>
-                            <option value="5">25</option>
-                        </select>
+                        <div class="select-wrapper">
+                            <select class="col-md-5" id="network-size-box">
+                                <option value="5" selected>5</option>
+                                <option value="5">10</option>
+                                <option value="5">15</option>
+                                <option value="5">20</option>
+                                <option value="5">25</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>1-5 {{ 'OF' | translate }} 14</label>
+                        <label>{{page.number + 1}} {{ 'OF' | translate }} {{page.totalPages}}</label>
                     </div>
-                    <button type="submit" class="btn btn-default"><strong style="color: #666"> < </strong></button>
-                    <button type="submit" class="btn btn-default"><strong style="color: #666"> > </strong></button>
+
+                    <span  ng-class="{disabled: page.number === 0}">
+                        <a type="submit" class="btn btn-default" ng-show="page.number !== 0" ng-click="paginate(page.number - 1,page.size)"><strong style="color: #666"> < </strong></a>
+                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="page.number === 0"><strong style="color: #666"> < </strong></button>
+                    </span>
+                    <span ng-class="{disabled: page.number === page.totalPages - 1}">
+                        <a type="submit" class="btn btn-default" ng-show="page.number !== page.totalPages - 1" ng-click="paginate(page.number + 1,page.size)"><strong style="color: #666"> > </strong></a>
+                        <button disabled="disabled" class="btn btn-default" ng-show="page.number === page.totalPages - 1"><strong style="color: #666"> > </strong></button>
+                    </span>
+
                 </form>
             </div>
         </div>
+
+
     </div>
 </section>

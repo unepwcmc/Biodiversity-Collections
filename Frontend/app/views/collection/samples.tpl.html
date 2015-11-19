@@ -2,7 +2,8 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'SAMPLES' | translate }}</strong></h5></div>
+            <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'SAMPLES' | translate }}</strong>
+            </h5></div>
             <div class="col-md-6">
                 <table class="table table-hover">
                     <thead>
@@ -13,32 +14,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>123</td>
+                    <tr ng-repeat="sample in samples.content">
+                        <td>{{ sample.name }}</td>
+                        <td>{{ sample.id }}</td>
                         <td><img src="images/icons/toast-info.png"></td>
                     </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>123</td>
-                        <td><img src="images/icons/toast-info.png"></td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>123</td>
-                        <td><img src="images/icons/toast-info.png"></td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>123</td>
-                        <td><img src="images/icons/toast-info.png"></td>
-                    </tr>
-                    <tr>
-                        <td>Faucibus orci luctus</td>
-                        <td>123</td>
-                        <td><img src="images/icons/toast-info.png"></td>
-                    </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -46,15 +26,14 @@
 
 
         <div class="row">
-            <div class="col-md-2">&nbsp;</div>
-            <div class="col-md-6">
-                <div class="pull-right">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
-                        </div>
-                        <div class="form-group" style="width: 100px">
-                            <select class="col-md-5" select-wrap ng-model="navigation.size" >
+            <div class="pull-right">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
+                    </div>
+                    <div class="form-group" style="width: 100px">
+                        <div class="select-wrapper">
+                            <select class="col-md-5" id="sample-size-box">
                                 <option value="5" selected>5</option>
                                 <option value="5">10</option>
                                 <option value="5">15</option>
@@ -62,15 +41,28 @@
                                 <option value="5">25</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>1-5 {{ 'OF' | translate }} 14</label>
-                        </div>
-                        <button type="submit" class="btn btn-default"><strong style="color: #666"> < </strong></button>
-                        <button type="submit" class="btn btn-default"><strong style="color: #666"> > </strong></button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{page.number + 1}} {{ 'OF' | translate }} {{page.totalPages}}</label>
+                    </div>
+
+                    <span ng-class="{disabled: page.number === 0}">
+                        <a type="submit" class="btn btn-default" ng-show="page.number !== 0"
+                           ng-click="paginate(page.number - 1,page.size)"><strong style="color: #666"> < </strong></a>
+                        <button disabled="disabled" class="btn btn-default" class="page-not-active"
+                                ng-show="page.number === 0"><strong style="color: #666"> < </strong></button>
+                    </span>
+                    <span ng-class="{disabled: page.number === page.totalPages - 1}">
+                        <a type="submit" class="btn btn-default" ng-show="page.number !== page.totalPages - 1"
+                           ng-click="paginate(page.number + 1,page.size)"><strong style="color: #666"> > </strong></a>
+                        <button disabled="disabled" class="btn btn-default"
+                                ng-show="page.number === page.totalPages - 1"><strong style="color: #666"> > </strong>
+                        </button>
+                    </span>
+
+                </form>
             </div>
-        </div>
+          </div>
         <hr/>
     </div>
 </section>
