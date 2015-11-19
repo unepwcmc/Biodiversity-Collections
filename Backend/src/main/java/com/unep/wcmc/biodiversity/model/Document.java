@@ -1,5 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -29,6 +30,11 @@ public class Document implements BaseEntity {
     private String contentType;
 
     private boolean status;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "collection_id")
+    private BiodiversityCollection collection;
 
     @Override
     public Long getId() {
@@ -102,5 +108,13 @@ public class Document implements BaseEntity {
 
     public void setContentType(String contentType) {
         this.contentType = contentType;
+    }
+
+    public BiodiversityCollection getCollection() {
+        return collection;
+    }
+
+    public void setCollection(BiodiversityCollection collection) {
+        this.collection = collection;
     }
 }
