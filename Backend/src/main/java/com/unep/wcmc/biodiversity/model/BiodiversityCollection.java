@@ -1,5 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -35,21 +36,23 @@ public class BiodiversityCollection implements BaseEntity {
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
-    @ManyToMany(mappedBy = "collections")
+    @JsonIgnore
+    @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY)
     private Set<Network> networks;
 
     @OneToMany
     @JoinColumn(name = "collection_id")
     private Set<Researcher> researchers;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "collection")
     private Set<Sample> samples;
 
     @OneToMany(mappedBy = "collection")
     private Set<Specimen> specimens;
 
-    @OneToMany
-    @JoinColumn(name = "collection_id")
+    @JsonIgnore
+    @OneToMany(mappedBy = "collection")
     private Set<Document> documents;
 
     @Override

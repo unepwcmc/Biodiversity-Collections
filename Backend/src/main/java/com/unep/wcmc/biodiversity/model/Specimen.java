@@ -1,5 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Specimen implements BaseEntity {
     @Column(name = "specimen_count")
     private Long count;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "collection_id")
     private BiodiversityCollection collection;
