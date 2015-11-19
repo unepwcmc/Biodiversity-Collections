@@ -1,5 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Institution implements BaseEntity {
     @JoinColumn(name = "institution_id")
     private Set<Curator> curators;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "institution")
     private Set<BiodiversityCollection> collections;
 
