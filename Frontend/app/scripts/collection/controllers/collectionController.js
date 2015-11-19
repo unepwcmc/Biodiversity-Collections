@@ -2,14 +2,29 @@ define(['app','collection/directives/collection.networks.directive',
               'collection/directives/collection.details.directive',
               'collection/directives/collection.publications.directive',
               'collection/directives/collection.samples.directive',
-              'collection/directives/collection.specimens.directive'], function () {
+              'collection/directives/collection.specimens.directive',
+              'core/factory/biodiversityCollectionFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController', function ($scope, BaseController) {
+    return ['$scope','BaseController', 'BiodiversityCollection','$stateParams',
 
-        angular.extend($scope, BaseController);
+           function ($scope, BaseController, BiodiversityCollection, $stateParams) {
+                angular.extend($scope, BaseController);
 
-        $scope.info('Welcome to Collection Page');
-    }];
+
+                $scope.collections = new BiodiversityCollection();
+
+               /**
+                * Listener when the view
+                */
+               $scope.$on('$viewContentLoaded', function() {
+                   console.log('view Content Loaded...');
+
+                   $scope.id = $stateParams.id;
+               });
+
+                $scope.info('Welcome to Collection Page');
+           }
+    ];
 });
