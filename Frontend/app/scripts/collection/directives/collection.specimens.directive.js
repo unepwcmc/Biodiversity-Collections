@@ -22,7 +22,7 @@ define(['angularAMD','core/factory/specimenFactory'], function (angularAMD) {
 
                         $scope.page  = {totalElements : 0, number: 0, size: 10, totalPages: 0};
                         $scope.specimens = new Specimen();
-                        $scope.specimens.load($scope.collection,  $scope.page.number, $scope.page.size);
+                        $scope.specimens.load( $stateParams.id,  $scope.page.number, $scope.page.size);
 
                         $scope.$on('SPECIMENS_LOADED', function( ) {
                             console.log('Specimens Loaded...');
@@ -34,7 +34,7 @@ define(['angularAMD','core/factory/specimenFactory'], function (angularAMD) {
                         });
 
                         $scope.paginate = function(page, size){
-                            $scope.specimens.load($scope.collection , page, size);
+                            $scope.specimens.load( $stateParams.id , page, size);
                         };
                     }],
                 link: function (scope, element, attrs) {

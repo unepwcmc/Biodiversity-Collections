@@ -22,7 +22,7 @@ define(['angularAMD','core/factory/sampleFactory'], function (angularAMD) {
 
                         $scope.page  = {totalElements : 0, number: 0, size: 10, totalPages: 0};
                         $scope.samples = new Sample();
-                        $scope.samples.load($scope.collection,  $scope.page.number, $scope.page.size);
+                        $scope.samples.load( $stateParams.id,  $scope.page.number, $scope.page.size);
 
                         $scope.$on('SAMPLE_LOADED', function( ) {
                             console.log('Samples Loaded...');
@@ -34,7 +34,7 @@ define(['angularAMD','core/factory/sampleFactory'], function (angularAMD) {
                         });
 
                         $scope.paginate = function(page, size){
-                            $scope.samples.load($scope.collection , page, size);
+                            $scope.samples.load( $stateParams.id , page, size);
                         };
 
 

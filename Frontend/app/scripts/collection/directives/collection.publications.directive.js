@@ -22,7 +22,7 @@ define(['angularAMD','core/factory/documentFactory'], function (angularAMD) {
 
                         $scope.page  = {totalElements : 0, number: 0, size: 10, totalPages: 0};
                         $scope.documents = new Document();
-                        $scope.documents.load($scope.collection, $scope.page.number, $scope.page.size);
+                        $scope.documents.load( $stateParams.id, $scope.page.number, $scope.page.size);
 
                         $scope.$on('NETWORK_LOADED', function( ) {
                             console.log('Publications Loaded...');
@@ -34,7 +34,7 @@ define(['angularAMD','core/factory/documentFactory'], function (angularAMD) {
                         });
 
                         $scope.paginate = function(page, size){
-                            $scope.documents.load($scope.collection , page, size);
+                            $scope.documents.load( $stateParams.id , page, size);
                         };
 
                     }],

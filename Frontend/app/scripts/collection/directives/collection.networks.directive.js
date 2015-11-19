@@ -22,7 +22,7 @@ define(['angularAMD','core/factory/networkFactory'], function (angularAMD) {
 
                         $scope.page  = {totalElements : 0, number: 0, size: 10, totalPages: 0};
                         $scope.networks = new Network();
-                        $scope.networks.load($scope.collection,  $scope.page.number, $scope.page.size);
+                        $scope.networks.load( $stateParams.id,  $scope.page.number, $scope.page.size);
 
                         $scope.$on('NETWORK_LOADED', function( ) {
                             console.log('Networks Loaded...');
@@ -34,7 +34,7 @@ define(['angularAMD','core/factory/networkFactory'], function (angularAMD) {
                         });
 
                         $scope.paginate = function(page, size){
-                            $scope.networks.load($scope.collection , page, size);
+                            $scope.networks.load( $stateParams.id , page, size);
                         };
 
                     }],
