@@ -31,11 +31,11 @@ define(['app'], function (app) {
             setData: function (data) {
                 angular.extend(this, data);
             },
-            search: function( model ){
+            load: function( id, page, size ){
 
                 var self = this;
 
-                $http.get( $rootScope.getHost() + "collections/search/" + id)
+                $http.get( $rootScope.getHost() + "collections/" + id  + '?page=' +  page  + '&size=' +   size)
 
                     .success(function (data) {
                         if (data.message == 'no matches found') {
