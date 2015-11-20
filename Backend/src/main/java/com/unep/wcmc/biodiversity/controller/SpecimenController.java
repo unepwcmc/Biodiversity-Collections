@@ -1,6 +1,6 @@
 package com.unep.wcmc.biodiversity.controller;
 
-import com.unep.wcmc.biodiversity.model.Sample;
+import com.unep.wcmc.biodiversity.model.Specimen;
 import com.unep.wcmc.biodiversity.service.BiodiversityCollectionService;
 import com.unep.wcmc.biodiversity.service.SpecimenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class SpecimenController{
     private SpecimenService service;
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/collection/{collectionId}")
-    public Page<Sample> findAllSpecimenByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
+    public Page<Specimen> findAllSpecimenByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
 
         return service.findAllByCollection(biodiversityCollectionService.get(collectionId), pageable);
     }

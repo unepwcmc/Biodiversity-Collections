@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SpecimenService extends AbstractService<Specimen, SpecimenRepository> {
 
-    public Page<Sample> findAllByCollection(BiodiversityCollection collection, Pageable page){
+    public Page<Specimen> findAllByCollection(BiodiversityCollection collection, Pageable page){
         return repo.findAllByCollection(collection, page);
     }
 }

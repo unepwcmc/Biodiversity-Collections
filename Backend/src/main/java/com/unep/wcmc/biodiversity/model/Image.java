@@ -1,11 +1,10 @@
 package com.unep.wcmc.biodiversity.model;
 
 import com.unep.wcmc.biodiversity.support.BaseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.IOException;
 
 @Entity
 public class Image implements BaseEntity {
@@ -15,6 +14,21 @@ public class Image implements BaseEntity {
     private Long id;
 
     private boolean status;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_id")
+    private Attachment attachment;
+
+    public Image(){}
+
+    public Image(MultipartFile file) {
+        try {
+            this.setAttachment(new Attachment(file.getBytes()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public Long getId() {
@@ -32,5 +46,13 @@ public class Image implements BaseEntity {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
     }
 }

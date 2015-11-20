@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -50,7 +52,7 @@ public class BiodiversityCollection implements BaseEntity {
     @OneToMany(mappedBy = "collection")
     private Set<Sample> samples;
 
-    @OneToMany(mappedBy = "collection")
+    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL)
     private Set<Specimen> specimens;
 
     @JsonIgnore
@@ -164,11 +166,19 @@ public class BiodiversityCollection implements BaseEntity {
     }
 
     public Set<Specimen> getSpecimens() {
-        return specimens;
+        return specimens == null? new HashSet<Specimen>(): this.specimens;
     }
 
     public void setSpecimens(Set<Specimen> specimens) {
         this.specimens = specimens;
+    }
+
+    public void addSpecimen(Specimen specimen){
+        getSpecimens().add(specimen);
+    }
+
+    public void removeSpecimen(Specimen specimen){
+        getSpecimens().remove(specimen);
     }
 
     public String getCuratorialLodge() {

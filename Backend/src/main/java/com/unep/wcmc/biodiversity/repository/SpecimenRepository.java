@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SpecimenRepository extends JpaRepository<Specimen, Long> {
 
-    public Page<Sample> findAllByCollection(BiodiversityCollection collection, Pageable p);
+    public Page<Specimen> findAllByCollection(BiodiversityCollection collection, Pageable p);
 }
