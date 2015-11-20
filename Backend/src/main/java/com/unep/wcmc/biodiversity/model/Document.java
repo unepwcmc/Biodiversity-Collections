@@ -2,6 +2,7 @@ package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -34,6 +35,7 @@ public class Document implements BaseEntity {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "collection_id")
+    @RestResource(exported = false)
     private BiodiversityCollection collection;
 
     @Override

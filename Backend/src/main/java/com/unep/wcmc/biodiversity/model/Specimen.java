@@ -1,36 +1,16 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.unep.wcmc.biodiversity.support.BaseEntity;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import java.io.Serializable;
 
-import javax.persistence.*;
-
-@Entity
-public class Specimen implements BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Embeddable
+public class Specimen implements Serializable {
 
     private String type;
 
     @Column(name = "specimen_count")
     private Long count;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "collection_id")
-    private BiodiversityCollection collection;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getType() {
         return type;
@@ -48,11 +28,22 @@ public class Specimen implements BaseEntity {
         this.count = count;
     }
 
-    public BiodiversityCollection getCollection() {
-        return collection;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Specimen)) return false;
+
+        Specimen specimen = (Specimen) o;
+
+        if (type != null ? !type.equals(specimen.type) : specimen.type != null) return false;
+        return !(count != null ? !count.equals(specimen.count) : specimen.count != null);
+
     }
 
-    public void setCollection(BiodiversityCollection collection) {
-        this.collection = collection;
+    @Override
+    public int hashCode() {
+        int result = type != null ? type.hashCode() : 0;
+        result = 31 * result + (count != null ? count.hashCode() : 0);
+        return result;
     }
 }

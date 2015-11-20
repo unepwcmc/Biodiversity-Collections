@@ -2,9 +2,9 @@ package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,28 +34,27 @@ public class BiodiversityCollection implements BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "curator_id")
+    @RestResource(exported = false)
     private Curator curator;
 
     @ManyToOne
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY)
     private Set<Network> networks;
 
-    @OneToMany
-    @JoinColumn(name = "collection_id")
+    @ElementCollection
+    @CollectionTable(name = "researcher", joinColumns = @JoinColumn(name = "collection_id"))
     private Set<Researcher> researchers;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "collection")
     private Set<Sample> samples;
 
-    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL)
+    @ElementCollection
+    @CollectionTable(name = "specimen", joinColumns = @JoinColumn(name = "collection_id"))
     private Set<Specimen> specimens;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "collection")
     private Set<Document> documents;
 
