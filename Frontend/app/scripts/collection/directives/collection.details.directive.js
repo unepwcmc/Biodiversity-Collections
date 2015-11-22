@@ -3,7 +3,7 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD','waypoints'], function (angularAMD) {
+define(['angularAMD','waypoints', 'collection/directives/collection.image.directive'], function (angularAMD) {
 
     'use strict';
 
