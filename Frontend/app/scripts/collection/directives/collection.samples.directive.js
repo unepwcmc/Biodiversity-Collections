@@ -14,9 +14,6 @@ define(['angularAMD','core/factory/sampleFactory'], function (angularAMD) {
             return {
                 restrict: 'E',
                 templateUrl: 'views/collection/samples.tpl.html',
-                scope:{
-                    collection: '='
-                },
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
