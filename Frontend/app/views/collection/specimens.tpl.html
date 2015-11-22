@@ -1,29 +1,45 @@
-<section class="page-content">
+<section class="page-content" edit-form>
     <div class="container">
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'SPECIMENS' | translate }}</strong></h5></div>
             <div class="col-md-2"><h6><strong>{{ 'ESTIMATED_SPECIMENS_IN_COLLECTIONS' | translate }}</strong></h6></div>
-            <div class="col-md-2"><h6><strong>102 {{ 'SPECIMENS' | translate }}</strong></h6></div>
+            <div class="col-md-2"><h6><strong>{{specimensCount}} {{ 'SPECIMENS' | translate }}</strong></h6></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>{{ 'TYPE' | translate }}</th>
-                        <th>{{ 'COUNT_OF_TYPE' | translate }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="specimen in specimens.content">
-                            <td>{{specimen.type}}</td>
-                            <td>{{specimen.count}}</td>
+            <div class="col-md-6 small-field">
+                <form class="view-mode">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>{{ 'TYPE' | translate }}</th>
+                            <th>{{ 'COUNT_OF_TYPE' | translate }}</th>
+                            <th>&nbsp;</th>
                         </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="specimen in collection.specimens" on-finish-render="ngRepeatFinished">
+                                <td><input type="text" data-ng-model="specimen.type" class="form-control"></td>
+                                <td><input type="text" data-ng-model="specimen.count" class="form-control"></td>
+                                <td><td><button type="button" class="btn rem-row" ng-click="deleteSpecimen($index);">
+                                <i class="fa fa-close"></i></button></td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div class="small-field">
+                            <div class="col-md-6"><input type="text" data-ng-model="specimen.type" class="form-control"></div>
+                            <div class="col-md-2"><input type="text" data-ng-model="specimen.count" class="form-control"></div>
+                            <div class="col-md-2"><button id="add-synonym" type="button" class="pull-right btn btn-small btn-primary" ng-click="addSpecimens();">{{ 'ADD' | translate }}</button></div>
+                        </div>
+                    </div>
+
+                </form>
+
             </div>
         </div>
+
         <hr/>
     </div>
 

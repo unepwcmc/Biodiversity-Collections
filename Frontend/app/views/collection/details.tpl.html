@@ -1,8 +1,34 @@
-<section class="page-content" >
+<section class="page-content" edit-form>
 
     <div class="container">
-        <h3><strong>{{ collection.name }}</strong> <span><a class="btn btn-small btn-primary">{{ 'COLLECTIONS'| translate}}</a></span></h3>
+        <nav id="collection-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <h2 class="navbar-text"><strong>Edit Collection</strong></h2>
+
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-transparent btn-edit-collection-cancel save-form"><strong>Cancel</strong></button>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-white save-form"><strong>Save Changes</strong></button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <h4 id="collection-bar-default">
+
+                <strong class="collection-default-mode">{{ collection.name }}</strong>
+                <strong class="collection-edit-mode">Edit Collection</strong> <span>
+                <button class="btn btn-small btn-tag collection-default-mode"><strong>{{ 'COLLECTIONS'| translate}}</strong></button></span>
+
+            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>Edit</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-white save-form"><strong>Save Changes</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-transparent save-form btn-edit-collection-cancel"><strong>Cancel</strong></a>
+        </h4>
+
+        <hr/>
     </div>
+
 
     <div class="container">
          <div class="row">
@@ -10,12 +36,12 @@
                  <form action="#" class="form-horizontal view-mode" role="form">
                      <div class="small-field">
 
-                         <div class="form-group ">
+                         <div id="collection-id" class="form-group ">
                              <label class="col-sm-3">{{ 'COLLECTION_ID' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" value="{{id}}"></div>
+                             <div class="col-sm-9"><input type="text" class="form-control" value="{{collection.id}}"></div>
                          </div>
 
-                         <div class="form-group ">
+                         <div id="collection-name" class="form-group">
                              <label class="col-sm-3">{{ 'NAME' | translate }}</label>
                              <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.name"></div>
                          </div>
@@ -37,7 +63,17 @@
 
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'INSTITUTION' | translate  }}</label>
-                             <div class="col-sm-9"><span>{{ collection.institution.name }}</span></div>
+                             <div class="col-sm-9">
+                                 <angucomplete-alt id="institution"
+                                                   placeholder="Search an Intitution"
+                                                   pause="150"
+                                                   selected-object="curators"
+                                                   remote-api-handler="institutionAutocomplete"
+                                                   remote-url-data-field="_embedded.curators"
+                                                   title-field="name"
+                                                   minlength="2"
+                                                   input-class="form-control"/>
+                             </div>
                          </div>
 
                          <div class="form-group">
@@ -52,7 +88,21 @@
 
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'RESEARCHES' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control"></div>
+                             <div class="col-sm-9">
+                                <div class="small-field">
+                                        <div class="row" ng-repeat="researcher in collection.researchers" on-finish-render="ngRepeatFinished">
+                                            <div class="col-sm-6"><input type="text" class="form-control" data-ng-model="researcher.name"></div>
+                                            <div class="col-sm-4"><button type="button" class="btn rem-row" ng-click="deleteResearch($index);">
+                                                <i class="fa fa-close"></i></button></div>
+                                        </div>
+                                    <div class="row">
+                                        <div class="small-field">
+                                            <div class="col-sm-6"><input type="text" data-ng-model="researcher.name" class="form-control"></div>
+                                            <div class="col-sm-4"><button id="add-synonym" type="button" class="pull-right btn btn-small btn-primary" ng-click="addResearcher();">{{ 'ADD' | translate }}</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
                          </div>
 
                          <div class="form-group">
@@ -62,7 +112,7 @@
 
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.website"></div>
+                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.webSite"></div>
                          </div>
                      </div>
                  </form>

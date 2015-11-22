@@ -36,7 +36,8 @@
     "leaflet.markercluster/dist/leaflet.markercluster.js",
     "angular-leaflet-directive/dist/angular-leaflet-directive.js",
     "angular-simple-logger/dist/angular-simple-logger.js",
-    "angucomplete-alt/angucomplete-alt.js"
+    "angucomplete-alt/angucomplete-alt.js",
+    "waypoints/lib/jquery.waypoints.js"
   ],
   "cssFiles": [
     "bootstrap/dist/css/bootstrap.css",

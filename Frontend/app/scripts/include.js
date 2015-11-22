@@ -2,7 +2,7 @@ define(
     [
         'angularAMD','angular','underscore','angular-translate',
         'angular-ui-router','angular-toastr','angular-cookies','angucomplete-alt',
-        'angular-resource','angular-sanitize','popover','nemLogging',
+        'angular-resource','angular-sanitize','popover','nemLogging','waypoints',
         'angular-toastr-tpl','leaflet-directive', 'leaflet', 'leaflet.markercluster',
         'core/directives/core.include.template.directive',
         'core/directives/core.load.screen.directive',
@@ -13,6 +13,7 @@ define(
         'core/directives/core.main.directive',
         'core/directives/core.breadcrumbs.directive',
         'core/directives/core.edit.form.directive',
+        'core/directives/core.on.finish.render.directive',
         'core/filters/core.pagination.filter',
         'core/controllers/BaseController',
         'auth/directives/auth.username.box.directive'

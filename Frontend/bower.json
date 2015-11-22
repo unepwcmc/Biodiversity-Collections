@@ -38,7 +38,8 @@
     "angular-leaflet-directive": "~0.8.8",
     "angular-simple-logger": "~0.1.4",
     "angucomplete": "https://github.com/darylrowland/angucomplete.git",
-    "angucomplete-alt": "~2.1.0"
+    "angucomplete-alt": "~2.1.0",
+    "waypoints": "~4.0.0"
   },
   "resolutions": {
     "angular": "~1.4.x",
