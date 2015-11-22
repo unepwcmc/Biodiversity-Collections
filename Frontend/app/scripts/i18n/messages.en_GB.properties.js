@@ -37,7 +37,8 @@ define([],function ( ) {
     'FORMAT':'Format',
     'NETWORKS':'Networks',
     'OF':'of',
-    'NAME':'Name'
+    'NAME':'Name',
+    'ADD':'Add'
   }
 
 });
