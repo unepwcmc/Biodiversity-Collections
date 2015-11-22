@@ -42,11 +42,13 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $edit_form.hide();
                     $edit_mode.hide();
 
-                    $form = $(this).parents('.collapseible').find('form.form-block');
+                    $form = $(element).find('form.view-mode');
                     $elements = 'textarea,input[type="text"],input[type="email"],input[type="password"],select';
 
-                    if ($form.hasClass('view-mode')) {
+                    console.log($form);
 
+                    if ($form.hasClass('view-mode')) {
+                        console.log('editing');
                         $form.removeClass('view-mode').addClass('edit-mode');
                         $form.find($elements).removeAttr('readonly');
                         $form.find('.no-editable').attr('readonly', 'readonly');
@@ -64,9 +66,9 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     resetEditMode();
 
                     if ($(this).hasClass('cancel')) {
-                        $rootScope.$broadcast("SpecieReloaded");
+                        $rootScope.$broadcast("BIODIVERSITY_COLLECTION_RELOADED");
                     } else {
-                        $rootScope.$broadcast("SaveSpecie");
+                        $rootScope.$broadcast("BIODIVERSITY_COLLECTION_SAVE");
                     }
 
                     isEditing(false, element);
@@ -85,7 +87,6 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                         $form.find($elements).attr('readonly', 'readonly');
                         $form.find('select').attr('disabled','disabled');
                         $form.find('input[type="number"]').attr('disabled','disabled');
-                        $multiselect.multiselect('disable');
                         $(element).find('.rem-row').attr('disabled', 'disabled');
                     }
 
