@@ -9,7 +9,8 @@
             <div class="col-md-2"></div>
             <div class="col-md-6 small-field">
                 <form class="view-mode">
-                    <table class="table table-hover">
+
+                    <table class="table table-hover specimen-table">
                         <thead>
                         <tr>
                             <th>{{ 'TYPE' | translate }}</th>
@@ -19,21 +20,19 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="specimen in collection.specimens" on-finish-render="ngRepeatFinished">
-                                <td><input type="text" data-ng-model="specimen.type" class="form-control"></td>
-                                <td><input type="text" data-ng-model="specimen.count" class="form-control"></td>
-                                <td><td><button type="button" class="btn rem-row" ng-click="deleteSpecimen($index);">
-                                <i class="fa fa-close"></i></button></td></td>
+                                <td width="90%"><input type="text" data-ng-model="specimen.type" class="form-control"></td>
+                                <td width="5%" align="right"><input type="text" data-ng-model="specimen.count" class="form-control"></td>
+                                <td width="5%" align="left"><a type="button"  class="btn-small-delete" ng-click="deleteSpecimen($index);"><i class="fa fa-close"></i></a></td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <td><input type="text" data-ng-model="specimen.type" class="form-control"></td>
+                            <td><input type="text" data-ng-model="specimen.count" class="form-control"></td>
+                            <td><a id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addSpecimens();">{{ 'ADD' | translate }}</a></td>
+                        </tr>
+                        </tfoot>
                     </table>
-
-                    <div class="row">
-                        <div class="small-field">
-                            <div class="col-md-6"><input type="text" data-ng-model="specimen.type" class="form-control"></div>
-                            <div class="col-md-2"><input type="text" data-ng-model="specimen.count" class="form-control"></div>
-                            <div class="col-md-2"><button id="add-synonym" type="button" class="pull-right btn btn-small btn-primary" ng-click="addSpecimens();">{{ 'ADD' | translate }}</button></div>
-                        </div>
-                    </div>
 
                 </form>
 

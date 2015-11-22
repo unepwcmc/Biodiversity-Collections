@@ -827,3 +827,9 @@ h5.collection.section-header {
   overflow-y: auto;
   max-height: 200px;
   border: solid 1px #cccccc; }
+
+table.specimen-table input.form-control {
+  padding: 0; }
+
+table.specimen-table a.btn-small-delete {
+  padding: 10px 10px 23px 10px; }
