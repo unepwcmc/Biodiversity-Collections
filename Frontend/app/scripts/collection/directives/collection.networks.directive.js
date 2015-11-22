@@ -14,9 +14,6 @@ define(['angularAMD','core/factory/networkFactory'], function (angularAMD) {
             return {
                 restrict: 'E',
                 templateUrl: 'views/collection/networks.tpl.html',
-                scope:{
-                    collection: '='
-                },
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
