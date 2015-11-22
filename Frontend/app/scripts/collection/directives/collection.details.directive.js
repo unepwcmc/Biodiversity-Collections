@@ -17,19 +17,24 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        $scope.curators = null;
+                        $scope.curatorSelected = null;
+                        $scope.institutionSelected = null;
                         $scope.navigationBar = false;
+                        $scope.disableAutocomplete = true;
 
                         $scope.$on('BIODIVERSITY_LOADED', function() {
                             console.log('collection loaded...');
 
-                            //$scope.collection.curator( $stateParams.id );
-                            //$scope.collection.institution($scope.id);
+                            //$scope.institutionSelected = $scope.collection.institution;
+                            $scope.curatorSelected = $scope.collection.curator;
                         });
 
                         $scope.curatorAutocomplete = function( userInputString, timeoutPromise){
 
-                            return $http.get( $rootScope.getHost() + "curators/search/name?name=" + userInputString,
+                            if(userInputString == null)
+                               return null;
+
+                            return $http.get( $rootScope.getHost() + "collections/" + userInputString + "/curators",
                                 {
                                     timeout: timeoutPromise
                                 }
@@ -38,7 +43,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
 
-                            return $http.get( $rootScope.getHost() + "curators/search/name?name=" + userInputString,
+                            return $http.get( $rootScope.getHost() + "collections/" + userInputString + "/institutions",
                                 {
                                     timeout: timeoutPromise
                                 }
@@ -53,6 +58,22 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                         $scope.deleteResearch = function( index ){
                             $scope.collection.researchers.splice(index, 1);
+                        };
+
+                        $scope.curatorSelectedFn = function(selected) {
+                            if (selected) {
+                                $scope.collection.curator = selected.originalObject;
+                            } else {
+                                $scope.collection.curator = null;
+                            }
+                        };
+
+                        $scope.institutionSelectedFn = function(selected) {
+                            if (selected) {
+                                $scope.collection.institution = selected.originalObject;
+                            } else {
+                                $scope.collection.institution = null;
+                            }
                         };
 
                     }],
@@ -85,11 +106,14 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                     $(element).find("#edit-collection").click( function(){
 
+                        scope.disableAutocomplete = false;
                         scope.navigationBar = true;
                         $(element).find(".collection-default-mode").hide();
                         $(element).find(".collection-edit-mode").show();
                         $(element).find("#collection-name").show();
                         $(element).find("#collection-id").hide();
+
+                        scope.$apply();
                     });
 
                     $(element).find('.btn-edit-collection-cancel').click(function(){
@@ -99,6 +123,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                     function backToDefault(){
 
                         scope.navigationBar = false;
+                        scope.disableAutocomplete = true;
                         $(element).find("#collection-bar-fixed").hide();
                         $(element).find(".collection-default-mode").show();
                         $(element).find(".collection-edit-mode").hide();

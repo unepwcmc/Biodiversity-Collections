@@ -45,8 +45,6 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $form = $(element).find('form.view-mode');
                     $elements = 'textarea,input[type="text"],input[type="email"],input[type="password"],select';
 
-                    console.log($form);
-
                     if ($form.hasClass('view-mode')) {
                         console.log('editing');
                         $form.removeClass('view-mode').addClass('edit-mode');

@@ -27,10 +27,11 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
                    console.log('collection updating..');
 
+                   console.log($scope.collection);
                    $scope.collection.update();
 
                    if($scope.image != null){
-                       addImage();
+                      // addImage();
                    }
                });
 
@@ -43,7 +44,7 @@ define(['app','collection/directives/collection.networks.directive',
                });
 
                $scope.$on('IMAGE_ADDED', function(){
-                   $scope.image = null;;
+                   $scope.image = null;
                });
 
                function addImage(){

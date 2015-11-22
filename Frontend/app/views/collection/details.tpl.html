@@ -52,11 +52,13 @@
                                  <angucomplete-alt id="curators"
                                                placeholder="Search an Curator"
                                                pause="150"
-                                               selected-object="curators"
+                                               selected-object="curatorSelectedFn"
                                                remote-api-handler="curatorAutocomplete"
-                                               remote-url-data-field="_embedded.curators"
+                                               remote-url-data-field="content"
                                                title-field="name"
                                                minlength="2"
+                                               initial-value="curatorSelected"
+                                               disable-input="disableAutocomplete"
                                                input-class="form-control"/>
                                 </div>
                          </div>
@@ -67,11 +69,13 @@
                                  <angucomplete-alt id="institution"
                                                    placeholder="Search an Intitution"
                                                    pause="150"
-                                                   selected-object="curators"
+                                                   selected-object="institutionSelectedFn"
                                                    remote-api-handler="institutionAutocomplete"
-                                                   remote-url-data-field="_embedded.curators"
-                                                   title-field="name"
+                                                   remote-url-data-field="content"
+                                                   title-field="description"
                                                    minlength="2"
+                                                   initial-value="institutionSelected"
+                                                   disable-input="disableAutocomplete"
                                                    input-class="form-control"/>
                              </div>
                          </div>

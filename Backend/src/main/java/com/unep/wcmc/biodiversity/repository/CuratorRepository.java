@@ -13,5 +13,5 @@ import org.springframework.data.rest.core.annotation.RestResource;
 public interface CuratorRepository extends JpaRepository<Curator, Long> {
 
     @RestResource(path = "name", rel = "name")
-    public Page findByNameStartsWith(@Param("name") String name, Pageable p);
+    public Page<Curator> findByNameStartsWith(@Param("name") String name, Pageable p);
 }
