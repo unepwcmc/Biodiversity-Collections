@@ -833,3 +833,9 @@ table.specimen-table input.form-control {
 
 table.specimen-table a.btn-small-delete {
   padding: 10px 10px 23px 10px; }
+
+table.sample-table tr {
+  border-bottom: solid 1px #cccccc; }
+
+table.sample-table a.btn-small-delete {
+  padding: 10px 10px 20px 10px; }
