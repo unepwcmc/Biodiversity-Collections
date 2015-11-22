@@ -49,6 +49,25 @@ define(['app'], function (app) {
                         $log.error(message);
                         $rootScope.$broadcast("SPECIMENS_LOAD_ERROR");
                     });
+            },
+            addSpecimen: function( collectionId , model, callback){
+
+console.log(model);
+                $http.put( $rootScope.getHost() + "collections/add/specimen/" + collectionId, model)
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("SPECIMENS_LOAD_ERROR");
+                        } else {
+                            if(callback)
+                                callback(data);
+                            $rootScope.$broadcast("SPECIMENS_ADDED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("SPECIMENS_LOAD_ERROR");
+                    });
             }
         };
 

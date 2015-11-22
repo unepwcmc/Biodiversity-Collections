@@ -50,6 +50,16 @@ define(['app'], function (app) {
                         $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
                     });
             },
+            update: function () {
+
+                $http.put( $rootScope.getHost() + "collections/" + this.id, this)
+                    .success(function (data) {
+                        $rootScope.$broadcast("BIODIVERSITY_UPDATED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
             get: function( id){
 
                 var self = this;
