@@ -18,7 +18,6 @@ define(['angularAMD'], function (angularAMD) {
                     function($scope, $rootScope, $stateParams, $translate){
 
                         $scope.specimensCount = 0;
-                        $scope.specimenEditMode = false;
 
                         $scope.$on('BIODIVERSITY_LOADED', function(){
                             specimensSunCount();
@@ -68,17 +67,14 @@ define(['angularAMD'], function (angularAMD) {
                     });
 
                     scope.$on('EDIT_COLLECTION', function() {
-                        scope.specimenEditMode = true;
                         setEditMode();
                     });
 
                     scope.$on('CANCEL_EDIT_COLLECTION', function() {
-                        scope.specimenEditMode = false;
                         setViewMode();
                     });
 
                     scope.$on('SAVE_COLLECTION', function() {
-                        scope.specimenEditMode = false;
                         setViewMode();
                     });
 

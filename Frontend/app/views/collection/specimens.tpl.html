@@ -22,11 +22,11 @@
                             <tr ng-repeat="specimen in collection.specimens" on-finish-render="ngRepeatFinished">
                                 <td width="90%"><input type="text" data-ng-model="specimen.type" class="form-control"></td>
                                 <td width="5%" align="right"><input type="text" data-ng-model="specimen.count" class="form-control"></td>
-                                <td width="5%" align="left"><a type="button"  class="btn-small-delete" ng-click="deleteSpecimen($index);"><i class="fa fa-close"></i></a></td>
+                                <td ng-show="editMode" width="5%" align="left"><a type="button"  class="btn-small-delete" ng-click="deleteSpecimen($index);"><i class="fa fa-close"></i></a></td>
                             </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
+                        <tr ng-show="editMode">
                             <td><input type="text" data-ng-model="specimen.type" class="form-control"></td>
                             <td><input type="text" data-ng-model="specimen.count" class="form-control"></td>
                             <td><a id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addSpecimens();">{{ 'ADD' | translate }}</a></td>

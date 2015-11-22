@@ -13,6 +13,7 @@ define(['app','collection/directives/collection.networks.directive',
            function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection) {
                 angular.extend($scope, BaseController);
 
+               $scope.editMode = false;
                $scope.image = null;
                $scope.collection = new BiodiversityCollection();
                /**
@@ -45,6 +46,21 @@ define(['app','collection/directives/collection.networks.directive',
 
                $scope.$on('IMAGE_ADDED', function(){
                    $scope.image = null;
+               });
+
+               $scope.$on('EDIT_COLLECTION', function() {
+                   $scope.editMode = true;
+                   $scope.$apply();
+               });
+
+               $scope.$on('CANCEL_EDIT_COLLECTION', function() {
+                   $scope.editMode = false;
+                   $scope.$apply();
+               });
+
+               $scope.$on('SAVE_COLLECTION', function() {
+                   $scope.editMode = false;
+                   $scope.$apply();
                });
 
                function addImage(){
