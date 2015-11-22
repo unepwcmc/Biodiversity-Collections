@@ -101,6 +101,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                     scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
 
+                        scope.$emit('SAVE_COLLECTION');
                         backToDefault();
                     });
 
@@ -114,10 +115,14 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                         $(element).find("#collection-id").hide();
 
                         scope.$apply();
+
+                        scope.$emit('EDIT_COLLECTION');
                     });
 
                     $(element).find('.btn-edit-collection-cancel').click(function(){
                         backToDefault();
+
+                        scope.$emit('CANCEL_EDIT_COLLECTION');
                     });
 
                     function backToDefault(){
