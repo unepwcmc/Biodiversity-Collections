@@ -1,6 +1,5 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.springframework.data.rest.core.annotation.RestResource;
 
@@ -57,6 +56,11 @@ public class BiodiversityCollection implements BaseEntity {
 
     @OneToMany(mappedBy = "collection")
     private Set<Document> documents;
+
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    @RestResource(exported = false)
+    private Image image;
 
     @Override
     public Long getId() {
@@ -186,5 +190,13 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setCuratorialLodge(String curatorialLodge) {
         this.curatorialLodge = curatorialLodge;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
