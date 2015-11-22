@@ -153,6 +153,9 @@ a[target="blank"] {
 
 /** SEPARATOR STYLES */
 /** PARA STYLES */
+.navbar h2.navbar-text {
+  color: #fff; }
+
 /** FORM STYLES */
 input[type="text"], textarea.form-control,
 input[type="password"],
@@ -568,6 +571,48 @@ input[type="number"]:disabled {
 .signup input:focus {
   border: 2px solid #dfe0e1; }
 
+textarea.autoresize,
+form.form-block.view-mode textarea[readonly="readonly"] {
+  min-height: 2px;
+  resize: none;
+  overflow: hidden !important; }
+
+form.form-block.view-mode textarea.importanceCollection,
+form.form-block.edit-mode textarea.importanceCollection {
+  height: 230px;
+  overflow: auto !important; }
+
+a.btn-transparent {
+  background-color: transparent;
+  border: none; }
+
+.navbar-form button.btn-transparent {
+  background-color: transparent;
+  border: none; }
+
+a.btn-transparent {
+  background: transparent !important;
+  border: none !important;
+  color: #666666 !important; }
+
+a.btn-transparent:hover {
+  background: #666666 !important; }
+
+.navbar-form button.btn-white {
+  background-color: #fff;
+  color: #666666 !important; }
+
+#collection-bar-fixed div.container form.navbar-form {
+  padding-top: 12px; }
+
+button.btn-tag {
+  cursor: default;
+  color: #666666 !important; }
+
+.default-form-block .form-control {
+  background-color: transparent !important;
+  border: none; }
+
 a:focus {
   outline: none; }
 
@@ -763,9 +808,7 @@ h5.collection.section-header {
   margin-top: 0;
   line-height: 25px; }
 
-
 .angucomplete-dropdown {
   overflow-y: auto;
   max-height: 200px;
-  border: solid 1px #cccccc;
-}
+  border: solid 1px #cccccc; }

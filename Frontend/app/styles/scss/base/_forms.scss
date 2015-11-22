@@ -540,3 +540,45 @@ form.form-block.edit-mode textarea.importanceCollection{
   height: 230px;
   overflow: auto !important;
 }
+
+a.btn-transparent{
+  background-color: transparent;
+  border:none;
+}
+
+.navbar-form button.btn-transparent{
+  background-color: transparent;
+  border:none;
+}
+
+a.btn-transparent{
+  background: transparent!important;
+  border:none!important;
+  color: #666666!important;
+}
+
+a.btn-transparent:hover{
+  background: #666666!important;
+}
+
+.navbar-form button.btn-white{
+  background-color:#fff;
+  color:#666666!important;
+}
+
+#collection-bar-fixed {
+  div.container {
+	form.navbar-form{
+	  padding-top:12px;
+	}
+  }
+}
+
+button.btn-tag{
+  cursor:default;
+  color:#666666!important;
+}
+.default-form-block .form-control{
+  background-color:transparent!important;
+  border:none;
+}
