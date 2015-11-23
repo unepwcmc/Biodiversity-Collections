@@ -1,7 +1,7 @@
 package com.unep.wcmc.biodiversity.repository;
 
 import com.unep.wcmc.biodiversity.model.Family;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.unep.wcmc.biodiversity.support.AbstractRepository;
 
-public interface FamilyRepository extends JpaRepository<Family, Long> {
+public interface FamilyRepository extends AbstractRepository<Family> {
 }

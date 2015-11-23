@@ -7,6 +7,7 @@ import com.unep.wcmc.biodiversity.service.BiodiversityCollectionService;
 import com.unep.wcmc.biodiversity.service.CuratorService;
 import com.unep.wcmc.biodiversity.service.ImageService;
 import com.unep.wcmc.biodiversity.service.InstitutionService;
+import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,14 +15,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
-
 @RestController
 @RequestMapping("/collections")
-public class BiodiversityCollectionController {
-
-    @Autowired
-    private BiodiversityCollectionService biodiversityCollectionService;
+public class BiodiversityCollectionController extends AbstractController<BiodiversityCollection, BiodiversityCollectionService> {
 
     @Autowired
     private CuratorService curatorService;
@@ -34,13 +30,9 @@ public class BiodiversityCollectionController {
 
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")
     public BiodiversityCollection uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
-
-        BiodiversityCollection biodiversityCollection = biodiversityCollectionService.get(id);
-
+        BiodiversityCollection biodiversityCollection = service.get(id);
         if (!file.isEmpty())
             biodiversityCollection.setImage(imageService.save(file));
-
-
         return biodiversityCollection;
     }
 

@@ -1,7 +1,7 @@
 package com.unep.wcmc.biodiversity.repository;
 
 import com.unep.wcmc.biodiversity.model.Taxonomy;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.unep.wcmc.biodiversity.support.AbstractRepository;
 
-public interface TaxonomyRepository extends JpaRepository<Taxonomy, Long> {
+public interface TaxonomyRepository extends AbstractRepository<Taxonomy> {
 }

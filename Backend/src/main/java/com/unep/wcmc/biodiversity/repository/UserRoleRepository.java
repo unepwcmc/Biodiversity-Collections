@@ -1,10 +1,9 @@
 package com.unep.wcmc.biodiversity.repository;
 
 import com.unep.wcmc.biodiversity.model.UserRole;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
+import com.unep.wcmc.biodiversity.support.AbstractRepository;
 
-public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
+public interface UserRoleRepository extends AbstractRepository<UserRole> {
     
     UserRole findByRole(String role);
 

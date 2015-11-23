@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("networks")
+@RequestMapping("/networks")
 public class NetworkController{
 
     @Autowired
