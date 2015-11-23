@@ -25,7 +25,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                         $scope.$on('BIODIVERSITY_LOADED', function() {
                             console.log('collection loaded...');
 
-                            //$scope.institutionSelected = $scope.collection.institution;
+                            $scope.institutionSelected = $scope.collection.institution;
                             $scope.curatorSelected = $scope.collection.curator;
                         });
 
