@@ -2,8 +2,8 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
 
     'use strict';
 
-    return ['$scope','BaseController','$state', 'BiodiversityCollection',
-        function ($scope, BaseController,$state, BiodiversityCollection) {
+    return ['$scope','BaseController', '$state', 'BiodiversityCollection',
+        function ($scope, BaseController, $state, BiodiversityCollection) {
 
             angular.extend($scope, BaseController);
 
@@ -20,15 +20,13 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
                 if (userInputString == null)
                     return null;
 
-                return $scope.collections.autocomplete(userInputString,
-                    function( data ) {
-                        timeout: timeoutPromise;
-                    });
+                return $scope.collections.autocomplete(userInputString, function(){timeout: timeoutPromise;});
             };
 
             $scope.searchSelectedFn = function(selected) {
                 if (selected) {
-                    $scope.term = selected.originalObject;
+                    $scope.term = selected.title;
+                    $state.go('collection', {id : selected.originalObject.id});
                 } else {
                     $scope.term = '';
                 }

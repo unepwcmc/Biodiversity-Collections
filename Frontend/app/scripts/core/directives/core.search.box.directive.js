@@ -21,15 +21,13 @@ define(['angularAMD', 'bootstrap', 'core/factory/biodiversityCollectionFactory']
                           if (userInputString == null)
                               return null;
 
-                          return $scope.collection.autocomplete(userInputString,
-                              function( data ) {
-                                  timeout: timeoutPromise;
-                              });
+                          return $scope.collection.autocomplete(userInputString, function(){timeout: timeoutPromise;});
                       };
 
                       $scope.searchSelectedFn = function(selected) {
                           if (selected) {
-                              $scope.term = selected.originalObject;
+                              $scope.term = selected.title;
+                              $state.go('collection', {id : selected.originalObject.id});
                           } else {
                               $scope.term = '';
                           }

@@ -159,15 +159,13 @@ define(['angularAMD'], function (angularAMD) {
             },
             autocomplete: function( query, callback ) {
 
-                $http.get( $rootScope.getHost() + "collections/search/autocomplete?name=" + query  )
-
+                return $http.get( $rootScope.getHost() + "collections/search/autocomplete?name=" + query  )
                     .success(function (data) {
                         if (data.message == 'no matches found') {
                             $rootScope.$broadcast("BIODIVERSITY_AUTOCOMPLETE_LOAD_ERROR");
                         } else {
                             $rootScope.$broadcast("BIODIVERSITY_AUTOCOMPLETE_LOADED", data);
-
-                            if(callback)
+                            if (callback)
                                 callback(data);
                         }
                     })
