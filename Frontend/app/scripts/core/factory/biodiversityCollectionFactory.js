@@ -4,11 +4,11 @@
  * @email jozecarlos.it@gmail.com
  *
  */
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    app.factory('BiodiversityCollection', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
+    angularAMD.factory('BiodiversityCollection', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
 
         /**
          *
@@ -157,7 +157,7 @@ define(['app'], function (app) {
                         $rootScope.$broadcast("BIODIVERSITY_SEARCH_ERROR");
                     });
             },
-            autocomplete: function( query, callback ){
+            autocomplete: function( query, callback ) {
 
                 $http.get( $rootScope.getHost() + "collections/search/autocomplete?name=" + query  )
 

@@ -1,32 +1,49 @@
-define(['angularAMD', 'bootstrap'], function (angularAMD) {
+define(['angularAMD', 'bootstrap', 'core/factory/biodiversityCollectionFactory'], function (angularAMD) {
 
     'use strict';
 
     angularAMD.directive('searchBox', function ( ) {
 
-        return {
-            restrict: 'E',
-            templateUrl: 'views/core/search.box.tpl.html',
-            controller: ['$scope', '$rootScope', '$translate','$window','$cookies','$http',
-              function($scope, $rootScope, $translate, $window, $cookies, $http) {
+            return {
+                restrict: 'E',
+                templateUrl: 'views/core/search.box.tpl.html',
+                controller: ['$scope', '$state', '$rootScope', '$translate','$window','$cookies','$http', 'BiodiversityCollection',
+                  function($scope, $state, $rootScope, $translate, $window, $cookies, $http, BiodiversityCollection) {
 
-                  $scope.searchAutocomplete = function( userInputString, timeoutPromise){
+                      $scope.collection = new BiodiversityCollection();
+                      $scope.page = 0;
+                      $scope.size = 20;
+                      $scope.term = '';
 
-                      if (userInputString == null)
-                          return null;
+                      $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
+                          $scope.term = userInputString;
 
-                      return $http.get( $rootScope.getHost() + "collections/" + userInputString + "/curators",
-                          {
-                              timeout: timeoutPromise
+                          if (userInputString == null)
+                              return null;
+
+                          return $scope.collection.autocomplete(userInputString,
+                              function( data ) {
+                                  timeout: timeoutPromise;
+                              });
+                      };
+
+                      $scope.searchSelectedFn = function(selected) {
+                          if (selected) {
+                              $scope.term = selected.originalObject;
+                          } else {
+                              $scope.term = '';
                           }
-                      );
-                  };
+                      };
 
-            }],
-            link: function (scope, element, attrs) {
+                      $scope.search = function () {
+                          return $state.go('search', {term: $scope.term});
+                      };
+
+                }],
+                link: function (scope, element, attrs) {
 
 
-            }
-        };
+                }
+            };
     });
 });
