@@ -187,7 +187,23 @@ module.exports = function (grunt) {
           modules: [
             { name: 'app' },
             {
+              name: 'auth/controllers/authController',
+              exclude: ['include']
+            },
+            {
+              name: 'collection/controllers/collectionController',
+              exclude: ['include']
+            },
+            {
               name: 'home/controllers/homeController',
+              exclude: ['include']
+            },
+            {
+              name: 'sample/controllers/sampleController',
+              exclude: ['include']
+            },
+            {
+              name: 'search/controllers/searchController',
               exclude: ['include']
             }
           ]
