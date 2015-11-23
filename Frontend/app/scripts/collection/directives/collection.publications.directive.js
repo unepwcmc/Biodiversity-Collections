@@ -3,7 +3,7 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD','core/factory/documentFactory'], function (angularAMD) {
+define(['angularAMD','core/factory/documentFactory','core/directives/core.table.sorter.directive'], function (angularAMD) {
 
     'use strict';
 

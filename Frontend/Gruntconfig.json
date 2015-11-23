@@ -37,7 +37,8 @@
     "angular-leaflet-directive/dist/angular-leaflet-directive.js",
     "angular-simple-logger/dist/angular-simple-logger.js",
     "angucomplete-alt/angucomplete-alt.js",
-    "waypoints/lib/jquery.waypoints.js"
+    "waypoints/lib/jquery.waypoints.js",
+    "tablesorter/jquery.tablesorter.js"
   ],
   "cssFiles": [
     "bootstrap/dist/css/bootstrap.css",
