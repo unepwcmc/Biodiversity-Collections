@@ -2,7 +2,7 @@ define(['include', 'language'], function (angularAMD, language) {
 
     'use strict';
 
-    var app = angular.module('TaxonomicDB', ['ui.router', 'ngResource', 'ngSanitize','ngCookies', 'toastr', 'pascalprecht.translate','leaflet-directive','angucomplete-alt']);
+    var app = angular.module('Biodiversity-Collection', ['ui.router', 'ngResource', 'ngSanitize','ngCookies', 'toastr', 'pascalprecht.translate','leaflet-directive','angucomplete-alt']);
 
     app.config(['$stateProvider', '$provide', '$urlRouterProvider', '$httpProvider',
 
@@ -137,16 +137,10 @@ define(['include', 'language'], function (angularAMD, language) {
 
     app.CONST = {
         LOCALHOST: "http://localhost:8080/", //LOCAL
-        //LOCALHOST:"http://ec2-54-233-77-33.sa-east-1.compute.amazonaws.com:8080/", // DEV
-        //LOCALHOST:"http://ec2-54-233-93-155.sa-east-1.compute.amazonaws.com:8080/", // QA
-        //SERVER:"http://ec2-54-233-93-155.sa-east-1.compute.amazonaws.com:8080/", // QA
-        SERVER: "http://ec2-54-233-77-33.sa-east-1.compute.amazonaws.com:8080/", // DEV
-        //FICHA_ESPECIES:"http://ec2-54-207-8-95.sa-east-1.compute.amazonaws.com:8080/", // QA
-        FICHA_ESPECIES: "http://ec2-54-232-213-16.sa-east-1.compute.amazonaws.com:8080/", //DEV
-        //ESB:"https://ec2-54-233-93-155.sa-east-1.compute.amazonaws.com:9443/", // QA
-        ESB: "https://ec2-54-233-77-33.sa-east-1.compute.amazonaws.com:9443/", // DEV
-        //SOLR:"http://ec2-54-207-8-95.sa-east-1.compute.amazonaws.com:8983/solr/" // QA
-        SOLR: "http://ec2-54-232-213-16.sa-east-1.compute.amazonaws.com:8983/solr/" // DEV
+        //LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
+        //LOCALHOST:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
+        //SERVER:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
+        SERVER: "http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/"  // DEV
     };
 
     app.run(['$rootScope', '$timeout', '$http', '$window',
@@ -166,18 +160,6 @@ define(['include', 'language'], function (angularAMD, language) {
                 else {
                     return app.CONST.SERVER;
                 }
-            };
-
-            $rootScope.getFichaEspeciesHost = function () {
-                return app.CONST.FICHA_ESPECIES;
-            };
-
-            $rootScope.getESBHost = function () {
-                return app.CONST.ESB;
-            };
-
-            $rootScope.getSolrHost = function () {
-                return app.CONST.SOLR;
             };
 
             /**
