@@ -72,3 +72,15 @@ INSERT INTO network_biodiversity_collection (network_id, collection_id) VALUES (
 INSERT INTO network_biodiversity_collection (network_id, collection_id) VALUES (2, 1);
 INSERT INTO network_biodiversity_collection (network_id, collection_id) VALUES (3, 1);
 
+-- Documents
+INSERT INTO document (id, author, content_type, description, name, status, title, type, sample_id, collection_id)
+  VALUES(1, 'Eduardo Álvares', 'pdf', 'No elitr tacimates vim. Eius summo et ius, mel ad cibo aliquip, cu quaestio qualisque iracundia sea. Ad augue saepe vivendo eum, ei vim periculis efficiantur.', 'Ut cum nobis dolor', false, 'Ut cum nobis dolor', 'PUBLICATION', 1, 1);
+INSERT INTO document (id, author, content_type, description, name, status, title, type, sample_id, collection_id)
+  VALUES(2, 'Julia Boaventura', 'doc', 'At fugit vivendo signiferumque pri, ne saepe viderer pri. No tollit nostrum lobortis vel, ut primis aliquam prodesset vis. Quo nisl dolore intellegebat ex, honestatis persequeris ne vix, no cum duis dolore', 'Lorem ipsum dolor sit amet, vix ne laudem constituto disputation', false, 'Lorem ipsum dolor sit amet, vix ne laudem constituto disputation', 'PUBLICATION', 1, 1);
+INSERT INTO document (id, author, content_type, description, name, status, title, type, sample_id, collection_id)
+  VALUES(3, 'Julia Medeiros', 'text', 'Ad sea error feugait appellantur, ut error tamquam constituam eos, te discere euismod complectitur ius. Usu in putant option maluisset, liber voluptua signiferumque ei nec, sumo deserunt eum te. Qui ea amet laudem', 'Ea porro invidunt moderatius per', false, 'Ea porro invidunt moderatius per', 'OTHER', 1, 1);
+INSERT INTO document (id, author, content_type, description, name, status, title, type, sample_id, collection_id)
+  VALUES(4, 'Leila Caetano', 'pdf', 'No elitr tacimates vim. Eius summo et ius, mel ad cibo aliquip, cu quaestio qualisque iracundia sea. Ad augue saepe vivendo eum, ei vim periculis efficiantur.', 'Ut cum nobis dolor', false, 'Ut cum nobis dolor', 'PUBLICATION', 1, 1);
+INSERT INTO document (id, author, content_type, description, name, status, title, type, sample_id, collection_id)
+  VALUES(5, 'José Bastos', 'csv', 'Id ius ancillae conceptam scripserit, in quo utamur fabellas indoctum, vis ut corpora democritum omittantur. Et ignota populo mei. Ut sale euripidis vix, quo verear ceteros electram ut. Natum appareat vel ea, eam at legere assueverit appellantur. Id rebum inimicus qui.', 'Et eum vidit eripuit convenir', false, 'Et eum vidit eripuit convenir', 'LEGAL', 1, 1);
+
