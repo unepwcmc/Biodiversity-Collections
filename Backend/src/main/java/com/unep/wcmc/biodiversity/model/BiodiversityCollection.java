@@ -22,6 +22,8 @@ public class BiodiversityCollection implements BaseEntity {
 
     private String webSite;
 
+    private String webSiteName;
+
     private String curatorialLodge;
 
     @Enumerated(EnumType.STRING)
@@ -201,5 +203,13 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public String getWebSiteName() {
+        return webSiteName;
+    }
+
+    public void setWebSiteName(String webSiteName) {
+        this.webSiteName = webSiteName;
     }
 }

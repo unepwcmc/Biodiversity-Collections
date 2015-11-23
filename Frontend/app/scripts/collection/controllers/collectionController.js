@@ -8,9 +8,9 @@ define(['app','collection/directives/collection.networks.directive',
 
     'use strict';
 
-    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection',
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','toastr','$translate',
 
-           function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection) {
+           function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, toastr, $translate) {
                 angular.extend($scope, BaseController);
 
                $scope.editMode = false;
@@ -28,8 +28,8 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
                    console.log('collection updating..');
 
-                   console.log($scope.collection);
                    $scope.collection.update();
+                   toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
 
                    if($scope.image != null){
                       // addImage();

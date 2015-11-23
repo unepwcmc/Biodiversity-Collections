@@ -14,6 +14,9 @@ define(['angularAMD'], function (angularAMD) {
 
             info: function( controller ){
                 console.log(controller);
+            },
+            isNumeric: function(n){
+                return !isNaN(parseFloat(n)) && isFinite(n)
             }
         }
 

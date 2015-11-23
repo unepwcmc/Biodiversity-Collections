@@ -39,7 +39,8 @@
     "angular-simple-logger": "~0.1.4",
     "angucomplete": "https://github.com/darylrowland/angucomplete.git",
     "angucomplete-alt": "~2.1.0",
-    "waypoints": "~4.0.0"
+    "waypoints": "~4.0.0",
+    "tablesorter":"https://github.com/christianbach/tablesorter.git"
   },
   "resolutions": {
     "angular": "~1.4.x",
