@@ -33,10 +33,10 @@
     <div class="container">
          <div class="row">
              <div class="col-md-8">
-                 <form action="#" class="form-horizontal view-mode" role="form">
+                 <form action="#" class="form-horizontal view-mode form-block" role="form">
                      <div class="small-field">
 
-                         <div id="collection-id" class="form-group ">
+                         <div id="collection-id" class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION_ID' | translate }}</label>
                              <div class="col-sm-9"><input type="text" class="form-control" value="{{collection.id}}"></div>
                          </div>
@@ -82,12 +82,16 @@
 
                          <div class="form-group">
                              <label class="col-sm-3">Description</label>
-                             <div class="col-sm-9"><textarea elastic type="text" class="form-control importanceCollection" data-ng-model="collection.description"></textarea></div>
+                             <div class="col-sm-9">
+                                 <textarea elastic type="text" class="form-control importanceFour" data-ng-model="collection.description"></textarea>
+                             </div>
                          </div>
 
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'PRESERVATION_METHODS' |  translate }}</label>
-                             <div class="col-sm-9"><textarea elastic type="text" class="form-control importanceCollection" data-ng-model="collection.preservationMethods"></textarea></div>
+                             <div class="col-sm-9">
+                                 <textarea elastic type="text" class="form-control importanceFour" data-ng-model="collection.preservationMethods"></textarea>
+                             </div>
                          </div>
 
                          <div class="form-group">

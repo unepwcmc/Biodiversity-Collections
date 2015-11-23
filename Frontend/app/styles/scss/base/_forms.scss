@@ -218,8 +218,8 @@ form.form-block{
 		&.row{
 			padding: 10px;
 		}
-		padding-top: 5px;
-		padding-bottom: 5px;
+		//padding-top: 5px;
+		//padding-bottom: 5px;
 		padding-right: 5px;
 
 		div{
@@ -254,7 +254,7 @@ form.form-block{
 				clear: both;
 				padding-left: 0;
 				font-style: italic;
-				font-size:13px;
+				font-size:14px;
 				font-weight: 500;
 				margin-bottom: 0; 
 			}
@@ -270,14 +270,14 @@ form.form-block{
 	}
 	
 	.form-group:nth-child(even){
-		background-color: #f8f8f8;
+		//background-color: #f8f8f8;
 	}
 
 	label{		
 		height: auto;
-		min-height: 40px;
-		padding-top: 10px;
-		padding-left: 10px;
+		//min-height: 40px;
+		//padding-top: 10px;
+		//padding-left: 10px;
 
 	}
 
@@ -287,7 +287,7 @@ form.form-block{
 	input[type="search"],
 	input[type="tel"],
 	select{
-		width: 50%;
+		//width: 50%;
 		font-family: $font-2;
 	}
 
@@ -307,13 +307,13 @@ form.form-block{
 		input[disabled="disabled"],
 		select[disabled="disabled"],
 		textarea[disabled="disabled"]{
-			width: 50%;
+			//width: 50%;
 			border-radius: 0px;
 			border: none;
 			background-color: transparent;
 			box-shadow: none;
 			font-family: $font-2;
-			font-size: $font-2-size;
+			font-size: 14px;
 		}
 
 		textarea[readonly="readonly"]{
@@ -380,7 +380,7 @@ form.form-block.edit-mode textarea.importanceOne{
 			
 			label{
 				padding-left: 26px;
-				font-size: 13px;
+				font-size: 14px;
     			line-height: 18px;
     			font-weight: 500;
 			}
@@ -518,7 +518,7 @@ input[type="password"]:disabled,
 input[type="email"]:disabled,
 input[type="tel"]:disabled,
 input[type="number"]:disabled{
-	background-color: #dfe0e1 !important;
+	//background-color: #dfe0e1 !important;
 	border: 1px solid #dfe0e1;
 }
 

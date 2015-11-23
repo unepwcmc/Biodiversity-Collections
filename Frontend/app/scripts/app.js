@@ -131,8 +131,8 @@ define(['include', 'language'], function (angularAMD, language) {
             $translateProvider.translations('en_GB', language.en_GB);
 
             $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
-            $translateProvider.preferredLanguage('pt_BR');
-            //$translateProvider.preferredLanguage('en_GB');
+            //$translateProvider.preferredLanguage('pt_BR');
+            $translateProvider.preferredLanguage('en_GB');
         }]);
 
     app.CONST = {
