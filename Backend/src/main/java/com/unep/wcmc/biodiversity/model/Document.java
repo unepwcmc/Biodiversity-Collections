@@ -32,10 +32,10 @@ public class Document implements BaseEntity {
 
     private boolean status;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "collection_id")
     @RestResource(exported = false)
+    @JsonIgnore
     private BiodiversityCollection collection;
 
     @Override

@@ -1,5 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.springframework.data.rest.core.annotation.RestResource;
 
@@ -21,6 +22,7 @@ public class Sample implements BaseEntity {
     @ManyToOne
     @JoinColumn(name = "collection_id")
     @RestResource(exported = false)
+    @JsonIgnore
     private BiodiversityCollection collection;
 
     @ManyToOne

@@ -2,41 +2,46 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
 
     'use strict';
 
-    return ['$scope','BaseController','$state', 'BiodiversityCollection', function ($scope, BaseController,$state, BiodiversityCollection) {
+    return ['$scope','BaseController', '$state', 'BiodiversityCollection',
+        function ($scope, BaseController, $state, BiodiversityCollection) {
 
-        angular.extend($scope, BaseController);
-
-        $scope.info('Welcome to Home Page');
-        /**
-         * Listener when the state is changed
-         */
-        $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-            console.log('state Change Success');
+            angular.extend($scope, BaseController);
 
             $scope.collections = new BiodiversityCollection();
-        });
+            $scope.term = '';
 
-        $scope.searchCollection = function(){
-
-            $state.go('search', { search : $scope.search });
-        };
-
-        $scope.autocomplete = function( input ){
-
-            $scope.collections.autocomplete( input, function( data){
-
-                  console.log(data._embedded.biodiversityCollections);
+            $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                console.log('state Change Success');
             });
-        };
 
-        $scope.$watch('query', function(newValue, oldValue) {
-            if(newValue != undefined){
+            $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
+                $scope.term = userInputString;
 
-                if (newValue.length >= 3 && newValue !== oldValue) {
-                    $scope.autocomplete($scope.query);
+                if (userInputString == null)
+                    return null;
+
+                return $scope.collections.autocomplete(userInputString, function(){timeout: timeoutPromise;});
+            };
+
+            $scope.searchSelectedFn = function(selected) {
+                if (selected) {
+                    $scope.term = selected.title;
+                    $state.go('collection', {id : selected.originalObject.id});
+                } else {
+                    $scope.term = '';
                 }
-            }
-        }, true);
+            };
 
-    }];
+
+            $scope.search = function(){
+                $state.go('search', { term : $scope.term });
+            };
+
+            $scope.autocomplete = function( input ){
+                $scope.collections.autocomplete( input, function( data){
+                      console.log(data._embedded.biodiversityCollections);
+                });
+            };
+
+        }];
 });
