@@ -25,7 +25,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                         $scope.$on('BIODIVERSITY_LOADED', function() {
                             console.log('collection loaded...');
 
-                            //$scope.institutionSelected = $scope.collection.institution;
+                            $scope.institutionSelected = $scope.collection.institution;
                             $scope.curatorSelected = $scope.collection.curator;
                         });
 
@@ -34,7 +34,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                             if(userInputString == null)
                                return null;
 
-                            return $http.get( $rootScope.getHost() + "collections/" + userInputString + "/curators",
+                            return $http.get( $rootScope.getHost() + "curators/search/findName?name=" + userInputString ,
                                 {
                                     timeout: timeoutPromise
                                 }
@@ -43,7 +43,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
 
-                            return $http.get( $rootScope.getHost() + "collections/" + userInputString + "/institutions",
+                            return $http.get( $rootScope.getHost() + "institutions/search/findName?name=" + userInputString,
                                 {
                                     timeout: timeoutPromise
                                 }

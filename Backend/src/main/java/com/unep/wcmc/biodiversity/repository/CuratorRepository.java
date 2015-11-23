@@ -11,7 +11,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 @RepositoryRestResource(path = "curators")
 public interface CuratorRepository extends AbstractRepository<Curator> {
 
-    @RestResource(path = "name", rel = "name")
-    Page<Curator> findByNameStartsWith(@Param("name") String name, Pageable p);
+    @RestResource(path = "findName", rel = "findName")
+    Page<Curator> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name, Pageable p);
 
 }

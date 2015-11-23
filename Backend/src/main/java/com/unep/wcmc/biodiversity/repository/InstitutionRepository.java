@@ -9,6 +9,6 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 public interface InstitutionRepository extends AbstractRepository<Institution> {
 
-    @RestResource(path = "name", rel = "name")
-    public Page<Institution> findByDescriptionStartsWith(@Param("name") String name, Pageable p);
+    @RestResource(path = "findName", rel = "findName")
+    Page<Institution> findTop5ByDescriptionContainingOrderByDescriptionAsc(@Param("name") String name, Pageable p);
 }
