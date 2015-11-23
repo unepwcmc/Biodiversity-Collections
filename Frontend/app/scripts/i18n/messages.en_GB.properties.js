@@ -14,7 +14,7 @@ define([],function ( ) {
     'RESULT_FOR_COLLECTION':'result for Collection',
     'PREVIOUS':'Previous',
     'NEXT':'Next',
-    'COLLECTION_ID':'Collection ID',
+    'COLLECTION_ID':'Collection Id',
     'CURATOR':'Curator',
     'INSTITUTION':'Intitution',
     'DESCRIPTION':'Description',
