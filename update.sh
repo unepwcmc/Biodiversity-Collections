@@ -12,6 +12,7 @@ echo "Stopping the backend REST API..."
 sudo service biodiversity stop
 
 echo "Updating the project files..."
+sudo git stash 
 sudo git pull
 
 echo "Starting the PostgreSQL..."
