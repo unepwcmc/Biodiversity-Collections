@@ -125,14 +125,21 @@
                              <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.curatorialLodge"></div>
                          </div>
 
-                         <div class="form-group">
+                         <div ng-show="!editMode" class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.webSiteName"></div>
+                             <div class="col-sm-9">
+                                 <a href="{{collection.webSite}}" target="_blank">{{ collection.webSiteName }}</a>
+                             </div>
                          </div>
 
-                         <div class="form-group">
+                         <div ng-show="editMode" class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.webSite"></div>
+                             <div class="col-sm-9">
+                                 <span><em>{{ 'TITLE' | translate }}</em></span>
+                                 <input type="text" class="form-control" data-ng-model="collection.webSiteName">
+                                 <span><em>{{ 'URL' | translate }}</em></span>
+                                 <input type="text" class="form-control" data-ng-model="collection.webSite">
+                             </div>
                          </div>
 
                      </div>
