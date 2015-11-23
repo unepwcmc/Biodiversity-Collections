@@ -19,52 +19,10 @@
 
             <div class="result-list">
 
-                <div class="list-item">
-                    <h5><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong> | <span class="cend">id: 1545</span></h5>
+                <div ng-repeat="col in collection._embedded.biodiversityCollections" class="list-item">
+                    <h5><strong><a data-ui-sref="collection({id:col.id})">{{col.name}}</a></strong> | <span class="cend"><a data-ui-sref="collection({id:col.id})">id: {{col.id}}</a></span></h5>
                     <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
-                    <p>In a interdum purus. Nunc interdum elit quis tincidunt commodo. Aenean eget euismod lacus, ut posuere lectus. Aliquam erat volutpat. Maecenas ullamcorper turpis at scelerisque vehicula. Nulla facilisi. Nulla lacus leo, accumsan et ex nec, euismod posuere sapien.</p>
-                </div>
-
-                <div class="list-item">
-                    <h5><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong> | <span class="cend">id: 1545</span></h5>
-                    <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
-                    <p>In a interdum purus. Nunc interdum elit quis tincidunt commodo. Aenean eget euismod lacus, ut posuere lectus. Aliquam erat volutpat. Maecenas ullamcorper turpis at scelerisque vehicula. Nulla facilisi. Nulla lacus leo, accumsan et ex nec, euismod posuere sapien.</p>
-                </div>
-
-                <div class="list-item">
-                    <h5><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong> | <span class="cend">id: 1545</span></h5>
-                    <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
-                    <p>In a interdum purus. Nunc interdum elit quis tincidunt commodo. Aenean eget euismod lacus, ut posuere lectus. Aliquam erat volutpat. Maecenas ullamcorper turpis at scelerisque vehicula. Nulla facilisi. Nulla lacus leo, accumsan et ex nec, euismod posuere sapien.</p>
-                </div>
-
-                <div class="list-item">
-                    <h5><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong> | <span class="cend">id: 1545</span></h5>
-                    <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
-                    <p>In a interdum purus. Nunc interdum elit quis tincidunt commodo. Aenean eget euismod lacus, ut posuere lectus. Aliquam erat volutpat. Maecenas ullamcorper turpis at scelerisque vehicula. Nulla facilisi. Nulla lacus leo, accumsan et ex nec, euismod posuere sapien.</p>
-                </div>
-
-                <div class="list-item">
-                    <h5><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong> | <span class="cend">id: 1545</span></h5>
-                    <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
-                    <p>In a interdum purus. Nunc interdum elit quis tincidunt commodo. Aenean eget euismod lacus, ut posuere lectus. Aliquam erat volutpat. Maecenas ullamcorper turpis at scelerisque vehicula. Nulla facilisi. Nulla lacus leo, accumsan et ex nec, euismod posuere sapien.</p>
-                </div>
-
-                <div class="list-item">
-                    <h5><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong> | <span class="cend">id: 1545</span></h5>
-                    <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
-                    <p>In a interdum purus. Nunc interdum elit quis tincidunt commodo. Aenean eget euismod lacus, ut posuere lectus. Aliquam erat volutpat. Maecenas ullamcorper turpis at scelerisque vehicula. Nulla facilisi. Nulla lacus leo, accumsan et ex nec, euismod posuere sapien.</p>
-                </div>
-
-                <div class="list-item">
-                    <h5><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong> | <span class="cend">id: 1545</span></h5>
-                    <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
-                    <p>In a interdum purus. Nunc interdum elit quis tincidunt commodo. Aenean eget euismod lacus, ut posuere lectus. Aliquam erat volutpat. Maecenas ullamcorper turpis at scelerisque vehicula. Nulla facilisi. Nulla lacus leo, accumsan et ex nec, euismod posuere sapien.</p>
-                </div>
-
-                <div class="list-item">
-                    <h5><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong> | <span class="cend">id: 1545</span></h5>
-                    <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
-                    <p>In a interdum purus. Nunc interdum elit quis tincidunt commodo. Aenean eget euismod lacus, ut posuere lectus. Aliquam erat volutpat. Maecenas ullamcorper turpis at scelerisque vehicula. Nulla facilisi. Nulla lacus leo, accumsan et ex nec, euismod posuere sapien.</p>
+                    <p>{{col.description}}</p>
                 </div>
 
             </div>
@@ -73,18 +31,23 @@
                 <hr/>
                 <nav>
                     <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
+                        <li ng-class="{disabled: collection.page.number === 0}">
+                            <a ng-click="(collection.page.number === 0) || load(collection.page.number - 1, collection.page.size)" aria-label="Previous">
                                 <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
                             </a>
                         </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
+                        <li ng-class="{disabled: collection.page.number === collection.page.totalPages - 1}">
+                            <a ng-click="load(collection.page.number + 1, collection.page.size)">{{collection.page.number + 1}}</a></li>
+                        <li ng-class="{disabled: collection.page.number + 2 >= collection.page.totalPages - 1}">
+                            <a ng-click="load(collection.page.number + 2, collection.page.size)">{{collection.page.number + 2}}</a></li>
+                        <li ng-class="{disabled: collection.page.number + 3 >= collection.page.totalPages - 1}">
+                            <a ng-click="load(collection.page.number + 3, collection.page.size)">{{collection.page.number + 3}}</a></li>
+                        <li ng-class="{disabled: collection.page.number + 4 >= collection.page.totalPages - 1}">
+                            <a ng-click="load(collection.page.number + 4, collection.page.size)">{{collection.page.number + 4}}</a></li>
+                        <li ng-class="{disabled: collection.page.number + 5 >= collection.page.totalPages - 1}">
+                            <a ng-click="load(collection.page.number + 5, collection.page.size)">{{collection.page.number + 5}}</a></li>
+                        <li ng-class="{disabled: collection.page.number === collection.page.totalPages - 1}">
+                            <a ng-click="(collection.page.number === collection.page.totalPages - 1) || load(collection.page.number + 1, collection.page.size)" aria-label="Next">
                                 <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
                             </a>
                         </li>

@@ -21,7 +21,7 @@ define(['include', 'language'], function (angularAMD, language) {
                     }))
                 .state('search', angularAMD.route(
                     {
-                        url: '/search',
+                        url: '/search/:term',
                         templateUrl: 'views/search/default.html',
                         controllerUrl: 'search/controllers/searchController'
                     }))

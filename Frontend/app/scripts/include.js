@@ -14,6 +14,7 @@ define(
         'core/directives/core.breadcrumbs.directive',
         'core/directives/core.edit.form.directive',
         'core/directives/core.on.finish.render.directive',
+        'core/directives/core.search.box.directive',
         'core/filters/core.pagination.filter',
         'core/controllers/BaseController',
         'auth/directives/auth.username.box.directive'

@@ -142,6 +142,21 @@ define(['app'], function (app) {
                         $rootScope.$broadcast("BIODIVERSITY_INSTITUTION_LOAD_ERROR");
                     });
             },
+            search: function( query, page, size ) {
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "collections/search/name?name=" + query + "&page=" + page + "&size=" + size )
+
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("BIODIVERSITY_SEARCHED", data);
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("BIODIVERSITY_SEARCH_ERROR");
+                    });
+            },
             autocomplete: function( query, callback ){
 
                 $http.get( $rootScope.getHost() + "collections/search/autocomplete?name=" + query  )

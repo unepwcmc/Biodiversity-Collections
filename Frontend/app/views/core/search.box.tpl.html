@@ -1,0 +1,28 @@
+<div class="col-md-6">
+    <form id="form-header" class="form-inline" ng-show="showHeaderForm">
+        <div class="small-field">
+            <div class="form-group">
+                <angucomplete-alt id="searchTop"
+                                  placeholder="{{ 'SEARCH' | translate }}"
+                                  pause="150"
+                                  selected-object="searchSelectedFn"
+                                  remote-api-handler="searchAutocomplete"
+                                  remote-url-data-field="content"
+                                  title-field="name"
+                                  minlength="2"
+                                  initial-value="searchSelected"
+                                  disable-input="disableAutocomplete"
+                                  input-class="form-control"/>
+            </div>
+            <div class="form-group">
+                <select select-wrap data-ng-model="search.type">
+                    <option value="">-- Please select --</option>
+                    <option value="volvo">Collection</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <a type="button" class="btn btn-primary small" style="cursor: pointer; margin-top: 3px;height: 32px;"><i class="fa fa-search"></i></a>
+            </div>
+        </div>
+    </form>
+</div>
