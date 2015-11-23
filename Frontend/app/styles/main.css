@@ -321,8 +321,6 @@ textarea.form-control {
  * Form Block Styles
  */
 form.form-block .form-group {
-  padding-top: 5px;
-  padding-bottom: 5px;
   padding-right: 5px; }
   form.form-block .form-group:after {
     content: "";
@@ -353,7 +351,7 @@ form.form-block .form-group {
       clear: both;
       padding-left: 0;
       font-style: italic;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       margin-bottom: 0; }
     form.form-block .form-group div.field-description textarea {
@@ -362,14 +360,8 @@ form.form-block .form-group {
   form.form-block .form-group.open div.field-description {
     display: block; }
 
-form.form-block .form-group:nth-child(even) {
-  background-color: #f8f8f8; }
-
 form.form-block label {
-  height: auto;
-  min-height: 40px;
-  padding-top: 10px;
-  padding-left: 10px; }
+  height: auto; }
 
 form.form-block input[type="text"], form.form-block textarea.form-control,
 form.form-block input[type="password"],
@@ -377,7 +369,6 @@ form.form-block input[type="email"],
 form.form-block input[type="search"],
 form.form-block input[type="tel"],
 form.form-block select {
-  width: 50%;
   font-family: "Libre Baskerville", serif; }
 
 form.form-block textarea {
@@ -394,13 +385,12 @@ form.form-block.view-mode textarea[readonly="readonly"],
 form.form-block.view-mode input[disabled="disabled"],
 form.form-block.view-mode select[disabled="disabled"],
 form.form-block.view-mode textarea[disabled="disabled"] {
-  width: 50%;
   border-radius: 0px;
   border: none;
   background-color: transparent;
   box-shadow: none;
   font-family: "Libre Baskerville", serif;
-  font-size: 13px; }
+  font-size: 14px; }
 
 form.form-block.view-mode textarea[readonly="readonly"] {
   width: 100%;
@@ -452,7 +442,7 @@ form.form-block.edit-mode textarea.importanceOne {
     margin-bottom: 18px; }
   .checkbox-wrapper label {
     padding-left: 26px;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 18px;
     font-weight: 500; }
   .checkbox-wrapper input[type=checkbox] {
@@ -565,7 +555,6 @@ input[type="password"]:disabled,
 input[type="email"]:disabled,
 input[type="tel"]:disabled,
 input[type="number"]:disabled {
-  background-color: #dfe0e1 !important;
   border: 1px solid #dfe0e1; }
 
 .signup input:focus {

@@ -7,9 +7,9 @@ define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('specimens', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies',
+    angularAMD.directive('specimens', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','toastr',
 
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies) {
+        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, toastr) {
 
             return {
                 restrict: 'E',
@@ -31,6 +31,21 @@ define(['angularAMD'], function (angularAMD) {
                          * Add Specimen
                          */
                         $scope.addSpecimens = function() {
+
+                            if($scope.specimen == undefined){
+                                toastr.error($translate.instant('PLEASE_FILL_THE_FIELDS'), $translate.instant('ERROR'));
+                                return;
+                            }
+
+                            if(!$scope.isNumeric($scope.specimen.count)){
+                                toastr.error($translate.instant('THE_FIELD_COUNT_INVALID'), $translate.instant('ERROR'));
+                                return;
+                            }
+
+                            if($scope.specimen.type == undefined || $scope.specimen.type.length == 0){
+                                toastr.error($translate.instant('THE_FIELD_TYPE_EMPTY'), $translate.instant('ERROR'));
+                                return;
+                            }
 
                             var specimens = $scope.collection.specimens;
                             specimens[specimens.length] = $scope.specimen;
@@ -62,7 +77,7 @@ define(['angularAMD'], function (angularAMD) {
                     setViewMode();
 
                     scope.$on('ngRepeatFinished', function() {
-                        if(!scope.specimenEditMode)
+                        if(!scope.editMode)
                             setViewMode();
                     });
 

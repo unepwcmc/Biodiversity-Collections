@@ -11,7 +11,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 @RepositoryRestResource(path = "curators")
 public interface CuratorRepository extends AbstractRepository<Curator> {
 
-    @RestResource(path = "findName", rel = "findName")
+    @RestResource(path = "autocomplete", rel = "autocomplete")
     Page<Curator> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name, Pageable p);
 
 }
