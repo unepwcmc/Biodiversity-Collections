@@ -12,7 +12,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
         function ($timeout, $rootScope, $stateParams, $window, $http, $cookies) {
 
             return {
-                restrict: 'E',
+                restrict: 'EA',
                 templateUrl: 'views/collection/details.tpl.html',
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){

@@ -12,7 +12,7 @@ define(['angularAMD','core/factory/sampleFactory'], function (angularAMD) {
         function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, Sample) {
 
             return {
-                restrict: 'E',
+                restrict: 'EA',
                 templateUrl: 'views/collection/samples.tpl.html',
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){

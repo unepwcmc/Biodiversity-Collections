@@ -12,7 +12,7 @@ define(['angularAMD','core/factory/networkFactory'], function (angularAMD) {
         function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, Network) {
 
             return {
-                restrict: 'E',
+                restrict: 'EA',
                 templateUrl: 'views/collection/networks.tpl.html',
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){

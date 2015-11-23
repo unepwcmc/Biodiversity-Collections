@@ -12,7 +12,7 @@ define(['angularAMD','core/factory/documentFactory','core/directives/core.table.
         function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, Document) {
 
             return {
-                restrict: 'E',
+                restrict: 'EA',
                 templateUrl: 'views/collection/publications.tpl.html',
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){

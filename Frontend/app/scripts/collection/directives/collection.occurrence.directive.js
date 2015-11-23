@@ -12,7 +12,7 @@ define(['angularAMD'], function (angularAMD) {
         function ($timeout, $rootScope, $stateParams, $window, $http, $cookies) {
 
             return {
-                restrict: 'E',
+                restrict: 'EA',
                 templateUrl: 'views/collection/occurrence.tpl.html',
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){

@@ -7,7 +7,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
             return {
 
-                restrict: 'E',
+                restrict: 'EA',
                 templateUrl: 'views/collection/image.tpl.html',
 
                 controller: ['$scope', '$http', '$rootScope', '$state', '$q', '$stateParams', '$translate',
