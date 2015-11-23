@@ -1,7 +1,7 @@
 package com.unep.wcmc.biodiversity.repository;
 
 import com.unep.wcmc.biodiversity.model.HierarchyOrder;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.unep.wcmc.biodiversity.support.AbstractRepository;
 
-public interface HierarchyOrderRepository extends JpaRepository<HierarchyOrder, Long> {
+public interface HierarchyOrderRepository extends AbstractRepository<HierarchyOrder> {
 }

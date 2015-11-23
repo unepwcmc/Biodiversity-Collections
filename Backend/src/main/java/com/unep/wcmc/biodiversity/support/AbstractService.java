@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * @param <E> entity object that extends from {@link BaseEntity}
  * @param <R> repository that implements basic operations from {@link CrudRepository}
  */
-public abstract class AbstractService<E extends BaseEntity, R extends CrudRepository<E, Long>> implements BaseService<E> {
+public abstract class AbstractService<E extends BaseEntity, R extends JpaRepository<E, Long>> implements BaseService<E> {
 	
 	@Autowired
 	protected R repo;
@@ -42,4 +43,5 @@ public abstract class AbstractService<E extends BaseEntity, R extends CrudReposi
 	public E get(Long id) {
 		return repo.findOne(id);
 	}
+
 }

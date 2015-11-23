@@ -1,7 +1,7 @@
 package com.unep.wcmc.biodiversity.repository;
 
 import com.unep.wcmc.biodiversity.model.Genus;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.unep.wcmc.biodiversity.support.AbstractRepository;
 
-public interface GenusRepository extends JpaRepository<Genus, Long> {
+public interface GenusRepository extends AbstractRepository<Genus> {
 }

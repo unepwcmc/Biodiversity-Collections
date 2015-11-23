@@ -1,8 +1,8 @@
 package com.unep.wcmc.biodiversity.repository;
 
 import com.unep.wcmc.biodiversity.model.News;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.unep.wcmc.biodiversity.support.AbstractRepository;
 
-public interface NewsRepository extends JpaRepository<News, Long> {
+public interface NewsRepository extends AbstractRepository<News> {
 
 }

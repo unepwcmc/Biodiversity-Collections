@@ -1,8 +1,8 @@
 package com.unep.wcmc.biodiversity.repository;
 
 import com.unep.wcmc.biodiversity.model.HierarchyClass;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.unep.wcmc.biodiversity.support.AbstractRepository;
 
-public interface HierarchyClassRepository extends JpaRepository<HierarchyClass, Long> {
+public interface HierarchyClassRepository extends AbstractRepository<HierarchyClass> {
 
 }
