@@ -20,8 +20,8 @@
             <div class="result-list">
 
                 <div ng-repeat="col in collection._embedded.biodiversityCollections" class="list-item">
-                    <h5><strong><a data-ui-sref="collection({id:col.id})">{{col.name}}</a></strong> | <span class="cend"><a data-ui-sref="collection({id:col.id})">id: {{col.id}}</a></span></h5>
-                    <p><strong>National Official List of Endangered Fauna, Action Plan Alpha</strong></p>
+                    <h5><strong><a data-ui-sref="collection({id:col.id})">{{col.name}}</a></strong> | <a data-ui-sref="collection({id:col.id})">id: {{col.id}}</a></h5>
+                    <p><strong>{{col.institution.description}}</strong></p>
                     <p>{{col.description}}</p>
                 </div>
 
