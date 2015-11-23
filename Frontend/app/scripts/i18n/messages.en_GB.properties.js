@@ -38,7 +38,8 @@ define([],function ( ) {
     'NETWORKS':'Networks',
     'OF':'of',
     'NAME':'Name',
-    'ADD':'Add'
+    'ADD':'Add',
+    'VISIBILITY':'Visibility'
   }
 
 });
