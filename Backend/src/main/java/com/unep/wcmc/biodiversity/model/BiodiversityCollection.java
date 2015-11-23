@@ -38,6 +38,7 @@ public class BiodiversityCollection implements BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "institution_id")
+    @RestResource(exported = false)
     private Institution institution;
 
     @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY)
@@ -45,6 +46,7 @@ public class BiodiversityCollection implements BaseEntity {
 
     @ElementCollection
     @CollectionTable(name = "researcher", joinColumns = @JoinColumn(name = "collection_id"))
+    @RestResource(exported = false)
     private Set<Researcher> researchers;
 
     @OneToMany(mappedBy = "collection")
@@ -52,6 +54,7 @@ public class BiodiversityCollection implements BaseEntity {
 
     @ElementCollection
     @CollectionTable(name = "specimen", joinColumns = @JoinColumn(name = "collection_id"))
+    @RestResource(exported = false)
     private Set<Specimen> specimens;
 
     @OneToMany(mappedBy = "collection")

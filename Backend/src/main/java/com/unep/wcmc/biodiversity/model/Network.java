@@ -1,6 +1,5 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.springframework.data.rest.core.annotation.RestResource;
 
@@ -26,16 +25,12 @@ public class Network implements BaseEntity {
     @JoinTable(name = "network_biodiversity_collection",
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "collection_id"))
-    @JsonIgnore
-    @RestResource(exported = false)
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany
     @JoinTable(name = "network_institution",
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
-    @JsonIgnore
-    @RestResource(exported = false)
     private Set<Institution> institutions;
 
     @Override

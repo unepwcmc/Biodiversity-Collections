@@ -28,15 +28,13 @@ public class Institution implements BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "institution_id")
-    @RestResource(exported = false)
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")
-    @RestResource(exported = false)
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany(mappedBy = "institutions")
-    @RestResource(exported = false)
+    @RestResource(rel = "institutionNetworks")
     private Set<Network> networks;
 
     @Override
