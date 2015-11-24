@@ -72,6 +72,12 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                             }
                         };
 
+                        $scope.$on('CANCEL_EDIT_COLLECTION', function() {
+
+                            $scope.$broadcast('angucomplete-alt:changeInput', 'curators', $scope.collection.curator);
+                            $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.collection.institution);
+                        });
+
                     }],
                 link: function (scope, element, attrs) {
 

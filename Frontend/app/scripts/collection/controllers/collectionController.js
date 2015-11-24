@@ -64,6 +64,7 @@ define(['app','collection/directives/collection.networks.directive',
 
                $scope.$on('CANCEL_EDIT_COLLECTION', function() {
                    $scope.editMode = false;
+                   $scope.$broadcast('angucomplete-alt:clearInput');
                    $scope.$apply();
                });
 
