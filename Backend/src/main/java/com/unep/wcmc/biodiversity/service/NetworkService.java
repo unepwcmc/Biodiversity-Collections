@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @Service
 public class NetworkService extends AbstractService<Network, NetworkRepository> {
 
-    public Page<Network> findAllNetworkByCollection(BiodiversityCollection biodiversityCollection, Pageable pageable){
+    public Page<Network> findAllNetworkByCollection(final BiodiversityCollection biodiversityCollection, Pageable pageable){
         return repo.findAllByCollectionsIn( new ArrayList<BiodiversityCollection>() {{ add( biodiversityCollection ); }}, pageable);
     }
 }
