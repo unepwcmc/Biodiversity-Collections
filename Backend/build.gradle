@@ -54,6 +54,7 @@ dependencies {
     compile("com.google.guava:guava:18.0")
     compile("com.mangofactory:swagger-springmvc:1.0.2")
     compile("io.dropwizard.metrics:metrics-core")
+    compile("org.reflections:reflections:0.9.10")
     // Runtime dependencies
     runtime("org.postgresql:postgresql:9.4-1201-jdbc41")
     // Testing dependencies

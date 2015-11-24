@@ -1,9 +1,9 @@
 package com.unep.wcmc.biodiversity.config;
 
-import com.google.common.reflect.ClassPath;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.reflections.Reflections;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -22,19 +22,16 @@ public class RestDataConfig extends RepositoryRestConfigurerAdapter {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        try {
-            Set<ClassPath.ClassInfo> classes =
-                    ClassPath.from(this.getClass().getClassLoader()).getTopLevelClasses("com.unep.wcmc.biodiversity.model");
-            List<Class> entityClasses = new ArrayList<>();
-            for (ClassPath.ClassInfo classInfo : classes) {
-                Class<?> clazz = classInfo.load();
-                if (BaseEntity.class.isAssignableFrom(clazz)) {
-                    entityClasses.add(clazz);
-                }
+        List<Class> entityClasses = new ArrayList<>();
+        Reflections reflections = new Reflections("com.unep.wcmc.biodiversity.model");
+        Set<Class<? extends BaseEntity>> classes = reflections.getSubTypesOf(BaseEntity.class);
+        for (Class<? extends BaseEntity> clazz : classes) {
+            try {
+                entityClasses.add(clazz);
+            } catch (Exception e) {
+                logger.error(e);
             }
-            config.exposeIdsFor(entityClasses.toArray(new Class[0]));
-        } catch (Exception ex) {
-            logger.error(ex);
         }
+        config.exposeIdsFor(entityClasses.toArray(new Class[0]));
     }
 }
