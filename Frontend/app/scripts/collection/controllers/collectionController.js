@@ -34,6 +34,9 @@ define(['app','collection/directives/collection.networks.directive',
 
                $scope.$on('BIODIVERSITY_LOADED', function(){
                     console.log('Collection Loaded');
+
+                   if($scope.collection.published == null)
+                       $scope.collection.published = false;
                });
 
                $scope.$on('BIODIVERSITY_UPDATED', function(){

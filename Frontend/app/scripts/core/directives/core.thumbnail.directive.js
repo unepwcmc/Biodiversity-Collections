@@ -23,11 +23,8 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                 link: function (scope, element, attrs) {
 
                     if( scope.attachment != undefined){
-                        console.log('bila');
-                        console.log(scope.attachment);
                         $(element).find('img').attr('src', scope.root + "medias/" + scope.attachment+ "/image");
                     }
-
                 }
             };
         }]);
