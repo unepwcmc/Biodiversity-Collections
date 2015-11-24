@@ -26,6 +26,8 @@ public class BiodiversityCollection implements BaseEntity {
 
     private String curatorialLodge;
 
+
+
     private Boolean published;
 
     @Enumerated(EnumType.STRING)
@@ -64,7 +66,7 @@ public class BiodiversityCollection implements BaseEntity {
     @OneToMany(mappedBy = "collection")
     private Set<Document> documents;
 
-    @ManyToOne
+    @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "image_id")
     @RestResource(exported = false)
     private Image image;
@@ -213,13 +215,5 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setWebSiteName(String webSiteName) {
         this.webSiteName = webSiteName;
-    }
-
-    public Boolean getPublished() {
-        return published;
-    }
-
-    public void setPublished(Boolean published) {
-        this.published = published;
     }
 }

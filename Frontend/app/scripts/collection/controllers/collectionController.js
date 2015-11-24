@@ -15,13 +15,14 @@ define(['app','collection/directives/collection.networks.directive',
 
                $scope.editMode = false;
                $scope.image = null;
-               $scope.collection = new BiodiversityCollection();
+               $scope.collection = undefined;
                /**
                 * Listener when the view
                 */
                $scope.$on('$viewContentLoaded', function() {
                    console.log('view Content Loaded...');
 
+                   $scope.collection = new BiodiversityCollection();
                    $scope.collection.get( $stateParams.id );
                });
 
@@ -29,18 +30,23 @@ define(['app','collection/directives/collection.networks.directive',
                    console.log('collection updating..');
 
                    $scope.collection.update();
-                   toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
+               });
 
-                   if($scope.image != null){
-                      // addImage();
-                   }
+               $scope.$on('BIODIVERSITY_LOADED', function(){
+                    console.log('Collection Loaded');
                });
 
                $scope.$on('BIODIVERSITY_UPDATED', function(){
                    console.log('updated');
+
+                   if($scope.image != null)
+                       addImage();
+
+                   toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
                });
 
                $scope.$on('ATTACH_FILE', function( evt, data ){
+                   console.log('here');
                     $scope.image = data;
                });
 
@@ -68,6 +74,7 @@ define(['app','collection/directives/collection.networks.directive',
                    $scope.collection.addImage($scope.image, function(data, status){
 
                        if(status >= 200 && status <= 299){
+                           $scope.image = null;
                            toastr.success($translate.instant('MEDIA_ADDED'), $translate.instant('SUCCESS'));
                        }else{
                            toastr.error(data.error, $translate.instant('ERROR'));

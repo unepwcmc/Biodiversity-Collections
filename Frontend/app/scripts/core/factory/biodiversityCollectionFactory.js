@@ -98,29 +98,28 @@ define(['angularAMD'], function (angularAMD) {
                         $rootScope.$broadcast("BIODIVERSITY_CURATOR_LOAD_ERROR");
                     });
             },
-            addImage: function( data ){
+            addImage: function( data, callback ){
 
                 var self = this;
                 var fd = new FormData();
                 fd.append('file', data);
 
-                console.log(data);
                 console.log(fd);
 
-                $http.post($rootScope.getHost() + "collections/" + this.id + "/medias", fd, {
+                $http.post($rootScope.getHost() + "collections/" + this.id + "/media", fd, {
                     headers : {
                         'Content-Type' : undefined
                     }
                 }).success(function (data, status, headers, config) {
                         self.setData(data);
                         $rootScope.$broadcast("IMAGE_ADDED");
-                        //if(callback)
-                            //callback( data, status, headers, config)
+                        if(callback)
+                            callback( data, status, headers, config)
                 })
                 .error(function (data, status, headers, config) {
                     $log.error( data);
-                        //if(callback)
-                           // callback( data, status, headers, config );
+                        if(callback)
+                           callback( data, status, headers, config );
                 });
             },
             institution: function( id){

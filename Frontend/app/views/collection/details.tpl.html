@@ -83,15 +83,15 @@
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'DESCRIPTION' | translate  }}</label>
                              <div class="col-sm-9">
-                                 <textarea elastic type="text" class="form-control importanceFour" data-ng-model="collection.description"></textarea>
+                                 <textarea elastic type="text" class="form-control" data-ng-model="collection.description"></textarea>
                              </div>
                          </div>
 
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'VISIBILITY' | translate  }}</label>
                              <div class="col-sm-9">
-                                 <input type="radio" name="visibility" data-ng-model="collection.published" data-ng-model="false">Unpublished
-                                 <input type="radio" name="visibility" data-ng-model="collection.published" data-ng-model="true">Published
+                                 <input type="radio" name="visibility" data-ng-model="collection.published" value="false">Unpublished<br/>
+                                 <input type="radio" name="visibility" data-ng-model="collection.published" value="true">Published
                              </div>
                          </div>
 

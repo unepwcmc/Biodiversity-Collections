@@ -20,6 +20,6 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         BiodiversityCollection biodiversityCollection = service.get(id);
         if (!file.isEmpty())
             biodiversityCollection.setImage(imageService.save(file));
-        return biodiversityCollection;
+        return service.save(biodiversityCollection);
     }
 }

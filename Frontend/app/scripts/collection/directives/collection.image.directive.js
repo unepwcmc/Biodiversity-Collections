@@ -13,8 +13,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                 controller: ['$scope', '$http', '$rootScope', '$state', '$q', '$stateParams', '$translate',
                     function( $scope, $http, $rootScope, $state, $q, $stateParams, $translate ) {
 
-                        $scope.image = new Image();
-
+                        loadImage();
 
                         $scope.addFile = function( file ){
 
@@ -26,6 +25,20 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             $rootScope.$broadcast("ATTACH_FILE", file );
                         };
 
+                        $rootScope.$on('IMAGE_ADDED', function(){
+                            loadImage();
+                            $('#ipt-file').val(null);
+                        },true);
+
+                        $rootScope.$on('BIODIVERSITY_LOADED', function(){
+                           loadImage();
+                        },true);
+
+                        function loadImage(){
+                            if( $scope.collection.image != undefined)
+                                $('#collection-image').attr('src',$rootScope.getHost() + "medias/" + $scope.collection.image.attachment.id + "/image");
+                        }
+
                     }],
                 link: function (scope, element, attrs) {
 
@@ -33,9 +46,10 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         var files = $(evt.currentTarget).get(0).files;
 
                         if(files.length > 0) {
-                            scope.addFile(files);
+                            scope.addFile(files[0]);
                         }
                     });
+
                 }
             };
         }]);
