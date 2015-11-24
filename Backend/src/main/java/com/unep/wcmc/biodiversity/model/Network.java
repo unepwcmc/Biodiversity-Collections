@@ -21,6 +21,11 @@ public class Network implements BaseEntity {
 
     private boolean status;
 
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "image_id")
+    @RestResource(exported = false)
+    private Image image;
+
     @ManyToMany
     @JoinTable(name = "network_biodiversity_collection",
             joinColumns = @JoinColumn(name = "network_id"),
@@ -89,5 +94,13 @@ public class Network implements BaseEntity {
 
     public boolean getStatus() {
         return status;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
