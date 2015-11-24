@@ -45,6 +45,11 @@ public class Sample implements BaseEntity {
     @RestResource(exported = false)
     private Set<Document> documents;
 
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "image_id")
+    @RestResource(exported = false)
+    private Image image;
+
     @Override
     public Long getId() {
         return id;
@@ -111,4 +116,11 @@ public class Sample implements BaseEntity {
         this.documents = documents;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 }

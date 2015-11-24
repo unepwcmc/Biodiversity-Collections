@@ -3,7 +3,7 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD','core/factory/sampleFactory'], function (angularAMD) {
+define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnail.directive'], function (angularAMD) {
 
     'use strict';
 
