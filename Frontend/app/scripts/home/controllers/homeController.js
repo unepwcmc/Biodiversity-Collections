@@ -37,11 +37,9 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
                 $state.go('search', { term : $scope.term });
             };
 
-            $scope.autocomplete = function( input ){
-                $scope.collections.autocomplete( input, function( data){
-                      console.log(data._embedded.biodiversityCollections);
-                });
-            };
+            $scope.isSearchEnabled = function() {
+                return !($scope.term != "" && $scope.term.length >= 3 && $scope.search.type != undefined && && $scope.search.type != "");
+            }
 
         }];
 });
