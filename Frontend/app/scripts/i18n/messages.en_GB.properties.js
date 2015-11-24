@@ -39,7 +39,8 @@ define([],function ( ) {
     'OF':'of',
     'NAME':'Name',
     'ADD':'Add',
-    'VISIBILITY':'Visibility'
+    'VISIBILITY':'Visibility',
+    'COLLECTION_OCCURRENCES':'Collection Occurrences'
   }
 
 });
