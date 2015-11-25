@@ -379,6 +379,7 @@ form.form-block textarea {
   outline: none;
   margin-bottom: 10px; }
 
+form.form-block.view-mode input[readonly],
 form.form-block.view-mode input[readonly="readonly"],
 form.form-block.view-mode select[readonly="readonly"],
 form.form-block.view-mode textarea[readonly="readonly"],
@@ -817,14 +818,5 @@ h5.collection.section-header {
   max-height: 200px;
   border: solid 1px #cccccc; }
 
-table.specimen-table input.form-control {
-  padding: 0; }
-
-table.specimen-table a.btn-small-delete {
-  padding: 10px 10px 23px 10px; }
-
 table.sample-table tr {
   border-bottom: solid 1px #cccccc; }
-
-table.sample-table a.btn-small-delete {
-  padding: 10px 10px 20px 10px; }

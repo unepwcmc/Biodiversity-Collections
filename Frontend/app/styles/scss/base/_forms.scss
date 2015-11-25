@@ -301,6 +301,7 @@ form.form-block{
 	}
 
 	&.view-mode{
+		input[readonly],
 		input[readonly="readonly"],
 		select[readonly="readonly"],
 		textarea[readonly="readonly"],
@@ -362,7 +363,6 @@ form.form-block.edit-mode textarea.importanceOne{
 	height: 390px !important;
 	overflow: auto !important;
 }
-
 
 
 /**
