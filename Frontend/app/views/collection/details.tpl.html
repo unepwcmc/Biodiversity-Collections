@@ -17,9 +17,9 @@
         </nav>
         <h4 id="collection-bar-default">
 
-                <strong class="collection-default-mode">{{ collection.name }}</strong>
-                <strong class="collection-edit-mode">Edit Collection</strong> <span>
-                <button class="btn btn-small btn-tag collection-default-mode"><strong>{{ 'COLLECTIONS'| translate}}</strong></button></span>
+                <strong ng-show="!editMode" class="collection-default-mode">{{ collection.name }}</strong>
+                <strong ng-show="editMode" class="collection-edit-mode">Edit Collection</strong> <span>
+                <button ng-show="!editMode" class="btn btn-small btn-tag collection-default-mode"><strong>{{ 'COLLECTIONS'| translate}}</strong></button></span>
 
             <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>Edit</strong></a>
             <a class="btn btn-small btn-primary pull-right btn-white save-form"><strong>Save Changes</strong></a>
@@ -36,12 +36,12 @@
                  <form action="#" class="form-horizontal view-mode form-block" role="form">
                      <div class="small-field">
 
-                         <div id="collection-id" class="form-group">
+                         <div ng-show="!editMode" id="collection-id" class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION_ID' | translate }}</label>
                              <div class="col-sm-9"><input type="text" class="form-control" value="{{collection.id}}"></div>
                          </div>
 
-                         <div id="collection-name" class="form-group">
+                         <div ng-show="editMode" id="collection-name" class="form-group">
                              <label class="col-sm-3">{{ 'NAME' | translate }}</label>
                              <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.name"></div>
                          </div>

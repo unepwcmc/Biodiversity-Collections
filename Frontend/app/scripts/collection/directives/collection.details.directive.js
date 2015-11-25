@@ -29,6 +29,13 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                             $scope.curatorSelected = $scope.collection.curator;
                         });
 
+
+                        $scope.$on('CANCEL_EDIT_COLLECTION', function() {
+
+                            $scope.$broadcast('angucomplete-alt:changeInput', 'curators', $scope.collection.curator);
+                            $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.collection.institution);
+                        });
+
                         $scope.curatorAutocomplete = function( userInputString, timeoutPromise){
 
                             if(userInputString == null)
@@ -72,17 +79,8 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                             }
                         };
 
-                        $scope.$on('CANCEL_EDIT_COLLECTION', function() {
-
-                            $scope.$broadcast('angucomplete-alt:changeInput', 'curators', $scope.collection.curator);
-                            $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.collection.institution);
-                        });
-
                     }],
                 link: function (scope, element, attrs) {
-
-                    $(element).find(".collection-edit-mode").hide();
-                    $(element).find("#collection-name").hide();
 
                     var waypoint = new Waypoint({
                         element: $(element).find("#collection-bar-default"),
@@ -111,19 +109,12 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                         scope.disableAutocomplete = false;
                         scope.navigationBar = true;
-                        $(element).find(".collection-default-mode").hide();
-                        $(element).find(".collection-edit-mode").show();
-                        $(element).find("#collection-name").show();
-                        $(element).find("#collection-id").hide();
-
-                        scope.$apply();
-
                         scope.$emit('EDIT_COLLECTION');
+                        scope.$apply();
                     });
 
                     $(element).find('.btn-edit-collection-cancel').click(function(){
                         backToDefault();
-
                         scope.$emit('CANCEL_EDIT_COLLECTION');
                     });
 
@@ -134,8 +125,6 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                         $(element).find("#collection-bar-fixed").hide();
                         $(element).find(".collection-default-mode").show();
                         $(element).find(".collection-edit-mode").hide();
-                        $(element).find("#collection-name").hide();
-                        $(element).find("#collection-id").show();
                     }
                 }
             };

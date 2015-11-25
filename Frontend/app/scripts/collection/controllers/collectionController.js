@@ -13,11 +13,11 @@ define(['app','collection/directives/collection.networks.directive',
            function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, toastr, $translate) {
                 angular.extend($scope, BaseController);
 
-               $scope.editMode = false;
+               $rootScope.editMode = false;
                $scope.image = null;
                $scope.collection = undefined;
                /**
-                * Listener when the view
+                * Listener when the view is loaded
                 */
                $scope.$on('$viewContentLoaded', function() {
                    console.log('view Content Loaded...');
@@ -26,12 +26,21 @@ define(['app','collection/directives/collection.networks.directive',
                    $scope.collection.get( $stateParams.id );
                });
 
+               /**
+                * Should be fired when the button save is click
+                */
                $scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
                    console.log('collection updating..');
 
                    $scope.collection.update();
                });
 
+
+               /**
+                * Listener when the collection factory receive new
+                * biodiversity collection data.
+                *
+                */
                $scope.$on('BIODIVERSITY_LOADED', function(){
                     console.log('Collection Loaded');
 
@@ -39,51 +48,61 @@ define(['app','collection/directives/collection.networks.directive',
                        $scope.collection.published = false;
                });
 
+               /**
+                * Listener when the collection factory update the
+                * biodiversity collection model.
+                *
+                */
                $scope.$on('BIODIVERSITY_UPDATED', function(){
                    console.log('updated');
 
-                   if($scope.image != null)
-                       addImage();
+                   if($scope.image != null){
+                       $scope.collection.addImage($scope.image);
+                   }else{
+                       toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
+                   }
+               });
+
+               /**
+                * Listener when a file is loaded from the user.
+                */
+               $scope.$on('ATTACH_FILE', function( evt, data ){
+                    $scope.image = data;
+               });
+
+               /**
+                * Listener when the image was added to the biodiversity collection model.
+                */
+               $scope.$on('IMAGE_ADDED', function(){
+                   $scope.image = null;
 
                    toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
                });
 
-               $scope.$on('ATTACH_FILE', function( evt, data ){
-                   console.log('here');
-                    $scope.image = data;
-               });
-
-               $scope.$on('IMAGE_ADDED', function(){
-                   $scope.image = null;
-               });
-
+               /**
+                * Listener when the button edit is clicked
+                */
                $scope.$on('EDIT_COLLECTION', function() {
-                   $scope.editMode = true;
-                   $scope.$apply();
+                   setStateButton(true);
                });
 
+               /**
+                * Listener when the button cancel is clicked
+                */
                $scope.$on('CANCEL_EDIT_COLLECTION', function() {
-                   $scope.editMode = false;
-                   $scope.$broadcast('angucomplete-alt:clearInput');
-                   $scope.$apply();
+                   setStateButton(false);
                });
 
+               /**
+                * Listener when the button save is clicked
+                */
                $scope.$on('SAVE_COLLECTION', function() {
-                   $scope.editMode = false;
-                   $scope.$apply();
+                   setStateButton(false)
                });
 
-               function addImage(){
-
-                   $scope.collection.addImage($scope.image, function(data, status){
-
-                       if(status >= 200 && status <= 299){
-                           $scope.image = null;
-                           toastr.success($translate.instant('MEDIA_ADDED'), $translate.instant('SUCCESS'));
-                       }else{
-                           toastr.error(data.error, $translate.instant('ERROR'));
-                       }
-                   });
+               function setStateButton( status ){
+                   $rootScope.editMode = status;
+                   $scope.$apply();
                }
 
            }
