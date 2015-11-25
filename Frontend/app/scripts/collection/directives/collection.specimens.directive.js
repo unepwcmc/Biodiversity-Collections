@@ -20,11 +20,11 @@ define(['angularAMD'], function (angularAMD) {
                         $scope.specimensCount = 0;
 
                         $scope.$on('BIODIVERSITY_LOADED', function(){
-                            specimensSunCount();
+                            $scope.specimensSunCount();
                         });
 
                         $scope.$on('BIODIVERSITY_UPDATED', function(){
-                            specimensSunCount();
+                            $scope.specimensSunCount();
                         });
 
                         /**
@@ -50,7 +50,7 @@ define(['angularAMD'], function (angularAMD) {
                             var specimens = $scope.collection.specimens;
                             specimens[specimens.length] = $scope.specimen;
                             $scope.specimen = {};
-                            specimensSunCount();
+                            $scope.specimensSunCount();
                         };
 
                         /**
@@ -59,17 +59,20 @@ define(['angularAMD'], function (angularAMD) {
                          */
                         $scope.deleteSpecimen = function(index) {
                             $scope.collection.specimens.splice(index, 1);
-                            specimensSunCount();
+                            $scope.specimensSunCount();
                         };
 
-                        function specimensSunCount(){
+                        $scope.specimensSunCount = function(){
 
                             $scope.specimensCount = 0;
 
                             _.each($scope.collection.specimens, function( obj ){
-                                $scope.specimensCount += parseInt(obj.count);
+                                if($scope.isNumeric(obj.count)){
+                                    $scope.specimensCount += parseInt(obj.count);
+                                }
                             });
                         }
+
 
                     }],
                 link: function (scope, element, attrs) {
