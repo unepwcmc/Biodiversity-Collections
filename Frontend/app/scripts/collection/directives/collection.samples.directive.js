@@ -17,20 +17,15 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        $scope.page  = {totalElements : 0, number: 0, size: 10, totalPages: 0};
                         $scope.samples = new Sample();
-                        $scope.samples.load( $stateParams.id,  $scope.page.number, $scope.page.size);
+                        angular.extend($scope.samples,{totalElements : 0, number: 0, size: 5, totalPages: 0});
+                        $scope.samples.load( $stateParams.id,  $scope.samples.number, $scope.samples.size);
 
                         $scope.$on('SAMPLE_LOADED', function( ) {
                             console.log('Samples Loaded...');
-
-                            $scope.page.number = $scope.samples.number;
-                            $scope.page.size = $scope.samples.size;
-                            $scope.page.totalPages = $scope.samples.totalPages;
-                            $scope.page.totalElements = $scope.samples.totalElements;
                         });
 
-                        $scope.paginate = function(page, size){
+                        $scope.paginateSample = function(page, size){
                             $scope.samples.load( $stateParams.id , page, size);
                         };
 
@@ -39,8 +34,8 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
                 link: function (scope, element, attrs) {
 
                     $("#sample-size-box").change(function() {
-                        scope.page.size = parseInt($(this).val());
-                        scope.paginate(scope.number, $(this).val())
+                        scope.samples.size = parseInt($(this).val());
+                        scope.paginateSample(scope.samples.number, parseInt($(this).val()));
                     });
                 }
             };
