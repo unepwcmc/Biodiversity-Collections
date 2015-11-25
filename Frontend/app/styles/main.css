@@ -814,9 +814,22 @@ h5.collection.section-header {
   line-height: 25px; }
 
 .angucomplete-dropdown {
-  overflow-y: auto;
-  max-height: 200px;
-  border: solid 1px #cccccc; }
+  border: solid 1px #CCCCCC !important;
+  overflow-y: auto !important;
+  max-height: 200px !important;
+  width: 500px !important; }
+
+.angucomplete-row {
+  padding: 5px;
+  color: #000000;
+  margin-bottom: 4px;
+  clear: both;
+  width: 100% !important; }
+
+.angucomplete-title {
+  width: 100% !important;
+  font-size: 14px;
+  text-align: justify; }
 
 table.sample-table tr {
   border-bottom: solid 1px #cccccc; }
