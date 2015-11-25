@@ -9,6 +9,7 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
 
             $scope.collections = new BiodiversityCollection();
             $scope.term = '';
+            $scope.type = '';
 
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
@@ -24,6 +25,7 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
             };
 
             $scope.searchSelectedFn = function(selected) {
+                console.log('teste')
                 if (selected) {
                     $scope.term = selected.title;
                     $state.go('collection', {id : selected.originalObject.id});
@@ -34,11 +36,19 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
 
 
             $scope.search = function(){
-                $state.go('search', { term : $scope.term });
+                if ($scope.search.type === "collection") {
+                    $state.go('search', { term : $scope.term, type : $scope.search.type });
+                } else if ($scope.search.type === "institution") {
+                    $state.go('search', { term : $scope.term, type : $scope.search.type });
+                } else if ($scope.search.type === "network") {
+                    $state.go('search', { term : $scope.term, type : $scope.search.type });
+                } else {
+                    return;
+                }
             };
 
             $scope.isSearchEnabled = function() {
-                return !($scope.term != "" && $scope.term.length >= 3 && $scope.search.type != undefined && && $scope.search.type != "");
+                return !($scope.term != "" && $scope.term.length >= 3 && $scope.search.type != undefined && $scope.search.type != "");
             }
 
         }];
