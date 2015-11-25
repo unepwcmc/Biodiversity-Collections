@@ -104,8 +104,6 @@ define(['angularAMD'], function (angularAMD) {
                 var fd = new FormData();
                 fd.append('file', data);
 
-                console.log(fd);
-
                 $http.post($rootScope.getHost() + "collections/" + this.id + "/media", fd, {
                     headers : {
                         'Content-Type' : undefined
