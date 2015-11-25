@@ -37,9 +37,9 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
                 $state.go('search', { term : $scope.term });
             };
 
-            $scope.isSearchEnabled = function() {
-                return !($scope.term != "" && $scope.term.length >= 3 && $scope.search.type != undefined && && $scope.search.type != "");
-            }
+            //$scope.isSearchEnabled = function() {
+            //    return !($scope.term != "" && $scope.term.length >= 3 && $scope.search.type != undefined && && $scope.search.type != "");
+            //}
 
         }];
 });
