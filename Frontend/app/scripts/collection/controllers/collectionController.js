@@ -8,9 +8,9 @@ define(['app','collection/directives/collection.networks.directive',
 
     'use strict';
 
-    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','toastr','$translate',
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','toastr','$translate','$state',
 
-           function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, toastr, $translate) {
+           function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, toastr, $translate, $state) {
                 angular.extend($scope, BaseController);
 
                $rootScope.editMode = false;
@@ -33,6 +33,12 @@ define(['app','collection/directives/collection.networks.directive',
                    console.log('collection updating..');
 
                    $scope.collection.update();
+               });
+
+
+               $scope.$on('BIODIVERSITY_COLLECTION_RELOADED', function(){
+                   console.log('edit form canceling...');
+                   $state.go($state.current, $stateParams, {reload: true, inherit: false});
                });
 
 

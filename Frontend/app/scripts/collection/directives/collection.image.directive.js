@@ -46,9 +46,21 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         var files = $(evt.currentTarget).get(0).files;
 
                         if(files.length > 0) {
+                            showSelectedImage(files);
                             scope.addFile(files[0]);
                         }
                     });
+
+                    function showSelectedImage( files ){
+
+                        var selectedFile = files[0];
+                        var reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            $('#collection-image').attr('src',event.target.result);
+                        };
+                        reader.readAsDataURL(selectedFile);
+                    }
 
                 }
             };
