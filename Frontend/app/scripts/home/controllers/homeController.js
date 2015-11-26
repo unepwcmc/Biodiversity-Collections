@@ -1,14 +1,14 @@
-define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCollectionFactory','core/factory/networkFactory'], function () {
+define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCollectionFactory','core/factory/networkFactory', 'core/factory/institutionFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController', '$state', 'BiodiversityCollection','Network',
-        function ($scope, BaseController, $state, BiodiversityCollection, Network) {
+    return ['$scope','BaseController', '$state', 'BiodiversityCollection','Network', 'Institution',
+        function ($scope, BaseController, $state, BiodiversityCollection, Network, Institution) {
 
             angular.extend($scope, BaseController);
 
             $scope.collections = new BiodiversityCollection();
-            //$scope.institutions = new Institution();
+            $scope.institutions = new Institution();
             $scope.networks = new Network();
 
             $scope.term = '';
@@ -31,12 +31,17 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
                     return $scope.networks.autocomplete(userInputString, function(){timeout: timeoutPromise;});
                 }
 
+                if ($scope.search.type == "institution") {
+                    return $scope.institutions.autocompleteName(userInputString, function(){timeout: timeoutPromise;});
+                }
+
                 return null;
             };
 
             $scope.searchSelectedFn = function(selected) {
-                console.log()
+
                 if (selected) {
+
                     $scope.term = selected.title;
 
                     if ($scope.search.type == "collection") {

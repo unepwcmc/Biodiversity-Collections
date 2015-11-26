@@ -20,7 +20,7 @@ public interface InstitutionRepository extends AbstractRepository<Institution> {
     @RestResource(path = "name")
     Page<Institution> findByNameContainingOrderByNameAsc(@Param("name") String name, Pageable page);
 
-    @RestResource(path = "autocomplete")
+    @RestResource(path = "autocompleteName")
     List<Institution> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name);
 
 

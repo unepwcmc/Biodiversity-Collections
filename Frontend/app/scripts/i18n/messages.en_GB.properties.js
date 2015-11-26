@@ -13,6 +13,7 @@ define([],function ( ) {
     'SEARCH_RESULTS':'Search Results',
     'RESULT_FOR_COLLECTION':'result for Collection',
     'RESULT_FOR_NETWORK':'result for Network',
+    'RESULT_FOR_INSTITUTION':'result for Institution',
     'PREVIOUS':'Previous',
     'NEXT':'Next',
     'COLLECTION_ID':'Collection Id',

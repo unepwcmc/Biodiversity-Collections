@@ -1,15 +1,16 @@
-define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/networkFactory'], function () {
+define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/networkFactory', 'core/factory/institutionFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController', '$stateParams','$http','$rootScope','BiodiversityCollection','Network',
+    return ['$scope','BaseController', '$stateParams','$http','$rootScope','BiodiversityCollection','Network', 'Institution',
 
-        function ($scope, BaseController, $stateParams, $http, $rootScope, BiodiversityCollection, Network) {
+        function ($scope, BaseController, $stateParams, $http, $rootScope, BiodiversityCollection, Network, Institution) {
 
             angular.extend($scope, BaseController);
 
             $scope.collection = new BiodiversityCollection();
             $scope.network = new Network();
+            $scope.institution = new Institution();
 
             $scope.page = 0;
             $scope.size = 20;
@@ -23,14 +24,12 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
                 var term = $stateParams.term;
                 var type = $stateParams.type;
 
-                //ajustar a consulta para pegar os outros resultado
-
                 if ($scope.search.type === "collection") {
                     $scope.collection.search( $stateParams.term, $scope.page, $scope.size );
                 } else if ($scope.search.type === "institution") {
-                    //$state.go('search', { term : term, type : type });
+                    $scope.institution.search( $stateParams.term, $scope.page, $scope.size );
                 } else if ($scope.search.type === "network") {
-                     $scope.network.search( $stateParams.term, $scope.page, $scope.size );
+                    $scope.network.search( $stateParams.term, $scope.page, $scope.size );
                 } else {
                     return;
                 }
