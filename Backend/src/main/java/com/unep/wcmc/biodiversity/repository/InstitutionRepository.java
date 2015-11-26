@@ -11,7 +11,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(path = "instituitions")
+@RepositoryRestResource(path = "institutions")
 public interface InstitutionRepository extends AbstractRepository<Institution> {
 
     @RestResource(path = "autocomplete", rel = "autocomplete")

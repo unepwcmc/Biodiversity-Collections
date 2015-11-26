@@ -1,49 +1,58 @@
-define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCollectionFactory'], function () {
+define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCollectionFactory','core/factory/networkFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController', '$state', 'BiodiversityCollection',
-        function ($scope, BaseController, $state, BiodiversityCollection) {
+    return ['$scope','BaseController', '$state', 'BiodiversityCollection','Network',
+        function ($scope, BaseController, $state, BiodiversityCollection, Network) {
 
             angular.extend($scope, BaseController);
 
             $scope.collections = new BiodiversityCollection();
+            //$scope.institutions = new Institution();
+            $scope.networks = new Network();
+
             $scope.term = '';
-            $scope.type = '';
 
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
             });
 
             $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
+
                 $scope.term = userInputString;
 
-                if (userInputString == null)
+                if (userInputString == null || $scope.search.type == "" || $scope.search.type == undefined)
                     return null;
 
-                return $scope.collections.autocomplete(userInputString, function(){timeout: timeoutPromise;});
+                if ($scope.search.type == "collection") {
+                     return $scope.collections.autocomplete(userInputString, function(){timeout: timeoutPromise;});
+                }
+                if ($scope.search.type == "network") {
+                    return $scope.networks.autocomplete(userInputString, function(){timeout: timeoutPromise;});
+                }
+
+                return null;
             };
 
             $scope.searchSelectedFn = function(selected) {
-                console.log('teste')
+                console.log()
                 if (selected) {
                     $scope.term = selected.title;
-                    $state.go('collection', {id : selected.originalObject.id});
+
+                    if ($scope.search.type == "collection") {
+                          $state.go('collection', {id : selected.originalObject.id, type : $scope.search.type});
+                    }
+                    if ($scope.search.type == "network") {
+                        //Need to be implemented
+                        //$state.go('network', {id : selected.originalObject.id});
+                    }
+                    if ($scope.search.type == "institution") {
+                        //Need to be implemented
+                        //$state.go('network', {id : selected.originalObject.id});
+                    }
+
                 } else {
                     $scope.term = '';
-                }
-            };
-
-
-            $scope.search = function(){
-                if ($scope.search.type === "collection") {
-                    $state.go('search', { term : $scope.term, type : $scope.search.type });
-                } else if ($scope.search.type === "institution") {
-                    $state.go('search', { term : $scope.term, type : $scope.search.type });
-                } else if ($scope.search.type === "network") {
-                    $state.go('search', { term : $scope.term, type : $scope.search.type });
-                } else {
-                    return;
                 }
             };
 
