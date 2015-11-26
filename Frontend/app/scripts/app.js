@@ -2,7 +2,18 @@ define(['include', 'language'], function (angularAMD, language) {
 
     'use strict';
 
-    var app = angular.module('Biodiversity-Collection', ['ui.router', 'ngResource', 'ngSanitize','ngCookies', 'toastr', 'pascalprecht.translate','leaflet-directive','angucomplete-alt']);
+    var app = angular.module('Biodiversity-Collection',  [
+            'ui.router',
+            'ngResource',
+            'ngSanitize',
+            'ngCookies',
+            'toastr',
+            'pascalprecht.translate',
+            'leaflet-directive',
+            'angucomplete-alt',
+            'ncy-angular-breadcrumb'
+        ]
+    );
 
     app.config(['$stateProvider', '$provide', '$urlRouterProvider', '$httpProvider',
 
@@ -16,26 +27,43 @@ define(['include', 'language'], function (angularAMD, language) {
                     {
                         url: '/home',
                         templateUrl: 'views/home/default.html',
-                        controllerUrl: 'home/controllers/homeController'
+                        controllerUrl: 'home/controllers/homeController',
+                        ncyBreadcrumb: {
+                            label: 'Home'
+                        }
 
                     }))
                 .state('search', angularAMD.route(
                     {
                         url: '/search/:term',
                         templateUrl: 'views/search/default.html',
-                        controllerUrl: 'search/controllers/searchController'
+                        controllerUrl: 'search/controllers/searchController',
+                        ncyBreadcrumb: {
+                            label: 'Result Page',
+                            parent: 'home'
+                        }
                     }))
                 .state('collection', angularAMD.route(
                     {
                         url: '/collection/:id',
                         templateUrl: 'views/collection/default.html',
-                        controllerUrl: 'collection/controllers/collectionController'
+                        controllerUrl: 'collection/controllers/collectionController',
+                        ncyBreadcrumb: {
+                            label: '{{collection.name}}',
+                            parent: function($scope) {
+                                return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
+                            }
+                        }
                     }))
                 .state('sample', angularAMD.route(
                     {
                         url: '/sample/:id',
                         templateUrl: 'views/sample/default.html',
-                        controllerUrl: 'sample/controllers/sampleController'
+                        controllerUrl: 'sample/controllers/sampleController',
+                        ncyBreadcrumb: {
+                            label: 'Sample',
+                            parent: 'collection/:id'
+                        }
                     }));
 
             $provide.factory('authInterceptor', ['$rootScope', '$q', '$window',
@@ -118,13 +146,18 @@ define(['include', 'language'], function (angularAMD, language) {
 
         }]);
 
-    app.config(['toastrConfig', '$translateProvider',
-        function (toastrConfig, $translateProvider) {
+    app.config(['toastrConfig', '$translateProvider','$breadcrumbProvider',
+        function (toastrConfig, $translateProvider, $breadcrumbProvider) {
 
             angular.extend(toastrConfig, {
                 allowHtml: false,
                 closeButton: true,
                 closeHtml: '<span class="close_button"></span>'
+            });
+
+            $breadcrumbProvider.setOptions({
+                prefixStateName: 'home',
+                template: 'bootstrap3'
             });
 
             $translateProvider.translations('pt_BR', language.pt_BR);

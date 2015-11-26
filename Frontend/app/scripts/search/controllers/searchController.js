@@ -1,4 +1,4 @@
-define(['app', 'core/factory/biodiversityCollectionFactory'], function () {
+define(['app', 'core/factory/biodiversityCollectionFactory','core/directives/core.breadcrumbs.directive'], function () {
 
     'use strict';
 
@@ -12,9 +12,19 @@ define(['app', 'core/factory/biodiversityCollectionFactory'], function () {
             $scope.page = 0;
             $scope.size = 20;
 
+            /**
+             * Listener when the state is changed
+             */
+            $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                console.log('state Change Success');
+
+               // $('#loader-wrapper').fadeToggle('400');
+            });
+
             $scope.$on('$viewContentLoaded', function() {
                 console.log('view Content Loaded...');
 
+                $scope.setResultQuery( $stateParams.term );
                 $scope.collection.search( $stateParams.term, $scope.page, $scope.size );
             });
 

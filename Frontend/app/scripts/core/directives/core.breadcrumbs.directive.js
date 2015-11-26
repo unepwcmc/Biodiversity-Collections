@@ -17,7 +17,7 @@ define(['angularAMD'], function (angularAMD) {
 
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
-                        //Empty
+
                     }],
                 link: function (scope, element, attrs) {
                     // Empty

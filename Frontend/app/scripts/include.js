@@ -1,6 +1,6 @@
 define(
     [
-        'angularAMD','angular','underscore','angular-translate',
+        'angularAMD','angular','underscore','angular-translate','angular-breadcrumb',
         'angular-ui-router','angular-toastr','angular-cookies','angucomplete-alt',
         'angular-resource','angular-sanitize','popover','nemLogging','waypoints',
         'angular-toastr-tpl','leaflet-directive', 'leaflet', 'leaflet.markercluster',
@@ -11,7 +11,6 @@ define(
         'core/directives/core.dialog.confirm.directive',
         'core/directives/core.translate.directive',
         'core/directives/core.main.directive',
-        'core/directives/core.breadcrumbs.directive',
         'core/directives/core.edit.form.directive',
         'core/directives/core.on.finish.render.directive',
         'core/directives/core.search.box.directive',

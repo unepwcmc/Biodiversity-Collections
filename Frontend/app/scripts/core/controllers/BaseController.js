@@ -23,6 +23,9 @@ define(['angularAMD'], function (angularAMD) {
             },
             showWarningMessage: function( title, message ){
                 toastr.warning($translate.instant(message), $translate.instant(title));
+            },
+            setResultQuery: function( query ){
+                $rootScope.searchTerm = query ;
             }
         }
 

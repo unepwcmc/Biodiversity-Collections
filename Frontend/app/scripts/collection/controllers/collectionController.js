@@ -4,6 +4,7 @@ define(['app','collection/directives/collection.networks.directive',
               'collection/directives/collection.samples.directive',
               'collection/directives/collection.specimens.directive',
               'collection/directives/collection.occurrence.directive',
+              'core/directives/core.breadcrumbs.directive',
               'core/factory/biodiversityCollectionFactory'], function () {
 
     'use strict';
@@ -15,7 +16,18 @@ define(['app','collection/directives/collection.networks.directive',
 
                $rootScope.editMode = false;
                $scope.image = null;
+               $scope.fromState = 'home';
                $scope.collection = undefined;
+
+               /**
+                * Listener when the state is changed
+                */
+               $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                   console.log('state Change Success');
+
+                   $scope.fromState = fromState.name;
+               });
+
                /**
                 * Listener when the view is loaded
                 */
@@ -110,7 +122,6 @@ define(['app','collection/directives/collection.networks.directive',
                    $rootScope.editMode = status;
                    $scope.$apply();
                }
-
            }
     ];
 });

@@ -19,6 +19,8 @@
     "angular-sanitize/angular-sanitize.js",
     "angular-cookies/angular-cookies.js",
     "angularAMD/angularAMD.js",
+    "angular-breadcrumb/dist/angular-breadcrumb.js",
+    "ng-breadcrumbs/dist/ng-breadcrumbs.js",
     "angularAMD/ngload.js",
     "bootstrap/dist/js/bootstrap.js",
     "requirejs/require.js",
