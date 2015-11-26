@@ -41,6 +41,11 @@ INSERT INTO curator (id, name, institution_id) VALUES (7,'Augusto Couto', 2);
 INSERT INTO curator (id, name, institution_id) VALUES (8,'Wladimir Pereira', 3);
 INSERT INTO curator (id, name, institution_id) VALUES (9,'Débora Barbosa', 3);
 INSERT INTO curator (id, name, institution_id) VALUES (10,'Gabriela Antunes', 3);
+INSERT INTO curator (id, name, institution_id) VALUES (11,'Josimar Barbosa', 3);
+INSERT INTO curator (id, name, institution_id) VALUES (12,'José Linhares', 3);
+INSERT INTO curator (id, name, institution_id) VALUES (13,'Josiane Ferreira', 3);
+INSERT INTO curator (id, name, institution_id) VALUES (14,'Joselito Madeira', 3);
+INSERT INTO curator (id, name, institution_id) VALUES (15,'João Medeiros', 3);
 
 -- Collections
 INSERT INTO biodiversity_collection(id, description, name, preservation_methods, type, web_site, curator_id, institution_id ) VALUES

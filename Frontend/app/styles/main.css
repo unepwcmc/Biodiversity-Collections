@@ -373,7 +373,7 @@ form.form-block select {
 
 form.form-block textarea {
   font-family: "Libre Baskerville", serif;
-  width: 100% !important;
+  width: 500px !important;
   border: 1px solid #ddd;
   padding: 10px;
   outline: none;
