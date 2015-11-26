@@ -44,7 +44,8 @@ define([],function ( ) {
     'ADD':'Add',
     'VISIBILITY':'Visibility',
     'COLLECTION_OCCURRENCES':'Collection Occurrences',
-    'BIODIVERSITY_COLLECTION_SAVED': 'Biodiversity collection saved'
+    'BIODIVERSITY_COLLECTION_SAVED': 'Biodiversity collection saved',
+    'REQUIRED_FIELDS':'Required fields'
   }
 
 });
