@@ -15,7 +15,7 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
             $scope.page = 0;
             $scope.size = 20;
             $scope.name = '';
-            $scope.type = ''
+            $scope.type = '';
 
             $scope.$on('$viewContentLoaded', function() {
 
@@ -24,17 +24,16 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
                 var term = $stateParams.term;
                 var type = $stateParams.type;
 
-                if ($scope.search.type === "collection") {
-                    $scope.collection.search( $stateParams.term, $scope.page, $scope.size );
-                } else if ($scope.search.type === "institution") {
-                    $scope.institution.search( $stateParams.term, $scope.page, $scope.size );
-                } else if ($scope.search.type === "network") {
-                    $scope.network.search( $stateParams.term, $scope.page, $scope.size );
+                if (type === "collection") {
+                    $scope.collection.search( term, $scope.page, $scope.size );
+                } else if (type === "institution") {
+                    $scope.institution.search( term, $scope.page, $scope.size );
+                } else if (type === "network") {
+                    $scope.network.search( term, $scope.page, $scope.size );
                 } else {
                     return;
                 }
 
-                $scope.collection.search( $stateParams.term, $scope.page, $scope.size );
             });
 
             $scope.load = function(page, size) {
@@ -43,11 +42,11 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
 
             $scope.selectCurrentSearchView = function() {
 
-                if ($scope.search.type === "collection") {
+                if ($stateParams.type === "collection") {
                     return 'views/search/collections.tpl.html'
-                } else if ($scope.search.type === "institution") {
+                } else if ($stateParams.type === "institution") {
                     return 'views/search/institutions.tpl.html'
-                } else if ($scope.search.type === "network") {
+                } else if ($stateParams.type === "network") {
                     return 'views/search/network.tpl.html'
                 } else {
                     return;
