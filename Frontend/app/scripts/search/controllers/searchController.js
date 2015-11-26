@@ -17,8 +17,11 @@ define(['app', 'core/factory/biodiversityCollectionFactory','core/directives/cor
              */
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
+            });
 
-               // $('#loader-wrapper').fadeToggle('400');
+            $scope.$on('BIODIVERSITY_SEARCHED', function(){
+
+                $('#loader-wrapper').fadeToggle('400');
             });
 
             $scope.$on('$viewContentLoaded', function() {

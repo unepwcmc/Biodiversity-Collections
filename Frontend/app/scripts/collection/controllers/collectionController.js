@@ -44,6 +44,7 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
                    console.log('collection updating..');
 
+                   $('#loader-wrapper').fadeToggle('400');
                    $scope.collection.update();
                });
 
@@ -60,7 +61,7 @@ define(['app','collection/directives/collection.networks.directive',
                 *
                 */
                $scope.$on('BIODIVERSITY_LOADED', function(){
-                    console.log('Collection Loaded');
+                   console.log('Collection Loaded');
 
                    if($scope.collection.published == null)
                        $scope.collection.published = false;
@@ -77,6 +78,8 @@ define(['app','collection/directives/collection.networks.directive',
                    if($scope.image != null){
                        $scope.collection.addImage($scope.image);
                    }else{
+
+                       $('#loader-wrapper').fadeToggle('400');
                        toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
                    }
                });
@@ -93,7 +96,7 @@ define(['app','collection/directives/collection.networks.directive',
                 */
                $scope.$on('IMAGE_ADDED', function(){
                    $scope.image = null;
-
+                   $('#loader-wrapper').fadeToggle('400');
                    toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
                });
 
