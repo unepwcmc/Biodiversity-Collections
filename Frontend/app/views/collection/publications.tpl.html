@@ -4,14 +4,16 @@
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'ASSOCIATED_PUBLICATIONS_DOCUMENTS' | translate }}</strong></h5></div>
             <div class="col-md-10">
-                <table class="table table-hover" table-sorter>
+                <table class="table table-hover publication" table-sorter>
                     <thead>
                     <tr>
                         <th>{{ 'TITLE' | translate }}</th>
                         <th>{{ 'AUTHOR' | translate }}</th>
                         <th>{{ 'TYPE' | translate }}</th>
                         <th>{{ 'FORMAT' | translate }}</th>
-                        <th>&nbsp;</th>
+                        <th width="5%">&nbsp;</th>
+                        <th ng-show="editMode" width="5%" class="btn-pub"><a class="btn"><i class="fa fa-close"></i></a></th>
+                        <th ng-show="editMode" width="5%"><input type="checkbox" /></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -20,7 +22,9 @@
                             <td>{{publication.author}}</td>
                             <td>{{publication.type}}</td>
                             <td>.{{publication.contentType}}</td>
-                            <td><a class="btn btn-inverse"> ... </a></td>
+                            <td class="btn-pub"><a pub-popover doc="publication" class="btn"><i class="fa fa-ellipsis-v"></i></a></td>
+                            <td ng-show="editMode" class="btn-pub"><a class="btn"><i class="fa fa-close"></i></a></td>
+                            <td ng-show="editMode"><input type="checkbox" /></td>
                         </tr>
                     </tbody>
                 </table>

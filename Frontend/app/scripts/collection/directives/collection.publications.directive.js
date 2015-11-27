@@ -3,7 +3,10 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD','core/factory/documentFactory','core/directives/core.table.sorter.directive'], function (angularAMD) {
+define([ 'angularAMD',
+         'core/factory/documentFactory',
+         'core/directives/core.table.sorter.directive',
+         'collection/directives/collection.publication.popover.directive'], function (angularAMD) {
 
     'use strict';
 

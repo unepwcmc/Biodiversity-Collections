@@ -34,3 +34,45 @@ table.sample-table tr{
 table.sample-table a.btn-small-delete {
   //padding: 10px 10px 20px 10px;
 }
+
+table.publication th{
+  border-bottom: solid 1px #EAEAEA!important;}
+td.btn-pub {
+  border: solid 1px #EAEAEA; }
+td.btn-pub a.btn {
+  color: #000 !important; }
+th.btn-pub {
+  border: solid 1px #EAEAEA!important;}
+th.btn-pub a.btn {
+  color: #000 !important;}
+
+div.webui-popover-publication-popover{
+  width:400px;
+  overflow:hidden;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+div.webui-popover-content{
+  overflow-x:hidden;
+}
+div.webui-popover-publication-popover div.p-description{
+  width:70%;
+  padding:5px;
+  text-align:justify;
+  border-right:solid 1px #EAEAEA;
+}
+div.webui-popover-publication-popover div.p-button{
+  width:30%;
+  padding:5px;
+
+}
+div.webui-popover-publication-popover div.p-button a{
+  font-size:13px;
+  color:#000!important;
+  padding:10px 15px 10px 10px;
+}
+
+
