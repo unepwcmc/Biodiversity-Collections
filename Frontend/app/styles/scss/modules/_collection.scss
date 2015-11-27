@@ -74,5 +74,25 @@ div.webui-popover-publication-popover div.p-button a{
   color:#000!important;
   padding:10px 15px 10px 10px;
 }
+table.publication thead tr .header {
+  background-image: url("/images/icons/small.gif");
+  background-repeat: no-repeat;
+  text-align: left;
+  background-attachment:inherit;
+  background-position:50px 10px;
+  cursor: pointer;
+}
+table.publication thead tr th, table.tablesorter tfoot tr th {
+  padding: 4px;
+}
+table.publication thead tr .headerSortUp {
+  background-image: url("/images/icons/asc.gif");
+}
+table.publication thead tr .headerSortDown {
+  background-image: url("/images/icons/desc.gif");
+}
+table.publication th.no-sorter {
+  background-image: url("")!important;
+}
 
 
