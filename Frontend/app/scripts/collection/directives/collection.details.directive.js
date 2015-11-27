@@ -27,6 +27,8 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                             $scope.institutionSelected = $scope.collection.institution;
                             $scope.curatorSelected = $scope.collection.curator;
+
+                            $('#loader-wrapper').fadeToggle('400');
                         });
 
 

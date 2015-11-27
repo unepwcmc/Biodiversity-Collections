@@ -293,14 +293,16 @@ form.form-block{
 
 	textarea{
 		font-family: $font-2;
-		width: 100% !important;
+		width: 500px !important;
 		border: 1px solid #ddd;
 		padding: 10px;
 		outline: none;
 		margin-bottom: 10px;
+	    text-align: justify;
 	}
 
 	&.view-mode{
+		input[readonly],
 		input[readonly="readonly"],
 		select[readonly="readonly"],
 		textarea[readonly="readonly"],
@@ -362,7 +364,6 @@ form.form-block.edit-mode textarea.importanceOne{
 	height: 390px !important;
 	overflow: auto !important;
 }
-
 
 
 /**

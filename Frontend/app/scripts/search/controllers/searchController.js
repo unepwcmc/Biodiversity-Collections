@@ -17,9 +17,23 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
             $scope.name = '';
             $scope.type = '';
 
+            /**
+             * Listener when the state is changed
+             */
+            $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                console.log('state Change Success');
+            });
+
+            $scope.$on('BIODIVERSITY_SEARCHED', function(){
+
+                $('#loader-wrapper').fadeToggle('400');
+            });
+
             $scope.$on('$viewContentLoaded', function() {
 
                 console.log('view Content Loaded...');
+
+                $scope.setResultQuery( $stateParams.term );
 
                 var term = $stateParams.term;
                 var type = $stateParams.type;

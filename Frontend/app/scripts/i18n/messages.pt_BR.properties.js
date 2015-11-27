@@ -45,7 +45,8 @@ define([],function ( ) {
     'NAME':'Nome',
     'ADD':'Adicionar',
     'VISIBILITY':'Visibilidade',
-    'COLLECTION_OCCURRENCES':'Coleção de ocorrências'
+    'COLLECTION_OCCURRENCES':'Coleção de ocorrências',
+    'REQUIRED_FIELDS':'Campos requeridos'
   }
 
 });

@@ -18,7 +18,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         $scope.addFile = function( file ){
 
                             if(file.size > 1024 * 1024 * 5){
-                                toastr.warning($translate.instant('THE_FILE_SIZE_ETC'), $translate.instant('WARNING'));
+                                $scope.showWarningMessage('THE_FILE_SIZE_ETC','WARNING');
                                 return;
                             }
 
@@ -43,12 +43,30 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                 link: function (scope, element, attrs) {
 
                     $('#ipt-file').on('change', function (evt) {
+
+                        if (!$(this).val().match(/(?:gif|jpg|png|bmp)$/)) {
+                            scope.showWarningMessage('inputted file path is not an image!','WARNING');
+                            return;
+                        }
+
                         var files = $(evt.currentTarget).get(0).files;
 
                         if(files.length > 0) {
+                            showSelectedImage(files);
                             scope.addFile(files[0]);
                         }
                     });
+
+                    function showSelectedImage( files ){
+
+                        var selectedFile = files[0];
+                        var reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            $('#collection-image').attr('src',event.target.result);
+                        };
+                        reader.readAsDataURL(selectedFile);
+                    }
 
                 }
             };

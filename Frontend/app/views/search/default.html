@@ -1,16 +1,11 @@
 <section class="l-main">
-    <section class="page-content">
-        <div class="container">
-            <div class="row">
-                <hr/>
-                <ol class="breadcrumb">
-                    <li><a href="#">{{ 'HOME' | translate }}</a></li>
-                    <li><a href="#">{{ 'SEARCH_RESULTS' | translate }}</a></li>
-                </ol>
-                <hr/>
-            </div>
-        </div>
-    </section>
+
+    <!-- Loading screen -->
+    <div id="loader-wrapper" class="loading">
+        <div id="loader"></div>
+    </div>
+
+    <breadcrumbs></breadcrumbs>
 
     <section class="page-content">
         <div ng-include="selectCurrentSearchView()" ></div>

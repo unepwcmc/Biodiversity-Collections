@@ -108,14 +108,16 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                 }
 
                 scope.$on('ngRepeatFinished', function() {
-                    $(element).find('form.view-mode').find('textarea,input[type="text"],input[type="radio"],input[type="email"],input[type="password"],select,select[ multiple="multiple"]').attr('readonly', 'input[type="text"]');
-                    $(element).find('form.view-mode').find('.rem-row').attr('disabled', 'disabled');
-                    $(element).find('form.view-mode').find('input[type="number"]').attr('disabled', 'disabled');
-                    $(element).find('form.view-mode').find('select').attr('disabled', 'disabled');
+                    $(element).find('.view-mode').find('textarea,input[type="text"],input[type="radio"],input[type="email"],input[type="password"],select,select[ multiple="multiple"]').attr('readonly', 'input[type="text"]');
+                    $(element).find('.view-mode').find('.rem-row').attr('disabled', 'disabled');
+                    $(element).find('.view-mode').find('input[type="number"]').attr('disabled', 'disabled');
+                    $(element).find('.view-mode').find('select').attr('disabled', 'disabled');
+
                     $(element).find('form.edit-mode').find('textarea,input[type="text"],input[type="radio"],input[type="email"],input[type="password"],select,select[ multiple="multiple"]').removeAttr('readonly');
                     $(element).find('form.edit-mode').find('.rem-row').removeAttr('disabled');
                     $(element).find('form.edit-mode').find('input[type="number"]').removeAttr('disabled');
                     $(element).find('form.edit-mode').find('select').removeAttr('disabled');
+
                     $(element).find('.no-editable').attr('readonly', 'readonly');
                 });
 
