@@ -46,7 +46,8 @@ define([],function ( ) {
     'ADD':'Adicionar',
     'VISIBILITY':'Visibilidade',
     'COLLECTION_OCCURRENCES':'Coleção de ocorrências',
-    'REQUIRED_FIELDS':'Campos requeridos'
+    'REQUIRED_FIELDS':'Campos requeridos',
+    'CREATE_A_NEW_NETWORK':'Criar uma nova rede profissional'
   }
 
 });

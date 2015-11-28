@@ -4,11 +4,12 @@
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'NETWORKS' | translate }}</strong></h5></div>
             <div class="col-md-10">
-                <table class="table table-hover">
+                <table class="table table-hover network">
                     <thead>
                     <tr>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
+                        <th width="80%">&nbsp;</th>
+                        <th width="15%">&nbsp;</th>
+                        <th ng-show="editMode" width="10px">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -20,11 +21,26 @@
                             <td>
                                 <image-thumbnail width="78" height="44" attachment="network.image.attachment.id" ></image-thumbnail>
                             </td>
+                            <td ng-show="editMode" class="btn-td"><a class="btn"><i class="fa fa-close"></i></a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
+        </div>
+        <div ng-show="editMode" class="row network-collection-form">
+            <div class="small-field">
+                <form class="form-inline view-mode form-block">
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">{{ 'ADD' | translate }}</button>
+                    <div class="form-group form-divider">
+                       <label><a class="btn-link-primary">{{ 'CREATE_A_NEW_NETWORK' | translate}}</a></label>
+                    </div>
+                </form>
+            </div>
+            <hr/>
         </div>
         <div class="row">
             <div class="pull-right">

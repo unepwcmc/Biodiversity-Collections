@@ -20,31 +20,6 @@ h5.collection.section-header{
   font-size: 14px;
   text-align:justify;
 }
-table.specimen-table input.form-control{
-  //padding: 0;
-}
-
-table.specimen-table a.btn-small-delete{
-  //padding: 10px 10px 23px 10px ;
-}
-
-table.sample-table tr{
-  border-bottom: solid 1px #cccccc;
-}
-table.sample-table a.btn-small-delete {
-  //padding: 10px 10px 20px 10px;
-}
-
-table.publication th{
-  border-bottom: solid 1px #EAEAEA!important;}
-td.btn-pub {
-  border: solid 1px #EAEAEA; }
-td.btn-pub a.btn {
-  color: #000 !important; }
-th.btn-pub {
-  border: solid 1px #EAEAEA!important;}
-th.btn-pub a.btn {
-  color: #000 !important;}
 
 div.webui-popover-publication-popover{
   width:400px;
@@ -62,37 +37,21 @@ div.webui-popover-publication-popover div.p-description{
   width:70%;
   padding:5px;
   text-align:justify;
-  border-right:solid 1px #EAEAEA;
-}
+  border-right:solid 1px #EAEAEA;}
 div.webui-popover-publication-popover div.p-button{
   width:30%;
-  padding:5px;
-
-}
+  padding:5px;}
 div.webui-popover-publication-popover div.p-button a{
   font-size:13px;
   color:#000!important;
-  padding:10px 15px 10px 10px;
-}
-table.publication thead tr .header {
-  background-image: url("/images/icons/small.gif");
-  background-repeat: no-repeat;
-  text-align: left;
-  background-attachment:inherit;
-  background-position:50px 10px;
-  cursor: pointer;
-}
-table.publication thead tr th, table.tablesorter tfoot tr th {
-  padding: 4px;
-}
-table.publication thead tr .headerSortUp {
-  background-image: url("/images/icons/asc.gif");
-}
-table.publication thead tr .headerSortDown {
-  background-image: url("/images/icons/desc.gif");
-}
-table.publication th.no-sorter {
-  background-image: url("")!important;
-}
+  padding:10px 15px 10px 10px;}
+.network-collection-form{
+  padding-left:19%}
+.network-collection-form input.form-control{
+  width:450px}
+.network-collection-form .form-divider{
+  border-left:solid 1px #CCCCCC;
+  margin:10px;
+  padding:10px}
 
 
