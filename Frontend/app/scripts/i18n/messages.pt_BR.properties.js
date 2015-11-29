@@ -45,8 +45,14 @@ define([],function ( ) {
     'ADD':'Adicionar',
     'VISIBILITY':'Visibilidade',
     'COLLECTION_OCCURRENCES':'Coleção de ocorrências',
+    'BIODIVERSITY_COLLECTION_SAVED': 'Coleção de biodiversidade salva',
     'REQUIRED_FIELDS':'Campos requeridos',
-    'NO_RESULTS_FOUND':'Nenhum resultado encontrado.'
+    'NO_RESULTS_FOUND':'Nenhum resultado encontrado.',
+    'EDIT':'Editar',
+    'SAVE_CHANGES':'Salvar mudanças',
+    'CANCEL':'Cancelar',
+    'EDIT_COLLECTION':'Editar Coleção',
+    'PLEASE_FILL_THE_FIELDS':'Por favor, preencha os campos obrigatórios.'
   }
 
 });
