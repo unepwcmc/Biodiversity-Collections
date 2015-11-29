@@ -11,7 +11,8 @@ define([],function ( ) {
     'NEWS':'News',
     'HOME':'Home',
     'SEARCH_RESULTS':'Search Results',
-    'RESULT_FOR_COLLECTION':'result for Collection',
+    'RESULT_FOR_COLLECTION':'results for Collection',
+    'RESULTS':'results',
     'PREVIOUS':'Previous',
     'NEXT':'Next',
     'COLLECTION_ID':'Collection Id',
@@ -45,7 +46,8 @@ define([],function ( ) {
     'VISIBILITY':'Visibility',
     'COLLECTION_OCCURRENCES':'Collection Occurrences',
     'BIODIVERSITY_COLLECTION_SAVED': 'Biodiversity collection saved',
-    'REQUIRED_FIELDS':'Required fields'
+    'REQUIRED_FIELDS':'Required fields',
+    'NO_RESULTS_FOUND':'No results found.'
   }
 
 });

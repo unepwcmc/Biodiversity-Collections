@@ -11,6 +11,7 @@ define([],function ( ) {
     'NEWS':'Notícias',
     'HOME':'Início',
     'SEARCH_RESULTS':'resultados da pesquisa',
+    'RESULTS':'resultados',
     'RESULT_FOR_COLLECTION':'Resultados da coleção',
     'PREVIOUS':'Anterior',
     'NEXT':'Próximo',
@@ -44,7 +45,8 @@ define([],function ( ) {
     'ADD':'Adicionar',
     'VISIBILITY':'Visibilidade',
     'COLLECTION_OCCURRENCES':'Coleção de ocorrências',
-    'REQUIRED_FIELDS':'Campos requeridos'
+    'REQUIRED_FIELDS':'Campos requeridos',
+    'NO_RESULTS_FOUND':'Nenhum resultado encontrado.'
   }
 
 });

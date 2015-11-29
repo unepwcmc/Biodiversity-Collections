@@ -25,17 +25,18 @@
                                                       remote-api-handler="searchAutocomplete"
                                                       remote-url-data-field="_embedded.biodiversityCollections"
                                                       title-field="name"
-                                                      minlength="2"
+                                                      text-no-results="{{ 'NO_RESULTS_FOUND' | translate }}"
+                                                      minlength="3"
                                                       initial-value="searchSelected"
                                                       disable-input="disableAutocomplete"
                                                       input-class="form-control"/>
                                 </div>
-                                <div class="form-group">
-                                    <select select-wrap data-ng-model="search.type">
-                                        <option value="" selected="selected">{{ 'PLEASE_SELECT' | translate }}</option>
-                                        <option value="collection">{{ 'COLLECTION' | translate }}</option>
-                                        <option value="institution">{{ 'INSTITUTION' | translate }}</option>
-                                        <option value="network">{{ 'NETWORK' | translate }}</option>
+                                <div class="form-group" style="width: 150px;">
+                                    <select select-wrap ng-model="searchType">
+                                        <!--<option value="" selected="selected">{{ 'PLEASE_SELECT' | translate }}</option>-->
+                                        <option value="collection" selected>{{ 'COLLECTION' | translate }}</option>
+                                        <!--<option value="institution">{{ 'INSTITUTION' | translate }}</option>-->
+                                        <!--<option value="network">{{ 'NETWORK' | translate }}</option>-->
                                     </select>
                                 </div>
                                 <div class="form-group">
