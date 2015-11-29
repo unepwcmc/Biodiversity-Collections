@@ -21,7 +21,7 @@
                             <td>
                                 <image-thumbnail width="78" height="44" attachment="network.image.attachment.id" ></image-thumbnail>
                             </td>
-                            <td ng-show="editMode" class="btn-td"><a class="btn"><i class="fa fa-close"></i></a></td>
+                            <td ng-show="editMode" class="btn-td"><a class="btn" ng-click="removeNetwork(network.id)"><i class="fa fa-close"></i></a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -32,9 +32,17 @@
             <div class="small-field">
                 <form class="form-inline view-mode form-block">
                     <div class="form-group">
-                        <input type="text" class="form-control">
+                        <angucomplete-alt id="collection_network_autocomplete"
+                                          placeholder="Search a Network"
+                                          pause="150"
+                                          selected-object="networkSelected"
+                                          remote-api-handler="networkAutocomplete"
+                                          remote-url-data-field="content"
+                                          title-field="name"
+                                          minlength="2"
+                                          input-class="form-control"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">{{ 'ADD' | translate }}</button>
+                    <button type="submit" class="btn btn-primary" ng-click="addNetwork()">{{ 'ADD' | translate }}</button>
                     <div class="form-group form-divider">
                        <label><a class="btn-link-primary">{{ 'CREATE_A_NEW_NETWORK' | translate}}</a></label>
                     </div>

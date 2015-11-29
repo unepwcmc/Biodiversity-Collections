@@ -4,6 +4,7 @@ import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -74,11 +75,19 @@ public class Network implements BaseEntity {
     }
 
     public Set<BiodiversityCollection> getCollections() {
-        return collections;
+        return collections == null? new HashSet<BiodiversityCollection>(): this.collections;
     }
 
     public void setCollections(Set<BiodiversityCollection> collections) {
         this.collections = collections;
+    }
+
+    public void addCollection(BiodiversityCollection collection){
+        getCollections().add(collection);
+    }
+
+    public void removeCollection(BiodiversityCollection collection){
+        getCollections().remove(collection);
     }
 
     public Set<Institution> getInstitutions() {
@@ -104,4 +113,5 @@ public class Network implements BaseEntity {
     public void setImage(Image image) {
         this.image = image;
     }
+
 }

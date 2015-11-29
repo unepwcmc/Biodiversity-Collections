@@ -170,6 +170,48 @@ define(['angularAMD'], function (angularAMD) {
                         $log.error(message);
                         $rootScope.$broadcast("BIODIVERSITY_AUTOCOMPLETE_LOAD_ERROR");
                     });
+            },
+            addNetwork: function( id, networkId, callback){
+
+                var self = this;
+
+                $http.put( $rootScope.getHost() + "collections/" + id + "/network/" + networkId, {} )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            removeNetwork: function( id, networkId, callback){
+
+                var self = this;
+
+                $http.delete( $rootScope.getHost() + "collections/" + id + "/network/" + networkId )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
             }
         };
 

@@ -46,7 +46,7 @@ public class BiodiversityCollection implements BaseEntity {
     @RestResource(exported = false)
     private Institution institution;
 
-    @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Network> networks;
 
     @ElementCollection
@@ -144,8 +144,16 @@ public class BiodiversityCollection implements BaseEntity {
         this.institution = institution;
     }
 
+    public void addNetwork(Network network){
+        getNetworks().add(network);
+    }
+
+    public void removeNetwork(Network network){
+        getNetworks().remove(network);
+    }
+
     public Set<Network> getNetworks() {
-        return networks;
+        return networks == null? new HashSet<Network>(): this.networks;
     }
 
     public void setNetworks(Set<Network> networks) {

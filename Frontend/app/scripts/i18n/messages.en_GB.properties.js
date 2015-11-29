@@ -48,7 +48,11 @@ define([],function ( ) {
     'COLLECTION_OCCURRENCES':'Collection Occurrences',
     'BIODIVERSITY_COLLECTION_SAVED': 'Biodiversity collection saved',
     'REQUIRED_FIELDS':'Required fields',
-    'CREATE_A_NEW_NETWORK':'Create a new network'
+    'CREATE_A_NEW_NETWORK':'Create a new network',
+    'NETWORK_ADDED_TO_COLLECTION':'Network was added to the collection',
+    'NETWORK_ADDED_TO_COLLECTION_ERROR':'Network wasn\'t added to the collection',
+    'NETWORK_REMOVED_TO_COLLECTION':'Network was removed of the collection',
+    'NETWORK_REMOVED_TO_COLLECTION_ERROR':'Network wasn\'t removed of the collection'
   }
 
 });

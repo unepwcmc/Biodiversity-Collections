@@ -26,6 +26,12 @@ public class NetworkController extends AbstractController<Network, NetworkServic
     public Page<Network> findAllNetworkByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.findAllNetworkByCollection(biodiversityCollectionService.get(collectionId), pageable);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search/not/collection/{collectionId}/network/{name}")
+    public Page<Network> findAllNetworkByNotInCollection(@PathVariable("name") String name, @PathVariable("collectionId") Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.findNetworkByNameAndNotInCollection(name, biodiversityCollectionService.get(collectionId), pageable);
+    }
+
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")
     public Network uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         Network network = service.get(id);

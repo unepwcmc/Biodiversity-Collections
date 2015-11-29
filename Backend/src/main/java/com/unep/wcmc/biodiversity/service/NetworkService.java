@@ -16,4 +16,8 @@ public class NetworkService extends AbstractService<Network, NetworkRepository> 
     public Page<Network> findAllNetworkByCollection(final BiodiversityCollection biodiversityCollection, Pageable pageable){
         return repo.findAllByCollectionsIn( new ArrayList<BiodiversityCollection>() {{ add( biodiversityCollection ); }}, pageable);
     }
+
+    public Page<Network> findNetworkByNameAndNotInCollection(final String name, final BiodiversityCollection biodiversityCollection, Pageable pageable){
+        return repo.findByCollectionsNotInOrCollectionsIsNullAndNameContainingOrderByNameAsc( new ArrayList<BiodiversityCollection>() {{ add( biodiversityCollection ); }}, name, pageable);
+    }
 }

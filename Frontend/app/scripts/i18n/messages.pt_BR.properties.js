@@ -47,7 +47,11 @@ define([],function ( ) {
     'VISIBILITY':'Visibilidade',
     'COLLECTION_OCCURRENCES':'Coleção de ocorrências',
     'REQUIRED_FIELDS':'Campos requeridos',
-    'CREATE_A_NEW_NETWORK':'Criar uma nova rede profissional'
+    'CREATE_A_NEW_NETWORK':'Criar uma nova rede profissional',
+    'NETWORK_ADDED_TO_COLLECTION':'Rede profissional adcionada para a coleção',
+    'NETWORK_ADDED_TO_COLLECTION_ERROR':'Rede profissional não foi adicionada a coleção',
+    'NETWORK_REMOVED_TO_COLLECTION':'Rede profissional foi removida da coleção',
+    'NETWORK_REMOVED_TO_COLLECTION_ERROR':'Rede profissional não foi removida da coleção'
   }
 
 });
