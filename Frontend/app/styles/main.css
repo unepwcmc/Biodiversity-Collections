@@ -958,6 +958,11 @@ body.noscroll {
   overflow: hidden;
   width: 100%; }
 
+.modal-content {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0; }
+
 /** HEADER */
 .l-header {
   height: 50px;
@@ -1178,3 +1183,10 @@ div.webui-popover-publication-popover div.p-button a {
   border-left: solid 1px #CCCCCC;
   margin: 10px;
   padding: 10px; }
+
+.publication-collection-add {
+  padding-left: 18%; }
+
+.control-label-document {
+  padding-top: 7px;
+  margin-bottom: 0; }

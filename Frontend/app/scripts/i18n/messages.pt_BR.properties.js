@@ -51,7 +51,16 @@ define([],function ( ) {
     'NETWORK_ADDED_TO_COLLECTION':'Rede profissional adcionada para a coleção',
     'NETWORK_ADDED_TO_COLLECTION_ERROR':'Rede profissional não foi adicionada a coleção',
     'NETWORK_REMOVED_TO_COLLECTION':'Rede profissional foi removida da coleção',
-    'NETWORK_REMOVED_TO_COLLECTION_ERROR':'Rede profissional não foi removida da coleção'
+    'NETWORK_REMOVED_TO_COLLECTION_ERROR':'Rede profissional não foi removida da coleção',
+    'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT':'Adicionar um nova publicação / documento associado',
+    'DOCUMENT_TYPE':'Tipo de documento',
+    'PUBLICATION':'Publicação',
+    'LEGAL':'Legal',
+    'OTHER':'Outro',
+    'PUBLICATION_DOCUMENT':'Publicação/Documento',
+    'SELECT_FILE':'Seleciona um arquivo',
+    'ADD_A_NEW_AUTHOR':'Adicione um novo Autor',
+    'SAVE':'Salvar'
   }
 
 });

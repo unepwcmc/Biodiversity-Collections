@@ -52,7 +52,16 @@ define([],function ( ) {
     'NETWORK_ADDED_TO_COLLECTION':'Network was added to the collection',
     'NETWORK_ADDED_TO_COLLECTION_ERROR':'Network wasn\'t added to the collection',
     'NETWORK_REMOVED_TO_COLLECTION':'Network was removed of the collection',
-    'NETWORK_REMOVED_TO_COLLECTION_ERROR':'Network wasn\'t removed of the collection'
+    'NETWORK_REMOVED_TO_COLLECTION_ERROR':'Network wasn\'t removed of the collection',
+    'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT':'Add a new associated publication/document',
+    'DOCUMENT_TYPE':'Document type',
+    'PUBLICATION':'Publication',
+    'LEGAL':'Legal',
+    'OTHER':'Other',
+    'PUBLICATION_DOCUMENT':'Publication/Document',
+    'SELECT_FILE':'Select file',
+    'ADD_A_NEW_AUTHOR':'Add a new author',
+    'SAVE':'Save'
   }
 
 });

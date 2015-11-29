@@ -186,7 +186,7 @@ define(['angularAMD'], function (angularAMD) {
                     })
                     .error(function ( data, status, headers, config ) {
 
-                        $log.error(data);
+                        $log.error(data.message);
 
                         if(callback)
                             callback( data, status, headers, config )
@@ -207,7 +207,7 @@ define(['angularAMD'], function (angularAMD) {
                     })
                     .error(function ( data, status, headers, config ) {
 
-                        $log.error(data);
+                        $log.error(data.message);
 
                         if(callback)
                             callback( data, status, headers, config )

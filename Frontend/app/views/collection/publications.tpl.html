@@ -19,7 +19,11 @@
                     <tbody>
                         <tr ng-repeat="publication in documents.content">
                             <td>{{publication.title}}</td>
-                            <td>{{publication.author}}</td>
+                            <td>
+                                <ul class="list-unstyled">
+                                    <li ng-repeat="author in publication.authors">{{author}}</li>
+                                </ul>
+                            </td>
                             <td>{{publication.type}}</td>
                             <td>.{{publication.contentType}}</td>
                             <td class="btn-td"><a pub-popover doc="publication" class="btn"><i class="fa fa-ellipsis-v"></i></a></td>
@@ -32,6 +36,9 @@
 
         </div>
         <div class="row">
+            <div class="pull-left publication-collection-add">
+                <a ng-click="showPublicationForm()" class="btn btn-primary">{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</a>
+            </div>
             <div class="pull-right">
                 <form class="form-inline">
                     <div class="form-group">
@@ -69,3 +76,71 @@
 
     </div>
 </section>
+
+<div class="modal fade" id="publicatioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button  type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+                <form name="multimedia_form"  class="form-horizontal" role="form" novalidate>
+                    <div class="small-field">
+                        <div class="form-group">
+                        <label for="inputTitle" class="col-sm-4 control-label-document text-left">{{ 'TITLE' | translate }}</label>
+                        <div class="col-sm-6">
+                            <input id="inputTitle" type="text" tabindex="1" class="form-control" data-ng-model="document.title" maxlength="255" required>
+                        </div>
+                    </div>
+
+                        <div class="form-group">
+                            <label for="inputAuthor" class="col-sm-4 control-label-document">{{ 'AUTHOR' | translate }}</label>
+                            <div class="col-sm-6">
+
+                                <span class="clearfix" ng-repeat="author in document.authors track by $index">
+                                    <input style="width: 94%" id="inputAuthor" type="text" tabindex="2" class="form-control pull-left" ng-model="document.authors[$index]" maxlength="255" required>
+                                    <a ng-show="$index > 0" ng-click='document.authors.splice($index, 1)' class="btn-link-primary pull-right" style="margin: 8px 0 7px 0" ><i class="fa fa-minus-circle"></i>&nbsp;</a>
+                                </span>
+
+                                <a ng-click='document.authors.push("")' class="clearfix btn-link-primary"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'ADD_A_NEW_AUTHOR' | translate}}</a>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selectDocumentType" class="col-sm-4 control-label-document">{{ 'DOCUMENT_TYPE' | translate }}</label>
+                            <div class="col-sm-6">
+                                <select id="selectDocumentType" select-wrap class="form-control" data-ng-model="document.type" tabindex="3">
+                                    <option value="PUBLICATION">{{ 'PUBLICATION' | translate }}</option>
+                                    <option value="LEGAL">{{ 'LEGAL' | translate }}</option>
+                                    <option value="OTHER">{{ 'OTHER' | translate }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input id="publication_ipt_file"  type="file" style="display: none">
+                            <label for="btPublicationDocument" class="col-sm-4 control-label-document">{{ 'PUBLICATION_DOCUMENT' | translate }}</label>
+                            <div class="col-sm-6">
+                                <a id="btPublicationDocument" tabindex="4" class="btn btn-primary" onclick="$('#publication_ipt_file').click()">
+                                    <i class="fa fa-upload"></i>{{ 'SELECT_FILE' | translate }}</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputDescription" class="col-sm-4 control-label-document">{{ 'DESCRIPTION' | translate }}</label>
+                            <div class="col-sm-6">
+                                <textarea id="inputDescription" elastic tabindex="3" class="form-control" data-ng-model="document.description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" tabindex="6" class="btn btn-primary"  ng-disabled="multimedia_form.$invalid" ng-click="saveNewDocument()">{{ 'SAVE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
