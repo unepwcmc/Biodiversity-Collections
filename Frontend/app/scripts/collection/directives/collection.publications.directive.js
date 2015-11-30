@@ -29,12 +29,30 @@ define([ 'angularAMD',
                             $scope.documents.load( $stateParams.id , page, size);
                         };
 
+                        $scope.saveOrUpdate = function(){
+
+                            console.log($scope.document);
+
+                            if($scope.document.id){
+                                $scope.updateDocument();
+                            }
+                            else{
+                                $scope.saveNewDocument();
+                            }
+                        };
+
                         $scope.showPublicationForm = function(){
 
                             $scope.document = { authors :[""] };
 
                             $('#publicatioModal').modal('show');
                         };
+
+                        $scope.$on('EDIT_DOCUMENT_EVENT', function( evt, data){
+
+                            $scope.document = data;
+                            $('#publicatioModal').modal('show');
+                        });
 
                         $scope.saveNewDocument = function(){
 
@@ -52,18 +70,51 @@ define([ 'angularAMD',
                                 if(status === 200){
 
                                     $scope.documents.upload($scope.file, function(data, status){
-
-                                        $scope.file = null;
-
-                                        $scope.document = {};
-
-                                        $('#publicatioModal').modal('hide');
-
-                                        $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
-
+                                        successState();
                                         $scope.showSuccessMessage('DOCUMENT_CREATED_SUCCESSFULLY','SUCCESS');
-
                                     });
+                                }else{
+                                    $scope.showErrorMessage( data ,'ERROR');
+                                }
+                            });
+                        };
+
+                        $scope.updateDocument = function(){
+
+                            if($scope.file !== null){
+                                $scope.document.contentType = getFileExtension($scope.file.name);
+                            }
+
+                            $scope.document.collection = { id: $stateParams.id };
+
+                            $scope.documents.update( $scope.document, function( data, status){
+
+                                if(status === 200){
+
+                                    if($scope.file != null){
+
+                                        $scope.documents.upload($scope.file, function(data, status){
+                                                successState();
+                                                $scope.showSuccessMessage('DOCUMENT_UPDATED_SUCCESSFULLY','SUCCESS');
+                                        });
+                                    }
+                                    else{
+                                        successState();
+                                        $scope.showSuccessMessage('DOCUMENT_UPDATED_SUCCESSFULLY','SUCCESS');
+                                    }
+                                }else{
+                                    $scope.showErrorMessage( data ,'ERROR');
+                                }
+                            });
+                        };
+
+                        $scope.deleteDocument = function( id ){
+
+                            $scope.documents.delete( id, function( data, status){
+
+                                if(status === 200){
+                                    $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                                    $scope.showSuccessMessage('DOCUMENT_DELETED_SUCCESSFULLY','SUCCESS');
                                 }else{
                                     $scope.showErrorMessage( data ,'ERROR');
                                 }
@@ -74,6 +125,17 @@ define([ 'angularAMD',
                         {
                             var ext = /^.+\.([^.]+)$/.exec(filename);
                             return ext == null ? "" : ext[1];
+                        }
+
+                        function successState(){
+
+                            $scope.file = null;
+                            $('#publication_ipt_file').val("");
+                            $scope.document = {};
+                            $('#publicatioModal').modal('hide');
+                            $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                            $scope.multimedia_form.$setPristine();
+                            $scope.multimedia_form.$setUntouched();
                         }
 
                     }],

@@ -19,7 +19,7 @@ define(['angularAMD','popover'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        //console.log($scope.doc);
+                        var URL = $rootScope.getHost() + "documents/" + $scope.doc.id + "/download";
 
                         var default_button_template = "<i class='fa fa-ellipsis-v'></i>";
                         var close_button_template = "<i class='fa fa-close'></i>";
@@ -30,9 +30,9 @@ define(['angularAMD','popover'], function (angularAMD) {
                                                 "<p>{{ doc.description }}</p>" +
                                             "</div>" +
                                             "<div class='pull-right p-button'>" +
-                                                "<a><i class='fa fa-download'></i><strong>Download</strong></a>" +
-                                                "<div class='clearfix'></div>" +
-                                                "<a><i class='fa fa-edit'></i><strong>Edit</strong></a>" +
+                                                "<a ng-click='download()' style='cursor: pointer'><i class='fa fa-download'></i><strong>Download</strong></a>" +
+                                                "<div class='clearfix' ></div>" +
+                                                "<a ng-show='editMode' ng-click='editDocumentEvent()' style='cursor: pointer'><i class='fa fa-edit'></i><strong>Edit</strong></a>" +
                                             "</div>" +
                                        "</div>";
 
@@ -46,14 +46,20 @@ define(['angularAMD','popover'], function (angularAMD) {
                                     arrow:false
                                 }
                             ).on('shown.webui.popover',function(e,tgt){
-                                   // $(ele).find('fa-fa-ellipsis-v').hide();
                                     $( ele).html(close_button_template);
                             })
                             .on('hide.webui.popover',function(e,tgt){
                                     $( ele).html(default_button_template);
-                                   // $(ele).find('fa-close').remove();
                             });
                         };
+
+                        $scope.download = function( ){
+                            $window.open( $rootScope.getHost() + "documents/" + $scope.doc.id + "/download");
+                        };
+
+                        $scope.editDocumentEvent = function(){
+                            $scope.$emit('EDIT_DOCUMENT_EVENT', $scope.doc);
+                        }
 
                     }],
                 link: function (scope, element, attrs) {

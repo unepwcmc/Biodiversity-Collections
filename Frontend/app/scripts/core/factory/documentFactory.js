@@ -78,6 +78,59 @@ define(['app'], function (app) {
                             callback( data, status, headers, config )
                     });
             },
+            delete: function( id, callback ){
+
+                var self = this;
+
+                $http.delete( $rootScope.getHost() + "documents/" + id)
+
+                    .success(function ( data, status, headers, config ) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("DOCUMENT_DELETED_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("DOCUMENT_DELETED");
+                        }
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error( data.message );
+
+                        $rootScope.$broadcast("DOCUMENT_DELETED_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            update: function( model, callback ){
+
+                var self = this;
+
+                $http.put( $rootScope.getHost() + "documents/" + model.id, model)
+
+                    .success(function ( data, status, headers, config ) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("DOCUMENT_UPDATED_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("DOCUMENT_UPDATED");
+                        }
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error( data.message );
+
+                        $rootScope.$broadcast("DOCUMENT_UPDATED_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
             upload: function( data , callback ){
 
                 var self = this;

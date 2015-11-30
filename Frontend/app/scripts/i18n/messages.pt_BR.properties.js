@@ -55,6 +55,7 @@ define([],function ( ) {
     'NETWORK_REMOVED_TO_COLLECTION':'Rede profissional foi removida da coleção',
     'NETWORK_REMOVED_TO_COLLECTION_ERROR':'Rede profissional não foi removida da coleção',
     'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT':'Adicionar um nova publicação / documento associado',
+    'EDIT_ASSOCIATED_PUBLICATION_DOCUMENT':'Editar publicação / documento associado',
     'DOCUMENT_TYPE':'Tipo de documento',
     'PUBLICATION':'Publicação',
     'LEGAL':'Legal',
