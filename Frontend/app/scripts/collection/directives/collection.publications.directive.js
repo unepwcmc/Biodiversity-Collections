@@ -108,6 +108,19 @@ define([ 'angularAMD',
                             });
                         };
 
+                        $scope.deleteDocument = function( id ){
+
+                            $scope.documents.delete( id, function( data, status){
+
+                                if(status === 200){
+                                    $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                                    $scope.showSuccessMessage('DOCUMENT_DELETED_SUCCESSFULLY','SUCCESS');
+                                }else{
+                                    $scope.showErrorMessage( data ,'ERROR');
+                                }
+                            });
+                        };
+
                         function getFileExtension(filename)
                         {
                             var ext = /^.+\.([^.]+)$/.exec(filename);
