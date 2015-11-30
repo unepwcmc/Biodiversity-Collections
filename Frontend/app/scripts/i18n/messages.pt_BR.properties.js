@@ -77,7 +77,26 @@ define([],function ( ) {
     'CITY':'Cidade',
     'DISTRICT':'Estado',
     'POSTAL_CODE':'CEP',
-    'COUNTRY':'País'
+    'COUNTRY':'País',
+    'ADD_NEW_SAMPLE':'Adicionar um novo exemplar',
+    'EDIT_SAMPLE': 'Editar exemplar',
+    'SAMPLE_ID': 'Exemplar id',
+    'TAXONOMY': 'Taxônomia',
+    'KINGDOM': 'Reino',
+    'PHYLUM': 'Filo',
+    'CLASS': 'Classe',
+    'ORDER': 'Ordem',
+    'FAMILY': 'Família',
+    'GENUS': 'Genus',
+    'SPECIES_EPITETH': 'Espécie Epiteth',
+    'SUBSPECIES': 'Sub-espécie',
+    'SCIENTIFIC_NAME': 'Nome Científico',
+    'EDIT_INSTITUTION': 'Editar instituição',
+    'INSTITUTION_ID': 'Instituição id',
+    'INSTITUTION_WEBSITE': 'Instituição website',
+    'DISCIPLINE': 'Disciplina',
+    'GOVERNANCE': 'Governança',
+    'CURATORS': 'Curadores'
   }
 
 });
