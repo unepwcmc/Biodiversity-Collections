@@ -4,11 +4,11 @@
  * @email jozecarlos.it@gmail.com
  *
  */
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    app.factory('Network', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
+    angularAMD.factory('Network', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
 
         /**
          *

@@ -4,11 +4,11 @@
  * @email fernandoericofilho@integritas.com.br
  *
  */
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    app.factory('Institution', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
+    angularAMD.factory('Institution', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
 
         /**
          *
