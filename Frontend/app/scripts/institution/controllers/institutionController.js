@@ -7,19 +7,25 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','BaseController', function ($scope, BaseController) {
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','Institution','toastr','$translate','$state',
 
-        angular.extend($scope, BaseController);
+        function ($scope, BaseController, $stateParams, $http, $rootScope, Institution, toastr, $translate, $state) {
+            angular.extend($scope, BaseController);
 
-        $scope.info('Welcome to Sample Page');
+            $scope.info('Welcome to Sample Page');
+            $scope.institution = undefined;
 
-        /**
-         * Listener when the view is loaded
-         */
-        $scope.$on('$viewContentLoaded', function() {
-            console.log('view Content Loaded...');
+            /**
+             * Listener when the view is loaded
+             */
+            $scope.$on('$viewContentLoaded', function() {
+                console.log('view Content Loaded...');
 
-            $('#loader-wrapper').fadeToggle('400');
-        });
-    }];
+                $scope.institution = new Institution();
+                $scope.institution.get( $stateParams.id );
+                $('#loader-wrapper').fadeToggle('400');
+
+            });
+        }
+    ];
 });
