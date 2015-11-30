@@ -651,6 +651,11 @@ body.noscroll {
   overflow: hidden;
   width: 100%; }
 
+.breadcrumb a {
+  color: #666;
+  font-weight: bold;
+  text-decoration: none; }
+
 /** HEADER */
 .l-header {
   height: 50px;
