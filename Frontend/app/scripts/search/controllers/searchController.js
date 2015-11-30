@@ -28,19 +28,16 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
             $scope.$on('BIODIVERSITY_SEARCHED', function(){
 
                 $('#loader-wrapper').fadeToggle('400');
-                $scope.searchType = 'collection';
             });
 
             $scope.$on('NETWORK_SEARCHED', function(){
 
                 $('#loader-wrapper').fadeToggle('400');
-                $scope.searchType = 'network';
             });
 
             $scope.$on('INSTITUTION_SEARCHED', function(){
 
-                $('#loader-wrapper').fadeToggle('400');
-                $scope.searchType = 'institution';
+                $('#loader-wrapper').fadeToggle('400');;
             });
 
             $scope.$on('$viewContentLoaded', function() {
@@ -51,6 +48,8 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
 
                 var term = $stateParams.term;
                 var type = $stateParams.type;
+
+                $scope.searchType = $stateParams.type;
 
                 if (type === "collection") {
                     $scope.collection.search( term, $scope.page, $scope.size );

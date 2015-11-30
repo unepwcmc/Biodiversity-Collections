@@ -1,4 +1,4 @@
-define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCollectionFactory','core/factory/networkFactory', 'core/factory/institutionFactory'], function () {
+define(['app', 'core/directives/core.map.directive', 'core/factory/biodiversityCollectionFactory', 'core/factory/networkFactory', 'core/factory/institutionFactory'], function () {
 
     'use strict';
 
