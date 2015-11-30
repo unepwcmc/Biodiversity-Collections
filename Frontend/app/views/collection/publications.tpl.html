@@ -4,20 +4,20 @@
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'ASSOCIATED_PUBLICATIONS_DOCUMENTS' | translate }}</strong></h5></div>
             <div class="col-md-10">
-                <table class="table table-hover publication" table-sorter>
+                <table class="table table-hover publication" ts-wrapper>
                     <thead>
                     <tr>
-                        <th>{{ 'TITLE' | translate }}</th>
-                        <th>{{ 'AUTHOR' | translate }}</th>
-                        <th>{{ 'TYPE' | translate }}</th>
-                        <th>{{ 'FORMAT' | translate }}</th>
+                        <th ts-criteria="title">{{ 'TITLE' | translate }}</th>
+                        <th ts-criteria="author">{{ 'AUTHOR' | translate }}</th>
+                        <th ts-criteria="type">{{ 'TYPE' | translate }}</th>
+                        <th ts-criteria="contentType">{{ 'FORMAT' | translate }}</th>
                         <th class="no-sorter" width="5%">&nbsp;</th>
                         <th ng-show="editMode" width="5%" class="btn-pub no-sorter"><a class="btn"><i class="fa fa-close"></i></a></th>
                         <th class="no-sorter" ng-show="editMode" width="5%"><input type="checkbox" /></th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="publication in documents.content">
+                        <tr ng-repeat="publication in documents.content" ts-repeat>
                             <td>{{publication.title}}</td>
                             <td>{{publication.author}}</td>
                             <td>{{publication.type}}</td>

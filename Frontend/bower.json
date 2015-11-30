@@ -42,7 +42,8 @@
     "waypoints": "~4.0.0",
     "tablesorter": "https://github.com/christianbach/tablesorter.git",
     "angular-breadcrumb": "~0.4.1",
-    "ng-breadcrumbs": "~0.4.1"
+    "ng-breadcrumbs": "~0.4.1",
+    "angular-tablesort": "~1.1.1"
   },
   "resolutions": {
     "angular": "~1.4.x",
