@@ -900,3 +900,7 @@ table.publication thead tr .headerSortDown {
 
 table.publication th.no-sorter {
   background-image: url("") !important; }
+
+table.researches input.form-control[readonly] {
+  text-decoration: none;
+  color: #0000FF; }
