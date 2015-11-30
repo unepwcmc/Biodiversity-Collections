@@ -3,8 +3,6 @@
     <h4><strong>{{institution.page.totalElements}}</strong> {{ 'RESULT_FOR_INSTITUTION' | translate }}</h4>
 
     <div class="result-list">
-        {{institution_embedded.institutions}}
-        {{institution_embedded.biodiversityCollections}}
 
         <div ng-repeat="col in institution._embedded.institutions" class="list-item">
             <h5><strong><a data-ui-sref="institution({id:col.id})">{{col.name}}</a></strong> | <a data-ui-sref="institution({id:col.id})">id: {{col.id}}</a></h5>

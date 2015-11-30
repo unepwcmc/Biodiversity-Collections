@@ -46,15 +46,13 @@ define(['app', 'core/directives/core.map.directive', 'core/factory/biodiversityC
                     $scope.term = selected.title;
 
                     if ($scope.searchType == "collection") {
-                          $state.go('collection', {id : selected.originalObject.id, type : $scope.searchType});
+                          $state.go('collection', {type : $scope.searchType, id : selected.originalObject.id});
                     }
                     if ($scope.searchType == "network") {
-                        //Need to be implemented
-                        //$state.go('network', {id : selected.originalObject.id});
+                        $state.go('network', {type : $scope.searchType, id : selected.originalObject.id});
                     }
                     if ($scope.searchType == "institution") {
-                        //Need to be implemented
-                        //$state.go('network', {id : selected.originalObject.id});
+                        $state.go('institution', {type : $scope.searchType, id : selected.originalObject.id});
                     }
 
                 } else {

@@ -35,7 +35,7 @@ define(['include', 'language'], function (angularAMD, language) {
                     }))
                 .state('search', angularAMD.route(
                     {
-                        url: '/search/:term/:type',
+                        url: '/search/:type/:term',
                         templateUrl: 'views/search/default.html',
                         controllerUrl: 'search/controllers/searchController',
                         ncyBreadcrumb: {

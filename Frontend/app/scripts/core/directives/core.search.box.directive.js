@@ -23,6 +23,7 @@ define(['angularAMD', 'bootstrap', 'core/factory/biodiversityCollectionFactory',
                       $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
 
                           $scope.term = userInputString;
+                          $scope.searchName = userInputString;
 
                           if (userInputString == null || $scope.searchType == undefined)
                               return null;
@@ -41,17 +42,8 @@ define(['angularAMD', 'bootstrap', 'core/factory/biodiversityCollectionFactory',
                           return null;
                       };
 
-                      $scope.searchSelectedFn = function(selected) {
-                          /*if (selected) {
-                              $scope.term = selected.title;
-                              $state.go('collection', {id : selected.originalObject.id});
-                          } else {
-                              $scope.term = '';
-                          }*/
-                      };
-
                       $scope.search = function () {
-                           $state.go('search', { term : $scope.term, type : $scope.searchType });
+                           $state.go('search', { term : $scope.searchName, type : $scope.searchType });
                       };
 
                        $scope.$on('BIODIVERSITY_SEARCHED', function(){
@@ -65,10 +57,34 @@ define(['angularAMD', 'bootstrap', 'core/factory/biodiversityCollectionFactory',
                        });
 
                        $scope.$on('INSTITUTION_SEARCHED', function(){
-                           $scope.searchType = 'institution';
-                           $scope.searchName = $scope.searchTerm;
+                            $scope.searchType = 'institution';
+                            $scope.searchName = $scope.searchTerm;
                        });
 
+                       $scope.searchSelectedFn = function(selected) {
+
+                            if (selected) {
+
+                                $scope.term = selected.title;
+
+                                if ($scope.searchType == "collection") {
+                                      $state.go('collection', {type : $scope.searchType, id : selected.originalObject.id});
+                                }
+                                if ($scope.searchType == "network") {
+                                    $state.go('network', {type : $scope.searchType, id : selected.originalObject.id});
+                                }
+                                if ($scope.searchType == "institution") {
+                                    $state.go('institution', {type : $scope.searchType, id : selected.originalObject.id});
+                                }
+
+                            } else {
+                                $scope.term = '';
+                            }
+                       };
+
+                       $scope.searchSelected = function () {
+                           return $scope.searchName;
+                       };
 
                 }],
                 link: function (scope, element, attrs) {

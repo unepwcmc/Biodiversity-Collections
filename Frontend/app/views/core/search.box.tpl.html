@@ -10,10 +10,9 @@
                                   remote-api-handler="searchAutocomplete"
                                   remote-url-data-field="_embedded.biodiversityCollections"
                                   title-field="name"
-                                  minlength="3"
-                                  data-ng-model="searchName"
                                   text-no-results="{{ 'NO_RESULTS_FOUND' | translate }}"
-                                  initial-value="searchSelected"
+                                  minlength="3"
+                                  initial-value="searchSelected()"
                                   disable-input="disableAutocomplete"
                                   input-class="form-control"/>
             </div>
