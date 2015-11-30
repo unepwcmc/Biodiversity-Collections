@@ -14,11 +14,12 @@ define([],function ( ) {
     'RESULT_FOR_COLLECTION':'result for Collection',
     'RESULT_FOR_NETWORK':'result for Network',
     'RESULT_FOR_INSTITUTION':'result for Institution',
+    'RESULTS':'results',
     'PREVIOUS':'Previous',
     'NEXT':'Next',
     'COLLECTION_ID':'Collection Id',
     'CURATOR':'Curator',
-    'INSTITUTION':'Intitution',
+    'INSTITUTION':'Institution',
     'COLLECTION':'Collection',
     'NETWORK':'Network',
     'PLEASE_SELECT':'-- Please select --',
@@ -63,7 +64,13 @@ define([],function ( ) {
     'ADD_A_NEW_AUTHOR':'Add a new author',
     'SAVE':'Save',
     'EDIT_NETWORK': 'Edit network',
-    'NETWORK_ID': 'Network id'
+    'NETWORK_ID': 'Network id',
+    'NO_RESULTS_FOUND':'No results found.',
+    'EDIT':'Edit',
+    'SAVE_CHANGES':'Save changes',
+    'CANCEL':'Cancel',
+    'EDIT_COLLECTION':'Edit Collection',
+    'PLEASE_FILL_THE_FIELDS':'Please, fill the required fields.'
   }
 
 });

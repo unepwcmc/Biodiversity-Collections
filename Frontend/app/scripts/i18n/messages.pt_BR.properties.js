@@ -14,6 +14,7 @@ define([],function ( ) {
     'RESULT_FOR_COLLECTION':'resultados da Coleção',
     'RESULT_FOR_NETWORK':'resultados da Rede',
     'RESULT_FOR_INSTITUTION':'resultados da Instituição',
+    'RESULTS':'resultados',
     'PREVIOUS':'Anterior',
     'NEXT':'Próximo',
     'COLLECTION_ID':'ID da Coleção',
@@ -46,6 +47,7 @@ define([],function ( ) {
     'ADD':'Adicionar',
     'VISIBILITY':'Visibilidade',
     'COLLECTION_OCCURRENCES':'Coleção de ocorrências',
+    'BIODIVERSITY_COLLECTION_SAVED': 'Coleção de biodiversidade salva',
     'REQUIRED_FIELDS':'Campos requeridos',
     'CREATE_A_NEW_NETWORK':'Criar uma nova rede profissional',
     'NETWORK_ADDED_TO_COLLECTION':'Rede profissional adcionada para a coleção',
@@ -60,7 +62,13 @@ define([],function ( ) {
     'PUBLICATION_DOCUMENT':'Publicação/Documento',
     'SELECT_FILE':'Seleciona um arquivo',
     'ADD_A_NEW_AUTHOR':'Adicione um novo Autor',
-    'SAVE':'Salvar'
+    'SAVE':'Salvar',
+    'NO_RESULTS_FOUND':'Nenhum resultado encontrado.',
+    'EDIT':'Editar',
+    'SAVE_CHANGES':'Salvar mudanças',
+    'CANCEL':'Cancelar',
+    'EDIT_COLLECTION':'Editar Coleção',
+    'PLEASE_FILL_THE_FIELDS':'Por favor, preencha os campos obrigatórios.'
   }
 
 });

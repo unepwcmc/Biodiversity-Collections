@@ -8,14 +8,14 @@
     <div class="container">
         <nav id="collection-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
-                <h2 class="navbar-text"><strong>Edit Collection</strong></h2>
+                <h2 class="navbar-text"><strong>{{'EDIT_COLLECTION' | translate}}</strong></h2>
 
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default btn-transparent btn-edit-collection-cancel save-form cancel"><strong>Cancel</strong></button>
+                        <button type="submit" class="btn btn-default btn-transparent btn-edit-collection-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="collection_form.$invalid"><strong>Save Changes</strong></button>
+                        <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
                     </div>
                 </form>
             </div>
@@ -23,12 +23,12 @@
         <h4 id="collection-bar-default">
 
                 <strong ng-show="!editMode" >{{ collection.name }}</strong>
-                <strong ng-show="editMode" >Edit Collection</strong> <span>
+                <strong ng-show="editMode" >{{'EDIT_COLLECTION' | translate}}</strong> <span>
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'COLLECTIONS'| translate}}</strong></button></span>
 
-            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>Edit</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>Save Changes</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>Cancel</strong></a>
+            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>
@@ -74,7 +74,7 @@
                          </div>
 
                          <div ng-show="!editMode"  class="form-group">
-                             <label class="col-sm-3">{{ 'CURATOR' | translate }}</label>
+                             <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
                              <div class="col-sm-9"><a>{{collection.institution.name}}</a></div>
                          </div>
 
@@ -105,8 +105,10 @@
                          <div ng-show="editMode" class="form-group">
                              <label class="col-sm-3">{{ 'VISIBILITY' | translate  }}</label>
                              <div class="col-sm-9">
-                                 <input type="radio" name="visibility" data-ng-model="collection.published" ng-value="false">&nbsp;Unpublished<br/>
-                                 <input type="radio" name="visibility" data-ng-model="collection.published" ng-value="true">&nbsp;Published
+                                 <input type="radio" id="unpublished" name="visibility" data-ng-model="collection.published" ng-value="false">
+                                    <label style="font-weight: normal;" for="unpublished">&nbsp;Unpublished</label><br/>
+                                 <input type="radio" id="published" name="visibility" data-ng-model="collection.published" ng-value="true">
+                                    <label style="font-weight: normal;" for="published">&nbsp;Published</label>
                              </div>
                          </div>
 
@@ -159,7 +161,7 @@
                              </div>
                          </div>
 
-                         <div class="form-group">
+                         <div ng-show="editMode" class="form-group">
                              <label class="col-sm-3"><em style="font-weight: 100">* {{ 'REQUIRED_FIELDS' | translate }}</em></label>
                              <div class="col-sm-9">&nbsp;</div>
                          </div>

@@ -14,6 +14,7 @@ define(['angularAMD', 'bootstrap', 'core/factory/biodiversityCollectionFactory']
                       $scope.page = 0;
                       $scope.size = 20;
                       $scope.term = '';
+                      $scope.searchType = 'collection';
 
                       $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
                           $scope.term = userInputString;

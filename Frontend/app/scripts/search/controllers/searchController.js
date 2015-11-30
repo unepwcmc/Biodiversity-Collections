@@ -51,6 +51,7 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
             });
 
             $scope.load = function(page, size) {
+                $('#loader-wrapper').fadeToggle('400');
                 $scope.collection.search( $stateParams.term, page, size );
             };
 
