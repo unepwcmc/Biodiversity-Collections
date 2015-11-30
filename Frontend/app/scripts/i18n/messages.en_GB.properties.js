@@ -54,6 +54,7 @@ define([],function ( ) {
     'NETWORK_REMOVED_TO_COLLECTION':'Network was removed of the collection',
     'NETWORK_REMOVED_TO_COLLECTION_ERROR':'Network wasn\'t removed of the collection',
     'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT':'Add a new associated publication/document',
+    'EDIT_ASSOCIATED_PUBLICATION_DOCUMENT':'Edit associated publication/document',
     'DOCUMENT_TYPE':'Document type',
     'PUBLICATION':'Publication',
     'LEGAL':'Legal',

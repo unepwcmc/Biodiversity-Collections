@@ -83,10 +83,12 @@
             <div class="modal-header">
                 <button  type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</h4>
+                <h4 ng-show="!document.id" class="modal-title">{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</h4>
+                <h4 ng-show="document.id" class="modal-title">{{ 'EDIT_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</h4>
             </div>
             <div class="modal-body">
                 <form name="multimedia_form"  class="form-horizontal" role="form" novalidate>
+                    <input type="hidden" ng-model="document.id" />
                     <div class="small-field">
                         <div class="form-group">
                         <label for="inputTitle" class="col-sm-4 control-label-document text-left">{{ 'TITLE' | translate }}</label>
@@ -139,7 +141,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" tabindex="6" class="btn btn-primary"  ng-disabled="multimedia_form.$invalid" ng-click="saveNewDocument()">{{ 'SAVE' | translate }}</button>
+                <button type="submit" tabindex="6" class="btn btn-primary"  ng-disabled="multimedia_form.$invalid" ng-click="saveOrUpdate()">{{ 'SAVE' | translate }}</button>
             </div>
         </div>
     </div>
