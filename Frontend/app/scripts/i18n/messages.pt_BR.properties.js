@@ -11,6 +11,7 @@ define([],function ( ) {
     'NEWS':'Notícias',
     'HOME':'Início',
     'SEARCH_RESULTS':'resultados da pesquisa',
+    'RESULTS':'resultados',
     'RESULT_FOR_COLLECTION':'Resultados da coleção',
     'PREVIOUS':'Anterior',
     'NEXT':'Próximo',
@@ -44,7 +45,14 @@ define([],function ( ) {
     'ADD':'Adicionar',
     'VISIBILITY':'Visibilidade',
     'COLLECTION_OCCURRENCES':'Coleção de ocorrências',
-    'REQUIRED_FIELDS':'Campos requeridos'
+    'BIODIVERSITY_COLLECTION_SAVED': 'Coleção de biodiversidade salva',
+    'REQUIRED_FIELDS':'Campos requeridos',
+    'NO_RESULTS_FOUND':'Nenhum resultado encontrado.',
+    'EDIT':'Editar',
+    'SAVE_CHANGES':'Salvar mudanças',
+    'CANCEL':'Cancelar',
+    'EDIT_COLLECTION':'Editar Coleção',
+    'PLEASE_FILL_THE_FIELDS':'Por favor, preencha os campos obrigatórios.'
   }
 
 });

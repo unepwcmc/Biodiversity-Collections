@@ -11,12 +11,13 @@ define([],function ( ) {
     'NEWS':'News',
     'HOME':'Home',
     'SEARCH_RESULTS':'Search Results',
-    'RESULT_FOR_COLLECTION':'result for Collection',
+    'RESULT_FOR_COLLECTION':'results for Collection',
+    'RESULTS':'results',
     'PREVIOUS':'Previous',
     'NEXT':'Next',
     'COLLECTION_ID':'Collection Id',
     'CURATOR':'Curator',
-    'INSTITUTION':'Intitution',
+    'INSTITUTION':'Institution',
     'COLLECTION':'Collection',
     'NETWORK':'Network',
     'PLEASE_SELECT':'-- Please select --',
@@ -45,7 +46,13 @@ define([],function ( ) {
     'VISIBILITY':'Visibility',
     'COLLECTION_OCCURRENCES':'Collection Occurrences',
     'BIODIVERSITY_COLLECTION_SAVED': 'Biodiversity collection saved',
-    'REQUIRED_FIELDS':'Required fields'
+    'REQUIRED_FIELDS':'Required fields',
+    'NO_RESULTS_FOUND':'No results found.',
+    'EDIT':'Edit',
+    'SAVE_CHANGES':'Save changes',
+    'CANCEL':'Cancel',
+    'EDIT_COLLECTION':'Edit Collection',
+    'PLEASE_FILL_THE_FIELDS':'Please, fill the required fields.'
   }
 
 });

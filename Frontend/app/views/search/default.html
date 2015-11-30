@@ -16,38 +16,44 @@
 
                 <div ng-repeat="col in collection._embedded.biodiversityCollections" class="list-item">
                     <h5><strong><a data-ui-sref="collection({id:col.id})">{{col.name}}</a></strong> | <a data-ui-sref="collection({id:col.id})">id: {{col.id}}</a></h5>
-                    <p><strong>{{col.institution.description}}</strong></p>
+                    <p><strong>{{col.institution.name}}</strong></p>
                     <p>{{col.description}}</p>
                 </div>
 
             </div>
 
+
+
             <div class="row" align="center">
-                <hr/>
-                <nav>
-                    <ul class="pagination">
-                        <li ng-class="{disabled: collection.page.number === 0}">
-                            <a ng-click="(collection.page.number === 0) || load(collection.page.number - 1, collection.page.size)" aria-label="Previous">
-                                <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
-                            </a>
-                        </li>
-                        <li ng-class="{disabled: collection.page.number === collection.page.totalPages - 1}">
-                            <a ng-click="load(collection.page.number + 1, collection.page.size)">{{collection.page.number + 1}}</a></li>
-                        <li ng-class="{disabled: collection.page.number + 2 >= collection.page.totalPages - 1}">
-                            <a ng-click="load(collection.page.number + 2, collection.page.size)">{{collection.page.number + 2}}</a></li>
-                        <li ng-class="{disabled: collection.page.number + 3 >= collection.page.totalPages - 1}">
-                            <a ng-click="load(collection.page.number + 3, collection.page.size)">{{collection.page.number + 3}}</a></li>
-                        <li ng-class="{disabled: collection.page.number + 4 >= collection.page.totalPages - 1}">
-                            <a ng-click="load(collection.page.number + 4, collection.page.size)">{{collection.page.number + 4}}</a></li>
-                        <li ng-class="{disabled: collection.page.number + 5 >= collection.page.totalPages - 1}">
-                            <a ng-click="load(collection.page.number + 5, collection.page.size)">{{collection.page.number + 5}}</a></li>
-                        <li ng-class="{disabled: collection.page.number === collection.page.totalPages - 1}">
-                            <a ng-click="(collection.page.number === collection.page.totalPages - 1) || load(collection.page.number + 1, collection.page.size)" aria-label="Next">
-                                <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="col-md-4">&nbsp;</div>
+                <div class="col-md-4">
+
+                    <nav>
+                        <ul class="pagination">
+                            <li ng-class="{disabled: collection.page.number === 0}">
+                                <a href="javascript:" ng-click="(collection.page.number === 0) || load(collection.page.number - 1, collection.page.size)" aria-label="Previous">
+                                    <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
+                                </a>
+                            </li>
+                            <li ng-class="{disabled: collection.page.number === collection.page.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collection.page.number === collection.page.totalPages - 1) || load(collection.page.number + 1, collection.page.size)">{{collection.page.number + 1}}</a></li>
+                            <li ng-class="{disabled: collection.page.number + 2 >= collection.page.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collection.page.number + 2 >= collection.page.totalPages - 1) || load(collection.page.number + 2, collection.page.size)">{{collection.page.number + 2}}</a></li>
+                            <li ng-class="{disabled: collection.page.number + 3 >= collection.page.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collection.page.number + 3 >= collection.page.totalPages - 1) || load(collection.page.number + 3, collection.page.size)">{{collection.page.number + 3}}</a></li>
+                            <li ng-class="{disabled: collection.page.number + 4 >= collection.page.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collection.page.number + 4 >= collection.page.totalPages - 1) || load(collection.page.number + 4, collection.page.size)">{{collection.page.number + 4}}</a></li>
+                            <li ng-class="{disabled: collection.page.number + 5 >= collection.page.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collection.page.number + 5 >= collection.page.totalPages - 1) || load(collection.page.number + 5, collection.page.size)">{{collection.page.number + 5}}</a></li>
+                            <li ng-class="{disabled: collection.page.number === collection.page.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collection.page.number === collection.page.totalPages - 1) || load(collection.page.number + 1, collection.page.size)" aria-label="Next">
+                                    <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{collection.page.totalElements}}&nbsp;results</label></div>
             </div>
 
         </div>

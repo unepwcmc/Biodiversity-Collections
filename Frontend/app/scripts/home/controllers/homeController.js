@@ -9,6 +9,7 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
 
             $scope.collections = new BiodiversityCollection();
             $scope.term = '';
+            $scope.searchType = 'collection';
 
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
