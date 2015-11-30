@@ -32,7 +32,7 @@ define(['angularAMD','popover'], function (angularAMD) {
                                             "<div class='pull-right p-button'>" +
                                                 "<a ng-click='download()' style='cursor: pointer'><i class='fa fa-download'></i><strong>Download</strong></a>" +
                                                 "<div class='clearfix' ></div>" +
-                                                "<a ng-click='editDocumentEvent()' style='cursor: pointer'><i class='fa fa-edit'></i><strong>Edit</strong></a>" +
+                                                "<a ng-show='editMode' ng-click='editDocumentEvent()' style='cursor: pointer'><i class='fa fa-edit'></i><strong>Edit</strong></a>" +
                                             "</div>" +
                                        "</div>";
 
