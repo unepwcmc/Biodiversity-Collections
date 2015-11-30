@@ -70,7 +70,15 @@ define([],function ( ) {
     'SAVE_CHANGES':'Save changes',
     'CANCEL':'Cancel',
     'EDIT_COLLECTION':'Edit Collection',
-    'PLEASE_FILL_THE_FIELDS':'Please, fill the required fields.'
+    'PLEASE_FILL_THE_FIELDS':'Please, fill the required fields.',
+    'BOARD_MEMBERS': 'Board Members',
+    'CONTACT': 'Contact',
+    'PHONE_NUMBER': 'Phone Number',
+    'ADDRESS': 'Address',
+    'CITY':'City',
+    'DISTRICT':'District',
+    'POSTAL_CODE':'Postal Code',
+    'COUNTRY':'Country'
   }
 
 });

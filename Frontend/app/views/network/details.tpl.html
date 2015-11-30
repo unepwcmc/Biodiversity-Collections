@@ -12,9 +12,9 @@
                 <strong ng-show="editMode" >{{ 'EDIT_NETWORK' | translate }}</strong> <span>
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'NETWORK'| translate}}</strong></button></span>
 
-            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>Edit</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>Save Changes</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>Cancel</strong></a>
+            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{ 'SAVE_CHANGES' | translate }}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
         </h4>
 
         <hr/>
@@ -26,84 +26,26 @@
                  <form action="#" class="form-horizontal view-mode form-block" role="form" name="collection_form" novalidate>
                      <div class="small-field">
 
-                         <div ng-show="!editMode" id="collection-id" class="form-group">
-                             <label class="col-sm-3">{{ 'COLLECTION_ID' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" value="{{collection.id}}"></div>
+                         <div ng-show="!editMode" id="network-id" class="form-group">
+                             <label class="col-sm-3">{{ 'NETWORK_ID' | translate }}</label>
+                             <div class="col-sm-9"><input type="text" class="form-control" value="{{network.id}}"></div>
                          </div>
 
-                         <div ng-show="editMode" id="collection-name" class="form-group">
+                         <div ng-show="editMode" id="network-name" class="form-group">
                              <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.name" required></div>
-                         </div>
-
-                         <div ng-show="!editMode"  class="form-group">
-                             <label class="col-sm-3">{{ 'CURATOR' | translate }}</label>
-                             <div class="col-sm-9"><input class="form-control" readonly value="{{collection.curator.name}}" /></div>
-                         </div>
-
-                         <div ng-show="editMode" class="form-group">
-                             <label class="col-sm-3">{{ 'CURATOR' |  translate }}</label>
-                             <div class="col-sm-9">
-                                 <angucomplete-alt id="curators"
-                                               placeholder="Search an Curator"
-                                               pause="150"
-                                               selected-object="curatorSelectedFn"
-                                               remote-api-handler="curatorAutocomplete"
-                                               remote-url-data-field="_embedded.curators"
-                                               title-field="name"
-                                               minlength="2"
-                                               initial-value="curatorSelected"
-                                               disable-input="disableAutocomplete"
-                                               input-class="form-control"/>
-                                </div>
-                         </div>
-
-                         <div ng-show="!editMode"  class="form-group">
-                             <label class="col-sm-3">{{ 'CURATOR' | translate }}</label>
-                             <div class="col-sm-9"><a>{{collection.institution.name}}</a></div>
-                         </div>
-
-                         <div ng-show="editMode" class="form-group">
-                             <label class="col-sm-3">{{ 'INSTITUTION' | translate  }}</label>
-                             <div class="col-sm-9">
-                                 <angucomplete-alt id="institution"
-                                                   placeholder="Search an Intitution"
-                                                   pause="150"
-                                                   selected-object="institutionSelectedFn"
-                                                   remote-api-handler="institutionAutocomplete"
-                                                   remote-url-data-field="_embedded.institutions"
-                                                   title-field="name"
-                                                   minlength="2"
-                                                   initial-value="institutionSelected"
-                                                   disable-input="disableAutocomplete"
-                                                   input-class="form-control"/>
-                             </div>
+                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="network.name" required></div>
                          </div>
 
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'DESCRIPTION' | translate  }}</label>
                              <div class="col-sm-9">
-                                 <textarea elastic type="text" class="form-control" data-ng-model="collection.description" ></textarea>
+                                 <textarea elastic type="text" class="form-control" data-ng-model="network.description" ></textarea>
                              </div>
                          </div>
 
-                         <div ng-show="editMode" class="form-group">
-                             <label class="col-sm-3">{{ 'VISIBILITY' | translate  }}</label>
-                             <div class="col-sm-9">
-                                 <input type="radio" name="visibility" data-ng-model="collection.published" ng-value="false">&nbsp;Unpublished<br/>
-                                 <input type="radio" name="visibility" data-ng-model="collection.published" ng-value="true">&nbsp;Published
-                             </div>
-                         </div>
 
                          <div class="form-group">
-                             <label class="col-sm-3">{{ 'PRESERVATION_METHODS' |  translate }}</label>
-                             <div class="col-sm-9">
-                                 <textarea elastic type="text" class="form-control" data-ng-model="collection.preservationMethods"></textarea>
-                             </div>
-                         </div>
-
-                         <div class="form-group">
-                             <label class="col-sm-3">{{ 'RESEARCHES' | translate }}</label>
+                             <label class="col-sm-3">{{ 'BOARD_MEMBERS' | translate }}</label>
                              <div class="col-sm-9">
                                 <table>
                                     <tbody>
@@ -123,32 +65,9 @@
                          </div>
 
                          <div class="form-group">
-                             <label class="col-sm-3">{{ 'CURATORIAL_UNIT_LODGE' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.curatorialLodge"></div>
-                         </div>
-
-                         <div ng-show="!editMode" class="form-group">
-                             <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
-                             <div class="col-sm-9">
-                                 <a href="{{collection.webSite}}" target="_blank">{{ collection.webSiteName }}</a>
-                             </div>
-                         </div>
-
-                         <div ng-show="editMode" class="form-group">
-                             <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
-                             <div class="col-sm-9">
-                                 <span><em>{{ 'TITLE' | translate }}</em></span>
-                                 <input type="text" class="form-control" data-ng-model="collection.webSiteName">
-                                 <span><em>{{ 'URL' | translate }}</em></span>
-                                 <input type="text" class="form-control" data-ng-model="collection.webSite">
-                             </div>
-                         </div>
-
-                         <div class="form-group">
                              <label class="col-sm-3"><em style="font-weight: 100">* {{ 'REQUIRED_FIELDS' | translate }}</em></label>
                              <div class="col-sm-9">&nbsp;</div>
                          </div>
-
                      </div>
                  </form>
              </div>

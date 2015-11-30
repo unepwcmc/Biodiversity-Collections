@@ -1,5 +1,7 @@
 define(['app',
     'network/directives/network.details.directive',
+    'network/directives/network.contact.directive',
+    'network/directives/network.collections.directive',
     'core/directives/core.breadcrumbs.directive'], function () {
 
     'use strict';
