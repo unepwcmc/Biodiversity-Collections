@@ -69,7 +69,15 @@ define([],function ( ) {
     'SAVE_CHANGES':'Salvar mudanças',
     'CANCEL':'Cancelar',
     'EDIT_COLLECTION':'Editar Coleção',
-    'PLEASE_FILL_THE_FIELDS':'Por favor, preencha os campos obrigatórios.'
+    'PLEASE_FILL_THE_FIELDS':'Por favor, preencha os campos obrigatórios.',
+    'BOARD_MEMBERS': 'Membros do Conselho',
+    'CONTACT': 'Contato',
+    'PHONE_NUMBER': 'Telefone',
+    'ADDRESS': 'Endereço',
+    'CITY':'Cidade',
+    'DISTRICT':'Estado',
+    'POSTAL_CODE':'CEP',
+    'COUNTRY':'País'
   }
 
 });
