@@ -92,7 +92,13 @@ define([],function ( ) {
     'GENUS': 'Genus',
     'SPECIES_EPITETH': 'Species Epiteth',
     'SUBSPECIES': 'Subspecies',
-    'SCIENTIFIC_NAME': 'Scientific Name'
+    'SCIENTIFIC_NAME': 'Scientific Name',
+    'EDIT_INSTITUTION': 'Edit institution',
+    'INSTITUTION_ID': 'Institution id',
+    'INSTITUTION_WEBSITE': 'Institution website',
+    'DISCIPLINE': 'Discipline',
+    'GOVERNANCE': 'Governance',
+    'CURATORS': 'Curators'
   }
 
 });

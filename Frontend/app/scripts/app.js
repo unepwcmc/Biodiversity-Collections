@@ -79,6 +79,18 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
+                .state('institution', angularAMD.route(
+                    {
+                        url: '/institution/:id',
+                        templateUrl: 'views/institution/default.html',
+                        controllerUrl: 'institution/controllers/institutionController',
+                        ncyBreadcrumb: {
+                            label: '{{collection.name}}',
+                            parent: function($scope) {
+                                return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
+                            }
+                        }
+                    }))
                 .state('sample', angularAMD.route(
                     {
                         url: '/sample/:id',
