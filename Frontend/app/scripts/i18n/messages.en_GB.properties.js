@@ -61,7 +61,9 @@ define([],function ( ) {
     'PUBLICATION_DOCUMENT':'Publication/Document',
     'SELECT_FILE':'Select file',
     'ADD_A_NEW_AUTHOR':'Add a new author',
-    'SAVE':'Save'
+    'SAVE':'Save',
+    'EDIT_NETWORK': 'Edit network',
+    'NETWORK_ID': 'Network id'
   }
 
 });
