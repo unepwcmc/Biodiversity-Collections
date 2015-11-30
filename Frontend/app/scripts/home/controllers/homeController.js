@@ -22,17 +22,17 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
 
                 $scope.term = userInputString;
 
-                if (userInputString == null || $scope.search.type == "" || $scope.search.type == undefined)
+                if (userInputString == null || $scope.searchType == undefined)
                     return null;
 
-                if ($scope.search.type == "collection") {
+                if ($scope.searchType == "collection") {
                      return $scope.collections.autocomplete(userInputString, function(){timeout: timeoutPromise;});
                 }
-                if ($scope.search.type == "network") {
+                if ($scope.searchType == "network") {
                     return $scope.networks.autocomplete(userInputString, function(){timeout: timeoutPromise;});
                 }
 
-                if ($scope.search.type == "institution") {
+                if ($scope.searchType == "institution") {
                     return $scope.institutions.autocompleteName(userInputString, function(){timeout: timeoutPromise;});
                 }
 
@@ -45,14 +45,14 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
 
                     $scope.term = selected.title;
 
-                    if ($scope.search.type == "collection") {
-                          $state.go('collection', {id : selected.originalObject.id, type : $scope.search.type});
+                    if ($scope.searchType == "collection") {
+                          $state.go('collection', {id : selected.originalObject.id, type : $scope.searchType});
                     }
-                    if ($scope.search.type == "network") {
+                    if ($scope.searchType == "network") {
                         //Need to be implemented
                         //$state.go('network', {id : selected.originalObject.id});
                     }
-                    if ($scope.search.type == "institution") {
+                    if ($scope.searchType == "institution") {
                         //Need to be implemented
                         //$state.go('network', {id : selected.originalObject.id});
                     }
@@ -63,11 +63,11 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
             };
 
             $scope.isSearchEnabled = function() {
-                return !($scope.term != "" && $scope.term.length >= 3 && $scope.search.type != undefined && $scope.search.type != "");
+                return !($scope.term != "" && $scope.term.length >= 3 && $scope.searchType != undefined && $scope.searchType != "");
             }
 
             $scope.search = function(){
-                $state.go('search', { term : $scope.term, type : $scope.search.type });
+                $state.go('search', { term : $scope.term, type : $scope.searchType });
             };
 
         }];

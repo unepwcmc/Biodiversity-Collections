@@ -16,6 +16,7 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
             $scope.size = 20;
             $scope.name = '';
             $scope.type = '';
+            $scope.searchType = 'collection';
 
             /**
              * Listener when the state is changed
@@ -27,6 +28,19 @@ define(['app', 'core/factory/biodiversityCollectionFactory', 'core/factory/netwo
             $scope.$on('BIODIVERSITY_SEARCHED', function(){
 
                 $('#loader-wrapper').fadeToggle('400');
+                $scope.searchType = 'collection';
+            });
+
+            $scope.$on('NETWORK_SEARCHED', function(){
+
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.searchType = 'network';
+            });
+
+            $scope.$on('INSTITUTION_SEARCHED', function(){
+
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.searchType = 'institution';
             });
 
             $scope.$on('$viewContentLoaded', function() {
