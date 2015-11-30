@@ -55,6 +55,18 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
+                .state('collectionSample', angularAMD.route(
+                    {
+                        url: '/collection/:id/sample',
+                        templateUrl: 'views/sample/collection.sample.html',
+                        controllerUrl: 'sample/controllers/collectionSampleController',
+                        ncyBreadcrumb: {
+                            label: '{{collection.name}}',
+                            parent: function($scope) {
+                                return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
+                            }
+                        }
+                    }))
                 .state('network', angularAMD.route(
                     {
                         url: '/network/:id',
@@ -181,8 +193,8 @@ define(['include', 'language'], function (angularAMD, language) {
         }]);
 
     app.CONST = {
-        //LOCALHOST: "http://localhost:8080/", //LOCAL
-        LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
+        LOCALHOST: "http://localhost:8080/", //LOCAL
+        //LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
         //LOCALHOST:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         //SERVER:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         SERVER: "http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/"  // DEV

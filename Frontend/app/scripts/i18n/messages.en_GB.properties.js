@@ -79,7 +79,20 @@ define([],function ( ) {
     'CITY':'City',
     'DISTRICT':'District',
     'POSTAL_CODE':'Postal Code',
-    'COUNTRY':'Country'
+    'COUNTRY':'Country',
+    'ADD_NEW_SAMPLE':'Add a new sample',
+    'EDIT_SAMPLE': 'Edit sample',
+    'SAMPLE_ID': 'Sample id',
+    'TAXONOMY': 'Taxonomy',
+    'KINGDOM': 'Kingdom',
+    'PHYLUM': 'Phylum',
+    'CLASS': 'Class',
+    'ORDER': 'Order',
+    'FAMILY': 'Family',
+    'GENUS': 'Genus',
+    'SPECIES_EPITETH': 'Species Epiteth',
+    'SUBSPECIES': 'Subspecies',
+    'SCIENTIFIC_NAME': 'Scientific Name'
   }
 
 });
