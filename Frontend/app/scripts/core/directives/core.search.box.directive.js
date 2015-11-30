@@ -18,6 +18,7 @@ define(['angularAMD', 'bootstrap', 'core/factory/biodiversityCollectionFactory',
                       $scope.size = 20;
                       $scope.term = '';
                       $scope.searchType = 'collection';
+                      $scope.searchName = '';
 
                       $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
 
@@ -41,18 +42,33 @@ define(['angularAMD', 'bootstrap', 'core/factory/biodiversityCollectionFactory',
                       };
 
                       $scope.searchSelectedFn = function(selected) {
-                          if (selected) {
+                          /*if (selected) {
                               $scope.term = selected.title;
                               $state.go('collection', {id : selected.originalObject.id});
                           } else {
                               $scope.term = '';
-                          }
+                          }*/
                       };
 
                       $scope.search = function () {
-                            console.log('ttttt')
-                          return $state.go('search', {term: $scope.term});
+                           $state.go('search', { term : $scope.term, type : $scope.searchType });
                       };
+
+                       $scope.$on('BIODIVERSITY_SEARCHED', function(){
+                            $scope.searchType = 'collection';
+                            $scope.searchName = $scope.searchTerm;
+                       });
+
+                       $scope.$on('NETWORK_SEARCHED', function(){
+                           $scope.searchType = 'network';
+                           $scope.searchName = $scope.searchTerm;
+                       });
+
+                       $scope.$on('INSTITUTION_SEARCHED', function(){
+                           $scope.searchType = 'institution';
+                           $scope.searchName = $scope.searchTerm;
+                       });
+
 
                 }],
                 link: function (scope, element, attrs) {
