@@ -34,6 +34,8 @@ public class Document implements BaseEntity {
 
     private String contentType;
 
+    private String mimeType;
+
     private boolean status;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -148,5 +150,13 @@ public class Document implements BaseEntity {
 
     public void setAttachment(Attachment attachment) {
         this.attachment = attachment;
+    }
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
     }
 }
