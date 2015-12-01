@@ -122,7 +122,7 @@
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'RESEARCHES' | translate }}</label>
                              <div class="col-sm-9">
-                                <table>
+                                <table class="researches">
                                     <tbody>
                                         <tr ng-repeat="researcher in collection.researchers" on-finish-render="ngRepeatFinished">
                                             <td><input type="text" class="form-control" data-ng-model="researcher.name" ></td>

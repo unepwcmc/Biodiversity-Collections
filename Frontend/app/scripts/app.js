@@ -11,7 +11,8 @@ define(['include', 'language'], function (angularAMD, language) {
             'pascalprecht.translate',
             'leaflet-directive',
             'angucomplete-alt',
-            'ncy-angular-breadcrumb'
+            'ncy-angular-breadcrumb',
+            'tableSort'
         ]
     );
 
