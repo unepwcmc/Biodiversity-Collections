@@ -132,7 +132,7 @@ define([ 'angularAMD',
                         $scope.checkAndUnCheckAll = function(){
                             $scope.checkboxes_selected = !$scope.checkboxes_selected;
 
-                            $("input[type=checkbox]").each(function () {
+                            $("input[type=checkbox].pub-checkbox-delete").each(function () {
                                 $(this).prop("checked", $scope.checkboxes_selected);
                             });
 
@@ -142,18 +142,17 @@ define([ 'angularAMD',
 
                             var promises = [];
 
-                            $("input[type=checkbox]").each(function () {
+                            $("input[type=checkbox].pub-checkbox-delete").each(function () {
                                 if($(this).is(":checked")){
-                                    if($(this).data('publication-id') != undefined)
-                                        promises.push( $http.delete( $rootScope.getHost() + "documents/" + $(this).data('publication-id') ));
+                                    if($(this).data('publication-id') != undefined){
+                                         promises.push( $http.delete( $rootScope.getHost() + "documents/" + $(this).data('publication-id') ));
+                                   }
                                 }
                             });
 
                             if($scope.documents.number > 0){
-                                if( (($scope.documents.totalElements - 1) % $scope.documents.size) == 0){
-                                    $scope.documents.number = $scope.documents.number - 1;
-                                    $scope.documents.totalPages = $scope.documents.totalPages - 1;
-                                }
+                                $scope.documents.number = $scope.documents.number - 1;
+                                $scope.documents.totalPages = $scope.documents.totalPages -1;
                             }
 
                             $q.all( promises ).then(function( results ){
