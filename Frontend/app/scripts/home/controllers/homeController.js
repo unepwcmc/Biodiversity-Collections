@@ -46,7 +46,12 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
             $scope.inputChangedFn = function( key ){
                 var regex = new RegExp("^[a-zA-Z0-9]+$");
                 if (!regex.test(key)) {
-                   $scope.$broadcast('angucomplete-alt:changeInput', 'searchTop', key.slice(0, -1));
+                    if(key.length == 1){
+                        $scope.$broadcast('angucomplete-alt:clearInput', 'searchTop');
+                    }
+                    else if( key.length > 1){
+                        $scope.$broadcast('angucomplete-alt:changeInput', 'searchTop', key.slice(0, -1));
+                    }
                 }
             };
 
