@@ -96,7 +96,15 @@ define([],function ( ) {
     'INSTITUTION_WEBSITE': 'Instituição website',
     'DISCIPLINE': 'Disciplina',
     'GOVERNANCE': 'Governança',
-    'CURATORS': 'Curadores'
+    'CURATORS': 'Curadores',
+    'INPUTTED_FILE_PATH_ERROR':'Arquivo selecionado não é uma imagem!',
+    'WARNING':'Atenção',
+    'ERROR':'Erro',
+    'THE_FILE_SIZE_ETC':'O arquivo deve ser menor do que 5M',
+    'PLEASE_ADD_A_FILE':'Por favor, adicione um arquivo',
+    'DOCUMENT_CREATED_SUCCESSFULLY':'Documento criado com sucesso',
+    'DOCUMENT_UPDATED_SUCCESSFULLY':'Documento atualizado com sucesso',
+    'DOCUMENT_DELETED_SUCCESSFULLY':'Documento deletado com sucesso'
   }
 
 });

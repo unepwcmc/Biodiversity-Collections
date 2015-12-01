@@ -98,7 +98,15 @@ define([],function ( ) {
     'INSTITUTION_WEBSITE': 'Institution website',
     'DISCIPLINE': 'Discipline',
     'GOVERNANCE': 'Governance',
-    'CURATORS': 'Curators'
+    'CURATORS': 'Curators',
+    'INPUTTED_FILE_PATH_ERROR':'Inputted file path is not an image!',
+    'WARNING':'Warning',
+    'ERROR':'Error',
+    'THE_FILE_SIZE_ETC':'The file should be less then 5M',
+    'PLEASE_ADD_A_FILE':'Please add a file',
+    'DOCUMENT_CREATED_SUCCESSFULLY':'Document created successfully',
+    'DOCUMENT_UPDATED_SUCCESSFULLY':'Document updated successfully',
+    'DOCUMENT_DELETED_SUCCESSFULLY':'Document deleted successfully'
   }
 
 });

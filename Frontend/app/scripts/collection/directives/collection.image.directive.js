@@ -45,7 +45,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                     $('#ipt-file').on('change', function (evt) {
 
                         if (!$(this).val().match(/(?:gif|jpg|png|bmp)$/)) {
-                            scope.showWarningMessage('inputted file path is not an image!','WARNING');
+                            scope.showWarningMessage('INPUTTED_FILE_PATH_ERROR','WARNING');
                             return;
                         }
 
