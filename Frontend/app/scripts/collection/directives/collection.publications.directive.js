@@ -10,9 +10,9 @@ define([ 'angularAMD',
 
     'use strict';
 
-    angularAMD.directive('publications', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','Document',
+    angularAMD.directive('publications', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','Document','$q',
 
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, Document) {
+        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, Document, $q) {
 
             return {
                 restrict: 'EA',
@@ -20,6 +20,7 @@ define([ 'angularAMD',
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
+                        $scope.checkboxes_selected = false;
                         $scope.file = null;
                         $scope.documents = new Document();
                         angular.extend($scope.documents, {totalElements : 0, number: 0, size: 5, totalPages: 0});
@@ -110,6 +111,13 @@ define([ 'angularAMD',
 
                         $scope.deleteDocument = function( id ){
 
+                            if($scope.documents.number > 0){
+                                if( (($scope.documents.totalElements - 1) % $scope.documents.size) == 0){
+                                    $scope.documents.number = $scope.documents.number - 1;
+                                    $scope.documents.totalPages = $scope.documents.totalPages - 1;
+                                }
+                            }
+
                             $scope.documents.delete( id, function( data, status){
 
                                 if(status === 200){
@@ -118,6 +126,40 @@ define([ 'angularAMD',
                                 }else{
                                     $scope.showErrorMessage( data ,'ERROR');
                                 }
+                            });
+                        };
+
+                        $scope.checkAndUnCheckAll = function(){
+                            $scope.checkboxes_selected = !$scope.checkboxes_selected;
+
+                            $("input[type=checkbox]").each(function () {
+                                $(this).prop("checked", $scope.checkboxes_selected);
+                            });
+
+                        };
+
+                        $scope.deleteAll = function(){
+
+                            var promises = [];
+
+                            $("input[type=checkbox]").each(function () {
+                                if($(this).is(":checked")){
+                                    if($(this).data('publication-id') != undefined)
+                                        promises.push( $http.delete( $rootScope.getHost() + "documents/" + $(this).data('publication-id') ));
+                                }
+                            });
+
+                            if($scope.documents.number > 0){
+                                if( (($scope.documents.totalElements - 1) % $scope.documents.size) == 0){
+                                    $scope.documents.number = $scope.documents.number - 1;
+                                    $scope.documents.totalPages = $scope.documents.totalPages - 1;
+                                }
+                            }
+
+                            $q.all( promises ).then(function( results ){
+                                $scope.showSuccessMessage('DOCUMENT_DELETED_SUCCESSFULLY','SUCCESS');
+                                $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                                $scope.checkboxes_selected = !$scope.checkboxes_selected;
                             });
                         };
 

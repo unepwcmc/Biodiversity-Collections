@@ -3,10 +3,13 @@ package com.unep.wcmc.biodiversity.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
+import org.hibernate.annotations.*;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import java.io.IOException;
 import java.util.Set;
 
@@ -24,6 +27,7 @@ public class Document implements BaseEntity {
     private String description;
 
     @ElementCollection
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<String> authors;
 
     @ElementCollection
