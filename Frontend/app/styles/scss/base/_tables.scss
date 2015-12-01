@@ -383,6 +383,71 @@ table.publication th{
 
 
 
+table.publication th.tablesort-sortable {
+	background-image: url("/images/icons/small.gif");
+	background-repeat: no-repeat;
+	text-align: left;
+	background-attachment: inherit;
+	background-position: 50px 10px;
+	cursor: pointer;
+}
+
+table.publication th.tablesort-desc {
+	background-image: url("/images/icons/desc.gif");
+}
+
+table.publication th.tablesort-asc {
+	background-image: url("/images/icons/asc.gif");
+}
+
+table.publication thead tr th, table.tablesorter tfoot tr th {
+	padding: 4px; }
+
+table.publication th.no-sorter {
+	background-image: url("") !important; }
+
+table.researches input.form-control[readonly] {
+	text-decoration: none;
+	color: #0000FF; }
+
+th.tablesort-sortable {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+
+
+table .tablesort-sortable:hover:after, table .tablesort-asc:after, table .tablesort-desc:after {
+	visibility:visible;
+}
+
+
+/*
+ * Styling for the table row shown in empty tables
+ */
+
+/* The row is always added as the first row in a table
+   Hide it by default */
+.showIfLast {
+	display: none;
+}
+
+/* Only show it if it is also the last row of the table. */
+.showIfLast:last-child {
+	display: table-row;
+}
+
+.showIfLast td {
+	text-align: center;
+}
+
+.showIfLast td:after {
+	content: "No data";
+}
+
 
 
 

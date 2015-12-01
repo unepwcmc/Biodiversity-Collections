@@ -60,5 +60,10 @@ div.webui-popover-publication-popover div.p-button a{
   padding-top: 7px;
   margin-bottom: 0;
 }
-
+table.researches input.form-control[readonly]{
+  text-decoration:none;
+  color:#0000FF;
+}
+.showIfLast{
+  display:none;}
 

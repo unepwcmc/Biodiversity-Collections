@@ -16,6 +16,7 @@ define(['app', 'core/directives/core.map.directive', 'core/factory/biodiversityC
 
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
+                blockingSpecialCharacters();
             });
 
             $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
@@ -67,6 +68,30 @@ define(['app', 'core/directives/core.map.directive', 'core/factory/biodiversityC
             $scope.search = function(){
                 $state.go('search', { term : $scope.term, type : $scope.searchType });
             };
+
+            $scope.inputChangedFn = function( key ){
+                var regex = new RegExp("^[a-zA-Z0-9]+$");
+                if (!regex.test(key)) {
+                    if(key.length == 1){
+                        $scope.$broadcast('angucomplete-alt:clearInput', 'searchTop');
+                    }
+                    else if( key.length > 1){
+                        $scope.$broadcast('angucomplete-alt:changeInput', 'searchTop', key.slice(0, -1));
+                    }
+                }
+            };
+
+            function blockingSpecialCharacters(){
+
+                $('input').bind('keypress', function (event) {
+                    var regex = new RegExp("^[a-zA-Z0-9]+$");
+                    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                    if (!regex.test(key)) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+            }
 
         }];
 });

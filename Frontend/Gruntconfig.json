@@ -40,7 +40,8 @@
     "angular-simple-logger/dist/angular-simple-logger.js",
     "angucomplete-alt/angucomplete-alt.js",
     "waypoints/lib/jquery.waypoints.js",
-    "tablesorter/jquery.tablesorter.js"
+    "tablesorter/jquery.tablesorter.js",
+    "angular-tablesort/js/angular-tablesort.js"
   ],
   "cssFiles": [
     "bootstrap/dist/css/bootstrap.css",
