@@ -11,4 +11,37 @@
 
     </div>
 
+    <div class="row" align="center">
+        <div class="col-md-4">&nbsp;</div>
+        <div class="col-md-4">
+
+            <nav>
+                <ul class="pagination">
+                    <li ng-class="{disabled: network.page.number === 0}">
+                        <a href="javascript:" ng-click="(network.page.number === 0) || load(network.page.number - 1, network.page.size)" aria-label="Previous">
+                            <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
+                        </a>
+                    </li>
+                    <li ng-class="{disabled: network.page.number === network.page.totalPages - 1}">
+                        <a href="javascript:" ng-click="(network.page.number === network.page.totalPages - 1) || load(network.page.number + 1, network.page.size)">{{network.page.number + 1}}</a></li>
+                    <li ng-class="{disabled: network.page.number + 2 >= network.page.totalPages - 1}">
+                        <a href="javascript:" ng-click="(network.page.number + 2 >= network.page.totalPages - 1) || load(network.page.number + 2, network.page.size)">{{network.page.number + 2}}</a></li>
+                    <li ng-class="{disabled: network.page.number + 3 >= network.page.totalPages - 1}">
+                        <a href="javascript:" ng-click="(network.page.number + 3 >= network.page.totalPages - 1) || load(network.page.number + 3, network.page.size)">{{network.page.number + 3}}</a></li>
+                    <li ng-class="{disabled: network.page.number + 4 >= network.page.totalPages - 1}">
+                        <a href="javascript:" ng-click="(network.page.number + 4 >= network.page.totalPages - 1) || load(network.page.number + 4, network.page.size)">{{network.page.number + 4}}</a></li>
+                    <li ng-class="{disabled: network.page.number + 5 >= network.page.totalPages - 1}">
+                        <a href="javascript:" ng-click="(network.page.number + 5 >= network.page.totalPages - 1) || load(network.page.number + 5, network.page.size)">{{network.page.number + 5}}</a></li>
+                    <li ng-class="{disabled: network.page.number === network.page.totalPages - 1}">
+                        <a href="javascript:" ng-click="(network.page.number === network.page.totalPages - 1) || load(network.page.number + 1, network.page.size)" aria-label="Next">
+                            <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{network.page.totalElements}}&nbsp;results</label></div>
+
+    </div>
+
 </div>
