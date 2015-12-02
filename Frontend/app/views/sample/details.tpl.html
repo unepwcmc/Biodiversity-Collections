@@ -5,35 +5,32 @@
         <!--<div id="loader"></div>-->
     <!--</div>-->
 
-    <div class="container">
+    <div ng-show="display == 'true'" class="container">
         <h4 id="network-bar-default">
-
                 <strong ng-show="!editMode" >{{ sample.name }}</strong>
                 <strong ng-show="editMode" >{{ 'EDIT_SAMPLE' | translate }}</strong> <span>
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'SAMPLE'| translate}}</strong></button></span>
-
             <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{ 'SAVE_CHANGES' | translate }}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="sample_form.$invalid"><strong>{{ 'SAVE_CHANGES' | translate }}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-sample-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
         </h4>
-
         <hr/>
     </div>
 
     <div class="container">
          <div class="row">
              <div class="col-md-8">
-                 <form action="#" class="form-horizontal view-mode form-block" role="form" name="collection_form" novalidate>
+                 <form action="#" class="form-horizontal form-block" role="form" name="sample_form" novalidate>
                      <div class="small-field">
 
-                         <div ng-show="!editMode" id="network-id" class="form-group">
+                         <div ng-show="display == 'true' && !editMode" id="network-id" class="form-group">
                              <label class="col-sm-3">{{ 'SAMPLE_ID' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" value="{{network.id}}"></div>
+                             <div class="col-sm-9"><input type="text" class="form-control" value="{{sample.id}}"></div>
                          </div>
 
-                         <div ng-show="editMode" id="network-name" class="form-group">
+                         <div ng-show="display == 'false' || editMode" id="network-name" class="form-group">
                              <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="network.name" required></div>
+                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="sample.name" required></div>
                          </div>
 
                          <div ng-show="!editMode"  class="form-group">
@@ -111,7 +108,7 @@
              </div>
 
              <div class="col-md-4">
-                 <!--<collection-image></collection-image>-->
+                 <image-box title="Add new photo" image="{{sample.image}}" id="{{sample.image.attachment.id}}"></image-box>
              </div>
 
          </div>

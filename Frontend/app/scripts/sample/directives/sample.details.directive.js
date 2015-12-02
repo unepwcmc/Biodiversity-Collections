@@ -1,4 +1,4 @@
-define(['angularAMD','waypoints'], function (angularAMD) {
+define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -7,15 +7,15 @@ define(['angularAMD','waypoints'], function (angularAMD) {
         function ($timeout, $rootScope, $stateParams, $window, $http, $cookies) {
 
             return {
-                restrict: 'EA',
+                restrict: 'E',
+                scope: { display : '@' },
                 templateUrl: 'views/sample/details.tpl.html',
+                transclude: true,
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-
                     }],
                 link: function (scope, element, attrs) {
-
 
                 }
             };

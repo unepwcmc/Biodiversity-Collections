@@ -49,6 +49,21 @@ define(['app'], function (app) {
                         $log.error(message);
                         $rootScope.$broadcast("NETWORK_LOAD_ERROR");
                     });
+            },
+            search: function( query, page, size ){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "samples/search/name?name=" + query + "&page=" + page + "&size=" + size )
+
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("SAMPLE_SEARCHED", data);
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("SAMPLE_SEARCH_ERROR");
+                    });
             }
         };
 
