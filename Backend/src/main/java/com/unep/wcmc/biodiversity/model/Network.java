@@ -28,6 +28,9 @@ public class Network implements BaseEntity {
     @RestResource(exported = false)
     private Image image;
 
+    @Embedded
+    private Contact contact;
+
     @ManyToMany
     @JoinTable(name = "network_biodiversity_collection",
             joinColumns = @JoinColumn(name = "network_id"),
@@ -72,6 +75,14 @@ public class Network implements BaseEntity {
 
     public void setBoardMembers(String boardMembers) {
         this.boardMembers = boardMembers;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public Set<BiodiversityCollection> getCollections() {

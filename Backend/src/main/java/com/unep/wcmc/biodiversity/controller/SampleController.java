@@ -1,6 +1,5 @@
 package com.unep.wcmc.biodiversity.controller;
 
-import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
 import com.unep.wcmc.biodiversity.model.Sample;
 import com.unep.wcmc.biodiversity.service.BiodiversityCollectionService;
 import com.unep.wcmc.biodiversity.service.ImageService;
