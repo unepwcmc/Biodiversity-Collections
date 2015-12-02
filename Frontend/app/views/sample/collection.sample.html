@@ -6,11 +6,10 @@
     <!--</div>-->
 
     <div class="container" style="margin-bottom: 20px;">
-        <nav id="collection-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav id="collection-sample-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <h2 class="navbar-text"><strong>{{'ADD_NEW_SAMPLE' | translate}}</strong></h2>
-
-                <form class="navbar-form navbar-right" role="search">
+                <form ng-show="createSample" class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <button type="submit" class="btn btn-default btn-transparent btn-edit-collection-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
                     </div>
@@ -20,185 +19,112 @@
                 </form>
             </div>
         </nav>
-        <h4 id="collection-bar-default">
-
-            <strong>{{'ADD_NEW_SAMPLE' | translate}}</strong> <span>
-
-            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+        <h4 id="collection-sample-bar-default">
+            <strong>{{'ADD_NEW_SAMPLE' | translate}}</strong>
+            <a ng-show="createSample" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="createSample" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
     </div>
-
 
     <div class="container" style="background-color: #F8F8F8;">
         <hr style="margin: 5px;"/>
         <div class="row">
-
             <div class="col-md-8">
-                <form action="#" class="form-horizontal view-mode form-block" role="form" name="collection_form" novalidate>
-                    <div class="small-field">
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <input type="radio" id="create" name="visibility" ng-value="false">
-                                    <label for="create">&nbsp;Create a new sample</label><br/>
-                                <input type="radio" id="add" name="visibility" ng-value="true">
-                                    <label for="add">&nbsp;Add an existing sample</label>
-                            </div>
+                <div class="small-field">
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input type="radio" id="create" name="mode" ng-model="createSample" ng-value="true">
+                                <label for="create">&nbsp;{{'CREATE_NEW_SAMPLE' | translate}}</label><br/>
+                            <input type="radio" id="add" name="mode" ng-model="createSample" ng-value="false">
+                                <label for="add">&nbsp;{{'ADD_EXISTING_SAMPLE' | translate}}</label>
                         </div>
-
                     </div>
-
-                </form>
-
+                </div>
             </div>
-
         </div>
         <hr style="margin: 5px;"/>
     </div>
 
-    <div class="container" style="margin-top: 30px;">
+    <div ng-show="createSample" class="container" style="margin-top: 30px;">
+        <sample-detail></sample-detail>
+        <sample-taxonomy></sample-taxonomy>
+        <sample-publications></sample-publications>
+    </div>
+
+    <div ng-show="!createSample" class="container" style="margin-top: 30px;">
         <div class="row">
             <div class="col-md-8">
                 <form action="#" class="form-horizontal view-mode form-block" role="form" name="collection_form" novalidate>
                     <div class="small-field">
-
-                        <div ng-show="!editMode" id="collection-id" class="form-group">
-                            <label class="col-sm-3">{{ 'COLLECTION_ID' | translate }}</label>
-                            <div class="col-sm-9"><input type="text" class="form-control" value="{{collection.id}}"></div>
-                        </div>
-
-                        <div ng-show="editMode" id="collection-name" class="form-group">
-                            <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
-                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.name" required></div>
-                        </div>
-
-                        <div ng-show="!editMode"  class="form-group">
-                            <label class="col-sm-3">{{ 'CURATOR' | translate }}</label>
-                            <div class="col-sm-9"><input class="form-control" readonly value="{{collection.curator.name}}" /></div>
-                        </div>
-
-                        <div ng-show="editMode" class="form-group">
-                            <label class="col-sm-3">{{ 'CURATOR' |  translate }}</label>
-                            <div class="col-sm-9">
-                                <angucomplete-alt id="curators"
-                                                  placeholder="Search an Curator"
-                                                  pause="150"
-                                                  selected-object="curatorSelectedFn"
-                                                  remote-api-handler="curatorAutocomplete"
-                                                  remote-url-data-field="_embedded.curators"
-                                                  title-field="name"
-                                                  minlength="2"
-                                                  initial-value="curatorSelected"
-                                                  disable-input="disableAutocomplete"
-                                                  input-class="form-control"/>
-                            </div>
-                        </div>
-
-                        <div ng-show="!editMode"  class="form-group">
-                            <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
-                            <div class="col-sm-9"><a>{{collection.institution.name}}</a></div>
-                        </div>
-
-                        <div ng-show="editMode" class="form-group">
-                            <label class="col-sm-3">{{ 'INSTITUTION' | translate  }}</label>
-                            <div class="col-sm-9">
-                                <angucomplete-alt id="institution"
-                                                  placeholder="Search an Intitution"
-                                                  pause="150"
-                                                  selected-object="institutionSelectedFn"
-                                                  remote-api-handler="institutionAutocomplete"
-                                                  remote-url-data-field="_embedded.institutions"
-                                                  title-field="name"
-                                                  minlength="2"
-                                                  initial-value="institutionSelected"
-                                                  disable-input="disableAutocomplete"
-                                                  input-class="form-control"/>
-                            </div>
-                        </div>
-
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'DESCRIPTION' | translate  }}</label>
                             <div class="col-sm-9">
-                                <textarea elastic type="text" class="form-control" data-ng-model="collection.description" ></textarea>
+                                <input type="text" class="form-control" ng-model="searchTerm">
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="btn btn-small btn-primary pull-left btn-white save-form" ng-click="search()"><i class="fa fa-search"></i><strong>{{'SEARCH' | translate}}</strong></a>
                             </div>
                         </div>
-
-                        <div ng-show="editMode" class="form-group">
-                            <label class="col-sm-3">{{ 'VISIBILITY' | translate  }}</label>
-                            <div class="col-sm-9">
-                                <input type="radio" id="unpublished" name="visibility" data-ng-model="collection.published" ng-value="false">
-                                <label style="font-weight: normal;" for="unpublished">&nbsp;Unpublished</label><br/>
-                                <input type="radio" id="published" name="visibility" data-ng-model="collection.published" ng-value="true">
-                                <label style="font-weight: normal;" for="published">&nbsp;Published</label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3">{{ 'PRESERVATION_METHODS' |  translate }}</label>
-                            <div class="col-sm-9">
-                                <textarea elastic type="text" class="form-control" data-ng-model="collection.preservationMethods"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3">{{ 'RESEARCHES' | translate }}</label>
-                            <div class="col-sm-9">
-                                <table>
-                                    <tbody>
-                                    <tr ng-repeat="researcher in collection.researchers" on-finish-render="ngRepeatFinished">
-                                        <td><input type="text" class="form-control" data-ng-model="researcher.name" ></td>
-                                        <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right"  class="btn-small-delete" ng-click="deleteResearch($index);"><i class="fa fa-close"></i></a></td>
-                                    </tr>
-                                    </tbody>
-                                    <tfoot ng-show="editMode">
-                                    <tr>
-                                        <td><input type="text" data-ng-model="researcher.name" class="form-control"></td>
-                                        <td>&nbsp;&nbsp;<a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addResearcher();">{{ 'ADD' | translate }}</a></td>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3">{{ 'CURATORIAL_UNIT_LODGE' | translate }}</label>
-                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.curatorialLodge"></div>
-                        </div>
-
-                        <div ng-show="!editMode" class="form-group">
-                            <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
-                            <div class="col-sm-9">
-                                <a href="{{collection.webSite}}" target="_blank">{{ collection.webSiteName }}</a>
-                            </div>
-                        </div>
-
-                        <div ng-show="editMode" class="form-group">
-                            <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
-                            <div class="col-sm-9">
-                                <span><em>{{ 'TITLE' | translate }}</em></span>
-                                <input type="text" class="form-control" data-ng-model="collection.webSiteName">
-                                <span><em>{{ 'URL' | translate }}</em></span>
-                                <input type="text" class="form-control" data-ng-model="collection.webSite">
-                            </div>
-                        </div>
-
-                        <div ng-show="editMode" class="form-group">
-                            <label class="col-sm-3"><em style="font-weight: 100">* {{ 'REQUIRED_FIELDS' | translate }}</em></label>
-                            <div class="col-sm-9">&nbsp;</div>
-                        </div>
-
                     </div>
                 </form>
             </div>
+        </div><br/>
 
-            <div class="col-md-4">
-                <collection-image></collection-image>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="result-list">
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <input class="chk-species" type="checkbox" /><label>&nbsp;</label><a class="checkUncheck" href="javascript:" ng-click="checkAndUnCheck()">Select all</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <span><strong>234</strong>&nbsp;results for Sample</span>
+                        </div>
+                        <div class="col-sm-8">
+                            <a class="btn btn-small btn-primary pull-right btn-white save-form"><i class="fa fa-plus-circle"></i><strong>Add selected sample(s)</strong></a>
+                            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12"><hr/></div>
+                    <div class="list-item">
+                        <div class="col-sm-12">
+                            <h6><input class="chk-species" type="checkbox" /><label>&nbsp;</label><a data-ui-sref="specie({id:sp.id})">Test 123 132 123</a></h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12"><hr/></div>
+                </div>
             </div>
-
         </div>
 
-        <hr/>
-
+        <div class="row" align="center">
+            <div class="col-md-4">&nbsp;</div>
+            <div class="col-md-4">
+                <nav>
+                    <ul class="pagination">
+                        <li ng-class="{disabled: collection.page.number === 0}">
+                            <a href="javascript:" ng-click="(collection.page.number === 0) || load(collection.page.number - 1, collection.page.size)" aria-label="Previous">
+                                <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-class="{disabled: collection.page.number === collection.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(collection.page.number === collection.page.totalPages - 1) || load(collection.page.number + 1, collection.page.size)">{{collection.page.number + 1}}</a></li>
+                        <li ng-class="{disabled: collection.page.number + 2 >= collection.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(collection.page.number + 2 >= collection.page.totalPages - 1) || load(collection.page.number + 2, collection.page.size)">{{collection.page.number + 2}}</a></li>
+                        <li ng-class="{disabled: collection.page.number + 3 >= collection.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(collection.page.number + 3 >= collection.page.totalPages - 1) || load(collection.page.number + 3, collection.page.size)">{{collection.page.number + 3}}</a></li>
+                        <li ng-class="{disabled: collection.page.number + 4 >= collection.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(collection.page.number + 4 >= collection.page.totalPages - 1) || load(collection.page.number + 4, collection.page.size)">{{collection.page.number + 4}}</a></li>
+                        <li ng-class="{disabled: collection.page.number + 5 >= collection.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(collection.page.number + 5 >= collection.page.totalPages - 1) || load(collection.page.number + 5, collection.page.size)">{{collection.page.number + 5}}</a></li>
+                        <li ng-class="{disabled: collection.page.number === collection.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(collection.page.number === collection.page.totalPages - 1) || load(collection.page.number + 1, collection.page.size)" aria-label="Next">
+                                <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{collection.page.totalElements}}&nbsp;results</label></div>
+        </div>
 
     </div>
 

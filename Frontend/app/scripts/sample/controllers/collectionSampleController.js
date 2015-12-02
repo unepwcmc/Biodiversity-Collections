@@ -1,11 +1,23 @@
-define(['app'], function () {
+define(['app',
+    'sample/directives/sample.details.directive',
+    'sample/directives/sample.taxonomy.directive',
+    'sample/directives/sample.publications.directive',
+    'core/factory/sampleFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController', function ($scope, BaseController) {
+    return ['$scope','BaseController','Sample', function ($scope, BaseController, Sample) {
 
         angular.extend($scope, BaseController);
 
-        $scope.info('Welcome to Sample Page');
+        $scope.sample = new Sample();
+
+        $scope.createSample = true;
+        $scope.searchTerm = undefined;
+
+        $scope.search = function() {
+
+        };
+
     }];
 });

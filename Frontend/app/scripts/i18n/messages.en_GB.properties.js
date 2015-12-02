@@ -106,7 +106,10 @@ define([],function ( ) {
     'PLEASE_ADD_A_FILE':'Please add a file',
     'DOCUMENT_CREATED_SUCCESSFULLY':'Document created successfully',
     'DOCUMENT_UPDATED_SUCCESSFULLY':'Document updated successfully',
-    'DOCUMENT_DELETED_SUCCESSFULLY':'Document deleted successfully'
+    'DOCUMENT_DELETED_SUCCESSFULLY':'Document deleted successfully',
+    'CREATE_NEW_SAMPLE': 'Create a new sample',
+    'ADD_EXISTING_SAMPLE': 'Add an existing sample'
+
   }
 
 });

@@ -69,6 +69,21 @@ define(['angularAMD'], function (angularAMD) {
                         $rootScope.$broadcast("NETWORK_LOAD_ERROR");
                     });
             },
+            loadById: function( id ){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "networks/" + id)
+
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("NETWORK_LOADED_BY_ID");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("NETWORK_LOADED_BY_ID_ERROR");
+                    });
+            },
             search: function( query, page, size ) {
 
                 var self = this;
