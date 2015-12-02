@@ -8,7 +8,7 @@ To setup and run this project, do the following:
 
 ```
 npm install
-bowser install
+bower install
 grunt setup
 grunt build --force
 grunt devel
