@@ -10,11 +10,16 @@ define(['app', 'core/directives/core.map.directive','core/factory/biodiversityCo
             $scope.collections = new BiodiversityCollection();
             $scope.term = '';
             $scope.searchType = 'collection';
+            $scope.showHeaderForm = false;
 
+            /**
+             * Listener when the state is changed
+             */
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
+                $scope.showHeaderForm = toState.name != 'home';
                 blockingSpecialCharacters();
-            });
+            }, true);
 
             $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
                 $scope.term = userInputString;
