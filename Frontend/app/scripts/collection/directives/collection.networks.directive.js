@@ -55,7 +55,6 @@ define(['angularAMD','core/factory/networkFactory'], function (angularAMD) {
 
                                     }
                                     else{
-                                        console.log(data);
                                         toastr.success($translate.instant('NETWORK_ADDED_TO_COLLECTION_ERROR'), $translate.instant('ERROR'));
                                     }
                                 });
@@ -83,7 +82,6 @@ define(['angularAMD','core/factory/networkFactory'], function (angularAMD) {
 
                                 }
                                 else{
-                                    console.log(data);
                                     toastr.success($translate.instant('NETWORK_REMOVED_TO_COLLECTION_ERROR'), $translate.instant('ERROR'));
                                 }
                             });
