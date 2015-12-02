@@ -104,7 +104,9 @@ define([],function ( ) {
     'PLEASE_ADD_A_FILE':'Por favor, adicione um arquivo',
     'DOCUMENT_CREATED_SUCCESSFULLY':'Documento criado com sucesso',
     'DOCUMENT_UPDATED_SUCCESSFULLY':'Documento atualizado com sucesso',
-    'DOCUMENT_DELETED_SUCCESSFULLY':'Documento deletado com sucesso'
+    'DOCUMENT_DELETED_SUCCESSFULLY':'Documento deletado com sucesso',
+    'CREATE_NEW_SAMPLE': 'Criar um novo exemplar',
+    'ADD_EXISTING_SAMPLE': 'Adicionar um exemplar existente'
   }
 
 });
