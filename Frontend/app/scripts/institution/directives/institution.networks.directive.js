@@ -1,10 +1,10 @@
-define(['angularAMD','waypoints'], function (angularAMD) {
+define(['angularAMD','waypoints','core/factory/networkFactory'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('institutionNetworks', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies',
+    angularAMD.directive('institutionNetworks', ['$timeout', '$rootScope', 'Network', '$stateParams', '$window', '$http', '$cookies',
 
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies) {
+        function ($timeout, $rootScope, Network, $stateParams, $window, $http, $cookies) {
 
             return {
                 restrict: 'EA',
@@ -12,6 +12,18 @@ define(['angularAMD','waypoints'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
+                        $scope.page  = {totalElements : 0, number: 0, size: 10, totalPages: 0};
+                        $scope.networks = new Network();
+                        $scope.institution.loadNetworksByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+
+                        $scope.$on('INSTITUTION_NETWORK_LOADED', function( ) {
+                            console.log('Networks Loaded...');
+
+                            $scope.page.number = $scope.networks.number;
+                            $scope.page.size = $scope.networks.size;
+                            $scope.page.totalPages = $scope.networks.totalPages;
+                            $scope.page.totalElements = $scope.networks.totalElements;
+                        });
 
                     }],
                 link: function (scope, element, attrs) {

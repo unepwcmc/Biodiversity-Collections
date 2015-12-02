@@ -16,19 +16,14 @@ define(['angularAMD','waypoints','core/factory/biodiversityCollectionFactory'], 
                         $scope.collections = new BiodiversityCollection();
                         $scope.institution.loadCollectionsByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
 
-                        $scope.$on('INSTITUTION_COLLECTION_LOADED', function( data ) {
-                            console.log('Institution Loaded...');
+                        $scope.$on('INSTITUTION_COLLECTION_LOADED', function( ) {
+                            console.log('Collections Loaded...');
 
                             $scope.page.number = $scope.collections.number;
                             $scope.page.size = $scope.collections.size;
                             $scope.page.totalPages = $scope.collections.totalPages;
                             $scope.page.totalElements = $scope.collections.totalElements;
                         });
-
-                        $scope.paginateCollections = function(page, size){
-                            $scope.collections.loadByCollection( $stateParams.id , page, size);
-                        };
-
 
                     }],
                 link: function (scope, element, attrs) {

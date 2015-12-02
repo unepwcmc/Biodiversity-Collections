@@ -23,5 +23,8 @@ public interface NetworkRepository extends AbstractRepository<Network> {
     @RestResource(path = "autocomplete")
     List<Network> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name);
 
+    @RestResource(path = "institutionNetworks")
+    Page<Network> findByInstitutionsIdOrderByNameAsc(@Param("id") Long id, Pageable page);
+
     Page<Network> findByCollectionsNotInOrCollectionsIsNullAndNameContainingOrderByNameAsc( Collection<BiodiversityCollection> collection, String name , Pageable page);
 }

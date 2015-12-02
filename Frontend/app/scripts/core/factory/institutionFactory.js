@@ -122,6 +122,25 @@ define(['angularAMD'], function (angularAMD) {
                         $rootScope.$broadcast("INSTITUTION_COLLECTION_LOAD_ERROR");
                     });
             },
+            loadNetworksByInstitution: function( id, page, size ){
+
+                            var self = this;
+
+                            $http.get( $rootScope.getHost() + 'networks/search/institutionNetworks?id=' + id + "&page=" + page + "&size=" + size )
+
+                                .success(function (data) {
+                                    if (data.message == 'no matches found') {
+                                        $rootScope.$broadcast("INSTITUTION_NETWORK_LOAD_ERROR");
+                                    } else {
+                                        self.setData({networks: data });
+                                        $rootScope.$broadcast("INSTITUTION_NETWORK_LOADED");
+                                    }
+                                })
+                                .error(function (message) {
+                                    $log.error(message);
+                                    $rootScope.$broadcast("INSTITUTION_NETWORK_LOAD_ERROR");
+                                });
+                        },
         };
 
         return Institution;
