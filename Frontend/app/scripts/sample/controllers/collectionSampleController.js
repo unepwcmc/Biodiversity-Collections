@@ -12,8 +12,7 @@ define(['app',
 
         $scope.sample = new Sample();
 
-        $rootScope.editMode = false;
-
+        $rootScope.editMode = true;
         $scope.createSample = true;
         $scope.searchTerm = '';
         $scope.page = 0;
