@@ -13,7 +13,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="network in networks.content">
+                        <tr ng-repeat="network in institution.networks._embedded.networks">
                             <td>
                                 <p class="text-left small"><strong>{{network.name}}  | id: {{network.id}}</strong><p>
                                 <p class="text-justify small">{{network.description}}</p>

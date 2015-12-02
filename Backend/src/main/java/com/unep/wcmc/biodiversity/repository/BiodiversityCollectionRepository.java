@@ -20,4 +20,7 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
     @RestResource(path = "autocomplete")
     List<BiodiversityCollection> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name);
 
+    @RestResource(path = "institutions")
+    List<BiodiversityCollection> findByInstitutionIdOrderByNameAsc(@Param("id") Long id, Pageable page);
+
 }

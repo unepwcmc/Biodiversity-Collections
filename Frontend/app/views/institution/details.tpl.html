@@ -81,7 +81,7 @@
                          <div ng-show="!editMode" class="form-group">
                              <label class="col-sm-3">{{ 'INSTITUTION_WEBSITE' | translate }}</label>
                              <div class="col-sm-9">
-                                 <a href="{{institution.webSite}}" target="_blank">{{ institution.webSiteName }}</a>
+                                 <a href="{{institution.webSite}}" target="_blank">{{ institution.webSite }}</a>
                              </div>
                          </div>
 
@@ -89,7 +89,7 @@
                              <label class="col-sm-3">{{ 'INSTITUTION_WEBSITE' | translate }}</label>
                              <div class="col-sm-9">
                                  <span><em>{{ 'TITLE' | translate }}</em></span>
-                                 <input type="text" class="form-control" data-ng-model="institution.webSiteName">
+                                 <input type="text" class="form-control" data-ng-model="institution.webSite">
                                  <span><em>{{ 'URL' | translate }}</em></span>
                                  <input type="text" class="form-control" data-ng-model="institution.webSite">
                              </div>
