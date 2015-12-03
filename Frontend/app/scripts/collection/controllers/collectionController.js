@@ -4,6 +4,7 @@ define(['app','collection/directives/collection.networks.directive',
               'collection/directives/collection.samples.directive',
               'collection/directives/collection.specimens.directive',
               'collection/directives/collection.occurrence.directive',
+              'collection/directives/collection.contact.directive',
               'core/directives/core.breadcrumbs.directive',
               'core/factory/biodiversityCollectionFactory'], function () {
 
