@@ -34,7 +34,7 @@ public class SwaggerConfig {
                         "This service provides a JSON representation of the Biodiversity Collections API",
                         null, null, null, null))
                         // Map the specific URL patterns into Swagger
-                .includePatterns("/*");
+                .includePatterns("/*.*");
     }
 
 }
