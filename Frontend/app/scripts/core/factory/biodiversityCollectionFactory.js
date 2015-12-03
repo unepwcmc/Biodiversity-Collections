@@ -212,6 +212,22 @@ define(['angularAMD'], function (angularAMD) {
                         if(callback)
                             callback( data, status, headers, config )
                     });
+            },
+            addSamples: function( id, samples, callback){
+                var self = this;
+                $http.post( $rootScope.getHost() + "collections/" + id + "/samples", samples )
+                    .success(function ( data, status, headers, config ) {
+                        self.setData(data);
+                        if(callback)
+                            callback( data, status, headers, config );
+                        $rootScope.$broadcast("BIODIVERSITY_SAMPLES_ADDED");
+                    })
+                    .error(function ( data, status, headers, config ) {
+                        $log.error(data.message);
+                        if(callback)
+                            callback( data, status, headers, config );
+                        $rootScope.$broadcast("BIODIVERSITY_SAMPLES_ADD_ERROR");
+                    });
             }
         };
 

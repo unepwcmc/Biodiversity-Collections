@@ -2,15 +2,17 @@ define(['app',
     'sample/directives/sample.details.directive',
     'sample/directives/sample.taxonomy.directive',
     'sample/directives/sample.publications.directive',
-    'core/directives/core.breadcrumbs.directive'], function () {
+    'core/directives/core.breadcrumbs.directive',
+    'core/factory/sampleFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController', function ($scope, BaseController) {
+    return ['$scope','$stateParams','BaseController','Sample',
+        function ($scope, $stateParams, BaseController, Sample) {
 
         angular.extend($scope, BaseController);
 
-        $scope.info('Welcome to Sample Page');
+        $scope.sample = new Sample();
 
         /**
          * Listener when the view is loaded
@@ -19,6 +21,7 @@ define(['app',
             console.log('view Content Loaded...');
 
             $('#loader-wrapper').fadeToggle('400');
+            $scope.sample.get($stateParams.id);
         });
     }];
 });

@@ -106,7 +106,11 @@ define([],function ( ) {
     'DOCUMENT_UPDATED_SUCCESSFULLY':'Documento atualizado com sucesso',
     'DOCUMENT_DELETED_SUCCESSFULLY':'Documento deletado com sucesso',
     'CREATE_NEW_SAMPLE': 'Criar um novo exemplar',
-    'ADD_EXISTING_SAMPLE': 'Adicionar um exemplar existente'
+    'ADD_EXISTING_SAMPLE': 'Adicionar um exemplar existente',
+    'ADD_SELECTED_SAMPLES': 'Adicionar exemplar(es) selecionado(s)',
+    'SELECT_ALL': 'Selecionar todos',
+    'RESULTS_FOR_SAMPLE': 'resultados para Exemplar',
+    'BIODIVERSITY_SAMPLES_ADDED': 'Exemplares de biodiversidade adicionados.'
   }
 
 });

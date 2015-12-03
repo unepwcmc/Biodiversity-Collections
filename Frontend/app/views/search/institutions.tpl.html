@@ -1,10 +1,10 @@
 <div class="container">
 
-    <h4><strong>{{institution.page.totalElements}}</strong> {{ 'RESULT_FOR_INSTITUTION' | translate }}</h4>
+    <h4><strong>{{institution.totalElements}}</strong> {{ 'RESULT_FOR_INSTITUTION' | translate }}</h4>
 
     <div class="result-list">
 
-        <div ng-repeat="col in institution._embedded.institutions" class="list-item">
+        <div ng-repeat="col in institution.content" class="list-item">
             <h5><strong><a data-ui-sref="institution({id:col.id})">{{col.name}}</a></strong> | <a data-ui-sref="institution({id:col.id})">id: {{col.id}}</a></h5>
             <p>{{col.description}}</p>
         </div>
@@ -17,30 +17,30 @@
 
             <nav>
                 <ul class="pagination">
-                    <li ng-class="{disabled: institution.page.number === 0}">
-                        <a href="javascript:" ng-click="(institution.page.number === 0) || load(institution.page.number - 1, institution.page.size)" aria-label="Previous">
+                    <li ng-class="{disabled: institution.number === 0}">
+                        <a href="javascript:" ng-click="(institution.number === 0) || load(institution.number - 1, institution.size)" aria-label="Previous">
                             <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
                         </a>
                     </li>
-                    <li ng-class="{disabled: institution.page.number === institution.page.totalPages - 1}">
-                        <a href="javascript:" ng-click="(institution.page.number === institution.page.totalPages - 1) || load(institution.page.number + 1, institution.page.size)">{{institution.page.number + 1}}</a></li>
-                    <li ng-class="{disabled: institution.page.number + 2 >= institution.page.totalPages - 1}">
-                        <a href="javascript:" ng-click="(institution.page.number + 2 >= institution.page.totalPages - 1) || load(institution.page.number + 2, institution.page.size)">{{institution.page.number + 2}}</a></li>
-                    <li ng-class="{disabled: institution.page.number + 3 >= institution.page.totalPages - 1}">
-                        <a href="javascript:" ng-click="(institution.page.number + 3 >= institution.page.totalPages - 1) || load(institution.page.number + 3, institution.page.size)">{{institution.page.number + 3}}</a></li>
-                    <li ng-class="{disabled: institution.page.number + 4 >= institution.page.totalPages - 1}">
-                        <a href="javascript:" ng-click="(institution.page.number + 4 >= institution.page.totalPages - 1) || load(institution.page.number + 4, institution.page.size)">{{institution.page.number + 4}}</a></li>
-                    <li ng-class="{disabled: institution.page.number + 5 >= institution.page.totalPages - 1}">
-                        <a href="javascript:" ng-click="(institution.page.number + 5 >= institution.page.totalPages - 1) || load(institution.page.number + 5, institution.page.size)">{{institution.page.number + 5}}</a></li>
-                    <li ng-class="{disabled: institution.page.number === institution.page.totalPages - 1}">
-                        <a href="javascript:" ng-click="(institution.page.number === institution.page.totalPages - 1) || load(institution.page.number + 1, institution.page.size)" aria-label="Next">
+                    <li ng-class="{disabled: institution.number === institution.totalPages - 1}">
+                        <a href="javascript:" ng-click="(institution.number === institution.totalPages - 1) || load(institution.number + 1, institution.size)">{{institution.number + 1}}</a></li>
+                    <li ng-class="{disabled: institution.number + 2 >= institution.totalPages - 1}">
+                        <a href="javascript:" ng-click="(institution.number + 2 >= institution.totalPages - 1) || load(institution.number + 2, institution.size)">{{institution.number + 2}}</a></li>
+                    <li ng-class="{disabled: institution.number + 3 >= institution.totalPages - 1}">
+                        <a href="javascript:" ng-click="(institution.number + 3 >= institution.totalPages - 1) || load(institution.number + 3, institution.size)">{{institution.number + 3}}</a></li>
+                    <li ng-class="{disabled: institution.number + 4 >= institution.totalPages - 1}">
+                        <a href="javascript:" ng-click="(institution.number + 4 >= institution.totalPages - 1) || load(institution.number + 4, institution.size)">{{institution.number + 4}}</a></li>
+                    <li ng-class="{disabled: institution.number + 5 >= institution.totalPages - 1}">
+                        <a href="javascript:" ng-click="(institution.number + 5 >= institution.totalPages - 1) || load(institution.number + 5, institution.size)">{{institution.number + 5}}</a></li>
+                    <li ng-class="{disabled: institution.number === institution.totalPages - 1}">
+                        <a href="javascript:" ng-click="(institution.number === institution.totalPages - 1) || load(institution.number + 1, institution.size)" aria-label="Next">
                             <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
                         </a>
                     </li>
                 </ul>
             </nav>
         </div>
-        <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{institution.page.totalElements}}&nbsp;results</label></div>
+        <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{institution.totalElements}}&nbsp;results</label></div>
 
     </div>
 

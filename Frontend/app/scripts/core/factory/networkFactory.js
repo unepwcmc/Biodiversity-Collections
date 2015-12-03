@@ -108,7 +108,6 @@ define(['angularAMD'], function (angularAMD) {
                         } else {
                             $rootScope.$broadcast("NETWORK_AUTOCOMPLETE_LOADED", data);
                             if (callback) {
-                                data._embedded.biodiversityCollections = data._embedded.networks;
                                 callback(data);
                             }
                         }

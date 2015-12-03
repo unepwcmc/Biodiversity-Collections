@@ -52,7 +52,7 @@ define(['app'], function (app) {
             },
             addSpecimen: function( collectionId , model, callback){
 
-console.log(model);
+                console.log(model);
                 $http.put( $rootScope.getHost() + "collections/add/specimen/" + collectionId, model)
 
                     .success(function (data) {

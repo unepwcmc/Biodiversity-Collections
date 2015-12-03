@@ -108,8 +108,11 @@ define([],function ( ) {
     'DOCUMENT_UPDATED_SUCCESSFULLY':'Document updated successfully',
     'DOCUMENT_DELETED_SUCCESSFULLY':'Document deleted successfully',
     'CREATE_NEW_SAMPLE': 'Create a new sample',
-    'ADD_EXISTING_SAMPLE': 'Add an existing sample'
-
+    'ADD_EXISTING_SAMPLE': 'Add an existing sample',
+    'ADD_SELECTED_SAMPLES': 'Add selected sample(s)',
+    'SELECT_ALL': 'Select all',
+    'RESULTS_FOR_SAMPLE': 'results for Sample',
+    'BIODIVERSITY_SAMPLES_ADDED': 'Biodiversity samples added.'
   }
 
 });

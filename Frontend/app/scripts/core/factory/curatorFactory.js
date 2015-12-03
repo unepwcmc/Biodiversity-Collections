@@ -35,7 +35,7 @@ define(['app'], function (app) {
 
                 var self = this;
 
-                $http.get( $rootScope.getHost() + 'curators'+ '?page=' +  page + '&size=' +   size)
+                $http.get( $rootScope.getHost() + 'curators' + '?page=' +  page + '&size=' +   size)
 
                     .success(function (data) {
                         if (data.message == 'no matches found') {

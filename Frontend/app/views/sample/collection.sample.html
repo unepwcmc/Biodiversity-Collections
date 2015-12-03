@@ -21,7 +21,7 @@
         </nav>
         <h4 id="collection-sample-bar-default">
             <strong>{{'ADD_NEW_SAMPLE' | translate}}</strong>
-            <a ng-show="createSample" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="createSample" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid" ng-click="create()"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
             <a ng-show="createSample" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
     </div>
@@ -72,19 +72,19 @@
                 <div class="result-list">
                     <div class="form-group">
                         <div class="col-sm-2">
-                            <input class="chk-species" type="checkbox"/><label>&nbsp;<a class="checkUncheck" href="javascript:" ng-click="checkAndUnCheck()">Select all</a></label>
+                            <input class="chk-species" type="checkbox"/><label>&nbsp;<a class="checkUncheck" href="javascript:" ng-click="checkAndUnCheck()">{{'SELECT_ALL' | translate}}</a></label>
                         </div>
                         <div class="col-sm-2">
-                            <span><strong>{{sample.page.totalElements}}</strong>&nbsp;results for Sample</span>
+                            <span><strong>{{sample.page.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
                         </div>
                         <div class="col-sm-8">
-                            <a class="btn btn-small btn-primary pull-right btn-white save-form"><i class="fa fa-plus-circle"></i><strong>Add selected sample(s)</strong></a>
+                            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
                             <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong>{{ 'CANCEL' | translate }}</strong></a>
                         </div>
                     </div>
                     <div class="col-sm-12"><hr/></div>
                     <div class="list-item col-sm-12" ng-repeat="sample in sample._embedded.samples" style="margin-top: 10px;">
-                         <input class="chk-species" type="checkbox" /><label>&nbsp;<a data-ui-sref="specie({id:sp.id})"><strong>{{sample.name}}</strong></label>&nbsp;|&nbsp;id:{{sample.id}}</a>
+                         <input class="chk-samples" type="checkbox" value="{{sample.id}}"/><label>&nbsp;<a data-ui-sref="sample({id: sample.id})"><strong>{{sample.name}}</strong></label>&nbsp;|&nbsp;id:{{sample.id}}</a>
                     </div>
                     <div class="col-sm-12"><hr/></div>
                 </div>
@@ -119,7 +119,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{sample.page.totalElements}}&nbsp;results</label></div>
+            <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{sample.page.totalElements}}&nbsp;{{'RESULTS' | translate}}</label></div>
         </div>
 
     </div>
