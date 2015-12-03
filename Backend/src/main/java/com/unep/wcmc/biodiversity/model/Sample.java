@@ -21,33 +21,27 @@ public class Sample implements BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "collection_id")
-    @RestResource(exported = false)
     @JsonIgnore
     private BiodiversityCollection collection;
 
     @ManyToOne
     @JoinColumn(name = "curator_id")
-    @RestResource(exported = false)
     private Curator curator;
 
     @ManyToOne
     @JoinColumn(name = "institution_id")
-    @RestResource(exported = false)
     private Institution institution;
 
     @OneToOne
     @JoinColumn(name = "taxonomy_id")
-    @RestResource(exported = false)
     private Taxonomy taxonomy;
 
     @OneToMany
     @JoinColumn(name = "sample_id")
-    @RestResource(exported = false)
     private Set<Document> documents;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "image_id")
-    @RestResource(exported = false)
     private Image image;
 
     @Override

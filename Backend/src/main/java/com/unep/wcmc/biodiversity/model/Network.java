@@ -19,8 +19,6 @@ public class Network implements BaseEntity {
     @Column(columnDefinition = "text")
     private String description;
 
-    private String boardMembers;
-
     private boolean status;
 
     @OneToOne(orphanRemoval = true)
@@ -35,6 +33,7 @@ public class Network implements BaseEntity {
     @JoinTable(name = "network_biodiversity_collection",
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "collection_id"))
+    @RestResource(exported = false)
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany
@@ -42,6 +41,11 @@ public class Network implements BaseEntity {
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
     private Set<Institution> institutions;
+
+    @ElementCollection
+    @CollectionTable(name = "board_members", joinColumns = @JoinColumn(name = "network_id"))
+    @RestResource(exported = false)
+    private Set<Member> boardMembers;
 
     @Override
     public Long getId() {
@@ -69,11 +73,11 @@ public class Network implements BaseEntity {
         this.description = description;
     }
 
-    public String getBoardMembers() {
+    public Set<Member> getBoardMembers() {
         return boardMembers;
     }
 
-    public void setBoardMembers(String boardMembers) {
+    public void setBoardMembers(Set<Member> boardMembers) {
         this.boardMembers = boardMembers;
     }
 
