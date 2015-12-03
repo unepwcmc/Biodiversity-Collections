@@ -1,4 +1,4 @@
-define(['angularAMD','waypoints'], function (angularAMD) {
+define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -14,6 +14,17 @@ define(['angularAMD','waypoints'], function (angularAMD) {
 
                         $scope.navigationBar = false;
                         $scope.disableAutocomplete = true;
+                        $scope.member = {};
+
+                        $scope.addMember = function(){
+                            var members = $scope.network.boardMembers;
+                            members[members.length] = $scope.member;
+                            $scope.member = {};
+                        };
+
+                        $scope.deleteMember = function( index ){
+                            $scope.network.boardMembers.splice(index, 1);
+                        };
                     }],
                 link: function (scope, element, attrs) {
 

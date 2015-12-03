@@ -117,6 +117,37 @@ define(['angularAMD'], function (angularAMD) {
                         $log.error(message);
                         $rootScope.$broadcast("NETWORK_AUTOCOMPLETE_LOAD_ERROR");
                     });
+            },
+            update: function () {
+
+                $http.put( $rootScope.getHost() + "networks/" + this.id, this)
+                    .success(function (data) {
+                        $rootScope.$broadcast("NETWORK_UPDATED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            addImage: function( data, callback ){
+                var self = this;
+                var fd = new FormData();
+                fd.append('file', data);
+
+                $http.post($rootScope.getHost() + "networks/" + this.id + "/media", fd, {
+                    headers : {
+                        'Content-Type' : undefined
+                    }
+                }).success(function (data, status, headers, config) {
+                        self.setData(data);
+                        $rootScope.$broadcast("IMAGE_ADDED");
+                        if(callback)
+                            callback( data, status, headers, config)
+                    })
+                    .error(function (data, status, headers, config) {
+                        $log.error( data);
+                        if(callback)
+                            callback( data, status, headers, config );
+                    });
             }
         };
 

@@ -2,12 +2,24 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'COLLECTIONS' | translate }}</strong></h5></div>
-            <div class="col-md-8">
-                <img src="images/network_collections.png" style="width: 100%;"/>
+            <div class="col-md-5">
+                <map height="500px" width="100%"></map>
             </div>
-
-            <div class="col-md-4">
-                <!--<collection-image></collection-image>-->
+            <div class="col-md-5" style="max-height: 500px; overflow-y: scroll;">
+                <div class="result-list">
+                    <div class="list-item" ng-repeat="collection in network.collections" style="margin-top: 10px;">
+                        <div class="col-md-1">
+                            <span class="fa-stack fa-1x">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <strong class="fa-stack-1x text-primary" style="color: white;">{{$index + 1}}</strong>
+                            </span>
+                        </div>
+                        <div class="col-md-11">
+                            <a ui-sref="collection({id: collection.id})"><label>{{collection.name}}</label>
+                            <h6>{{collection.institution.name}}</h6></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

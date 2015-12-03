@@ -43,7 +43,8 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $edit_form.hide();
                     $edit_mode.hide();
 
-                    $form = $(element).find('form.view-mode');
+                    //$form = $(element).find('form.view-mode');
+                    $form = $('form.view-mode');
                     $elements = 'textarea,input[type="text"],input[type="email"],input[type="password"],select';
 
                     if ($form.hasClass('view-mode')) {
@@ -66,8 +67,10 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
 
                     if ($(this).hasClass('cancel')) {
                         $rootScope.$broadcast("BIODIVERSITY_COLLECTION_RELOADED");
+                        $rootScope.$broadcast('ACTION_RELOADED');
                     } else {
                         $rootScope.$broadcast("BIODIVERSITY_COLLECTION_SAVE");
+                        $rootScope.$broadcast('ACTION_SAVE');
                     }
 
                     isEditing(false, element);
@@ -132,42 +135,5 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                 }, true);
             }
         };
-    }])
-    .directive('elastic', [
-        '$timeout', '$parse',
-        function($timeout, $parse) {
-            return {
-                restrict: 'A',
-                link: function($scope, element, attrs) {
-                    $scope.initialHeight = $scope.initialHeight || element[0].style.height;
-
-                    var resize = function(eventType) {
-                        //var paddingTop = Number($(element).css('padding-top').replace("px", "")) || 0,
-                        //    paddingBottom = Number($(element).css('padding-bottom').replace("px", "")) || 0,
-                        //    convertedPadding = paddingTop + paddingBottom,
-                        //    paddingToConsider = (eventType === 'input') ? convertedPadding : 0;
-
-                        element[0].style.height = $scope.initialHeight;
-                        var heightToUse = (element[0].scrollHeight !== 0) ? (element[0].scrollHeight) : 35;
-
-                        element[0].style.height = "" + heightToUse + "px";
-                    };
-
-                    var modelValue = $parse(attrs.ngModel);
-                    $scope.$watch(modelValue, function(value) {
-                        if (value) {
-                            resize();
-                        }
-                    });
-
-                    element.on("input change paste cut click", function(evt) {
-                        resize(evt.type);
-                    });
-
-                    $timeout(resize, 0);
-                }
-            };
-        }
-    ])
-    ;
+    }]);
 });

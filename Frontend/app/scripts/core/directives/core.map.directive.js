@@ -11,7 +11,7 @@ define(['angularAMD'], function (angularAMD) {
 
         return {
             restrict: 'E',
-            scope: { width:'=', height: '='},
+            scope: { width:'@', height: '@'},
             templateUrl: 'views/core/map.tpl.html',
 
             controller: ['$scope', '$rootScope', '$stateParams', 'leafletData', '$translate',

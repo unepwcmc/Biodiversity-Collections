@@ -1,4 +1,4 @@
-define(['angularAMD','waypoints'], function (angularAMD) {
+define(['angularAMD','waypoints','core/directives/core.map.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -12,6 +12,9 @@ define(['angularAMD','waypoints'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
+                        $scope.address1 = '';
+                        $scope.address2 = '';
+                        $scope.address3 = '';
 
                     }],
                 link: function (scope, element, attrs) {

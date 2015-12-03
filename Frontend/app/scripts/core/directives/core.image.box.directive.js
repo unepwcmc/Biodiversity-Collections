@@ -8,10 +8,14 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
             return {
 
                 restrict: 'EA',
-                templateUrl: 'views/core/image.tpl.html',
+                templateUrl: 'views/core/image.box.tpl.html',
                 scope: { title: '@', image: '@', id: '@' },
                 controller: ['$scope', '$http', '$rootScope', '$state', '$q', '$stateParams', '$translate',
                     function( $scope, $http, $rootScope, $state, $q, $stateParams, $translate ) {
+
+                        $rootScope.$watch('editMode', function(newValue, oldValue){
+                            $scope.editMode = $rootScope.editMode;
+                        },true);
 
                         loadImage();
 

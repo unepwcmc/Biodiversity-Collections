@@ -12,6 +12,7 @@ define(
         'core/directives/core.translate.directive',
         'core/directives/core.main.directive',
         'core/directives/core.edit.form.directive',
+        'core/directives/core.elastic.directive',
         'core/directives/core.on.finish.render.directive',
         'core/directives/core.search.box.directive',
         'core/filters/core.pagination.filter',
