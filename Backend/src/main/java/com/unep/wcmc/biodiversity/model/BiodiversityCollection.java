@@ -32,6 +32,9 @@ public class BiodiversityCollection implements BaseEntity {
     @Enumerated(EnumType.STRING)
     private CollectionType type;
 
+    @Embedded
+    private Contact contact;
+
     @ManyToOne
     @JoinColumn(name = "master_id")
     private BiodiversityCollection master;
@@ -118,6 +121,14 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setType(CollectionType type) {
         this.type = type;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public BiodiversityCollection getMaster() {
