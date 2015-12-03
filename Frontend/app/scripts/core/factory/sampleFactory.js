@@ -80,7 +80,7 @@ define(['app'], function (app) {
                     });
             },
             save: function () {
-                $http.post( $rootScope.getHost() + "samples/", this)
+                $http.post( $rootScope.getHost() + "samples", this)
                     .success(function (data) {
                         $rootScope.$broadcast("SAMPLE_SAVED");
                     })
