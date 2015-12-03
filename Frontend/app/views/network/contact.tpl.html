@@ -14,9 +14,9 @@
                         <div class="form-group">
                             <label class="col-sm-3">{{ 'ADDRESS' | translate }}</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" data-ng-model="address1">
-                                <input type="text" class="form-control" data-ng-model="address2">
-                                <input type="text" class="form-control" data-ng-model="address3">
+                                <input type="text" class="form-control" data-ng-model="network.contact.address1">
+                                <input type="text" class="form-control" data-ng-model="network.contact.address2">
+                                <input type="text" class="form-control" data-ng-model="network.contact.address3">
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@
                 </form>
             </div>
             <div class="col-md-4">
-                <map height="250px" weigth="300px"></map>
+                <map height="250px" weigth="300px" address="fullAddress"></map>
             </div>
         </div>
 

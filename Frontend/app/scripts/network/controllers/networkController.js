@@ -17,6 +17,7 @@ define(['app',
 
         $scope.network = new Network();
 
+
         /**
          * Listener when the view is loaded
          */

@@ -11,13 +11,34 @@ define(['angularAMD'], function (angularAMD) {
 
         return {
             restrict: 'E',
-            scope: { width:'@', height: '@'},
+            scope: { width:'@', height: '@', address: '='},
             templateUrl: 'views/core/map.tpl.html',
 
-            controller: ['$scope', '$rootScope', '$stateParams', 'leafletData', '$translate',
-              function($scope, $rootScope, $stateParams, leafletData, $translate){
+            controller: ['$scope', '$rootScope', '$stateParams', 'leafletData', '$translate', '$http',
+              function($scope, $rootScope, $stateParams, leafletData, $translate, $http){
 
                   $scope.markers = [];
+
+                  $scope.$watch('address', function(newValue, oldValue){
+                      if (newValue !== undefined && newValue !== '') {
+                          $http.get('http://maps.google.com/maps/api/geocode/json?address=' + $scope.address)
+                              .success(function (data) {
+                                  if (data.status == 'OK') {
+                                      angular.extend($scope, {
+                                          markers: {
+                                              address: {
+                                                  lat: data.results[0].geometry.location.lat,
+                                                  lng: data.results[0].geometry.location.lng
+                                              }
+                                          }
+                                      });
+                                  }
+                              })
+                              .error(function (message) {
+
+                              });
+                      }
+                  },true);
 
                   angular.extend( $scope, {
                       layers: {
