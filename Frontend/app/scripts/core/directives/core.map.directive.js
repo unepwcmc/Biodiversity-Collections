@@ -11,7 +11,7 @@ define(['angularAMD'], function (angularAMD) {
 
         return {
             restrict: 'E',
-            scope: { width:'@', height: '@', address: '='},
+            scope: { width:'@', height: '@', name: '@', address: '=' },
             templateUrl: 'views/core/map.tpl.html',
 
             controller: ['$scope', '$rootScope', '$stateParams', 'leafletData', '$translate', '$http',
@@ -19,7 +19,7 @@ define(['angularAMD'], function (angularAMD) {
 
                   $scope.markers = [];
 
-                  $scope.$watch('address', function(newValue, oldValue){
+                  $scope.$watch('address', function(newValue, oldValue) {
                       if (newValue !== undefined && newValue !== '') {
                           $http.get('http://maps.google.com/maps/api/geocode/json?address=' + $scope.address)
                               .success(function (data) {
@@ -33,9 +33,6 @@ define(['angularAMD'], function (angularAMD) {
                                           }
                                       });
                                   }
-                              })
-                              .error(function (message) {
-
                               });
                       }
                   },true);
@@ -59,6 +56,14 @@ define(['angularAMD'], function (angularAMD) {
                           zoom: 3
                       },
                       defaults: {
+                      }
+                  });
+
+
+                  $rootScope.$on('MAP_POINTS_UPDATED', function(type, mapName, points) {
+                      if (mapName === $scope.name) {
+                          angular.extend($scope, { markers: points });
+                          invalidateSize();
                       }
                   });
 
