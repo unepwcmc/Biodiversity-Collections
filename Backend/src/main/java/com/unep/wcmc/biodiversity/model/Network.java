@@ -1,7 +1,7 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -23,7 +23,6 @@ public class Network implements BaseEntity {
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "image_id")
-    @RestResource(exported = false)
     private Image image;
 
     @Embedded
@@ -33,18 +32,18 @@ public class Network implements BaseEntity {
     @JoinTable(name = "network_biodiversity_collection",
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "collection_id"))
-    @RestResource(exported = false)
+    @JsonManagedReference
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany
     @JoinTable(name = "network_institution",
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
+    @JsonManagedReference
     private Set<Institution> institutions;
 
     @ElementCollection
     @CollectionTable(name = "board_members", joinColumns = @JoinColumn(name = "network_id"))
-    @RestResource(exported = false)
     private Set<Member> boardMembers;
 
     @Override

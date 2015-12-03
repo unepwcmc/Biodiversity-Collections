@@ -1,7 +1,8 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -36,41 +37,36 @@ public class BiodiversityCollection implements BaseEntity {
     private Contact contact;
 
     @ManyToOne
-    @JoinColumn(name = "master_id")
-    private BiodiversityCollection master;
-
-    @ManyToOne
     @JoinColumn(name = "curator_id")
-    @RestResource(exported = false)
     private Curator curator;
 
     @ManyToOne
     @JoinColumn(name = "institution_id")
-    @RestResource(exported = false)
+    @JsonManagedReference
     private Institution institution;
 
     @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<Network> networks;
 
     @ElementCollection
     @CollectionTable(name = "researcher", joinColumns = @JoinColumn(name = "collection_id"))
-    @RestResource(exported = false)
     private Set<Researcher> researchers;
 
     @OneToMany(mappedBy = "collection")
+    @JsonBackReference
     private Set<Sample> samples;
 
     @ElementCollection
     @CollectionTable(name = "specimen", joinColumns = @JoinColumn(name = "collection_id"))
-    @RestResource(exported = false)
     private Set<Specimen> specimens;
 
     @OneToMany(mappedBy = "collection")
+    @JsonBackReference
     private Set<Document> documents;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "image_id")
-    @RestResource(exported = false)
     private Image image;
 
     @Override
@@ -131,14 +127,6 @@ public class BiodiversityCollection implements BaseEntity {
         this.contact = contact;
     }
 
-    public BiodiversityCollection getMaster() {
-        return master;
-    }
-
-    public void setMaster(BiodiversityCollection master) {
-        this.master = master;
-    }
-
     public Curator getCurator() {
         return curator;
     }
@@ -180,11 +168,19 @@ public class BiodiversityCollection implements BaseEntity {
     }
 
     public Set<Sample> getSamples() {
-        return samples;
+        return samples == null? new HashSet<>(): this.samples;
     }
 
     public void setSamples(Set<Sample> samples) {
         this.samples = samples;
+    }
+
+    public void addSample(Sample sample) {
+        getSamples().add(sample);
+    }
+
+    public void removeSample(Sample sample) {
+        getSamples().remove(sample);
     }
 
     public Set<Document> getDocuments() {

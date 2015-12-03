@@ -39,7 +39,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-security")
-    compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.springframework:spring-aspects:4.1.6.RELEASE")
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("org.hibernate:hibernate-search-orm:5.2.0.Final")

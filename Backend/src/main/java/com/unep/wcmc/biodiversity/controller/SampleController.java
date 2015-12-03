@@ -23,8 +23,15 @@ public class SampleController extends AbstractController<Sample, SampleService> 
     private ImageService imageService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/collection/{collectionId}")
-    public Page<Sample> findAllSampleByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.findAllByCollection(biodiversityCollectionService.get(collectionId), pageable);
+    public Page<Sample> findAllSampleByCollection(@PathVariable Long collectionId,
+                                                  @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findAllByCollection(biodiversityCollectionService.get(collectionId), pageable);
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/search/name")
+    public Page<Sample> name(@RequestParam String name,
+                             @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findByNameContainingOrderByNameAsc(name, pageable);
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")

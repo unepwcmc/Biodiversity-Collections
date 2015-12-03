@@ -1,7 +1,6 @@
 package com.unep.wcmc.biodiversity.controller;
 
 import com.unep.wcmc.biodiversity.model.Attachment;
-import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
 import com.unep.wcmc.biodiversity.model.Document;
 import com.unep.wcmc.biodiversity.service.AttachmentService;
 import com.unep.wcmc.biodiversity.service.BiodiversityCollectionService;
@@ -33,7 +32,7 @@ public class DocumentController extends AbstractController<Document, DocumentSer
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/collection/{collectionId}")
     public Page<Document> findAllNetworkByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.findAllByCollection(biodiversityCollectionService.get(collectionId), pageable);
+        return service.getRepository().findAllByCollection(biodiversityCollectionService.get(collectionId), pageable);
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")

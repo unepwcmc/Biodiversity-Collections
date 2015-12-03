@@ -1,6 +1,7 @@
 package com.unep.wcmc.biodiversity.support;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface BaseService<T> {
 
@@ -18,7 +19,7 @@ public interface BaseService<T> {
      *
      * @return all entities
      */
-    List<T> list();
+    Page<T> list(Pageable pageable);
 
     /**
      * Deletes a given entity.

@@ -1,15 +1,13 @@
 package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.hibernate.annotations.*;
-import org.springframework.data.rest.core.annotation.RestResource;
+import org.hibernate.annotations.Cascade;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import java.io.IOException;
 import java.util.Set;
 
@@ -44,13 +42,11 @@ public class Document implements BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id")
-    @RestResource(exported = false)
     private Attachment attachment;
 
     @ManyToOne
     @JoinColumn(name = "collection_id")
-    @RestResource(exported = false)
-    @JsonIgnore
+    @JsonManagedReference
     private BiodiversityCollection collection;
 
     public Document(){}

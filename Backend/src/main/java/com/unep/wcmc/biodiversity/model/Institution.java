@@ -1,7 +1,8 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -31,14 +32,14 @@ public class Institution implements BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "institution_id")
-    @RestResource(exported = false)
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")
+    @JsonBackReference
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany(mappedBy = "institutions")
-    @RestResource(rel = "institutionNetworks")
+    @JsonBackReference
     private Set<Network> networks;
 
     @Override

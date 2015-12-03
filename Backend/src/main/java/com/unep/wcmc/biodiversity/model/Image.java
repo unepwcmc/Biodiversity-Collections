@@ -1,7 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -18,7 +17,6 @@ public class Image implements BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id")
-    @RestResource(exported = false)
     private Attachment attachment;
 
     public Image(){}

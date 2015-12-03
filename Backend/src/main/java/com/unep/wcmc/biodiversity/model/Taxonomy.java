@@ -11,37 +11,23 @@ public class Taxonomy implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "kingdom_id")
-    private Kingdom kingdom;
+    private String kingdom;
 
-    @ManyToOne
-    @JoinColumn(name = "phylum_id")
-    private Phylum phylum;
+    private String phylum;
 
-    @ManyToOne
-    @JoinColumn(name = "class_id")
-    private HierarchyClass hierarchyClass;
+    private String hierarchyClass;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private HierarchyOrder order;
+    @Column(name = "hierarchyOrder")
+    private String order;
 
-    @ManyToOne
-    @JoinColumn(name = "family_id")
-    private Family family;
+    private String family;
 
-    @ManyToOne
-    @JoinColumn(name = "genus_id")
-    private Genus genus;
+    private String genus;
 
-    @Column(name = "subspecies")
     private String subspecies;
 
-    @Column(name = "species_epiteth")
     private String speciesEpiteth;
 
-    @Column(name = "scientific_name")
     private String scientificName;
 
     @Override
@@ -54,44 +40,52 @@ public class Taxonomy implements BaseEntity {
         this.id = id;
     }
 
-    public Kingdom getKingdom() {
+    public String getKingdom() {
         return kingdom;
     }
 
-    public void setKingdom(Kingdom kingdom) {
+    public void setKingdom(String kingdom) {
         this.kingdom = kingdom;
     }
 
-    public Phylum getPhylum() {
+    public String getPhylum() {
         return phylum;
     }
 
-    public void setPhylum(Phylum phylum) {
+    public void setPhylum(String phylum) {
         this.phylum = phylum;
     }
 
-    public HierarchyClass getHierarchyClass() {
+    public String getHierarchyClass() {
         return hierarchyClass;
     }
 
-    public void setHierarchyClass(HierarchyClass hierarchyClass) {
+    public void setHierarchyClass(String hierarchyClass) {
         this.hierarchyClass = hierarchyClass;
     }
 
-    public HierarchyOrder getOrder() {
+    public String getOrder() {
         return order;
     }
 
-    public void setOrder(HierarchyOrder order) {
+    public void setOrder(String order) {
         this.order = order;
     }
 
-    public Family getFamily() {
+    public String getFamily() {
         return family;
     }
 
-    public void setFamily(Family family) {
+    public void setFamily(String family) {
         this.family = family;
+    }
+
+    public String getGenus() {
+        return genus;
+    }
+
+    public void setGenus(String genus) {
+        this.genus = genus;
     }
 
     public String getSubspecies() {
@@ -100,14 +94,6 @@ public class Taxonomy implements BaseEntity {
 
     public void setSubspecies(String subspecies) {
         this.subspecies = subspecies;
-    }
-
-    public Genus getGenus() {
-        return genus;
-    }
-
-    public void setGenus(Genus genus) {
-        this.genus = genus;
     }
 
     public String getSpeciesEpiteth() {

@@ -1,13 +1,12 @@
 package com.unep.wcmc.biodiversity.support;
 
-import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
 
 /**
  * Abstract service that encapsulates all boilerplate code needed to
@@ -29,8 +28,8 @@ public abstract class AbstractService<E extends BaseEntity, R extends JpaReposit
 	}
 
 	@Override
-	public List<E> list() {
-		return Lists.newArrayList(repo.findAll());
+	public Page<E> list(Pageable pageable) {
+		return repo.findAll(pageable);
 	}
 
 	@Override
@@ -42,6 +41,10 @@ public abstract class AbstractService<E extends BaseEntity, R extends JpaReposit
 	@Override
 	public E get(Long id) {
 		return repo.findOne(id);
+	}
+
+	public R getRepository() {
+		return repo;
 	}
 
 }
