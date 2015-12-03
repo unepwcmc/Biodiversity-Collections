@@ -2,7 +2,6 @@ package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
@@ -38,9 +37,11 @@ public class Institution implements BaseEntity {
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")
+    @JsonIgnore
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany(mappedBy = "institutions")
+    @JsonIgnore
     private Set<Network> networks;
 
     @Override
