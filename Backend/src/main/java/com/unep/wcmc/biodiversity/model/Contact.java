@@ -22,6 +22,10 @@ public class Contact implements Serializable {
 
     private String country;
 
+    private Float latitude;
+
+    private Float longitude;
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -84,5 +88,21 @@ public class Contact implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
     }
 }
