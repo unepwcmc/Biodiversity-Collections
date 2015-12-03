@@ -75,7 +75,7 @@
                             <input class="chk-species" type="checkbox"/><label>&nbsp;<a class="checkUncheck" href="javascript:" ng-click="checkAndUnCheck()">{{'SELECT_ALL' | translate}}</a></label>
                         </div>
                         <div class="col-sm-2">
-                            <span><strong>{{sample.page.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
+                            <span><strong>{{sample.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
                         </div>
                         <div class="col-sm-8">
                             <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12"><hr/></div>
-                    <div class="list-item col-sm-12" ng-repeat="sample in sample._embedded.samples" style="margin-top: 10px;">
+                    <div class="list-item col-sm-12" ng-repeat="sample in sample.content" style="margin-top: 10px;">
                          <input class="chk-samples" type="checkbox" value="{{sample.id}}"/><label>&nbsp;<a data-ui-sref="sample({id: sample.id})"><strong>{{sample.name}}</strong></label>&nbsp;|&nbsp;id:{{sample.id}}</a>
                     </div>
                     <div class="col-sm-12"><hr/></div>
@@ -119,7 +119,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{sample.page.totalElements}}&nbsp;{{'RESULTS' | translate}}</label></div>
+            <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{sample.totalElements}}&nbsp;{{'RESULTS' | translate}}</label></div>
         </div>
 
     </div>
