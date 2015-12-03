@@ -1,6 +1,7 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Network implements BaseEntity {
 
     @Id
@@ -32,14 +34,12 @@ public class Network implements BaseEntity {
     @JoinTable(name = "network_biodiversity_collection",
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "collection_id"))
-    @JsonManagedReference
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany
     @JoinTable(name = "network_institution",
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
-    @JsonManagedReference
     private Set<Institution> institutions;
 
     @ElementCollection

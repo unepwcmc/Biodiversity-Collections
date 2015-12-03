@@ -46,7 +46,6 @@ public class Document implements BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "collection_id")
-    @JsonManagedReference
     private BiodiversityCollection collection;
 
     public Document(){}

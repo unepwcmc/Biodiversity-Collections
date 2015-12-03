@@ -1,12 +1,15 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Sample implements BaseEntity {
 
     @Id
@@ -20,7 +23,6 @@ public class Sample implements BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "collection_id")
-    @JsonManagedReference
     private BiodiversityCollection collection;
 
     @ManyToOne
@@ -31,7 +33,7 @@ public class Sample implements BaseEntity {
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "taxonomy_id")
     private Taxonomy taxonomy;
 

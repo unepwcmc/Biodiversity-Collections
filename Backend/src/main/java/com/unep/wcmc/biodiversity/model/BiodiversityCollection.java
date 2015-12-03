@@ -1,7 +1,8 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class BiodiversityCollection implements BaseEntity {
 
     @Id
@@ -42,11 +44,10 @@ public class BiodiversityCollection implements BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "institution_id")
-    @JsonManagedReference
     private Institution institution;
 
     @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     private Set<Network> networks;
 
     @ElementCollection
@@ -54,7 +55,7 @@ public class BiodiversityCollection implements BaseEntity {
     private Set<Researcher> researchers;
 
     @OneToMany(mappedBy = "collection")
-    @JsonBackReference
+    @JsonIgnore
     private Set<Sample> samples;
 
     @ElementCollection
@@ -62,7 +63,6 @@ public class BiodiversityCollection implements BaseEntity {
     private Set<Specimen> specimens;
 
     @OneToMany(mappedBy = "collection")
-    @JsonBackReference
     private Set<Document> documents;
 
     @OneToOne(orphanRemoval = true)

@@ -1,13 +1,16 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Institution implements BaseEntity {
 
     @Id
@@ -35,11 +38,9 @@ public class Institution implements BaseEntity {
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")
-    @JsonBackReference
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany(mappedBy = "institutions")
-    @JsonBackReference
     private Set<Network> networks;
 
     @Override
