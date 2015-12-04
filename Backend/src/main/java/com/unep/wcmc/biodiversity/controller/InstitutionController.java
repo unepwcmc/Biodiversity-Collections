@@ -1,21 +1,25 @@
 package com.unep.wcmc.biodiversity.controller;
 
+import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
 import com.unep.wcmc.biodiversity.model.Institution;
+import com.unep.wcmc.biodiversity.service.ImageService;
 import com.unep.wcmc.biodiversity.service.InstitutionService;
 import com.unep.wcmc.biodiversity.support.AbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/institutions")
 public class InstitutionController extends AbstractController<Institution, InstitutionService> {
+
+    @Autowired
+    private ImageService imageService;
 
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<Institution> name(@RequestParam String name,
@@ -26,6 +30,15 @@ public class InstitutionController extends AbstractController<Institution, Insti
     @RequestMapping(method= RequestMethod.GET, value="/search/autocompleteName")
     public List<Institution> autocomplete(@RequestParam String name) {
         return service.getRepository().findTop5ByNameContainingOrderByNameAsc(name);
+    }
+
+    @RequestMapping(method= RequestMethod.POST, value="/{id}/media")
+    public Institution uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+        Institution institution = service.get(id);
+        if (!file.isEmpty())
+            institution.setImage(imageService.save(file));
+
+        return service.save(institution);
     }
 
 }

@@ -46,6 +46,10 @@ public class Institution implements BaseEntity {
     @JsonIgnore
     private Set<Network> networks;
 
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "image_id")
+    private Image image;
+
     @Override
     public Long getId() {
         return id;
@@ -142,5 +146,13 @@ public class Institution implements BaseEntity {
 
     public void setWebSiteName(String webSiteName) {
         this.webSiteName = webSiteName;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
