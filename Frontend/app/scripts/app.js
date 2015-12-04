@@ -86,7 +86,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/institution/default.html',
                         controllerUrl: 'institution/controllers/institutionController',
                         ncyBreadcrumb: {
-                            label: '{{collection.name}}',
+                            label: '{{institution.name}}',
                             parent: function($scope) {
                                 return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
                             }
