@@ -3,6 +3,7 @@ define(['app',
     'institution/directives/institution.contact.directive',
     'institution/directives/institution.collections.directive',
     'institution/directives/institution.networks.directive',
+    'core/directives/core.image.box.directive',
     'core/directives/core.breadcrumbs.directive'], function () {
 
     'use strict';
@@ -58,8 +59,13 @@ define(['app',
             $scope.$on('INSTITUTION_UPDATED', function(){
                 console.log('updated');
 
-                $('#loader-wrapper').fadeToggle('400');
-                toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
+                if($scope.image != null){
+                    $scope.institution.addImage($scope.image);
+                }else{
+
+                    $('#loader-wrapper').fadeToggle('400');
+                    toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
+                }
             });
 
             /**
@@ -81,6 +87,22 @@ define(['app',
              */
             $scope.$on('SAVE_INSTITUTION', function() {
                 setStateButton(false)
+            });
+
+            /**
+             * Listener when a file is loaded from the user.
+             */
+            $scope.$on('ATTACH_FILE', function( evt, data ){
+                $scope.image = data;
+            });
+
+            /**
+             * Listener when the image was added to the biodiversity collection model.
+             */
+            $scope.$on('INSTITUTION_IMAGE_ADDED', function(){
+                $scope.image = null;
+                $('#loader-wrapper').fadeToggle('400');
+                toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
             });
 
             function setStateButton( status ){

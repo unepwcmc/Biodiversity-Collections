@@ -60,6 +60,28 @@ define(['angularAMD'], function (angularAMD) {
                         $log.error(message);
                     });
             },
+            addImage: function( data, callback ){
+
+                var self = this;
+                var fd = new FormData();
+                fd.append('file', data);
+
+                $http.post($rootScope.getHost() + "institutions/" + this.id + "/media", fd, {
+                    headers : {
+                        'Content-Type' : undefined
+                    }
+                }).success(function (data, status, headers, config) {
+                    self.setData(data);
+                    $rootScope.$broadcast("INSTITUTION_IMAGE_ADDED");
+                    if(callback)
+                        callback( data, status, headers, config)
+                })
+                    .error(function (data, status, headers, config) {
+                        $log.error( data);
+                        if(callback)
+                            callback( data, status, headers, config );
+                    });
+            },
             get: function( id){
 
                 var self = this;
