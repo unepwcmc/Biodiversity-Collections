@@ -12,6 +12,16 @@ define(['angularAMD','waypoints'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
+                        $scope.addCurator = function(){
+                            var curators = $scope.institution.curators;
+                            curators[curators.length] = $scope.curator;
+                            $scope.curator = {};
+                        };
+
+                        $scope.deleteCurator = function( index ){
+                            $scope.institution.curators.splice(index, 1);
+                        };
+
 
                     }],
                 link: function (scope, element, attrs) {

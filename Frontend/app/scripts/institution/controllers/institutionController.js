@@ -38,6 +38,9 @@ define(['app',
                 console.log('institution updating..');
 
                 $('#loader-wrapper').fadeToggle('400');
+
+                console.log($scope.institution);
+
                 $scope.institution.update();
             });
 
