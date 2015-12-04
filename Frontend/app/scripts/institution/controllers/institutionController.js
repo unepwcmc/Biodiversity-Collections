@@ -12,7 +12,9 @@ define(['app',
         function ($scope, BaseController, $stateParams, $http, $rootScope, Institution, toastr, $translate, $state) {
             angular.extend($scope, BaseController);
 
-            $scope.info('Welcome to Sample Page');
+            $rootScope.editMode = false;
+            $scope.image = null;
+            $scope.fromState = 'home';
             $scope.institution = new Institution();
 
             /**
@@ -28,6 +30,60 @@ define(['app',
 
                 $('#loader-wrapper').fadeToggle('400');
             });
+
+            /**
+             * Should be fired when the button save is click
+             */
+            $scope.$on('SAVE_INSTITUTION', function(){
+                console.log('institution updating..');
+
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.institution.update();
+            });
+
+
+            $scope.$on('BIODIVERSITY_COLLECTION_RELOADED', function(){
+                console.log('edit form canceling...');
+                $state.go($state.current, $stateParams, {reload: true, inherit: false});
+            });
+
+            /**
+             * Listener when the collection factory update the
+             * biodiversity institution model.
+             *
+             */
+            $scope.$on('INSTITUTION_UPDATED', function(){
+                console.log('updated');
+
+                $('#loader-wrapper').fadeToggle('400');
+                toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
+            });
+
+            /**
+             * Listener when the button edit is clicked
+             */
+            $scope.$on('EDIT_INSTITUTION', function() {
+                setStateButton(true);
+            });
+
+            /**
+             * Listener when the button cancel is clicked
+             */
+            $scope.$on('CANCEL_EDIT_INSTITUTION', function() {
+                setStateButton(false);
+            });
+
+            /**
+             * Listener when the button save is clicked
+             */
+            $scope.$on('SAVE_INSTITUTION', function() {
+                setStateButton(false)
+            });
+
+            function setStateButton( status ){
+                $rootScope.editMode = status;
+                $scope.$apply();
+            }
         }
     ];
 });

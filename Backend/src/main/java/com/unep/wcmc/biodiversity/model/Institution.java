@@ -29,6 +29,8 @@ public class Institution implements BaseEntity {
 
     private String webSite;
 
+    private String webSiteName;
+
     @Embedded
     private Contact contact;
 
@@ -132,5 +134,13 @@ public class Institution implements BaseEntity {
 
     public void setNetworks(Set<Network> networks) {
         this.networks = networks;
+    }
+
+    public String getWebSiteName() {
+        return webSiteName;
+    }
+
+    public void setWebSiteName(String webSiteName) {
+        this.webSiteName = webSiteName;
     }
 }

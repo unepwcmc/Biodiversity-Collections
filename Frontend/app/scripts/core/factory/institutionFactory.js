@@ -50,6 +50,16 @@ define(['angularAMD'], function (angularAMD) {
                             $rootScope.$broadcast("INSTITUTION_LOAD_ERROR");
                         });
             },
+            update: function () {
+
+                $http.put( $rootScope.getHost() + "institutions/" + this.id, this)
+                    .success(function (data) {
+                        $rootScope.$broadcast("INSTITUTION_UPDATED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
             get: function( id){
 
                 var self = this;

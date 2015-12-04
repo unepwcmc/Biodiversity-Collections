@@ -1,29 +1,42 @@
 <section class="page-content" edit-form>
 
     <!-- Loading screen -->
-    <!--<div id="loader-wrapper" class="loading">-->
-        <!--<div id="loader"></div>-->
-    <!--</div>-->
+    <div id="loader-wrapper" class="loading">
+        <div id="loader"></div>
+    </div>
 
     <div class="container">
-        <h4 id="network-bar-default">
+        <nav id="institution-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <h2 class="navbar-text"><strong>{{'EDIT_INSTITUTION' | translate}}</strong></h2>
 
-                <strong ng-show="!editMode" >{{ institution.name }}</strong>
-                <strong ng-show="editMode" >{{ 'EDIT_INSTITUTION' | translate }}</strong> <span>
-                <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'INSTITUTION'| translate}}</strong></button></span>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-transparent btn-edit-institution-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <h4 id="institution-bar-default">
 
-            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{ 'SAVE_CHANGES' | translate }}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
+            <strong ng-show="!editMode" >{{ institution.name }}</strong>
+            <strong ng-show="editMode" >{{'EDIT_INSTITUTION' | translate}}</strong> <span>
+                <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'INSTITUTIONS'| translate}}</strong></button></span>
+
+            <a id="edit-institution" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>
     </div>
-
     <div class="container">
          <div class="row">
              <div class="col-md-8">
-                 <form action="#" class="form-horizontal view-mode form-block" role="form" name="collection_form" novalidate>
+                 <form action="#" class="form-horizontal view-mode form-block" role="form" name="institution_form" novalidate>
                      <div class="small-field">
 
                          <div ng-show="!editMode" class="form-group">
@@ -81,15 +94,15 @@
                          <div ng-show="!editMode" class="form-group">
                              <label class="col-sm-3">{{ 'INSTITUTION_WEBSITE' | translate }}</label>
                              <div class="col-sm-9">
-                                 <a href="{{institution.webSite}}" target="_blank">{{ institution.webSite }}</a>
+                                 <a href="{{institution.webSite}}" target="_blank">{{ institution.webSiteName }}</a>
                              </div>
                          </div>
 
                          <div ng-show="editMode" class="form-group">
-                             <label class="col-sm-3">{{ 'INSTITUTION_WEBSITE' | translate }}</label>
+                             <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
                              <div class="col-sm-9">
                                  <span><em>{{ 'TITLE' | translate }}</em></span>
-                                 <input type="text" class="form-control" data-ng-model="institution.webSite">
+                                 <input type="text" class="form-control" data-ng-model="institution.webSiteName">
                                  <span><em>{{ 'URL' | translate }}</em></span>
                                  <input type="text" class="form-control" data-ng-model="institution.webSite">
                              </div>
