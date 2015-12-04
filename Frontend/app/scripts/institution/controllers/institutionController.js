@@ -13,7 +13,7 @@ define(['app',
             angular.extend($scope, BaseController);
 
             $scope.info('Welcome to Sample Page');
-            $scope.institution = undefined;
+            $scope.institution = new Institution();
 
             /**
              * Listener when the view is loaded
@@ -21,10 +21,12 @@ define(['app',
             $scope.$on('$viewContentLoaded', function() {
                 console.log('view Content Loaded...');
 
-                $scope.institution = new Institution();
                 $scope.institution.get( $stateParams.id );
-                $('#loader-wrapper').fadeToggle('400');
+            });
 
+            $scope.$on('INSTITUTION_LOADED', function(){
+
+                $('#loader-wrapper').fadeToggle('400');
             });
         }
     ];

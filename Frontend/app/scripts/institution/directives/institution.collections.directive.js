@@ -1,10 +1,10 @@
-define(['angularAMD','waypoints','core/factory/biodiversityCollectionFactory'], function (angularAMD) {
+define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('institutionCollections', ['$timeout', '$rootScope', 'BiodiversityCollection', '$stateParams', '$window', '$http', '$cookies',
+    angularAMD.directive('institutionCollections', ['$timeout', '$rootScope' , '$stateParams',
 
-        function ($timeout, $rootScope, BiodiversityCollection, $stateParams, $window, $http, $cookies) {
+        function ($timeout, $rootScope , $stateParams) {
 
             return {
                 restrict: 'EA',
@@ -12,23 +12,24 @@ define(['angularAMD','waypoints','core/factory/biodiversityCollectionFactory'], 
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        $scope.page  = {totalElements : 0, number: 0, size: 10, totalPages: 0};
-                        $scope.collections = new BiodiversityCollection();
-                        $scope.institution.loadCollectionsByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+                        angular.extend( $scope.institution, { collections:{totalElements : 0, number: 0, size: 5, totalPages: 0}});
+                        $scope.institution.loadCollectionsByInstitution( $stateParams.id,  $scope.institution.collections.number, $scope.institution.collections.size);
 
-                        $scope.$on('INSTITUTION_COLLECTION_LOADED', function( ) {
+                        $scope.$on('INSTITUTION_COLLECTION_LOADED', function(  ) {
                             console.log('Collections Loaded...');
-
-                            $scope.page.number = $scope.collections.number;
-                            $scope.page.size = $scope.collections.size;
-                            $scope.page.totalPages = $scope.collections.totalPages;
-                            $scope.page.totalElements = $scope.collections.totalElements;
                         });
+
+                        $scope.paginateInstitutionCollections = function(page, size){
+                            $scope.institution.loadCollectionsByInstitution( $stateParams.id,  $scope.institution.collections.number, $scope.institution.collections.size);
+                        };
 
                     }],
                 link: function (scope, element, attrs) {
 
-
+                    $("#institution-collections-size-box").change(function() {
+                        scope.institution.collections.size = parseInt($(this).val());
+                        scope.paginateInstitutionCollections(scope.institution.collections.number, $(this).val())
+                    });
                 }
             };
         }]);

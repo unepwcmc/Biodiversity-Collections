@@ -13,7 +13,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="collection in institution.collections._embedded.biodiversityCollections">
+                    <tr ng-repeat="collection in institution.collections.content">
                         <td>
                             <p class="text-left small"><strong>{{collection.name}}  | id: {{collection.id}}</strong><p>
                             <p class="text-justify small">{{collection.description}}</p>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group" style="width: 100px">
                         <div class="select-wrapper">
-                            <select class="col-md-5" id="network-size-box">
+                            <select class="col-md-5" id="institution-collections-size-box">
                                 <option value="5" selected>5</option>
                                 <option value="10">10</option>
                                 <option value="15">15</option>
@@ -68,16 +68,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>{{collections.number + 1}} {{ 'OF' | translate }} {{collections.totalPages}}</label>
+                        <label>{{institution.collections.number + 1}} {{ 'OF' | translate }} {{institution.collections.totalPages}}</label>
                     </div>
 
-                    <span  ng-class="{disabled: collections.number === 0}">
-                        <a type="submit" class="btn btn-default" ng-show="collections.number !== 0" ng-click="paginateCollections(collections.number - 1,collections.size)"><strong style="color: #666"> < </strong></a>
-                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="networks.number === 0"><strong style="color: #666"> < </strong></button>
+                    <span  ng-class="{disabled: institution.collections.number === 0}">
+                        <a type="submit" class="btn btn-default" ng-show="institution.collections.number !== 0" ng-click="paginateInstitutionCollections(institution.collections.number - 1, institution.collections.size)"><strong style="color: #666"> < </strong></a>
+                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="institution.collections.number === 0"><strong style="color: #666"> < </strong></button>
                     </span>
-                    <span ng-class="{disabled: collections.number === collections.totalPages - 1}">
-                        <a type="submit" class="btn btn-default" ng-show="collections.number !== collections.totalPages - 1" ng-click="paginateCollections(collections.number + 1,collections.size)"><strong style="color: #666"> > </strong></a>
-                        <button disabled="disabled" class="btn btn-default" ng-show="collections.number === collections.totalPages - 1"><strong style="color: #666"> > </strong></button>
+                    <span ng-class="{disabled: institution.collections.number === institution.collections.totalPages - 1}">
+                        <a type="submit" class="btn btn-default" ng-show="institution.collections.number !== institution.collections.totalPages - 1" ng-click="paginateInstitutionCollections(institution.collections.number + 1,institution.collections.size)"><strong style="color: #666"> > </strong></a>
+                        <button disabled="disabled" class="btn btn-default" ng-show="institution.collections.number === institution.collections.totalPages - 1"><strong style="color: #666"> > </strong></button>
                     </span>
 
                 </form>

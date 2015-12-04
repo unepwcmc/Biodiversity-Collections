@@ -42,7 +42,7 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/institutions")
-    public List<BiodiversityCollection> institutions(@RequestParam Long id,
+    public Page<BiodiversityCollection> institutions(@RequestParam Long id,
                                                      @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findByInstitutionIdOrderByNameAsc(id, pageable);
     }

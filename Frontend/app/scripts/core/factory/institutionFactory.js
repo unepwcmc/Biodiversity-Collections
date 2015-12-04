@@ -39,15 +39,15 @@ define(['angularAMD'], function (angularAMD) {
 
                         .success(function (data) {
                             if (data.message == 'no matches found') {
-                                $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
+                                $rootScope.$broadcast("INSTITUTION_LOAD_ERROR");
                             } else {
                                 self.setData(data);
-                                $rootScope.$broadcast("BIODIVERSITY_LOADED");
+                                $rootScope.$broadcast("INSTITUTION_LOADED");
                             }
                         })
                         .error(function (message) {
                             $log.error(message);
-                            $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
+                            $rootScope.$broadcast("INSTITUTION_LOAD_ERROR");
                         });
             },
             get: function( id){
@@ -102,23 +102,31 @@ define(['angularAMD'], function (angularAMD) {
                         $rootScope.$broadcast("INSTITUTION_AUTOCOMPLETE_LOAD_ERROR");
                     });
             },
-            loadCollectionsByInstitution: function( id, page, size ){
+            loadCollectionsByInstitution: function( id, page, size, callback ){
 
                 var self = this;
 
                 $http.get( $rootScope.getHost() + 'collections/search/institutions?id=' + id + "&page=" + page + "&size=" + size )
 
-                    .success(function (data) {
+                    .success(function ( data, status, headers, config ) {
                         if (data.message == 'no matches found') {
                             $rootScope.$broadcast("INSTITUTION_COLLECTION_LOAD_ERROR");
                         } else {
                             self.setData({collections: data });
+
                             $rootScope.$broadcast("INSTITUTION_COLLECTION_LOADED");
+
+                            if(callback)
+                                callback( data, status, headers, config )
                         }
                     })
-                    .error(function (message) {
-                        $log.error(message);
+                    .error(function (data, status, headers, config) {
+                        $log.error( data );
+
                         $rootScope.$broadcast("INSTITUTION_COLLECTION_LOAD_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
                     });
             },
             loadNetworksByInstitution: function( id, page, size ){

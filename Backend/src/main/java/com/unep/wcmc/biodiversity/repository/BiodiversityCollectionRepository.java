@@ -14,5 +14,5 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
 
     List<BiodiversityCollection> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name);
 
-    List<BiodiversityCollection> findByInstitutionIdOrderByNameAsc(@Param("id") Long id, Pageable page);
+    Page<BiodiversityCollection> findByInstitutionIdOrderByNameAsc(@Param("id") Long id, Pageable page);
 }
