@@ -117,7 +117,8 @@ define([],function ( ) {
     'RESEARCH_DISCIPLINE':'Disciplina da pesquisa',
     'RESEARCH_SPECIALITY':'Especialidade da pesquisa',
     'EDIT_CURATOR':'Editar Curador',
-    'ASSOCIATED_INSTITUTIONS':'Instituições associadas'
+    'ASSOCIATED_INSTITUTIONS':'Instituições associadas',
+    'RESULT_FOR_CURATOR':'Resultados para curador'
   }
 
 });

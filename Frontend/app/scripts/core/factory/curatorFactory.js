@@ -82,6 +82,21 @@ define(['app'], function (app) {
                         callback( data, status, headers, config );
                 });
             },
+            search: function( query, page, size ) {
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "curators/search/name?name=" + query + "&page=" + page + "&size=" + size )
+
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("CURATOR_SEARCHED", data);
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("CURATOR_SEARCHED_SEARCH_ERROR");
+                    });
+            },
             load: function( id, page, size ){
 
                 var self = this;

@@ -2,6 +2,7 @@ package com.unep.wcmc.biodiversity.controller;
 
 import com.unep.wcmc.biodiversity.model.Curator;
 import com.unep.wcmc.biodiversity.model.Institution;
+import com.unep.wcmc.biodiversity.model.Network;
 import com.unep.wcmc.biodiversity.service.CuratorService;
 import com.unep.wcmc.biodiversity.service.ImageService;
 import com.unep.wcmc.biodiversity.support.AbstractController;
@@ -18,6 +19,12 @@ public class CuratorController extends AbstractController<Curator, CuratorServic
 
     @Autowired
     private ImageService imageService;
+
+    @RequestMapping(method= RequestMethod.GET, value="/search/name")
+    public Page<Curator> name(@RequestParam String name,
+                              @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findByNameContainingOrderByNameAsc(name, pageable);
+    }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public Page<Curator> autocomplete(@RequestParam String name, @PageableDefault(page = 0, size = 10) Pageable pageable) {

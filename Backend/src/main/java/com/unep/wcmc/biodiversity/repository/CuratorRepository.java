@@ -10,4 +10,6 @@ public interface CuratorRepository extends AbstractRepository<Curator> {
 
     Page<Curator> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name, Pageable p);
 
+    Page<Curator> findByNameContainingOrderByNameAsc(@Param("name") String name, Pageable p);
+
 }

@@ -119,7 +119,8 @@ define([],function ( ) {
     'RESEARCH_DISCIPLINE':'Research discipline',
     'RESEARCH_SPECIALITY':'Research speciality',
     'EDIT_CURATOR':'Edit Curator',
-    'ASSOCIATED_INSTITUTIONS':'Associated institutions'
+    'ASSOCIATED_INSTITUTIONS':'Associated institutions',
+    'RESULT_FOR_CURATOR':'Result for curator'
 }
 
 });
