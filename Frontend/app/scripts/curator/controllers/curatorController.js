@@ -6,8 +6,8 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','Curator',
-        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, Curator) {
+    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','Curator','$timeout',
+        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, Curator, $timeout) {
 
             angular.extend($scope, BaseController);
 
@@ -73,7 +73,6 @@ define(['app',
                 }
 
                 setStateButton(false);
-                $scope.$apply();
             });
 
             /**
@@ -108,6 +107,10 @@ define(['app',
 
             function setStateButton( status ){
                 $rootScope.editMode = status;
+
+                $timeout( function(){
+                    $scope.$apply();
+                },100);
             }
 
             function validateDate(){
