@@ -14,8 +14,15 @@ define(['angularAMD','waypoints','core/directives/core.map.directive'], function
 
                         $scope.fullAddress = undefined;
 
+
+
                         $scope.$on('BIODIVERSITY_LOADED', function(){
+
+                            if($scope.collection.contact == null)
+                                angular.extend($scope.collection, {contact:{}});
+
                             $scope.fullAddress = '';
+
                             if ($scope.collection.contact.address1) $scope.fullAddress += '+' + $scope.collection.contact.address1;
                             if ($scope.collection.contact.address2) $scope.fullAddress += '+' + $scope.collection.contact.address2;
                             if ($scope.collection.contact.address3) $scope.fullAddress += '+' + $scope.collection.contact.address3;

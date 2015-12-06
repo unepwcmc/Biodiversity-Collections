@@ -52,7 +52,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
 
-                            return $http.get( $rootScope.getHost() + "institutions/search/autocomplete?name=" + userInputString,
+                            return $http.get( $rootScope.getHost() + "institutions/search/autocompleteName?name=" + userInputString,
                                 {
                                     timeout: timeoutPromise
                                 }
