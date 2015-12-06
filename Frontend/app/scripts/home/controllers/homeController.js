@@ -1,15 +1,21 @@
-define(['app', 'core/directives/core.map.directive', 'core/factory/biodiversityCollectionFactory', 'core/factory/networkFactory', 'core/factory/institutionFactory'], function () {
+define(['app',
+    'core/directives/core.map.directive',
+    'core/factory/biodiversityCollectionFactory',
+    'core/factory/networkFactory',
+    'core/factory/curatorFactory',
+    'core/factory/institutionFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController', '$state', 'BiodiversityCollection','Network', 'Institution',
-        function ($scope, BaseController, $state, BiodiversityCollection, Network, Institution) {
+    return ['$scope','BaseController', '$state', 'BiodiversityCollection','Network', 'Institution','Curator',
+        function ($scope, BaseController, $state, BiodiversityCollection, Network, Institution, Curator) {
 
             angular.extend($scope, BaseController);
 
             $scope.collections = new BiodiversityCollection();
             $scope.institutions = new Institution();
             $scope.networks = new Network();
+            $scope.curators = new Curator();
 
             $scope.term = '';
             $scope.searchType = 'collection';
@@ -37,6 +43,10 @@ define(['app', 'core/directives/core.map.directive', 'core/factory/biodiversityC
                     return $scope.institutions.autocompleteName(userInputString, function(){timeout: timeoutPromise;});
                 }
 
+                if ($scope.searchType == "curator") {
+                    return $scope.curators.autocompleteName(userInputString, function(){timeout: timeoutPromise;});
+                }
+
                 return null;
             };
 
@@ -56,6 +66,10 @@ define(['app', 'core/directives/core.map.directive', 'core/factory/biodiversityC
                         $state.go('institution', {type : $scope.searchType, id : selected.originalObject.id});
                     }
 
+                    if ($scope.searchType == "curator") {
+                        $state.go('curator', {type : $scope.searchType, id : selected.originalObject.id});
+                    }
+
                 } else {
                     $scope.term = '';
                 }
@@ -63,7 +77,7 @@ define(['app', 'core/directives/core.map.directive', 'core/factory/biodiversityC
 
             $scope.isSearchEnabled = function() {
                 return !($scope.term != "" && $scope.term.length >= 3 && $scope.searchType != undefined && $scope.searchType != "");
-            }
+            };
 
             $scope.search = function(){
                 $state.go('search', { term : $scope.term, type : $scope.searchType });

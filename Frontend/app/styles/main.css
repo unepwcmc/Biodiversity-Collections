@@ -1266,3 +1266,12 @@ table.researches input.form-control[readonly] {
 
 .showIfLast {
   display: none; }
+
+.curator-date {
+  display: inline;
+  float: left; }
+  .curator-date input {
+    padding: 10px;
+    width: 40px; }
+  .curator-date input.large {
+    width: 60px; }

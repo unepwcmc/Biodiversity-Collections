@@ -74,9 +74,36 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/network/default.html',
                         controllerUrl: 'network/controllers/networkController',
                         ncyBreadcrumb: {
-                            label: '{{collection.name}}',
+                            label: '{{network.name}}',
                             parent: function($scope) {
                                 return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
+                            }
+                        }
+                    }))
+                .state('curator', angularAMD.route(
+                    {
+                        url: '/curator/:id',
+                        templateUrl: 'views/curator/default.html',
+                        controllerUrl: 'curator/controllers/curatorController',
+                        ncyBreadcrumb: {
+                            label: '{{curator.name}}',
+                            parent: function($scope) {
+
+                                switch ( $scope.fromState ){
+
+                                    case '':{
+                                        return 'home';
+                                    }
+                                    case 'home':{
+                                        return 'home';
+                                    }
+                                    case 'search': {
+                                        return 'search({term: searchTerm})';
+                                    }
+                                    default:{
+                                        return 'home'
+                                    }
+                                }
                             }
                         }
                     }))

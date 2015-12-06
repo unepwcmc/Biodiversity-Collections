@@ -110,7 +110,14 @@ define([],function ( ) {
     'ADD_SELECTED_SAMPLES': 'Adicionar exemplar(es) selecionado(s)',
     'SELECT_ALL': 'Selecionar todos',
     'RESULTS_FOR_SAMPLE': 'resultados para Exemplar',
-    'BIODIVERSITY_SAMPLES_ADDED': 'Exemplares de biodiversidade adicionados.'
+    'BIODIVERSITY_SAMPLES_ADDED': 'Exemplares de biodiversidade adicionados.',
+    'JOB_TITLE':'Nome do Cargo',
+    'AREA_OF_RESPONSIBILITY':'Área de responsabilidade',
+    'DATE_OF_BIRTH':'Data de Nascimento',
+    'RESEARCH_DISCIPLINE':'Disciplina da pesquisa',
+    'RESEARCH_SPECIALITY':'Especialidade da pesquisa',
+    'EDIT_CURATOR':'Editar Curador',
+    'ASSOCIATED_INSTITUTIONS':'Instituições associadas'
   }
 
 });

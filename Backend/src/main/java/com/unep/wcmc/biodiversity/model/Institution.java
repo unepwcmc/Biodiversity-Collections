@@ -34,8 +34,8 @@ public class Institution implements BaseEntity {
     @Embedded
     private Contact contact;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "institution_id")
+    @ManyToMany(mappedBy = "associatedInstitutions", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")
