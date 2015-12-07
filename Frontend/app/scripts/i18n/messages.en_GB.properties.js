@@ -112,7 +112,8 @@ define([],function ( ) {
     'ADD_SELECTED_SAMPLES': 'Add selected sample(s)',
     'SELECT_ALL': 'Select all',
     'RESULTS_FOR_SAMPLE': 'results for Sample',
-    'BIODIVERSITY_SAMPLES_ADDED': 'Biodiversity samples added.'
+    'BIODIVERSITY_SAMPLES_ADDED': 'Biodiversity samples added.',
+    'CREATE_A_COLLECTION': 'Create a new collection'
   }
 
 });

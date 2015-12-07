@@ -64,6 +64,8 @@ define([],function ( ) {
     'SELECT_FILE':'Seleciona um arquivo',
     'ADD_A_NEW_AUTHOR':'Adicione um novo Autor',
     'SAVE':'Salvar',
+    'EDIT_NETWORK': 'Editar rede',
+    'NETWORK_ID': 'Rede id',
     'NO_RESULTS_FOUND':'Nenhum resultado encontrado.',
     'EDIT':'Editar',
     'SAVE_CHANGES':'Salvar mudanças',
@@ -110,7 +112,8 @@ define([],function ( ) {
     'ADD_SELECTED_SAMPLES': 'Adicionar exemplar(es) selecionado(s)',
     'SELECT_ALL': 'Selecionar todos',
     'RESULTS_FOR_SAMPLE': 'resultados para Exemplar',
-    'BIODIVERSITY_SAMPLES_ADDED': 'Exemplares de biodiversidade adicionados.'
+    'BIODIVERSITY_SAMPLES_ADDED': 'Exemplares de biodiversidade adicionados.',
+    'CREATE_A_COLLECTION': 'Criar uma nova coleção'
   }
 
 });
