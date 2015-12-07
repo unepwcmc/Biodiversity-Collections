@@ -22,7 +22,6 @@ define(['app',
 
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
-                blockingSpecialCharacters();
             });
 
             $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
@@ -44,7 +43,7 @@ define(['app',
                 }
 
                 if ($scope.searchType == "curator") {
-                    return $scope.curators.autocompleteName(userInputString, function(){timeout: timeoutPromise;});
+                    return $scope.curators.autocompleteName( userInputString, function(){timeout: timeoutPromise;});
                 }
 
                 return null;
@@ -55,20 +54,7 @@ define(['app',
                 if (selected) {
 
                     $scope.term = selected.title;
-
-                    if ($scope.searchType == "collection") {
-                          $state.go('collection', {type : $scope.searchType, id : selected.originalObject.id});
-                    }
-                    if ($scope.searchType == "network") {
-                        $state.go('network', {type : $scope.searchType, id : selected.originalObject.id});
-                    }
-                    if ($scope.searchType == "institution") {
-                        $state.go('institution', {type : $scope.searchType, id : selected.originalObject.id});
-                    }
-
-                    if ($scope.searchType == "curator") {
-                        $state.go('curator', {type : $scope.searchType, id : selected.originalObject.id});
-                    }
+                    $state.go($scope.searchType, {type : $scope.searchType, id : selected.originalObject.id});
 
                 } else {
                     $scope.term = '';
@@ -95,17 +81,7 @@ define(['app',
                 }
             };
 
-            function blockingSpecialCharacters(){
 
-                $('input').bind('keypress', function (event) {
-                    var regex = new RegExp("^[a-zA-Z0-9]+$");
-                    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-                    if (!regex.test(key)) {
-                        event.preventDefault();
-                        return false;
-                    }
-                });
-            }
 
         }];
 });

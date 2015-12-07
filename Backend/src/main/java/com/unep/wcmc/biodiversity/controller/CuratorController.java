@@ -13,6 +13,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/curators")
 public class CuratorController extends AbstractController<Curator, CuratorService> {
@@ -27,9 +29,10 @@ public class CuratorController extends AbstractController<Curator, CuratorServic
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
-    public Page<Curator> autocomplete(@RequestParam String name, @PageableDefault(page = 0, size = 10) Pageable pageable) {
+    public List<Curator> autocomplete(@RequestParam String name, @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findTop5ByNameContainingOrderByNameAsc(name, pageable);
     }
+
 
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")
     public Curator uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
