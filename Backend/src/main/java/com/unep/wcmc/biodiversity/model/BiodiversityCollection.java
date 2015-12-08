@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -65,9 +66,9 @@ public class BiodiversityCollection implements BaseEntity {
     @OneToMany(mappedBy = "collection")
     private Set<Document> documents;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "image_id")
-    private Image image;
+    @ElementCollection
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Set<Image> images;
 
     @Override
     public Long getId() {
@@ -215,14 +216,6 @@ public class BiodiversityCollection implements BaseEntity {
         this.curatorialLodge = curatorialLodge;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
     public String getWebSiteName() {
         return webSiteName;
     }
@@ -237,5 +230,21 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setPublished(Boolean published) {
         this.published = published;
+    }
+
+    public Set<Image> getImages() {
+        return images == null? new HashSet<Image>(): this.images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
+    public void addImage(Image image){
+        getImages().add(image);
+    }
+
+    public  void removeImage(Image image){
+        getImages().remove(image);
     }
 }

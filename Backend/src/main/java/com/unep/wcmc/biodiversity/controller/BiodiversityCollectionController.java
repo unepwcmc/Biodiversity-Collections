@@ -51,7 +51,7 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     public BiodiversityCollection uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         BiodiversityCollection biodiversityCollection = service.get(id);
         if (!file.isEmpty())
-            biodiversityCollection.setImage(imageService.save(file));
+            biodiversityCollection.addImage(imageService.save(file));
 
         return service.save(biodiversityCollection);
     }
