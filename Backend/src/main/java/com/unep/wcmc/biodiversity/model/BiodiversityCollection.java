@@ -60,6 +60,7 @@ public class BiodiversityCollection implements BaseEntity {
     private Set<Specimen> specimens;
 
     @OneToMany(mappedBy = "collection")
+    @JsonIgnore
     private Set<Document> documents;
 
     @OneToOne(orphanRemoval = true)

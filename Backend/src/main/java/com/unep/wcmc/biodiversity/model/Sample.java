@@ -1,5 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -34,6 +35,7 @@ public class Sample implements BaseEntity {
     private Taxonomy taxonomy;
 
     @OneToMany(mappedBy = "sample")
+    @JsonIgnore
     private Set<Document> documents;
 
     @OneToOne(orphanRemoval = true)
