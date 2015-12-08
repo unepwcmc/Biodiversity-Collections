@@ -66,10 +66,8 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     resetEditMode();
 
                     if ($(this).hasClass('cancel')) {
-                        $rootScope.$broadcast("BIODIVERSITY_COLLECTION_RELOADED");
                         $rootScope.$broadcast('ACTION_RELOADED');
                     } else {
-                        $rootScope.$broadcast("BIODIVERSITY_COLLECTION_SAVE");
                         $rootScope.$broadcast('ACTION_SAVE');
                     }
 

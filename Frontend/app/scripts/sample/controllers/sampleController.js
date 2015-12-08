@@ -26,6 +26,29 @@ define(['app',
         });
 
         /**
+         * Should be fired when the button save is click
+         */
+        $scope.$on('ACTION_SAVE', function(){
+            console.log('Sample updating..');
+            $('#loader-wrapper').fadeToggle('400');
+            $scope.sample.update();
+        });
+
+        $scope.$on('ACTION_RELOADED', function(){
+            console.log('edit form canceling...');
+            $state.go($state.current, $stateParams, {reload: true, inherit: false});
+        });
+
+        /**
+         * Listener when the collection factory update the Sample
+         */
+        $scope.$on('SAMPLE_UPDATED', function(){
+            console.log('updated');
+            $('#loader-wrapper').fadeToggle('400');
+            toastr.success($translate.instant('SAMPLE_UPDATED'), $translate.instant('SUCCESS'));
+        });
+
+        /**
          * Listener when the button edit is clicked
          */
         $scope.$on('EDIT_SAMPLE', function() {
