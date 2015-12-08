@@ -30,10 +30,11 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                 $save_form.hide();
                 $save_mode.hide();
 
-                $(element).find('form.view-mode').find('textarea,input[type="text"],input[type="email"],input[type="password"]').attr('readonly', 'input[type="text"]');
-                $(element).find('form.view-mode').find('input[type="number"]').attr('disabled', 'disabled');
-                $(element).find('form.view-mode').find('input[type="radio"]').attr('disabled',true);
-                $(element).find('form.view-mode').find('select').attr('disabled','disabled');
+                var $form_view = $('form.view-mode');
+                $form_view.find('textarea,input[type="text"],input[type="email"],input[type="password"]').attr('readonly', 'input[type="text"]');
+                $form_view.find('input[type="number"]').attr('disabled', 'disabled');
+                $form_view.find('input[type="radio"]').attr('disabled',true);
+                $form_view.find('select').attr('disabled','disabled');
 
                 $edit_form.click(function (event) {
                     event.preventDefault();
@@ -43,7 +44,6 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $edit_form.hide();
                     $edit_mode.hide();
 
-                    //$form = $(element).find('form.view-mode');
                     $form = $('form.view-mode');
                     $elements = 'textarea,input[type="text"],input[type="email"],input[type="password"],select';
 

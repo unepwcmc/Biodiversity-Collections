@@ -2,7 +2,6 @@ define(['app',
     'sample/directives/sample.details.directive',
     'sample/directives/sample.taxonomy.directive',
     'core/directives/core.publications.directive',
-    'core/directives/core.breadcrumbs.directive',
     'core/factory/sampleFactory'], function () {
 
     'use strict';
@@ -25,5 +24,31 @@ define(['app',
             $('#loader-wrapper').fadeToggle('400');
             $scope.sample.get($stateParams.id);
         });
+
+        /**
+         * Listener when the button edit is clicked
+         */
+        $scope.$on('EDIT_SAMPLE', function() {
+            setStateButton(true);
+        });
+
+        /**
+         * Listener when the button cancel is clicked
+         */
+        $scope.$on('CANCEL_EDIT_SAMPLE', function() {
+            setStateButton(false);
+        });
+
+        /**
+         * Listener when the button save is clicked
+         */
+        $scope.$on('SAVE_SAMPLE', function() {
+            setStateButton(false)
+        });
+
+        function setStateButton( status ){
+            $rootScope.editMode = status;
+            $scope.$apply();
+        }
     }];
 });

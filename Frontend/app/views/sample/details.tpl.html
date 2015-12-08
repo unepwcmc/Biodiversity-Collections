@@ -12,7 +12,7 @@
 
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default btn-transparent btn-edit-network-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
+                        <button type="submit" class="btn btn-default btn-transparent btn-edit-sample-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="sample_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
@@ -24,9 +24,9 @@
                 <strong ng-show="!editMode" >{{ sample.name }}</strong>
                 <strong ng-show="editMode" >{{ 'EDIT_SAMPLE' | translate }}</strong> <span>
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'SAMPLE'| translate}}</strong></button></span>
-            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
+            <a id="edit-sample" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
             <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="sample_form.$invalid"><strong>{{ 'SAVE_CHANGES' | translate }}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-sample-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-sample-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
         </h4>
         <hr/>
     </div>
@@ -36,20 +36,19 @@
              <div class="col-md-8">
                  <form action="#" ng-class="{'view-mode': display == 'true'}" class="form-horizontal form-block" role="form" name="sample_form" novalidate>
                      <div class="small-field">
-
-                         <div ng-show="display == 'true' && !editMode" id="network-id" class="form-group">
+                         <div ng-show="display == 'true' && !editMode" id="sample-id" class="form-group">
                              <label class="col-sm-3">{{ 'SAMPLE_ID' | translate }}</label>
-                             <div class="col-sm-9"><input type="text" class="form-control" value="{{sample.id}}"></div>
+                             <div class="col-sm-9"><input type="text" class="form-control" value="{{sample.id}}" readonly></div>
                          </div>
 
-                         <div ng-show="display == 'false' || editMode" id="network-name" class="form-group">
+                         <div ng-show="display == 'false' || editMode" id="sample-name" class="form-group">
                              <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
                              <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="sample.name" required></div>
                          </div>
 
                          <div ng-show="display == 'true' && !editMode"  class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION' | translate }}</label>
-                             <div class="col-sm-9"><input class="form-control" readonly value="{{collection.curator.name}}" /></div>
+                             <div class="col-sm-9"><input class="form-control" readonly value="{{sample.collection.name}}" /></div>
                          </div>
 
                          <div ng-show="display == 'true' && editMode" class="form-group">
@@ -70,7 +69,7 @@
 
                          <div ng-show="!editMode" class="form-group">
                              <label class="col-sm-3">{{ 'CURATOR' | translate }}</label>
-                             <div class="col-sm-9"><input class="form-control" readonly value="{{collection.curator.name}}" /></div>
+                             <div class="col-sm-9"><input class="form-control" readonly value="{{sample.curator.name}}" /></div>
                          </div>
 
                          <div ng-show="editMode" class="form-group">
@@ -92,7 +91,7 @@
 
                          <div ng-show="!editMode"  class="form-group">
                              <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
-                             <div class="col-sm-9"><input class="form-control" readonly value="{{collection.institution.name}}" /></div>
+                             <div class="col-sm-9"><input class="form-control" readonly value="{{sample.institution.name}}" /></div>
                          </div>
 
                          <div ng-show="editMode" class="form-group">
