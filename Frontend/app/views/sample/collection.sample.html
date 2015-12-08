@@ -6,7 +6,7 @@
     </div>
 
     <div class="container" style="margin-bottom: 20px;">
-        <nav id="collection-sample-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav id="collection-sample-bar-fixed" ng-show="createSample" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <h2 class="navbar-text"><strong>{{'ADD_NEW_SAMPLE' | translate}}</strong></h2>
                 <form ng-show="createSample" class="navbar-form navbar-right" role="search">
@@ -47,8 +47,7 @@
 
     <div ng-show="createSample" class="container" style="margin-top: 30px;">
         <sample-detail display="false"></sample-detail>
-        <sample-taxonomy></sample-taxonomy>
-        <sample-publications display="false"></sample-publications>
+        <sample-taxonomy display="false"></sample-taxonomy>
     </div>
 
     <div ng-show="!createSample" class="container" style="margin-top: 30px;">
@@ -67,15 +66,31 @@
             </div>
         </div><br/>
 
-        <div class="row">
+
+
+        <div ng-show="sample.totalElements" class="row">
             <div class="col-md-12">
                 <div class="result-list">
-                    <div class="form-group">
+                    <nav id="collection-sample-search-bar-fixed" style="display: none;" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                        <div class="container" style="margin-top: 10px; margin-bottom: 10px;">
+                            <div class="col-sm-2">
+                                <input class="chk-samples" type="checkbox"/><label>&nbsp;<a style="color: white;" class="checkUncheck" href="javascript:" ng-click="checkAndUnCheckAll()">{{'SELECT_ALL' | translate}}</a></label>
+                            </div>
+                            <div class="col-sm-2">
+                                <span style="color: white;" ng-show="sample.totalElements"><strong>{{sample.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
+                                <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong style="color: white;">{{ 'CANCEL' | translate }}</strong></a>
+                            </div>
+                        </div>
+                    </nav>
+                    <div id="collection-sample-search-bar-default" class="form-group">
                         <div class="col-sm-2">
-                            <input class="chk-species" type="checkbox"/><label>&nbsp;<a class="checkUncheck" href="javascript:" ng-click="checkAndUnCheck()">{{'SELECT_ALL' | translate}}</a></label>
+                            <input class="chk-samples" type="checkbox"/><label>&nbsp;<a class="checkUncheck" href="javascript:" ng-click="checkAndUnCheckAll()">{{'SELECT_ALL' | translate}}</a></label>
                         </div>
                         <div class="col-sm-2">
-                            <span><strong>{{sample.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
+                            <span ng-show="sample.totalElements"><strong>{{sample.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
                         </div>
                         <div class="col-sm-8">
                             <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
@@ -91,7 +106,7 @@
             </div>
         </div>
 
-        <div class="row" align="center">
+        <div ng-show="sample.totalElements" class="row" align="center">
             <div class="col-md-4">&nbsp;</div>
             <div class="col-md-4">
                 <nav>

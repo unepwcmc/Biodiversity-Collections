@@ -90,6 +90,22 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                     }],
                 link: function (scope, element, attrs) {
 
+                    new Waypoint({
+                        element: $(element).find("#sample-bar-default"),
+                        handler: function( direction ) {
+                            switch(direction) {
+                                case 'down':
+                                    if(scope.navigationBar)
+                                        $(element).find("#sample-bar-fixed").show();
+                                    break;
+                                case 'up':
+                                    $(element).find("#sample-bar-fixed").hide();
+                                    break;
+                                default:
+                            }
+                        }
+                    });
+
                 }
             };
         }]);

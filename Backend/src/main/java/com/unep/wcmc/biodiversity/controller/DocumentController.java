@@ -5,6 +5,7 @@ import com.unep.wcmc.biodiversity.model.Document;
 import com.unep.wcmc.biodiversity.service.AttachmentService;
 import com.unep.wcmc.biodiversity.service.BiodiversityCollectionService;
 import com.unep.wcmc.biodiversity.service.DocumentService;
+import com.unep.wcmc.biodiversity.service.SampleService;
 import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,14 +26,22 @@ public class DocumentController extends AbstractController<Document, DocumentSer
     private BiodiversityCollectionService biodiversityCollectionService;
 
     @Autowired
-    AttachmentService attachmentService;
+    private SampleService sampleService;
 
     @Autowired
-    HttpServletResponse response;
+    private AttachmentService attachmentService;
+
+    @Autowired
+    private HttpServletResponse response;
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/collection/{collectionId}")
-    public Page<Document> findAllNetworkByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
+    public Page<Document> getByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findAllByCollection(biodiversityCollectionService.get(collectionId), pageable);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search/sample/{sampleId}")
+    public Page<Document> getBySample(@PathVariable Long sampleId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findAllBySample(sampleService.get(sampleId), pageable);
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")

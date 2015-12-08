@@ -125,8 +125,10 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/sample/default.html',
                         controllerUrl: 'sample/controllers/sampleController',
                         ncyBreadcrumb: {
-                            label: 'Sample',
-                            parent: 'collection/:id'
+                            label: '{{sample.name}}',
+                            parent: function($scope) {
+                                return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
+                            }
                         }
                     }));
 
@@ -233,8 +235,8 @@ define(['include', 'language'], function (angularAMD, language) {
         }]);
 
     app.CONST = {
-        LOCALHOST: "http://localhost:8080/", //LOCAL
-        //LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
+        //LOCALHOST: "http://localhost:8080/", //LOCAL
+        LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
         //LOCALHOST:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         //SERVER:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         SERVER: "http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/"  // DEV

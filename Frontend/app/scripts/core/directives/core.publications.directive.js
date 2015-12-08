@@ -1,12 +1,7 @@
-/**
- * Collection Sample directive
- * @author: jozecarlos.it@gmail.com
- *
- */
 define([ 'angularAMD',
          'core/factory/documentFactory',
          'core/directives/core.table.sorter.directive',
-         'collection/directives/collection.publication.popover.directive'], function (angularAMD) {
+         'core/directives/core.publication.popover.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -16,7 +11,8 @@ define([ 'angularAMD',
 
             return {
                 restrict: 'EA',
-                templateUrl: 'views/collection/publications.tpl.html',
+                templateUrl: 'views/core/publications.tpl.html',
+                scope: { type : '@' },
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
@@ -24,10 +20,23 @@ define([ 'angularAMD',
                         $scope.file = null;
                         $scope.documents = new Document();
                         angular.extend($scope.documents, {totalElements : 0, number: 0, size: 5, totalPages: 0});
-                        $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+
+                        $rootScope.$watch('editMode', function(){
+                            $scope.editMode = $rootScope.editMode;
+                        });
+
+                        $scope.load = function(id, page, size) {
+                            if ($scope.type == 'collection') {
+                                $scope.documents.loadByCollection(id, page, size);
+                            } else if ($scope.type == 'sample') {
+                                $scope.documents.loadBySample(id, page, size);
+                            }
+                        };
+
+                        $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
 
                         $scope.paginatePublications = function(page, size){
-                            $scope.documents.load( $stateParams.id , page, size);
+                            $scope.load($stateParams.id , page, size);
                         };
 
                         $scope.saveOrUpdate = function(){
@@ -95,8 +104,8 @@ define([ 'angularAMD',
                                     if($scope.file != null){
 
                                         $scope.documents.upload($scope.file, function(data, status){
-                                                successState();
-                                                $scope.showSuccessMessage('DOCUMENT_UPDATED_SUCCESSFULLY','SUCCESS');
+                                            successState();
+                                            $scope.showSuccessMessage('DOCUMENT_UPDATED_SUCCESSFULLY','SUCCESS');
                                         });
                                     }
                                     else{
@@ -121,7 +130,7 @@ define([ 'angularAMD',
                             $scope.documents.delete( id, function( data, status){
 
                                 if(status === 200){
-                                    $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                                    $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
                                     $scope.showSuccessMessage('DOCUMENT_DELETED_SUCCESSFULLY','SUCCESS');
                                 }else{
                                     $scope.showErrorMessage( data ,'ERROR');
@@ -145,8 +154,8 @@ define([ 'angularAMD',
                             $("input[type=checkbox].pub-checkbox-delete").each(function () {
                                 if($(this).is(":checked")){
                                     if($(this).data('publication-id') != undefined){
-                                         promises.push( $http.delete( $rootScope.getHost() + "documents/" + $(this).data('publication-id') ));
-                                   }
+                                        promises.push( $http.delete( $rootScope.getHost() + "documents/" + $(this).data('publication-id') ));
+                                    }
                                 }
                             });
 
@@ -157,7 +166,7 @@ define([ 'angularAMD',
 
                             $q.all( promises ).then(function( results ){
                                 $scope.showSuccessMessage('DOCUMENT_DELETED_SUCCESSFULLY','SUCCESS');
-                                $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                                $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
                                 $scope.checkboxes_selected = !$scope.checkboxes_selected;
                             });
                         };
@@ -174,7 +183,7 @@ define([ 'angularAMD',
                             $('#publication_ipt_file').val("");
                             $scope.document = {};
                             $('#publicatioModal').modal('hide');
-                            $scope.documents.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                            $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
                             $scope.multimedia_form.$setPristine();
                             $scope.multimedia_form.$setUntouched();
                         }
