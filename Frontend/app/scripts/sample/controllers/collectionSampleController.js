@@ -1,7 +1,7 @@
-define(['app',
+define(['app', 'waypoints',
     'sample/directives/sample.details.directive',
     'sample/directives/sample.taxonomy.directive',
-    'sample/directives/sample.publications.directive',
+    'core/directives/core.publications.directive',
     'core/factory/sampleFactory',
     'core/factory/biodiversityCollectionFactory'], function () {
 
@@ -16,6 +16,7 @@ define(['app',
         $scope.collection = new BiodiversityCollection();
 
         $rootScope.editMode = true;
+        $scope.navigationBar = true;
         $scope.createSample = true;
         $scope.searchTerm = '';
         $scope.page = 0;
@@ -53,6 +54,45 @@ define(['app',
             $('#loader-wrapper').fadeToggle('400');
             $scope.sample.save();
         };
+
+        $scope.checkAndUnCheckAll = function(){
+            $("input[type=checkbox].chk-samples").each(function () {
+                $(this).prop('checked', !$(this).prop('checked'));
+            });
+
+        };
+
+        new Waypoint({
+            element: $("#collection-sample-bar-default"),
+            handler: function( direction ) {
+                switch(direction) {
+                    case 'down':
+                        if($scope.navigationBar)
+                            $("#collection-sample-bar-fixed").show();
+                        break;
+                    case 'up':
+                        $("#collection-sample-bar-fixed").hide();
+                        break;
+                    default:
+                }
+            }
+        });
+
+        new Waypoint({
+            element: $("#collection-sample-search-bar-default"),
+            handler: function( direction ) {
+                switch(direction) {
+                    case 'down':
+                        if($scope.navigationBar)
+                            $("#collection-sample-search-bar-fixed").show();
+                        break;
+                    case 'up':
+                        $("#collection-sample-search-bar-fixed").hide();
+                        break;
+                    default:
+                }
+            }
+        });
 
         $scope.$on('SAMPLE_SAVED', function() {
             $('#loader-wrapper').fadeToggle('400');

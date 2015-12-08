@@ -42,7 +42,7 @@
                                           minlength="2"
                                           input-class="form-control"/>
                     </div>
-                    <button type="submit" class="btn btn-primary" ng-click="addNetwork()">{{ 'ADD' | translate }}</button>
+                    <button type="submit" class="btn btn-primary" ng-click="addNetwork()"><label>{{ 'ADD' | translate }}</label></button>
                     <div class="form-group form-divider">
                        <label><a class="btn-link-primary">{{ 'CREATE_A_NEW_NETWORK' | translate}}</a></label>
                     </div>
@@ -51,7 +51,7 @@
             <hr/>
         </div>
         <div class="row">
-            <div class="pull-right">
+            <div class="pull-right" ng-show="institution.networks.number > 0">
                 <form class="form-inline">
                     <div class="form-group">
                         <label>{{ 'ROWS_PER_PAGE' | translate }}</label>

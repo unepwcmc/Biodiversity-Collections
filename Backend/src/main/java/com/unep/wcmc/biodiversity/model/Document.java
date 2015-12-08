@@ -48,6 +48,10 @@ public class Document implements BaseEntity {
     @JoinColumn(name = "collection_id")
     private BiodiversityCollection collection;
 
+    @ManyToOne
+    @JoinColumn(name = "sample_id")
+    private Sample sample;
+
     public Document(){}
 
     public Document(MultipartFile file) {
@@ -157,5 +161,13 @@ public class Document implements BaseEntity {
 
     public void setMimeType(String mimeType) {
         this.mimeType = mimeType;
+    }
+
+    public Sample getSample() {
+        return sample;
+    }
+
+    public void setSample(Sample sample) {
+        this.sample = sample;
     }
 }

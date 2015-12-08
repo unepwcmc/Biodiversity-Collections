@@ -1,8 +1,3 @@
-/**
- * Collection occurrence directive
- * @author: jozecarlos.it@gmail.com
- *
- */
 define(['angularAMD','popover'], function (angularAMD) {
 
     'use strict';
@@ -30,9 +25,9 @@ define(['angularAMD','popover'], function (angularAMD) {
                                                 "<p>{{ doc.description }}</p>" +
                                             "</div>" +
                                             "<div class='pull-right p-button'>" +
-                                                "<a ng-click='download()' style='cursor: pointer'><i class='fa fa-download'></i><strong>Download</strong></a>" +
+                                                "<a ng-click='download()' style='cursor: pointer'><i class='fa fa-download'></i><strong>&nbsp;" + $translate.instant('DOWNLOAD') + "</strong></a>" +
                                                 "<div class='clearfix' ></div>" +
-                                                "<a ng-show='editMode' ng-click='editDocumentEvent()' style='cursor: pointer'><i class='fa fa-edit'></i><strong>Edit</strong></a>" +
+                                                "<a ng-show='editMode' ng-click='editDocumentEvent()' style='cursor: pointer'><i class='fa fa-edit'></i><strong>&nbsp;" + $translate.instant('EDIT') + "</strong></a>" +
                                             "</div>" +
                                        "</div>";
 

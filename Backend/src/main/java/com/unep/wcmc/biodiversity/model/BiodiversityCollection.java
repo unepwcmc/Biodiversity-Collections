@@ -1,8 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.hibernate.annotations.Cascade;
 
@@ -11,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class BiodiversityCollection implements BaseEntity {
 
     @Id
@@ -64,6 +61,7 @@ public class BiodiversityCollection implements BaseEntity {
     private Set<Specimen> specimens;
 
     @OneToMany(mappedBy = "collection")
+    @JsonIgnore
     private Set<Document> documents;
 
     @ElementCollection

@@ -120,7 +120,9 @@ define([],function ( ) {
     'RESEARCH_SPECIALITY':'Research speciality',
     'EDIT_CURATOR':'Edit Curator',
     'ASSOCIATED_INSTITUTIONS':'Associated institutions',
-    'RESULT_FOR_CURATOR':'Result for curator'
+    'RESULT_FOR_CURATOR':'Result for curator',
+    'CREATE_A_COLLECTION': 'Create a new collection',
+    'DOWNLOAD': 'Download'
 }
 
 });

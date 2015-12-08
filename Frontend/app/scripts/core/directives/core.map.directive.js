@@ -24,14 +24,17 @@ define(['angularAMD'], function (angularAMD) {
                           $http.get('http://maps.google.com/maps/api/geocode/json?address=' + $scope.address)
                               .success(function (data) {
                                   if (data.status == 'OK') {
+                                      var latitude = data.results[0].geometry.location.lat;
+                                      var longitude = data.results[0].geometry.location.lng;
                                       angular.extend($scope, {
                                           markers: {
                                               address: {
-                                                  lat: data.results[0].geometry.location.lat,
-                                                  lng: data.results[0].geometry.location.lng
+                                                  lat: latitude,
+                                                  lng: longitude
                                               }
                                           }
                                       });
+                                      $rootScope.$broadcast("LATITUDE_LONGITUDE_LOADED", latitude, longitude);
                                   }
                               });
                       }

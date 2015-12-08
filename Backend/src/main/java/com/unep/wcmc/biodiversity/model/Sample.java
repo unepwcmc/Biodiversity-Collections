@@ -1,15 +1,12 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Sample implements BaseEntity {
 
     @Id
@@ -37,8 +34,8 @@ public class Sample implements BaseEntity {
     @JoinColumn(name = "taxonomy_id")
     private Taxonomy taxonomy;
 
-    @OneToMany
-    @JoinColumn(name = "sample_id")
+    @OneToMany(mappedBy = "sample")
+    @JsonIgnore
     private Set<Document> documents;
 
     @OneToOne(orphanRemoval = true)
