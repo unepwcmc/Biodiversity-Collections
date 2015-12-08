@@ -15,7 +15,7 @@
                     <tbody>
                     <tr ng-repeat="collection in institution.collections.content">
                         <td>
-                            <p class="text-left small"><strong>{{collection.name}}  | id: {{collection.id}}</strong><p>
+                            <p class="text-left small"><a data-ui-sref="collection({id : collection.id})"><strong>{{collection.name}}  | id: {{collection.id}}</strong></a><p>
                             <p class="text-justify small">{{collection.description}}</p>
                         </td>
                         <td>
@@ -33,7 +33,7 @@
                 <form class="form-inline view-mode form-block">
                     <div class="form-group">
                         <angucomplete-alt id="collection_network_autocomplete"
-                                          placeholder="Search a Network"
+                                          placeholder="Search a Collection"
                                           pause="150"
                                           selected-object="networkSelected"
                                           remote-api-handler="networkAutocomplete"

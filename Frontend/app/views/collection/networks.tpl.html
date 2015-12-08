@@ -15,7 +15,7 @@
                     <tbody>
                         <tr ng-repeat="network in networks.content">
                             <td>
-                                <p class="text-left small"><strong>{{network.name}}  | id: {{network.id}}</strong><p>
+                                <p class="text-left small"><a data-ui-sref="network({id : network.id})"><strong>{{network.name}}  | id: {{network.id}}</strong></a><p>
                                 <p class="text-justify small">{{network.description}}</p>
                             </td>
                             <td>
