@@ -5,20 +5,13 @@
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'NETWORKS' | translate }}</strong></h5></div>
             <div class="col-md-10">
                 <table class="table table-hover network">
-                    <thead>
-                    <tr>
-                        <th width="80%">&nbsp;</th>
-                        <th width="15%">&nbsp;</th>
-                        <th ng-show="editMode" width="10px">&nbsp;</th>
-                    </tr>
-                    </thead>
                     <tbody>
                         <tr ng-repeat="network in networks.content">
-                            <td>
+                            <td width="80%">
                                 <p class="text-left small"><a data-ui-sref="network({id : network.id})"><strong>{{network.name}}  | id: {{network.id}}</strong></a><p>
                                 <p class="text-justify small">{{network.description}}</p>
                             </td>
-                            <td>
+                            <td width="15%">
                                 <image-thumbnail width="78" height="44" attachment="network.image.attachment.id" ></image-thumbnail>
                             </td>
                             <td ng-show="editMode" class="btn-td"><a class="btn" ng-click="removeNetwork(network.id)"><i class="fa fa-close"></i></a></td>
@@ -72,12 +65,12 @@
                     </div>
 
                     <span  ng-class="{disabled: networks.number === 0}">
-                        <a type="submit" class="btn btn-default" ng-show="networks.number !== 0" ng-click="paginateNetworks(networks.number - 1,networks.size)"><strong style="color: #666"> < </strong></a>
-                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="networks.number === 0"><strong style="color: #666"> < </strong></button>
+                        <a type="submit" class="btn btn-default" ng-show="networks.number !== 0" ng-click="paginateNetworks(networks.number - 1,networks.size)"><strong style="color: #666"> &lt; </strong></a>
+                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="networks.number === 0"><strong style="color: #666"> &lt; </strong></button>
                     </span>
                     <span ng-class="{disabled: networks.number === networks.totalPages - 1}">
-                        <a type="submit" class="btn btn-default" ng-show="networks.number !== networks.totalPages - 1" ng-click="paginateNetworks(networks.number + 1,networks.size)"><strong style="color: #666"> > </strong></a>
-                        <button disabled="disabled" class="btn btn-default" ng-show="networks.number === networks.totalPages - 1"><strong style="color: #666"> > </strong></button>
+                        <a type="submit" class="btn btn-default" ng-show="networks.number !== networks.totalPages - 1" ng-click="paginateNetworks(networks.number + 1,networks.size)"><strong style="color: #666"> &gt; </strong></a>
+                        <button disabled="disabled" class="btn btn-default" ng-show="networks.number === networks.totalPages - 1"><strong style="color: #666"> &gt; </strong></button>
                     </span>
 
                 </form>

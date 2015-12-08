@@ -58,15 +58,15 @@
 
                     <span ng-class="{disabled: samples.number === 0}">
                         <a type="submit" class="btn btn-default" ng-show="samples.number !== 0"
-                           ng-click="paginateSample(samples.number - 1,samples.size)"><strong style="color: #666"> < </strong></a>
+                           ng-click="paginateSample(samples.number - 1,samples.size)"><strong style="color: #666"> &lt; </strong></a>
                         <button disabled="disabled" class="btn btn-default" class="page-not-active"
-                                ng-show="samples.number === 0"><strong style="color: #666"> < </strong></button>
+                                ng-show="samples.number === 0"><strong style="color: #666"> &lt; </strong></button>
                     </span>
                     <span ng-class="{disabled: samples.number === samples.totalPages - 1}">
                         <a type="submit" class="btn btn-default" ng-show="samples.number !== samples.totalPages - 1"
-                           ng-click="paginateSample(samples.number + 1,samples.size)"><strong style="color: #666"> > </strong></a>
+                           ng-click="paginateSample(samples.number + 1,samples.size)"><strong style="color: #666"> &gt; </strong></a>
                         <button disabled="disabled" class="btn btn-default"
-                                ng-show="samples.number === samples.totalPages - 1"><strong style="color: #666"> > </strong>
+                                ng-show="samples.number === samples.totalPages - 1"><strong style="color: #666"> &gt; </strong>
                         </button>
                     </span>
 

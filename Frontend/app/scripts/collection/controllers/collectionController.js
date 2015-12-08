@@ -42,7 +42,7 @@ define(['app','collection/directives/collection.networks.directive',
                /**
                 * Should be fired when the button save is click
                 */
-               $scope.$on('ACTION_SAVE', function(){
+               $scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
                    console.log('collection updating..');
 
                    $('#loader-wrapper').fadeToggle('400');
@@ -50,7 +50,7 @@ define(['app','collection/directives/collection.networks.directive',
                });
 
 
-               $scope.$on('ACTION_RELOADED', function(){
+               $scope.$on('BIODIVERSITY_COLLECTION_RELOADED', function(){
                    console.log('edit form canceling...');
                    $state.go($state.current, $stateParams, {reload: true, inherit: false});
                });
