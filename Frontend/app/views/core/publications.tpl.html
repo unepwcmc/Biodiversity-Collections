@@ -1,6 +1,5 @@
 <section class="page-content">
     <div class="container">
-
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'ASSOCIATED_PUBLICATIONS_DOCUMENTS' | translate }}</strong></h5></div>
             <div class="col-md-10">
@@ -17,19 +16,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="publication in documents.content" ts-repeat>
-                            <td>{{publication.title}}</td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li ng-repeat="author in publication.authors">{{author}}</li>
-                                </ul>
-                            </td>
-                            <td>{{publication.type}}</td>
-                            <td>.{{publication.contentType}}</td>
-                            <td class="btn-td"><a pub-popover doc="publication" class="btn"><i class="fa fa-ellipsis-v"></i></a></td>
-                            <td ng-show="editMode" class="btn-td"><a ng-click="deleteDocument(publication.id)" class="btn"><i class="fa fa-close"></i></a></td>
-                            <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" type="checkbox" /></td>
-                        </tr>
+                    <tr ng-repeat="publication in documents.content" ts-repeat>
+                        <td>{{publication.title}}</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li ng-repeat="author in publication.authors">{{author}}</li>
+                            </ul>
+                        </td>
+                        <td>{{publication.type}}</td>
+                        <td>.{{publication.contentType}}</td>
+                        <td class="btn-td"><a pub-popover doc="publication" class="btn"><i class="fa fa-ellipsis-v"></i></a></td>
+                        <td ng-show="editMode" class="btn-td"><a ng-click="deleteDocument(publication.id)" class="btn"><i class="fa fa-close"></i></a></td>
+                        <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" type="checkbox" /></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -91,11 +90,11 @@
                     <input type="hidden" ng-model="document.id" />
                     <div class="small-field">
                         <div class="form-group">
-                        <label for="inputTitle" class="col-sm-4 control-label-document text-left">{{ 'TITLE' | translate }}</label>
-                        <div class="col-sm-6">
-                            <input id="inputTitle" type="text" tabindex="1" class="form-control" data-ng-model="document.title" maxlength="255" required>
+                            <label for="inputTitle" class="col-sm-4 control-label-document text-left">{{ 'TITLE' | translate }}</label>
+                            <div class="col-sm-6">
+                                <input id="inputTitle" type="text" tabindex="1" class="form-control" data-ng-model="document.title" maxlength="255" required>
+                            </div>
                         </div>
-                    </div>
 
                         <div class="form-group">
                             <label for="inputAuthor" class="col-sm-4 control-label-document">{{ 'AUTHOR' | translate }}</label>

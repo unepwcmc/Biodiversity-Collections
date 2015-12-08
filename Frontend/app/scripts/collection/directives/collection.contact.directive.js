@@ -16,12 +16,14 @@ define(['angularAMD','waypoints','core/directives/core.map.directive'], function
 
                         $scope.$on('BIODIVERSITY_LOADED', function(){
                             $scope.fullAddress = '';
-                            if ($scope.collection.contact.address1) $scope.fullAddress += '+' + $scope.collection.contact.address1;
-                            if ($scope.collection.contact.address2) $scope.fullAddress += '+' + $scope.collection.contact.address2;
-                            if ($scope.collection.contact.address3) $scope.fullAddress += '+' + $scope.collection.contact.address3;
-                            if ($scope.collection.contact.city) $scope.fullAddress += '+' + $scope.collection.contact.city;
-                            if ($scope.collection.contact.district) $scope.fullAddress += '+' + $scope.collection.contact.district;
-                            if ($scope.collection.contact.country) $scope.fullAddress += '+' + $scope.collection.contact.country;
+                            if ($scope.collection.contact) {
+                                if ($scope.collection.contact.address1) $scope.fullAddress += '+' + $scope.collection.contact.address1;
+                                if ($scope.collection.contact.address2) $scope.fullAddress += '+' + $scope.collection.contact.address2;
+                                if ($scope.collection.contact.address3) $scope.fullAddress += '+' + $scope.collection.contact.address3;
+                                if ($scope.collection.contact.city) $scope.fullAddress += '+' + $scope.collection.contact.city;
+                                if ($scope.collection.contact.district) $scope.fullAddress += '+' + $scope.collection.contact.district;
+                                if ($scope.collection.contact.country) $scope.fullAddress += '+' + $scope.collection.contact.country;
+                            }
                         });
                     }],
                 link: function (scope, element, attrs) {

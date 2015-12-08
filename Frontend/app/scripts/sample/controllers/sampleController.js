@@ -1,7 +1,7 @@
 define(['app',
     'sample/directives/sample.details.directive',
     'sample/directives/sample.taxonomy.directive',
-    'sample/directives/sample.publications.directive',
+    'core/directives/core.publications.directive',
     'core/directives/core.breadcrumbs.directive',
     'core/factory/sampleFactory'], function () {
 

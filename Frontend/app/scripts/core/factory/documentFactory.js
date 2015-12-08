@@ -32,11 +32,30 @@ define(['app'], function (app) {
             setData: function (data) {
                 angular.extend(this, data);
             },
-            load: function( id, page, size ){
+            loadByCollection: function( id, page, size ){
 
                 var self = this;
 
                 $http.get( $rootScope.getHost() + "documents/search/collection/" + id + '?page=' +  page + '&size=' +   size)
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("DOCUMENT_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("DOCUMENT_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("DOCUMENT_LOAD_ERROR");
+                    });
+            },
+            loadBySample: function( id, page, size ){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "documents/search/sample/" + id + '?page=' +  page + '&size=' +   size)
 
                     .success(function (data) {
                         if (data.message == 'no matches found') {

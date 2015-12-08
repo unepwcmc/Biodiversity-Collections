@@ -113,7 +113,8 @@ define([],function ( ) {
     'SELECT_ALL': 'Selecionar todos',
     'RESULTS_FOR_SAMPLE': 'resultados para Exemplar',
     'BIODIVERSITY_SAMPLES_ADDED': 'Exemplares de biodiversidade adicionados.',
-    'CREATE_A_COLLECTION': 'Criar uma nova coleção'
+    'CREATE_A_COLLECTION': 'Criar uma nova coleção',
+    'DOWNLOAD': 'Download'
   }
 
 });

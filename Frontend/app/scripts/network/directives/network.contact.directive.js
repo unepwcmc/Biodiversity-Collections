@@ -16,12 +16,14 @@ define(['angularAMD','waypoints','core/directives/core.map.directive'], function
 
                         $scope.$on('NETWORK_LOADED_BY_ID', function(){
                             $scope.fullAddress = '';
-                            if ($scope.network.contact.address1) $scope.fullAddress += '+' + $scope.network.contact.address1;
-                            if ($scope.network.contact.address2) $scope.fullAddress += '+' + $scope.network.contact.address2;
-                            if ($scope.network.contact.address3) $scope.fullAddress += '+' + $scope.network.contact.address3;
-                            if ($scope.network.contact.city) $scope.fullAddress += '+' + $scope.network.contact.city;
-                            if ($scope.network.contact.district) $scope.fullAddress += '+' + $scope.network.contact.district;
-                            if ($scope.network.contact.country) $scope.fullAddress += '+' + $scope.network.contact.country;
+                            if ($scope.network.contact) {
+                                if ($scope.network.contact.address1) $scope.fullAddress += '+' + $scope.network.contact.address1;
+                                if ($scope.network.contact.address2) $scope.fullAddress += '+' + $scope.network.contact.address2;
+                                if ($scope.network.contact.address3) $scope.fullAddress += '+' + $scope.network.contact.address3;
+                                if ($scope.network.contact.city) $scope.fullAddress += '+' + $scope.network.contact.city;
+                                if ($scope.network.contact.district) $scope.fullAddress += '+' + $scope.network.contact.district;
+                                if ($scope.network.contact.country) $scope.fullAddress += '+' + $scope.network.contact.country;
+                            }
                         });
                     }],
                 link: function (scope, element, attrs) {
