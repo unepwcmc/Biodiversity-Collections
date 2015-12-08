@@ -38,7 +38,7 @@
             <div class="pull-left publication-collection-add">
                 <a ng-show="editMode" ng-click="showPublicationForm()" class="btn btn-primary"><label>{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</label></a>
             </div>
-            <div class="pull-right">
+            <div class="pull-right" ng-show="documents.number > 0">
                 <form class="form-inline">
                     <div class="form-group">
                         <label>{{ 'ROWS_PER_PAGE' | translate }}</label>

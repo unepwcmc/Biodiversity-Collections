@@ -14,7 +14,9 @@ define(['angularAMD','waypoints','core/directives/core.map.directive'], function
 
                         $scope.fullAddress = undefined;
 
-                        $scope.$on('NETWORK_LOADED_BY_ID', function(){
+                        $scope.$watchGroup(['network.contact.address1', 'network.contact.address2',
+                            'network.contact.address3', 'network.contact.city', 'network.contact.district',
+                            'network.contact.country'], function() {
                             $scope.fullAddress = '';
                             if ($scope.network.contact) {
                                 if ($scope.network.contact.address1) $scope.fullAddress += '+' + $scope.network.contact.address1;
@@ -24,6 +26,14 @@ define(['angularAMD','waypoints','core/directives/core.map.directive'], function
                                 if ($scope.network.contact.district) $scope.fullAddress += '+' + $scope.network.contact.district;
                                 if ($scope.network.contact.country) $scope.fullAddress += '+' + $scope.network.contact.country;
                             }
+                        });
+
+                        $scope.$on('LATITUDE_LONGITUDE_LOADED', function(obj, lat, lng) {
+                            if (!$scope.network.contact) {
+                                $scope.network.contact = {};
+                            }
+                            $scope.network.contact.latitude = lat;
+                            $scope.network.contact.longitude = lng;
                         });
                     }],
                 link: function (scope, element, attrs) {

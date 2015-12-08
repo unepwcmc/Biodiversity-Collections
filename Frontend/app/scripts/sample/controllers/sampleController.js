@@ -7,11 +7,13 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','$stateParams','BaseController','Sample',
-        function ($scope, $stateParams, BaseController, Sample) {
+
+    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','Sample',
+        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, Sample) {
 
         angular.extend($scope, BaseController);
 
+        $rootScope.editMode = false;
         $scope.sample = new Sample();
 
         /**

@@ -8,6 +8,7 @@ define(['angularAMD','waypoints'], function (angularAMD) {
 
             return {
                 restrict: 'EA',
+                scope: { display : '@' },
                 templateUrl: 'views/sample/taxonomy.tpl.html',
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){

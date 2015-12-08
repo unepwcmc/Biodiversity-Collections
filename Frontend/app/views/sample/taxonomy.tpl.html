@@ -1,9 +1,9 @@
-<section class="page-content">
+<section class="page-content" edit-form>
     <div class="container">
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'TAXONOMY' | translate }}</strong></h5></div>
             <div class="col-md-8">
-                <form action="#" class="form-horizontal view-mode form-block" role="form" name="collection_sample_form" novalidate>
+                <form action="#" ng-class="{'view-mode': display == 'true'}" class="form-horizontal form-block" role="form" name="collection_sample_form" novalidate>
                     <div class="small-field">
 
                         <div class="form-group">
