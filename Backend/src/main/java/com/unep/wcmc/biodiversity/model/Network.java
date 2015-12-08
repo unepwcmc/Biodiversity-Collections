@@ -1,7 +1,5 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -9,7 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Network implements BaseEntity {
 
     @Id
