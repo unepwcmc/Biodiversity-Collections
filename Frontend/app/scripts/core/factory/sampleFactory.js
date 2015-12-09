@@ -71,8 +71,10 @@ define(['app'], function (app) {
                     });
             },
             update: function () {
+                var self = this;
                 $http.put( $rootScope.getHost() + "samples/" + this.id, this)
                     .success(function (data) {
+                        self.setData(data);
                         $rootScope.$broadcast("SAMPLE_UPDATED");
                     })
                     .error(function (message) {
@@ -80,9 +82,22 @@ define(['app'], function (app) {
                     });
             },
             save: function () {
+                var self = this;
                 $http.post( $rootScope.getHost() + "samples", this)
                     .success(function (data) {
+                        self.setData(data);
                         $rootScope.$broadcast("SAMPLE_SAVED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            delete: function () {
+                var self = this;
+                $http.delete( $rootScope.getHost() + "samples/" + this.id)
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("SAMPLE_DELETED");
                     })
                     .error(function (message) {
                         $log.error(message);

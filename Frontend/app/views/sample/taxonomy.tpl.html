@@ -3,9 +3,8 @@
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'TAXONOMY' | translate }}</strong></h5></div>
             <div class="col-md-8">
-                <form action="#" ng-class="{'view-mode': display == 'true'}" class="form-horizontal form-block" role="form" name="collection_sample_form" novalidate>
+                <form ng-class="{'view-mode': display == 'true'}" id="taxonomy_sample_form" action="#" class="form-horizontal form-block" role="form" novalidate>
                     <div class="small-field">
-
                         <div class="form-group">
                             <label class="col-sm-3">{{ 'KINGDOM' | translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="sample.taxonomy.kingdom"></div>
@@ -50,7 +49,6 @@
                             <label class="col-sm-3">{{ 'SCIENTIFIC_NAME' | translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="sample.taxonomy.scientificName"></div>
                         </div>
-
                     </div>
                 </form>
             </div>

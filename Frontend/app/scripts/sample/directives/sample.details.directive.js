@@ -13,13 +13,15 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        $scope.editMode = $rootScope.editMode;
                         $scope.sample = $scope.$parent.sample;
 
                         $scope.collectionSelected = null;
                         $scope.curatorSelected = null;
                         $scope.institutionSelected = null;
 
+                        $rootScope.$watch('editMode', function() {
+                            $scope.editMode = $rootScope.editMode;
+                        });
 
                         $scope.$on('SAMPLE_LOADED', function() {
                             console.log('collection loaded...');
@@ -105,6 +107,28 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                             }
                         }
                     });
+
+                    $(element).find("#edit-sample").click( function(){
+
+                        scope.disableAutocomplete = false;
+                        scope.navigationBar = true;
+                        scope.$emit('EDIT_SAMPLE');
+                        scope.$apply();
+                    });
+
+                    $(element).find('.btn-edit-sample-cancel').click(function(){
+                        backToDefault();
+                        scope.$emit('CANCEL_EDIT_SAMPLE');
+                    });
+
+                    function backToDefault(){
+
+                        scope.navigationBar = false;
+                        scope.disableAutocomplete = true;
+                        $(element).find("#sample-bar-fixed").hide();
+                        $(element).find(".sample-default-mode").show();
+                        $(element).find(".sample-edit-mode").hide();
+                    }
 
                 }
             };

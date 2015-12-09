@@ -195,11 +195,27 @@ module.exports = function (grunt) {
               exclude: ['include']
             },
             {
+              name: 'curator/controllers/curatorController',
+              exclude: ['include']
+            },
+            {
               name: 'home/controllers/homeController',
               exclude: ['include']
             },
             {
+              name: 'institution/controllers/institutionController',
+              exclude: ['include']
+            },
+            {
+              name: 'network/controllers/networkController',
+              exclude: ['include']
+            },
+            {
               name: 'sample/controllers/sampleController',
+              exclude: ['include']
+            },
+            {
+              name: 'sample/controllers/collectionSampleController',
               exclude: ['include']
             },
             {

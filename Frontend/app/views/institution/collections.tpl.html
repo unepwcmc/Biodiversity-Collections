@@ -15,7 +15,7 @@
                     <tbody>
                     <tr ng-repeat="collection in institution.collections.content">
                         <td>
-                            <p class="text-left small"><strong>{{collection.name}}  | id: {{collection.id}}</strong><p>
+                            <p class="text-left small"><a data-ui-sref="collection({id : collection.id})"><strong>{{collection.name}}  | id: {{collection.id}}</strong></a><p>
                             <p class="text-justify small">{{collection.description}}</p>
                         </td>
                         <td>
@@ -33,7 +33,7 @@
                 <form class="form-inline view-mode form-block">
                     <div class="form-group">
                         <angucomplete-alt id="collection_network_autocomplete"
-                                          placeholder="Search a Network"
+                                          placeholder="Search a Collection"
                                           pause="150"
                                           selected-object="networkSelected"
                                           remote-api-handler="networkAutocomplete"
@@ -72,12 +72,12 @@
                     </div>
 
                     <span  ng-class="{disabled: institution.collections.number === 0}">
-                        <a type="submit" class="btn btn-default" ng-show="institution.collections.number !== 0" ng-click="paginateInstitutionCollections(institution.collections.number - 1, institution.collections.size)"><strong style="color: #666"> < </strong></a>
-                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="institution.collections.number === 0"><strong style="color: #666"> < </strong></button>
+                        <a type="submit" class="btn btn-default" ng-show="institution.collections.number !== 0" ng-click="paginateInstitutionCollections(institution.collections.number - 1, institution.collections.size)"><strong style="color: #666"> &lt; </strong></a>
+                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="institution.collections.number === 0"><strong style="color: #666"> &lt; </strong></button>
                     </span>
                     <span ng-class="{disabled: institution.collections.number === institution.collections.totalPages - 1}">
-                        <a type="submit" class="btn btn-default" ng-show="institution.collections.number !== institution.collections.totalPages - 1" ng-click="paginateInstitutionCollections(institution.collections.number + 1,institution.collections.size)"><strong style="color: #666"> > </strong></a>
-                        <button disabled="disabled" class="btn btn-default" ng-show="institution.collections.number === institution.collections.totalPages - 1"><strong style="color: #666"> > </strong></button>
+                        <a type="submit" class="btn btn-default" ng-show="institution.collections.number !== institution.collections.totalPages - 1" ng-click="paginateInstitutionCollections(institution.collections.number + 1,institution.collections.size)"><strong style="color: #666"> &gt; </strong></a>
+                        <button disabled="disabled" class="btn btn-default" ng-show="institution.collections.number === institution.collections.totalPages - 1"><strong style="color: #666"> &gt; </strong></button>
                     </span>
 
                 </form>

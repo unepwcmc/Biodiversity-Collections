@@ -18,6 +18,7 @@ define(['app', 'waypoints',
         $rootScope.editMode = true;
         $scope.navigationBar = true;
         $scope.createSample = true;
+        $scope.generatedSample = false;
         $scope.searchTerm = '';
         $scope.page = 0;
         $scope.size = 20;
@@ -28,6 +29,8 @@ define(['app', 'waypoints',
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
             console.log('state Change Success');
             $('#loader-wrapper').fadeToggle('400');
+            $scope.generatedSample = true;
+            $scope.sample.save();
         });
 
         $scope.search = function() {
@@ -36,7 +39,8 @@ define(['app', 'waypoints',
         };
 
         $scope.cancel = function() {
-            $state.go('collection', $stateParams);
+            $('#loader-wrapper').fadeToggle('400');
+            $scope.sample.delete();
         };
 
         $scope.addSelectedSamples = function() {
@@ -52,7 +56,7 @@ define(['app', 'waypoints',
         $scope.create = function() {
             $scope.sample.collection = { id : $stateParams.id };
             $('#loader-wrapper').fadeToggle('400');
-            $scope.sample.save();
+            $scope.sample.update();
         };
 
         $scope.checkAndUnCheckAll = function(){
@@ -95,6 +99,15 @@ define(['app', 'waypoints',
         });
 
         $scope.$on('SAMPLE_SAVED', function() {
+            if ($scope.generatedSample) {
+                $scope.generatedSample = false;
+            } else {
+                $('#loader-wrapper').fadeToggle('400');
+                $state.go('sample', {id : $scope.sample.id});
+            }
+        });
+
+        $scope.$on('SAMPLE_DELETED', function() {
             $('#loader-wrapper').fadeToggle('400');
             $state.go('collection', $stateParams);
         });

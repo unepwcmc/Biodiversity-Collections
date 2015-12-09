@@ -73,7 +73,12 @@ define([ 'angularAMD',
 
                             $scope.document.contentType = getFileExtension($scope.file.name);
                             $scope.document.status = true;
-                            $scope.document.collection = { id: $stateParams.id };
+
+                            if ($scope.type == 'collection') {
+                                $scope.document.collection = { id: $stateParams.id };
+                            } else if ($scope.type == 'sample') {
+                                $scope.document.sample = { id: $stateParams.id };
+                            }
 
                             $scope.documents.save($scope.document, function( data, status){
 
@@ -95,7 +100,11 @@ define([ 'angularAMD',
                                 $scope.document.contentType = getFileExtension($scope.file.name);
                             }
 
-                            $scope.document.collection = { id: $stateParams.id };
+                            if ($scope.type == 'collection') {
+                                $scope.document.collection = { id: $stateParams.id };
+                            } else if ($scope.type == 'sample') {
+                                $scope.document.sample = { id: $stateParams.id };
+                            }
 
                             $scope.documents.update( $scope.document, function( data, status){
 
