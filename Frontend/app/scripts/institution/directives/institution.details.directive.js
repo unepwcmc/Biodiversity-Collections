@@ -43,7 +43,7 @@ define(['angularAMD','waypoints'], function (angularAMD) {
                         }
                     });
 
-                    scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
+                    scope.$on('ACTION_SAVE', function(){
 
                         scope.$emit('SAVE_INSTITUTION');
                         backToDefault();

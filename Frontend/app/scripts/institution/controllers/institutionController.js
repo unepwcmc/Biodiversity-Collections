@@ -53,7 +53,7 @@ define(['app',
             });
 
 
-            $scope.$on('BIODIVERSITY_COLLECTION_RELOADED', function(){
+            $scope.$on('CANCEL_EDIT_INSTITUTION', function(){
                 console.log('edit form canceling...');
                 $state.go($state.current, $stateParams, {reload: true, inherit: false});
             });

@@ -98,7 +98,7 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                         }
                     });
 
-                    scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
+                    scope.$on('ACTION_SAVE', function(){
 
                         scope.$emit('SAVE_CURATOR');
                         backToDefault();

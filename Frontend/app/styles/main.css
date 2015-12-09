@@ -156,6 +156,12 @@ a[target="blank"] {
 .navbar h2.navbar-text {
   color: #fff; }
 
+.collection-image > li {
+  margin-top: 8px;
+  margin-left: 08px;
+  padding-right: 0;
+  padding-left: 0; }
+
 /** FORM STYLES */
 input[type="text"], textarea.form-control,
 input[type="password"],

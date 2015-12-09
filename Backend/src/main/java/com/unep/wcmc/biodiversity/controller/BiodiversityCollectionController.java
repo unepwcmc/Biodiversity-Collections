@@ -56,6 +56,21 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         return service.save(biodiversityCollection);
     }
 
+    @RequestMapping(method= RequestMethod.POST, value="/{id}/medias")
+    public BiodiversityCollection uploadMedia(@PathVariable Long id, @RequestParam("files[]") List<MultipartFile> files) {
+        BiodiversityCollection biodiversityCollection = service.get(id);
+
+        for(MultipartFile file : files)
+        {
+            if(!file.isEmpty())
+            {
+                biodiversityCollection.addImage(imageService.save(file));
+            }
+        }
+
+        return service.save(biodiversityCollection);
+    }
+
     @RequestMapping(method= RequestMethod.PUT, value="/{id}/network/{networkId}")
     public BiodiversityCollection addNetwork(@PathVariable Long id, @PathVariable Long networkId){
 
