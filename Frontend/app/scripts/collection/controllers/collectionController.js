@@ -66,6 +66,8 @@ define(['app','collection/directives/collection.networks.directive',
 
                    if($scope.collection.published == null)
                        $scope.collection.published = false;
+
+                   $('#loader-wrapper').fadeToggle('400');
                });
 
                /**
@@ -101,6 +103,7 @@ define(['app','collection/directives/collection.networks.directive',
                            $scope.images = null;
                            $('#loader-wrapper').fadeToggle('400');
                            toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
+                           $scope.$emit("IMAGE_ADDED");
 
                        }).catch( function( errorCallback ){
                             console.log(errorCallback);
@@ -121,14 +124,14 @@ define(['app','collection/directives/collection.networks.directive',
                     $scope.images = data;
                });
 
-               /**
-                * Listener when the image was added to the biodiversity collection model.
-                */
-              /* $scope.$on('IMAGE_ADDED', function(){
-                   $scope.image = null;
-                   $('#loader-wrapper').fadeToggle('400');
-                   toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
-               });*/
+               $scope.$on('REMOVE_IMAGE', function(evt, data){
+
+                   var index = _.findIndex($scope.collection.images, function( obj ){
+                       return obj.id == data;
+                   });
+
+                   $scope.collection.images.splice(index, 1);
+               });
 
                /**
                 * Listener when the button edit is clicked

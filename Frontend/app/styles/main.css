@@ -1129,6 +1129,14 @@ body.noscroll {
   font-weight: bold;
   text-decoration: none; }
 
+i.bt-img-close {
+  color: #000 !important;
+  border: solid 1px #EAEAEA;
+  width: 100%;
+  padding-top: 4px;
+  padding-left: 40%;
+  height: 25px; }
+
 /** HEADER */
 .l-header {
   height: 50px;
