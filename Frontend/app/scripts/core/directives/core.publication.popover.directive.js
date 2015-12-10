@@ -16,9 +16,6 @@ define(['angularAMD','popover'], function (angularAMD) {
 
                         var URL = $rootScope.getHost() + "documents/" + $scope.doc.id + "/download";
 
-                        var default_button_template = "<i class='fa fa-ellipsis-v'></i>";
-                        var close_button_template = "<i class='fa fa-close'></i>";
-
                         var template = "<div class='row'>" +
                                             "<div class='pull-left p-description'>" +
                                                 "<p><small><strong>Description</strong></small></p>" +
@@ -27,7 +24,7 @@ define(['angularAMD','popover'], function (angularAMD) {
                                             "<div class='pull-right p-button'>" +
                                                 "<a ng-click='download()' style='cursor: pointer'><i class='fa fa-download'></i><strong>&nbsp;" + $translate.instant('DOWNLOAD') + "</strong></a>" +
                                                 "<div class='clearfix' ></div>" +
-                                                "<a ng-show='editMode' ng-click='editDocumentEvent()' style='cursor: pointer'><i class='fa fa-edit'></i><strong>&nbsp;" + $translate.instant('EDIT') + "</strong></a>" +
+                                                "<a ng-click='editDocumentEvent()' style='cursor: pointer'><i class='fa fa-edit'></i><strong>&nbsp;" + $translate.instant('EDIT') + "</strong></a>" +
                                             "</div>" +
                                        "</div>";
 
@@ -40,12 +37,7 @@ define(['angularAMD','popover'], function (angularAMD) {
                                     html: true,
                                     arrow:false
                                 }
-                            ).on('shown.webui.popover',function(e,tgt){
-                                    $( ele).html(close_button_template);
-                            })
-                            .on('hide.webui.popover',function(e,tgt){
-                                    $( ele).html(default_button_template);
-                            });
+                            );
                         };
 
                         $scope.download = function( ){
