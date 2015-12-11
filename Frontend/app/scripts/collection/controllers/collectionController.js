@@ -18,7 +18,7 @@ define(['app','collection/directives/collection.networks.directive',
                $rootScope.editMode = false;
                $scope.images = [];
                $scope.fromState = 'home';
-               $scope.collection = undefined;
+               $scope.collection = new BiodiversityCollection();
 
                /**
                 * Listener when the state is changed
@@ -35,8 +35,14 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.$on('$viewContentLoaded', function() {
                    console.log('view Content Loaded...');
 
-                   $scope.collection = new BiodiversityCollection();
-                   $scope.collection.get( $stateParams.id );
+                   $('#loader-wrapper').fadeToggle('400');
+                   if ($stateParams.isNew) {
+                       $rootScope.editMode = true;
+                       $scope.collection.id = $stateParams.id;
+                   } else {
+                       $scope.collection.get( $stateParams.id );
+                       $rootScope.editMode = false;
+                   }
                });
 
                /**
@@ -144,7 +150,17 @@ define(['app','collection/directives/collection.networks.directive',
                 * Listener when the button cancel is clicked
                 */
                $scope.$on('CANCEL_EDIT_COLLECTION', function() {
-                   setStateButton(false);
+                   if ($stateParams.isNew) {
+                       $('#loader-wrapper').fadeToggle('400');
+                       $scope.collection.delete($stateParams.id);
+                   } else {
+                       setStateButton(false);
+                   }
+               });
+
+               $scope.$on('BIODIVERSITY_DELETED', function() {
+                   $('#loader-wrapper').fadeToggle('400');
+                   $state.go('home');
                });
 
                /**

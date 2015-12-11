@@ -12,8 +12,13 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        $scope.navigationBar = false;
-                        $scope.disableAutocomplete = true;
+                        if ($stateParams.isNew) {
+                            $scope.disableAutocomplete = false;
+                            $scope.navigationBar = true;
+                        } else {
+                            $scope.navigationBar = false;
+                            $scope.disableAutocomplete = true;
+                        }
                         $scope.member = {};
 
                         $scope.addMember = function(){
@@ -42,6 +47,14 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                                 default:
                             }
                         }
+                    });
+
+                    /**
+                     * Should be fired when the button save is click
+                     */
+                    scope.$on('ACTION_SAVE', function(){
+
+                        backToDefault();
                     });
 
                     $(element).find("#edit-network").click( function(){

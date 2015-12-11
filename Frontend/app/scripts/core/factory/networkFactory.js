@@ -118,10 +118,31 @@ define(['angularAMD'], function (angularAMD) {
                     });
             },
             update: function () {
-
+                var self = this;
                 $http.put( $rootScope.getHost() + "networks/" + this.id, this)
                     .success(function (data) {
+                        self.setData(data);
                         $rootScope.$broadcast("NETWORK_UPDATED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            save: function () {
+                var self = this;
+                $http.post( $rootScope.getHost() + "networks/", this)
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("NETWORK_SAVED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            delete: function (id) {
+                $http.delete( $rootScope.getHost() + "networks/" + id)
+                    .success(function (data) {
+                        $rootScope.$broadcast("NETWORK_DELETED");
                     })
                     .error(function (message) {
                         $log.error(message);

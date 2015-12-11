@@ -4,11 +4,11 @@
  * @email jozecarlos.it@gmail.com
  *
  */
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    app.factory('Curator', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
+    angularAMD.factory('Curator', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
 
         /**
          *

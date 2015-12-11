@@ -27,14 +27,27 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                 var $save_form = $(element).find('.save-form');
                 var $save_mode = $(element).find('.save-mode');
 
-                $save_form.hide();
-                $save_mode.hide();
+                if (attrs.editForm !== 'true') {
+                    $save_form.hide();
+                    $save_mode.hide();
+                }
 
-                var $form_view = $('form.view-mode');
-                $form_view.find('textarea,input[type="text"],input[type="email"],input[type="password"]').attr('readonly', 'input[type="text"]');
-                $form_view.find('input[type="number"]').attr('disabled', 'disabled');
-                $form_view.find('input[type="radio"]').attr('disabled',true);
-                $form_view.find('select').attr('disabled','disabled');
+                $form = $(element).find('.view-mode');
+                if ($form.length == 0) {
+                    $form = $(element).find('.form-data');
+                    if (attrs.editForm !== 'true') {
+                        $form.addClass('view-mode');
+                    } else {
+                        $form.addClass('edit-mode');
+                    }
+                }
+
+                if ($form.hasClass('view-mode')) {
+                    $form.find('textarea,input[type="text"],input[type="email"],input[type="password"]').attr('readonly', 'input[type="text"]');
+                    $form.find('input[type="number"]').attr('disabled', 'disabled');
+                    $form.find('input[type="radio"]').attr('disabled', true);
+                    $form.find('select').attr('disabled', 'disabled');
+                }
 
                 $edit_form.click(function (event) {
                     event.preventDefault();
@@ -44,7 +57,7 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $edit_form.hide();
                     $edit_mode.hide();
 
-                    $form = $('form.view-mode');
+                    $form = $('.view-mode');
                     $elements = 'textarea,input[type="text"],input[type="email"],input[type="password"],select';
 
                     if ($form.hasClass('view-mode')) {
@@ -81,6 +94,9 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $save_form.hide();
                     $save_mode.hide();
 
+                    $form = $('.edit-mode');
+                    $elements = 'textarea,input[type="text"],input[type="email"],input[type="password"],select';
+
                     if ($form.hasClass('edit-mode')) {
 
                         $form.removeClass('edit-mode').addClass('view-mode');
@@ -114,10 +130,10 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $(element).find('.view-mode').find('input[type="number"]').attr('disabled', 'disabled');
                     $(element).find('.view-mode').find('select').attr('disabled', 'disabled');
 
-                    $(element).find('form.edit-mode').find('textarea,input[type="text"],input[type="radio"],input[type="email"],input[type="password"],select,select[ multiple="multiple"]').removeAttr('readonly');
-                    $(element).find('form.edit-mode').find('.rem-row').removeAttr('disabled');
-                    $(element).find('form.edit-mode').find('input[type="number"]').removeAttr('disabled');
-                    $(element).find('form.edit-mode').find('select').removeAttr('disabled');
+                    $(element).find('.edit-mode').find('textarea,input[type="text"],input[type="radio"],input[type="email"],input[type="password"],select,select[ multiple="multiple"]').removeAttr('readonly');
+                    $(element).find('.edit-mode').find('.rem-row').removeAttr('disabled');
+                    $(element).find('.edit-mode').find('input[type="number"]').removeAttr('disabled');
+                    $(element).find('.edit-mode').find('select').removeAttr('disabled');
 
                     $(element).find('.no-editable').attr('readonly', 'readonly');
                 });

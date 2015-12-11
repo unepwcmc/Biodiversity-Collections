@@ -47,6 +47,7 @@ define(['include', 'language'], function (angularAMD, language) {
                 .state('collection', angularAMD.route(
                     {
                         url: '/collection/:id',
+                        params: {isNew : false},
                         templateUrl: 'views/collection/default.html',
                         controllerUrl: 'collection/controllers/collectionController',
                         ncyBreadcrumb: {
@@ -71,6 +72,7 @@ define(['include', 'language'], function (angularAMD, language) {
                 .state('network', angularAMD.route(
                     {
                         url: '/network/:id',
+                        params: {isNew : false},
                         templateUrl: 'views/network/default.html',
                         controllerUrl: 'network/controllers/networkController',
                         ncyBreadcrumb: {
@@ -235,8 +237,8 @@ define(['include', 'language'], function (angularAMD, language) {
         }]);
 
     app.CONST = {
-        LOCALHOST: "http://localhost:8080/", //LOCAL
-       // LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
+        //LOCALHOST: "http://localhost:8080/", //LOCAL
+        LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
         //LOCALHOST:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         //SERVER:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         SERVER: "http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/"  // DEV

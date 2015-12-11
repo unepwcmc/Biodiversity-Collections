@@ -12,11 +12,8 @@ define(['app',
 
         angular.extend($scope, BaseController);
 
-        $rootScope.editMode = false;
         $scope.image = null;
-
         $scope.network = new Network();
-
 
         /**
          * Listener when the view is loaded
@@ -25,7 +22,14 @@ define(['app',
             console.log('view Content Loaded...');
 
             $('#loader-wrapper').fadeToggle('400');
-            $scope.network.loadById($stateParams.id);
+            if ($stateParams.isNew) {
+                $rootScope.editMode = true;
+                $scope.network.id = $stateParams.id;
+            } else {
+                $scope.network.loadById($stateParams.id);
+                $rootScope.editMode = false;
+            }
+
         });
 
         /**
@@ -35,6 +39,7 @@ define(['app',
             console.log('network updating..');
             $('#loader-wrapper').fadeToggle('400');
             $scope.network.update();
+            setStateButton(false);
         });
 
         $scope.$on('ACTION_RELOADED', function(){
@@ -47,8 +52,10 @@ define(['app',
          * biodiversity collection model.
          *
          */
-        $scope.$on('BIODIVERSITY_UPDATED', function(){
+        $scope.$on('NETWORK_UPDATED', function(){
             console.log('updated');
+
+            $stateParams.isNew = false;
             if ($scope.image != null) {
                 $scope.network.addImage($scope.image);
             } else {
@@ -68,14 +75,18 @@ define(['app',
          * Listener when the button cancel is clicked
          */
         $scope.$on('CANCEL_EDIT_NETWORK', function() {
-            setStateButton(false);
+            if ($stateParams.isNew) {
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.network.delete($stateParams.id);
+            } else {
+                setStateButton(false);
+            }
+
         });
 
-        /**
-         * Listener when the button save is clicked
-         */
-        $scope.$on('SAVE_NETWORK', function() {
-            setStateButton(false)
+        $scope.$on('NETWORK_DELETED', function() {
+            $('#loader-wrapper').fadeToggle('400');
+            $state.go('home');
         });
 
         function setStateButton( status ){

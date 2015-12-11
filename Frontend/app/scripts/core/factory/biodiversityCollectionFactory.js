@@ -51,10 +51,31 @@ define(['angularAMD'], function (angularAMD) {
                     });
             },
             update: function () {
-
+                var self = this;
                 $http.put( $rootScope.getHost() + "collections/" + this.id, this)
                     .success(function (data) {
+                        self.setData(data);
                         $rootScope.$broadcast("BIODIVERSITY_UPDATED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            save: function () {
+                var self = this;
+                $http.post( $rootScope.getHost() + "collections/", this)
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("BIODIVERSITY_SAVED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            delete: function (id) {
+                $http.delete( $rootScope.getHost() + "collections/" + id)
+                    .success(function (data) {
+                        $rootScope.$broadcast("BIODIVERSITY_DELETED");
                     })
                     .error(function (message) {
                         $log.error(message);
