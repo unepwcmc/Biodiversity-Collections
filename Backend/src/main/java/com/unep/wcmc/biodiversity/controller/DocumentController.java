@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/documents")
@@ -33,6 +34,17 @@ public class DocumentController extends AbstractController<Document, DocumentSer
 
     @Autowired
     private HttpServletResponse response;
+
+    @RequestMapping(method= RequestMethod.GET, value="/search")
+    public Page<Document> search(@RequestParam String term,
+                                 @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findAllByNameContainingOrderByNameAsc(term, pageable);
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
+    public List<Document> autocomplete(@RequestParam String term) {
+        return service.getRepository().findTop5ByNameContainingOrderByNameAsc(term);
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/collection/{collectionId}")
     public Page<Document> getByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
