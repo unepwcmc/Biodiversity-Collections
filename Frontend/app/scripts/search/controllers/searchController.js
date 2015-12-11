@@ -2,13 +2,14 @@ define(['app',
     'core/factory/biodiversityCollectionFactory',
     'core/factory/networkFactory',
     'core/factory/curatorFactory',
-    'core/factory/institutionFactory'], function () {
+    'core/factory/institutionFactory',
+    'core/factory/documentFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController', '$stateParams','$http','$rootScope','BiodiversityCollection','Network', 'Institution','Curator',
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','$window','BiodiversityCollection','Network', 'Institution','Curator','Document',
 
-        function ($scope, BaseController, $stateParams, $http, $rootScope, BiodiversityCollection, Network, Institution, Curator) {
+        function ($scope, BaseController, $stateParams, $http, $rootScope, $window, BiodiversityCollection, Network, Institution, Curator, Document) {
 
             angular.extend($scope, BaseController);
 
@@ -16,6 +17,7 @@ define(['app',
             $scope.network = new Network();
             $scope.institution = new Institution();
             $scope.curator = new Curator();
+            $scope.document = new Document();
 
             $scope.page = 0;
             $scope.size = 10;
@@ -24,14 +26,11 @@ define(['app',
             $scope.searchType = 'collection';
             $scope.query = '';
 
-
             /**
              * Listener when the state is changed
              */
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
-
-
 
                 if ($scope.searchType === "collection") {
                     $scope.collection.search( $scope.query, $scope.page, $scope.size );
@@ -41,27 +40,16 @@ define(['app',
                     $scope.network.search($scope.query, $scope.page, $scope.size);
                 } else if ($scope.searchType === "curator") {
                     $scope.curator.search( $scope.query, $scope.page, $scope.size );
+                } else if ($scope.searchType === "document") {
+                    $scope.document.search($scope.query, $scope.page, $scope.size);
                 }
             });
 
-            $scope.$on('BIODIVERSITY_SEARCHED', function(){
-
-                $('#loader-wrapper').fadeToggle('400');
-            });
-
-            $scope.$on('NETWORK_SEARCHED', function(){
-
-                $('#loader-wrapper').fadeToggle('400');
-            });
-
-            $scope.$on('INSTITUTION_SEARCHED', function(){
-
-                $('#loader-wrapper').fadeToggle('400');
-            });
-
-            $scope.$on('CURATOR_SEARCHED', function(){
-
-                $('#loader-wrapper').fadeToggle('400');
+            angular.forEach(['BIODIVERSITY_SEARCHED','NETWORK_SEARCHED','INSTITUTION_SEARCHED','CURATOR_SEARCHED','DOCUMENT_SEARCHED'],
+                function(value){
+                $scope.$on(value, function(event){
+                    $('#loader-wrapper').fadeToggle('400');
+                });
             });
 
             $scope.$on('$viewContentLoaded', function() {
@@ -85,8 +73,9 @@ define(['app',
                     $scope.network.search($scope.query, $scope.page, $scope.size);
                 } else if ($scope.searchType === "curator") {
                     $scope.curator.search( $scope.query, $scope.page, $scope.size );
+                } else if ($scope.searchType === "document") {
+                    $scope.document.search( $scope.query, $scope.page, $scope.size );
                 }
-
             };
 
             $scope.selectCurrentSearchView = function() {
@@ -97,12 +86,17 @@ define(['app',
                     return 'views/search/institutions.tpl.html'
                 } else if ($stateParams.type === "network") {
                     return 'views/search/network.tpl.html'
-                }else if ($stateParams.type === "curator") {
+                } else if ($stateParams.type === "curator") {
                     return 'views/search/curator.tpl.html'
+                } else if ($stateParams.type === "document") {
+                    return 'views/search/documents.tpl.html'
                 } else {
                     return;
                 }
+            };
 
+            $scope.downloadDocument = function(id) {
+                $window.open($rootScope.getHost() + "documents/" + id + "/download", '_blank');
             };
 
         }];

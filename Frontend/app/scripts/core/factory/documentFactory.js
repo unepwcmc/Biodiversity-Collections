@@ -4,11 +4,11 @@
  * @email jozecarlos.it@gmail.com
  *
  */
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    app.factory('Document', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
+    angularAMD.factory('Document', ['$http', '$rootScope', '$log', function ($http, $rootScope, $log) {
 
         /**
          *
@@ -170,6 +170,39 @@ define(['app'], function (app) {
                         $log.error( data);
                         if(callback)
                             callback( data, status, headers, config );
+                    });
+            },
+            search: function( query, page, size ) {
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "documents/search?term=" + query + "&page=" + page + "&size=" + size )
+
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("DOCUMENT_SEARCHED", data);
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("DOCUMENT_SEARCH_ERROR");
+                    });
+            },
+            autocomplete: function( query, callback ) {
+
+                return $http.get( $rootScope.getHost() + "documents/search/autocomplete?term=" + query  )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("DOCUMENT_AUTOCOMPLETE_LOAD_ERROR");
+                        } else {
+                            $rootScope.$broadcast("DOCUMENT_AUTOCOMPLETE_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("DOCUMENT_AUTOCOMPLETE_LOAD_ERROR");
                     });
             }
         };

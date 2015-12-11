@@ -122,7 +122,8 @@ define([],function ( ) {
     'ASSOCIATED_INSTITUTIONS':'Instituições associadas',
     'RESULT_FOR_CURATOR':'Resultados para curador',
     'CREATE_A_COLLECTION': 'Criar uma nova coleção',
-    'DOWNLOAD': 'Download'
+    'DOWNLOAD': 'Download',
+    'DOCUMENT': 'Documento'
   }
 
 });
