@@ -18,5 +18,5 @@ public interface DocumentRepository extends AbstractRepository<Document> {
 
     List<Document> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name);
 
-    Page<Document> findAllByNameContainingOrderByNameAsc(String name, Pageable p);
+    Page<Document> findAllByTitleContainingOrderByTitleAsc(String title, Pageable p);
 }
