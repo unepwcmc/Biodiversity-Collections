@@ -123,7 +123,15 @@ define([],function ( ) {
     'RESULT_FOR_CURATOR':'Result for curator',
     'CREATE_A_COLLECTION': 'Create a new collection',
     'DOWNLOAD': 'Download',
-    'DOCUMENT': 'Document'
+    'DOCUMENT': 'Document',
+    'COLLECTION_ADDED_TO_INSTITUTION' : 'Collection added to institution',
+    'COLLECTION_ADDED_TO_INSTITUTION_ERROR' : 'Error to add collection to institution',
+    'COLLECTION_REMOVED_TO_INSTITUTION' : 'Collection removed from institution',
+    'COLLECTION_REMOVED_TO_INSTITUTION_ERROR' : 'Error to remove collection from institution',
+    'NETWORK_ADDED_TO_INSTITUTION' : 'Network added to institution',
+    'NETWORK_ADDED_TO_INSTITUTION_ERROR': 'Error to add network to institution',
+    'NETWORK_REMOVED_TO_INSTITUTION' : 'Network removed from institution',
+    'NETWORK_REMOVED_TO_INSTITUTION_ERROR': 'Error to remove network from institution'
 }
 
 });

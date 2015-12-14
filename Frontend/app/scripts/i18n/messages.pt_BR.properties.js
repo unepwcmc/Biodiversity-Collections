@@ -123,7 +123,15 @@ define([],function ( ) {
     'RESULT_FOR_CURATOR':'Resultados para curador',
     'CREATE_A_COLLECTION': 'Criar uma nova coleção',
     'DOWNLOAD': 'Download',
-    'DOCUMENT': 'Documento'
+    'DOCUMENT': 'Documento',
+    'COLLECTION_ADDED_TO_INSTITUTION' : 'Coleção adicionada na instituição',
+    'COLLECTION_ADDED_TO_INSTITUTION_ERROR' : 'Erro ao adicionar a coleção na instituição',
+    'COLLECTION_REMOVED_TO_INSTITUTION' : 'Coleção removida da instutição',
+    'COLLECTION_REMOVED_TO_INSTITUTION_ERROR' : 'Erro ao remover a coleção da instituição',
+    'NETWORK_ADDED_TO_INSTITUTION' : 'Rede adicionada na instituição',
+    'NETWORK_ADDED_TO_INSTITUTION_ERROR': 'Erro ao adicionar a rede na instituição',
+    'NETWORK_REMOVED_TO_INSTITUTION' : 'Rede removida da instituição',
+    'NETWORK_REMOVED_TO_INSTITUTION_ERROR': 'Erro ao remover a rede da instituição'
   }
 
 });
