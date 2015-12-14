@@ -66,12 +66,11 @@ define(['app',
             $scope.$on('INSTITUTION_UPDATED', function(){
                 console.log('updated');
 
-                if($scope.image != null){
+                if ($scope.image != null) {
                     $scope.institution.addImage($scope.image);
-                }else{
-
+                } else {
                     $('#loader-wrapper').fadeToggle('400');
-                    toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
+                    toastr.success($translate.instant('INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
                 }
             });
 

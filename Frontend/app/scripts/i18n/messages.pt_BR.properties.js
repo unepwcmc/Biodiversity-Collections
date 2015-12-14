@@ -131,7 +131,8 @@ define([],function ( ) {
     'NETWORK_ADDED_TO_INSTITUTION' : 'Rede adicionada na instituição',
     'NETWORK_ADDED_TO_INSTITUTION_ERROR': 'Erro ao adicionar a rede na instituição',
     'NETWORK_REMOVED_TO_INSTITUTION' : 'Rede removida da instituição',
-    'NETWORK_REMOVED_TO_INSTITUTION_ERROR': 'Erro ao remover a rede da instituição'
+    'NETWORK_REMOVED_TO_INSTITUTION_ERROR': 'Erro ao remover a rede da instituição',
+    'INSTITUTION_SAVED': 'Institutição salva com sucesso'
   }
 
 });
