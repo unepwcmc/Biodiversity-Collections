@@ -19,5 +19,9 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
 
     Page<BiodiversityCollection> findByInstitutionIdOrderByNameAsc(@Param("id") Long id, Pageable page);
 
-    Page<BiodiversityCollection> findByInstitutionNotInOrInstitutionIsNullAndNameContainingOrderByNameAsc(Institution institution, String name, Pageable page);
+    Page<BiodiversityCollection> findByNetworksIdOrderByNameAsc(@Param("id") Long id, Pageable page);
+
+    Page<BiodiversityCollection> findByNameContainingAndInstitutionNotInOrInstitutionIsNullOrderByNameAsc(String name, Institution institution, Pageable page);
+
+    Page<BiodiversityCollection> findByNameContainingAndNetworksNotInOrNetworksIsNullOrderByNameAsc(String name, Collection<Network> networks, Pageable page);
 }

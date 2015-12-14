@@ -23,7 +23,7 @@ import java.util.List;
 public class NetworkController extends AbstractController<Network, NetworkService> {
 
     @Autowired
-    private BiodiversityCollectionService biodiversityCollectionService;
+    private BiodiversityCollectionService collectionService;
 
     @Autowired
     private InstitutionService institutionService;
@@ -46,7 +46,7 @@ public class NetworkController extends AbstractController<Network, NetworkServic
     public Page<Network> searchByCollection(@PathVariable Long collectionId,
                                                     @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findByCollectionsInOrderByNameAsc(
-                new ArrayList<BiodiversityCollection>() {{ add( biodiversityCollectionService.get(collectionId) ); }},
+                new ArrayList<BiodiversityCollection>() {{ add( collectionService.get(collectionId) ); }},
                 pageable);
     }
 
@@ -54,18 +54,16 @@ public class NetworkController extends AbstractController<Network, NetworkServic
     public Page<Network> searchByNotInCollection(@PathVariable("name") String name,
                                                          @PathVariable("collectionId") Long collectionId,
                                                          @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByCollectionsNotInOrCollectionsIsNullAndNameContainingOrderByNameAsc(
-                new ArrayList<BiodiversityCollection>() {{ add( biodiversityCollectionService.get(collectionId) ); }},
-                name, pageable);
+        return service.getRepository().findByNameContainingAndCollectionsNotInOrCollectionsIsNullOrderByNameAsc(name,
+                new ArrayList<BiodiversityCollection>() {{ add( collectionService.get(collectionId) ); }}, pageable);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/not/institution/{institutionId}/network/{name}")
     public Page<Network> searchByNotInInstitution(@PathVariable("name") String name,
                                                           @PathVariable("institutionId") Long institutionId,
                                                           @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByInstitutionsNotInOrInstitutionsIsNullAndNameContainingOrderByNameAsc(
-                new ArrayList<Institution>() {{ add( institutionService.get(institutionId) ); }},
-                name, pageable);
+        return service.getRepository().findByNameContainingAndInstitutionsNotInOrInstitutionsIsNullOrderByNameAsc(name,
+                new ArrayList<Institution>() {{ add( institutionService.get(institutionId) ); }}, pageable);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/institution/{institutionId}")
@@ -83,4 +81,23 @@ public class NetworkController extends AbstractController<Network, NetworkServic
             network.setImage(imageService.save(file));
         return service.save(network);
     }
+
+    @RequestMapping(method= RequestMethod.PUT, value="/{id}/collection/{collectionId}")
+    public Network addCollection(@PathVariable Long id, @PathVariable Long collectionId) {
+        Network network = service.get(id);
+        BiodiversityCollection collection = collectionService.get(collectionId);
+        collection.addNetwork(network);
+        network.addCollection(collection);
+        return service.save(network);
+    }
+
+    @RequestMapping(method= RequestMethod.DELETE, value="/{id}/collection/{collectionId}")
+    public Network removeCollection(@PathVariable Long id, @PathVariable Long collectionId) {
+        Network network = service.get(id);
+        BiodiversityCollection collection = collectionService.get(collectionId);
+        collection.removeNetwork(network);
+        network.removeCollection(collection);
+        return service.save(network);
+    }
+
 }

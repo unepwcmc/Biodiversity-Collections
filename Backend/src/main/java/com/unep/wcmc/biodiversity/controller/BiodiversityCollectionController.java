@@ -12,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,6 +48,12 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         return service.getRepository().findByInstitutionIdOrderByNameAsc(id, pageable);
     }
 
+    @RequestMapping(method= RequestMethod.GET, value="/search/networks")
+    public Page<BiodiversityCollection> networks(@RequestParam Long id,
+                                                 @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findByNetworksIdOrderByNameAsc(id, pageable);
+    }
+
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")
     public BiodiversityCollection uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         BiodiversityCollection biodiversityCollection = service.get(id);
@@ -59,37 +66,29 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     @RequestMapping(method= RequestMethod.POST, value="/{id}/medias")
     public BiodiversityCollection uploadMedia(@PathVariable Long id, @RequestParam("files[]") List<MultipartFile> files) {
         BiodiversityCollection biodiversityCollection = service.get(id);
-
-        for(MultipartFile file : files)
-        {
-            if(!file.isEmpty())
-            {
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
                 biodiversityCollection.addImage(imageService.save(file));
             }
         }
-
         return service.save(biodiversityCollection);
     }
 
     @RequestMapping(method= RequestMethod.PUT, value="/{id}/network/{networkId}")
-    public BiodiversityCollection addNetwork(@PathVariable Long id, @PathVariable Long networkId){
-
+    public BiodiversityCollection addNetwork(@PathVariable Long id, @PathVariable Long networkId) {
         BiodiversityCollection collection = service.get(id);
         Network network = networkService.get(networkId);
                 network.addCollection(collection);
                 networkService.save(network);
-
         return service.save(collection);
     }
 
     @RequestMapping(method= RequestMethod.DELETE, value="/{id}/network/{networkId}")
-    public BiodiversityCollection removeNetwork(@PathVariable Long id, @PathVariable Long networkId){
-
+    public BiodiversityCollection removeNetwork(@PathVariable Long id, @PathVariable Long networkId) {
         BiodiversityCollection collection = service.get(id);
         Network network = networkService.get(networkId);
                 network.removeCollection(collection);
                 networkService.save(network);
-
         return service.save(collection);
     }
 
@@ -107,10 +106,18 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/not/institution/{institutionId}/collection/{name}")
     public Page<BiodiversityCollection> searchByNotInInstitution(@PathVariable("name") String name,
-                                                          @PathVariable("institutionId") Long institutionId,
-                                                          @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByInstitutionNotInOrInstitutionIsNullAndNameContainingOrderByNameAsc(
-                institutionService.get(institutionId), name, pageable);
+                                                                 @PathVariable("institutionId") Long institutionId,
+                                                                 @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findByNameContainingAndInstitutionNotInOrInstitutionIsNullOrderByNameAsc(name,
+                institutionService.get(institutionId), pageable);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search/not/network/{networkId}/collection/{name}")
+    public Page<BiodiversityCollection> searchByNotInNetworks(@PathVariable("name") String name,
+                                                              @PathVariable("networkId") Long networkId,
+                                                              @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findByNameContainingAndNetworksNotInOrNetworksIsNullOrderByNameAsc(name,
+                new ArrayList<Network>() {{ add( networkService.get(networkId) ); }}, pageable);
     }
 
 }

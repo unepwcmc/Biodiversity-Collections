@@ -21,7 +21,7 @@ public interface NetworkRepository extends AbstractRepository<Network> {
 
     Page<Network> findByInstitutionsInOrderByNameAsc( Collection<Institution> institutions, Pageable page);
 
-    Page<Network> findByCollectionsNotInOrCollectionsIsNullAndNameContainingOrderByNameAsc(Collection<BiodiversityCollection> collection, String name, Pageable page);
+    Page<Network> findByNameContainingAndCollectionsNotInOrCollectionsIsNullOrderByNameAsc(String name, Collection<BiodiversityCollection> collection, Pageable page);
 
-    Page<Network> findByInstitutionsNotInOrInstitutionsIsNullAndNameContainingOrderByNameAsc(Collection<Institution> institutions, String name, Pageable page);
+    Page<Network> findByNameContainingAndInstitutionsNotInOrInstitutionsIsNullOrderByNameAsc(String name, Collection<Institution> institutions, Pageable page);
 }
