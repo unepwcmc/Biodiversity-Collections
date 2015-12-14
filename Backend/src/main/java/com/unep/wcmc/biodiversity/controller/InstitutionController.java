@@ -2,8 +2,11 @@ package com.unep.wcmc.biodiversity.controller;
 
 import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
 import com.unep.wcmc.biodiversity.model.Institution;
+import com.unep.wcmc.biodiversity.model.Network;
+import com.unep.wcmc.biodiversity.service.BiodiversityCollectionService;
 import com.unep.wcmc.biodiversity.service.ImageService;
 import com.unep.wcmc.biodiversity.service.InstitutionService;
+import com.unep.wcmc.biodiversity.service.NetworkService;
 import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +20,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/institutions")
 public class InstitutionController extends AbstractController<Institution, InstitutionService> {
+
+    @Autowired
+    private NetworkService networkService;
+
+    @Autowired
+    private BiodiversityCollectionService collectionService;
 
     @Autowired
     private ImageService imageService;
@@ -37,8 +46,43 @@ public class InstitutionController extends AbstractController<Institution, Insti
         Institution institution = service.get(id);
         if (!file.isEmpty())
             institution.setImage(imageService.save(file));
-
         return service.save(institution);
+    }
+
+    @RequestMapping(method= RequestMethod.PUT, value="/{id}/network/{networkId}")
+    public Institution addNetwork(@PathVariable Long id, @PathVariable Long networkId) {
+        Institution institution = service.get(id);
+        Network network = networkService.get(networkId);
+        network.addInstitution(institution);
+        networkService.save(network);
+        return institution;
+    }
+
+    @RequestMapping(method= RequestMethod.DELETE, value="/{id}/network/{networkId}")
+    public Institution removeNetwork(@PathVariable Long id, @PathVariable Long networkId) {
+        Institution institution = service.get(id);
+        Network network = networkService.get(networkId);
+        network.removeInstitution(institution);
+        networkService.save(network);
+        return institution;
+    }
+
+    @RequestMapping(method= RequestMethod.PUT, value="/{id}/collection/{collectionId}")
+    public Institution addCollection(@PathVariable Long id, @PathVariable Long collectionId) {
+        Institution institution = service.get(id);
+        BiodiversityCollection collection = collectionService.get(collectionId);
+        collection.setInstitution(institution);
+        collectionService.save(collection);
+        return institution;
+    }
+
+    @RequestMapping(method= RequestMethod.DELETE, value="/{id}/collection/{collectionId}")
+    public Institution removeCollection(@PathVariable Long id, @PathVariable Long collectionId) {
+        Institution institution = service.get(id);
+        BiodiversityCollection collection = collectionService.get(collectionId);
+        collection.setInstitution(null);
+        collectionService.save(collection);
+        return institution;
     }
 
 }

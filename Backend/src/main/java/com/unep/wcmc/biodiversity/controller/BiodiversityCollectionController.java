@@ -3,10 +3,7 @@ package com.unep.wcmc.biodiversity.controller;
 import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
 import com.unep.wcmc.biodiversity.model.Network;
 import com.unep.wcmc.biodiversity.model.Sample;
-import com.unep.wcmc.biodiversity.service.BiodiversityCollectionService;
-import com.unep.wcmc.biodiversity.service.ImageService;
-import com.unep.wcmc.biodiversity.service.NetworkService;
-import com.unep.wcmc.biodiversity.service.SampleService;
+import com.unep.wcmc.biodiversity.service.*;
 import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +23,9 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
 
     @Autowired
     private NetworkService networkService;
+
+    @Autowired
+    private InstitutionService institutionService;
 
     @Autowired
     private SampleService sampleService;
@@ -104,4 +104,13 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         }
         return collection;
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search/not/institution/{institutionId}/collection/{name}")
+    public Page<BiodiversityCollection> searchByNotInInstitution(@PathVariable("name") String name,
+                                                          @PathVariable("institutionId") Long institutionId,
+                                                          @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().findByInstitutionNotInOrInstitutionIsNullAndNameContainingOrderByNameAsc(
+                institutionService.get(institutionId), name, pageable);
+    }
+
 }

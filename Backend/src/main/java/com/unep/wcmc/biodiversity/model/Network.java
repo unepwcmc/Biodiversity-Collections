@@ -86,7 +86,7 @@ public class Network implements BaseEntity {
     }
 
     public Set<BiodiversityCollection> getCollections() {
-        return collections == null? new HashSet<BiodiversityCollection>(): this.collections;
+        return collections == null? new HashSet<>(): this.collections;
     }
 
     public void setCollections(Set<BiodiversityCollection> collections) {
@@ -102,11 +102,19 @@ public class Network implements BaseEntity {
     }
 
     public Set<Institution> getInstitutions() {
-        return institutions;
+        return institutions == null? new HashSet<>(): this.institutions;
     }
 
     public void setInstitutions(Set<Institution> institutions) {
         this.institutions = institutions;
+    }
+
+    public void addInstitution(Institution institution){
+        getInstitutions().add(institution);
+    }
+
+    public void removeInstitution(Institution institution){
+        getInstitutions().remove(institution);
     }
 
     public void setStatus(boolean status) {
