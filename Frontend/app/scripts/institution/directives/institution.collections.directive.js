@@ -9,20 +9,63 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
             return {
                 restrict: 'EA',
                 templateUrl: 'views/institution/collections.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate',
-                    function($scope, $rootScope, $stateParams, $state, $translate){
+                controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate', '$http', 'toastr',
+                    function($scope, $rootScope, $stateParams, $state, $translate, $http, toastr) {
 
-                        angular.extend( $scope.institution, { collections:{totalElements : 0, number: 0, size: 5, totalPages: 0}});
-                        $scope.institution.loadCollectionsByInstitution( $stateParams.id,  $scope.institution.collections.number, $scope.institution.collections.size);
-
+                        $scope.collectionSelected = null;
+                        $scope.collections = new BiodiversityCollection();
                         $scope.newCollection = new BiodiversityCollection();
+                        angular.extend( $scope.collections, { collections:{totalElements : 0, number: 0, size: 5, totalPages: 0}});
+                        $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
 
                         $scope.$on('INSTITUTION_COLLECTION_LOADED', function(  ) {
                             console.log('Collections Loaded...');
                         });
 
                         $scope.paginateInstitutionCollections = function(page, size){
-                            $scope.institution.loadCollectionsByInstitution( $stateParams.id,  $scope.institution.collections.number, $scope.institution.collections.size);
+                            $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+                        };
+
+                        $scope.collectionAutocomplete = function( userInputString, timeoutPromise ) {
+                            if(userInputString == null)
+                                return null;
+                            return $http.get( $rootScope.getHost() + "collections/search/not/institution/" + $stateParams.id + "/collection/" + userInputString ,
+                                {
+                                    timeout: timeoutPromise
+                                }
+                            );
+                        };
+
+                        $scope.addCollection = function(){
+                            if ($scope.collectionSelected != null){
+                                $scope.institution.addCollection( $stateParams.id, $scope.collectionSelected.originalObject.id, function( data, status) {
+                                    if(status === 200){
+                                        toastr.success($translate.instant('COLLECTION_ADDED_TO_INSTITUTION'), $translate.instant('SUCCESS'));
+                                        $scope.collections.loadByInstitution( $stateParams.id,  $scope.networks.number, $scope.networks.size);
+                                    } else {
+                                        toastr.success($translate.instant('COLLECTION_ADDED_TO_INSTITUTION_ERROR'), $translate.instant('ERROR'));
+                                    }
+                                });
+                                $scope.collectionSelected = null;
+                                $scope.$broadcast('angucomplete-alt:clearInput', 'collection_network_autocomplete');
+                            }
+                        };
+
+                        $scope.removeCollection = function( collectionId ){
+                            if ($scope.collections.number > 0) {
+                                if( (($scope.collections.totalElements - 1) % $scope.collections.size) == 0){
+                                    $scope.collections.number = $scope.collections.number - 1;
+                                    $scope.collections.totalPages = $scope.collections.totalPages - 1;
+                                }
+                            }
+                            $scope.institution.removeCollection( $stateParams.id, collectionId , function( data, status){
+                                if(status === 200){
+                                    toastr.success($translate.instant('COLLECTION_REMOVED_TO_INSTITUTION'), $translate.instant('SUCCESS'));
+                                    $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+                                } else {
+                                    toastr.success($translate.instant('COLLECTION_REMOVED_TO_INSTITUTION_ERROR'), $translate.instant('ERROR'));
+                                }
+                            });
                         };
 
                         $scope.createNewCollection = function () {
@@ -39,8 +82,8 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
                 link: function (scope, element, attrs) {
 
                     $("#institution-collections-size-box").change(function() {
-                        scope.institution.collections.size = parseInt($(this).val());
-                        scope.paginateInstitutionCollections(scope.institution.collections.number, $(this).val())
+                        scope.collections.size = parseInt($(this).val());
+                        scope.paginateInstitutionCollections(scope.collections.number, $(this).val())
                     });
                 }
             };

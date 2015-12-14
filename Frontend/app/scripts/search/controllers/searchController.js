@@ -87,7 +87,7 @@ define(['app',
                 } else if ($stateParams.type === "network") {
                     return 'views/search/network.tpl.html'
                 } else if ($stateParams.type === "curator") {
-                    return 'views/search/curator.tpl.html'
+                    return 'views/search/curators.tpl.html'
                 } else if ($stateParams.type === "document") {
                     return 'views/search/documents.tpl.html'
                 } else {

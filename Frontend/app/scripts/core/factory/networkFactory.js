@@ -31,25 +31,6 @@ define(['angularAMD'], function (angularAMD) {
             setData: function (data) {
                 angular.extend(this, data);
             },
-            loadByCollection: function( id, page, size ){
-
-                var self = this;
-
-                $http.get( $rootScope.getHost() + 'networks/search/collection/' + id + '?page=' +  page + '&size=' +   size)
-
-                    .success(function (data) {
-                        if (data.message == 'no matches found') {
-                            $rootScope.$broadcast("NETWORK_LOAD_ERROR");
-                        } else {
-                            self.setData(data);
-                            $rootScope.$broadcast("NETWORK_LOADED");
-                        }
-                    })
-                    .error(function (message) {
-                        $log.error(message);
-                        $rootScope.$broadcast("NETWORK_LOAD_ERROR");
-                    });
-            },
             load: function( page, size ){
 
                 var self = this;
@@ -82,6 +63,43 @@ define(['angularAMD'], function (angularAMD) {
                     .error(function (message) {
                         $log.error(message);
                         $rootScope.$broadcast("NETWORK_LOADED_BY_ID_ERROR");
+                    });
+            },
+            loadByCollection: function( id, page, size ){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + 'networks/search/collection/' + id + '?page=' +  page + '&size=' +   size)
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("NETWORK_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("NETWORK_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("NETWORK_LOAD_ERROR");
+                    });
+            },
+            loadByInstitution: function( id, page, size ){
+                var self = this;
+
+                $http.get( $rootScope.getHost() + 'networks/search/institution/' + id + "?page=" + page + "&size=" + size )
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("NETWORK_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("NETWORK_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("NETWORK_LOAD_ERROR");
                     });
             },
             search: function( query, page, size ) {

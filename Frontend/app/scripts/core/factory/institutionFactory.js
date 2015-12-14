@@ -134,52 +134,88 @@ define(['angularAMD'], function (angularAMD) {
                         $rootScope.$broadcast("INSTITUTION_AUTOCOMPLETE_LOAD_ERROR");
                     });
             },
-            loadCollectionsByInstitution: function( id, page, size, callback ){
-
+            addNetwork: function( id, networkId, callback) {
                 var self = this;
 
-                $http.get( $rootScope.getHost() + 'collections/search/institutions?id=' + id + "&page=" + page + "&size=" + size )
+                $http.put( $rootScope.getHost() + "institutions/" + id + "/network/" + networkId, {} )
 
                     .success(function ( data, status, headers, config ) {
-                        if (data.message == 'no matches found') {
-                            $rootScope.$broadcast("INSTITUTION_COLLECTION_LOAD_ERROR");
-                        } else {
-                            self.setData({collections: data });
 
-                            $rootScope.$broadcast("INSTITUTION_COLLECTION_LOADED");
+                        self.setData(data);
 
-                            if(callback)
-                                callback( data, status, headers, config )
-                        }
+                        if(callback)
+                            callback( data, status, headers, config )
                     })
-                    .error(function (data, status, headers, config) {
-                        $log.error( data );
+                    .error(function ( data, status, headers, config ) {
 
-                        $rootScope.$broadcast("INSTITUTION_COLLECTION_LOAD_ERROR");
+                        $log.error(data.message);
 
                         if(callback)
                             callback( data, status, headers, config )
                     });
             },
-            loadNetworksByInstitution: function( id, page, size ){
+            removeNetwork: function( id, networkId, callback){
 
-                            var self = this;
+                var self = this;
 
-                            $http.get( $rootScope.getHost() + 'networks/search/institutionNetworks?id=' + id + "&page=" + page + "&size=" + size )
+                $http.delete( $rootScope.getHost() + "institutions/" + id + "/network/" + networkId )
 
-                                .success(function (data) {
-                                    if (data.message == 'no matches found') {
-                                        $rootScope.$broadcast("INSTITUTION_NETWORK_LOAD_ERROR");
-                                    } else {
-                                        self.setData({networks: data });
-                                        $rootScope.$broadcast("INSTITUTION_NETWORK_LOADED");
-                                    }
-                                })
-                                .error(function (message) {
-                                    $log.error(message);
-                                    $rootScope.$broadcast("INSTITUTION_NETWORK_LOAD_ERROR");
-                                });
-                        },
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            addCollection: function( id, collectionId, callback) {
+                var self = this;
+
+                $http.put( $rootScope.getHost() + "institutions/" + id + "/collection/" + collectionId, {} )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            removeCollection: function( id, collectionId, callback){
+
+                var self = this;
+
+                $http.delete( $rootScope.getHost() + "institutions/" + id + "/collection/" + collectionId )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            }
         };
 
         return Institution;
