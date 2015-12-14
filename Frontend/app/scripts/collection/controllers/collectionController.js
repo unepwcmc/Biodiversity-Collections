@@ -10,9 +10,9 @@ define(['app','collection/directives/collection.networks.directive',
 
     'use strict';
 
-    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','toastr','$translate','$state','$q',
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','toastr','$translate','$state','$q', '$timeout',
 
-           function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, toastr, $translate, $state, $q) {
+           function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, toastr, $translate, $state, $q, $timeout) {
                 angular.extend($scope, BaseController);
 
                $rootScope.editMode = false;
@@ -39,6 +39,7 @@ define(['app','collection/directives/collection.networks.directive',
                    if ($stateParams.isNew) {
                        $rootScope.editMode = true;
                        $scope.collection.id = $stateParams.id;
+                       $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 500);
                    } else {
                        $scope.collection.get( $stateParams.id );
                        $rootScope.editMode = false;

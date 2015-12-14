@@ -26,9 +26,9 @@
                 <strong ng-show="editMode" >{{'EDIT_COLLECTION' | translate}}</strong> <span>
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'COLLECTIONS'| translate}}</strong></button></span>
 
-            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+            <a ng-show="!editMode" id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>
@@ -38,7 +38,7 @@
     <div class="container">
          <div class="row">
              <div class="col-md-8">
-                 <form action="#" class="form-horizontal view-mode form-block" role="form" name="collection_form" novalidate>
+                 <form action="#" class="form-horizontal form-block form-data" role="form" name="collection_form" novalidate>
                      <div class="small-field">
 
                          <div ng-show="!editMode" id="collection-id" class="form-group">
@@ -67,7 +67,6 @@
                                                title-field="name"
                                                minlength="2"
                                                initial-value="curatorSelected"
-                                               disable-input="disableAutocomplete"
                                                input-class="form-control"/>
                                 </div>
                          </div>
@@ -88,7 +87,6 @@
                                                    title-field="name"
                                                    minlength="2"
                                                    initial-value="institutionSelected"
-                                                   disable-input="disableAutocomplete"
                                                    input-class="form-control"/>
                              </div>
                          </div>

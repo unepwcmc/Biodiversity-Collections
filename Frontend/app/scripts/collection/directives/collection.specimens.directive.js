@@ -47,6 +47,9 @@ define(['angularAMD'], function (angularAMD) {
                                 return;
                             }
 
+                            if ($scope.collection.specimens === undefined)
+                                $scope.collection.specimens = [];
+
                             var specimens = $scope.collection.specimens;
                             specimens[specimens.length] = $scope.specimen;
                             $scope.specimen = {};
@@ -77,7 +80,11 @@ define(['angularAMD'], function (angularAMD) {
                     }],
                 link: function (scope, element, attrs) {
 
-                    setViewMode();
+                    if (scope.$parent.editMode) {
+                        setEditMode();
+                    } else {
+                        setViewMode();
+                    }
 
                     scope.$on('ngRepeatFinished', function() {
                         if(!scope.editMode)

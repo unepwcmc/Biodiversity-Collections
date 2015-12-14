@@ -59,6 +59,8 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                         };
 
                         $scope.addResearcher = function(){
+                            if ($scope.collection.researchers === undefined)
+                                $scope.collection.researchers = [];
                             var researchers = $scope.collection.researchers;
                             researchers[researchers.length] = $scope.researcher;
                             $scope.researcher = {};
@@ -83,7 +85,7 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                     }],
                 link: function (scope, element, attrs) {
 
-                    var waypoint = new Waypoint({
+                    new Waypoint({
                         element: $(element).find("#collection-bar-default"),
                         handler: function( direction ) {
 
