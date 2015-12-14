@@ -24,11 +24,11 @@
 
             <strong ng-show="!editMode" >{{ curator.name }}</strong>
             <strong ng-show="editMode" >{{'EDIT_CURATOR' | translate}}</strong> <span>
-                <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'CURATOR'| translate}}</strong></button></span>
+            <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'CURATOR'| translate}}</strong></button></span>
 
-            <a id="edit-curator" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="curator_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-curator-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+            <a ng-show="!editMode" id="edit-curator" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="curator_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-curator-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>
@@ -47,7 +47,7 @@
 
                         <div ng-show="!editMode"  class="form-group">
                             <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
-                            <div class="col-sm-9"><input type="text" class="form-control" style="color:#0099ee" value="{{curator.institution.name}}" readonly /></div>
+                            <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="institution({id : curator.institution.id})">{{curator.institution.name}}</a></div>
                         </div>
 
                         <div ng-show="editMode" class="form-group">

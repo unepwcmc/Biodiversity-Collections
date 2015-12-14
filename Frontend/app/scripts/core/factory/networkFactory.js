@@ -58,11 +58,11 @@ define(['angularAMD'], function (angularAMD) {
 
                     .success(function (data) {
                         self.setData(data);
-                        $rootScope.$broadcast("NETWORK_LOADED_BY_ID");
+                        $rootScope.$broadcast("NETWORK_LOADED");
                     })
                     .error(function (message) {
                         $log.error(message);
-                        $rootScope.$broadcast("NETWORK_LOADED_BY_ID_ERROR");
+                        $rootScope.$broadcast("NETWORK_LOAD_ERROR");
                     });
             },
             loadByCollection: function( id, page, size ){
@@ -185,6 +185,44 @@ define(['angularAMD'], function (angularAMD) {
                         $log.error( data);
                         if(callback)
                             callback( data, status, headers, config );
+                    });
+            },
+            addCollection: function( id, collectionId, callback) {
+                var self = this;
+                $http.put( $rootScope.getHost() + "networks/" + id + "/collection/" + collectionId, {} )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            removeCollection: function( id, collectionId, callback) {
+                var self = this;
+                $http.delete( $rootScope.getHost() + "networks/" + id + "/collection/" + collectionId )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
                     });
             }
         };

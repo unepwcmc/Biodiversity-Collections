@@ -47,6 +47,10 @@ define(['app',
             $state.go($state.current, $stateParams, {reload: true, inherit: false});
         });
 
+        $scope.$on('NETWORK_LOADED', function() {
+            $('#loader-wrapper').fadeToggle('400');
+        });
+
         /**
          * Listener when the collection factory update the
          * biodiversity collection model.

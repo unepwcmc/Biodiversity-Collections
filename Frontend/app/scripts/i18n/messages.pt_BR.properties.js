@@ -132,7 +132,11 @@ define([],function ( ) {
     'NETWORK_ADDED_TO_INSTITUTION_ERROR': 'Erro ao adicionar a rede na instituição',
     'NETWORK_REMOVED_TO_INSTITUTION' : 'Rede removida da instituição',
     'NETWORK_REMOVED_TO_INSTITUTION_ERROR': 'Erro ao remover a rede da instituição',
-    'INSTITUTION_SAVED': 'Institutição salva com sucesso'
+    'INSTITUTION_SAVED': 'Institutição salva com sucesso',
+    'COLLECTION_ADDED_TO_NETWORK': 'Coleção adicionada na rede',
+    'COLLECTION_ADDED_TO_NETWORK_ERROR': 'Erro ao adicionar a coleção na rede',
+    'COLLECTION_REMOVED_TO_NETWORK': 'Coleção removida da rede',
+    'COLLECTION_REMOVED_TO_NETWORK_ERROR': 'Erro ao remover a coleção da rede'
   }
 
 });

@@ -77,6 +77,30 @@ define(['angularAMD'], function (angularAMD) {
                             callback( data, status, headers, config )
                     });
             },
+            loadByNetwork: function( id, page, size, callback ){
+                var self = this;
+                $http.get( $rootScope.getHost() + 'collections/search/networks?id=' + id + "&page=" + page + "&size=" + size )
+                    .success(function ( data, status, headers, config ) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("NETWORK_COLLECTION_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+
+                            $rootScope.$broadcast("NETWORK_COLLECTION_LOADED");
+
+                            if(callback)
+                                callback( data, status, headers, config )
+                        }
+                    })
+                    .error(function (data, status, headers, config) {
+                        $log.error( data );
+
+                        $rootScope.$broadcast("NETWORK_COLLECTION_LOAD_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
             update: function () {
                 var self = this;
                 $http.put( $rootScope.getHost() + "collections/" + this.id, this)

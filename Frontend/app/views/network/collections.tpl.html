@@ -5,19 +5,40 @@
             <div class="col-md-5">
                 <map name="collections" height="500px" width="100%"></map>
             </div>
-            <div class="col-md-5" style="max-height: 500px; overflow-y: scroll;">
-                <div class="result-list">
-                    <div class="list-item" ng-repeat="collection in network.collections" style="margin-top: 10px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">{{$index + 1}}</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11">
-                            <a ui-sref="collection({id: collection.id})"><label>{{collection.name}}</label>
-                            <h6>{{collection.institution.name}}</h6></a>
-                        </div>
+            <div class="col-md-5">
+                <div class="result-list" style="max-height: {{maxHeight}}px; overflow-y: scroll;">
+                    <table class="table table-hover network">
+                        <tbody>
+                            <tr ng-repeat="collection in collections.content">
+                                <td width="10%">
+                                    <span class="fa-stack fa-1x">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <strong class="fa-stack-1x text-primary" style="color: white;">{{$index + 1}}</strong>
+                                    </span>
+                                </td>
+                                <td width="85%">
+                                    <a ui-sref="collection({id: collection.id})"><label>{{collection.name}}</label>
+                                        <h6>{{collection.institution.name}}</h6></a>
+                                </td>
+                                <td ng-show="editMode" class="btn-td"><a class="btn" ng-click="removeCollection(collection.id)"><i class="fa fa-close"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-show="editMode" class="row" style="margin-top: 20px;">
+                    <div class="col-md-9">
+                        <angucomplete-alt id="network_collection_autocomplete"
+                                          placeholder="Search a Collection"
+                                          pause="150"
+                                          selected-object="collectionSelected"
+                                          remote-api-handler="collectionAutocomplete"
+                                          remote-url-data-field="content"
+                                          title-field="name"
+                                          minlength="2"
+                                          input-class="form-control"/>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary" ng-click="addCollection()"><label>{{ 'ADD' | translate }}</label></button>
                     </div>
                 </div>
             </div>
