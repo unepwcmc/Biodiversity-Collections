@@ -5,20 +5,13 @@
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'COLLECTIONS' | translate }}</strong></h5></div>
             <div class="col-md-10">
                 <table class="table table-hover network">
-                    <thead>
-                    <tr>
-                        <th width="80%">&nbsp;</th>
-                        <th width="15%">&nbsp;</th>
-                        <th ng-show="editMode" width="10px">&nbsp;</th>
-                    </tr>
-                    </thead>
                     <tbody>
                     <tr ng-repeat="collection in collections.content">
-                        <td>
+                        <td width="80%">
                             <p class="text-left small"><a data-ui-sref="collection({id : collection.id})"><strong>{{collection.name}}  | id: {{collection.id}}</strong></a><p>
                             <p class="text-justify small">{{collection.description}}</p>
                         </td>
-                        <td>
+                        <td width="15%">
                             <image-thumbnail width="78" height="44" attachment="collection.image.attachment.id" ></image-thumbnail>
                         </td>
                         <td ng-show="editMode" class="btn-td"><a class="btn" ng-click="removeCollection(collection.id)"><i class="fa fa-close"></i></a></td>
