@@ -57,7 +57,7 @@ define(['app','collection/directives/collection.networks.directive',
                });
 
 
-               $scope.$on('BIODIVERSITY_COLLECTION_RELOADED', function(){
+               $scope.$on('ACTION_RELOADED', function(){
                    console.log('edit form canceling...');
                    $state.go($state.current, $stateParams, {reload: true, inherit: false});
                });
@@ -168,7 +168,7 @@ define(['app','collection/directives/collection.networks.directive',
                 * Listener when the button save is clicked
                 */
                $scope.$on('SAVE_COLLECTION', function() {
-                   setStateButton(false)
+                   setStateButton(false);
                });
 
                function setStateButton( status ){

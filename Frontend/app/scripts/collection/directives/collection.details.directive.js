@@ -24,24 +24,18 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
 
                         $scope.$on('BIODIVERSITY_LOADED', function() {
                             console.log('collection loaded...');
-
                             $scope.institutionSelected = $scope.collection.institution;
                             $scope.curatorSelected = $scope.collection.curator;
-
                         });
 
-
                         $scope.$on('CANCEL_EDIT_COLLECTION', function() {
-
                             $scope.$broadcast('angucomplete-alt:changeInput', 'curators', $scope.collection.curator);
                             $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.collection.institution);
                         });
 
                         $scope.curatorAutocomplete = function( userInputString, timeoutPromise){
-
-                            if(userInputString == null)
+                            if (userInputString == null)
                                return null;
-
                             return $http.get( $rootScope.getHost() + "curators/search/autocomplete?name=" + userInputString ,
                                 {
                                     timeout: timeoutPromise
@@ -50,7 +44,6 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                         };
 
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
-
                             return $http.get( $rootScope.getHost() + "institutions/search/autocompleteName?name=" + userInputString,
                                 {
                                     timeout: timeoutPromise
@@ -102,14 +95,12 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                         }
                     });
 
-                    scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
-
+                    scope.$on('ACTION_SAVE', function(){
                         scope.$emit('SAVE_COLLECTION');
                         backToDefault();
                     });
 
                     $(element).find("#edit-collection").click( function(){
-
                         scope.disableAutocomplete = false;
                         scope.navigationBar = true;
                         scope.$emit('EDIT_COLLECTION');
@@ -122,7 +113,6 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                     });
 
                     function backToDefault(){
-
                         scope.navigationBar = false;
                         scope.disableAutocomplete = true;
                         $(element).find("#collection-bar-fixed").hide();
