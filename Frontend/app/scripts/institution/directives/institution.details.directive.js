@@ -12,7 +12,9 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        $scope.addCurator = function(){
+                        $scope.addCurator = function() {
+                            if ($scope.institution.curators === undefined)
+                                $scope.institution.curators = {};
                             var curators = $scope.institution.curators;
                             curators[curators.length] = $scope.curator;
                             $scope.curator = {};

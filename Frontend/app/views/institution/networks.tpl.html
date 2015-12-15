@@ -66,7 +66,7 @@
 
                     <span  ng-class="{disabled: networks.number === 0}">
                         <a type="submit" class="btn btn-default" ng-show="networks.number !== 0" ng-click="paginateInstitutionNetworks(networks.number - 1,networks.size)"><strong style="color: #666"> &lt; </strong></a>
-                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="institution.networks.number === 0"><strong style="color: #666"> &lt; </strong></button>
+                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="networks.number === 0"><strong style="color: #666"> &lt; </strong></button>
                     </span>
                     <span ng-class="{disabled: networks.number === networks.totalPages - 1}">
                         <a type="submit" class="btn btn-default" ng-show="networks.number !== networks.totalPages - 1" ng-click="paginateInstitutionNetworks(networks.number + 1,networks.size)"><strong style="color: #666"> &gt; </strong></a>
