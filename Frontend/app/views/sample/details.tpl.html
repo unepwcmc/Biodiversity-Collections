@@ -46,12 +46,12 @@
                              <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="sample.name" required></div>
                          </div>
 
-                         <div ng-show="display == 'true' && !editMode"  class="form-group">
+                         <div ng-show="!editMode"  class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION' | translate }}</label>
                              <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="collection({id : sample.collection.id})">{{sample.collection.name}}</a></div>
                          </div>
 
-                         <div ng-show="display == 'true' && editMode" class="form-group">
+                         <div ng-show="editMode" class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION' |  translate }}</label>
                              <div class="col-sm-9">
                                  <angucomplete-alt id="curators"
@@ -80,7 +80,6 @@
                                                    pause="150"
                                                    selected-object="curatorSelectedFn"
                                                    remote-api-handler="curatorAutocomplete"
-                                                   remote-url-data-field="content"
                                                    title-field="name"
                                                    minlength="2"
                                                    initial-value="curatorSelected"

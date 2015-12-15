@@ -15,7 +15,7 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
                         $scope.collectionSelected = null;
                         $scope.collections = new BiodiversityCollection();
                         $scope.newCollection = new BiodiversityCollection();
-                        angular.extend( $scope.collections, { collections:{totalElements : 0, number: 0, size: 5, totalPages: 0}});
+                        angular.extend( $scope.collections, { totalElements : 0, number: 0, size: 5, totalPages: 0} );
                         $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
 
                         $scope.$on('INSTITUTION_COLLECTION_LOADED', function(  ) {
@@ -23,7 +23,7 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
                         });
 
                         $scope.paginateInstitutionCollections = function(page, size){
-                            $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+                            $scope.collections.loadByInstitution( $stateParams.id,  page, size);
                         };
 
                         $scope.collectionAutocomplete = function( userInputString, timeoutPromise ) {
@@ -41,7 +41,7 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
                                 $scope.institution.addCollection( $stateParams.id, $scope.collectionSelected.originalObject.id, function( data, status) {
                                     if(status === 200){
                                         toastr.success($translate.instant('COLLECTION_ADDED_TO_INSTITUTION'), $translate.instant('SUCCESS'));
-                                        $scope.collections.loadByInstitution( $stateParams.id,  $scope.networks.number, $scope.networks.size);
+                                        $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
                                     } else {
                                         toastr.success($translate.instant('COLLECTION_ADDED_TO_INSTITUTION_ERROR'), $translate.instant('ERROR'));
                                     }

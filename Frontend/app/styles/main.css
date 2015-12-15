@@ -1397,3 +1397,10 @@ table.researches input.form-control[readonly] {
 
 .curator-institutions {
   width: 250px; }
+
+.number-icon
+{
+  background-image: url("../images/marker_icon.png");
+  text-align:center;
+  color:White;
+}

@@ -17,7 +17,7 @@ define(['angularAMD','waypoints',
                         $scope.maxHeight = 500;
                         $scope.collectionSelected = null;
                         $scope.collections = new BiodiversityCollection();
-                        angular.extend( $scope.collections, { totalElements : 0, number: 0, size: 100, totalPages: 0 });
+                        angular.extend( $scope.collections, { totalElements : 0, number: 0, size: 5, totalPages: 0 });
                         $scope.collections.loadByNetwork( $stateParams.id,  $scope.collections.number, $scope.collections.size);
 
 

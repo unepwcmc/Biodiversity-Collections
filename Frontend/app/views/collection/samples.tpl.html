@@ -36,7 +36,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="pull-left"><a ng-show="editMode" style="margin-left: 12px;" class="btn btn-small-add btn-primary" ui-sref="collectionSample({id: collection.id})"><label>{{'ADD_NEW_SAMPLE' | translate}}</label></a></div>
-                    <div class="pull-right" ng-show="networks.number > 0">
+                    <div class="pull-right" ng-show="samples.totalPages > 1">
                         <form class="form-inline">
                             <div class="form-group">
                                 <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
