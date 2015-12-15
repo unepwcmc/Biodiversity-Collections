@@ -98,13 +98,9 @@ define(['app', 'waypoints',
             }
         });
 
-        $scope.$on('SAMPLE_SAVED', function() {
-            if ($scope.generatedSample) {
-                $scope.generatedSample = false;
-            } else {
-                $('#loader-wrapper').fadeToggle('400');
-                $state.go('sample', {id : $scope.sample.id});
-            }
+        $scope.$on('SAMPLE_UPDATED', function() {
+            $('#loader-wrapper').fadeToggle('400');
+            $state.go('sample', {id : $scope.sample.id});
         });
 
         $scope.$on('SAMPLE_DELETED', function() {
