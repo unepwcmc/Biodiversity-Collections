@@ -18,20 +18,16 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                         $scope.associatedInstitutionSelected = null;
 
                         $scope.$on('CURATOR_LOADED', function(){
-
                             convertDate();
-
                             $scope.institutionSelected = $scope.curator.institution;
                         });
 
                         $scope.$on('CANCEL_EDIT_CURATOR', function() {
-
                             convertDate();
-                           $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.curator.institution);
+                            $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.curator.institution);
                         });
 
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
-
                             return $http.get( $rootScope.getHost() + "institutions/search/autocompleteName?name=" + userInputString,
                                 {
                                     timeout: timeoutPromise
@@ -46,7 +42,6 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                         };
 
                         $scope.addAssociatedInstitution = function(){
-
                             if($scope.associatedInstitutionSelected != null){
 
                                 var obj = {
@@ -70,14 +65,11 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                         };
 
                         function convertDate(){
-
                             if($scope.curator.dateOfBirth != null){
-
                                 var date = new Date($scope.curator.dateOfBirth);
                                 angular.extend($scope.curator, { date: { day : date.getDate(), month: date.getMonth() + 1, year: date.getFullYear() }})
                             }
                         }
-
 
                     }],
                 link: function (scope, element, attrs) {
@@ -98,14 +90,12 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                         }
                     });
 
-                    scope.$on('ACTION_SAVE', function(){
-
+                    scope.$on('ACTION_SAVE', function() {
                         scope.$emit('SAVE_CURATOR');
                         backToDefault();
                     });
 
                     $(element).find("#edit-curator").click( function(){
-
                         scope.disableAutocomplete = false;
                         scope.navigationBar = true;
                         scope.$emit('EDIT_CURATOR');

@@ -137,7 +137,8 @@ define([],function ( ) {
     'COLLECTION_ADDED_TO_NETWORK_ERROR': 'Erro ao adicionar a coleção na rede',
     'COLLECTION_REMOVED_TO_NETWORK': 'Coleção removida da rede',
     'COLLECTION_REMOVED_TO_NETWORK_ERROR': 'Erro ao remover a coleção da rede',
-    'NETWORK_SAVED': 'Rede salva com sucesso'
+    'NETWORK_SAVED': 'Rede salva com sucesso',
+    'CURATOR_SAVED': 'Curador salvo com sucess'
   }
 
 });

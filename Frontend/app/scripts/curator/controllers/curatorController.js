@@ -11,7 +11,6 @@ define(['app',
 
             angular.extend($scope, BaseController);
 
-            $rootScope.editMode = false;
             $scope.image = null;
             $scope.fromState = 'home';
             $scope.curator = new Curator();
@@ -21,7 +20,6 @@ define(['app',
              */
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
-
                 $scope.fromState = fromState.name;
             });
 
@@ -31,12 +29,20 @@ define(['app',
             $scope.$on('$viewContentLoaded', function() {
                 console.log('view Content Loaded...');
 
-                $scope.curator.get( $stateParams.id );
+                $('#loader-wrapper').fadeToggle('400');
+                if ($stateParams.isNew) {
+                    $rootScope.editMode = true;
+                    $scope.curator.id = $stateParams.id;
+                    $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 500);
+                } else {
+                    $scope.curator.get( $stateParams.id );
+                    $rootScope.editMode = false;
+                }
+
             });
 
 
             $scope.$on('CURATOR_LOADED', function(){
-
                 $('#loader-wrapper').fadeToggle('400');
             });
 
@@ -46,14 +52,16 @@ define(['app',
             $scope.$on('SAVE_CURATOR', function(){
                 console.log('institution updating..');
 
-                if(validateDate()){
-
+                if (validateDate()) {
                     $('#loader-wrapper').fadeToggle('400');
                     $scope.curator.update();
-                }
-                else{
+                } else {
                     $scope.showErrorMessage('ERROR', 'INVALID_DATE');
                 }
+            });
+
+            $scope.$on('ACTION_RELOADED', function(){
+                $state.go($state.current, $stateParams, {reload: true, inherit: false});
             });
 
             /**
@@ -64,14 +72,12 @@ define(['app',
             $scope.$on('CURATOR_UPDATED', function(){
                 console.log('updated');
 
-                if($scope.image != null){
+                if ($scope.image != null) {
                     $scope.curator.addImage($scope.image);
-                }else{
-
+                } else {
                     $('#loader-wrapper').fadeToggle('400');
-                    toastr.success($translate.instant('BIODIVERSITY_CURATOR_SAVED'), $translate.instant('SUCCESS'));
+                    toastr.success($translate.instant('CURATOR_SAVED'), $translate.instant('SUCCESS'));
                 }
-
                 setStateButton(false);
             });
 
@@ -88,7 +94,7 @@ define(['app',
             $scope.$on('CURATOR_IMAGE_ADDED', function(){
                 $scope.image = null;
                 $('#loader-wrapper').fadeToggle('400');
-                toastr.success($translate.instant('BIODIVERSITY_CURATOR_SAVED'), $translate.instant('SUCCESS'));
+                toastr.success($translate.instant('CURATOR_SAVED'), $translate.instant('SUCCESS'));
             });
 
             /**
@@ -113,17 +119,15 @@ define(['app',
                 },100);
             }
 
-            function validateDate(){
-
-                var date = Date.parse($scope.curator.date.month + "/" + $scope.curator.date.day + "/" + $scope.curator.date.year );
-
-                if (isNaN(date)) {
-                    return false;
+            function validateDate() {
+                if ($scope.curator.date) {
+                    var date = Date.parse($scope.curator.date.month + "/" + $scope.curator.date.day + "/" + $scope.curator.date.year );
+                    if (isNaN(date)) {
+                        return false;
+                    }
+                    $scope.curator.dateOfBirth = date;
+                    $scope.curator.date = {};
                 }
-
-                $scope.curator.dateOfBirth = date;
-                delete $scope.curator.date;
-
                 return true;
             }
         }];

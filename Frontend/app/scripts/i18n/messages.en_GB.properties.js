@@ -137,7 +137,8 @@ define([],function ( ) {
     'COLLECTION_ADDED_TO_NETWORK_ERROR': 'Error to add collection to network',
     'COLLECTION_REMOVED_TO_NETWORK': 'Collection removed from network',
     'COLLECTION_REMOVED_TO_NETWORK_ERROR': 'Error to remove collection from network',
-    'NETWORK_SAVED': 'Network saved'
+    'NETWORK_SAVED': 'Network saved',
+    'CURATOR_SAVED': 'Curator saved'
 }
 
 });
