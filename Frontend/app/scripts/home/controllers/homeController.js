@@ -8,8 +8,8 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','$rootScope','BaseController', '$state','$window','BiodiversityCollection','Network', 'Institution','Curator','Document',
-        function ($scope, $rootScope, BaseController, $state, $window, BiodiversityCollection, Network, Institution, Curator, Document) {
+    return ['$scope','$rootScope','BaseController', '$state','$window','$timeout','BiodiversityCollection','Network', 'Institution','Curator','Document',
+        function ($scope, $rootScope, BaseController, $state, $window, $timeout, BiodiversityCollection, Network, Institution, Curator, Document) {
 
             angular.extend($scope, BaseController);
 
@@ -21,10 +21,40 @@ define(['app',
 
             $scope.term = '';
             $scope.searchType = 'collection';
+            $scope.page = 0;
+            $scope.size = 9;
+
 
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
             });
+
+            /**
+             * Listener when the view is loaded
+             */
+            $scope.$on('$viewContentLoaded', function() {
+                console.log('view Content Loaded...');
+                $scope.collections.loadAll($scope.page, $scope.size);
+            });
+
+            $scope.$on('BIODIVERSITY_LOADED', function(){
+                var markersArray = {};
+                angular.forEach($scope.collections.content, function(value) {
+                    if (value.contact)
+                        markersArray[value.id] = {
+                            lat: value.contact.latitude,
+                            lng: value.contact.longitude
+                        };
+                });
+
+                $timeout( function() {
+                    $rootScope.$broadcast('MAP_POINTS_UPDATED', 'collections', markersArray);
+                }, 3000);
+            });
+
+            $scope.load = function(page, size) {
+                $scope.collections.loadAll( page, size );
+            };
 
             $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
 

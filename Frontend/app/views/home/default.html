@@ -56,191 +56,81 @@
     <section class="page-content">
         <div class="container">
             <div class="row">
-                <div class="col-md-1"> </div>
-                <div class="col-md-10"><h3 class="text-center" translate="BRAZIL_BIODIVERSITY_COLLECTION"></h3></div>
-                <div class="col-md-1"></div>
+                <div class="col-md-8"><h3 translate="BRAZIL_BIODIVERSITY_COLLECTION"></h3></div>
+                <div class="col-md-4">
+                    <div class="form-inline pull-right" style="margin-top: 35px;">
+                        <div class="form-group">
+                            <label class="form-group">Show only:&nbsp;&nbsp;</label>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-group">
+                                <option value="all" selected>All collections</option>
+                                <option value="fauna">Fauna</option>
+                                <option value="flora">Flora</option>
+                                <option value="microorganisms">Microorganisms</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        
         <div class="container">
 
-            <div class="row" align="center"><map height="500px" width="100%"/></div>
+            <div class="row" align="center"><map name="collections" height="500px" width="100%"/></div>
             <div class="clearfix"></div>
 
-
             <div class="row" align="center" style="margin-top: 10px;">
-
-                <div class="col-md-4">
+                <div class="col-xs-4" ng-repeat="col in collections.content">
                     <div class="list-item" style="margin-top: 20px;">
                         <div class="col-md-1">
                             <span class="fa-stack fa-1x">
                               <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">1</strong>
+                              <strong class="fa-stack-1x text-primary" style="color: white;">{{$index + 1}}</strong>
                             </span>
                         </div>
                         <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Cras justo odio</label>
-                                <h6 style="margin-left: 10px;">Jardim Botânico Adolpho Duke</h6>
-                            </a>
-                            <hr/>
-                        </div>
-                    </div>
-
-                    <div class="list-item" style="margin-top: 20px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">2</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Dapibus ac facilisis in</label>
-                                <h6 style="margin-left: 10px;">Jardim Botânico de Salvador</h6>
-                            </a>
-                            <hr/>
-                        </div>
-                    </div>
-
-                    <div class="list-item" style="margin-top: 20px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">3</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Porta ac consectetur ac</label>
-                                <h6 style="margin-left: 10px;">Parque Ambiental e Instituto Cultural Inhotim</h6>
+                            <a data-ui-sref="collection({id:col.id})">
+                                <label style="margin-left: 10px;">{{col.name}}</label>
+                                <h6 style="margin-left: 10px;">{{col.institution.name}}</h6>
                             </a>
                             <hr/>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="list-item" style="margin-top: 20px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">4</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Morbi leo risus</label>
-                                <h6 style="margin-left: 10px;">Fundação Jardim Botânico de Poços de Caldas</h6>
-                            </a>
-                            <hr/>
-                        </div>
-                    </div>
-
-                    <div class="list-item" style="margin-top: 20px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">5</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Porta ac consectetur ac</label>
-                                <h6 style="margin-left: 10px;">Jardim Botânico Neothropicum</h6>
-                            </a>
-                            <hr/>
-                        </div>
-                    </div>
-
-                    <div class="list-item" style="margin-top: 20px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">6</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Vestibulum at eros</label>
-                                <h6 style="margin-left: 10px;">Jardim Botânico de Caxias do Sul</h6>
-                            </a>
-                            <hr/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="list-item" style="margin-top: 20px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">7</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Cras justo odio</label>
-                                <h6 style="margin-left: 10px;">Jardim Botânico de São Paulo</h6>
-                            </a>
-                            <hr/>
-                        </div>
-                    </div>
-
-                    <div class="list-item" style="margin-top: 20px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">8</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Vestibulum at eros</label>
-                                <h6 style="margin-left: 10px;">Jardim Botânico de Salvador</h6>
-                            </a>
-                            <hr/>
-                        </div>
-                    </div>
-
-                    <div class="list-item" style="margin-top: 20px;">
-                        <div class="col-md-1">
-                            <span class="fa-stack fa-1x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <strong class="fa-stack-1x text-primary" style="color: white;">9</strong>
-                            </span>
-                        </div>
-                        <div class="col-md-11" style="text-align: left;">
-                            <a href="#">
-                                <label style="margin-left: 10px;">Collection Porta ac consectetur ac</label>
-                                <h6 style="margin-left: 10px;">Jardim Botânico do Rio de Janeiro</h6>
-                            </a>
-                            <hr/>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
             <div class="row" align="center">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                <div class="col-md-4">&nbsp;</div>
+                <div class="col-md-4">
+                    <nav>
+                        <ul class="pagination">
+                            <li ng-class="{disabled: collections.number === 0}">
+                                <a href="javascript:" ng-click="(collections.number === 0) || load(collections.number - 1, collections.size)" aria-label="Previous">
+                                    <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
+                                </a>
+                            </li>
+                            <li ng-class="{disabled: collections.number === collections.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collections.number === collections.totalPages - 1) || load(collections.number + 1, collections.size)">{{collections.number + 1}}</a></li>
+                            <li ng-class="{disabled: collections.number + 2 >= collections.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collections.number + 2 >= collections.totalPages - 1) || load(collections.number + 2, collections.size)">{{collections.number + 2}}</a></li>
+                            <li ng-class="{disabled: collections.number + 3 >= collections.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collections.number + 3 >= collections.totalPages - 1) || load(collections.number + 3, collections.size)">{{collections.number + 3}}</a></li>
+                            <li ng-class="{disabled: collections.number + 4 >= collections.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collections.number + 4 >= collections.totalPages - 1) || load(collections.number + 4, collections.size)">{{collections.number + 4}}</a></li>
+                            <li ng-class="{disabled: collections.number + 5 >= collections.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collections.number + 5 >= collections.totalPages - 1) || load(collections.number + 5, collections.size)">{{collections.number + 5}}</a></li>
+                            <li ng-class="{disabled: collections.number === collections.totalPages - 1}">
+                                <a href="javascript:" ng-click="(collections.number === collections.totalPages - 1) || load(collections.number + 1, collections.size)" aria-label="Next">
+                                    <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>            
+
         </div>
         <hr class="horizontal-line"/>
     </section>
