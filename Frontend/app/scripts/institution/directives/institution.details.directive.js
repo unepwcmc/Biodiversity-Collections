@@ -1,4 +1,4 @@
-define(['angularAMD','waypoints'], function (angularAMD) {
+define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], function (angularAMD) {
 
     'use strict';
 

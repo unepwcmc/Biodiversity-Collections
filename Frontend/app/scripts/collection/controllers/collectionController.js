@@ -39,7 +39,7 @@ define(['app','collection/directives/collection.networks.directive',
                    if ($stateParams.isNew) {
                        $rootScope.editMode = true;
                        $scope.collection.id = $stateParams.id;
-                       $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 500);
+                       $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 1000);
                    } else {
                        $scope.collection.get( $stateParams.id );
                        $rootScope.editMode = false;
@@ -85,8 +85,10 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.$on('BIODIVERSITY_UPDATED', function(){
                    console.log('updated');
 
-                   if($scope.images.length > 0){
+                   if ($scope.images === undefined)
+                        $scope.images = [];
 
+                   if ($scope.images.length > 0) {
                        var promises = [];
 
                        for(var i = 0; i < $scope.images.length; i++){

@@ -22,6 +22,8 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                         $scope.member = {};
 
                         $scope.addMember = function(){
+                            if ($scope.network.boardMembers === undefined)
+                                $scope.network.boardMembers = [];
                             var members = $scope.network.boardMembers;
                             members[members.length] = $scope.member;
                             $scope.member = {};

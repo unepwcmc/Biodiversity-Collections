@@ -33,7 +33,7 @@ define(['app',
                 if ($stateParams.isNew) {
                     $rootScope.editMode = true;
                     $scope.curator.id = $stateParams.id;
-                    $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 500);
+                    $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 1000);
                 } else {
                     $scope.curator.get( $stateParams.id );
                     $rootScope.editMode = false;

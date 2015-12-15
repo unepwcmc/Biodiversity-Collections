@@ -7,8 +7,8 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','Network',
-        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, Network) {
+    return ['$scope','$rootScope','$stateParams','$state','$translate','$timeout','toastr','BaseController','Network',
+        function ($scope, $rootScope, $stateParams, $state, $translate, $timeout, toastr, BaseController, Network) {
 
         angular.extend($scope, BaseController);
 
@@ -25,6 +25,7 @@ define(['app',
             if ($stateParams.isNew) {
                 $rootScope.editMode = true;
                 $scope.network.id = $stateParams.id;
+                $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 1000);
             } else {
                 $scope.network.loadById($stateParams.id);
                 $rootScope.editMode = false;
