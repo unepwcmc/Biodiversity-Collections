@@ -8,6 +8,10 @@ public class Member implements Serializable {
 
     private String name;
 
+    private String relationshipToTheCollection;
+
+    private String doingWithTheCollection;
+
     public String getName() {
         return name;
     }
@@ -30,5 +34,21 @@ public class Member implements Serializable {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    public String getRelationshipToTheCollection() {
+        return relationshipToTheCollection;
+    }
+
+    public void setRelationshipToTheCollection(String relationshipToTheCollection) {
+        this.relationshipToTheCollection = relationshipToTheCollection;
+    }
+
+    public String getDoingWithTheCollection() {
+        return doingWithTheCollection;
+    }
+
+    public void setDoingWithTheCollection(String doingWithTheCollection) {
+        this.doingWithTheCollection = doingWithTheCollection;
     }
 }

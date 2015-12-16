@@ -1,12 +1,10 @@
 package com.unep.wcmc.biodiversity.controller;
 
 import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
+import com.unep.wcmc.biodiversity.model.Curator;
 import com.unep.wcmc.biodiversity.model.Institution;
 import com.unep.wcmc.biodiversity.model.Network;
-import com.unep.wcmc.biodiversity.service.BiodiversityCollectionService;
-import com.unep.wcmc.biodiversity.service.ImageService;
-import com.unep.wcmc.biodiversity.service.InstitutionService;
-import com.unep.wcmc.biodiversity.service.NetworkService;
+import com.unep.wcmc.biodiversity.service.*;
 import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +27,9 @@ public class InstitutionController extends AbstractController<Institution, Insti
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private CuratorService curatorService;
 
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<Institution> name(@RequestParam String name,
@@ -83,6 +84,18 @@ public class InstitutionController extends AbstractController<Institution, Insti
         collection.setInstitution(null);
         collectionService.save(collection);
         return institution;
+    }
+
+    @RequestMapping(method= RequestMethod.PUT, value="/{id}/curator/{curatorId}")
+    public Institution addCurator(@PathVariable Long id, @PathVariable Long curatorId) {
+
+        Curator curator = curatorService.get(curatorId);
+
+        Institution institution = service.get(id);
+                    curator.getAssociatedInstitutions().add(institution);
+                    curatorService.save(curator);
+
+        return service.save(institution);
     }
 
 }

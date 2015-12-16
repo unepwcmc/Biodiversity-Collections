@@ -2,9 +2,9 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
 
     'use strict';
 
-    angularAMD.directive('institutionDetail', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies',
+    angularAMD.directive('institutionDetail', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','toastr',
 
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies) {
+        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, toastr) {
 
             return {
                 restrict: 'EA',
@@ -12,17 +12,58 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        $scope.addCurator = function() {
-                            if ($scope.institution.curators === undefined)
-                                $scope.institution.curators = {};
-                            var curators = $scope.institution.curators;
-                            curators[curators.length] = $scope.curator;
-                            $scope.curator = {};
+                        $scope.institutionCuratorSelected = null;
+
+                        $scope.institutionCuratorSelected = null;
+
+                        $scope.addCurator = function(){
+                            if($scope.institutionCuratorSelected != null){
+
+                                //$('#loader-wrapper').fadeToggle('400');
+
+                               /* $scope.institution.addCurator( $stateParams.id, $scope.institutionCuratorSelected.originalObject.id, function( data, status){
+                                    if(status === 200){
+                                        toastr.success($translate.instant('CURATOR_ADDED_TO_INSTITUTION'), $translate.instant('SUCCESS'));
+                                        $scope.institution.get( $stateParams.id );
+                                    } else {
+                                        $('#loader-wrapper').fadeToggle('400');
+                                        toastr.error($translate.instant('CURATOR_ADDED_TO_INSTITUTION_ERROR'), $translate.instant('ERROR'));
+                                    }
+                                });*/
+                                $scope.institution.curators
+                                $scope.institutionCuratorSelected = null;
+                                $scope.$broadcast('angucomplete-alt:clearInput', 'institution_curator_autocomplete');
+                            }
                         };
 
-                        $scope.deleteCurator = function( index ){
-                            $scope.institution.curators.splice(index, 1);
+                        $scope.removeCurator = function( networkId ){
+                            if ($scope.networks.number > 0) {
+                                if( (($scope.networks.totalElements - 1) % $scope.networks.size) == 0){
+                                    $scope.networks.number = $scope.networks.number - 1;
+                                    $scope.networks.totalPages = $scope.networks.totalPages - 1;
+                                }
+                            }
+                            $scope.collection.removeNetwork( $stateParams.id, networkId , function( data, status){
+                                if(status === 200){
+                                    toastr.success($translate.instant('NETWORK_REMOVED_TO_COLLECTION'), $translate.instant('SUCCESS'));
+                                    $scope.networks.loadByCollection( $stateParams.id,  $scope.networks.number, $scope.networks.size);
+                                } else {
+                                    toastr.success($translate.instant('NETWORK_REMOVED_TO_COLLECTION_ERROR'), $translate.instant('ERROR'));
+                                }
+                            });
                         };
+
+                        $scope.curatorAutocomplete = function( userInputString, timeoutPromise){
+                            if(userInputString == null)
+                                return null;
+                            return $http.get( $rootScope.getHost() + "curators/search/autocomplete?name=" +  userInputString ,
+                                {
+                                    timeout: timeoutPromise
+                                }
+                            );
+                        };
+
+
 
 
                     }],

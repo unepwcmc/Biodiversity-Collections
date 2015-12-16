@@ -154,6 +154,26 @@ define(['angularAMD'], function (angularAMD) {
                             callback( data, status, headers, config )
                     });
             },
+            addCurator: function( id, curatorId, callback) {
+                var self = this;
+
+                $http.put( $rootScope.getHost() + "institutions/" + id + "/curator/" + curatorId, {} )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
             removeNetwork: function( id, networkId, callback){
 
                 var self = this;

@@ -37,6 +37,13 @@ define(['app',
 
             $scope.$on('INSTITUTION_LOADED', function(){
 
+                _.each($scope.institution.curators, function( ele ){
+                    delete ele.institution;
+                    delete ele.associatedInstitutions;
+                });
+
+                console.log($scope.institution.curators);
+
                 $('#loader-wrapper').fadeToggle('400');
             });
 

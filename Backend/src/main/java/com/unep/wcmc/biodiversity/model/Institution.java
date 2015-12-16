@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -114,11 +115,19 @@ public class Institution implements BaseEntity {
     }
 
     public Set<Curator> getCurators() {
-        return curators;
+        return this.curators == null? new HashSet<Curator>():  this.curators;
     }
 
     public void setCurators(Set<Curator> curators) {
         this.curators = curators;
+    }
+
+    public void addCurators(Curator c){
+        getCurators().add(c);
+    }
+
+    public void removeCurators(Curator c){
+        getCurators().remove(c);
     }
 
     public Set<BiodiversityCollection> getCollections() {

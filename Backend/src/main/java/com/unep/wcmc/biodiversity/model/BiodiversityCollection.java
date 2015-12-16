@@ -68,6 +68,10 @@ public class BiodiversityCollection implements BaseEntity {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
 
+    @ElementCollection
+    @CollectionTable(name = "board_members", joinColumns = @JoinColumn(name = "network_id"))
+    private Set<Member> associatedMembers;
+
     @Override
     public Long getId() {
         return id;
@@ -244,5 +248,21 @@ public class BiodiversityCollection implements BaseEntity {
 
     public  void removeImage(Image image){
         getImages().remove(image);
+    }
+
+    public Set<Member> getAssociatedMembers() {
+        return associatedMembers == null? new HashSet<Member>(): this.associatedMembers;
+    }
+
+    public void setAssociatedMembers(Set<Member> associatedMembers) {
+        this.associatedMembers = associatedMembers;
+    }
+
+    public void addMembers(Member member){
+        getAssociatedMembers().add(member);
+    }
+
+    public void removeMembers(Member member){
+        getAssociatedMembers().remove(member);
     }
 }
