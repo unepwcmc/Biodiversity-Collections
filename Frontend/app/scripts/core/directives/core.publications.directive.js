@@ -20,6 +20,7 @@ define([ 'angularAMD',
                         $scope.file = null;
                         $scope.documents = new Document();
                         angular.extend($scope.documents, {totalElements : 0, number: 0, size: 5, totalPages: 0});
+                        $scope.checkboxCountPub = 0;
 
                         $rootScope.$watch('editMode', function(){
                             $scope.editMode = $rootScope.editMode;
@@ -49,6 +50,14 @@ define([ 'angularAMD',
                             else{
                                 $scope.saveNewDocument();
                             }
+                        };
+
+                        $scope.singleCheckBoxEvent = function($event){
+
+                            if($($event.currentTarget).is(":checked"))
+                                $scope.checkboxCountPub+=1;
+                            else
+                                $scope.checkboxCountPub-=1;
                         };
 
                         $scope.showPublicationForm = function(){
@@ -148,10 +157,20 @@ define([ 'angularAMD',
                         };
 
                         $scope.checkAndUnCheckAll = function(){
+
                             $scope.checkboxes_selected = !$scope.checkboxes_selected;
+
+                            if($scope.checkboxes_selected && $scope.checkboxCountPub > 0){
+                                $scope.checkboxCountPub = 0;
+                            }
 
                             $("input[type=checkbox].pub-checkbox-delete").each(function () {
                                 $(this).prop("checked", $scope.checkboxes_selected);
+
+                                if($scope.checkboxes_selected)
+                                    $scope.checkboxCountPub +=1;
+                                else
+                                    $scope.checkboxCountPub -= 1;
                             });
 
                         };
@@ -177,6 +196,7 @@ define([ 'angularAMD',
                                 $scope.showSuccessMessage('DOCUMENT_DELETED_SUCCESSFULLY','SUCCESS');
                                 $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
                                 $scope.checkboxes_selected = !$scope.checkboxes_selected;
+                                $scope.checkboxCountPub = 0;
                             });
                         };
 

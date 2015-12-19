@@ -11,7 +11,7 @@
                         <th ts-criteria="type">{{ 'TYPE' | translate }}</th>
                         <th ts-criteria="contentType">{{ 'FORMAT' | translate }}</th>
                         <th class="no-sorter" width="5%">&nbsp;</th>
-                        <th ng-show="editMode" width="5%" class="btn-td no-sorter"><a ng-disabled="!checkboxes_selected" ng-click="deleteAll()" class="btn"><i class="fa fa-close"></i></a></th>
+                        <th ng-show="editMode" width="5%" class="btn-td no-sorter"><a ng-disabled="checkboxCountPub > 0" ng-click="deleteAll()" class="btn"><i class="fa fa-close"></i></a></th>
                         <th class="no-sorter" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" /></th>
                     </tr>
                     </thead>
@@ -27,7 +27,7 @@
                         <td>.{{publication.contentType}}</td>
                         <td class="btn-td"><a pub-popover doc="publication" class="btn"><i class="fa fa-ellipsis-v"></i></a></td>
                         <td ng-show="editMode" class="btn-td"><a ng-click="deleteDocument(publication.id)" class="btn"><i class="fa fa-close"></i></a></td>
-                        <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" type="checkbox" /></td>
+                        <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
                     </tr>
                     </tbody>
                 </table>
