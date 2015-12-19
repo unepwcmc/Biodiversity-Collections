@@ -53,6 +53,7 @@ define(['app','collection/directives/collection.networks.directive',
                    console.log('collection updating..');
 
                    $('#loader-wrapper').fadeToggle('400');
+
                    $scope.collection.update();
                });
 
@@ -89,36 +90,7 @@ define(['app','collection/directives/collection.networks.directive',
                         $scope.images = [];
 
                    if ($scope.images.length > 0) {
-                       var promises = [];
-
-                       for(var i = 0; i < $scope.images.length; i++){
-
-                           var fd = new FormData();
-                           fd.append('file', $scope.images[i]);
-
-                           console.log($scope.images[i]);
-
-                           promises.push(
-                                $http.post($rootScope.getHost() + "collections/" + $stateParams.id + "/media", fd, {
-                                   headers : {
-                                       'Content-Type' : undefined
-                                   }
-                                })
-                           );
-                       }
-
-                       $q.all( promises ).then(function( results ){
-
-                           $scope.images = null;
-                           $('#loader-wrapper').fadeToggle('400');
-                           toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
-                           $scope.$emit("IMAGE_ADDED");
-
-                       }).catch( function( errorCallback ){
-                            console.log(errorCallback);
-                       });
-
-
+                       saveImage();
                    }else{
 
                        $('#loader-wrapper').fadeToggle('400');
@@ -177,6 +149,40 @@ define(['app','collection/directives/collection.networks.directive',
                    $rootScope.editMode = status;
                    $scope.$apply();
                }
+
+               function saveImage(){
+
+                   var promises = [];
+
+                   for(var i = 0; i < $scope.images.length; i++){
+
+                       var fd = new FormData();
+                       fd.append('file', $scope.images[i]);
+
+                       console.log($scope.images[i]);
+
+                       promises.push(
+                           $http.post($rootScope.getHost() + "collections/" + $stateParams.id + "/media", fd, {
+                               headers : {
+                                   'Content-Type' : undefined
+                               }
+                           })
+                       );
+                   }
+
+                   $q.all( promises ).then(function( results ){
+
+                       $scope.images = null;
+                       $('#loader-wrapper').fadeToggle('400');
+                       toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
+                       $scope.$emit("IMAGE_ADDED");
+
+                   }).catch( function( errorCallback ){
+                       console.log(errorCallback);
+                   });
+               }
+
+
            }
     ];
 });

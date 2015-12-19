@@ -319,6 +319,29 @@ define(['angularAMD'], function (angularAMD) {
                             callback( data, status, headers, config );
                         $rootScope.$broadcast("BIODIVERSITY_SAMPLES_ADD_ERROR");
                     });
+            },
+            removeSample: function( id, sampleId, callback){
+
+                var self = this;
+
+                $http.delete( $rootScope.getHost() + "collections/" + id + "/sample/" + sampleId )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config );
+                        $rootScope.$broadcast("BIODIVERSITY_SAMPLES_REMOVED");
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config );
+                        $rootScope.$broadcast("BIODIVERSITY_SAMPLES_REMOVED_ERROR");
+                    });
             }
         };
 

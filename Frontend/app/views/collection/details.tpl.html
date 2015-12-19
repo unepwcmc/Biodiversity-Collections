@@ -27,7 +27,7 @@
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'COLLECTIONS'| translate}}</strong></button></span>
 
             <a ng-show="!editMode" id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
-            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="!collection_form.$valid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
@@ -38,7 +38,7 @@
     <div class="container">
          <div class="row">
              <div class="col-md-8">
-                 <form action="#" class="form-horizontal form-block form-data" role="form" name="collection_form" novalidate>
+                 <form action="#" class="form-horizontal form-block form-data" role="form" name="collection_form" novalidate >
                      <div class="small-field">
 
                          <div ng-show="!editMode" id="collection-id" class="form-group">
@@ -122,7 +122,7 @@
                                     <tbody>
                                         <tr ng-repeat="researcher in collection.researchers" on-finish-render="ngRepeatFinished">
                                             <td><input type="text" class="form-control" data-ng-model="researcher.name" ></td>
-                                            <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right"  class="btn-small-delete" ng-click="deleteResearch($index);"><i class="fa fa-close"></i></a></td>
+                                            <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right" class="btn-small-delete" ng-click="deleteResearch($index);"><i class="fa fa-close"></i></a></td>
                                         </tr>
                                     </tbody>
                                     <tfoot ng-show="editMode">
