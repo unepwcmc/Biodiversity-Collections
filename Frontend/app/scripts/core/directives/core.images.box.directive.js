@@ -22,7 +22,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         },true);
 
                         $scope.$watch('images.length', function(newValue, oldValue){
-                            if(newValue != oldValue)
+                            if($scope.images)
                                  loadImage();
                         },true);
 
@@ -31,7 +31,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             for(var i = 0; i < files.length; i++){
 
                                 if(files[i].size > 1024 * 1024 * 5){
-                                     $scope.showWarningMessage('THE_FILE_SIZE_ETC','WARNING');
+                                     $scope.showWarningMessage('WARNING','THE_FILE_SIZE_ETC');
                                      return;
                                 }
                             }
@@ -51,8 +51,6 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         function loadImage(){
 
                             if($scope.images.length > 0){
-
-                                console.log($scope.images);
 
                                 for(var i = 0; i < $scope.images.length; i++){
 
@@ -93,14 +91,14 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                     $('#ipt-file').on('change', function (evt) {
 
                         if(scope.slots.length  == 5){
-                            scope.showWarningMessage('ONLY_FIVE_FILES_WILL_BE_SELECTED','WARNING');
+                            scope.showWarningMessage('WARNING','MAX_IMAGE_EXCEEDED');
                             return;
                         }
 
                         var files = $(evt.currentTarget).get(0).files;
 
                         if( files.length > 5){
-                            scope.showWarningMessage('ONLY_FIVE_FILES_WILL_BE_SELECTED','WARNING');
+                            scope.showWarningMessage('WARNING','ONLY_FIVE_FILES_WILL_BE_SELECTED');
                         }
 
                         if(files.length > 0) {
@@ -156,8 +154,6 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             }
 
                         }
-
-                       // scope.$apply();
                     }
 
                 }

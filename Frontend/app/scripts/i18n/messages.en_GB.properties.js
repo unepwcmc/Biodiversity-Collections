@@ -138,7 +138,8 @@ define([],function ( ) {
     'COLLECTION_REMOVED_TO_NETWORK': 'Collection removed from network',
     'COLLECTION_REMOVED_TO_NETWORK_ERROR': 'Error to remove collection from network',
     'NETWORK_SAVED': 'Network saved',
-    'CURATOR_SAVED': 'Curator saved'
+    'CURATOR_SAVED': 'Curator saved',
+    'MAX_IMAGE_EXCEEDED':'Number max of image exceeded, please remove some images before try to add more.'
 }
 
 });

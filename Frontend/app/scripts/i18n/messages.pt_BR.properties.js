@@ -138,7 +138,8 @@ define([],function ( ) {
     'COLLECTION_REMOVED_TO_NETWORK': 'Coleção removida da rede',
     'COLLECTION_REMOVED_TO_NETWORK_ERROR': 'Erro ao remover a coleção da rede',
     'NETWORK_SAVED': 'Rede salva com sucesso',
-    'CURATOR_SAVED': 'Curador salvo com sucess'
+    'CURATOR_SAVED': 'Curador salvo com sucess',
+    'MAX_IMAGE_EXCEEDED':'Número máximo de imagens exceido, por favor remova algumas imagens'
   }
 
 });
