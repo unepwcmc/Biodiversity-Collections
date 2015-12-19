@@ -92,6 +92,19 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         return service.save(collection);
     }
 
+    @RequestMapping(method= RequestMethod.DELETE, value="/{id}/sample/{sampleId}")
+    public BiodiversityCollection removeSample(@PathVariable Long id, @PathVariable Long sampleId) {
+        BiodiversityCollection collection = service.get(id);
+
+        Sample sample = sampleService.get(sampleId);
+        collection.removeSample(sample);
+
+        //sample.setCollection(null);
+        sampleService.delete(sample.getId());
+
+        return service.save(collection);
+    }
+
     @RequestMapping(method= RequestMethod.POST, value="/{id}/samples")
     public BiodiversityCollection addSamples(@PathVariable Long id, @RequestBody List<Long> sampleIds) {
         BiodiversityCollection collection = service.get(id);
