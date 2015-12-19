@@ -15,6 +15,8 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                         angular.extend($scope, BaseController);
 
+                        $scope.slots = [false, false, false, false, false];
+
                         $rootScope.$watch('editMode', function(newValue, oldValue){
                             $scope.editMode = $rootScope.editMode;
                         },true);
@@ -50,24 +52,35 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                             if($scope.images.length > 0){
 
+                                console.log($scope.images);
+
                                 for(var i = 0; i < $scope.images.length; i++){
 
-                                    (function( index ){
+                                    var indexSlot = _.findIndex($scope.slots, function( obj){
+                                        return obj == false;
+                                    });
 
-                                        $timeout( function(){
+                                    if(!$scope.slots[indexSlot]){
 
-                                            if(index == 0){
-                                                $('#box-image').attr('src',$rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image");
-                                            }
-                                            var thumbnail = $('#box-image-' + ( index +1 ));
+                                        $scope.slots[indexSlot] = true;
+
+                                        (function( index ){
+
+                                            $timeout( function(){
+
+                                                if(index == 0){
+                                                    $('#box-image').attr('src',$rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image");
+                                                }
+                                                var thumbnail = $('#box-image-' + ( index  ));
                                                 thumbnail.attr('src',$rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image");
                                                 thumbnail.next().data('img-id', $scope.images[index].id );
-                                                thumbnail.data('empty', 0);
 
-                                        },250);
 
-                                    })(i);
+                                            },250);
 
+                                        })(indexSlot);
+
+                                    }
                                 }
                             }
                             else if( $scope.id != '')
@@ -78,6 +91,11 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                 link: function (scope, element, attrs) {
 
                     $('#ipt-file').on('change', function (evt) {
+
+                        if(scope.slots.length  == 5){
+                            scope.showWarningMessage('ONLY_FIVE_FILES_WILL_BE_SELECTED','WARNING');
+                            return;
+                        }
 
                         var files = $(evt.currentTarget).get(0).files;
 
@@ -93,9 +111,11 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                     $('a.bt-img-close-click').click( function( evt ){
 
+                        var index = $(this).prev().data('slot');
                         scope.removeImage($(this).data('img-id'));
                         $(this).prev().attr("src", "/images/empty_img.png");
                         $(this).prev().data("empty", 1);
+                        scope.slots[index] = false;
 
                     });
 
@@ -107,29 +127,37 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                         for(var i = 0; i < files.length; i++){
 
-                            (function(file, index) {
+                            var indexSlot = _.findIndex(scope.slots, function( obj){
+                                return obj == false;
+                            });
 
-                                var selectedFile = file;
-                                var reader = new FileReader();
+                            if(!scope.slots[indexSlot]){
 
-                                reader.onload = function(event) {
+                                scope.slots[indexSlot] = true;
 
-                                    var thumbnail = $('#box-image-' + ( index +1));
+                                (function(file, index) {
 
-                                    if(thumbnail.data('empty') == 1){
+                                    var selectedFile = file;
+                                    var reader = new FileReader();
 
-                                        if(index == 0){
-                                            $('#box-image').attr('src',event.target.result);
-                                        }
-                                        thumbnail.attr('src',event.target.result);
-                                        thumbnail.data('empty', 0);
-                                    }
+                                    reader.onload = function(event) {
 
-                                };
-                                reader.readAsDataURL(selectedFile);
+                                        var thumbnail = $('#box-image-' + ( index ));
 
-                            })(files[i], i);
+                                            if(index == 0){
+                                                $('#box-image').attr('src',event.target.result);
+                                            }
+                                            thumbnail.attr('src',event.target.result);
+                                            thumbnail.data('empty', 0);
+                                    };
+                                    reader.readAsDataURL(selectedFile);
+
+                                })(files[i], indexSlot);
+                            }
+
                         }
+
+                       // scope.$apply();
                     }
 
                 }
