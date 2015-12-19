@@ -22,7 +22,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         },true);
 
                         $scope.$watch('images.length', function(newValue, oldValue){
-                            if($scope.images)
+                            if($scope.images && !$scope.editMode)
                                  loadImage();
                         },true);
 
@@ -90,7 +90,11 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                     $('#ipt-file').on('change', function (evt) {
 
-                        if(scope.slots.length  == 5){
+                        var indexSlot = _.findIndex(scope.slots, function( obj){
+                            return obj == false;
+                        });
+
+                        if(indexSlot < 0){
                             scope.showWarningMessage('WARNING','MAX_IMAGE_EXCEEDED');
                             return;
                         }
