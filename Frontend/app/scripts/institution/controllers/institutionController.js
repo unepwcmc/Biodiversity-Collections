@@ -7,13 +7,13 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','BaseController','$stateParams','$http','$rootScope','Institution','toastr','$translate','$state',
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','Institution','toastr','$translate','$state','$q',
 
-        function ($scope, BaseController, $stateParams, $http, $rootScope, Institution, toastr, $translate, $state) {
+        function ($scope, BaseController, $stateParams, $http, $rootScope, Institution, toastr, $translate, $state, $q) {
             angular.extend($scope, BaseController);
 
             $rootScope.editMode = false;
-            $scope.image = null;
+            $scope.images = [];
             $scope.fromState = 'home';
             $scope.institution = new Institution();
 
@@ -72,9 +72,15 @@ define(['app',
             $scope.$on('INSTITUTION_UPDATED', function(){
                 console.log('updated');
 
-                if ($scope.image != null) {
-                    $scope.institution.addImage($scope.image);
-                } else {
+                console.log($scope.images);
+
+                if ($scope.images === undefined)
+                    $scope.images = [];
+
+                if ($scope.images.length > 0) {
+                    saveImage();
+                }else{
+
                     $('#loader-wrapper').fadeToggle('400');
                     toastr.success($translate.instant('INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
                 }
@@ -105,21 +111,56 @@ define(['app',
              * Listener when a file is loaded from the user.
              */
             $scope.$on('ATTACH_FILE', function( evt, data ){
-                $scope.image = data;
+                $scope.images = data;
             });
 
-            /**
-             * Listener when the image was added to the biodiversity collection model.
-             */
-            $scope.$on('INSTITUTION_IMAGE_ADDED', function(){
-                $scope.image = null;
-                $('#loader-wrapper').fadeToggle('400');
-                toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
+            $scope.$on('REMOVE_IMAGE', function(evt, data){
+
+                var index = _.findIndex($scope.institution.images, function( obj ){
+                    return obj.id == data;
+                });
+
+                $scope.institution.images.splice(index, 1);
             });
+
 
             function setStateButton( status ){
                 $rootScope.editMode = status;
                 $scope.$apply();
+            }
+
+            function saveImage(){
+
+                console.log('chegando aqui');
+
+                var promises = [];
+
+                for(var i = 0; i < $scope.images.length; i++){
+
+                    var fd = new FormData();
+                    fd.append('file', $scope.images[i]);
+
+                    console.log($scope.images[i]);
+
+                    promises.push(
+                        $http.post($rootScope.getHost() + "institutions/" + $stateParams.id + "/media", fd, {
+                            headers : {
+                                'Content-Type' : undefined
+                            }
+                        })
+                    );
+                }
+
+                $q.all( promises ).then(function( results ){
+
+                    $scope.images = [];
+                    $('#loader-wrapper').fadeToggle('400');
+                    toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
+                    $scope.$emit("IMAGE_ADDED");
+
+                }).catch( function( errorCallback ){
+                    console.log(errorCallback);
+                });
             }
         }
     ];
