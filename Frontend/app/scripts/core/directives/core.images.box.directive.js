@@ -22,8 +22,12 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         },true);
 
                         $scope.$watch('images.length', function(newValue, oldValue){
-                            if($scope.images && !$scope.editMode)
-                                 loadImage();
+                            if($scope.images && !$scope.editMode){
+
+                                $timeout( function(){
+                                    loadImage();
+                                },100)
+                            }
                         },true);
 
                         $scope.addFile = function( files ){
@@ -81,8 +85,6 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                                     }
                                 }
                             }
-                            else if( $scope.id != '')
-                                $('#box-image').attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
                         }
 
                     }],
