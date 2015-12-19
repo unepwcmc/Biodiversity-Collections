@@ -7,8 +7,8 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','$rootScope','$stateParams','$state','$translate','$timeout','toastr','BaseController','Network','$q',
-        function ($scope, $rootScope, $stateParams, $state, $translate, $timeout, toastr, BaseController, Network, $q) {
+    return ['$scope','$rootScope','$stateParams','$state','$translate','$timeout','toastr','BaseController','Network','$q','$http',
+        function ($scope, $rootScope, $stateParams, $state, $translate, $timeout, toastr, BaseController, Network, $q, $http) {
 
         angular.extend($scope, BaseController);
 
@@ -91,11 +91,11 @@ define(['app',
 
         $scope.$on('REMOVE_IMAGE', function(evt, data){
 
-            var index = _.findIndex($scope.institution.images, function( obj ){
+            var index = _.findIndex($scope.network.images, function( obj ){
                 return obj.id == data;
             });
 
-            $scope.institution.images.splice(index, 1);
+            $scope.network.images.splice(index, 1);
         });
 
         /**
@@ -135,7 +135,7 @@ define(['app',
                 console.log($scope.images[i]);
 
                 promises.push(
-                    $http.post($rootScope.getHost() + "institutions/" + $stateParams.id + "/media", fd, {
+                    $http.post($rootScope.getHost() + "networks/" + $stateParams.id + "/media", fd, {
                         headers : {
                             'Content-Type' : undefined
                         }
@@ -147,7 +147,7 @@ define(['app',
 
                 $scope.images = [];
                 $('#loader-wrapper').fadeToggle('400');
-                toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
+                toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
                 $scope.$emit("IMAGE_ADDED");
 
             }).catch( function( errorCallback ){
