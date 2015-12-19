@@ -78,7 +78,7 @@ define(['app',
                     $scope.images = [];
 
                 if ($scope.images.length > 0) {
-                    saveImage();
+                    saveImageInstitution();
                 }else{
 
                     $('#loader-wrapper').fadeToggle('400');
@@ -129,7 +129,7 @@ define(['app',
                 $scope.$apply();
             }
 
-            function saveImage(){
+            function saveImageInstitution(){
 
                 console.log('chegando aqui');
 
