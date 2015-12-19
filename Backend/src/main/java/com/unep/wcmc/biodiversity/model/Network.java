@@ -1,6 +1,7 @@
 package com.unep.wcmc.biodiversity.model;
 
 import com.unep.wcmc.biodiversity.support.BaseEntity;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,10 +21,9 @@ public class Network implements BaseEntity {
 
     private boolean status;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "image_id")
-    private Image image;
-
+    @ElementCollection
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Set<Image> images;
     @Embedded
     private Contact contact;
 
@@ -125,12 +125,20 @@ public class Network implements BaseEntity {
         return status;
     }
 
-    public Image getImage() {
-        return image;
+    public Set<Image> getImages() {
+        return images == null? new HashSet<Image>(): this.images;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
+    public void addImage(Image image){
+        getImages().add(image);
+    }
+
+    public  void removeImage(Image image){
+        getImages().remove(image);
     }
 
 }

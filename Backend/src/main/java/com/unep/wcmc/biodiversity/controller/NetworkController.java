@@ -77,8 +77,10 @@ public class NetworkController extends AbstractController<Network, NetworkServic
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")
     public Network uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         Network network = service.get(id);
+
         if (!file.isEmpty())
-            network.setImage(imageService.save(file));
+             network.addImage(imageService.save(file));
+
         return service.save(network);
     }
 
