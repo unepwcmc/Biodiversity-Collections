@@ -14,8 +14,6 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
 
                         $scope.institutionCuratorSelected = null;
 
-                        $scope.institutionCuratorSelected = null;
-
                         $scope.addCurator = function(){
                             if($scope.institutionCuratorSelected != null){
 
