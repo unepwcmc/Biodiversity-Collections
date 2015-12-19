@@ -46,7 +46,7 @@ public class InstitutionController extends AbstractController<Institution, Insti
     public Institution uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         Institution institution = service.get(id);
         if (!file.isEmpty())
-            institution.setImage(imageService.save(file));
+            institution.addImage(imageService.save(file));
         return service.save(institution);
     }
 
