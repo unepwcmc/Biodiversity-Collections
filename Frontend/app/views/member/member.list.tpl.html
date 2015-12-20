@@ -1,0 +1,52 @@
+<section class="page-content" edit-form="{{editMode}}">
+
+    <!-- Loading screen -->
+    <div id="loader-wrapper" class="loading">
+        <div id="loader"></div>
+    </div>
+
+    <div class="container">
+        <nav id="member-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <h2 class="navbar-text"><strong>{{'EDIT_MEMBERS' | translate}}</strong></h2>
+
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-transparent btn-edit-member-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-white save-form"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <h4 id="member-bar-default">
+
+            <strong ng-show="!editMode" >{{ collection.name }}</strong>
+            <strong ng-show="editMode" >{{'COLLECTION' | translate}}</strong> <span>
+            <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'COLLECTION'| translate}}</strong></button></span>
+
+            <a ng-show="!editMode" id="edit-member" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-member-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+        </h4>
+
+        <hr/>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                <div class="container">
+                    <member-item member="member" edit-form  ng-repeat="member in members"></member-item>
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr/>
+
+
+    </div>
+</section>

@@ -139,7 +139,10 @@ define([],function ( ) {
     'COLLECTION_REMOVED_TO_NETWORK_ERROR': 'Erro ao remover a coleção da rede',
     'NETWORK_SAVED': 'Rede salva com sucesso',
     'CURATOR_SAVED': 'Curador salvo com sucess',
-    'MAX_IMAGE_EXCEEDED':'Número máximo de imagens exceido, por favor remova algumas imagens'
+    'MAX_IMAGE_EXCEEDED':'Número máximo de imagens exceido, por favor remova algumas imagens',
+    'ASSOCIATED_MEMBER_ID':'ID do membro associado',
+    'RELATIONSHIP_TO_THE_COLLECTION':'Relação com a coleção',
+    'WHAT_THE_PERSON_IS_DOING':'O que a pessoa está fazendo com a coleção?'
   }
 
 });

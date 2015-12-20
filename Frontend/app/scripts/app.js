@@ -121,6 +121,18 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
+                .state('member', angularAMD.route(
+                    {
+                        url: '/collection/:id/member',
+                        templateUrl: 'views/member/default.html',
+                        controllerUrl: 'member/controllers/memberController',
+                        ncyBreadcrumb: {
+                            label: '{{collection.name}}',
+                            parent: function($scope) {
+                                return $scope.fromState == 'home'? 'home' : 'home';
+                            }
+                        }
+                    }))
                 .state('sample', angularAMD.route(
                     {
                         url: '/sample/:id',
