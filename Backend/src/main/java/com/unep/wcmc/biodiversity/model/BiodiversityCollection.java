@@ -48,7 +48,7 @@ public class BiodiversityCollection implements BaseEntity {
     @JsonIgnore
     private Set<Network> networks;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "researcher", joinColumns = @JoinColumn(name = "collection_id"))
     private Set<Researcher> researchers;
 
@@ -56,7 +56,7 @@ public class BiodiversityCollection implements BaseEntity {
     @JsonIgnore
     private Set<Sample> samples;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "specimen", joinColumns = @JoinColumn(name = "collection_id"))
     private Set<Specimen> specimens;
 
@@ -64,12 +64,13 @@ public class BiodiversityCollection implements BaseEntity {
     @JsonIgnore
     private Set<Document> documents;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
 
-    @ElementCollection
-    @CollectionTable(name = "board_members", joinColumns = @JoinColumn(name = "network_id"))
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "associated_members", joinColumns = @JoinColumn(name = "collection_id"))
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Member> associatedMembers;
 
     @Override
