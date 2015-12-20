@@ -44,7 +44,7 @@ public class Institution implements BaseEntity {
     @JsonIgnore
     private Set<Network> networks;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
 
