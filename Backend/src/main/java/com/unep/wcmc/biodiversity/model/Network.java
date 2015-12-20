@@ -39,7 +39,7 @@ public class Network implements BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
     private Set<Institution> institutions;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "board_members", joinColumns = @JoinColumn(name = "network_id"))
     private Set<Member> boardMembers;
 
