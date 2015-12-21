@@ -9,6 +9,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraph(name = "BiodiversityCollection.detail",
+        attributeNodes = {
+                @NamedAttributeNode("researchers"),
+                @NamedAttributeNode("specimens"),
+                @NamedAttributeNode("images"),
+                @NamedAttributeNode("associatedMembers")
+        }
+    )
 public class BiodiversityCollection implements BaseEntity {
 
     @Id
@@ -48,7 +56,7 @@ public class BiodiversityCollection implements BaseEntity {
     @JsonIgnore
     private Set<Network> networks;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "researcher", joinColumns = @JoinColumn(name = "collection_id"))
     private Set<Researcher> researchers;
 
@@ -56,7 +64,7 @@ public class BiodiversityCollection implements BaseEntity {
     @JsonIgnore
     private Set<Sample> samples;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "specimen", joinColumns = @JoinColumn(name = "collection_id"))
     private Set<Specimen> specimens;
 
@@ -64,11 +72,11 @@ public class BiodiversityCollection implements BaseEntity {
     @JsonIgnore
     private Set<Document> documents;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "associated_members", joinColumns = @JoinColumn(name = "collection_id"))
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Member> associatedMembers;
