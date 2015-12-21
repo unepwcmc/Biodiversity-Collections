@@ -12,11 +12,19 @@ define(['angularAMD', 'core/directives/core.image.box.directive'], function (ang
             templateUrl: 'views/member/member.item.tpl.html',
             controller: ['$scope','$rootScope', function($scope, $rootScope ){
 
+                $scope.editMode = false;
 
-                }],
+                $rootScope.$watch('editMode', function(newValue, oldValue){
+                    $scope.editMode = $rootScope.editMode;
+                },true);
+
+                $scope.deleteMember = function( id ){
+                    $scope.$emit('DELETE_MEMBER', id);
+                }
+
+
+            }],
             link: function (scope, element, attrs) {
-
-
 
             }
         };

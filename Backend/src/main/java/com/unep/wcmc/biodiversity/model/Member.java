@@ -2,13 +2,12 @@ package com.unep.wcmc.biodiversity.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Embeddable
 public class Member implements Serializable {
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;*/
+    private String id;
 
     private String name;
 
@@ -20,13 +19,13 @@ public class Member implements Serializable {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    /*public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }*/
+    public void setId(String id) {
+        this.id = UUID.randomUUID().toString();
+    }
 
     public void setName(String name) {
         this.name = name;

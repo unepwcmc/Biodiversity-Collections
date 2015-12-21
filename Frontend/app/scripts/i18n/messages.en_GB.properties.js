@@ -147,7 +147,8 @@ define([],function ( ) {
     'EDIT_ASSOCIATED_MEMBERS':'Edit associated members',
     'ASSOCIATED_MEMBERS':'Associated members',
     'ADD_ASSOCIATED_MEMBER':'Add associated member',
-    'ADD_NEW_MEMBER':'Add new member'
+    'ADD_NEW_MEMBER':'Add new member',
+    'DELETE_ASSOCIATED_MEMBER':'Delete associated member'
 }
 
 });

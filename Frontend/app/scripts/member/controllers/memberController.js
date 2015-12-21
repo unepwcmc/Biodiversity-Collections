@@ -60,6 +60,20 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
             });
 
 
+            $scope.$on('DELETE_MEMBER', function( evt, data){
+
+                 $('#loader-wrapper').fadeToggle('400');
+
+                 var index =  _.findIndex( $scope.collection.associatedMembers, function( obj ){
+                     return obj.id == data;
+                 });
+
+                 $scope.collection.associatedMembers.splice(index, 1);
+
+                 $scope.collection.update();
+            });
+
+
     }
     ];
 });
