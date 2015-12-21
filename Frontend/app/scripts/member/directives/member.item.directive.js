@@ -2,7 +2,7 @@ define(['angularAMD', 'core/directives/core.image.box.directive'], function (ang
 
     'use strict';
 
-    angularAMD.directive('memberItem', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','toastr', function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, toastr) {
+    angularAMD.directive('memberItem', ['$rootScope', function ( $rootScope ) {
 
         return {
             restrict: 'EA',
@@ -10,8 +10,7 @@ define(['angularAMD', 'core/directives/core.image.box.directive'], function (ang
                 member:'='
             },
             templateUrl: 'views/member/member.item.tpl.html',
-            controller: ['$scope', '$rootScope', '$stateParams', '$translate',
-                function($scope, $rootScope, $stateParams, $translate){
+            controller: ['$scope','$rootScope', function($scope, $rootScope ){
 
 
                 }],

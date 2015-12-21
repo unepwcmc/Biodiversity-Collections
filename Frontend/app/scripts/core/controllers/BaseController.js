@@ -32,6 +32,10 @@ define(['angularAMD'], function (angularAMD) {
             },
             setResultQuery: function( query ){
                 $rootScope.searchTerm = query ;
+            },
+            setStateButton: function( status, $scope ){
+                $rootScope.editMode = status;
+                $scope.$apply();
             }
         }
 

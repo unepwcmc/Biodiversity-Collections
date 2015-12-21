@@ -142,7 +142,12 @@ define([],function ( ) {
     'MAX_IMAGE_EXCEEDED':'Número máximo de imagens exceido, por favor remova algumas imagens',
     'ASSOCIATED_MEMBER_ID':'ID do membro associado',
     'RELATIONSHIP_TO_THE_COLLECTION':'Relação com a coleção',
-    'WHAT_THE_PERSON_IS_DOING':'O que a pessoa está fazendo com a coleção?'
+    'WHAT_THE_PERSON_IS_DOING':'O que a pessoa está fazendo com a coleção?',
+    'EDIT_MEMBERS':'Editar membros',
+    'EDIT_ASSOCIATED_MEMBERS':'Editar membros associados',
+    'ASSOCIATED_MEMBERS':'Membros associados',
+    'ADD_ASSOCIATED_MEMBER':'Adicionar membro associado',
+    'ADD_NEW_MEMBER':'Adicionar novo membro'
   }
 
 });

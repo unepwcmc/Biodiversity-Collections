@@ -5,6 +5,7 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
     return ['$scope','BiodiversityCollection','BaseController','$stateParams','$http','$rootScope','Institution','toastr','$translate','$state', function ($scope, BiodiversityCollection, BaseController, $stateParams, $http, $rootScope, Institution, toastr, $translate, $state) {
             angular.extend($scope, BaseController);
 
+
             $scope.collection = new BiodiversityCollection();
 
             /**
@@ -18,16 +19,45 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
             });
 
-        /**
-         * Listener when the collection factory receive new
-         * biodiversity collection data.
-         *
-         */
-        $scope.$on('BIODIVERSITY_LOADED', function(){
-            console.log('Collection Member Loaded');
+           /**
+             * Listener when the collection factory receive new
+             * biodiversity collection data.
+             *
+             */
+            $scope.$on('BIODIVERSITY_LOADED', function(){
+                console.log('Collection Member Loaded');
 
-            $('#loader-wrapper').fadeToggle('400');
-        });
+                $('#loader-wrapper').fadeToggle('400');
+            });
+
+            $scope.$on('ACTION_RELOADED', function(){
+                $state.go($state.current, $stateParams, {reload: true, inherit: false});
+            });
+
+
+           $scope.$on('ADD_NEW_MEMBER', function( evt, data){
+                console.log('adding new member');
+
+                $('#loader-wrapper').fadeToggle('400');
+
+                if($scope.collection.associatedMembers == null){
+                    $scope.collection.associatedMembers = [];
+                }
+
+                $scope.collection.associatedMembers.push(data);
+                $scope.collection.update();
+
+           });
+
+            /**
+             * Listener when the collection factory update the
+             * biodiversity collection model.
+             *
+             */
+            $scope.$on('BIODIVERSITY_UPDATED', function(){
+                console.log('collection member updated');
+                $('#loader-wrapper').fadeToggle('400');
+            });
 
 
     }
