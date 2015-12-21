@@ -49,6 +49,13 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
            });
 
+           $scope.$on('SAVE_MEMBER', function(){
+
+                $('#loader-wrapper').fadeToggle('400');
+
+                $scope.collection.update();
+           });
+
             /**
              * Listener when the collection factory update the
              * biodiversity collection model.
