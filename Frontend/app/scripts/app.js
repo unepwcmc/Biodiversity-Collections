@@ -133,6 +133,18 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
+                .state('signup', angularAMD.route(
+                    {
+                        url: '/user/signup',
+                        templateUrl: 'views/user/default.html',
+                        controllerUrl: 'user/controllers/userController',
+                        ncyBreadcrumb: {
+                            label: '{{user.username}}',
+                            parent: function($scope) {
+                                return $scope.fromState == 'home'? 'home' : 'home';
+                            }
+                        }
+                    }))
                 .state('sample', angularAMD.route(
                     {
                         url: '/sample/:id',

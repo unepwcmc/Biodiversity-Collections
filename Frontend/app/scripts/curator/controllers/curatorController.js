@@ -50,7 +50,7 @@ define(['app',
              * Should be fired when the button save is click
              */
             $scope.$on('SAVE_CURATOR', function(){
-                console.log('institution updating..');
+                console.log('curator updating..');
 
                 if (validateDate()) {
                     $('#loader-wrapper').fadeToggle('400');
