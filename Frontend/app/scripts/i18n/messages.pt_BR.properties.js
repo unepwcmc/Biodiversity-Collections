@@ -148,7 +148,19 @@ define([],function ( ) {
     'ASSOCIATED_MEMBERS':'Membros associados',
     'ADD_ASSOCIATED_MEMBER':'Adicionar membro associado',
     'ADD_NEW_MEMBER':'Adicionar novo membro',
-    'DELETE_ASSOCIATED_MEMBER':'Deletar membro associado'
+    'DELETE_ASSOCIATED_MEMBER':'Deletar membro associado',
+    'EMAIL':'Email',
+    'USERNAME':'Username',
+    'FIRST_NAME':'Primeiro nome',
+    'LAST_NAME':'Último email',
+    'PASSWORD':'Senha',
+    'ROLE':'Perfil',
+    'ACTIVE':'Ativo',
+    'REGISTER': 'Registro',
+    'EMAIL_ADDRESS':'Endereço de e-mail',
+    'NEW_USER':'Novo usuário',
+    'USER_SAVED_SUCCESSFULLY':'Usuário registrado com sucesso',
+    'SORRY_WE_CANT_REGISTER_THE_USER':'Desculpe, não foi possível registrar o usuário'
   }
 
 });
