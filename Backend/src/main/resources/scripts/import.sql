@@ -115,5 +115,12 @@ INSERT INTO document (id, author, content_type, description, name, status, title
 INSERT INTO document (id, author, content_type, description, name, status, title, type, sample_id, collection_id)
   VALUES(10, 'José Carlos', 'csv', 'Id ius ancillae conceptam scripserit, in quo utamur fabellas indoctum, vis ut corpora democritum omittantur. Et ignota populo mei. Ut sale euripidis vix, quo verear ceteros electram ut. Natum appareat vel ea, eam at legere assueverit appellantur. Id rebum inimicus qui.', 'Et eum vidit eripuit convenir', false, 'Et eum vidit eripuit convenir', 'LEGAL', 2, 1);
 
+  -- UserRole data
+INSERT INTO user_role (id, name, role) VALUES (1, 'ADMIN', 'ADMIN');
+INSERT INTO user_role (id, name, role) VALUES (2, 'EXPERT', 'EXPERT');
+INSERT INTO user_role (id, name, role) VALUES (3, 'PUBLIC_USER', 'PUBLIC_USER');
+INSERT INTO user_role (id, name, role) VALUES (4, 'ANONYMOUS', 'ANONYMOUS');
+INSERT INTO user_role (id, name, role) VALUES (5, 'SUPERADMIN', 'SUPERADMIN');
+
 
 

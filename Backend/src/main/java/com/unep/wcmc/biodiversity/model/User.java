@@ -58,14 +58,11 @@ public class User implements UserDetails, BaseEntity {
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
-    @Temporal(TemporalType.DATE)
-    private Date birthDate;
+    @Embedded
+    private Contact contact;
 
-    private String jobTitle;
-
-    private String phoneNumber;
-
-    private String mobileNumber;
+    @Transient
+    private String role;
 
     public User() {
         super();
@@ -96,7 +93,7 @@ public class User implements UserDetails, BaseEntity {
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getFirstName() {
         return firstName;
     }
@@ -126,6 +123,10 @@ public class User implements UserDetails, BaseEntity {
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Lists.newArrayList(new SimpleGrantedAuthority(userRole.getRole()));
+    }
+
+    public String getRole() {
+        return role;
     }
 
     @Override
@@ -173,38 +174,6 @@ public class User implements UserDetails, BaseEntity {
         this.institution = institution;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
     @Override
     public int hashCode() {
         int result = 17;
@@ -232,5 +201,13 @@ public class User implements UserDetails, BaseEntity {
                                   .append(" username=")
                                   .append(username)
                                   .toString();
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }
