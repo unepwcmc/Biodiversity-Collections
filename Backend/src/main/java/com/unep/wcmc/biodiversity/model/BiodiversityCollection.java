@@ -9,14 +9,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@NamedEntityGraph(name = "BiodiversityCollection.detail",
+/*@NamedEntityGraph(name = "BiodiversityCollection.detail",
         attributeNodes = {
                 @NamedAttributeNode("researchers"),
                 @NamedAttributeNode("specimens"),
                 @NamedAttributeNode("images"),
                 @NamedAttributeNode("associatedMembers")
         }
-    )
+    )*/
 public class BiodiversityCollection implements BaseEntity {
 
     @Id
@@ -76,9 +76,10 @@ public class BiodiversityCollection implements BaseEntity {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
 
-    @ElementCollection
-    @CollectionTable(name = "associated_members", joinColumns = @JoinColumn(name = "collection_id"))
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name="associated_members",
+            joinColumns={@JoinColumn(name="collection_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="member_id", referencedColumnName="id")})
     private Set<Member> associatedMembers;
 
     @Override

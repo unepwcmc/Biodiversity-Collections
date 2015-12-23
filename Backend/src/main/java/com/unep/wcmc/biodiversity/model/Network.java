@@ -39,8 +39,10 @@ public class Network implements BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
     private Set<Institution> institutions;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "board_members", joinColumns = @JoinColumn(name = "network_id"))
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name="board_members",
+            joinColumns={@JoinColumn(name="network_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="member_id", referencedColumnName="id")})
     private Set<Member> boardMembers;
 
     @Override

@@ -31,11 +31,11 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     @Autowired
     private SampleService sampleService;
 
-    @Override
+    /*@Override
     public Object read(@PathVariable String id) {
         final Long entityId = Long.valueOf(id);
         return service.getRepository().loadGraph(entityId);
-    }
+    }*/
 
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<BiodiversityCollection> name(@RequestParam String name,

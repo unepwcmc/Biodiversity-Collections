@@ -1,13 +1,15 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.unep.wcmc.biodiversity.support.BaseEntity;
+
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.UUID;
 
-@Embeddable
-public class Member implements Serializable {
+@Entity
+public class Member implements BaseEntity {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
@@ -19,12 +21,14 @@ public class Member implements Serializable {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    public String getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = UUID.randomUUID().toString();
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setName(String name) {
