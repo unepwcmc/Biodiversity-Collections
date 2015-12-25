@@ -17,8 +17,6 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             $scope.editMode = $rootScope.editMode;
                         },true);
 
-                        loadImage();
-
                         $scope.addFile = function( file ){
 
                             if(file.size > 1024 * 1024 * 5){
@@ -29,21 +27,29 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             $rootScope.$broadcast("ATTACH_FILE", file );
                         };
 
-                        $rootScope.$on('IMAGE_ADDED', function(){
-                            loadImage();
-                            $('#ipt-file').val(null);
-                        },true);
-
-
-                        function loadImage(){
+                        $scope.loadImage = function( img ){
+                            console.log($scope);
                             if( $scope.image != '')
-                                $('#box-image').attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
-                        }
+                               img.attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
+                        };
 
                     }],
                 link: function (scope, element, attrs) {
 
-                    $('#ipt-file').on('change', function (evt) {
+                    scope.$watch('id', function(newValue, oldValue){
+                        scope.loadImage((element).find('img.img-box'));
+                    },true);
+
+                    scope.$on('IMAGE_ADDED', function(){
+                        scope.loadImage((element).find('img.img-box'));
+                        $(element).find('.img-file').val(null);
+                    },true);
+
+                    $(element).find('a.btn-img').click(function(){
+                        $(element).find('.img-file').click();
+                    });
+
+                    $(element).find('.img-file').on('change', function (evt) {
 
                         if (!$(this).val().match(/(?:gif|jpg|png|bmp)$/)) {
                             scope.showWarningMessage('INPUTTED_FILE_PATH_ERROR','WARNING');
@@ -64,7 +70,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         var reader = new FileReader();
 
                         reader.onload = function(event) {
-                            $('#box-image').attr('src',event.target.result);
+                            $(element).find('img.img-box').attr('src',event.target.result);
                         };
                         reader.readAsDataURL(selectedFile);
                     }
