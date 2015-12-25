@@ -170,7 +170,11 @@ define([],function ( ) {
     'AVAIL_THREADS':'Proveito de discussão',
     'STATUS':'Status',
     'ONLINE':'Online',
-    'STOP_API':'Parar API'
+    'STOP_API':'Parar API',
+    'ADMINISTRATION':'Administração',
+    'OVERVIEW':'Geral',
+    'USERS':'Usuários',
+    'INSTITUTIONS':'Instituições'
   }
 
 });

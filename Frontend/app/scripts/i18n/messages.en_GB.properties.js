@@ -172,7 +172,11 @@ define([],function ( ) {
     'AVAIL_THREADS':'Avail threads',
     'STATUS':'Status',
     'ONLINE':'Online',
-    'STOP_API':'Stop API'
+    'STOP_API':'Stop API',
+    'ADMINISTRATION':'Administration',
+    'OVERVIEW':'Overview',
+    'USERS':'Users',
+    'INSTITUTIONS':'Institutions'
 }
 
 });

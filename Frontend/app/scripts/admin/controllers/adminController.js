@@ -1,4 +1,8 @@
-define(['app', 'core/directives/core.breadcrumbs.directive'], function () {
+define(['app',
+    'core/directives/core.breadcrumbs.directive',
+    'admin/directives/admin.overview.directive',
+    'admin/directives/admin.user.directive',
+    'admin/directives/admin.institution.directive'], function () {
 
     'use strict';
 
