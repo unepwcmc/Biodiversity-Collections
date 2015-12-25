@@ -7,19 +7,6 @@
 
     <div class="container">
 
-        <br/>
-        <ol class="breadcrumb">
-            <li><a data-ui-sref="home">{{ 'HOME' | translate }}</a></li>
-            <li class="active">{{ 'NEW_USER' | translate }}</li>
-        </ol>
-
-        <h3><strong>{{ 'NEW_USER' | translate }}</strong></h3>
-        <hr/>
-    </div>
-
-
-    <div class="container">
-
         <div class="row">
             <div class="col-md-8">
                 <form ng-submit="userSubmit()" class="form-horizontal" role="form" name="user_form" novalidate>
@@ -88,6 +75,19 @@
                                                          data-ng-model="user.contact.phoneNumber"></div>
                         </div>
 
+                        <div ng-show="adminView" class="form-group">
+                            <label class="col-sm-3">{{ 'ROLE' | translate}}</label>
+                            <div class="col-sm-9">
+                                <select select-wrap tabindex="10" data-ng-model="user.role">
+                                    <option value="ADMIN">{{'ADMIN' | translate }}</option>
+                                    <option value="EXPERT">{{'EXPERT' | translate }}</option>
+                                    <option value="PUBLIC_USER">{{'PUBLIC_USER' | translate }}</option>
+                                    <option value="ANONYMOUS">{{'ANONYMOUS' | translate }}</option>
+                                    <option value="SUPERADMIN">{{'SUPERADMIN' | translate }}</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="col-sm-3">{{ 'PASSWORD' | translate }} *</label>
 
@@ -95,14 +95,14 @@
                                                          data-ng-model="user.password" required></div>
                         </div>
 
-                        <!--<div class="form-group">
+                        <div ng-show="adminView" class="form-group">
                             <label class="col-sm-3">{{ 'ACTIVE' | translate }} *</label>
 
                             <div class="col-sm-9">
                                  <input type="radio" name="active"   data-ng-model="user.enabled" value="true">Yes
                                  <input type="radio" name="active"   data-ng-model="user.enabled" value="false">No
                             </div>
-                        </div>-->
+                        </div>
 
 
                     </div>

@@ -61,7 +61,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         controllerUrl: 'user/controllers/userController',
                         ncyBreadcrumb: {
                             label: 'User Create',
-                            parent: 'home'
+                            parent: 'admin'
                         }
                     }))
                 .state('collection', angularAMD.route(
@@ -159,7 +159,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
                         ncyBreadcrumb: {
-                            label: '{{user.username}}',
+                            label: 'New user',
                             parent: function($scope) {
                                 return $scope.fromState == 'home'? 'home' : 'home';
                             }

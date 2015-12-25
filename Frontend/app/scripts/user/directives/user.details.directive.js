@@ -30,9 +30,6 @@ define(['angularAMD','auth/directives/phone.digits.directive'], function (angula
 
                         $scope.userSubmit = function(){
 
-                            $scope.user.role = 'PUBLIC_USER';
-                            $scope.user.username = $scope.user.email;
-
                             $scope.$emit('REGISTER_NEW_USER', $scope.user);
                         };
 
