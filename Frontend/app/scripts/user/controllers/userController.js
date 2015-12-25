@@ -1,7 +1,6 @@
 define(['app',
     'core/factory/userFactory',
-    'user/directives/user.details.directive',
-    'user/directives/user.contact.directive'], function () {
+    'user/directives/user.details.directive'], function () {
 
     'use strict';
 

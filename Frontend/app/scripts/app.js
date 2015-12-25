@@ -54,6 +54,16 @@ define(['include', 'language'], function (angularAMD, language) {
                             parent: 'home'
                         }
                     }))
+                .state('admin_user_create', angularAMD.route(
+                    {
+                        url: '/admin/user/create',
+                        templateUrl: 'views/user/default.html',
+                        controllerUrl: 'user/controllers/userController',
+                        ncyBreadcrumb: {
+                            label: 'User Create',
+                            parent: 'home'
+                        }
+                    }))
                 .state('collection', angularAMD.route(
                     {
                         url: '/collection/:id',
