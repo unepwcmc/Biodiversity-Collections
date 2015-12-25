@@ -44,6 +44,16 @@ define(['include', 'language'], function (angularAMD, language) {
                             parent: 'home'
                         }
                     }))
+                .state('admin', angularAMD.route(
+                    {
+                        url: '/admin',
+                        templateUrl: 'views/admin/default.html',
+                        controllerUrl: 'admin/controllers/adminController',
+                        ncyBreadcrumb: {
+                            label: 'Administration Overview',
+                            parent: 'home'
+                        }
+                    }))
                 .state('collection', angularAMD.route(
                     {
                         url: '/collection/:id',

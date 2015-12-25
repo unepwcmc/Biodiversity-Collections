@@ -1402,3 +1402,19 @@ table.researches input.form-control[readonly] {
 
 .curator-institutions {
   width: 250px; }
+
+div.admin-overview-content {
+  margin-top: 20px;
+  font-size: 3em; }
+
+.admin-overview-right-divider {
+  border-right: solid 1px #eaeaea; }
+
+.admin-overview-left-divider {
+  border-left: solid 1px #eaeaea; }
+
+ul.admin-menu-list > li {
+  margin-bottom: 5px; }
+
+ul.admin-menu-list > li > a > i {
+  margin-right: 8px; }

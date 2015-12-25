@@ -160,7 +160,19 @@ define([],function ( ) {
     'EMAIL_ADDRESS':'Email address',
     'NEW_USER':'New user',
     'USER_SAVED_SUCCESSFULLY':'User registered successfully',
-    'SORRY_WE_CANT_REGISTER_THE_USER':'Sorry, we cant register the user'
+    'SORRY_WE_CANT_REGISTER_THE_USER':'Sorry, we cant register the user',
+    'ACTIONS':'Actions',
+    'CREATE_USER':'Create user',
+    'INVITE_CURATOR':'Invite curator',
+    'CREATE_INSTITUTION':'Create institution',
+    'RESET_YOUR_PASSWORD':'Reset your password',
+    'SIBBR_API_STATISTICS':'SiBBR API Statistics',
+    'LAST_UPDATED':'Last updated',
+    'REQUESTS':'Requests',
+    'AVAIL_THREADS':'Avail threads',
+    'STATUS':'Status',
+    'ONLINE':'Online',
+    'STOP_API':'Stop API'
 }
 
 });
