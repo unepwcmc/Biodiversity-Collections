@@ -20,7 +20,9 @@ define(['angularAMD', 'core/directives/core.image.box.directive'], function (ang
 
                 $scope.deleteMember = function( id ){
                     $scope.$emit('DELETE_MEMBER', id);
-                }
+                };
+
+                console.log($scope.member);
 
 
             }],

@@ -10,9 +10,7 @@ define(['app','collection/directives/collection.networks.directive',
 
     'use strict';
 
-    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','toastr','$translate','$state','$q', '$timeout',
-
-           function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, toastr, $translate, $state, $q, $timeout) {
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','$translate','$state','$q', '$timeout', function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, $translate, $state, $q, $timeout) {
                 angular.extend($scope, BaseController);
 
                $rootScope.editMode = false;
@@ -94,7 +92,7 @@ define(['app','collection/directives/collection.networks.directive',
                    }else{
 
                        $('#loader-wrapper').fadeToggle('400');
-                       toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
+                       $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_SAVED');
                    }
                });
 
@@ -159,8 +157,6 @@ define(['app','collection/directives/collection.networks.directive',
                        var fd = new FormData();
                        fd.append('file', $scope.images[i]);
 
-                       console.log($scope.images[i]);
-
                        promises.push(
                            $http.post($rootScope.getHost() + "collections/" + $stateParams.id + "/media", fd, {
                                headers : {
@@ -174,7 +170,7 @@ define(['app','collection/directives/collection.networks.directive',
 
                        $scope.images = null;
                        $('#loader-wrapper').fadeToggle('400');
-                       toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
+                       $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_SAVED');
                        $scope.$emit("IMAGE_ADDED");
 
                    }).catch( function( errorCallback ){
