@@ -36,6 +36,7 @@ define(['app',
                     data.role = 'PUBLIC_USER';
                 }
                 data.username = data.email;
+
                 $scope.user.register( data );
             });
 

@@ -13,6 +13,7 @@ define(['angularAMD','auth/directives/phone.digits.directive'], function (angula
                     function($scope, $rootScope, $stateParams, $translate){
 
                         $scope.institutionSelected = null;
+                        $scope.user = { enabled: true };
 
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
                             return $http.get( $rootScope.getHost() + "institutions/search/autocompleteName?name=" + userInputString,

@@ -92,7 +92,7 @@ define(['app'], function (app) {
                 );
             },
             register: function (model, callback) {
-                $http.post( $rootScope.getHost() + "users/signup", model)
+                $http.post( $rootScope.getHost() + "users", model)
                     .success(function (data, status, headers, config) {
 
                         if(callback)
