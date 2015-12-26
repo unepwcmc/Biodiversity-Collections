@@ -2,6 +2,8 @@ package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.common.collect.Lists;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.hibernate.validator.constraints.Email;
@@ -62,6 +64,7 @@ public class User implements UserDetails, BaseEntity {
     private Contact contact;
 
     @Transient
+    @JsonDeserialize
     private String role;
 
     public User() {
@@ -125,8 +128,12 @@ public class User implements UserDetails, BaseEntity {
         return Lists.newArrayList(new SimpleGrantedAuthority(userRole.getRole()));
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getRole() {
-        return role;
+        return this.role;
     }
 
     @Override
@@ -174,6 +181,15 @@ public class User implements UserDetails, BaseEntity {
         this.institution = institution;
     }
 
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
     @Override
     public int hashCode() {
         int result = 17;
@@ -201,13 +217,5 @@ public class User implements UserDetails, BaseEntity {
                                   .append(" username=")
                                   .append(username)
                                   .toString();
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 }

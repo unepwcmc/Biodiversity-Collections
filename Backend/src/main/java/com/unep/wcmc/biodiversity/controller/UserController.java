@@ -18,4 +18,11 @@ public class UserController extends AbstractController<User, UserService> {
     public User signUp(@Valid @RequestBody User user) {
         return service.registerNewUser(user);
     }
+
+    @Override
+    @RequestMapping(method = RequestMethod.POST)
+    public User create(@RequestBody User e){
+
+        return service.create(e);
+    }
 }
