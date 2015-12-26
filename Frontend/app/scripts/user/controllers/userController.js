@@ -37,7 +37,7 @@ define(['app',
                 }
                 data.username = data.email;
 
-                $scope.user.register( data );
+                $scope.user.save( data );
             });
 
             $scope.$on('USER_SAVED', function( evt, data){
