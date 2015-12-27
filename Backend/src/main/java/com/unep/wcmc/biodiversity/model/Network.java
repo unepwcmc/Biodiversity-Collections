@@ -136,7 +136,9 @@ public class Network implements BaseEntity {
     }
 
     public void addImage(Image image){
-        getImages().add(image);
+        if(getImages().size() < 5){
+            getImages().add(image);
+        }
     }
 
     public  void removeImage(Image image){
