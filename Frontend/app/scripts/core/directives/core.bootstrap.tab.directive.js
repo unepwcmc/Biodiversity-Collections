@@ -11,6 +11,12 @@ define(['angularAMD', 'bootstrap'], function (angularAMD) {
                       e.preventDefault();
                       $(this).tab('show');
                   });
+
+                  $(element).on('shown.bs.tab', function (e) {
+                      if(($(e.currentTarget).data('event') != undefined)){
+                          scope.$emit($(e.currentTarget).data('event'))
+                      }
+                  });
               }
           };
       }]);

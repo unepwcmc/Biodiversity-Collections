@@ -17,6 +17,9 @@ define(['angularAMD'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate',
                     function($scope, $rootScope, $stateParams, $state, $translate){
 
+                        $scope.$on('ADMIN_USERS_TAB', function(){
+                             console.log('users tab');
+                        });
 
                     }],
                 link: function (scope, element, attrs) {

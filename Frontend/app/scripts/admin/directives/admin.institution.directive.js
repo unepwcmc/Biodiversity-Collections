@@ -17,6 +17,9 @@ define(['angularAMD'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate',
                     function($scope, $rootScope, $stateParams, $state, $translate){
 
+                        $scope.$on('ADMIN_INSTITUTIONS_TAB', function(){
+                            console.log('institution tab');
+                        });
 
                     }],
                 link: function (scope, element, attrs) {

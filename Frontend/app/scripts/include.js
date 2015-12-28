@@ -6,7 +6,6 @@ define(
         'angular-toastr-tpl','leaflet-directive', 'leaflet', 'leaflet.markercluster',
         'core/directives/core.include.template.directive',
         'core/directives/core.load.screen.directive',
-        'core/directives/core.jquery.tab.directive',
         'core/directives/core.select.wrap.directive',
         'core/directives/core.dialog.confirm.directive',
         'core/directives/core.translate.directive',

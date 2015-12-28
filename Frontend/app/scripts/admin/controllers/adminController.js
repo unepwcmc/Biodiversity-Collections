@@ -1,6 +1,6 @@
 define(['app',
     'core/directives/core.breadcrumbs.directive',
-    'core/directives/core.jquery.tab.directive',
+    'core/directives/core.bootstrap.tab.directive',
     'admin/directives/admin.overview.directive',
     'admin/directives/admin.user.directive',
     'admin/directives/admin.institution.directive'], function () {
