@@ -16,6 +16,8 @@ define(
         'core/directives/core.search.box.directive',
         'core/filters/core.pagination.filter',
         'core/controllers/BaseController',
+        'auth/directives/auth.login.form.directive',
+        'auth/directives/auth.login.show.directive',
         'auth/directives/auth.username.box.directive'
     ],
     function (angularAMD) {

@@ -188,24 +188,24 @@ define(['include', 'language'], function (angularAMD, language) {
                         }
                     }));
 
-            $provide.factory('authInterceptor', ['$rootScope', '$q', '$window',
-                function ($rootScope, $q, $window) {
-
+            $provide.factory('authInterceptor', ['$rootScope', '$q', '$window', '$cookies',
+                function ($rootScope, $q, $window, $cookies) {
                     return {
                         request: function (config) {
                             config.headers = config.headers || {};
-                            if ($window.sessionStorage.tokenSecret !== null && $window.sessionStorage.tokenSecret !== 'null') {
-                                config.headers['X-AUTH-TOKEN'] = $window.sessionStorage.tokenSecret;
-                                $rootScope.username = $window.sessionStorage.user;
-                                $rootScope.userId = $window.sessionStorage.userId;
-                                $rootScope.userRole = $window.sessionStorage.userRole;
-                                $rootScope.fullName = $window.sessionStorage.fullName;
+                            if ($cookies.get('tokenSecret') && $cookies.get('tokenSecret') != "null") {
+                                config.headers['X-AUTH-TOKEN'] = $cookies.get('tokenSecret');
+                                $rootScope.username = $cookies.get('user');
+                                $rootScope.userId = $cookies.get('userId');
+                                $rootScope.userRole = $cookies.get('userRole');
+                                $rootScope.fullName = $cookies.get('fullName');
                                 $rootScope.logged = true;
                             } else {
+                                config.headers['X-AUTH-TOKEN'] = app.token;
                                 $rootScope.username = null;
+                                $rootScope.fullName = null;
                                 $rootScope.userId = null;
                                 $rootScope.userRole = null;
-                                $rootScope.fullName = null;
                                 $rootScope.logged = false;
                             }
                             return config;
@@ -214,49 +214,48 @@ define(['include', 'language'], function (angularAMD, language) {
                             if (response.status === 401) {
                                 // handle the case where the user is not authenticated
                             }
+                            if (response.status === 400) {
+                                console.log('400');
+                            }
                             return response || $q.when(response);
                         }
                     };
-
                 }]);
 
             $provide.factory('errorHandlerInterceptor', ['$rootScope', '$q', '$window', '$location', 'toastr',
                 function ($rootScope, $q, $window, $location, toastr) {
                     return {
-                        request: function (config) {
+                        request: function(config) {
                             return config;
                         },
-                        requestError: function (rejection) {
+                        requestError : function(rejection) {
                             return rejection;
                         },
-                        responseError: function (rejection) {
-                            if (rejection.status === 401) {
-                                if (rejection.statusText == 'token expired') {
-                                    toastr.info('User session token expired. Please, process the login again.', 'Information');
-                                    $rootScope.cleanCredentials();
-                                    $location.path('login');
-                                } else {
-                                    toastr.error('User not authorized', 'Error');
+                        responseError : function(rejection) {
+                            if( rejection.status === 401 ) {
+                                if (rejection.config.url.indexOf("/login") < 0) {
+                                    $rootScope.$broadcast("ErrorInterceptor", 401, rejection.statusText);
                                 }
+                                return $q.reject(rejection);
                             }
-                            if (rejection.status === 400) {
-                                if (rejection.data !== null && rejection.data.message === 'Access is denied') {
-                                    $rootScope.cleanCredentials();
-                                    $location.path('login');
+                            if( rejection.status === 400 ) {
+                                if (rejection.config.url.indexOf("/search") > 0) {
+                                    $rootScope.$broadcast("SearchErrorInterceptor", 400);
+                                    return;
                                 }
-                                toastr.info('Bad request', 'Information');
+                                if (rejection.config.url.indexOf("/forgetpassword") < 0) {
+                                    $rootScope.$broadcast("ErrorInterceptor", 400);
+                                }
                                 return $q.reject(rejection);
                             }
-                            if (rejection.status === 404) {
-                                toastr.warning('Resource not found', 'Information');
+                            if( rejection.status === 404 ) {
+                                $rootScope.$broadcast("ErrorInterceptor", 404);
                                 return $q.reject(rejection);
                             }
-
-                            if (rejection.status >= 500) {
-                                toastr.error('The system is unstable, please try again later!!!', 'Sorry');
+                            if( rejection.status >= 500) {
+                                $rootScope.$broadcast("ErrorInterceptor", 500);
                                 return $q.reject(rejection);
                             }
-
                             return $q.reject(rejection);
 
                         }
@@ -298,8 +297,8 @@ define(['include', 'language'], function (angularAMD, language) {
         SERVER: "http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/"  // DEV
     };
 
-    app.run(['$rootScope', '$timeout', '$http', '$window',
-        function ($rootScope, $timeout, $http, $window) {
+    app.run(['$rootScope', '$timeout', '$http', '$window', '$cookies',
+        function ($rootScope, $timeout, $http, $window, $cookies) {
 
             /**
              * Return the current host
@@ -318,41 +317,84 @@ define(['include', 'language'], function (angularAMD, language) {
             };
 
             /**
+             * Process the user login
+             */
+            $rootScope.login = function(user, callback) {
+
+                $http.post( $rootScope.getHost() + "login", user )
+                    .success(function (data, status, headers, config) {
+
+                        $cookies.put('user', data.user.username);
+                        $cookies.put('userId', data.user.id);
+                        $cookies.put('userRole', data.user.userRole.role);
+                        $cookies.put('tokenSecret', data.token);
+                        $cookies.put('fullName', data.user.firstName + ' ' + data.user.lastName);
+
+                        $http.defaults.headers.common['X-AUTH-TOKEN'] = data.token;
+
+                        $rootScope.userRole = data.user.userRole.role;
+                        $rootScope.username = data.user.username;
+                        $rootScope.fullName = data.user.firstName + ' ' + data.user.lastName;
+                        $rootScope.logged = true;
+
+                        if (callback) {
+                            callback(data, status, headers, config);
+                        }
+
+                        $rootScope.$broadcast("AuthenticationDone", data.user);
+                    })
+                    .error(function(data, status, headers, config){
+                            if (callback) {
+                                callback(data, status, headers, config);
+                            }
+                        }
+                    );
+
+            };
+
+            /**
              * Process the user logout
              */
-            $rootScope.logout = function (callback) {
-                $http.post($rootScope.getHost() + "logout", {})
+            $rootScope.logout = function(callback) {
+
+                $http.post( $rootScope.getHost() + "logout", {} )
+
                     .success(function (data, status, headers, config) {
+
                         $rootScope.cleanCredentials();
+
                         if (callback) {
                             callback(data, status, headers, config);
                         }
+
                         $rootScope.$broadcast("LogoutDone");
                     })
-                    .error(function (data, status, headers, config) {
-                        $rootScope.cleanCredentials();
-                        if (callback) {
-                            callback(data, status, headers, config);
+                    .error(function(data, status, headers, config){
+                            $rootScope.cleanCredentials();
+
+                            if (callback) {
+                                callback(data, status, headers, config);
+                            }
                         }
-                    }
-                );
+                    );
             };
 
             /**
              * Clean the user logged credentials
              */
-            $rootScope.cleanCredentials = function () {
-                $window.sessionStorage.user = null;
-                $window.sessionStorage.userId = null;
-                $window.sessionStorage.userRole = null;
-                $window.sessionStorage.tokenSecret = null;
-                $window.sessionStorage.apiToken = null;
-                $window.sessionStorage.fullName = null;
+            $rootScope.cleanCredentials = function() {
+
+                $cookies.remove('user');
+                $cookies.remove('userId');
+                $cookies.remove('userRole');
+                $cookies.remove('tokenSecret');
+                $cookies.remove('fullName');
+
                 $http.defaults.headers.common['X-AUTH-TOKEN'] = undefined;
 
                 $rootScope.userRole = null;
                 $rootScope.username = null;
-                $rootScope.fulName = null;
+                $rootScope.fullName = null;
                 $rootScope.logged = false;
             };
 

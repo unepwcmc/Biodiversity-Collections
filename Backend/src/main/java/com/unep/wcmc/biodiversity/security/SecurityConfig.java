@@ -65,7 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/login").denyAll()
-                .antMatchers(HttpMethod.GET, "/media/image/**").permitAll()
             .and().apply(securityConfigurerAdapter());
         // Logout process
         LogoutHandler logoutHandler = new LogoutHandler(tokenProvider);

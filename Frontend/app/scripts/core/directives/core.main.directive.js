@@ -6,7 +6,7 @@ define(['angularAMD', 'bootstrap'], function (angularAMD) {
 
         return {
 
-            restrict: 'E',
+            restrict: 'EA',
 
             transclude: true,
 
