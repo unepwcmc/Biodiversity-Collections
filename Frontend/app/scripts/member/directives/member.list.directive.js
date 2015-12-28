@@ -31,13 +31,6 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                             setStateButton(false);
                         });
 
-                        /**
-                         * Listener when the button save is clicked
-                         */
-                        $scope.$on('SAVE_COLLECTION', function() {
-                            setStateButton(false);
-                        });
-
                         $scope.addNewMember = function(){
                             $scope.$emit('ADD_NEW_MEMBER', $scope.member);
                         };

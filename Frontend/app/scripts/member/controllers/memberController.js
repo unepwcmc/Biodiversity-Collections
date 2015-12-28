@@ -67,35 +67,18 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                 }
            });
 
-        /**
-         * Listener when the collection factory update the
-         * biodiversity collection model.
-         *
-         */
-        $scope.$on('BIODIVERSITY_MEMBER_UPDATED', function(){
-            console.log('collection member updated');
+            /**
+             * Listener when the collection factory update the
+             * biodiversity collection model.
+             *
+             */
+            $scope.$on('BIODIVERSITY_MEMBER_UPDATED', function(){
+                console.log('collection member updated');
 
-            /*if ($scope.images === undefined)
                 $scope.images = [];
-
-            if ($scope.images.length > 0) {
-                saveImage();
-            }else{
-
                 $('#loader-wrapper').fadeToggle('400');
                 $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
-            }*/
-            $scope.images = [];
-            $('#loader-wrapper').fadeToggle('400');
-            $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
-        });
-
-           $scope.$on('SAVE_MEMBER', function(){
-
-                $('#loader-wrapper').fadeToggle('400');
-
-                $scope.collection.update();
-           });
+            });
 
             /**
              * Listener when the collection factory update the
@@ -105,16 +88,13 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
             $scope.$on('BIODIVERSITY_UPDATED', function(){
                 console.log('collection member updated');
 
-                if ($scope.images === undefined)
-                    $scope.images = [];
+                $scope.images = [];
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
+            });
 
-                if ($scope.images.length > 0) {
-                    saveImage();
-                }else{
-
-                    $('#loader-wrapper').fadeToggle('400');
-                    $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
-                }
+            $scope.$on('MEMBER_UPDATED', function(){
+                $scope.images = [];
             });
 
 
@@ -131,35 +111,6 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                  $scope.collection.update();
             });
 
-        function saveImage(){
-
-            var promises = [];
-
-            for(var i = 0; i < $scope.images.length; i++){
-
-                var fd = new FormData();
-                fd.append('file', $scope.images[i]);
-
-                promises.push(
-                    $http.post($rootScope.getHost() + "members/" + $stateParams.id + "/media", fd, {
-                        headers : {
-                            'Content-Type' : undefined
-                        }
-                    })
-                );
-            }
-
-            $q.all( promises ).then(function( results ){
-
-                $scope.images = null;
-                $('#loader-wrapper').fadeToggle('400');
-                $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
-                $scope.$emit("IMAGE_ADDED");
-
-            }).catch( function( errorCallback ){
-                console.log(errorCallback);
-            });
-        }
 
 
     }
