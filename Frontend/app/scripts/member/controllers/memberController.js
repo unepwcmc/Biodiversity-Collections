@@ -63,6 +63,8 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                         data.image = image;
                         $scope.collection.associatedMembers.push(data);
                         $scope.collection.addMember();
+
+                        $rootScope.$broadcast('MEMBER_ADDED');
                     })
                 }
            });

@@ -40,11 +40,16 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                 link: function (scope, element, attrs) {
 
                     scope.$watch('id', function(newValue, oldValue){
-                        scope.loadImage((element).find('img.img-box'));
+                        scope.loadImage($(element).find('img.img-box'));
                     },true);
 
                     scope.$on('IMAGE_ADDED', function(){
-                        scope.loadImage((element).find('img.img-box'));
+                        scope.loadImage($(element).find('img.img-box'));
+                        $(element).find('.img-file').val(null);
+                    },true);
+
+                    scope.$on('RESET_THUMBNAIL', function(){
+                        $(element).find('img.img-box').attr("src", "/images/empty_img.png");
                         $(element).find('.img-file').val(null);
                     },true);
 

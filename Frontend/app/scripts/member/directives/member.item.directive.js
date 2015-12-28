@@ -58,7 +58,6 @@ define(['angularAMD', 'core/directives/core.image.box.directive', 'core/factory/
                 });
 
                 $scope.$on('ATTACH_FILE', function(evt, data){
-                    console.log(evt);
                     images.push(data);
                 });
 

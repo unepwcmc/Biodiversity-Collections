@@ -33,7 +33,16 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
 
                         $scope.addNewMember = function(){
                             $scope.$emit('ADD_NEW_MEMBER', $scope.member);
+
                         };
+
+                        $scope.$on('MEMBER_ADDED', function(){
+                            $scope.member = {};
+                            $rootScope.$broadcast('RESET_THUMBNAIL');
+
+                            $scope.member_form_add.$setPristine();
+                            $scope.member_form_add.$setUntouched();
+                        });
 
                         /**
                          * Listener when the collection factory update the
