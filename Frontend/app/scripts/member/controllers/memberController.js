@@ -2,10 +2,10 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
     'use strict';
 
-    return ['$scope','BiodiversityCollection','BaseController','$stateParams','$http','$rootScope','Institution','toastr','$translate','$state', function ($scope, BiodiversityCollection, BaseController, $stateParams, $http, $rootScope, Institution, toastr, $translate, $state) {
+    return ['$scope','BiodiversityCollection','BaseController','$stateParams','$http','$rootScope','$translate','$state','$q', function ($scope, BiodiversityCollection, BaseController, $stateParams, $http, $rootScope, $translate, $state, $q) {
             angular.extend($scope, BaseController);
 
-
+            $scope.images = [];
             $scope.collection = new BiodiversityCollection();
 
             /**
@@ -34,6 +34,10 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                 $state.go($state.current, $stateParams, {reload: true, inherit: false});
             });
 
+            $scope.$on('ATTACH_FILE', function(evt, data){
+                 $scope.images.push(data);
+            });
+
 
            $scope.$on('ADD_NEW_MEMBER', function( evt, data){
                 console.log('adding new member');
@@ -44,17 +48,42 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                     $scope.collection.associatedMembers = [];
                 }
 
-                $scope.collection.associatedMembers.push(data);
-                $scope.collection.update();
+                if($scope.images.length > 0){
 
+                    var fd = new FormData();
+                    fd.append('file', $scope.images[0]);
+
+                    $http.post($rootScope.getHost() + "medias/", fd, {
+                        headers : {
+                            'Content-Type' : undefined
+                        }
+                    })
+                    .success(function ( image ) {
+
+                        data.image = image;
+                        $scope.collection.associatedMembers.push(data);
+                        $scope.collection.addMember();
+                    })
+                }
+                else{
+                    $scope.collection.associatedMembers.push(data);
+                    $scope.collection.addMember();
+                }
            });
 
-           $scope.$on('SAVE_MEMBER', function(){
+            /**
+             * Listener when the collection factory update the
+             * biodiversity collection model.
+             *
+             */
+            $scope.$on('BIODIVERSITY_MEMBER_UPDATED', function(){
+                console.log('collection member updated');
 
+                $scope.images = [];
                 $('#loader-wrapper').fadeToggle('400');
-
-                $scope.collection.update();
-           });
+                $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
+                $rootScope.$broadcast('MEMBER_ADDED');
+            });
 
             /**
              * Listener when the collection factory update the
@@ -63,7 +92,14 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
              */
             $scope.$on('BIODIVERSITY_UPDATED', function(){
                 console.log('collection member updated');
+
+                $scope.images = [];
                 $('#loader-wrapper').fadeToggle('400');
+                $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
+            });
+
+            $scope.$on('MEMBER_UPDATED', function(){
+                $scope.images = [];
             });
 
 
@@ -79,6 +115,7 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
                  $scope.collection.update();
             });
+
 
 
     }

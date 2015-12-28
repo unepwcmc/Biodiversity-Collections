@@ -43,6 +43,15 @@ public final class UserService extends AbstractService<User, UserRepository> imp
         return save(user);
     }
 
+    public User create(User user) {
+        validateUser(user, repo.findByEmail(user.getEmail()));
+        validateUser(user, repo.findByUsername(user.getUsername()));
+        final String role = user.getRole();
+        user.setUserRole(getUserRole(role));
+
+        return save(user);
+    }
+
     private void validateUser(User user, User other) {
         if ((user == null) || (other == null) || (user.getId() == other.getId())) {
             return;

@@ -14,6 +14,8 @@ define(['angularAMD', 'popover'], function (angularAMD) {
             transclude: true,
             templateUrl: 'views/auth/username.box.tpl.html',
             scope:{
+                logged: '=',
+                isAdmin: '=',
                 placement: '=',
                 name: '='
             },

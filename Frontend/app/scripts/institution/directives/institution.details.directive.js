@@ -14,6 +14,13 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
 
                         $scope.institutionCuratorSelected = null;
 
+                       /* $scope.$watch('adminView', function( newValue, oldValue){
+
+                             if(newValue == true){
+                                 $('a.btn-edit-institution-cancel').click();
+                             }
+                        },true);*/
+
                         $scope.addCurator = function(){
                             if($scope.institutionCuratorSelected != null){
 

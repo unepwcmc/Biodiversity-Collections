@@ -44,6 +44,36 @@ define(['include', 'language'], function (angularAMD, language) {
                             parent: 'home'
                         }
                     }))
+                .state('admin', angularAMD.route(
+                    {
+                        url: '/admin',
+                        templateUrl: 'views/admin/default.html',
+                        controllerUrl: 'admin/controllers/adminController',
+                        ncyBreadcrumb: {
+                            label: 'Administration Overview',
+                            parent: 'home'
+                        }
+                    }))
+                .state('admin_user_create', angularAMD.route(
+                    {
+                        url: '/admin/user/create',
+                        templateUrl: 'views/user/default.html',
+                        controllerUrl: 'user/controllers/userController',
+                        ncyBreadcrumb: {
+                            label: 'User Create',
+                            parent: 'admin'
+                        }
+                    }))
+                .state('admin_institution_create', angularAMD.route(
+                    {
+                        url: '/admin/institution/create',
+                        templateUrl: 'views/institution/default.html',
+                        controllerUrl: 'institution/controllers/institutionController',
+                        ncyBreadcrumb: {
+                            label: 'Institution Create',
+                            parent: 'admin'
+                        }
+                    }))
                 .state('collection', angularAMD.route(
                     {
                         url: '/collection/:id',
@@ -139,7 +169,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
                         ncyBreadcrumb: {
-                            label: '{{user.username}}',
+                            label: 'New user',
                             parent: function($scope) {
                                 return $scope.fromState == 'home'? 'home' : 'home';
                             }
@@ -158,24 +188,24 @@ define(['include', 'language'], function (angularAMD, language) {
                         }
                     }));
 
-            $provide.factory('authInterceptor', ['$rootScope', '$q', '$window',
-                function ($rootScope, $q, $window) {
-
+            $provide.factory('authInterceptor', ['$rootScope', '$q', '$window', '$cookies',
+                function ($rootScope, $q, $window, $cookies) {
                     return {
                         request: function (config) {
                             config.headers = config.headers || {};
-                            if ($window.sessionStorage.tokenSecret !== null && $window.sessionStorage.tokenSecret !== 'null') {
-                                config.headers['X-AUTH-TOKEN'] = $window.sessionStorage.tokenSecret;
-                                $rootScope.username = $window.sessionStorage.user;
-                                $rootScope.userId = $window.sessionStorage.userId;
-                                $rootScope.userRole = $window.sessionStorage.userRole;
-                                $rootScope.fullName = $window.sessionStorage.fullName;
+                            if ($cookies.get('tokenSecret') && $cookies.get('tokenSecret') != "null") {
+                                config.headers['X-AUTH-TOKEN'] = $cookies.get('tokenSecret');
+                                $rootScope.username = $cookies.get('user');
+                                $rootScope.userId = $cookies.get('userId');
+                                $rootScope.userRole = $cookies.get('userRole');
+                                $rootScope.fullName = $cookies.get('fullName');
                                 $rootScope.logged = true;
                             } else {
+                                config.headers['X-AUTH-TOKEN'] = app.token;
                                 $rootScope.username = null;
+                                $rootScope.fullName = null;
                                 $rootScope.userId = null;
                                 $rootScope.userRole = null;
-                                $rootScope.fullName = null;
                                 $rootScope.logged = false;
                             }
                             return config;
@@ -184,49 +214,48 @@ define(['include', 'language'], function (angularAMD, language) {
                             if (response.status === 401) {
                                 // handle the case where the user is not authenticated
                             }
+                            if (response.status === 400) {
+                                console.log('400');
+                            }
                             return response || $q.when(response);
                         }
                     };
-
                 }]);
 
             $provide.factory('errorHandlerInterceptor', ['$rootScope', '$q', '$window', '$location', 'toastr',
                 function ($rootScope, $q, $window, $location, toastr) {
                     return {
-                        request: function (config) {
+                        request: function(config) {
                             return config;
                         },
-                        requestError: function (rejection) {
+                        requestError : function(rejection) {
                             return rejection;
                         },
-                        responseError: function (rejection) {
-                            if (rejection.status === 401) {
-                                if (rejection.statusText == 'token expired') {
-                                    toastr.info('User session token expired. Please, process the login again.', 'Information');
-                                    $rootScope.cleanCredentials();
-                                    $location.path('login');
-                                } else {
-                                    toastr.error('User not authorized', 'Error');
+                        responseError : function(rejection) {
+                            if( rejection.status === 401 ) {
+                                if (rejection.config.url.indexOf("/login") < 0) {
+                                    $rootScope.$broadcast("ErrorInterceptor", 401, rejection.statusText);
                                 }
+                                return $q.reject(rejection);
                             }
-                            if (rejection.status === 400) {
-                                if (rejection.data !== null && rejection.data.message === 'Access is denied') {
-                                    $rootScope.cleanCredentials();
-                                    $location.path('login');
+                            if( rejection.status === 400 ) {
+                                if (rejection.config.url.indexOf("/search") > 0) {
+                                    $rootScope.$broadcast("SearchErrorInterceptor", 400);
+                                    return;
                                 }
-                                toastr.info('Bad request', 'Information');
+                                if (rejection.config.url.indexOf("/forgetpassword") < 0) {
+                                    $rootScope.$broadcast("ErrorInterceptor", 400);
+                                }
                                 return $q.reject(rejection);
                             }
-                            if (rejection.status === 404) {
-                                toastr.warning('Resource not found', 'Information');
+                            if( rejection.status === 404 ) {
+                                $rootScope.$broadcast("ErrorInterceptor", 404);
                                 return $q.reject(rejection);
                             }
-
-                            if (rejection.status >= 500) {
-                                toastr.error('The system is unstable, please try again later!!!', 'Sorry');
+                            if( rejection.status >= 500) {
+                                $rootScope.$broadcast("ErrorInterceptor", 500);
                                 return $q.reject(rejection);
                             }
-
                             return $q.reject(rejection);
 
                         }
@@ -261,8 +290,8 @@ define(['include', 'language'], function (angularAMD, language) {
         }]);
 
     app.CONST = {
-        //LOCALHOST: "http://localhost:8080/", //LOCAL
-        LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
+        LOCALHOST: "http://localhost:8080/", //LOCAL
+        //LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
         //LOCALHOST:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         //SERVER:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         SERVER: "http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/"  // DEV

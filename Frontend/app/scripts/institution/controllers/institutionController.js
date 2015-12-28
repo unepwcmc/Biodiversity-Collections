@@ -12,6 +12,7 @@ define(['app',
         function ($scope, BaseController, $stateParams, $http, $rootScope, Institution, toastr, $translate, $state, $q) {
             angular.extend($scope, BaseController);
 
+            $scope.adminView = false;
             $rootScope.editMode = false;
             $scope.images = [];
             $scope.fromState = 'home';
@@ -24,15 +25,30 @@ define(['app',
                 console.log('state Change Success');
 
                 $scope.fromState = fromState.name;
+
+                 if(toState.name == 'admin_institution_create'){
+
+                     $scope.adminView = true;
+                     $rootScope.editMode = true;
+
+                     $scope.institution.save( {}, function( data, status ){
+                         if(status == 200){
+                             $('#loader-wrapper').fadeToggle('400');
+                             $stateParams.id = data.id;
+                         }
+                     });
+                 }
             });
 
             /**
              * Listener when the view is loaded
              */
-            $scope.$on('$viewContentLoaded', function() {
+            $scope.$on('$viewContentLoaded', function(event) {
                 console.log('view Content Loaded...');
 
-                $scope.institution.get( $stateParams.id );
+                if($stateParams.id != undefined){
+                    $scope.institution.get( $stateParams.id );
+                }
             });
 
             $scope.$on('INSTITUTION_LOADED', function(){
@@ -41,8 +57,6 @@ define(['app',
                     delete ele.institution;
                     delete ele.associatedInstitutions;
                 });
-
-                console.log($scope.institution.curators);
 
                 $('#loader-wrapper').fadeToggle('400');
             });
@@ -72,8 +86,6 @@ define(['app',
             $scope.$on('INSTITUTION_UPDATED', function(){
                 console.log('updated');
 
-                console.log($scope.images);
-
                 if ($scope.images === undefined)
                     $scope.images = [];
 
@@ -83,6 +95,12 @@ define(['app',
 
                     $('#loader-wrapper').fadeToggle('400');
                     toastr.success($translate.instant('INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
+
+                    console.log('1');
+                    if($scope.adminView){
+                        console.log('11');
+                        $state.go('admin_institution_create');
+                    }
                 }
             });
 
@@ -131,16 +149,12 @@ define(['app',
 
             function saveImageInstitution(){
 
-                console.log('chegando aqui');
-
                 var promises = [];
 
                 for(var i = 0; i < $scope.images.length; i++){
 
                     var fd = new FormData();
                     fd.append('file', $scope.images[i]);
-
-                    console.log($scope.images[i]);
 
                     promises.push(
                         $http.post($rootScope.getHost() + "institutions/" + $stateParams.id + "/media", fd, {
@@ -157,6 +171,10 @@ define(['app',
                     $('#loader-wrapper').fadeToggle('400');
                     toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
                     $scope.$emit("IMAGE_ADDED");
+
+                    if($scope.adminView){
+                        $state.go('admin_institution_create');
+                    }
 
                 }).catch( function( errorCallback ){
                     console.log(errorCallback);

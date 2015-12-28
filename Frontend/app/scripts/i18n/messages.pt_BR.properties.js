@@ -160,9 +160,23 @@ define([],function ( ) {
     'EMAIL_ADDRESS':'Endereço de e-mail',
     'NEW_USER':'Novo usuário',
     'USER_SAVED_SUCCESSFULLY':'Usuário registrado com sucesso',
-    'SORRY_WE_CANT_REGISTER_THE_USER':'Desculpe, não foi possível registrar o usuário',
     'SIGN_IN':'Entrar',
-    'FORGOT_PASSWORD':'Esqueceu a senha?'
+    'FORGOT_PASSWORD':'Esqueceu a senha?',
+    'SORRY_WE_CANT_REGISTER_THE_USER':'Desculpe, não foi possível registrar o usuário',
+    'ACTIONS':'Ações',
+    'CREATE_USER':'Criar usuário',
+    'INVITE_CURATOR':'Convidar curador',
+    'CREATE_INSTITUTION':'Criar instituição',
+    'RESET_YOUR_PASSWORD':'Redefinir sua senha',
+    'REQUESTS':'Requisições',
+    'AVAIL_THREADS':'Proveito de discussão',
+    'STATUS':'Status',
+    'ONLINE':'Online',
+    'STOP_API':'Parar API',
+    'ADMINISTRATION':'Administração',
+    'OVERVIEW':'Geral',
+    'USERS':'Usuários',
+    'INSTITUTIONS':'Instituições'
   }
 
 });

@@ -1,0 +1,24 @@
+<section class="l-main">
+    <breadcrumbs></breadcrumbs>
+
+    <div class="container">
+
+        <h2>{{ 'ADMINISTRATION' | translate }}</h2>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#overview" role="tab" data-toggle="tab">{{ 'OVERVIEW' | translate }}</a></li>
+            <li role="presentation"><a href="#user" role="tab" data-toggle="tab">{{ 'USERS' | translate }}</a></li>
+            <li role="presentation"><a href="#institution"  role="tab" data-toggle="tab">{{ 'INSTITUTIONS' | translate }}</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="overview"><admin-overview></admin-overview></div>
+            <div role="tabpanel" class="tab-pane" id="user"><admin-user></admin-user></div>
+            <div role="tabpanel" class="tab-pane" id="institution"><admin-institution></admin-institution></div>
+        </div>
+
+    </div>
+
+</section>

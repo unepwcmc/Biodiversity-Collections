@@ -13,6 +13,7 @@ define(['angularAMD','auth/directives/phone.digits.directive'], function (angula
                     function($scope, $rootScope, $stateParams, $translate){
 
                         $scope.institutionSelected = null;
+                        angular.extend($scope.user, { enabled: true });
 
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
                             return $http.get( $rootScope.getHost() + "institutions/search/autocompleteName?name=" + userInputString,
@@ -29,9 +30,6 @@ define(['angularAMD','auth/directives/phone.digits.directive'], function (angula
                         };
 
                         $scope.userSubmit = function(){
-
-                            $scope.user.role = 'PUBLIC_USER';
-                            $scope.user.username = $scope.user.email;
 
                             $scope.$emit('REGISTER_NEW_USER', $scope.user);
                         };

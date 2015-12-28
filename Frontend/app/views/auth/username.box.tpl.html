@@ -16,9 +16,8 @@
     <p>{{name}}<span><i ng-click="closePopover()" class="fa fa-close pull-right" style="color:#249953;"></i></span></p>
     <div class="user-links">
     <br/>
-    <a href="javascript:"  ng-style="{'visibility': isUserAdministrator?'visible':'hidden'}" ng-click="showGroups()">{{'GROUPS' | translate }}</a><br/>
-    <a href="javascript:" data-ui-sref="settings">{{'SETTINGS' | translate }}</a><br/>
-    <a href="javascript:"  ng-click="logoutFunc()" class="logoutBt">{{'LOGOUT' | translate }}</a>
+    <a href="#">{{'SETTINGS' | translate }}</a><br/>
+    <a href="javascript:" ng-click="logoutFunc()" class="logoutBt">{{'LOGOUT' | translate }}</a>
     </div>
 </div>
 </div>

@@ -1,7 +1,7 @@
 define(['app',
     'core/factory/userFactory',
-    'user/directives/user.details.directive',
-    'user/directives/user.contact.directive'], function () {
+    'core/directives/core.breadcrumbs.directive',
+    'user/directives/user.details.directive'], function () {
 
     'use strict';
 
@@ -11,12 +11,17 @@ define(['app',
             angular.extend($scope, BaseController);
 
             $scope.user = new User();
+            $scope.adminView = false;
 
             /**
              * Listener when the state is changed
              */
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
+
+                if(toState.name == 'admin_user_create'){
+                    $scope.adminView = true;
+                }
             });
 
             /**
@@ -26,7 +31,13 @@ define(['app',
                 console.log('saving new user..');
 
                 $('#loader-wrapper').fadeToggle('400');
-                $scope.user.register( data );
+
+                if(!$scope.adminView){
+                    data.role = 'PUBLIC_USER';
+                }
+                data.username = data.email;
+
+                $scope.user.save( data );
             });
 
             $scope.$on('USER_SAVED', function( evt, data){
@@ -37,14 +48,11 @@ define(['app',
             });
 
             $scope.$on('USER_SAVED_ERROR', function( evt, data){
-                console.log('user saved..');
+                console.log('user saved error..');
 
                 $('#loader-wrapper').fadeToggle('400');
                 $scope.showErrorMessage('ERROR','SORRY_WE_CANT_REGISTER_THE_USER');
             });
-
-
-
 
         }];
 });

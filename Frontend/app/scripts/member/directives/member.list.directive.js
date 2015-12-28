@@ -31,17 +31,18 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                             setStateButton(false);
                         });
 
-                        /**
-                         * Listener when the button save is clicked
-                         */
-                        $scope.$on('SAVE_COLLECTION', function() {
-                            setStateButton(false);
-                        });
-
                         $scope.addNewMember = function(){
-                            $scope.member.id = generateUUID();
                             $scope.$emit('ADD_NEW_MEMBER', $scope.member);
+
                         };
+
+                        $scope.$on('MEMBER_ADDED', function(){
+                            $scope.member = {};
+                            $rootScope.$broadcast('RESET_THUMBNAIL');
+
+                            $scope.member_form_add.$setPristine();
+                            $scope.member_form_add.$setUntouched();
+                        });
 
                         /**
                          * Listener when the collection factory update the
@@ -58,18 +59,6 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                             $scope.$apply();
                         }
 
-                        function generateUUID(){
-                            var d = new Date().getTime();
-                            if(window.performance && typeof window.performance.now === "function"){
-                                d += performance.now();
-                            }
-                            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                                var r = (d + Math.random()*16)%16 | 0;
-                                d = Math.floor(d/16);
-                                return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-                            });
-                            return uuid;
-                        }
 
                     }],
                 link: function (scope, element, attrs) {

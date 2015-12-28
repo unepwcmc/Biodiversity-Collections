@@ -131,6 +131,27 @@ define(['angularAMD'], function (angularAMD) {
                         $log.error(message);
                     });
             },
+            addMember: function (callback) {
+                var self = this;
+                $http.put( $rootScope.getHost() + "collections/" + this.id, this)
+                    .success(function (data) {
+
+                        self.setData(data);
+
+                        $rootScope.$broadcast("BIODIVERSITY_MEMBER_UPDATED");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+
+                        $rootScope.$broadcast("BIODIVERSITY_MEMBER_UPDATED_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
             save: function () {
                 var self = this;
                 $http.post( $rootScope.getHost() + "collections/", this)

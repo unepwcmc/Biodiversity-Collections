@@ -91,24 +91,6 @@ define(['app'], function (app) {
                     }
                 );
             },
-            register: function (model, callback) {
-                $http.post( $rootScope.getHost() + "users/signup", model)
-                    .success(function (data, status, headers, config) {
-
-                        if(callback)
-                            callback(data, status, headers, config);
-
-                        $rootScope.$broadcast("USER_SAVED");
-                    })
-                    .error(function(data, status, headers, config){
-
-                        if(callback)
-                            callback(data, status, headers, config);
-
-                        $rootScope.$broadcast("USER_SAVED_ERROR");
-                    }
-                );
-            },
             insert: function ( model, callback ) {
 
                 $http.post( $rootScope.getHost() + "users/signup", model )

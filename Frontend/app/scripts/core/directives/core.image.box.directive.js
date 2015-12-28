@@ -17,7 +17,6 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             $scope.editMode = $rootScope.editMode;
                         },true);
 
-                        loadImage();
 
                         $scope.addFile = function( file ){
 
@@ -26,24 +25,39 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                                 return;
                             }
 
-                            $rootScope.$broadcast("ATTACH_FILE", file );
+                            $scope.$emit("ATTACH_FILE", file );
                         };
 
-                        $rootScope.$on('IMAGE_ADDED', function(){
-                            loadImage();
-                            $('#ipt-file').val(null);
-                        },true);
+                        $scope.loadImage = function( img ){
 
-
-                        function loadImage(){
-                            if( $scope.image != '')
-                                $('#box-image').attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
-                        }
+                            $timeout( function(){
+                                if( $scope.image != '')
+                                    img.attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
+                            },500)
+                        };
 
                     }],
                 link: function (scope, element, attrs) {
 
-                    $('#ipt-file').on('change', function (evt) {
+                    scope.$watch('id', function(newValue, oldValue){
+                        scope.loadImage($(element).find('img.img-box'));
+                    },true);
+
+                    scope.$on('IMAGE_ADDED', function(){
+                        scope.loadImage($(element).find('img.img-box'));
+                        $(element).find('.img-file').val(null);
+                    },true);
+
+                    scope.$on('RESET_THUMBNAIL', function(){
+                        $(element).find('img.img-box').attr("src", "/images/empty_img.png");
+                        $(element).find('.img-file').val(null);
+                    },true);
+
+                    $(element).find('a.btn-img').click(function(){
+                        $(element).find('.img-file').click();
+                    });
+
+                    $(element).find('.img-file').on('change', function (evt) {
 
                         if (!$(this).val().match(/(?:gif|jpg|png|bmp)$/)) {
                             scope.showWarningMessage('INPUTTED_FILE_PATH_ERROR','WARNING');
@@ -64,7 +78,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         var reader = new FileReader();
 
                         reader.onload = function(event) {
-                            $('#box-image').attr('src',event.target.result);
+                            $(element).find('img.img-box').attr('src',event.target.result);
                         };
                         reader.readAsDataURL(selectedFile);
                     }
