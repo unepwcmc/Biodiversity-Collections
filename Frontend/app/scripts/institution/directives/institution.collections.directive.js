@@ -16,14 +16,19 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
                         $scope.collections = new BiodiversityCollection();
                         $scope.newCollection = new BiodiversityCollection();
                         angular.extend( $scope.collections, { totalElements : 0, number: 0, size: 5, totalPages: 0} );
-                        $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+
+                        if($stateParams.id != undefined)
+                            $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
 
                         $scope.$on('INSTITUTION_COLLECTION_LOADED', function(  ) {
                             console.log('Collections Loaded...');
                         });
 
                         $scope.paginateInstitutionCollections = function(page, size){
-                            $scope.collections.loadByInstitution( $stateParams.id,  page, size);
+
+                            if($stateParams.id != undefined){
+                                $scope.collections.loadByInstitution( $stateParams.id,  page, size);
+                            }
                         };
 
                         $scope.collectionAutocomplete = function( userInputString, timeoutPromise ) {
@@ -40,6 +45,7 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
                             if ($scope.collectionSelected != null){
                                 $scope.institution.addCollection( $stateParams.id, $scope.collectionSelected.originalObject.id, function( data, status) {
                                     if(status === 200){
+                                        angular.extend( data, $scope.institution);
                                         toastr.success($translate.instant('COLLECTION_ADDED_TO_INSTITUTION'), $translate.instant('SUCCESS'));
                                         $scope.collections.loadByInstitution( $stateParams.id,  $scope.collections.number, $scope.collections.size);
                                     } else {
@@ -47,7 +53,7 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
                                     }
                                 });
                                 $scope.collectionSelected = null;
-                                $scope.$broadcast('angucomplete-alt:clearInput', 'collection_network_autocomplete');
+                                $scope.$broadcast('angucomplete-alt:clearInput', 'institution_collection_autocomplete');
                             }
                         };
 

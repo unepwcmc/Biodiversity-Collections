@@ -52,12 +52,37 @@ define(['angularAMD'], function (angularAMD) {
             },
             update: function () {
 
+                var self = this;
+
                 $http.put( $rootScope.getHost() + "institutions/" + this.id, this)
                     .success(function (data) {
+                        self.setData(data);
                         $rootScope.$broadcast("INSTITUTION_UPDATED");
                     })
                     .error(function (message) {
                         $log.error(message);
+                    });
+            },
+            save: function (model, callback) {
+
+                var self = this;
+
+                $http.post( $rootScope.getHost() + "institutions/", model)
+                    .success(function ( data, status, headers, config) {
+
+                        self.setData(data);
+
+                        $rootScope.$broadcast("INSTITUTION_SAVED");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function (data, status, headers, config) {
+                        $log.error( data );
+                        $rootScope.$broadcast("INSTITUTION_SAVED_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
                     });
             },
             addImage: function( data, callback ){
@@ -202,7 +227,7 @@ define(['angularAMD'], function (angularAMD) {
 
                     .success(function ( data, status, headers, config ) {
 
-                        self.setData(data);
+                        //self.setData(data);
 
                         if(callback)
                             callback( data, status, headers, config )
@@ -223,7 +248,7 @@ define(['angularAMD'], function (angularAMD) {
 
                     .success(function ( data, status, headers, config ) {
 
-                        self.setData(data);
+                        //self.setData(data);
 
                         if(callback)
                             callback( data, status, headers, config )
