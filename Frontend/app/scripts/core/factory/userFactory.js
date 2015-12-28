@@ -30,15 +30,23 @@ define(['app'], function (app) {
             setData: function (data) {
                 angular.extend(this, data);
             },
-            list: function (page, size) {
+            list: function (page, size, callback) {
                 var self = this;
-                $http.get( $rootScope.getHost() + "users/search" + "?page=" +  page + "&size=" +   size)
-                    .success(function (data) {
+                $http.get( $rootScope.getHost() + "users" + "?page=" +  page + "&size=" +   size)
+                    .success( function (data, status, headers, config ) {
+
                         self.setData( data );
-                        $rootScope.$broadcast("UsersListed");
+
+                        $rootScope.$broadcast("USERS_LISTED");
+
+                        if(callback)
+                            callback( data, status, headers, config)
                     })
-                    .error(function (message) {
-                        $log.error(message);
+                    .error( function (data, status, headers, config ){
+                        $log.error( data );
+
+                        if(callback)
+                            callback( data, status, headers, config)
                     });
             },
             search: function (filter, page, size) {

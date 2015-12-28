@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="container">
+    <div class="row">
+        <br/>
+        <table class="table">
+            <thead>
+                <th><input type="checkbox"></th>
+                <th></th>
+                <th>{{ 'FIRST_NAME' | translate }}</th>
+                <th>{{ 'LAST_NAME' | translate }}</th>
+                <th>{{ 'USERNAME' | translate }}</th>
+                <th>{{ 'ROLE' | translate }}</th>
+                <th>{{ 'STATUS' | translate }}</th>
+            </thead>
 
-</body>
-</html>
+            <tbody>
+                    <tr ng-repeat="u in user.content">
+                        <td><input type="checkbox"></td>
+                        <td></td>
+                        <td>{{ u.firstName}}</td>
+                        <td>{{ u.lastName}}</td>
+                        <td>{{ u.email}}</td>
+                        <td>{{ u.userRole.name}}</td>
+                        <td>{{ u.enabled}}</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
