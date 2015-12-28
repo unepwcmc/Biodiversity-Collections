@@ -14,20 +14,24 @@ define(['angularAMD','core/factory/userFactory'], function (angularAMD) {
                 templateUrl: 'views/admin/users.tpl.html',
                 controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate',  function($scope, $rootScope, $stateParams, $state, $translate){
 
-                        $scope.user = null;
+                        $scope.users = null;
 
                         $scope.$on('ADMIN_USERS_TAB', function(){
                              console.log('users tab');
 
-                            if($scope.user == null){
+                            if($scope.users == null){
                                 console.log('initializing users..');
 
-                                $scope.user = new User();
-                                angular.extend($scope.user, {totalElements : 0, number: 0, size: 5, totalPages: 0});
-                                $scope.user.list($scope.user.number, $scope.user.size);
+                                $scope.users = new User();
+                                angular.extend($scope.users, {totalElements : 0, number: 0, size: 5, totalPages: 0});
+                                $scope.users.list($scope.users.number, $scope.users.size);
                             }
 
                         });
+
+                        $scope.paginateUsers = function( number, size){
+                            $scope.users.list(number, size);
+                        };
 
                     }],
                 link: function (scope, element, attrs) {
