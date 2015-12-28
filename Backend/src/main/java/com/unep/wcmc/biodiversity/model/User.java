@@ -27,6 +27,9 @@ import java.util.Date;
                 @UniqueConstraint(columnNames = { "email" })})
 public class User implements UserDetails, BaseEntity {
 
+    public static final String PT_BR = "pt_BR";
+    public static final String EN_GB = "en_GB";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,6 +51,8 @@ public class User implements UserDetails, BaseEntity {
     private String firstName;
 
     private String lastName;
+
+    private String language;
 
     @OneToOne
     @JoinColumn(name = "user_role_id", nullable = false)
@@ -148,6 +153,14 @@ public class User implements UserDetails, BaseEntity {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     @Override
