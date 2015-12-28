@@ -17,6 +17,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             $scope.editMode = $rootScope.editMode;
                         },true);
 
+
                         $scope.addFile = function( file ){
 
                             if(file.size > 1024 * 1024 * 5){
@@ -24,7 +25,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                                 return;
                             }
 
-                            $rootScope.$broadcast("ATTACH_FILE", file );
+                            $scope.$emit("ATTACH_FILE", file );
                         };
 
                         $scope.loadImage = function( img ){
