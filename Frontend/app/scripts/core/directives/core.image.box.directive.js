@@ -29,8 +29,11 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         };
 
                         $scope.loadImage = function( img ){
-                            if( $scope.image != '')
-                               img.attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
+
+                            $timeout( function(){
+                                if( $scope.image != '')
+                                    img.attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
+                            },500)
                         };
 
                     }],
