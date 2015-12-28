@@ -178,7 +178,18 @@ define([],function ( ) {
     'ADMINISTRATION':'Administration',
     'OVERVIEW':'Overview',
     'USERS':'Users',
-    'INSTITUTIONS':'Institutions'
-}
+    'INSTITUTIONS':'Institutions',
+    'FORGOT_YOUR_PASSWORD': 'Forgot your password?',
+    'ENTER_YOUR_EMAIL_ADDRESS_TO_RESET_YOUR_PASSWORD': 'Enter your email address to reset your password. You may need to check your spam folder.',
+    'SUBMIT': 'Submit',
+    'NEW_PASSWORD': 'New password',
+    'RETYPE_PASSWORD': 'Retype password',
+    'LOGIN_SUCCESSFULLY':'Login successfully',
+    'USERNAME_OR_PASSWORD_INVALID':'Username or password invalid.',
+    'FORGOT_PASSWORD_REQUESTED':'Forgot password requested.',
+    'PASSWORD_RESET':'Password was reseted.',
+    'TOKEN_EXPIRED_MSG':'User session token expired. Please, process the login again.'
+
+  }
 
 });

@@ -175,6 +175,18 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
+                .state('reset', angularAMD.route(
+                    {
+                        url: '/reset/:token',
+                        templateUrl: 'views/auth/reset.password.html',
+                        controllerUrl: 'auth/controllers/authController'
+                    }))
+                .state('forgot', angularAMD.route(
+                    {
+                        url: '/forgot',
+                        templateUrl: 'views/auth/forgot.password.html',
+                        controllerUrl: 'auth/controllers/authController'
+                    }))
                 .state('sample', angularAMD.route(
                     {
                         url: '/sample/:id',

@@ -176,7 +176,17 @@ define([],function ( ) {
     'ADMINISTRATION':'Administração',
     'OVERVIEW':'Geral',
     'USERS':'Usuários',
-    'INSTITUTIONS':'Instituições'
+    'INSTITUTIONS':'Instituições',
+    'FORGOT_YOUR_PASSWORD': 'Esqueceu sua senha?',
+    'ENTER_YOUR_EMAIL_ADDRESS_TO_RESET_YOUR_PASSWORD': 'Digite seu e-mail para redefinir sua senha. Você pode precisar verificar sua pasta de spam.',
+    'SUBMIT': 'Enviar',
+    'NEW_PASSWORD': 'Nova senha',
+    'RETYPE_PASSWORD':'Digite novamente a senha',
+    'LOGIN_SUCCESSFULLY':'Autenticado com sucesso',
+    'USERNAME_OR_PASSWORD_INVALID':'Usuário ou senha inválida',
+    'FORGOT_PASSWORD_REQUESTED':'Recupear senha requistado',
+    'PASSWORD_RESET':'A senha foi alterada',
+    'TOKEN_EXPIRED_MSG':'Sessão expirada, por favor faça login novamente.'
   }
 
 });

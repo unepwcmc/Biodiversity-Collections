@@ -10,7 +10,7 @@ define(['app','auth/factory/authenticationFactory'], function () {
 
                 $scope.$on('AuthenticationDone', function() {
                     if ($rootScope.userId != null) {
-                        $http.get( $rootScope.getTaxonomicHost() + "users/" + $rootScope.userId )
+                        $http.get( $rootScope.getHost() + "users/" + $rootScope.userId )
                             .success(function (data) {
                                 $scope.user = data;
                             });
@@ -27,7 +27,7 @@ define(['app','auth/factory/authenticationFactory'], function () {
                  */
                 $scope.$on('$viewContentLoaded', function() {
                     console.log('auth view Content Loaded...');
-
+                    loadingScreen();
                 });
 
 
@@ -40,6 +40,81 @@ define(['app','auth/factory/authenticationFactory'], function () {
                         callback( response, status);
                     });
                 };
+
+                /**
+                 * Forgot Password form
+                 */
+                $scope.forgotPasswordFormSubmit = function(){
+                    loadingScreen();
+                    AuthenticationService.forgetPassword( $scope.user.email, function(response, status) {
+
+                        $('#loader-wrapper').fadeToggle('400');
+
+                        if(status == 200) {
+                            clearModel();
+                            $state.go('home');
+                            toastr.success($translate.instant('FORGOT_PASSWORD_REQUESTED'), $translate.instant('SUCCESS'));
+                        } else {
+                            if (response.message == 'token expired') {
+                                toastr.info($translate.instant('TOKEN_EXPIRED_MSG'), $translate.instant('INFORMATION'));
+                                $rootScope.cleanCredentials();
+                                $state.go('home');
+                            } else {
+                                toastr.error(response.message, $translate.instant('ERROR'));
+                            }
+                        }
+                    });
+                };
+
+                /**
+                 * Reset Password form
+                 */
+                $scope.resetPasswordFormSubmit = function(){
+                    loadingScreen();
+                    AuthenticationService.resetPassword( $stateParams.token, $scope.user.password,
+                        function(response, status) {
+
+                            $('#loader-wrapper').fadeToggle('400');
+
+                            if(status == 200) {
+                                clearModel();
+                                $state.go('home');
+                                toastr.success($translate.instant('PASSWORD_RESET'), $translate.instant('SUCCESS'));
+                            }
+                            else {
+                                toastr.error(response.message, $translate.instant('ERROR'));
+                            }
+                        });
+                };
+
+                /**
+                 * Show Loading screen
+                 */
+                function loadingScreen(){
+
+                    $timeout(function(){
+                        $('#loader-wrapper').fadeToggle('400');
+                    }, 2000);
+                }
+
+                /**
+                 * Reset User Model
+                 */
+                function clearModel(){
+                    $scope.user = {
+                        id: null,
+                        username: null,
+                        password:null,
+                        firstName:null,
+                        phoneNumber:null,
+                        address:null,
+                        lastName:null,
+                        postalCode:null,
+                        municipality:null,
+                        neighbourhood: null,
+                        email:null
+                    };
+                }
 
     }];
 });
