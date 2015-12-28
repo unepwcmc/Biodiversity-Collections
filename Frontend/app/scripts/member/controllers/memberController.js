@@ -63,9 +63,11 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                         data.image = image;
                         $scope.collection.associatedMembers.push(data);
                         $scope.collection.addMember();
-
-                        $rootScope.$broadcast('MEMBER_ADDED');
                     })
+                }
+                else{
+                    $scope.collection.associatedMembers.push(data);
+                    $scope.collection.addMember();
                 }
            });
 
@@ -80,6 +82,7 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                 $scope.images = [];
                 $('#loader-wrapper').fadeToggle('400');
                 $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
+                $rootScope.$broadcast('MEMBER_ADDED');
             });
 
             /**
