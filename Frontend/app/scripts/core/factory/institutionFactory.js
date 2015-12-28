@@ -31,6 +31,27 @@ define(['angularAMD'], function (angularAMD) {
             setData: function (data) {
                 angular.extend(this, data);
             },
+            list: function (page, size, callback) {
+                var self = this;
+                $http.get( $rootScope.getHost() + "institutions" + "?page=" +  page + "&size=" +   size)
+                    .success( function (data, status, headers, config ) {
+
+                        self.setData( data );
+
+                        $rootScope.$broadcast("INSTITUTION_LISTED");
+
+                        if(callback)
+                            callback( data, status, headers, config)
+                    })
+                    .error( function (data, status, headers, config ){
+                        $log.error( data );
+
+                        $rootScope.$broadcast("INSTITUTION_LISTED_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config)
+                    });
+            },
             load: function( id, page, size ){
 
                     var self = this;

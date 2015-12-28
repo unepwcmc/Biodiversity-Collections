@@ -3,13 +3,11 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD'], function (angularAMD) {
+define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('adminInstitution', ['$timeout', '$rootScope', '$stateParams', '$state', '$window', '$http', '$cookies','toastr',
-
-        function ($timeout, $rootScope, $stateParams, $state, $window, $http, $cookies, toastr) {
+    angularAMD.directive('adminInstitution', ['$rootScope', '$stateParams', '$state','toastr','Institution', function ( $rootScope, $stateParams, $state,  toastr, Institution) {
 
             return {
                 restrict: 'EA',
@@ -17,9 +15,22 @@ define(['angularAMD'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate',
                     function($scope, $rootScope, $stateParams, $state, $translate){
 
+                        $scope.institutions = null;
+
                         $scope.$on('ADMIN_INSTITUTIONS_TAB', function(){
                             console.log('institution tab');
+
+                            if($scope.institutions == null){
+                                console.log('initializing institutions..');
+
+                                $scope.institutions = new Institution();
+                                angular.extend($scope.institutions, {totalElements : 0, number: 0, size: 5, totalPages: 0});
+                                $scope.institutions.list($scope.institutions.number, $scope.institutions.size);
+                            }
                         });
+                        $scope.paginateInstitution = function( number, size){
+                            $scope.institutions.list(number, size);
+                        };
 
                     }],
                 link: function (scope, element, attrs) {
