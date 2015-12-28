@@ -149,18 +149,10 @@ define([],function ( ) {
     'ADD_ASSOCIATED_MEMBER':'Add associated member',
     'ADD_NEW_MEMBER':'Add new member',
     'DELETE_ASSOCIATED_MEMBER':'Delete associated member',
-    'EMAIL':'Email',
+    'SIGN_IN':'Login',
     'USERNAME':'Username',
-    'FIRST_NAME':'First name',
-    'LAST_NAME':'Last name',
     'PASSWORD':'Password',
-    'ROLE':'Role',
-    'ACTIVE':'Active',
-    'REGISTER': 'Register',
-    'EMAIL_ADDRESS':'Email address',
-    'NEW_USER':'New user',
-    'USER_SAVED_SUCCESSFULLY':'User registered successfully',
-    'SORRY_WE_CANT_REGISTER_THE_USER':'Sorry, we cant register the user'
+    'FORGOT_PASSWORD':'Forgot password?'
 }
 
 });

@@ -261,15 +261,15 @@ define(['include', 'language'], function (angularAMD, language) {
         }]);
 
     app.CONST = {
-        LOCALHOST: "http://localhost:8080/", //LOCAL
-        //LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
+        //LOCALHOST: "http://localhost:8080/", //LOCAL
+        LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
         //LOCALHOST:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         //SERVER:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         SERVER: "http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/"  // DEV
     };
 
-    app.run(['$rootScope', '$timeout', '$http', '$window',
-        function ($rootScope, $timeout, $http, $window) {
+    app.run(['$rootScope', '$timeout', '$http', '$window', '$cookies',
+        function ($rootScope, $timeout, $http, $window, $cookies) {
 
             /**
              * Return the current host
@@ -288,41 +288,84 @@ define(['include', 'language'], function (angularAMD, language) {
             };
 
             /**
+             * Process the user login
+             */
+            $rootScope.login = function(user, callback) {
+
+                $http.post( $rootScope.getHost() + "login", user )
+                    .success(function (data, status, headers, config) {
+
+                        $cookies.put('user', data.user.username);
+                        $cookies.put('userId', data.user.id);
+                        $cookies.put('userRole', data.user.userRole.role);
+                        $cookies.put('tokenSecret', data.token);
+                        $cookies.put('fullName', data.user.firstName + ' ' + data.user.lastName);
+
+                        $http.defaults.headers.common['X-AUTH-TOKEN'] = data.token;
+
+                        $rootScope.userRole = data.user.userRole.role;
+                        $rootScope.username = data.user.username;
+                        $rootScope.fullName = data.user.firstName + ' ' + data.user.lastName;
+                        $rootScope.logged = true;
+
+                        if (callback) {
+                            callback(data, status, headers, config);
+                        }
+
+                        $rootScope.$broadcast("AuthenticationDone", data.user);
+                    })
+                    .error(function(data, status, headers, config){
+                            if (callback) {
+                                callback(data, status, headers, config);
+                            }
+                        }
+                    );
+
+            };
+
+            /**
              * Process the user logout
              */
-            $rootScope.logout = function (callback) {
-                $http.post($rootScope.getHost() + "logout", {})
+            $rootScope.logout = function(callback) {
+
+                $http.post( $rootScope.getHost() + "logout", {} )
+
                     .success(function (data, status, headers, config) {
+
                         $rootScope.cleanCredentials();
+
                         if (callback) {
                             callback(data, status, headers, config);
                         }
+
                         $rootScope.$broadcast("LogoutDone");
                     })
-                    .error(function (data, status, headers, config) {
-                        $rootScope.cleanCredentials();
-                        if (callback) {
-                            callback(data, status, headers, config);
+                    .error(function(data, status, headers, config){
+                            $rootScope.cleanCredentials();
+
+                            if (callback) {
+                                callback(data, status, headers, config);
+                            }
                         }
-                    }
-                );
+                    );
             };
 
             /**
              * Clean the user logged credentials
              */
-            $rootScope.cleanCredentials = function () {
-                $window.sessionStorage.user = null;
-                $window.sessionStorage.userId = null;
-                $window.sessionStorage.userRole = null;
-                $window.sessionStorage.tokenSecret = null;
-                $window.sessionStorage.apiToken = null;
-                $window.sessionStorage.fullName = null;
+            $rootScope.cleanCredentials = function() {
+
+                $cookies.remove('user');
+                $cookies.remove('userId');
+                $cookies.remove('userRole');
+                $cookies.remove('tokenSecret');
+                $cookies.remove('fullName');
+
                 $http.defaults.headers.common['X-AUTH-TOKEN'] = undefined;
 
                 $rootScope.userRole = null;
                 $rootScope.username = null;
-                $rootScope.fulName = null;
+                $rootScope.fullName = null;
                 $rootScope.logged = false;
             };
 

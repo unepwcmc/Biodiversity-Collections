@@ -1,0 +1,40 @@
+#login-box {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 137, 55, 0.9);
+  top: 0;
+  position: fixed;
+  z-index: 4000;
+  left: 0; }
+#login-box .login-form {
+  max-width: 380px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 8%; }
+#login-box .login-form h4 {
+  margin: 0 0 22px 0;
+  color: #666;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dadada; }
+#login-box .login-form label {
+  margin-top: 10px; }
+#login-box .login-form i.fa-close {
+  color: #008937;
+  cursor: default; }
+#login-box .login-form i.fa-close:hover {
+  opacity: 0.8; }
+#login-box .login-form .checkbox label {
+  margin: 0;
+  font-weight: 400;
+  color: #666; }
+#login-box .login-form .checkbox label:before {
+  border: 1px solid #ddd; }
+#login-box .login-form #inputPassword {
+  margin-bottom: 28px; }
+#login-box .login-form a.forgot-pw {
+  color: #008937; }
+#login-box .login-form #rem-me {
+  margin-top: 12px; }

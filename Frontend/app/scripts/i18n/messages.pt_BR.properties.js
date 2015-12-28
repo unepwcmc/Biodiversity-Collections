@@ -150,7 +150,7 @@ define([],function ( ) {
     'ADD_NEW_MEMBER':'Adicionar novo membro',
     'DELETE_ASSOCIATED_MEMBER':'Deletar membro associado',
     'EMAIL':'Email',
-    'USERNAME':'Username',
+    'USERNAME':'Usuário',
     'FIRST_NAME':'Primeiro nome',
     'LAST_NAME':'Último email',
     'PASSWORD':'Senha',
@@ -160,7 +160,9 @@ define([],function ( ) {
     'EMAIL_ADDRESS':'Endereço de e-mail',
     'NEW_USER':'Novo usuário',
     'USER_SAVED_SUCCESSFULLY':'Usuário registrado com sucesso',
-    'SORRY_WE_CANT_REGISTER_THE_USER':'Desculpe, não foi possível registrar o usuário'
+    'SORRY_WE_CANT_REGISTER_THE_USER':'Desculpe, não foi possível registrar o usuário',
+    'SIGN_IN':'Entrar',
+    'FORGOT_PASSWORD':'Esqueceu a senha?'
   }
 
 });
