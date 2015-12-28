@@ -28,7 +28,6 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         };
 
                         $scope.loadImage = function( img ){
-                            console.log($scope);
                             if( $scope.image != '')
                                img.attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
                         };
