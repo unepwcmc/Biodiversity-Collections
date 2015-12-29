@@ -5,7 +5,7 @@
             <h5>{{ 'ACTIONS' | translate }}</h5>
             <ul class="list-unstyled admin-menu-list">
                 <li><a ui-sref="admin_user_create"><i class="fa fa-users"></i>{{ 'CREATE_USER'  | translate }}</a></li>
-                <li><a><i class="fa fa-book"></i>{{ 'INVITE_CURATOR'  | translate }}</a></li>
+                <li><a class="btn_invite_curator"><i class="fa fa-book"></i>{{ 'INVITE_CURATOR'  | translate }}</a></li>
                 <li><a ui-sref="admin_institution_create"><i class="fa fa-bank"></i>{{ 'CREATE_INSTITUTION'  | translate }}</a></li>
                 <li><a><i class="fa fa-rotate-right"></i>{{ 'RESET_YOUR_PASSWORD'  | translate }}</a></li>
             </ul>
@@ -43,4 +43,33 @@
 
         </div>
     </div>
+
+    <div id="invite_curator" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ 'INVITE_CURATOR' | translate }}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form name="form_invite_curator">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">{{ 'EMAIL' | translate }}</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{ 'EMAIL' | translate }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">{{ 'INSTITUTION' | translate }}</label>
+                            <input type="TEXT" class="form-control" id="exampleInputPassword1" placeholder="{{ 'INSTITUTION' | translate }}">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-disabled="!$form_invite_curator.$valid">{{ 'INVITE' |  translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

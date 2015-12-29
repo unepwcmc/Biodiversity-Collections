@@ -188,7 +188,8 @@ define([],function ( ) {
     'USERNAME_OR_PASSWORD_INVALID':'Username or password invalid.',
     'FORGOT_PASSWORD_REQUESTED':'Forgot password requested.',
     'PASSWORD_RESET':'Password was reseted.',
-    'TOKEN_EXPIRED_MSG':'User session token expired. Please, process the login again.'
+    'TOKEN_EXPIRED_MSG':'User session token expired. Please, process the login again.',
+    'INVITE':'Invite'
 
   }
 

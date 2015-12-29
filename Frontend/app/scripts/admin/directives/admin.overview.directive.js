@@ -3,7 +3,7 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD'], function (angularAMD) {
+define(['angularAMD','bootstrap'], function (angularAMD) {
 
     'use strict';
 
@@ -23,6 +23,10 @@ define(['angularAMD'], function (angularAMD) {
 
                     }],
                 link: function (scope, element, attrs) {
+
+                    $('a.btn_invite_curator').click(function(){
+                        $('#invite_curator').modal('show');
+                    });
 
                 }
             };

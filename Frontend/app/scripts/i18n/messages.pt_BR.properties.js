@@ -186,7 +186,8 @@ define([],function ( ) {
     'USERNAME_OR_PASSWORD_INVALID':'Usuário ou senha inválida',
     'FORGOT_PASSWORD_REQUESTED':'Recupear senha requistado',
     'PASSWORD_RESET':'A senha foi alterada',
-    'TOKEN_EXPIRED_MSG':'Sessão expirada, por favor faça login novamente.'
+    'TOKEN_EXPIRED_MSG':'Sessão expirada, por favor faça login novamente.',
+    'INVITE':'Convidar'
   }
 
 });
