@@ -27,6 +27,10 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                             $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.curator.institution);
                         });
 
+                        $scope.$on('CURATOR_UPDATED', function(){
+                            convertDate();
+                        });
+
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
                             return $http.get( $rootScope.getHost() + "institutions/search/autocompleteName?name=" + userInputString,
                                 {

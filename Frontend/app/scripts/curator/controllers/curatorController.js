@@ -126,7 +126,7 @@ define(['app',
                         return false;
                     }
                     $scope.curator.dateOfBirth = date;
-                    $scope.curator.date = {};
+                    delete $scope.curator.date;
                 }
                 return true;
             }
