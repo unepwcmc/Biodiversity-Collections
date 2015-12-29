@@ -26,8 +26,6 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
 
                         $scope.$on('SAMPLE_LOADED', function( ) {
                             console.log('Samples Loaded...');
-
-                            console.log($scope.samples);
                         });
 
                         $scope.paginateSample = function(page, size){
