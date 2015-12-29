@@ -7,6 +7,11 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraph(name = "Curator.detail",
+        attributeNodes = {
+                @NamedAttributeNode("associatedInstitutions")
+        }
+)
 public class Curator implements BaseEntity {
 
     @Id

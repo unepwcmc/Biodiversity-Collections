@@ -14,8 +14,8 @@ import java.util.List;
 
 public interface BiodiversityCollectionRepository extends AbstractRepository<BiodiversityCollection> {
 
-   /* @EntityGraph(value = "BiodiversityCollection.detail", type = EntityGraph.EntityGraphType.LOAD)
-    BiodiversityCollection loadGraph(Long id);*/
+    @EntityGraph(value = "BiodiversityCollection.detail", type = EntityGraph.EntityGraphType.LOAD)
+    BiodiversityCollection getById(Long id);
 
     Page<BiodiversityCollection> findByNameContainingOrderByNameAsc(@Param("name") String name, Pageable page);
 

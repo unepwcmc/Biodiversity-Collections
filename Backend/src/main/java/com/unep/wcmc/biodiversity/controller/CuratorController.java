@@ -1,8 +1,6 @@
 package com.unep.wcmc.biodiversity.controller;
 
 import com.unep.wcmc.biodiversity.model.Curator;
-import com.unep.wcmc.biodiversity.model.Institution;
-import com.unep.wcmc.biodiversity.model.Network;
 import com.unep.wcmc.biodiversity.service.CuratorService;
 import com.unep.wcmc.biodiversity.service.ImageService;
 import com.unep.wcmc.biodiversity.support.AbstractController;
@@ -21,6 +19,11 @@ public class CuratorController extends AbstractController<Curator, CuratorServic
 
     @Autowired
     private ImageService imageService;
+
+    @Override
+    public Object read(@PathVariable String id) {
+        return service.getRepository().getById(new Long(id));
+    }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<Curator> name(@RequestParam String name,
