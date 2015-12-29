@@ -187,7 +187,8 @@ define([],function ( ) {
     'FORGOT_PASSWORD_REQUESTED':'Recupear senha requistado',
     'PASSWORD_RESET':'A senha foi alterada',
     'TOKEN_EXPIRED_MSG':'Sessão expirada, por favor faça login novamente.',
-    'INVITE':'Convidar'
+    'INVITE':'Convidar',
+    'ASSOCIATED_MEMBERS_PAGE':'Página de membros associados'
   }
 
 });

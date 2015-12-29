@@ -136,6 +136,20 @@
                          </div>
 
                          <div class="form-group">
+                             <label class="col-sm-3">{{ 'ASSOCIATED_MEMBERS' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <table class="researches">
+                                     <tbody>
+                                         <tr ng-repeat="member in collection.associatedMembers" on-finish-render="ngRepeatFinished">
+                                             <td><input type="text" class="form-control" data-ng-model="member.name" ></td>
+                                         </tr>
+                                     </tbody>
+                                 </table>
+                                 <a ui-sref="member({ id: collection.id })" style="cursor: pointer">{{ 'ASSOCIATED_MEMBERS_PAGE' | translate }}</a>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
                              <label class="col-sm-3">{{ 'CURATORIAL_UNIT_LODGE' | translate }}</label>
                              <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.curatorialLodge"></div>
                          </div>

@@ -189,7 +189,8 @@ define([],function ( ) {
     'FORGOT_PASSWORD_REQUESTED':'Forgot password requested.',
     'PASSWORD_RESET':'Password was reseted.',
     'TOKEN_EXPIRED_MSG':'User session token expired. Please, process the login again.',
-    'INVITE':'Invite'
+    'INVITE':'Invite',
+    'ASSOCIATED_MEMBERS_PAGE':'Associated members page'
 
   }
 
