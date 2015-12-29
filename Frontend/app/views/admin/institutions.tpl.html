@@ -1,4 +1,5 @@
 <div class="container">
+
     <div class="row">
         <br/>
         <table class="table">
@@ -42,46 +43,41 @@
         </table>
 
         <div class="row">
-            <div class="col-md-2">&nbsp;</div>
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="pull-right" ng-show="institutions.totalPages > 1">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
-                            </div>
-                            <div class="form-group" style="width: 100px">
-                                <div class="select-wrapper">
-                                    <select class="col-md-5" id="user-size-box">
-                                        <option value="5" selected>5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="25">25</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>{{institutions.number + 1}} {{ 'OF' | translate }} {{ institutions.totalPages }}</label>
-                            </div>
-
-                    <span ng-class="{disabled: institutions.number === 0}">
-                        <a type="submit" class="btn btn-default" ng-show="institutions.number !== 0"
-                           ng-click="paginateInstitution(institutions.number - 1,institutions.size)"><strong style="color: #666"> &lt; </strong></a>
-                        <button disabled="disabled" class="btn btn-default" class="page-not-active"
-                                ng-show="institutions.number === 0"><strong style="color: #666"> &lt; </strong></button>
-                    </span>
-                    <span ng-class="{disabled: institutions.number === institutions.totalPages - 1}">
-                        <a type="submit" class="btn btn-default" ng-show="institutions.number !== institutions.totalPages - 1"
-                           ng-click="paginateInstitution(institutions.number + 1,institutions.size)"><strong style="color: #666"> &gt; </strong></a>
-                        <button disabled="disabled" class="btn btn-default"
-                                ng-show="institutions.number === institutions.totalPages - 1"><strong style="color: #666"> &gt; </strong>
-                        </button>
-                    </span>
-
-                        </form>
+            <div class="pull-right" ng-show="institutions.totalPages > 1">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
                     </div>
-                </div>
+                    <div class="form-group" style="width: 100px">
+                        <div class="select-wrapper">
+                            <select class="col-md-5" id="user-size-box">
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{institutions.number + 1}} {{ 'OF' | translate }} {{ institutions.totalPages }}</label>
+                    </div>
+
+            <span ng-class="{disabled: institutions.number === 0}">
+                <a type="submit" class="btn btn-default" ng-show="institutions.number !== 0"
+                   ng-click="paginateInstitution(institutions.number - 1,institutions.size)"><strong style="color: #666"> &lt; </strong></a>
+                <button disabled="disabled" class="btn btn-default" class="page-not-active"
+                        ng-show="institutions.number === 0"><strong style="color: #666"> &lt; </strong></button>
+            </span>
+            <span ng-class="{disabled: institutions.number === institutions.totalPages - 1}">
+                <a type="submit" class="btn btn-default" ng-show="institutions.number !== institutions.totalPages - 1"
+                   ng-click="paginateInstitution(institutions.number + 1,institutions.size)"><strong style="color: #666"> &gt; </strong></a>
+                <button disabled="disabled" class="btn btn-default"
+                        ng-show="institutions.number === institutions.totalPages - 1"><strong style="color: #666"> &gt; </strong>
+                </button>
+            </span>
+
+                </form>
             </div>
         </div>
     </div>

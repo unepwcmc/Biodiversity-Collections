@@ -3,91 +3,93 @@
         <br/>
         <table class="table">
             <thead>
-                <tr>
-                    <th><input type="checkbox"></th>
-                    <th>
-                        <div class="btn-group">
-                            <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ 'ACTION' | translate }} <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="javascript:" >{{ 'EDIT' | translate }}</a></li>
-                                <li><a href="javascript:"  ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a></li>
-                            </ul>
-                        </div>
-                    </th>
-                    <th>{{ 'FIRST_NAME' | translate }}</th>
-                    <th>{{ 'LAST_NAME' | translate }}</th>
-                    <th>{{ 'USERNAME' | translate }}</th>
-                    <th>{{ 'ROLE' | translate }}</th>
-                    <th>{{ 'STATUS' | translate }}</th>
-                </tr>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>
+                    <div class="btn-group">
+                        <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            {{ 'ACTION' | translate }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:">{{ 'EDIT' | translate }}</a></li>
+                            <li><a href="javascript:" ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </th>
+                <th>{{ 'FIRST_NAME' | translate }}</th>
+                <th>{{ 'LAST_NAME' | translate }}</th>
+                <th>{{ 'USERNAME' | translate }}</th>
+                <th>{{ 'ROLE' | translate }}</th>
+                <th>{{ 'STATUS' | translate }}</th>
+            </tr>
             </thead>
 
             <tbody>
-                    <tr ng-repeat="u in users.content">
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="btn-group">
-                                <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ 'ACTION' | translate }} <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="javascript:" >{{ 'EDIT' | translate }}</a></li>
-                                    <li><a href="javascript:"  ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td>{{ u.firstName}}</td>
-                        <td>{{ u.lastName}}</td>
-                        <td>{{ u.email}}</td>
-                        <td>{{ u.userRole.name}}</td>
-                        <td>{{ u.enabled}}</td>
-                    </tr>
+            <tr ng-repeat="u in users.content">
+                <td><input type="checkbox"></td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            {{ 'ACTION' | translate }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:">{{ 'EDIT' | translate }}</a></li>
+                            <li><a href="javascript:" ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td>{{ u.firstName}}</td>
+                <td>{{ u.lastName}}</td>
+                <td>{{ u.email}}</td>
+                <td>{{ u.userRole.name}}</td>
+                <td>{{ u.enabled}}</td>
+            </tr>
             </tbody>
         </table>
 
         <div class="row">
-            <div class="col-md-2">&nbsp;</div>
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="pull-right" ng-show="users.totalPages > 1">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
-                            </div>
-                            <div class="form-group" style="width: 100px">
-                                <div class="select-wrapper">
-                                    <select class="col-md-5" id="user-size-box">
-                                        <option value="5" selected>5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="25">25</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>{{users.number + 1}} {{ 'OF' | translate }} {{ users.totalPages }}</label>
-                            </div>
+            <div class="pull-right" ng-show="users.totalPages > 1">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
+                    </div>
+                    <div class="form-group" style="width: 100px">
+                        <div class="select-wrapper">
+                            <select class="col-md-5" id="user-size-box">
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{users.number + 1}} {{ 'OF' | translate }} {{ users.totalPages }}</label>
+                    </div>
 
                     <span ng-class="{disabled: users.number === 0}">
                         <a type="submit" class="btn btn-default" ng-show="users.number !== 0"
-                           ng-click="paginateUsers(users.number - 1,users.size)"><strong style="color: #666"> &lt; </strong></a>
+                           ng-click="paginateUsers(users.number - 1,users.size)"><strong style="color: #666">
+                            &lt; </strong></a>
                         <button disabled="disabled" class="btn btn-default" class="page-not-active"
                                 ng-show="users.number === 0"><strong style="color: #666"> &lt; </strong></button>
                     </span>
                     <span ng-class="{disabled: users.number === users.totalPages - 1}">
                         <a type="submit" class="btn btn-default" ng-show="users.number !== users.totalPages - 1"
-                           ng-click="paginateUsers(users.number + 1,users.size)"><strong style="color: #666"> &gt; </strong></a>
+                           ng-click="paginateUsers(users.number + 1,users.size)"><strong style="color: #666">
+                            &gt; </strong></a>
                         <button disabled="disabled" class="btn btn-default"
-                                ng-show="users.number === users.totalPages - 1"><strong style="color: #666"> &gt; </strong>
+                                ng-show="users.number === users.totalPages - 1"><strong style="color: #666">
+                            &gt; </strong>
                         </button>
                     </span>
 
-                        </form>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
