@@ -118,7 +118,7 @@
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'RESEARCHES' | translate }}</label>
                              <div class="col-sm-9">
-                                <table class="researches">
+                                <table >
                                     <tbody>
                                         <tr ng-repeat="researcher in collection.researchers" on-finish-render="ngRepeatFinished">
                                             <td><input type="text" class="form-control" data-ng-model="researcher.name" ></td>
@@ -138,14 +138,14 @@
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'ASSOCIATED_MEMBERS' | translate }}</label>
                              <div class="col-sm-9">
-                                 <table class="researches">
+                                 <table>
                                      <tbody>
                                          <tr ng-repeat="member in collection.associatedMembers" on-finish-render="ngRepeatFinished">
                                              <td><input type="text" class="form-control" data-ng-model="member.name" ></td>
                                          </tr>
                                      </tbody>
                                  </table>
-                                 <a ui-sref="member({ id: collection.id })" style="cursor: pointer">{{ 'ASSOCIATED_MEMBERS_PAGE' | translate }}</a>
+                                 <a ui-sref="member({ id: collection.id })" style="cursor: pointer;margin-left: 11px">{{ 'ASSOCIATED_MEMBERS_PAGE' | translate }}</a>
                              </div>
                          </div>
 

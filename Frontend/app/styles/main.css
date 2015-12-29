@@ -137,19 +137,19 @@ h5 {
 
 /** DEFAULT LINK STYES */
 a:hover {
-  color: #007B31;
+  color: #003DCC;
   text-decoration: none;
   outline: none !important; }
 
 a:hover {
-  color: #33A15F;
+  color: #003DCC;
   text-decoration: underline; }
 
 a:focus, a:visited {
-  color: #00692A; }
+  color: #003DCC; }
 
 a[target="blank"] {
-  color: #007B31; }
+  color: #003DCC; }
 
 /** SEPARATOR STYLES */
 /** PARA STYLES */
@@ -1419,11 +1419,18 @@ ul.admin-menu-list > li {
 ul.admin-menu-list > li > a > i {
   margin-right: 8px; }
 
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #666;
+  font-weight: bolder;
+  background-color: #CCCCCC; }
+
 #login-box {
   display: none;
   width: 100%;
   height: 100%;
-  background-color: rgba(109, 110, 110, 0.9);
+  background-color: rgba(0, 137, 55, 0.9);
   top: 0;
   position: fixed;
   z-index: 4000;
@@ -1447,7 +1454,7 @@ ul.admin-menu-list > li > a > i {
   margin-top: 10px; }
 
 #login-box .login-form i.fa-close {
-  color: #666;
+  color: #008937;
   cursor: default; }
 
 #login-box .login-form i.fa-close:hover {
@@ -1465,7 +1472,7 @@ ul.admin-menu-list > li > a > i {
   margin-bottom: 28px; }
 
 #login-box .login-form a.forgot-pw {
-  color: #666; }
+  color: #008937; }
 
 #login-box .login-form #rem-me {
   margin-top: 12px; }
