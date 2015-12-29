@@ -9,14 +9,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-/*@NamedEntityGraph(name = "BiodiversityCollection.detail",
+@NamedEntityGraph(name = "BiodiversityCollection.detail",
         attributeNodes = {
                 @NamedAttributeNode("researchers"),
                 @NamedAttributeNode("specimens"),
                 @NamedAttributeNode("images"),
                 @NamedAttributeNode("associatedMembers")
         }
-    )*/
+    )
 public class BiodiversityCollection implements BaseEntity {
 
     @Id

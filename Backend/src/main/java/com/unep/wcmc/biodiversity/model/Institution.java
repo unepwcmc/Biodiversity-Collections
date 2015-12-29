@@ -9,6 +9,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraph(name = "Institution.detail",
+        attributeNodes = {
+                @NamedAttributeNode("curators"),
+                @NamedAttributeNode("networks")
+        }
+    )
 public class Institution implements BaseEntity {
 
     @Id

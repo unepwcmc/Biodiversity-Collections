@@ -31,6 +31,11 @@ public class InstitutionController extends AbstractController<Institution, Insti
     @Autowired
     private CuratorService curatorService;
 
+    @Override
+    public Object read(@PathVariable String id) {
+        return service.getRepository().getById(new Long(id));
+    }
+
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<Institution> name(@RequestParam String name,
                                   @PageableDefault(page = 0, size = 10) Pageable pageable) {
