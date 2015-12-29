@@ -12,8 +12,7 @@ define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
             return {
                 restrict: 'EA',
                 templateUrl: 'views/admin/institutions.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate',
-                    function($scope, $rootScope, $stateParams, $state, $translate){
+                controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate', function($scope, $rootScope, $stateParams, $state, $translate){
 
                         $scope.institutions = null;
 
@@ -23,12 +22,20 @@ define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
                             if($scope.institutions == null){
                                 console.log('initializing institutions..');
 
+                                $('#loader-wrapper').fadeToggle('400');
+
                                 $scope.institutions = new Institution();
                                 angular.extend($scope.institutions, {totalElements : 0, number: 0, size: 5, totalPages: 0});
                                 $scope.institutions.list($scope.institutions.number, $scope.institutions.size);
                             }
                         });
+
+                        $scope.$on('INSTITUTION_LISTED', function(){
+                            $('#loader-wrapper').fadeToggle('400');
+                        });
+
                         $scope.paginateInstitution = function( number, size){
+                            $('#loader-wrapper').fadeToggle('400');
                             $scope.institutions.list(number, size);
                         };
 

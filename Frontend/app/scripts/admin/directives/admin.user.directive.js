@@ -21,6 +21,7 @@ define(['angularAMD','core/factory/userFactory'], function (angularAMD) {
 
                             if($scope.users == null){
                                 console.log('initializing users..');
+                                $('#loader-wrapper').fadeToggle('400');
 
                                 $scope.users = new User();
                                 angular.extend($scope.users, {totalElements : 0, number: 0, size: 5, totalPages: 0});
@@ -29,8 +30,14 @@ define(['angularAMD','core/factory/userFactory'], function (angularAMD) {
 
                         });
 
+                        $scope.$on('USERS_LISTED', function(){
+                            $('#loader-wrapper').fadeToggle('400');
+                        });
+
+
                         $scope.paginateUsers = function( number, size){
-                            $scope.users.list(number, size);
+                            $('#loader-wrapper').fadeToggle('400');
+                                $scope.users.list(number, size);
                         };
 
                     }],
