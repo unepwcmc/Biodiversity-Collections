@@ -17,3 +17,12 @@ ul.admin-menu-list > li{
 ul.admin-menu-list > li > a > i{
   margin-right:8px;
 }
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+  color: #666;
+  font-weight:bolder;
+  background-color: #CCCCCC;
+}
+
