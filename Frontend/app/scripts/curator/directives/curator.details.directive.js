@@ -2,15 +2,12 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
 
     'use strict';
 
-    angularAMD.directive('curatorDetail', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies',
-
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies) {
+    angularAMD.directive('curatorDetail', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies', function ($timeout, $rootScope, $stateParams, $window, $http, $cookies) {
 
             return {
                 restrict: 'EA',
                 templateUrl: 'views/curator/details.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$translate',
-                    function($scope, $rootScope, $stateParams, $translate){
+                controller: ['$scope', '$rootScope', '$stateParams', '$translate', function($scope, $rootScope, $stateParams, $translate){
 
                         $scope.navigationBar = false;
                         $scope.institutionSelected = null;
