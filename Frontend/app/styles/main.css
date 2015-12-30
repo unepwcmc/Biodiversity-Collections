@@ -1318,6 +1318,17 @@ i.bt-img-close {
   .home-search input.form-control {
     height: 40px; }
 
+.bar-footer {
+  margin-top: 30px;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  background-color: #EAEAEA; }
+
+a.btn-ask-support {
+  margin-top: 15px;
+  margin-right: 20px; }
+
 h5.collection.section-header {
   margin-top: 0;
   line-height: 25px; }

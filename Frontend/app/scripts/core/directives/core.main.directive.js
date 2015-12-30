@@ -1,4 +1,4 @@
-define(['angularAMD', 'bootstrap'], function (angularAMD) {
+define(['angularAMD', 'bootstrap','core/directives/core.ask.support.directive','core/directives/core.footer.directive'], function (angularAMD) {
 
     'use strict';
 

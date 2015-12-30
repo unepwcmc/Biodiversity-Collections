@@ -190,8 +190,11 @@ define([],function ( ) {
     'PASSWORD_RESET':'Password was reseted.',
     'TOKEN_EXPIRED_MSG':'User session token expired. Please, process the login again.',
     'INVITE':'Invite',
-    'ASSOCIATED_MEMBERS_PAGE':'Associated members page'
-
+    'ASSOCIATED_MEMBERS_PAGE':'Associated members page',
+    'ASK_FOR_SUPPORT':'Ask for support',
+    'SEND':'Send',
+    'MESSAGE':'Message',
+    'SUBJECT':'Subject'
   }
 
 });
