@@ -42,6 +42,10 @@ define(['angularAMD','auth/directives/phone.digits.directive'], function (angula
                             resetForm();
                         });
 
+                        $scope.$on('USER_LOADED', function(){
+                            $scope.institutionSelected = $scope.user.institution;
+                        });
+
                         function resetForm(){
                             $scope.user = {};
                             $scope.user_form.$setPristine();

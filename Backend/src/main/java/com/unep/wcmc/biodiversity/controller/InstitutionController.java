@@ -1,5 +1,7 @@
 package com.unep.wcmc.biodiversity.controller;
 
+import com.unep.wcmc.biodiversity.dto.ErrorMessage;
+import com.unep.wcmc.biodiversity.dto.SuccessResponse;
 import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
 import com.unep.wcmc.biodiversity.model.Curator;
 import com.unep.wcmc.biodiversity.model.Institution;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/institutions")
@@ -101,6 +104,32 @@ public class InstitutionController extends AbstractController<Institution, Insti
                     curatorService.save(curator);
 
         return service.save(institution);
+    }
+
+    @RequestMapping(method= RequestMethod.DELETE, value = "/{id}")
+    public Object delete(@PathVariable String id) {
+
+        Institution institution = service.get(Long.valueOf(id));
+
+        institution.getCollections().forEach( collection -> {
+            if(collection.getInstitution().equals(institution)){
+                collection.setInstitution(null);
+                collectionService.save(collection);
+            }
+        });
+
+        /*for (BiodiversityCollection collection : institution.getCollections()) {
+            if(collection.getInstitution().equals(institution)){
+                collection.setInstitution(null);
+                collectionService.save(collection);
+            }
+        }*/
+
+        if (service.delete(Long.valueOf(id))) {
+            return new SuccessResponse();
+        }
+        final Long entityId = Long.valueOf(id);
+        return new ErrorMessage(entityId, "no matches found");
     }
 
 }
