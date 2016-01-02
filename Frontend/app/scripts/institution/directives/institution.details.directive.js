@@ -2,60 +2,33 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
 
     'use strict';
 
-    angularAMD.directive('institutionDetail', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','toastr',
-
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, toastr) {
+    angularAMD.directive('institutionDetail', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', function ($timeout, $rootScope, $stateParams, $window, $http) {
 
             return {
                 restrict: 'EA',
                 templateUrl: 'views/institution/details.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$translate',
-                    function($scope, $rootScope, $stateParams, $translate){
+                controller: ['$scope', '$rootScope',  function($scope, $rootScope){
 
                         $scope.institutionCuratorSelected = null;
 
-                       /* $scope.$watch('adminView', function( newValue, oldValue){
-
-                             if(newValue == true){
-                                 $('a.btn-edit-institution-cancel').click();
-                             }
-                        },true);*/
-
                         $scope.addCurator = function(){
+
                             if($scope.institutionCuratorSelected != null){
 
-                                //$('#loader-wrapper').fadeToggle('400');
-
-                               /* $scope.institution.addCurator( $stateParams.id, $scope.institutionCuratorSelected.originalObject.id, function( data, status){
-                                    if(status === 200){
-                                        toastr.success($translate.instant('CURATOR_ADDED_TO_INSTITUTION'), $translate.instant('SUCCESS'));
-                                        $scope.institution.get( $stateParams.id );
-                                    } else {
-                                        $('#loader-wrapper').fadeToggle('400');
-                                        toastr.error($translate.instant('CURATOR_ADDED_TO_INSTITUTION_ERROR'), $translate.instant('ERROR'));
-                                    }
-                                });*/
-                                $scope.institution.curators
-                                $scope.institutionCuratorSelected = null;
-                                $scope.$broadcast('angucomplete-alt:clearInput', 'institution_curator_autocomplete');
+                                var obj = {
+                                    id: $scope.institutionCuratorSelected.originalObject.id,
+                                    name: $scope.institutionCuratorSelected.originalObject.name
+                                };
+                                $scope.institution.curators.push(obj);
                             }
+                            console.log($scope.institution);
+                            $scope.institutionCuratorSelected = null;
+                            $scope.$broadcast('angucomplete-alt:clearInput', 'institution_curator_autocomplete');
                         };
 
-                        $scope.removeCurator = function( networkId ){
-                            if ($scope.networks.number > 0) {
-                                if( (($scope.networks.totalElements - 1) % $scope.networks.size) == 0){
-                                    $scope.networks.number = $scope.networks.number - 1;
-                                    $scope.networks.totalPages = $scope.networks.totalPages - 1;
-                                }
-                            }
-                            $scope.collection.removeNetwork( $stateParams.id, networkId , function( data, status){
-                                if(status === 200){
-                                    toastr.success($translate.instant('NETWORK_REMOVED_TO_COLLECTION'), $translate.instant('SUCCESS'));
-                                    $scope.networks.loadByCollection( $stateParams.id,  $scope.networks.number, $scope.networks.size);
-                                } else {
-                                    toastr.success($translate.instant('NETWORK_REMOVED_TO_COLLECTION_ERROR'), $translate.instant('ERROR'));
-                                }
-                            });
+                        $scope.deleteCurator = function( index ){
+
+                            $scope.institution.curators.splice(index, 1);
                         };
 
                         $scope.curatorAutocomplete = function( userInputString, timeoutPromise){
@@ -67,9 +40,6 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                                 }
                             );
                         };
-
-
-
 
                     }],
                 link: function (scope, element, attrs) {

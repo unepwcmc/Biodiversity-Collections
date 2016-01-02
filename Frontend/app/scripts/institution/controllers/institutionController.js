@@ -69,13 +69,27 @@ define(['app',
 
                 $('#loader-wrapper').fadeToggle('400');
 
+                console.log($scope.institution);
+
                 $scope.institution.update();
             });
 
 
             $scope.$on('CANCEL_EDIT_INSTITUTION', function(){
                 console.log('edit form canceling...');
-                $state.go($state.current, $stateParams, {reload: true, inherit: false});
+
+                if($scope.adminView){
+
+                    $scope.institution.delete( $stateParams.id, function( data, status ){
+
+                          if(status == 200){
+                              $state.go('admin_institution_create');
+                          }
+                    });
+                }
+                else{
+                    $state.go($state.current, $stateParams, {reload: true, inherit: false});
+                }
             });
 
             /**
@@ -96,9 +110,7 @@ define(['app',
                     $('#loader-wrapper').fadeToggle('400');
                     toastr.success($translate.instant('INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
 
-                    console.log('1');
                     if($scope.adminView){
-                        console.log('11');
                         $state.go('admin_institution_create');
                     }
                 }

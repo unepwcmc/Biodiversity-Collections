@@ -281,6 +281,23 @@ define(['angularAMD'], function (angularAMD) {
                         if(callback)
                             callback( data, status, headers, config )
                     });
+            },
+            delete: function( id, callback){
+
+                $http.delete( $rootScope.getHost() + "institutions/" + id )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
             }
         };
 
