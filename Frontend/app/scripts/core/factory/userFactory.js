@@ -111,12 +111,20 @@ define(['app'], function (app) {
                 );
             },
             delete: function (id, callback) {
-                $http.delete( $rootScope.getHost() + "users/" + id, this)
+                $http.delete( $rootScope.getHost() + "users/" + id)
                     .success(function (data, status, headers, config) {
-                        callback(data, status, headers, config);
+
+                        $rootScope.$broadcast("USER_DELETED");
+
+                        if(callback)
+                          callback(data, status, headers, config);
                     })
                     .error(function(data, status, headers, config){
-                        callback(data, status, headers, config);
+
+                        $rootScope.$broadcast("USER_DELETED");
+
+                        if(callback)
+                            callback(data, status, headers, config);
                     }
                 );
             }
