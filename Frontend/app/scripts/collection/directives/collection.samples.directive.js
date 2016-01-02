@@ -127,7 +127,6 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
 
                             $q.all( promises ).then(function( results ){
                                 $scope.showSuccessMessage('SAMPLES_DELETED_SUCCESSFULLY','SUCCESS');
-                                console.log($scope.samples);
                                 $scope.samples.load( $stateParams.id,  $scope.samples.number, $scope.samples.size);
                                 $scope.checkboxes_selected = !$scope.checkboxes_selected;
                                 $scope.checkboxCount = 0;
