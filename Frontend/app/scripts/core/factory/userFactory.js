@@ -30,6 +30,25 @@ define(['app'], function (app) {
             setData: function (data) {
                 angular.extend(this, data);
             },
+            get: function( id){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "users/" + id )
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("USER_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("USER_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("USER_LOAD_ERROR");
+                    });
+            },
             list: function (page, size, callback) {
                 var self = this;
                 $http.get( $rootScope.getHost() + "users" + "?page=" +  page + "&size=" +   size)

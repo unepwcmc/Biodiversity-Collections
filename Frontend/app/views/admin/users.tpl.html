@@ -33,7 +33,7 @@
                             {{ 'ACTION' | translate }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:">{{ 'EDIT' | translate }}</a></li>
+                            <li><a href="javascript:" ng-click="editUser(u.id)">{{ 'EDIT' | translate }}</a></li>
                             <li><a href="javascript:" ng-confirm-click="ARE_YOU_SURE" ng-click="deleteUser(u.id)">{{ 'DELETE' | translate }}</a>
                             </li>
                         </ul>

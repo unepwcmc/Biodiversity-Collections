@@ -5,8 +5,7 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','User','$timeout',
-        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, User, $timeout) {
+    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','User','$timeout', function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, User, $timeout) {
 
             angular.extend($scope, BaseController);
 
@@ -21,6 +20,11 @@ define(['app',
 
                 if(toState.name == 'admin_user_create'){
                     $scope.adminView = true;
+                }
+                else if(toState.name == 'admin_user_edit'){
+                   // $('#loader-wrapper').fadeToggle('400');
+                    $scope.adminView = true;
+                    $scope.user.get($stateParams.id);
                 }
             });
 
@@ -52,6 +56,12 @@ define(['app',
 
                 $('#loader-wrapper').fadeToggle('400');
                 $scope.showErrorMessage('ERROR','SORRY_WE_CANT_REGISTER_THE_USER');
+            });
+
+            $scope.$on('USER_LOADED', function(){
+               // $('#loader-wrapper').fadeToggle('400');
+                $scope.user.role = $scope.user.userRole.name;
+                delete $scope.user.userRole;
             });
 
         }];
