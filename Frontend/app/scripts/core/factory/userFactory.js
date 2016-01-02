@@ -93,10 +93,18 @@ define(['app'], function (app) {
             update: function (model, callback) {
                 $http.put( $rootScope.getHost() + "users/" + model.id, model)
                     .success(function (data, status, headers, config) {
-                        callback(data, status, headers, config);
+
+                        if(callback)
+                            callback(data, status, headers, config);
+
+                        $rootScope.$broadcast("USER_UPDATED");
                     })
                     .error(function(data, status, headers, config){
-                        callback(data, status, headers, config);
+
+                        if(callback)
+                            callback(data, status, headers, config);
+
+                        $rootScope.$broadcast("USER_UPDATED");
                     }
                 );
             },

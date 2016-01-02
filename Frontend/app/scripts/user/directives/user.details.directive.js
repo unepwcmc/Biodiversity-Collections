@@ -34,7 +34,13 @@ define(['angularAMD','auth/directives/phone.digits.directive'], function (angula
                             $scope.$emit('REGISTER_NEW_USER', $scope.user);
                         };
 
+                        $scope.editUserSubmit = function(){
+                            $scope.$emit('EDIT_USER');
+                        };
+
                         $scope.cancelForm = function(){
+
+                            $scope.$emit('CANCEL_USER_FORM');
                             resetForm();
                         };
 

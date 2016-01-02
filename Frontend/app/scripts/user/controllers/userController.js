@@ -11,6 +11,7 @@ define(['app',
 
             $scope.user = new User();
             $scope.adminView = false;
+            $scope.editUserView = false;
 
             /**
              * Listener when the state is changed
@@ -24,6 +25,7 @@ define(['app',
                 else if(toState.name == 'admin_user_edit'){
                    // $('#loader-wrapper').fadeToggle('400');
                     $scope.adminView = true;
+                    $scope.editUserView = true;
                     $scope.user.get($stateParams.id);
                 }
             });
@@ -44,11 +46,51 @@ define(['app',
                 $scope.user.save( data );
             });
 
+            /**
+             * Should be fired when the button save is click
+             */
+            $scope.$on('EDIT_USER', function( evt ){
+                console.log('updating user..');
+
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.user.update( $scope.user );
+            });
+
+            /**
+             * Should be fired when the button save is click
+             */
+            $scope.$on('USER_UPDATED', function( evt ){
+                console.log('user updated..');
+
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.showSuccessMessage('SUCCESS','USER_SAVED_SUCCESSFULLY');
+
+                if($scope.adminView == true && $scope.editUserView == true){
+                    $state.go('admin');
+                }
+            });
+
             $scope.$on('USER_SAVED', function( evt, data){
                  console.log('user saved..');
                 $('#loader-wrapper').fadeToggle('400');
 
                 $scope.showSuccessMessage('SUCCESS','USER_SAVED_SUCCESSFULLY');
+
+                if($scope.adminView == true){
+                    $state.go('admin');
+                }
+                else{
+                    $state.go('home');
+                }
+            });
+
+            $scope.$on('CANCEL_USER_FORM', function( evt, data){
+                if($scope.adminView == true){
+                    $state.go('admin');
+                }
+                else{
+                    $state.go('home');
+                }
             });
 
             $scope.$on('USER_SAVED_ERROR', function( evt, data){
