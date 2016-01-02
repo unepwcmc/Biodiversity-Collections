@@ -14,8 +14,7 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
             return {
                 restrict: 'EA',
                 templateUrl: 'views/collection/details.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$translate',
-                    function($scope, $rootScope, $stateParams, $translate){
+                controller: ['$scope', '$rootScope',function($scope, $rootScope){
 
                         $scope.curatorSelected = null;
                         $scope.institutionSelected = null;
