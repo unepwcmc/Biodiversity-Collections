@@ -4,17 +4,14 @@
         <table class="table">
             <thead>
             <tr>
-                <th><input type="checkbox"></th>
+                <th><input ng-click="checkAndUnCheckAll()" type="checkbox" id="checkbox-all"></th>
                 <th>
                     <div class="btn-group">
-                        <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" ng-disabled="!checkboxCount > 0" aria-haspopup="true" aria-expanded="false">
                             {{ 'ACTION' | translate }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:">{{ 'EDIT' | translate }}</a></li>
-                            <li><a href="javascript:" ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a>
-                            </li>
+                            <li><a href="javascript:" ng-click="deleteAll()" ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a></li>
                         </ul>
                     </div>
                 </th>
@@ -28,7 +25,7 @@
 
             <tbody>
             <tr ng-repeat="u in users.content">
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" class="user-checkbox-delete" data-user-id="{{u.id}}" ng-click="singleCheckBoxEvent($event)"></td>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
