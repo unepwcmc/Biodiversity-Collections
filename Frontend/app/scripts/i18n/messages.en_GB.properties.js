@@ -194,7 +194,8 @@ define([],function ( ) {
     'ASK_FOR_SUPPORT':'Ask for support',
     'SEND':'Send',
     'MESSAGE':'Message',
-    'SUBJECT':'Subject'
+    'SUBJECT':'Subject',
+    'DELETE':'Delete'
   }
 
 });
