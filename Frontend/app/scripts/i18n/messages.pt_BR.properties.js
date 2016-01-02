@@ -192,7 +192,8 @@ define([],function ( ) {
     'ASK_FOR_SUPPORT':'Pedir ajuda',
     'SEND':'Enviar',
     'MESSAGE':'Mensagem',
-    'SUBJECT':'Assunto'
+    'SUBJECT':'Assunto',
+    'DELETE':'Deletar'
   }
 
 });
