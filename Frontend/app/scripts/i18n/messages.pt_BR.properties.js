@@ -193,7 +193,8 @@ define([],function ( ) {
     'SEND':'Enviar',
     'MESSAGE':'Mensagem',
     'SUBJECT':'Assunto',
-    'DELETE':'Deletar'
+    'DELETE':'Deletar',
+    'UPDATE':'Atualizar'
   }
 
 });
