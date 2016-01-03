@@ -7,7 +7,7 @@ define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('adminInstitution', ['$rootScope', '$stateParams', '$state','toastr','Institution', function ( $rootScope, $stateParams, $state,  toastr, Institution) {
+    angularAMD.directive('adminInstitution', ['$rootScope', '$stateParams', '$state','toastr','Institution','$q','$http', function ( $rootScope, $stateParams, $state,  toastr, Institution, $q, $http) {
 
             return {
                 restrict: 'EA',
@@ -15,6 +15,8 @@ define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate', function($scope, $rootScope, $stateParams, $state, $translate){
 
                         $scope.institutions = null;
+                        $scope.in_checkboxes_selected = false;
+                        $scope.in_checkboxCount = 0;
 
                         $scope.$on('ADMIN_INSTITUTIONS_TAB', function(){
                             console.log('institution tab');
@@ -38,6 +40,85 @@ define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
                             $('#loader-wrapper').fadeToggle('400');
                             $scope.institutions.list(number, size);
                         };
+
+                    $scope.deleteInstitution = function( id ){
+
+                        $('#loader-wrapper').fadeToggle('400');
+
+                        $scope.institutions.delete( id, function( data, status){
+
+                            if(status == 200){
+                                $scope.institutions.list($scope.institutions.number, $scope.institutions.size);
+                            }
+                            else{
+                                console.error(data);
+                                $('#loader-wrapper').fadeToggle('400');
+                            }
+                        });
+                    };
+
+                    $scope.singleCheckInstitutionBoxEvent = function($event){
+
+                        if($($event.currentTarget).is(":checked"))
+                            $scope.in_checkboxCount+=1;
+                        else
+                            $scope.in_checkboxCount-=1;
+                    };
+
+                    $scope.checkAndUnCheckAllInstitution = function(){
+
+                        $scope.in_checkboxes_selected = !$scope.in_checkboxes_selected;
+
+                        if($scope.in_checkboxes_selected && $scope.in_checkboxCount > 0){
+                            $scope.in_checkboxCount = 0;
+                        }
+
+                        $("input[type=checkbox].institution-checkbox-delete").each(function () {
+
+                            $(this).prop("checked", $scope.in_checkboxes_selected);
+
+                            if($scope.in_checkboxes_selected)
+                                $scope.in_checkboxCount +=1;
+                            else
+                                $scope.in_checkboxCount -= 1;
+
+                        });
+                    };
+
+                    $scope.deleteAllInstitution = function(){
+
+                        /* if($scope.samples.number > 0){
+                         if( (($scope.samples.totalElements - $scope.samples.size) % $scope.samples.size) == 0){
+                         $scope.samples.number = $scope.samples.number - 1;
+                         $scope.samples.totalPages = $scope.samples.totalPages - 1;
+                         }
+                         }*/
+
+                        $('#loader-wrapper').fadeToggle('400');
+
+                        $('#checkbox-institution-all').prop("checked", false);
+
+                        var promises = [];
+
+                        $("input[type=checkbox].institution-checkbox-delete").each(function () {
+                            if($(this).is(":checked")){
+                                if($(this).data('institution-id') != undefined){
+                                    promises.push( $http({ method:'DELETE', url: $rootScope.getHost() + "institutions/" + $(this).data('institution-id') }) );
+                                }
+                            }
+                        });
+
+                        $q.all( promises ).then(function( results ){
+                            $scope.showSuccessMessage('INSTITUTIONS_DELETED_SUCCESSFULLY','SUCCESS');
+                            $scope.institutions.list($scope.institutions.number, $scope.institutions.size);
+                            $scope.in_checkboxes_selected = !$scope.in_checkboxes_selected;
+                            $scope.in_checkboxCount = 0;
+                        });
+                    };
+
+                    $scope.editInstitution = function( id ){
+                        $state.go('admin_institution_edit',{id: id});
+                    }
 
                     }],
                 link: function (scope, element, attrs) {

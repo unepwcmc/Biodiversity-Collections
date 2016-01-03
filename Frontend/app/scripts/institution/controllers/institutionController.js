@@ -13,6 +13,7 @@ define(['app',
             angular.extend($scope, BaseController);
 
             $scope.adminView = false;
+            $scope.adminEditView = false;
             $rootScope.editMode = false;
             $scope.images = [];
             $scope.fromState = 'home';
@@ -38,6 +39,12 @@ define(['app',
                          }
                      });
                  }
+                else if(toState.name == 'admin_institution_edit'){
+
+                    $scope.adminView = true;
+                    $rootScope.editMode = true;
+                    $scope.adminEditView = true;
+                }
             });
 
             /**
@@ -83,7 +90,7 @@ define(['app',
                     $scope.institution.delete( $stateParams.id, function( data, status ){
 
                           if(status == 200){
-                              $state.go('admin_institution_create');
+                              $state.go('admin');
                           }
                     });
                 }
@@ -111,7 +118,7 @@ define(['app',
                     toastr.success($translate.instant('INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
 
                     if($scope.adminView){
-                        $state.go('admin_institution_create');
+                        $state.go('admin');
                     }
                 }
             });

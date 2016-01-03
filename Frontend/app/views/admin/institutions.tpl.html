@@ -5,15 +5,14 @@
         <table class="table">
             <thead>
             <tr>
-                <th><input type="checkbox"></th>
+                <th><input ng-click="checkAndUnCheckAllInstitution()" type="checkbox" id="checkbox-institution-all"></th>
                 <th>
                     <div class="btn-group">
-                        <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn-default btn-sm dropdown-toggle" ng-disabled="!in_checkboxCount > 0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ 'ACTION' | translate }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:" >{{ 'EDIT' | translate }}</a></li>
-                            <li><a href="javascript:"  ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a></li>
+                            <li><a href="javascript:"  ng-confirm-click="ARE_YOU_SURE" ng-click="deleteAllInstitution()">{{ 'DELETE' | translate }}</a></li>
                         </ul>
                     </div>
                 </th>
@@ -24,15 +23,15 @@
 
             <tbody>
             <tr ng-repeat="institution in institutions.content">
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" class="institution-checkbox-delete" data-institution-id="{{institution.id}}" ng-click="singleCheckInstitutionBoxEvent($event)"></td>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ 'ACTION' | translate }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:" >{{ 'EDIT' | translate }}</a></li>
-                            <li><a href="javascript:"  ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a></li>
+                            <li><a href="javascript:" ng-click="editInstitution(institution.id)">{{ 'EDIT' | translate }}</a></li>
+                            <li><a href="javascript:"  ng-confirm-click="ARE_YOU_SURE"  ng-click="deleteInstitution(institution.id)">{{ 'DELETE' | translate }}</a></li>
                         </ul>
                     </div>
                 </td>
