@@ -1,6 +1,7 @@
 package com.unep.wcmc.biodiversity.controller;
 
 import com.unep.wcmc.biodiversity.dto.SuccessResponse;
+import com.unep.wcmc.biodiversity.model.Support;
 import com.unep.wcmc.biodiversity.model.User;
 import com.unep.wcmc.biodiversity.service.UserService;
 import com.unep.wcmc.biodiversity.support.AbstractController;
@@ -50,10 +51,8 @@ public class UserController extends AbstractController<User, UserService> {
     }
 
     @RequestMapping(value = "/ask/support", method= RequestMethod.POST)
-    public SuccessResponse askForSupport(@RequestParam(value = "email") String email,
-                                         @RequestParam(value = "subject") String subject,
-                                         @RequestParam(value = "message") String message) {
-        service.askForSupport(email, subject, message);
+    public SuccessResponse askForSupport(@RequestBody Support support) {
+        service.askForSupport(support.getEmail(), support.getSubject(), support.getMessage());
         return new SuccessResponse("ask for support email sent successful");
     }
 }
