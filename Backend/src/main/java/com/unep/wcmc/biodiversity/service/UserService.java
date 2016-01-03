@@ -10,6 +10,7 @@ import com.unep.wcmc.biodiversity.model.UserRole;
 import com.unep.wcmc.biodiversity.repository.ForgetPasswordTokenRepository;
 import com.unep.wcmc.biodiversity.repository.UserRepository;
 import com.unep.wcmc.biodiversity.repository.UserRoleRepository;
+import com.unep.wcmc.biodiversity.security.SecurityUtils;
 import com.unep.wcmc.biodiversity.support.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -155,6 +156,19 @@ public final class UserService extends AbstractService<User, UserRepository> imp
             result = "http://" + result;
         }
         return result;
+    }
+
+    public void askForSupport(String email, String subject, String message) {
+        User user = SecurityUtils.getCurrentUser();
+
+        Map<String, Object> mailParameters = new HashMap<>();
+        mailParameters.put("message", message);
+        mailParameters.put("user", user);
+
+        String template = user != null && user.getLanguage().equals(User.PT_BR) ?
+                MailUtils.ASK_SUPPORT_TEMPLATE_PT_BR : MailUtils.ASK_SUPPORT_TEMPLATE_EN_GB;
+
+        mailUtils.sendEmail(environment.getProperty("support.email"), email, subject, template, mailParameters);
     }
 
 }

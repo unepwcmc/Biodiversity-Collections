@@ -23,6 +23,8 @@ public class MailUtils {
     public static final String FORGOT_PASSWORD_TEMPLATE_EN_GB = "forgot.password.email.en_gb.template.vm";
     public static final String INVITE_CURATOR_TEMPLATE_PT_BR = "invite.curator.email.pt_br.template.vm";
     public static final String INVITE_CURATOR_TEMPLATE_EN_GB = "invite.curator.email.en_gb.template.vm";
+    public static final String ASK_SUPPORT_TEMPLATE_PT_BR = "ask.support.email.pt_br.template.vm";
+    public static final String ASK_SUPPORT_TEMPLATE_EN_GB = "ask.support.email.en_gb.template.vm";
 
 
     @Autowired

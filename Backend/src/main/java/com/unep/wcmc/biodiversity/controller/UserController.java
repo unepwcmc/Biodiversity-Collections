@@ -48,4 +48,12 @@ public class UserController extends AbstractController<User, UserService> {
         user = service.findByEmail(user.getEmail());
         return service.changePassword(user, password, oldPassword);
     }
+
+    @RequestMapping(value = "/ask/support", method= RequestMethod.POST)
+    public SuccessResponse askForSupport(@RequestParam(value = "email") String email,
+                                         @RequestParam(value = "subject") String subject,
+                                         @RequestParam(value = "message") String message) {
+        service.askForSupport(email, subject, message);
+        return new SuccessResponse("ask for support email sent successful");
+    }
 }
