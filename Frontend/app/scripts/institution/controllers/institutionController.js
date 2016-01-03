@@ -192,7 +192,7 @@ define(['app',
                     $scope.$emit("IMAGE_ADDED");
 
                     if($scope.adminView){
-                        $state.go('admin_institution_create');
+                        $state.go('admin');
                     }
 
                 }).catch( function( errorCallback ){
