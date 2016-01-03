@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <h3>Olá ${email}!</h3>
+        <div>
+            Você foi convidado para acessar a Coleção de Biodiversidade. Por favor, utilize o link abaixo para se registrar.
+        </div>
+        <div>
+       	    <a href="${url}">${url}</a>
+        </div>
+        Atenciosamente,
+        <div>
+            Coleção de Biodiversidade
+		</div>
+    </body>
+</html>

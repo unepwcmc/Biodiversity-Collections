@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <h3>Hi ${email}!</h3>
+        <div>
+            You were invited to join in the Biodiversity Collection. Please, process your signup using the link below.
+        </div>
+        <div>
+       	    <a href="${url}">${url}</a>
+        </div>
+        Cheers,
+        <div>
+			Biodiversity Collections
+		</div>
+    </body>
+</html>
+
+	
+
+	

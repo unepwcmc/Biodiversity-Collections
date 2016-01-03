@@ -21,6 +21,9 @@ public class MailUtils {
 
     public static final String FORGOT_PASSWORD_TEMPLATE_PT_BR = "forgot.password.email.pt_br.template.vm";
     public static final String FORGOT_PASSWORD_TEMPLATE_EN_GB = "forgot.password.email.en_gb.template.vm";
+    public static final String INVITE_CURATOR_TEMPLATE_PT_BR = "invite.curator.email.pt_br.template.vm";
+    public static final String INVITE_CURATOR_TEMPLATE_EN_GB = "invite.curator.email.en_gb.template.vm";
+
 
     @Autowired
     private JavaMailSender emailSender;

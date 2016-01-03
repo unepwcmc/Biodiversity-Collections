@@ -1,5 +1,6 @@
 package com.unep.wcmc.biodiversity.controller;
 
+import com.unep.wcmc.biodiversity.dto.SuccessResponse;
 import com.unep.wcmc.biodiversity.model.Curator;
 import com.unep.wcmc.biodiversity.service.CuratorService;
 import com.unep.wcmc.biodiversity.service.ImageService;
@@ -46,4 +47,11 @@ public class CuratorController extends AbstractController<Curator, CuratorServic
         return service.save(curator);
     }
 
+    @RequestMapping(value = "/invite", method= RequestMethod.POST)
+    public SuccessResponse invite(@RequestParam(value = "email") String email,
+                                  @RequestParam(value = "institution") String institution,
+                                  @RequestParam(value = "callback") String urlCallback) {
+        service.inviteCurator(email, institution, urlCallback);
+        return new SuccessResponse("curator's invite sent successful");
+    }
 }
