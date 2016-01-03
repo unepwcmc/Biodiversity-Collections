@@ -154,6 +154,17 @@ define(['app'], function (app) {
                             callback(data, status, headers, config);
                     }
                 );
+            },
+            askForSupport: function( email, subject, message){
+
+                $http.post( $rootScope.getHost() + "users/ask/support", {email: email, subject: subject, message: message})
+                    .success(function (data, status, headers, config) {
+                        callback(data, status, headers, config);
+                    })
+                    .error(function(data, status, headers, config){
+                        callback(data, status, headers, config);
+                    }
+                );
             }
 
         };

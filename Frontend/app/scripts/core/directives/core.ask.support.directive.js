@@ -6,7 +6,7 @@ define(['angularAMD','bootstrap'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('askForSupport', ['$timeout', '$rootScope', function ($timeout, $rootScope) {
+    angularAMD.directive('askForSupport', ['$rootScope','$http','toastr', function ($rootScope, $http, toastr) {
 
             return {
                 restrict: 'E',
@@ -14,6 +14,20 @@ define(['angularAMD','bootstrap'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', function($scope, $rootScope){
 
 
+                        $scope.sendMessage = function(){
+
+                            $http.post( $rootScope.getHost() + "users/ask/support", $scope.support )
+                                .success( function (data, status, headers, config) {
+
+                                    $('#support_modal').modal('hide');
+                                    toastr.success('SUCCESS', 'MESSAGE_SENT');
+                                    $scope.support = {};
+                                })
+                                .error(function(data, status, headers, config){
+                                    console.error('error');
+                                }
+                            );
+                        }
 
                 }],
                 link: function (scope, element, attrs) {

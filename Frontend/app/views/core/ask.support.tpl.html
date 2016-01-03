@@ -7,24 +7,24 @@
             </div>
             <div class="modal-body">
 
-                <form action="#" role="form" name="form_support" novalidate>
+                <form action="#" role="form" name="form_support" novalidate >
                     <div class="form-group">
                         <label for="ipt_email">{{ 'EMAIL' | translate }}*</label>
-                        <input type="email" class="form-control" id="ipt_email" required>
+                        <input type="email" class="form-control" id="ipt_email" ng-model="support.email" required>
                     </div>
                     <div class="form-group">
                         <label for="ipt_subject">{{ 'SUBJECT' | translate }}*</label>
-                        <input type="TEXT" class="form-control" id="ipt_subject"  required>
+                        <input type="TEXT" class="form-control" id="ipt_subject" ng-model="support.subject"  required>
                     </div>
                     <div class="form-group">
                         <label for="ipt_message">{{ 'MESSAGE' | translate }}*</label>
-                        <textarea rows="10" class="form-control" id="ipt_message" required></textarea>
+                        <textarea rows="10" class="form-control" id="ipt_message" ng-model="support.message" required></textarea>
                     </div>
                 </form>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-disabled="form_support.$invalid">{{ 'SEND' |  translate }}</button>
+                <button type="button" ng-click="sendMessage()" class="btn btn-primary" ng-disabled="form_support.$invalid">{{ 'SEND' |  translate }}</button>
             </div>
         </div>
     </div>
