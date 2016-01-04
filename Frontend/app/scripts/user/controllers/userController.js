@@ -28,6 +28,12 @@ define(['app',
                     $scope.editUserView = true;
                     $scope.user.get($stateParams.id);
                 }
+                else if('edit_user_settings'){
+                    // $('#loader-wrapper').fadeToggle('400');
+                    $scope.adminView = false;
+                    $scope.editUserView = true;
+                    $scope.user.get($stateParams.id);
+                }
             });
 
             /**
@@ -67,6 +73,9 @@ define(['app',
 
                 if($scope.adminView == true && $scope.editUserView == true){
                     $state.go('admin');
+                }
+                else{
+                    $state.go('home');
                 }
             });
 

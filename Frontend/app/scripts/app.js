@@ -183,6 +183,16 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
+                .state('edit_user_settings', angularAMD.route(
+                    {
+                        url: '/user/edit/:id',
+                        templateUrl: 'views/user/default.html',
+                        controllerUrl: 'user/controllers/userController',
+                        ncyBreadcrumb: {
+                            label: 'User Edit',
+                            parent: 'admin'
+                        }
+                    }))
                 .state('signup', angularAMD.route(
                     {
                         url: '/user/signup',
