@@ -6,8 +6,7 @@ define(['angularAMD', 'popover'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('usernameBox', ['$timeout', '$compile', '$rootScope', '$state', '$http', 'toastr',
-      function ($timeout, $compile, $rootScope, $state, $http, toastr) {
+    angularAMD.directive('usernameBox', ['$timeout', '$compile', '$rootScope', '$state', '$http', 'toastr','$cookies', function ($timeout, $compile, $rootScope, $state, $http, toastr, $cookies) {
 
         return {
             restrict: 'A',
@@ -35,6 +34,10 @@ define(['angularAMD', 'popover'], function (angularAMD) {
                 $scope.logoutFunc = function(){
                     $rootScope.logout();
                     $scope.closePopover();
+                };
+
+                $scope.editUserSettings = function(){
+                    $state.go('edit_user_settings', { id: $cookies.get('userId')});
                 };
 
                 $scope.closePopover = function(){
