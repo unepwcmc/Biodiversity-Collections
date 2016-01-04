@@ -1444,7 +1444,7 @@ ul.admin-menu-list > li > a > i {
   display: none;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 137, 55, 0.9);
+  background-color: rgba(110, 110, 111, 0.9);
   top: 0;
   position: fixed;
   z-index: 4000;
@@ -1468,7 +1468,7 @@ ul.admin-menu-list > li > a > i {
   margin-top: 10px; }
 
 #login-box .login-form i.fa-close {
-  color: #008937;
+  color: #4c4c4c;
   cursor: default; }
 
 #login-box .login-form i.fa-close:hover {
@@ -1486,7 +1486,7 @@ ul.admin-menu-list > li > a > i {
   margin-bottom: 28px; }
 
 #login-box .login-form a.forgot-pw {
-  color: #008937; }
+  color: #6e6e6f; }
 
 #login-box .login-form #rem-me {
   margin-top: 12px; }
