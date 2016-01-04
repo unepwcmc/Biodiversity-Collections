@@ -28,8 +28,8 @@ public class MvcConfig extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAd
         super.configureMessageConverters(converters);
     }
 
-    class HibernateAwareObjectMapper extends ObjectMapper {
-        HibernateAwareObjectMapper() {
+    public static class HibernateAwareObjectMapper extends ObjectMapper {
+        public HibernateAwareObjectMapper() {
             registerModule(new Hibernate5Module());
         }
     }
