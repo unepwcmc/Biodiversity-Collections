@@ -69,6 +69,26 @@ define(['angularAMD'], function (angularAMD) {
                         $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
                     });
             },
+            loadByDefinition: function( query, page, size){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + 'collections/search/definition?name=' + query + '&page=' +  page  + '&size=' +   size)
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("BIODIVERSITY_FILTER_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("BIODIVERSITY_FILTER_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("BIODIVERSITY_FILTER_LOAD_ERROR");
+                    });
+
+            },
             loadByInstitution: function( id, page, size, callback ){
 
                 var self = this;
