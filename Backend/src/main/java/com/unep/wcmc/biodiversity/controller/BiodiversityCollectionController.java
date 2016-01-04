@@ -1,6 +1,7 @@
 package com.unep.wcmc.biodiversity.controller;
 
 import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
+import com.unep.wcmc.biodiversity.model.CollectionDefinition;
 import com.unep.wcmc.biodiversity.model.Network;
 import com.unep.wcmc.biodiversity.model.Sample;
 import com.unep.wcmc.biodiversity.service.*;
@@ -45,6 +46,19 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public List<BiodiversityCollection> autocomplete(@RequestParam String name) {
         return service.getRepository().findTop5ByNameContainingOrderByNameAsc(name);
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/search/definition")
+    public Page<BiodiversityCollection> findAllCollectionDefinition(@RequestParam(value = "name", defaultValue = "ALL") String name,
+                                                                    @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        switch (name){
+            case "ALL":{
+                return service.list(pageable);
+            }
+            default:{
+                return service.getRepository().findAllByCollectionDefinition(CollectionDefinition.valueOf(name.toUpperCase()),pageable);
+            }
+        }
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/institutions")

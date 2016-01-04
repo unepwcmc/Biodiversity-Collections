@@ -1,6 +1,7 @@
 package com.unep.wcmc.biodiversity.repository;
 
 import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
+import com.unep.wcmc.biodiversity.model.CollectionDefinition;
 import com.unep.wcmc.biodiversity.model.Institution;
 import com.unep.wcmc.biodiversity.model.Network;
 import com.unep.wcmc.biodiversity.support.AbstractRepository;
@@ -20,6 +21,8 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
     Page<BiodiversityCollection> findByNameContainingOrderByNameAsc(@Param("name") String name, Pageable page);
 
     List<BiodiversityCollection> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name);
+
+    Page<BiodiversityCollection> findAllByCollectionDefinition(@Param("collectionDefinition") CollectionDefinition collectionDefinition, Pageable pageable);
 
     Page<BiodiversityCollection> findByInstitutionIdOrderByNameAsc(@Param("id") Long id, Pageable page);
 
