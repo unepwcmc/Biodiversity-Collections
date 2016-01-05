@@ -9,15 +9,8 @@ define(['angularAMD','core/directives/core.map.directive'], function (angularAMD
                 controller: ['$scope', '$rootScope', function($scope, $rootScope){
 
                     angular.extend( $scope.collections, {totalElements : 0, number: 0, size: 5, totalPages: 0});
-                    $scope.collections.loadAll($scope.collections.page, $scope.collections.size);
                     $scope.query = 'ALL';
-                    /**
-                     * Listener when the view is loaded
-                     */
-                    $scope.$on('$viewContentLoaded', function() {
-                        console.log('view Content Loaded...');
-                        $scope.collections.loadByDefinition($scope.query,$scope.page, $scope.size);
-                    });
+                    $scope.collections.loadByDefinition($scope.query,$scope.page, $scope.size);
 
                     $scope.$on('BIODIVERSITY_FILTER_LOADED', function(){
                         console.log('biodiversity home loaded');
