@@ -196,7 +196,9 @@ define([],function ( ) {
     'MESSAGE':'Message',
     'SUBJECT':'Subject',
     'DELETE':'Delete',
-    'UPDATE':'Update'
+    'UPDATE':'Update',
+    'MESSAGE_SENT':'Message sent, thank you.',
+    'INVITE_SENT':'Invite sent'
   }
 
 });
