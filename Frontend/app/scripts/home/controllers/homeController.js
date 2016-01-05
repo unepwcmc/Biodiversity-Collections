@@ -83,7 +83,7 @@ define(['app',
             };
 
             $scope.inputChangedFn = function( key ){
-                var regex = new RegExp("^[a-zA-Z0-9]+$");
+                var regex = new RegExp("^[a-zA-Z0-9 ]+$");
                 if (!regex.test(key)) {
                     if(key.length == 1){
                         $scope.$broadcast('angucomplete-alt:clearInput', 'searchTop');
