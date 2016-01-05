@@ -27,7 +27,7 @@ public class InviteCuratorToken implements BaseEntity {
 	private String institution;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "userId")
+    @JoinColumn(nullable = true, name = "userId")
     private User user;
 
     public InviteCuratorToken() {
