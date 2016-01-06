@@ -1135,6 +1135,11 @@ body.noscroll {
   font-weight: bold;
   text-decoration: none; }
 
+.breadcrumb > li + li:before {
+  color: #ccc;
+  content: "> ";
+  padding: 0 5px; }
+
 i.bt-img-close {
   color: #000 !important;
   border: solid 1px #EAEAEA;

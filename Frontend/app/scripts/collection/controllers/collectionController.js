@@ -24,6 +24,8 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                    console.log('state Change Success');
 
+                   console.log(fromState);
+
                    $scope.fromState = fromState.name;
                });
 
