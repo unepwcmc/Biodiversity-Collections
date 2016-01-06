@@ -14,6 +14,16 @@ define(['app',
 
         $scope.image = [];
         $scope.network = new Network();
+        $scope.fromState = 'home';
+
+        /**
+         * Listener when the state is changed
+         */
+        $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+            console.log('state Change Success');
+
+            $scope.fromState = fromState.name;
+        });
 
         /**
          * Listener when the view is loaded

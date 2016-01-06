@@ -5,7 +5,8 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
     return ['$scope','BiodiversityCollection','BaseController','$stateParams','$http','$rootScope','$translate','$state','$q', function ($scope, BiodiversityCollection, BaseController, $stateParams, $http, $rootScope, $translate, $state, $q) {
             angular.extend($scope, BaseController);
 
-            $scope.images = [];
+        $scope.collection_id = $stateParams.id;
+        $scope.images = [];
             $scope.collection = new BiodiversityCollection();
 
             /**

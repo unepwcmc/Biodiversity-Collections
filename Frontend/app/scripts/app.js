@@ -101,7 +101,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/collection/default.html',
                         controllerUrl: 'collection/controllers/collectionController',
                         ncyBreadcrumb: {
-                            label: '{{collection.name}}',
+                            label: 'Collection',
                             parent: function($scope) {
 
                                 switch ( $scope.fromState ){
@@ -113,7 +113,7 @@ define(['include', 'language'], function (angularAMD, language) {
                                         return 'home';
                                     }
                                     case 'search': {
-                                        return 'search({term: searchTerm})';
+                                        return 'search({type: searchType, term: searchTerm})';
                                     }
                                     default:{
                                         return 'home'
@@ -141,19 +141,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/network/default.html',
                         controllerUrl: 'network/controllers/networkController',
                         ncyBreadcrumb: {
-                            label: '{{network.name}}',
-                            parent: function($scope) {
-                                return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
-                            }
-                        }
-                    }))
-                .state('curator', angularAMD.route(
-                    {
-                        url: '/curator/:id',
-                        templateUrl: 'views/curator/default.html',
-                        controllerUrl: 'curator/controllers/curatorController',
-                        ncyBreadcrumb: {
-                            label: '{{curator.name}}',
+                            label: 'Network',
                             parent: function($scope) {
 
                                 switch ( $scope.fromState ){
@@ -165,7 +153,34 @@ define(['include', 'language'], function (angularAMD, language) {
                                         return 'home';
                                     }
                                     case 'search': {
-                                        return 'search({term: searchTerm})';
+                                        return 'search({type: searchType, term: searchTerm})';
+                                    }
+                                    default:{
+                                        return 'home'
+                                    }
+                                }
+                            }
+                        }
+                    }))
+                .state('curator', angularAMD.route(
+                    {
+                        url: '/curator/:id',
+                        templateUrl: 'views/curator/default.html',
+                        controllerUrl: 'curator/controllers/curatorController',
+                        ncyBreadcrumb: {
+                            label: 'Curator',
+                            parent: function($scope) {
+
+                                switch ( $scope.fromState ){
+
+                                    case '':{
+                                        return 'home';
+                                    }
+                                    case 'home':{
+                                        return 'home';
+                                    }
+                                    case 'search': {
+                                        return 'search({type: searchType, term: searchTerm})';
                                     }
                                     default:{
                                         return 'home'
@@ -180,9 +195,24 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/institution/default.html',
                         controllerUrl: 'institution/controllers/institutionController',
                         ncyBreadcrumb: {
-                            label: '{{institution.name}}',
+                            label: 'Institution',
                             parent: function($scope) {
-                                return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
+
+                                switch ( $scope.fromState ){
+
+                                    case '':{
+                                        return 'home';
+                                    }
+                                    case 'home':{
+                                        return 'home';
+                                    }
+                                    case 'search': {
+                                        return 'search({type: searchType, term: searchTerm})';
+                                    }
+                                    default:{
+                                        return 'home'
+                                    }
+                                }
                             }
                         }
                     }))
@@ -192,9 +222,9 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/member/default.html',
                         controllerUrl: 'member/controllers/memberController',
                         ncyBreadcrumb: {
-                            label: '{{collection.name}}',
+                            label:  'Member',
                             parent: function($scope) {
-                                return $scope.fromState == 'home'? 'home' : 'home';
+                                return 'collection({id: collection_id})';
                             }
                         }
                     }))
