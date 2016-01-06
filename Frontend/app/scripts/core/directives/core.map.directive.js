@@ -65,8 +65,12 @@ define(['angularAMD'], function (angularAMD) {
 
                   $rootScope.$on('MAP_POINTS_UPDATED', function(type, mapName, points) {
                       if (mapName === $scope.name) {
-                          var index = 1;
+                          var count = 1;
                           angular.forEach(points, function(obj) {
+                              var index = count;
+                              if (obj.index != undefined) {
+                                  index = obj.index;
+                              }
                               obj.icon = {
                                   type: 'div',
                                   className: "number-icon",
@@ -75,7 +79,7 @@ define(['angularAMD'], function (angularAMD) {
                                   popupAnchor: [3, -40],
                                   html: '<p style="margin: 5px; font-weight: bold;">' + index + '</p>'
                               };
-                              index++;
+                              count++;
                           });
                           angular.extend($scope, {markers: points});
                           invalidateSize();

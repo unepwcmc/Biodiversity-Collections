@@ -8,19 +8,22 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
                 templateUrl: 'views/home/home.map.tpl.html',
                 controller: ['$scope', '$rootScope', function($scope, $rootScope){
 
-                    angular.extend( $scope.collections, {totalElements : 0, number: 0, size: 5, totalPages: 0});
+                    angular.extend( $scope.collections, {totalElements : 0, number: 0, size: 9, totalPages: 0});
                     $scope.query = 'ALL';
-                    $scope.collections.loadByDefinition($scope.query,$scope.page, $scope.size);
+                    $scope.collections.loadByDefinition($scope.query, $scope.collections.page, $scope.collections.size);
 
                     $scope.$on('BIODIVERSITY_FILTER_LOADED', function(){
                         console.log('biodiversity home loaded');
 
                         var markersArray = {};
+                        var index = $scope.collections.number * $scope.collections.size;
                         angular.forEach($scope.collections.content, function(value) {
+                            index++;
                             if (value.contact)
                                 markersArray[value.id] = {
                                     lat: value.contact.latitude,
-                                    lng: value.contact.longitude
+                                    lng: value.contact.longitude,
+                                    index: index
                                 };
                         });
 
