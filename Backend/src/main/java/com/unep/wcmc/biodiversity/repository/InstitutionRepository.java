@@ -16,11 +16,11 @@ public interface InstitutionRepository extends AbstractRepository<Institution> {
     @EntityGraph(value = "Institution.detail", type = EntityGraph.EntityGraphType.LOAD)
     Institution getById(Long id);
 
-    Page<Institution> findTop5ByDescriptionContainingOrderByDescriptionAsc(@Param("name") String name, Pageable p);
+    Page<Institution> findTop5ByDescriptionContainingIgnoreCaseOrderByDescriptionAsc(@Param("name") String name, Pageable p);
 
-    Page<Institution> findByNameContainingOrderByNameAsc(@Param("name") String name, Pageable page);
+    Page<Institution> findByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name, Pageable page);
 
-    List<Institution> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name);
+    List<Institution> findTop5ByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name);
 
     Page<BiodiversityCollection> findAllByCollectionsIn(Collection<BiodiversityCollection> collection, Pageable page);
 

@@ -42,12 +42,12 @@ public class InstitutionController extends AbstractController<Institution, Insti
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<Institution> name(@RequestParam String name,
                                   @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByNameContainingOrderByNameAsc(name, pageable);
+        return service.getRepository().findByNameContainingIgnoreCaseOrderByNameAsc(name, pageable);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocompleteName")
     public List<Institution> autocomplete(@RequestParam String name) {
-        return service.getRepository().findTop5ByNameContainingOrderByNameAsc(name);
+        return service.getRepository().findTop5ByNameContainingIgnoreCaseOrderByNameAsc(name);
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")

@@ -38,12 +38,12 @@ public class DocumentController extends AbstractController<Document, DocumentSer
     @RequestMapping(method= RequestMethod.GET, value="/search")
     public Page<Document> search(@RequestParam String term,
                                  @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findAllByTitleContainingOrderByTitleAsc(term, pageable);
+        return service.getRepository().findAllByTitleContainingIgnoreCaseOrderByTitleAsc(term, pageable);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public List<Document> autocomplete(@RequestParam String term) {
-        return service.getRepository().findTop5ByNameContainingOrderByNameAsc(term);
+        return service.getRepository().findTop5ByNameContainingIgnoreCaseOrderByNameAsc(term);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/collection/{collectionId}")

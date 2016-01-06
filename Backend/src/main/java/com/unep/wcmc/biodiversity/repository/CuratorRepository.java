@@ -15,8 +15,8 @@ public interface CuratorRepository extends AbstractRepository<Curator> {
     Curator getById(Long id);
 
 
-    List<Curator> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name, Pageable p);
+    List<Curator> findTop5ByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name, Pageable p);
 
-    Page<Curator> findByNameContainingOrderByNameAsc(@Param("name") String name, Pageable p);
+    Page<Curator> findByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name, Pageable p);
 
 }

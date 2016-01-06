@@ -40,12 +40,12 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<BiodiversityCollection> name(@RequestParam String name,
                              @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByNameContainingOrderByNameAsc(name,pageable);
+        return service.getRepository().findByNameContainingIgnoreCaseOrderByNameAsc(name, pageable);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public List<BiodiversityCollection> autocomplete(@RequestParam String name) {
-        return service.getRepository().findTop5ByNameContainingOrderByNameAsc(name);
+        return service.getRepository().findTop5ByNameContainingIgnoreCaseOrderByNameAsc(name);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/definition")
