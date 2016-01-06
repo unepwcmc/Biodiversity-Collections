@@ -1,4 +1,4 @@
-define(['angularAMD','core/directives/core.map.directive'], function (angularAMD) {
+define(['angularAMD','core/directives/core.map.directive','core/directives/core.paging.directive'], function (angularAMD) {
 
     'use strict';
 

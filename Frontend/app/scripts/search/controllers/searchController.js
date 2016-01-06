@@ -3,7 +3,7 @@ define(['app',
     'core/factory/networkFactory',
     'core/factory/curatorFactory',
     'core/factory/institutionFactory',
-    'core/factory/documentFactory'], function () {
+    'core/factory/documentFactory','core/directives/core.paging.directive'], function () {
 
     'use strict';
 
@@ -19,30 +19,29 @@ define(['app',
             $scope.curator = new Curator();
             $scope.document = new Document();
 
-            $scope.page = 0;
-            $scope.size = 10;
+            angular.extend($scope.curator,{totalElements : 0, number: 0, size: 10, totalPages: 0});
+            angular.extend($scope.collection,{totalElements : 0, number: 0, size: 10, totalPages: 0});
+            angular.extend($scope.institution,{totalElements : 0, number: 0, size: 10, totalPages: 0});
+            angular.extend($scope.document,{totalElements : 0, number: 0, size: 10, totalPages: 0});
+
             $scope.name = '';
             $scope.type = '';
             $scope.searchType = 'collection';
             $scope.query = '';
 
+            $scope.$on('$viewContentLoaded', function() {
+                console.log('view Content Loaded...');
+
+                $scope.setResultQuery( $stateParams.term );
+                $scope.searchType = $stateParams.type;
+                $scope.query = $stateParams.term;
+            });
             /**
              * Listener when the state is changed
              */
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
-
-                if ($scope.searchType === "collection") {
-                    $scope.collection.search( $scope.query, $scope.page, $scope.size );
-                } else if ($scope.searchType === "institution") {
-                    $scope.institution.search( $scope.query, $scope.page, $scope.size );
-                } else if ($scope.searchType === "network") {
-                    $scope.network.search($scope.query, $scope.page, $scope.size);
-                } else if ($scope.searchType === "curator") {
-                    $scope.curator.search( $scope.query, $scope.page, $scope.size );
-                } else if ($scope.searchType === "document") {
-                    $scope.document.search($scope.query, $scope.page, $scope.size);
-                }
+                search(0);
             });
 
             angular.forEach(['BIODIVERSITY_SEARCHED','NETWORK_SEARCHED','INSTITUTION_SEARCHED','CURATOR_SEARCHED','DOCUMENT_SEARCHED'],
@@ -52,30 +51,10 @@ define(['app',
                 });
             });
 
-            $scope.$on('$viewContentLoaded', function() {
-
-                console.log('view Content Loaded...');
-
-                $scope.setResultQuery( $stateParams.term );
-                $scope.searchType = $stateParams.type;
-                $scope.query = $stateParams.term;
-            });
-
-            $scope.load = function(page, size) {
+            $scope.load = function( page ) {
 
                 $('#loader-wrapper').fadeToggle('400');
-
-                if ($scope.searchType === "collection") {
-                    $scope.collection.search( $scope.query, $scope.page, $scope.size );
-                } else if ($scope.searchType === "institution") {
-                    $scope.institution.search( $scope.query, $scope.page, $scope.size );
-                } else if ($scope.searchType === "network") {
-                    $scope.network.search($scope.query, $scope.page, $scope.size);
-                } else if ($scope.searchType === "curator") {
-                    $scope.curator.search( $scope.query, $scope.page, $scope.size );
-                } else if ($scope.searchType === "document") {
-                    $scope.document.search( $scope.query, $scope.page, $scope.size );
-                }
+                search(page);
             };
 
             $scope.selectCurrentSearchView = function() {
@@ -94,6 +73,21 @@ define(['app',
                     return;
                 }
             };
+
+            function search(page){
+
+                if ($scope.searchType === "collection") {
+                    $scope.collection.search( $scope.query, page , $scope.size );
+                } else if ($scope.searchType === "institution") {
+                    $scope.institution.search( $scope.query, page, $scope.size );
+                } else if ($scope.searchType === "network") {
+                    $scope.network.search($scope.query, page , $scope.size);
+                } else if ($scope.searchType === "curator") {
+                    $scope.curator.search( $scope.query, page , $scope.curator.size );
+                } else if ($scope.searchType === "document") {
+                    $scope.document.search($scope.query, page , $scope.size);
+                }
+            }
 
             $scope.downloadDocument = function(id) {
                 $window.open($rootScope.getHost() + "documents/" + id + "/download", '_blank');
