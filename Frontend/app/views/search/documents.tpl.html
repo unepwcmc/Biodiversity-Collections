@@ -13,36 +13,22 @@
     </div>
 
     <div class="row" align="center">
-        <div class="col-md-4">&nbsp;</div>
-        <div class="col-md-4">
-
-            <nav>
-                <ul class="pagination">
-                    <li ng-class="{disabled: document.number === 0}">
-                        <a href="javascript:" ng-click="(document.number === 0) || load(document.number - 1, document.size)" aria-label="Previous">
-                            <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
-                        </a>
-                    </li>
-                    <li ng-class="{disabled: document.number === document.totalPages - 1}">
-                        <a href="javascript:" ng-click="(document.number === document.totalPages - 1) || load(document.number + 1, document.size)">{{document.number + 1}}</a></li>
-                    <li ng-class="{disabled: document.number + 2 >= document.totalPages - 1}">
-                        <a href="javascript:" ng-click="(document.number + 2 >= document.totalPages - 1) || load(document.number + 2, document.size)">{{document.number + 2}}</a></li>
-                    <li ng-class="{disabled: document.number + 3 >= document.totalPages - 1}">
-                        <a href="javascript:" ng-click="(document.number + 3 >= document.totalPages - 1) || load(document.number + 3, document.size)">{{document.number + 3}}</a></li>
-                    <li ng-class="{disabled: document.number + 4 >= document.totalPages - 1}">
-                        <a href="javascript:" ng-click="(document.number + 4 >= document.totalPages - 1) || load(document.number + 4, document.size)">{{document.number + 4}}</a></li>
-                    <li ng-class="{disabled: document.number + 5 >= document.totalPages - 1}">
-                        <a href="javascript:" ng-click="(document.number + 5 >= document.totalPages - 1) || load(document.number + 5, document.size)">{{document.number + 5}}</a></li>
-                    <li ng-class="{disabled: document.number === document.totalPages - 1}">
-                        <a href="javascript:" ng-click="(document.number === document.totalPages - 1) || load(document.number + 1, document.size)" aria-label="Next">
-                            <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8" align="center">
+            <paging
+                    page="document.number + 1"
+                    page-size="document.size"
+                    total="document.totalElements"
+                    paging-action="load(page - 1)"
+                    text-next="{{ 'NEXT' | translate}}"
+                    text-prev="{{ 'PREVIOUS' | translate}}"
+                    scroll-top="true"
+                    show-prev-next="true"
+                    show-first-last="true">
+            </paging>
         </div>
-        <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{document.totalElements}}&nbsp;results</label></div>
-
+        <div class="col-md-2"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{document.totalElements}}&nbsp;results</label></div>
     </div>
+
 
 </div>
