@@ -12,11 +12,13 @@
 <div id="box_template" style="display: none">
 
 <div class="user-popover">
-    <p>{{name}}<span><i ng-click="closePopover()" class="fa fa-close pull-right" style="color:#249953;"></i></span></p>
+    <p><b>{{name}}</b><span><i ng-click="closePopover()" class="fa fa-close pull-right" style="color:#249953;"></i></span></p>
     <div class="user-links">
     <br/>
-    <a ng-click="editUserSettings()">{{'SETTINGS' | translate }}</a><br/>
-    <a href="javascript:" ng-click="logoutFunc()" class="logoutBt">{{'LOGOUT' | translate }}</a>
+    <a ng-click="showFormSupport()"><i class="fa fa-life-saver"></i>&nbsp;{{'ASK_FOR_SUPPORT' | translate }}</a><br/>
+    <a href="#"><i class="fa fa-area-chart"></i>&nbsp;{{'REPORTING' | translate }}</a><br/>
+    <a data-ui-sref="admin"><i class="fa fa-cog"></i>&nbsp;{{'ADMINISTRATION' | translate }}</a><br/>
+    <a href="javascript:" ng-click="logoutFunc()" class="logoutBt"><i class="fa fa-sign-out"></i>&nbsp;{{'LOGOUT' | translate }}</a>
     </div>
 </div>
 </div>

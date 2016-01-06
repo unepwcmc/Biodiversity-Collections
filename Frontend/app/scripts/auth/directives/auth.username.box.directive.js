@@ -60,6 +60,10 @@ define(['angularAMD', 'popover'], function (angularAMD) {
                     );
                 };
 
+                $scope.showFormSupport = function(){
+                    $rootScope.$broadcast('ASK_FOR_SUPPORT_EVENT');
+                };
+
             }],
             link: function (scope, element, attrs) {
                // ng-style="{'visibility': isUserAdministrator?'visible':'hidden'}"

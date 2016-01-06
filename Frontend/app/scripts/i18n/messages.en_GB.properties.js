@@ -198,7 +198,9 @@ define([],function ( ) {
     'DELETE':'Delete',
     'UPDATE':'Update',
     'MESSAGE_SENT':'Message sent, thank you.',
-    'INVITE_SENT':'Invite sent'
+    'INVITE_SENT':'Invite sent',
+    'REPORTING': 'Reporting',
+    'LOGOUT': 'Log out'
   }
 
 });

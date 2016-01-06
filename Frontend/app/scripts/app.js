@@ -205,6 +205,18 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
+                .state('curatorSignup', angularAMD.route(
+                    {
+                        url: '/curator/signup/:token',
+                        templateUrl: 'views/user/default.html',
+                        controllerUrl: 'user/controllers/userController',
+                        ncyBreadcrumb: {
+                            label: 'New user',
+                            parent: function($scope) {
+                                return $scope.fromState == 'home'? 'home' : 'home';
+                            }
+                        }
+                    }))
                 .state('reset', angularAMD.route(
                     {
                         url: '/reset/:token',
