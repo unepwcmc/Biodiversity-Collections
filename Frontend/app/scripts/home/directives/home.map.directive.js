@@ -30,7 +30,7 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
                     });
 
                     $scope.load = function(page) {
-                        $scope.collections.loadByDefinition($scope.query, page, $scope.size );
+                        $scope.collections.loadByDefinition($scope.query, page, $scope.collections.size );
                     };
 
 
@@ -39,7 +39,7 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
 
                     $("#home-map-filter").change(function() {
                         scope.query = $(this).val();
-                        scope.load(scope.collections.number, scope.collections.size);
+                        scope.load(0);
                     });
                 }
             };
