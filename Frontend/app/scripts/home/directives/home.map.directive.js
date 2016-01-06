@@ -2,7 +2,7 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
 
     'use strict';
 
-    angularAMD.directive('homeMap', ['$timeout', '$rootScope', '$http', function ($timeout, $rootScope, $http) {
+    angularAMD.directive('homeMap', ['$timeout', '$rootScope', function ($timeout, $rootScope) {
             return {
                 restrict: 'E',
                 templateUrl: 'views/home/home.map.tpl.html',
