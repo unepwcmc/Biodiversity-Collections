@@ -29,8 +29,8 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
                         }, 3000);
                     });
 
-                    $scope.load = function(page, size) {
-                        $scope.collections.loadByDefinition($scope.query, page, size );
+                    $scope.load = function(page) {
+                        $scope.collections.loadByDefinition($scope.query, page, $scope.size );
                     };
 
 
