@@ -1,4 +1,4 @@
-define(['angularAMD','core/directives/core.map.directive'], function (angularAMD) {
+define(['angularAMD','core/directives/core.map.directive','core/directives/core.paging.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -29,8 +29,8 @@ define(['angularAMD','core/directives/core.map.directive'], function (angularAMD
                         }, 3000);
                     });
 
-                    $scope.load = function(page, size) {
-                        $scope.collections.loadByDefinition($scope.query, page, size );
+                    $scope.load = function(page) {
+                        $scope.collections.loadByDefinition($scope.query, page, $scope.collections.size );
                     };
 
 
@@ -39,7 +39,7 @@ define(['angularAMD','core/directives/core.map.directive'], function (angularAMD
 
                     $("#home-map-filter").change(function() {
                         scope.query = $(this).val();
-                        scope.load(scope.collections.number, scope.collections.size);
+                        scope.load(0);
                     });
                 }
             };

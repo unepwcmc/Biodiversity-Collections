@@ -13,36 +13,21 @@
     </div>
 
     <div class="row" align="center">
-        <div class="col-md-4">&nbsp;</div>
-        <div class="col-md-4">
-
-            <nav>
-                <ul class="pagination">
-                    <li ng-class="{disabled: curator.number === 0}">
-                        <a href="javascript:" ng-click="(curator.number === 0) || load(curator.number - 1, curator.size)" aria-label="Previous">
-                            <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
-                        </a>
-                    </li>
-                    <li ng-class="{disabled: curator.number === curator.totalPages - 1}">
-                        <a href="javascript:" ng-click="(curator.number === curator.totalPages - 1) || load(curator.number + 1, curator.size)">{{curator.number + 1}}</a></li>
-                    <li ng-class="{disabled: curator.number + 2 >= curator.totalPages - 1}">
-                        <a href="javascript:" ng-click="(curator.number + 2 >= curator.totalPages - 1) || load(curator.number + 2, curator.size)">{{curator.number + 2}}</a></li>
-                    <li ng-class="{disabled: curator.number + 3 >= curator.totalPages - 1}">
-                        <a href="javascript:" ng-click="(curator.number + 3 >= curator.totalPages - 1) || load(curator.number + 3, curator.size)">{{curator.number + 3}}</a></li>
-                    <li ng-class="{disabled: curator.number + 4 >= curator.totalPages - 1}">
-                        <a href="javascript:" ng-click="(curator.number + 4 >= curator.totalPages - 1) || load(curator.number + 4, curator.size)">{{curator.number + 4}}</a></li>
-                    <li ng-class="{disabled: curator.number + 5 >= curator.totalPages - 1}">
-                        <a href="javascript:" ng-click="(curator.number + 5 >= curator.totalPages - 1) || load(curator.number + 5, curator.size)">{{curator.number + 5}}</a></li>
-                    <li ng-class="{disabled: curator.number === curator.totalPages - 1}">
-                        <a href="javascript:" ng-click="(curator.number === curator.totalPages - 1) || load(curator.number + 1, curator.size)" aria-label="Next">
-                            <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8" align="center">
+            <paging
+                    page="curator.number + 1"
+                    page-size="curator.size"
+                    total="curator.totalElements"
+                    paging-action="load(page - 1)"
+                    text-next="{{ 'NEXT' | translate}}"
+                    text-prev="{{ 'PREVIOUS' | translate}}"
+                    scroll-top="true"
+                    show-prev-next="true"
+                    show-first-last="true">
+            </paging>
         </div>
-        <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{curator.totalElements}}&nbsp;results</label></div>
-
+        <div class="col-md-2"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{curator.totalElements}}&nbsp;results</label></div>
     </div>
 
 </div>

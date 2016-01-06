@@ -600,3 +600,10 @@ button.btn-tag{
   text-align:center!important;
   line-height:30px!important;
 }
+
+ul.pagination > li[title="First Page"] {
+  display:none!important;
+}
+ul.pagination > li[title="Last Page"] {
+  display:none!important;
+}

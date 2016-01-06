@@ -625,6 +625,12 @@ button.btn-tag {
   text-align: center !important;
   line-height: 30px !important; }
 
+ul.pagination > li[title="First Page"] {
+  display: none !important; }
+
+ul.pagination > li[title="Last Page"] {
+  display: none !important; }
+
 .esp-table-wrapper table.dataTable thead .sorting {
   background-image: none; }
   .esp-table-wrapper table.dataTable thead .sorting:after {

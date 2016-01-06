@@ -12,8 +12,7 @@ define(['angularAMD', 'bootstrap',
             return {
                 restrict: 'E',
                 templateUrl: 'views/core/search.box.tpl.html',
-                controller: ['$scope', '$state', '$rootScope', '$translate','$window','$cookies','$http', 'BiodiversityCollection', 'Network', 'Institution', 'Curator','Document',
-                  function($scope, $state, $rootScope, $translate, $window, $cookies, $http, BiodiversityCollection, Network, Institution, Curator, Document) {
+                controller: ['$scope', '$state', '$rootScope', '$translate', 'BiodiversityCollection', 'Network', 'Institution', 'Curator','Document', function($scope, $state, $rootScope, $translate, BiodiversityCollection, Network, Institution, Curator, Document) {
 
                       $scope.collections = new BiodiversityCollection();
                       $scope.institutions = new Institution();
@@ -26,6 +25,14 @@ define(['angularAMD', 'bootstrap',
                       $scope.term = '';
                       $scope.searchType = 'collection';
                       $scope.searchName = '';
+
+                      /**
+                       * Listener when the view is loaded
+                       */
+                      $scope.$on('$viewContentLoaded', function() {
+                          console.log('view Content Loaded search bozx...');
+                          $scope.searchName = "";
+                      });
 
                       $scope.searchAutocomplete = function( userInputString, timeoutPromise) {
 
@@ -113,6 +120,18 @@ define(['angularAMD', 'bootstrap',
                        $scope.searchSelected = function () {
                            return $scope.searchName;
                        };
+
+                    $scope.inputChangedFn = function( key ){
+                        var regex = new RegExp("^[a-zA-Z0-9 ]+$");
+                        if (!regex.test(key)) {
+                            if(key.length == 1){
+                                $scope.$broadcast('angucomplete-alt:clearInput', 'searchTop');
+                            }
+                            else if( key.length > 1){
+                                $scope.$broadcast('angucomplete-alt:changeInput', 'searchTop', key.slice(0, -1));
+                            }
+                        }
+                    };
 
                 }],
                 link: function (scope, element, attrs) {
