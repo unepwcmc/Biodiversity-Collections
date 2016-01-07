@@ -1,4 +1,4 @@
-<section class="page-content" edit-form>
+<section class="page-content" edit-form="{{editMode}}">
 
     <!-- Loading screen -->
     <div id="loader-wrapper" class="loading">
@@ -23,7 +23,8 @@
         <h4 id="curator-bar-default">
 
             <strong ng-show="!editMode" >{{ curator.name }}</strong>
-            <strong ng-show="editMode" >{{'EDIT_CURATOR' | translate}}</strong> <span>
+            <strong ng-show="editMode && !createCurator" >{{'EDIT_CURATOR' | translate}}</strong> <span>
+            <strong ng-show="editMode && createCurator" >{{'NEW_CURATOR' | translate}}</strong> <span>
             <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'CURATOR'| translate}}</strong></button></span>
 
             <a ng-show="!editMode && logged" id="edit-curator" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
@@ -36,7 +37,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <form action="#" class="form-horizontal view-mode form-block" role="form" name="curator_form" novalidate>
+                <form action="#" class="form-horizontal form-block form-data" role="form" name="curator_form" novalidate>
                     <div class="small-field">
 
 

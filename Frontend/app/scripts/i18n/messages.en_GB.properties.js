@@ -206,7 +206,9 @@ define([],function ( ) {
     'NEW_INSTITUTION':'New institution',
     'CREATE':'Create',
     'ADD_MEMBER_PHOTO':'Add member photo',
-    'CHANGE_MEMBER_PHOTO':'Change member photo'
+    'CHANGE_MEMBER_PHOTO':'Change member photo',
+    'MOBILE_NUMBER': 'Mobile number',
+    'NEW_CURATOR': 'New curator'
   }
 
 });

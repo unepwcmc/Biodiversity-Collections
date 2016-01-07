@@ -32,6 +32,10 @@ public class Curator implements BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String researchSpeciality;
 
+    private String email;
+
+    private String mobileNumber;
+
     @Embedded
     private Contact contact;
 
@@ -137,5 +141,21 @@ public class Curator implements BaseEntity {
 
     public void setAssociatedInstitutions(Set<Institution> associatedInstitutions) {
         this.associatedInstitutions = associatedInstitutions;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 }

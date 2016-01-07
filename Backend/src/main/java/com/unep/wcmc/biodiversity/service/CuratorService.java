@@ -20,33 +20,30 @@ import java.util.UUID;
 public class CuratorService extends AbstractService<Curator, CuratorRepository> {
 
     @Autowired
-    private InviteCuratorTokenRepository inviteTokenRepo;
-
-    @Autowired
     private Environment environment;
 
     @Autowired
     private MailUtils mailUtils;
 
     public void inviteCurator(String email, String institution, String urlCallback) {
-        User user = SecurityUtils.getCurrentUser();
+        Curator curator = new Curator();
+        curator.setEmail(email);
+        repo.save(curator);
 
         Map<String, Object> mailParameters = new HashMap<>();
         mailParameters.put("email", email);
         mailParameters.put("institution", institution);
-        mailParameters.put("url", getUrl(user, urlCallback, email, institution));
+        mailParameters.put("url", getUrl(curator, urlCallback, email, institution));
 
+        User user = SecurityUtils.getCurrentUser();
         String template = user != null && user.getLanguage().equals(User.PT_BR) ?
                 MailUtils.INVITE_CURATOR_TEMPLATE_PT_BR : MailUtils.INVITE_CURATOR_TEMPLATE_EN_GB;
 
         mailUtils.sendEmail(email, environment.getProperty("support.email"), "Biodiversity Collection Invite", template, mailParameters);
     }
 
-    private String getUrl(User user, String urlCallback, String email, String institution) {
-        final String token = UUID.randomUUID().toString();
-        final InviteCuratorToken inviteToken = new InviteCuratorToken(token, urlCallback, user, email, institution);
-        inviteTokenRepo.save(inviteToken);
-        String result = String.format(urlCallback + "/#/curator/signup/%s", token);
+    private String getUrl(Curator curator, String urlCallback, String email, String institution) {
+        String result = String.format(urlCallback + "/#/curator/create/" + curator.getId());
         if (!result.startsWith("http")) {
             result = "http://" + result;
         }

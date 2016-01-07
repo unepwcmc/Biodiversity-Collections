@@ -204,7 +204,9 @@ define([],function ( ) {
     'NEW_INSTITUTION':'Nova instituição',
     'CREATE':'Criar',
     'ADD_MEMBER_PHOTO':'Adicionar foto',
-    'CHANGE_MEMBER_PHOTO':'Trocar foto do associado'
+    'CHANGE_MEMBER_PHOTO':'Trocar foto do associado',
+    'MOBILE_NUMBER': 'Celular',
+    'NEW_CURATOR': 'Novo curador'
   }
 
 });

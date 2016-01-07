@@ -74,7 +74,7 @@ define(['include', 'language'], function (angularAMD, language) {
                             parent: 'admin'
                         }
                     }))
-                .state('admin_institution_create', angularAMD.route(
+                .state('adminInstitutionCreate', angularAMD.route(
                     {
                         url: '/admin/institution/create',
                         templateUrl: 'views/institution/default.html',
@@ -84,7 +84,7 @@ define(['include', 'language'], function (angularAMD, language) {
                             parent: 'admin'
                         }
                     }))
-                .state('admin_institution_edit', angularAMD.route(
+                .state('adminInstitutionEdit', angularAMD.route(
                     {
                         url: '/admin/institution/edit/:id',
                         templateUrl: 'views/institution/default.html',
@@ -189,6 +189,17 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
+                .state('curatorCreate', angularAMD.route(
+                    {
+                        url: '/curator/create/:id',
+                        params: {isNew : true},
+                        templateUrl: 'views/curator/default.html',
+                        controllerUrl: 'curator/controllers/curatorController',
+                        ncyBreadcrumb: {
+                            label: 'New Curator',
+                            parent: 'home'
+                        }
+                    }))
                 .state('institution', angularAMD.route(
                     {
                         url: '/institution/:id',
@@ -245,18 +256,6 @@ define(['include', 'language'], function (angularAMD, language) {
                         controllerUrl: 'user/controllers/userController',
                         ncyBreadcrumb: {
                             label: 'New user',
-                            parent: function($scope) {
-                                return $scope.fromState == 'home'? 'home' : 'home';
-                            }
-                        }
-                    }))
-                .state('curatorSignup', angularAMD.route(
-                    {
-                        url: '/curator/signup/:token',
-                        templateUrl: 'views/user/default.html',
-                        controllerUrl: 'user/controllers/userController',
-                        ncyBreadcrumb: {
-                            label: 'Curator sign-up',
                             parent: function($scope) {
                                 return $scope.fromState == 'home'? 'home' : 'home';
                             }
