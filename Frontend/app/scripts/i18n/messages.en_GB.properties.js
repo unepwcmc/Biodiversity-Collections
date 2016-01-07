@@ -202,7 +202,9 @@ define([],function ( ) {
     'REPORTING': 'Reporting',
     'LOGOUT': 'Log out',
     'ACTUAL_PASSWORD': 'Actual Password',
-    'ADMIN': 'Administrator'
+    'ADMIN': 'Administrator',
+    'MOBILE_NUMBER': 'Mobile number',
+    'NEW_CURATOR': 'New curator'
   }
 
 });

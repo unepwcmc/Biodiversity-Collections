@@ -117,7 +117,7 @@ define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
                     };
 
                     $scope.editInstitution = function( id ){
-                        $state.go('admin_institution_edit',{id: id});
+                        $state.go('adminInstitutionEdit',{id: id});
                     }
 
                     }],

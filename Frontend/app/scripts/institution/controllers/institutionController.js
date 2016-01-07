@@ -27,7 +27,7 @@ define(['app',
 
                 $scope.fromState = fromState.name;
 
-                 if(toState.name == 'admin_institution_create'){
+                 if (toState.name == 'adminInstitutionCreate') {
 
                      $scope.adminView = true;
                      $rootScope.editMode = true;
@@ -38,8 +38,7 @@ define(['app',
                              $stateParams.id = data.id;
                          }
                      });
-                 }
-                else if(toState.name == 'admin_institution_edit'){
+                 } else if (toState.name == 'adminInstitutionEdit') {
 
                     $scope.adminView = true;
                     $rootScope.editMode = true;

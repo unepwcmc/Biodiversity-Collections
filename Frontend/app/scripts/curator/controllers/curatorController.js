@@ -14,6 +14,7 @@ define(['app',
             $scope.image = null;
             $scope.fromState = 'home';
             $scope.curator = new Curator();
+            $scope.createCurator = false;
 
             /**
              * Listener when the state is changed
@@ -21,6 +22,10 @@ define(['app',
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
                 $scope.fromState = fromState.name;
+                if (toState.name == 'curatorCreate') {
+                    $scope.createCurator = true;
+                    $scope.curator.get( $stateParams.id );
+                }
             });
 
             /**
@@ -42,8 +47,10 @@ define(['app',
             });
 
 
-            $scope.$on('CURATOR_LOADED', function(){
-                $('#loader-wrapper').fadeToggle('400');
+            $scope.$on('CURATOR_LOADED', function() {
+                if (!$scope.createCurator) {
+                    $('#loader-wrapper').fadeToggle('400');
+                }
             });
 
             /**
@@ -71,6 +78,10 @@ define(['app',
              */
             $scope.$on('CURATOR_UPDATED', function(){
                 console.log('updated');
+
+                if ($scope.createCurator) {
+                    $state.go('home');
+                }
 
                 if ($scope.image != null) {
                     $scope.curator.addImage($scope.image);
@@ -108,6 +119,9 @@ define(['app',
              * Listener when the button cancel is clicked
              */
             $scope.$on('CANCEL_EDIT_CURATOR', function() {
+                if ($scope.createCurator) {
+                    $state.go('home');
+                }
                 setStateButton(false);
             });
 
