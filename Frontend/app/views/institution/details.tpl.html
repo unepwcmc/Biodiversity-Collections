@@ -32,8 +32,7 @@
 
             <a ng-show="!editMode && logged" id="edit-institution" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
             <a ng-show="editMode && adminEditView" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
-            <a ng-show="editMode && !adminEditView" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'CREATE' | translate}}</strong></a>
-            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+            <a ng-show="editMode && adminEditView" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>
@@ -143,3 +142,15 @@
 
     </div>
 </section>
+
+<institution-contact></institution-contact>
+<institution-collections></institution-collections>
+<institution-networks></institution-networks>
+
+<div class="container" ng-show="editMode && !adminEditView" edit-form="{{editMode}}">
+    <hr/>
+    <h4>
+        <a ng-show="editMode && !adminEditView" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'CREATE' | translate}}</strong></a>
+        <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+    </h4>
+</div>

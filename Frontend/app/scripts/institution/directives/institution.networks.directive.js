@@ -45,6 +45,7 @@ define(['angularAMD', 'core/factory/networkFactory'], function (angularAMD) {
                             if($scope.networkSelected != null){
                                 $scope.institution.addNetwork( $stateParams.id, $scope.networkSelected.originalObject.id, function( data, status){
                                     if(status === 200){
+                                        angular.extend( data, $scope.institution);
                                         toastr.success($translate.instant('NETWORK_ADDED_TO_INSTITUTION'), $translate.instant('SUCCESS'));
                                         $scope.networks.loadByInstitution( $stateParams.id,  $scope.networks.number, $scope.networks.size);
                                     } else {

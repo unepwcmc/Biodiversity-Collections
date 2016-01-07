@@ -187,7 +187,7 @@ define(['angularAMD'], function (angularAMD) {
 
                     .success(function ( data, status, headers, config ) {
 
-                        self.setData(data);
+                        //self.setData(data);
 
                         if(callback)
                             callback( data, status, headers, config )
