@@ -48,11 +48,11 @@
 
         </div>
 
-        <hr/>
+
 
         <div class="row" ng-show="editMode">
 
-            <h4>{{ 'ADD_ASSOCIATED_MEMBER' | translate }}</h4>
+            <h4 style="margin-left: 15px">{{ 'ADD_ASSOCIATED_MEMBER' | translate }}</h4>
 
             <div class="col-md-8">
                 <form action="#" class="form-horizontal view-mode form-block" role="form" name="member_form_add" novalidate>
@@ -86,15 +86,12 @@
             <div class="col-md-4 member-photo-button">
                 <image-box title="ADD_MEMBER_PHOTO" image="{{member.image}}" id="{{member.image.attachment.id}}"></image-box>
             </div>
-
         </div>
 
-        <hr/>
+        <div class="row" ng-show="editMode">
+            <hr />
+            <a class="btn btn-primary pull-right" ng-disabled="!member_form_add.$valid" ng-click="addNewMember()">{{ 'ADD_NEW_MEMBER' | translate }}</a>
+        </div>
 
-            <div class="row" ng-show="editMode">
-                <a class="btn btn-primary pull-right" ng-disabled="!member_form_add.$valid" ng-click="addNewMember()">{{ 'ADD_NEW_MEMBER' | translate }}</a>
-            </div>
-
-        <hr/>
     </div>
 </section>
