@@ -209,7 +209,8 @@ define([],function ( ) {
     'CHANGE_MEMBER_PHOTO':'Change member photo',
     'MOBILE_NUMBER': 'Mobile number',
     'NEW_CURATOR': 'New curator',
-    'CHANGE_CURATOR_PHOTO':'Change curator photo'
+    'CHANGE_CURATOR_PHOTO':'Change curator photo',
+    'BRAZILIAN_COLLECTIONS_DATABASE':'Brazilian Collection Database'
   }
 
 });

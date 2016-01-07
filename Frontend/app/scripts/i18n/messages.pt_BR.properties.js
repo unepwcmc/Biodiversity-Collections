@@ -207,7 +207,8 @@ define([],function ( ) {
     'CHANGE_MEMBER_PHOTO':'Trocar foto do associado',
     'MOBILE_NUMBER': 'Celular',
     'NEW_CURATOR': 'Novo curador',
-    'CHANGE_CURATOR_PHOTO':'Trocar foto do curador'
+    'CHANGE_CURATOR_PHOTO':'Trocar foto do curador',
+    'BRAZILIAN_COLLECTIONS_DATABASE':'Banco de Dados das Coleções Brasileiras'
   }
 
 });
