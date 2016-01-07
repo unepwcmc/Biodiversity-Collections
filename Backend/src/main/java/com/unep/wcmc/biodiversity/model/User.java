@@ -72,6 +72,10 @@ public class User implements UserDetails, BaseEntity {
     @JsonDeserialize
     private String role;
 
+    @Transient
+    @JsonDeserialize
+    private String actualPassword;
+
     public User() {
         super();
     }
@@ -148,6 +152,14 @@ public class User implements UserDetails, BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getActualPassword() {
+        return actualPassword;
+    }
+
+    public void setActualPassword(String actualPassword) {
+        this.actualPassword = actualPassword;
     }
 
     @Override

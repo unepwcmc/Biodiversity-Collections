@@ -39,7 +39,7 @@ public class CuratorService extends AbstractService<Curator, CuratorRepository> 
         String template = user != null && user.getLanguage().equals(User.PT_BR) ?
                 MailUtils.INVITE_CURATOR_TEMPLATE_PT_BR : MailUtils.INVITE_CURATOR_TEMPLATE_EN_GB;
 
-        mailUtils.sendEmail(email, environment.getProperty("support.email"), "Reset Password", template, mailParameters);
+        mailUtils.sendEmail(email, environment.getProperty("support.email"), "Biodiversity Collection Invite", template, mailParameters);
     }
 
     private String getUrl(User user, String urlCallback, String email, String institution) {

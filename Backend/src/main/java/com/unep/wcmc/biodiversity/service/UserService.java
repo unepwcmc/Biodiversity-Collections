@@ -70,7 +70,9 @@ public final class UserService extends AbstractService<User, UserRepository> imp
         validateUser(user, repo.findByUsername(user.getUsername()));
         final String role = user.getRole();
         user.setUserRole(getUserRole(role));
-
+        String passEncoded = passwordEncoder.encode(user.getPassword());
+        user.setPassword(passEncoded);
+        user.setLanguage("pt_BR");
         return save(user);
     }
 
@@ -86,11 +88,11 @@ public final class UserService extends AbstractService<User, UserRepository> imp
 
     private UserRole getUserRole(String role) {
         UserRole userRole;
-        final UserRole.RoleType publicUser = UserRole.RoleType.PUBLIC_USER;
+        final UserRole.RoleType curatorRole = UserRole.RoleType.CURATOR;
         try {
-            userRole = userRoleRepo.findByRole(role == null ? publicUser.name() : role);
+            userRole = userRoleRepo.findByRole(role == null ? curatorRole.name() : role);
         } catch (Exception e) {
-            userRole = userRoleRepo.findByRole(publicUser.name());
+            userRole = userRoleRepo.findByRole(curatorRole.name());
         }
         return userRole;
     }
@@ -168,7 +170,7 @@ public final class UserService extends AbstractService<User, UserRepository> imp
         String template = user != null && user.getLanguage().equals(User.PT_BR) ?
                 MailUtils.ASK_SUPPORT_TEMPLATE_PT_BR : MailUtils.ASK_SUPPORT_TEMPLATE_EN_GB;
 
-        mailUtils.sendEmail(environment.getProperty("support.email"), email, subject, template, mailParameters);
+        mailUtils.sendEmail(environment.getProperty("support.email"), email, "[Ask Support]" + subject, template, mailParameters);
     }
 
 }
