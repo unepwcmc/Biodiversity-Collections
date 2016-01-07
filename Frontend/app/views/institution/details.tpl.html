@@ -8,7 +8,8 @@
     <div class="container">
         <nav id="institution-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
-                <h2 class="navbar-text"><strong>{{'EDIT_INSTITUTION' | translate}}</strong></h2>
+                <h2 ng-show="adminEditView" class="navbar-text"><strong>{{'EDIT_INSTITUTION' | translate}}</strong></h2>
+                <h2 ng-show="!adminEditView" class="navbar-text"><strong>{{'NEW_INSTITUTION' | translate}}</strong></h2>
 
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
@@ -23,11 +24,15 @@
         <h4 id="institution-bar-default">
 
             <strong ng-show="!editMode" >{{ institution.name }}</strong>
-            <strong ng-show="editMode" >{{'EDIT_INSTITUTION' | translate}}</strong>
-            <span><button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'INSTITUTION'| translate}}</strong></button></span>
+            <strong ng-show="editMode && adminEditView" >{{'EDIT_INSTITUTION' | translate}}</strong>
+            <strong ng-show="editMode && !adminEditView" >{{'NEW_INSTITUTION' | translate}}</strong>
+            <span>
+                <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'INSTITUTION'| translate}}</strong></button>
+            </span>
 
             <a ng-show="!editMode && logged" id="edit-institution" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
-            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode && adminEditView" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode && !adminEditView" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'CREATE' | translate}}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 

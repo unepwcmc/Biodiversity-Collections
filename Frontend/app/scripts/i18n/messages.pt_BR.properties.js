@@ -201,6 +201,9 @@ define([],function ( ) {
     'LOGOUT': 'Log out',
     'ACTUAL_PASSWORD': 'Senha atual',
     'ADMIN': 'Administrador',
+    'NEW_INSTITUTION':'Nova instituição',
+    'CREATE':'Criar',
+    'ADMIN': 'Administrador',
     'MOBILE_NUMBER': 'Celular',
     'NEW_CURATOR': 'Novo curador'
   }

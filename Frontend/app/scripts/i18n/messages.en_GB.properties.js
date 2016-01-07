@@ -203,6 +203,9 @@ define([],function ( ) {
     'LOGOUT': 'Log out',
     'ACTUAL_PASSWORD': 'Actual Password',
     'ADMIN': 'Administrator',
+    'NEW_INSTITUTION':'New institution',
+    'CREATE':'Create',
+    'ADMIN': 'Administrator',
     'MOBILE_NUMBER': 'Mobile number',
     'NEW_CURATOR': 'New curator'
   }
