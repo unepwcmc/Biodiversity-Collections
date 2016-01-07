@@ -187,6 +187,10 @@ module.exports = function (grunt) {
           modules: [
             { name: 'app' },
             {
+              name: 'admin/controllers/adminController',
+              exclude: ['include']
+            },
+            {
               name: 'auth/controllers/authController',
               exclude: ['include']
             },
@@ -207,6 +211,10 @@ module.exports = function (grunt) {
               exclude: ['include']
             },
             {
+              name: 'member/controllers/memberController',
+              exclude: ['include']
+            },
+            {
               name: 'network/controllers/networkController',
               exclude: ['include']
             },
@@ -220,6 +228,10 @@ module.exports = function (grunt) {
             },
             {
               name: 'search/controllers/searchController',
+              exclude: ['include']
+            },
+            {
+              name: 'user/controllers/userController',
               exclude: ['include']
             }
           ]
@@ -260,7 +272,7 @@ module.exports = function (grunt) {
 
     watch: {
       www: {
-        files: ['%= cvars.app %>/**/*'],
+        files: ['%= cvars.dist %>/**/*'],
         tasks: [],
         options: {
           spawn: false,
@@ -273,7 +285,7 @@ module.exports = function (grunt) {
         livereload: true,
         options: {
           port: gruntConfig.configVars.port,
-          base: '<%= cvars.app %>'
+          base: '<%= cvars.dist %>'
         }
       }
     }
