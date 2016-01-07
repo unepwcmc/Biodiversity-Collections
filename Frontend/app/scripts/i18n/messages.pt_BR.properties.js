@@ -202,7 +202,9 @@ define([],function ( ) {
     'ACTUAL_PASSWORD': 'Senha atual',
     'ADMIN': 'Administrador',
     'NEW_INSTITUTION':'Nova instituição',
-    'CREATE':'Criar'
+    'CREATE':'Criar',
+    'ADD_MEMBER_PHOTO':'Adicionar foto',
+    'CHANGE_MEMBER_PHOTO':'Trocar foto do associado'
   }
 
 });

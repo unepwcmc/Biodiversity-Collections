@@ -204,7 +204,9 @@ define([],function ( ) {
     'ACTUAL_PASSWORD': 'Actual Password',
     'ADMIN': 'Administrator',
     'NEW_INSTITUTION':'New institution',
-    'CREATE':'Create'
+    'CREATE':'Create',
+    'ADD_MEMBER_PHOTO':'Add member photo',
+    'CHANGE_MEMBER_PHOTO':'Change member photo'
   }
 
 });
