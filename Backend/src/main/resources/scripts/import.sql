@@ -117,10 +117,8 @@ INSERT INTO document (id, author, content_type, description, name, status, title
 
   -- UserRole data
 INSERT INTO user_role (id, name, role) VALUES (1, 'ADMIN', 'ADMIN');
-INSERT INTO user_role (id, name, role) VALUES (2, 'EXPERT', 'EXPERT');
-INSERT INTO user_role (id, name, role) VALUES (3, 'PUBLIC_USER', 'PUBLIC_USER');
-INSERT INTO user_role (id, name, role) VALUES (4, 'ANONYMOUS', 'ANONYMOUS');
-INSERT INTO user_role (id, name, role) VALUES (5, 'SUPERADMIN', 'SUPERADMIN');
+INSERT INTO user_role (id, name, role) VALUES (2, 'CURATOR', 'CURATOR');
+INSERT INTO user_role (id, name, role) VALUES (3, 'GOVERNMENT_OFFICIAL', 'GOVERNMENT OFFICIAL');
 
 
 

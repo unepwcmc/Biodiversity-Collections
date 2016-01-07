@@ -210,7 +210,8 @@ define([],function ( ) {
     'MOBILE_NUMBER': 'Mobile number',
     'NEW_CURATOR': 'New curator',
     'CHANGE_CURATOR_PHOTO':'Change curator photo',
-    'BRAZILIAN_COLLECTIONS_DATABASE':'Brazilian Collection Database'
+    'BRAZILIAN_COLLECTIONS_DATABASE':'Brazilian Collection Database',
+    'GOVERNMENT_OFFICIAL': 'Government Official'
   }
 
 });
