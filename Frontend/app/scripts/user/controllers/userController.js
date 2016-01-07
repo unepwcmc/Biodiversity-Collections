@@ -12,6 +12,7 @@ define(['app',
             $scope.user = new User();
             $scope.adminView = false;
             $scope.editUserView = false;
+            $scope.curatorSignupView = false;
 
             /**
              * Listener when the state is changed
@@ -19,20 +20,20 @@ define(['app',
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
 
-                if(toState.name == 'admin_user_create'){
+                if (toState.name == 'adminUserCreate') {
                     $scope.adminView = true;
-                }
-                else if(toState.name == 'admin_user_edit'){
+                } else if (toState.name == 'adminUserEdit') {
                    // $('#loader-wrapper').fadeToggle('400');
                     $scope.adminView = true;
                     $scope.editUserView = true;
                     $scope.user.get($stateParams.id);
-                }
-                else if('edit_user_settings'){
+                } else if (toState.name == 'editUserSettings') {
                     // $('#loader-wrapper').fadeToggle('400');
                     $scope.adminView = false;
                     $scope.editUserView = true;
                     $scope.user.get($stateParams.id);
+                } else if (toState.name = 'curatorSignup') {
+                    $scope.curatorSignupView = true;
                 }
             });
 
@@ -45,7 +46,7 @@ define(['app',
                 $('#loader-wrapper').fadeToggle('400');
 
                 if(!$scope.adminView){
-                    data.role = 'PUBLIC_USER';
+                    data.role = 'CURATOR';
                 }
                 data.username = data.email;
 

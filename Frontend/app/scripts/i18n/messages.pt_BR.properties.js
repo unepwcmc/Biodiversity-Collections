@@ -198,7 +198,9 @@ define([],function ( ) {
     'MESSAGE_SENT':'Mensagem enviada, obrigado',
     'INVITE_SENT':'Convite enviado',
     'REPORTING': 'Relatórios',
-    'LOGOUT': 'Log out'
+    'LOGOUT': 'Log out',
+    'ACTUAL_PASSWORD': 'Senha atual',
+    'ADMIN': 'Administrador'
   }
 
 });

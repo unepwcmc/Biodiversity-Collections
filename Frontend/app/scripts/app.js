@@ -54,7 +54,7 @@ define(['include', 'language'], function (angularAMD, language) {
                             parent: 'home'
                         }
                     }))
-                .state('admin_user_create', angularAMD.route(
+                .state('adminUserCreate', angularAMD.route(
                     {
                         url: '/admin/user/create',
                         templateUrl: 'views/user/default.html',
@@ -64,7 +64,7 @@ define(['include', 'language'], function (angularAMD, language) {
                             parent: 'admin'
                         }
                     }))
-                .state('admin_user_edit', angularAMD.route(
+                .state('adminUserEdit', angularAMD.route(
                     {
                         url: '/admin/user/edit/:id',
                         templateUrl: 'views/user/default.html',
@@ -228,7 +228,7 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
-                .state('edit_user_settings', angularAMD.route(
+                .state('editUserSettings', angularAMD.route(
                     {
                         url: '/user/edit/:id',
                         templateUrl: 'views/user/default.html',
@@ -256,7 +256,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
                         ncyBreadcrumb: {
-                            label: 'New user',
+                            label: 'Curator sign-up',
                             parent: function($scope) {
                                 return $scope.fromState == 'home'? 'home' : 'home';
                             }
@@ -265,6 +265,12 @@ define(['include', 'language'], function (angularAMD, language) {
                 .state('reset', angularAMD.route(
                     {
                         url: '/reset/:token',
+                        templateUrl: 'views/auth/reset.password.html',
+                        controllerUrl: 'auth/controllers/authController'
+                    }))
+                .state('resetYourPassword', angularAMD.route(
+                    {
+                        url: '/reset',
                         templateUrl: 'views/auth/reset.password.html',
                         controllerUrl: 'auth/controllers/authController'
                     }))

@@ -7,6 +7,18 @@ define(['app','auth/factory/authenticationFactory'], function () {
         function ($scope, AuthenticationService, $http, $rootScope, $stateParams, $timeout, toastr ,$window, $state, $translate) {
 
                 $scope.user = {language:'pt_BR'};
+                $scope.resetYourPassword = false;
+
+                /**
+                 * Listener when the state is changed
+                 */
+                $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                    console.log('state Change Success');
+
+                    if (toState.name == 'resetYourPassword') {
+                        $scope.resetYourPassword = true;
+                    }
+                });
 
                 $scope.$on('AuthenticationDone', function() {
                     if ($rootScope.userId != null) {

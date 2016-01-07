@@ -118,7 +118,7 @@ define(['angularAMD','core/factory/userFactory'], function (angularAMD) {
                         };
 
                         $scope.editUser = function( id ){
-                            $state.go('admin_user_edit',{id: id});
+                            $state.go('adminUserEdit',{id: id});
                         }
 
                     }],

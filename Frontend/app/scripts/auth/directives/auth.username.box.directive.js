@@ -21,14 +21,14 @@ define(['angularAMD', 'popover'], function (angularAMD) {
             controller: ['$scope', '$rootScope', '$translate',
               function( $scope, $rootScope, $translate ){
 
-                $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN' || $rootScope.userRole == 'EXPERT');
+                $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN');
 
                 $scope.$on('AuthenticationDone', function() {
-                    $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN' || $rootScope.userRole == 'EXPERT');
+                    $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN');
                 });
 
                 $scope.$on('LogoutDone', function() {
-                    $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN' || $rootScope.userRole == 'EXPERT');
+                    $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN');
                 });
 
                 $scope.logoutFunc = function(){
@@ -37,7 +37,7 @@ define(['angularAMD', 'popover'], function (angularAMD) {
                 };
 
                 $scope.editUserSettings = function(){
-                    $state.go('edit_user_settings', { id: $cookies.get('userId')});
+                    $state.go('editUserSettings', { id: $cookies.get('userId')});
                 };
 
                 $scope.closePopover = function(){

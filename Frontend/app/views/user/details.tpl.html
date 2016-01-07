@@ -14,21 +14,21 @@
                         <input  type="hidden" value="{{ user.id }}">
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'FIRST_NAME' | translate }} *</label>
+                            <label class="col-sm-3">{{ 'FIRST_NAME' | translate }}</label>
 
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="user.firstName"
                                                          required></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'LAST_NAME' | translate }} *</label>
+                            <label class="col-sm-3">{{ 'LAST_NAME' | translate }}</label>
 
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="user.lastName"
                                                          required></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'INSTITUTION' | translate }} *</label>
+                            <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
 
                             <div class="col-sm-9">
                                 <angucomplete-alt id="user_institution"
@@ -62,7 +62,7 @@
 
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'EMAIL_ADDRESS' | translate }}-<em><small>{{ 'USERNAME' | translate}}</small></em> *</label>
+                            <label class="col-sm-3">{{ 'EMAIL_ADDRESS' | translate }}&nbsp;-&nbsp;<em><small>{{ 'USERNAME' | translate}}</small></em></label>
 
                             <div class="col-sm-9"><input type="email" class="form-control" data-ng-model="user.email"
                                                          required></div>
@@ -75,21 +75,18 @@
                                                          data-ng-model="user.contact.phoneNumber"></div>
                         </div>
 
-                        <div ng-show="adminView" class="form-group">
+                        <div ng-if="adminView" class="form-group">
                             <label class="col-sm-3">{{ 'ROLE' | translate}}</label>
                             <div class="col-sm-9">
                                 <select select-wrap data-ng-model="user.role">
                                     <option value="ADMIN">{{'ADMIN' | translate }}</option>
-                                    <option value="EXPERT">{{'EXPERT' | translate }}</option>
-                                    <option value="PUBLIC_USER">{{'PUBLIC_USER' | translate }}</option>
-                                    <option value="ANONYMOUS">{{'ANONYMOUS' | translate }}</option>
-                                    <option value="SUPERADMIN">{{'SUPERADMIN' | translate }}</option>
+                                    <option value="CURATOR">{{'CURATOR' | translate }}</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group" ng-show="!editUserView">
-                            <label class="col-sm-3">{{ 'PASSWORD' | translate }} *</label>
+                        <div class="form-group" ng-show="!editUserView || curatorSignupView">
+                            <label class="col-sm-3">{{ 'PASSWORD' | translate }}</label>
 
                             <div class="col-sm-9"><input type="password" class="form-control"
                                                          data-ng-model="user.password" required></div>

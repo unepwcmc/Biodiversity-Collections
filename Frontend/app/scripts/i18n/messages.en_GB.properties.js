@@ -200,7 +200,9 @@ define([],function ( ) {
     'MESSAGE_SENT':'Message sent, thank you.',
     'INVITE_SENT':'Invite sent',
     'REPORTING': 'Reporting',
-    'LOGOUT': 'Log out'
+    'LOGOUT': 'Log out',
+    'ACTUAL_PASSWORD': 'Actual Password',
+    'ADMIN': 'Administrator'
   }
 
 });
