@@ -1,8 +1,8 @@
 <div class="row">
     <span ng-show="editMode">
-        <a ng-click="deleteMember(member.id)" class="btn-link-primary pull-right" style="cursor: pointer"><i class="fa fa-close"></i>{{'DELETE_ASSOCIATED_MEMBER' | translate }}</a>
+        <a ng-click="deleteMember(member.id)" class="btn-link-primary pull-right" style="cursor: pointer;"><i class="fa fa-times-circle"></i>{{'DELETE_ASSOCIATED_MEMBER' | translate }}</a>
         <hr />
-        <br/>
+        <div class="clearfix"></div>
     </span>
     <div class="col-md-8">
         <form action="#" class="form-horizontal view-mode form-block" role="form" name="member_form" novalidate>
