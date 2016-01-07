@@ -161,16 +161,25 @@ public final class UserService extends AbstractService<User, UserRepository> imp
     }
 
     public void askForSupport(String email, String subject, String message) {
-        User user = SecurityUtils.getCurrentUser();
 
-        Map<String, Object> mailParameters = new HashMap<>();
-        mailParameters.put("message", message);
-        mailParameters.put("user", user);
+        List<User> users = repo.findAllByUserRole(getUserRole(UserRole.RoleType.ADMIN.toString()));
 
-        String template = user != null && user.getLanguage().equals(User.PT_BR) ?
-                MailUtils.ASK_SUPPORT_TEMPLATE_PT_BR : MailUtils.ASK_SUPPORT_TEMPLATE_EN_GB;
+        if(!users.contains(SecurityUtils.getCurrentUser())){
+            users.add(SecurityUtils.getCurrentUser());
+        }
 
-        mailUtils.sendEmail(environment.getProperty("support.email"), email, "[Ask Support]" + subject, template, mailParameters);
+        users.forEach( user -> {
+
+            Map<String, Object> mailParameters = new HashMap<>();
+            mailParameters.put("message", message);
+            mailParameters.put("user", user);
+
+            String template = user != null && user.getLanguage().equals(User.PT_BR) ?
+                    MailUtils.ASK_SUPPORT_TEMPLATE_PT_BR : MailUtils.ASK_SUPPORT_TEMPLATE_EN_GB;
+
+            mailUtils.sendEmail(environment.getProperty("support.email"), email, "[Ask Support]" + subject, template, mailParameters);
+
+        });
     }
 
 }
