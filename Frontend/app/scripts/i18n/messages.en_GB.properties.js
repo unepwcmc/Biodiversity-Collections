@@ -208,7 +208,8 @@ define([],function ( ) {
     'ADD_MEMBER_PHOTO':'Add member photo',
     'CHANGE_MEMBER_PHOTO':'Change member photo',
     'MOBILE_NUMBER': 'Mobile number',
-    'NEW_CURATOR': 'New curator'
+    'NEW_CURATOR': 'New curator',
+    'CHANGE_CURATOR_PHOTO':'Change curator photo'
   }
 
 });
