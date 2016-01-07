@@ -24,7 +24,7 @@
                 <strong ng-show="!editMode" >{{ sample.name }}</strong>
                 <strong ng-show="editMode" >{{ 'EDIT_SAMPLE' | translate }}</strong> <span>
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'SAMPLE'| translate}}</strong></button></span>
-            <a id="edit-sample" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
+            <a ng-show="logged" id="edit-sample" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
             <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="sample_form.$invalid"><strong>{{ 'SAVE_CHANGES' | translate }}</strong></a>
             <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-sample-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
         </h4>

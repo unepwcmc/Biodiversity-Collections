@@ -26,7 +26,7 @@
             <strong ng-show="editMode" >{{'EDIT_INSTITUTION' | translate}}</strong> <span>
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'INSTITUTION'| translate}}</strong></button></span>
 
-            <a ng-show="!editMode" id="edit-institution" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
+            <a ng-show="!editMode && logged" id="edit-institution" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
