@@ -203,9 +203,11 @@ define([],function ( ) {
     'ADMIN': 'Administrador',
     'NEW_INSTITUTION':'Nova instituição',
     'CREATE':'Criar',
-    'ADMIN': 'Administrador',
+    'ADD_MEMBER_PHOTO':'Adicionar foto',
+    'CHANGE_MEMBER_PHOTO':'Trocar foto do associado',
     'MOBILE_NUMBER': 'Celular',
-    'NEW_CURATOR': 'Novo curador'
+    'NEW_CURATOR': 'Novo curador',
+    'CHANGE_CURATOR_PHOTO':'Trocar foto do curador'
   }
 
 });

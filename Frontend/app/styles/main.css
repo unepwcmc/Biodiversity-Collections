@@ -1415,6 +1415,9 @@ table.researches input.form-control[readonly] {
 .showIfLast {
   display: none; }
 
+div.member-photo-button > image-box > div.small-field > a.btn.btn-primary.btn-small.pull-right.btn-img {
+  font-size: 11px !important; }
+
 .curator-date {
   display: inline;
   float: left; }
