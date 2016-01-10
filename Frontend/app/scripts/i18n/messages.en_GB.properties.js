@@ -211,7 +211,9 @@ define([],function ( ) {
     'NEW_CURATOR': 'New curator',
     'CHANGE_CURATOR_PHOTO':'Change curator photo',
     'BRAZILIAN_COLLECTIONS_DATABASE':'Brazilian Collection Database',
-    'GOVERNMENT_OFFICIAL': 'Government Official'
+    'GOVERNMENT_OFFICIAL': 'Government Official',
+    'THE_FIELD_COUNT_INVALID':'The field must be numeric',
+    'THE_FIELD_TYPE_EMPTY':'The field can\'t be empty'
   }
 
 });
