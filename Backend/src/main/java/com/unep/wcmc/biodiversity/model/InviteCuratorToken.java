@@ -32,6 +32,10 @@ public class InviteCuratorToken implements BaseEntity {
 	@JoinColumn(nullable = true, name = "curator_id")
 	private Curator curator;
 
+	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+	@JoinColumn(nullable = true, name = "user_id")
+	private User user;
+
     public InviteCuratorToken() {
     }
 
@@ -99,6 +103,14 @@ public class InviteCuratorToken implements BaseEntity {
 
 	public void setCurator(Curator curator) {
 		this.curator = curator;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	private void createExpiryDate() {

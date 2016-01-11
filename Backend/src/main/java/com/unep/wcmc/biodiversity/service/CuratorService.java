@@ -99,6 +99,7 @@ public class CuratorService extends AbstractService<Curator, CuratorRepository> 
         String token = UUID.randomUUID().toString();
         InviteCuratorToken inviteToken = new InviteCuratorToken(token, urlCallback, curator, email);
         inviteToken.setInstitution(institution);
+        inviteToken.setUser(SecurityUtils.getCurrentUser());
         inviteTokenRepo.save(inviteToken);
         String result = String.format(urlCallback + "/#/curator/signup/%s", token);
         if (!result.startsWith("http")) {
