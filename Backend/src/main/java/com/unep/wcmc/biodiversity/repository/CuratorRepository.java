@@ -14,9 +14,10 @@ public interface CuratorRepository extends AbstractRepository<Curator> {
     @EntityGraph(value = "Curator.detail", type = EntityGraph.EntityGraphType.LOAD)
     Curator getById(Long id);
 
+    Curator findByUserEmail(String email);
 
-    List<Curator> findTop5ByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name, Pageable p);
+    List<Curator> findTop5ByUserFirstNameContainingIgnoreCaseOrderByUserFirstNameAsc(@Param("firstName") String name, Pageable p);
 
-    Page<Curator> findByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name, Pageable p);
+    Page<Curator> findByUserFirstNameContainingIgnoreCaseOrderByUserFirstNameAsc(@Param("firstName") String name, Pageable p);
 
 }

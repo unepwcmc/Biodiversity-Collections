@@ -24,21 +24,22 @@ public class InviteCuratorToken implements BaseEntity {
 
 	private String curatorEmail;
 
-	private String institution;
+	@ManyToOne
+	@JoinColumn(name = "institution_id")
+	private Institution institution;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = true, name = "userId")
-    private User user;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(nullable = true, name = "curator_id")
+	private Curator curator;
 
     public InviteCuratorToken() {
     }
 
-    public InviteCuratorToken(String token, String urlCallback, User user, String curatorEmail, String institution) {
+    public InviteCuratorToken(String token, String urlCallback, Curator curator, String curatorEmail) {
     	this.token = token;
-    	this.user = user;
+    	this.curator = curator;
     	this.urlCallback = urlCallback;
 		this.curatorEmail = curatorEmail;
-		this.institution = institution;
     	createExpiryDate();
     }
 
@@ -55,10 +56,6 @@ public class InviteCuratorToken implements BaseEntity {
 		return expiryDate;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
 	@Override
 	public void setId(Long id) {
 		this.id = id;
@@ -70,10 +67,6 @@ public class InviteCuratorToken implements BaseEntity {
 
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
     
     public String getUrlCallback() {
@@ -92,12 +85,20 @@ public class InviteCuratorToken implements BaseEntity {
 		this.curatorEmail = curatorEmail;
 	}
 
-	public String getInstitution() {
+	public Institution getInstitution() {
 		return institution;
 	}
 
-	public void setInstitution(String institution) {
+	public void setInstitution(Institution institution) {
 		this.institution = institution;
+	}
+
+	public Curator getCurator() {
+		return curator;
+	}
+
+	public void setCurator(Curator curator) {
+		this.curator = curator;
 	}
 
 	private void createExpiryDate() {

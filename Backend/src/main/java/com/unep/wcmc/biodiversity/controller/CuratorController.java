@@ -1,8 +1,10 @@
 package com.unep.wcmc.biodiversity.controller;
 
+import com.unep.wcmc.biodiversity.dto.ErrorMessage;
 import com.unep.wcmc.biodiversity.dto.SuccessResponse;
 import com.unep.wcmc.biodiversity.model.Curator;
 import com.unep.wcmc.biodiversity.model.InviteCurator;
+import com.unep.wcmc.biodiversity.model.InviteCuratorToken;
 import com.unep.wcmc.biodiversity.service.CuratorService;
 import com.unep.wcmc.biodiversity.service.ImageService;
 import com.unep.wcmc.biodiversity.support.AbstractController;
@@ -30,12 +32,12 @@ public class CuratorController extends AbstractController<Curator, CuratorServic
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<Curator> name(@RequestParam String name,
                               @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByNameContainingIgnoreCaseOrderByNameAsc(name, pageable);
+        return service.getRepository().findByUserFirstNameContainingIgnoreCaseOrderByUserFirstNameAsc(name, pageable);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public List<Curator> autocomplete(@RequestParam String name, @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findTop5ByNameContainingIgnoreCaseOrderByNameAsc(name, pageable);
+        return service.getRepository().findTop5ByUserFirstNameContainingIgnoreCaseOrderByUserFirstNameAsc(name, pageable);
     }
 
 
@@ -52,5 +54,11 @@ public class CuratorController extends AbstractController<Curator, CuratorServic
     public SuccessResponse invite(@RequestBody InviteCurator invite) {
         service.inviteCurator(invite.getEmail(), invite.getInstitution(), invite.getUrl());
         return new SuccessResponse("curator's invite sent successful");
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value = "/token/{token}")
+    public Object getByToken(@PathVariable String token) {
+        InviteCuratorToken inviteCuratorToken = service.findByToken(token);
+        return inviteCuratorToken == null ? new ErrorMessage(token, "no matches found") : inviteCuratorToken.getCurator();
     }
 }

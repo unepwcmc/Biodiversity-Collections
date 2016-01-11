@@ -18,8 +18,6 @@ public class Curator implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
     private String jobTitle;
 
     private Date dateOfBirth;
@@ -32,26 +30,19 @@ public class Curator implements BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String researchSpeciality;
 
-    private String email;
-
-    private String mobileNumber;
-
-    @Embedded
-    private Contact contact;
-
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "image_id")
     private Image image;
-
-    @ManyToOne
-    @JoinColumn(name = "institution_id")
-    private Institution institution;
 
     @ManyToMany
     @JoinTable(name = "curator_institution",
             joinColumns = @JoinColumn(name = "curator_id"),
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
     private Set<Institution> associatedInstitutions;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false, name = "user_id")
+    private User user;
 
     @Override
     public Long getId() {
@@ -61,22 +52,6 @@ public class Curator implements BaseEntity {
     @Override
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
     public String getJobTitle() {
@@ -127,14 +102,6 @@ public class Curator implements BaseEntity {
         this.image = image;
     }
 
-    public Institution getInstitution() {
-        return institution;
-    }
-
-    public void setInstitution(Institution institution) {
-        this.institution = institution;
-    }
-
     public Set<Institution> getAssociatedInstitutions() {
         return associatedInstitutions;
     }
@@ -143,19 +110,11 @@ public class Curator implements BaseEntity {
         this.associatedInstitutions = associatedInstitutions;
     }
 
-    public String getEmail() {
-        return email;
+    public User getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

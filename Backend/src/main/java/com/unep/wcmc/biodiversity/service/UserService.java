@@ -4,6 +4,7 @@ import com.unep.wcmc.biodiversity.exception.InvalidPasswordException;
 import com.unep.wcmc.biodiversity.exception.UserAlreadyExistException;
 import com.unep.wcmc.biodiversity.exception.UserNotFoundException;
 import com.unep.wcmc.biodiversity.helper.MailUtils;
+import com.unep.wcmc.biodiversity.model.Curator;
 import com.unep.wcmc.biodiversity.model.ForgetPasswordToken;
 import com.unep.wcmc.biodiversity.model.User;
 import com.unep.wcmc.biodiversity.model.UserRole;
@@ -46,6 +47,17 @@ public final class UserService extends AbstractService<User, UserRepository> imp
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private CuratorService curatorService;
+
+    @Override
+    public User get(Long id) {
+        User result = super.get(id);
+        result.setPassword("");
+        result.setActualPassword("");
+        return result;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final User user = repo.findByUsername(username);
@@ -53,6 +65,8 @@ public final class UserService extends AbstractService<User, UserRepository> imp
             throw new UsernameNotFoundException("user not found");
         }
         detailsChecker.check(user);
+        user.setPassword("");
+        user.setActualPassword("");
         return user;
     }
 
@@ -73,7 +87,13 @@ public final class UserService extends AbstractService<User, UserRepository> imp
         String passEncoded = passwordEncoder.encode(user.getPassword());
         user.setPassword(passEncoded);
         user.setLanguage("pt_BR");
-        return save(user);
+        user = save(user);
+
+        if (role.equals(UserRole.RoleType.CURATOR.name())) {
+            curatorService.create(user);
+        }
+        return user;
+
     }
 
     private void validateUser(User user, User other) {

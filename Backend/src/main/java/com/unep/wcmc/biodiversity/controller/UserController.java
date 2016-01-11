@@ -23,7 +23,6 @@ public class UserController extends AbstractController<User, UserService> {
     @Override
     @RequestMapping(method = RequestMethod.POST)
     public User create(@RequestBody User e){
-
         return service.create(e);
     }
 

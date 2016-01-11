@@ -8,6 +8,8 @@ public class Contact implements Serializable {
 
     private String phoneNumber;
 
+    private String mobileNumber;
+
     private String address1;
 
     private String address2;
@@ -32,6 +34,14 @@ public class Contact implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public String getAddress1() {
