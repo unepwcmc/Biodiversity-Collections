@@ -51,6 +51,7 @@ public class CuratorService extends AbstractService<Curator, CuratorRepository> 
     public Curator save(Curator curator) {
         User user = curator.getUser();
         if (user != null) {
+            user.setFirstName(curator.getName());
             user.setEnabled(true);
             user.setPassword(
                     passwordEncoder.encode(user.getPassword()));
