@@ -65,8 +65,6 @@ public final class UserService extends AbstractService<User, UserRepository> imp
             throw new UsernameNotFoundException("user not found");
         }
         detailsChecker.check(user);
-        user.setPassword("");
-        user.setActualPassword("");
         return user;
     }
 
