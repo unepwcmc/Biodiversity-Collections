@@ -41,7 +41,7 @@ public class Curator implements BaseEntity {
     private Set<Institution> associatedInstitutions;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false, name = "user_id")
+    @JoinColumn(nullable = true, name = "user_id")
     private User user;
 
     @Override
