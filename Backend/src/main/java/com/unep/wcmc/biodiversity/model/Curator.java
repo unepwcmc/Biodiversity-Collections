@@ -1,9 +1,12 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,6 +15,7 @@ import java.util.Set;
                 @NamedAttributeNode("associatedInstitutions")
         }
 )
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Curator implements BaseEntity {
 
     @Id
@@ -113,12 +117,24 @@ public class Curator implements BaseEntity {
     }
 
     public Set<Institution> getAssociatedInstitutions() {
-        return associatedInstitutions;
+        if (this.associatedInstitutions == null) {
+            this.associatedInstitutions = new HashSet<>();
+        }
+        return this.associatedInstitutions;
     }
 
     public void setAssociatedInstitutions(Set<Institution> associatedInstitutions) {
         this.associatedInstitutions = associatedInstitutions;
     }
+
+    public void addAssociatedInstitution(Institution institution){
+        getAssociatedInstitutions().add(institution);
+    }
+
+    public void removeAssociatedInstitution(Institution institution){
+        getAssociatedInstitutions().remove(institution);
+    }
+
 
     public User getUser() {
         return user;

@@ -6,14 +6,16 @@ import com.unep.wcmc.biodiversity.repository.InstitutionRepository;
 import com.unep.wcmc.biodiversity.support.AbstractService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 @Service
 public class InstitutionService extends AbstractService<Institution, InstitutionRepository> {
 
-    /*public List<Institution> findAllByCurator(Curator curator){
-        return repo.findAllByAssociatedInstitutionsIn(new ArrayList<Curator>(Arrays.asList(curator)));
-    }*/
+    @Override
+    public Institution save(Institution institution) {
+        if (institution.getCurators() != null) {
+            for (Curator curator : institution.getCurators()) {
+                curator.addAssociatedInstitution(institution);
+            }
+        }
+        return super.save(institution);
+    }
 }

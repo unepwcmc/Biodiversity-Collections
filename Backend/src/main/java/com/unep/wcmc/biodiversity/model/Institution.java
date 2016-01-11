@@ -1,6 +1,8 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.hibernate.annotations.Cascade;
 
@@ -15,6 +17,7 @@ import java.util.Set;
                 @NamedAttributeNode("networks")
         }
     )
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Institution implements BaseEntity {
 
     @Id
@@ -39,7 +42,7 @@ public class Institution implements BaseEntity {
     @Embedded
     private Contact contact;
 
-    @ManyToMany(mappedBy = "associatedInstitutions")
+    @ManyToMany(mappedBy = "associatedInstitutions", cascade = CascadeType.ALL)
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")
@@ -121,7 +124,10 @@ public class Institution implements BaseEntity {
     }
 
     public Set<Curator> getCurators() {
-        return this.curators == null? new HashSet<Curator>():  this.curators;
+        if (this.curators == null) {
+            this.curators = new HashSet<>();
+        }
+        return this.curators;
     }
 
     public void setCurators(Set<Curator> curators) {
