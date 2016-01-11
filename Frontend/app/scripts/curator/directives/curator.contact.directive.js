@@ -16,16 +16,16 @@ define(['angularAMD','core/directives/core.map.directive'], function (angularAMD
 
                         $scope.$on('CURATOR_LOADED', function(){
 
-                            if($scope.curator.contact == null)
-                                angular.extend($scope.curator, {contact:{}});
+                            if($scope.curator.user.contact == null)
+                                angular.extend($scope.curator.user, {contact:{}});
 
                             $scope.fullAddress = '';
-                            if ($scope.curator.contact.address1) $scope.fullAddress += '+' + $scope.curator.contact.address1;
-                            if ($scope.curator.contact.address2) $scope.fullAddress += '+' + $scope.curator.contact.address2;
-                            if ($scope.curator.contact.address3) $scope.fullAddress += '+' + $scope.curator.contact.address3;
-                            if ($scope.curator.contact.city) $scope.fullAddress += '+' + $scope.curator.contact.city;
-                            if ($scope.curator.contact.district) $scope.fullAddress += '+' + $scope.curator.contact.district;
-                            if ($scope.curator.contact.country) $scope.fullAddress += '+' + $scope.network.contact.country;
+                            if ($scope.curator.user.contact.address1) $scope.fullAddress += '+' + $scope.curator.user.contact.address1;
+                            if ($scope.curator.user.contact.address2) $scope.fullAddress += '+' + $scope.curator.user.contact.address2;
+                            if ($scope.curator.user.contact.address3) $scope.fullAddress += '+' + $scope.curator.user.contact.address3;
+                            if ($scope.curator.user.contact.city) $scope.fullAddress += '+' + $scope.curator.user.contact.city;
+                            if ($scope.curator.user.contact.district) $scope.fullAddress += '+' + $scope.curator.user.contact.district;
+                            if ($scope.curator.user.contact.country) $scope.fullAddress += '+' + $scope.network.user.contact.country;
                         });
                     }],
                 link: function (scope, element, attrs) {

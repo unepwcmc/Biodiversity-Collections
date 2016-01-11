@@ -189,9 +189,9 @@ define(['include', 'language'], function (angularAMD, language) {
                             }
                         }
                     }))
-                .state('curatorCreate', angularAMD.route(
+                .state('curatorSignup', angularAMD.route(
                     {
-                        url: '/curator/create/:id',
+                        url: '/curator/signup/:token',
                         params: {isNew : true},
                         templateUrl: 'views/curator/default.html',
                         controllerUrl: 'curator/controllers/curatorController',

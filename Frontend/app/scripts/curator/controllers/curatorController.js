@@ -22,9 +22,9 @@ define(['app',
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 console.log('state Change Success');
                 $scope.fromState = fromState.name;
-                if (toState.name == 'curatorCreate') {
+                if (toState.name == 'curatorSignup') {
                     $scope.createCurator = true;
-                    $scope.curator.get( $stateParams.id );
+                    $scope.curator.getByToken( $stateParams.token );
                 }
             });
 

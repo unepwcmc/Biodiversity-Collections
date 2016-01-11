@@ -16,6 +16,23 @@ define(['angularAMD','bootstrap'], function (angularAMD) {
 
                         $scope.invite = { url: $location.host() + ":" + $location.port()};
 
+                        $scope.institutionSelected = null;
+
+                        $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
+                            return $http.get( $rootScope.getHost() + "institutions/search/autocompleteName?name=" + userInputString,
+                                {
+                                    timeout: timeoutPromise
+                                }
+                            );
+                        };
+
+                        $scope.institutionSelectedFn = function(selected) {
+                            if (selected) {
+                                $scope.invite.institution = selected.originalObject.id;
+                            }
+                        };
+
+
                         $scope.$on('ADMIN_OVERVIEW_TAB', function(){
                             console.log('overview tab');
                         });

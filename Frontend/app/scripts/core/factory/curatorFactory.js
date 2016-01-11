@@ -50,6 +50,25 @@ define(['angularAMD'], function (angularAMD) {
                         $rootScope.$broadcast("CURATOR_LOAD_ERROR");
                     });
             },
+            getByToken: function( token ){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "curators/token/" + token )
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("CURATOR_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("CURATOR_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("CURATOR_LOAD_ERROR");
+                    });
+            },
             update: function () {
 
                 $http.put( $rootScope.getHost() + "curators/" + this.id, this)

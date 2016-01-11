@@ -43,12 +43,12 @@
 
                         <div  class="form-group">
                             <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
-                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="curator.name" required></div>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="curator.user.firstName" required></div>
                         </div>
 
                         <div ng-show="!editMode"  class="form-group">
                             <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
-                            <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="institution({id : curator.institution.id})">{{curator.institution.name}}</a></div>
+                            <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="institution({id : curator.user.institution.id})">{{curator.user.institution.name}}</a></div>
                         </div>
 
                         <div ng-show="editMode" class="form-group">
@@ -104,6 +104,11 @@
                         <div  class="form-group">
                             <label class="col-sm-3">{{ 'RESEARCH_SPECIALITY' | translate }}</label>
                             <div class="col-sm-9"><textarea type="text" class="form-control" data-ng-model="curator.researchSpeciality"></textarea></div>
+                        </div>
+
+                        <div  class="form-group">
+                            <label class="col-sm-3">{{ 'PASSWORD' | translate }} *</label>
+                            <div class="col-sm-9"><input type="password" class="form-control" data-ng-model="curator.user.password" required></div>
                         </div>
 
                         <div class="form-group">

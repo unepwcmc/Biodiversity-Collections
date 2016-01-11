@@ -16,12 +16,12 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
 
                         $scope.$on('CURATOR_LOADED', function(){
                             convertDate();
-                            $scope.institutionSelected = $scope.curator.institution;
+                            $scope.institutionSelected = $scope.curator.user.institution;
                         });
 
                         $scope.$on('CANCEL_EDIT_CURATOR', function() {
                             convertDate();
-                            $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.curator.institution);
+                            $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.curator.user.institution);
                         });
 
                         $scope.$on('CURATOR_UPDATED', function(){
@@ -38,7 +38,7 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
 
                         $scope.institutionSelectedFn = function(selected) {
                             if (selected) {
-                                $scope.curator.institution = selected.originalObject;
+                                $scope.curator.user.institution = selected.originalObject;
                             }
                         };
 
@@ -49,6 +49,9 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                                           id: $scope.associatedInstitutionSelected.originalObject.id,
                                           name: $scope.associatedInstitutionSelected.originalObject.name
                                 };
+                                if (!$scope.curator.associatedInstitutions) {
+                                    $scope.curator.associatedInstitutions = [];
+                                }
                                 $scope.curator.associatedInstitutions.push(obj);
                             }
                             $scope.$broadcast('angucomplete-alt:clearInput', 'associatedInstitutionAtcl');
