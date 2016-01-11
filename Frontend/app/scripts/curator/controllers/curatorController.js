@@ -53,6 +53,11 @@ define(['app',
                 }
             });
 
+            $scope.$on('CURATOR_TOKEN_LOAD_ERROR', function() {
+                $scope.showErrorMessage('ERROR', 'INVALID_CURATOR_TOKEN');
+                $state.go('home');
+            });
+
             /**
              * Should be fired when the button save is click
              */

@@ -28,8 +28,8 @@
             <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'CURATOR'| translate}}</strong></button></span>
 
             <a ng-show="!editMode && logged" id="edit-curator" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
-            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="curator_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
-            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-curator-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+            <a ng-show="editMode && !createCurator" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="curator_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode && !createCurator" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-curator-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>
@@ -157,4 +157,12 @@
         <hr/>
     </div>
 </section>
+
 <curator-contact></curator-contact>
+
+<div class="container" ng-show="editMode && createCurator" edit-form="{{editMode}}">
+    <h4>
+        <a ng-show="editMode && createCurator" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="curator_form.$invalid"><strong>{{'CREATE' | translate}}</strong></a>
+        <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-curator-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+    </h4>
+</div>

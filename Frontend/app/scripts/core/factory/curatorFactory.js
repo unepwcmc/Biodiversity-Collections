@@ -58,7 +58,7 @@ define(['angularAMD'], function (angularAMD) {
 
                     .success(function (data) {
                         if (data.message == 'no matches found') {
-                            $rootScope.$broadcast("CURATOR_LOAD_ERROR");
+                            $rootScope.$broadcast("CURATOR_TOKEN_LOAD_ERROR");
                         } else {
                             self.setData(data);
                             $rootScope.$broadcast("CURATOR_LOADED");
@@ -66,7 +66,7 @@ define(['angularAMD'], function (angularAMD) {
                     })
                     .error(function (message) {
                         $log.error(message);
-                        $rootScope.$broadcast("CURATOR_LOAD_ERROR");
+                        $rootScope.$broadcast("CURATOR_TOKEN_LOAD_ERROR");
                     });
             },
             update: function () {
