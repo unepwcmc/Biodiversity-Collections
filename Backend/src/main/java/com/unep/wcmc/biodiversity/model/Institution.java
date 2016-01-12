@@ -17,7 +17,6 @@ import java.util.Set;
                 @NamedAttributeNode("networks")
         }
     )
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Institution implements BaseEntity {
 
     @Id

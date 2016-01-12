@@ -25,7 +25,7 @@ define([],function ( ) {
     'PLEASE_SELECT':'-- Por favor, selecione --',
     'DESCRIPTION':'Descrição',
     'PRESERVATION_METHODS':'Métodos de preservação',
-    'RESEARCHES':'Pesquisas',
+    'RESEARCHES':'Pesquisadores',
     'CURATORIAL_UNIT_LODGE':'Unidade curatorial / alojamento',
     'COLLECTION_WEBSITE':'Site da Coleção',
     'COLLECTIONS':'Coleções',
@@ -208,12 +208,17 @@ define([],function ( ) {
     'MOBILE_NUMBER': 'Celular',
     'NEW_CURATOR': 'Novo curador',
     'CHANGE_CURATOR_PHOTO':'Trocar foto do curador',
-    'BRAZILIAN_COLLECTIONS_DATABASE':'Banco de Dados das Coleções Brasileiras',
+    'BRAZILIAN_COLLECTIONS_DATABASE':'Banco de Dados de Coleções de Biodiversidade Brasileiras',
     'GOVERNMENT_OFFICIAL': 'Oficial do governo',
     'THE_FIELD_COUNT_INVALID':'O campo deve ser numérico',
     'THE_FIELD_TYPE_EMPTY':'O campo não deve ser vazio',
+    'CREATE_A_NEW_FILTER':'Criar um novo filtro',
     'INVALID_CURATOR_TOKEN': 'Curator token inválido',
-    'CREATE_A_NEW_FILTER':'Criar um novo filtro'
+    'ORGANISM_TYPE': 'Tipo do organismo',
+    'FAUNA': 'Fauna',
+    'FLORA': 'Flora',
+    'MICROORGANISMS': 'Micro-organismo',
+    'OTHERS': 'Outros'
   }
 
 });

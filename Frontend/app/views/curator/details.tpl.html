@@ -91,22 +91,20 @@
                                 <div class="clearfix">
                                     <div style="display: block"><em><small>eg. 10-10-1985</small></em></div>
                                 </div>
-
                             </div>
-
                         </div>
 
                         <div  class="form-group">
                             <label class="col-sm-3">{{ 'RESEARCH_DISCIPLINE' | translate }}</label>
-                            <div class="col-sm-9"><textarea type="text" class="form-control" data-ng-model="curator.researchDiscipline" ></textarea></div>
+                            <div class="col-sm-9"><textarea elastic type="text" class="form-control" data-ng-model="curator.researchDiscipline" ></textarea></div>
                         </div>
 
                         <div  class="form-group">
                             <label class="col-sm-3">{{ 'RESEARCH_SPECIALITY' | translate }}</label>
-                            <div class="col-sm-9"><textarea type="text" class="form-control" data-ng-model="curator.researchSpeciality"></textarea></div>
+                            <div class="col-sm-9"><textarea elastic type="text" class="form-control" data-ng-model="curator.researchSpeciality"></textarea></div>
                         </div>
 
-                        <div  class="form-group">
+                        <div  class="form-group" ng-if="(editMode && logged && ((userRole == 'CURATOR' && username == curator.user.username) || userRole == 'ADMIN')) || createCurator">
                             <label class="col-sm-3">{{ 'PASSWORD' | translate }} *</label>
                             <div class="col-sm-9"><input type="password" class="form-control" data-ng-model="curator.user.password" required></div>
                         </div>

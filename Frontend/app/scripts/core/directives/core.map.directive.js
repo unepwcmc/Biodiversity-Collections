@@ -11,7 +11,7 @@ define(['angularAMD'], function (angularAMD) {
 
         return {
             restrict: 'E',
-            scope: { width:'@', height: '@', name: '@', address: '=' },
+            scope: { width:'@', height: '@', name: '@', address: '=', latitude: '=', longitude: '='},
             templateUrl: 'views/core/map.tpl.html',
 
             controller: ['$scope', '$rootScope', '$stateParams', 'leafletData', '$translate', '$http',
@@ -21,8 +21,8 @@ define(['angularAMD'], function (angularAMD) {
 
                   $scope.$watch('address', function(newValue, oldValue) {
                       if (newValue !== undefined && newValue !== '') {
-                          $http.get('http://maps.google.com/maps/api/geocode/json?address=' + $scope.address)
-                              .success(function (data) {
+                          $.get('http://maps.google.com/maps/api/geocode/json?address=' + $scope.address,
+                              function( data ) {
                                   if (data.status == 'OK') {
                                       var latitude = data.results[0].geometry.location.lat;
                                       var longitude = data.results[0].geometry.location.lng;
@@ -62,6 +62,16 @@ define(['angularAMD'], function (angularAMD) {
                       }
                   });
 
+                  $rootScope.$on('LATITUDE_LONGITUDE_UPDATED', function(type, latitude, longitude) {
+                      angular.extend($scope, {
+                          markers: {
+                              address: {
+                                  lat: latitude,
+                                  lng: longitude
+                              }
+                          }
+                      });
+                  });
 
                   $rootScope.$on('MAP_POINTS_UPDATED', function(type, mapName, points) {
                       if (mapName === $scope.name) {

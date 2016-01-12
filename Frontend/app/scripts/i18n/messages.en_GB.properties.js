@@ -25,7 +25,7 @@ define([],function ( ) {
     'PLEASE_SELECT':'-- Please select --',
     'DESCRIPTION':'Description',
     'PRESERVATION_METHODS':'Preservation methods',
-    'RESEARCHES':'Researches',
+    'RESEARCHES':'Researchers',
     'CURATORIAL_UNIT_LODGE':'Curatorial Unit/ Lodge',
     'COLLECTION_WEBSITE':'Collection Website',
     'COLLECTIONS':'Collections',
@@ -210,12 +210,17 @@ define([],function ( ) {
     'MOBILE_NUMBER': 'Mobile number',
     'NEW_CURATOR': 'New curator',
     'CHANGE_CURATOR_PHOTO':'Change curator photo',
-    'BRAZILIAN_COLLECTIONS_DATABASE':'Brazilian Collection Database',
+    'BRAZILIAN_COLLECTIONS_DATABASE':'Brazilian Biodiversity Collection Database',
     'GOVERNMENT_OFFICIAL': 'Government Official',
     'THE_FIELD_COUNT_INVALID':'The field must be numeric',
     'THE_FIELD_TYPE_EMPTY':'The field can\'t be empty',
     'INVALID_CURATOR_TOKEN': 'Invalid curator token',
     'CREATE_A_NEW_FILTER':'Create a new filter',
+    'ORGANISM_TYPE': 'Organism type',
+    'FAUNA': 'Fauna',
+    'FLORA': 'Flora',
+    'MICROORGANISMS': 'Microorganisms',
+    'OTHERS': 'Others'
   }
 
 });

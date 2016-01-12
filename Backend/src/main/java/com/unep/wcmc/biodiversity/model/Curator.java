@@ -15,7 +15,6 @@ import java.util.Set;
                 @NamedAttributeNode("associatedInstitutions")
         }
 )
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Curator implements BaseEntity {
 
     @Id

@@ -32,6 +32,11 @@ define(['angularAMD','waypoints','core/directives/core.map.directive'], function
                             }
                         });
 
+                        $scope.$on('BIODIVERSITY_LOADED', function() {
+                            $rootScope.$broadcast("LATITUDE_LONGITUDE_UPDATED",
+                                $scope.collection.contact.latitude, $scope.collection.contact.longitude);
+                        });
+
                         $scope.$on('LATITUDE_LONGITUDE_LOADED', function(obj, lat, lng) {
                             if (!$scope.collection.contact) {
                                 $scope.collection.contact = {};

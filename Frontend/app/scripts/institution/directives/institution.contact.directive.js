@@ -28,6 +28,12 @@ define(['angularAMD','waypoints','core/directives/core.map.directive'], function
                             }
                         });
 
+                        $scope.$on('INSTITUTION_LOADED', function() {
+                            $rootScope.$broadcast("LATITUDE_LONGITUDE_UPDATED",
+                                $scope.institution.contact.latitude, $scope.institution.contact.longitude);
+                        });
+
+
                         $scope.$on('LATITUDE_LONGITUDE_LOADED', function(obj, lat, lng) {
                             if (!$scope.institution.contact) {
                                 $scope.institution.contact = {};
