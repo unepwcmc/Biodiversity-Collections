@@ -23,8 +23,25 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
 
                         $scope.$on('BIODIVERSITY_LOADED', function() {
                             console.log('collection loaded...');
-                            $scope.institutionSelected = $scope.collection.institution;
+                            if($scope.institutionSelected == null){
+                                $scope.institutionSelected = $scope.collection.institution;
+                            }
+
                             $scope.curatorSelected = $scope.collection.curator;
+                        });
+
+                        $scope.$on('INSTITUTION_LOADED', function(){
+
+                            if($scope.fromState == 'institution'){
+
+                                _.each($scope.institution.curators, function( ele ){
+                                    delete ele.institution;
+                                    delete ele.associatedInstitutions;
+                                });
+
+                                $scope.institutionSelected = $scope.institution;
+                                $scope.collection.institution = $scope.institution;
+                            }
                         });
 
                         $scope.$on('CANCEL_EDIT_COLLECTION', function() {
