@@ -28,6 +28,11 @@ define(['angularAMD','waypoints','core/directives/core.map.directive'], function
                             }
                         });
 
+                        $scope.$on('NETWORK_LOADED', function() {
+                            $rootScope.$broadcast("LATITUDE_LONGITUDE_UPDATED",
+                                $scope.network.contact.latitude, $scope.network.contact.longitude);
+                        });
+
                         $scope.$on('LATITUDE_LONGITUDE_LOADED', function(obj, lat, lng) {
                             if (!$scope.network.contact) {
                                 $scope.network.contact = {};
