@@ -208,7 +208,7 @@ define([],function ( ) {
     'MOBILE_NUMBER': 'Celular',
     'NEW_CURATOR': 'Novo curador',
     'CHANGE_CURATOR_PHOTO':'Trocar foto do curador',
-    'BRAZILIAN_COLLECTIONS_DATABASE':'Banco de Dados das Coleções Brasileiras',
+    'BRAZILIAN_COLLECTIONS_DATABASE':'Banco de Dados de Coleções de Biodiversidade Brasileiras',
     'GOVERNMENT_OFFICIAL': 'Oficial do governo',
     'THE_FIELD_COUNT_INVALID':'O campo deve ser numérico',
     'THE_FIELD_TYPE_EMPTY':'O campo não deve ser vazio',
