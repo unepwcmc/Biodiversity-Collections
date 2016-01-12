@@ -81,8 +81,8 @@
                                  <table class="researches">
                                      <tbody>
                                      <tr ng-repeat="curator in institution.curators" on-finish-render="ngRepeatFinished">
-                                         <td><input type="text" class="form-control" data-ng-model="curator.name" ></td>
-                                         <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right"  class="btn-small-delete" ng-click="deleteCurator($index);"><i class="fa fa-close"></i></a></td>
+                                         <td><a style="margin-left: 10px;" data-ui-sref="curator({id : curator.id})">{{curator.name}}</a><input type="hidden" class="form-control" data-ng-model="curator.name" ></td>
+                                         <td>&nbsp;&nbsp;<a ng-show="editMode" style="float: right"  ng-click="deleteCurator($index);"><i class="fa fa-close"></i></a></td>
                                      </tr>
                                      </tbody>
                                      <tfoot ng-show="editMode">

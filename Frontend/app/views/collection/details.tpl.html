@@ -91,6 +91,18 @@
                          </div>
 
                          <div class="form-group">
+                             <label class="col-sm-3">{{ 'ORGANISM_TYPE' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <select select-wrap class="form-control" ng-model="collection.collectionDefinition">
+                                     <option value="FAUNA" selected>{{ 'FAUNA' | translate }}</option>
+                                     <option value="FLORA">{{ 'FLORA' | translate }}</option>
+                                     <option value="MICROORGANISMS">{{ 'MICROORGANISMS' | translate }}</option>
+                                     <option value="OTHERS">{{ 'OTHERS' | translate }}</option>
+                                 </select>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
                              <label class="col-sm-3">{{ 'DESCRIPTION' | translate  }}</label>
                              <div class="col-sm-9">
                                  <textarea elastic type="text" class="form-control" data-ng-model="collection.description" ></textarea>

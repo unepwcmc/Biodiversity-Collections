@@ -437,6 +437,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         $http.defaults.headers.common['X-AUTH-TOKEN'] = data.token;
 
                         $rootScope.userRole = data.user.userRole.role;
+                        $rootScope.userId = data.user.id;
                         $rootScope.username = data.user.username;
                         $rootScope.fullName = data.user.firstName + ' ' + data.user.lastName;
                         $rootScope.logged = true;
@@ -497,6 +498,7 @@ define(['include', 'language'], function (angularAMD, language) {
                 $http.defaults.headers.common['X-AUTH-TOKEN'] = undefined;
 
                 $rootScope.userRole = null;
+                $rootScope.userId = null;
                 $rootScope.username = null;
                 $rootScope.fullName = null;
                 $rootScope.logged = false;

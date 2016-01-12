@@ -212,7 +212,12 @@ define([],function ( ) {
     'GOVERNMENT_OFFICIAL': 'Oficial do governo',
     'THE_FIELD_COUNT_INVALID':'O campo deve ser numérico',
     'THE_FIELD_TYPE_EMPTY':'O campo não deve ser vazio',
-    'INVALID_CURATOR_TOKEN': 'Curator token inválido'
+    'INVALID_CURATOR_TOKEN': 'Curator token inválido',
+    'ORGANISM_TYPE': 'Tipo do organismo',
+    'FAUNA': 'Fauna',
+    'FLORA': 'Flora',
+    'MICROORGANISMS': 'Micro-organismo',
+    'OTHERS': 'Outros'
   }
 
 });
