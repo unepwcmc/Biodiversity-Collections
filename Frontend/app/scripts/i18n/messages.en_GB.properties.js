@@ -25,7 +25,7 @@ define([],function ( ) {
     'PLEASE_SELECT':'-- Please select --',
     'DESCRIPTION':'Description',
     'PRESERVATION_METHODS':'Preservation methods',
-    'RESEARCHES':'Researches',
+    'RESEARCHES':'Researchers',
     'CURATORIAL_UNIT_LODGE':'Curatorial Unit/ Lodge',
     'COLLECTION_WEBSITE':'Collection Website',
     'COLLECTIONS':'Collections',
