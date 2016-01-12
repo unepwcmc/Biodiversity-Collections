@@ -34,6 +34,8 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
 
                             if($scope.fromState == 'institution'){
 
+                                $scope.collection.published = false;
+
                                 _.each($scope.institution.curators, function( ele ){
                                     delete ele.institution;
                                     delete ele.associatedInstitutions;
