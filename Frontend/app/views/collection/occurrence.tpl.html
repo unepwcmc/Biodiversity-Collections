@@ -1,7 +1,88 @@
 <section class="page-content" edit-form="{{editMode}}">
     <div class="container">
         <h5><strong>{{ 'COLLECTION_OCCURRENCES' | translate }}</strong></h5>
-        <img src="images/b_occurrence_tpl.png" style="width: 100%; height: auto" />
+
+        <div class="row">
+            <div class="col-md-9"><map name="occurrences" height="400px" width="100%"/></div>
+            <div class="col-md-3">
+                <p>{{ 'CREATE_A_NEW_FILTER' | translate }}</p>
+                <div class="small-field">
+                    <p>
+                        <select select-wrap data-ng-model="filter.type">
+                            <optgroup label="Classification">
+                                <option value="16">Scientific name</option>
+                                <option value="14">Kingdom</option>
+                                <option value="19">Phylum</option>
+                                <option value="18">Class</option>
+                                <option value="15">Order</option>
+                                <option value="2">Family</option>
+                                <option value="24">Genus</option>
+                                <option value="37">Specific Epithet</option>
+                                <option value="38">Infraspecific Epithet</option>
+                                <option value="4">Taxon rank</option>
+                            </optgroup>
+                            <!-- Removed filter until further definition about dataset -->
+                            <optgroup label="Dataset">
+                                <option value="35">Dataset name</option>
+                                <option value="36">Publisher name</option>
+                            </optgroup>
+                            <optgroup label="Specimen">
+                                <option value="31">Type specimens</option>
+                                <option value="12">Collector</option>
+                                <!-- Removed filter until further definition about how to add the "add" button>
+                                    <option value="7">Collection code</option>
+                                    <option value="6">Catalog number</option>
+                                    <option value="13">Collector number</option>
+                                -->
+                            </optgroup>
+                            <optgroup label="Date">
+                                <option value="5">Date</option>
+                            </optgroup>
+                            <optgroup label="Location">
+                                <option value="3">Continent</option>
+                                <option value="1">Country</option>
+                                <option value="9">State/Province</option>
+                                <option value="22">County</option>
+                                <option value="23">Municipality</option>
+                                <!-- Removed filter until further definition about how to add the "add" button>
+                                <option value="11">Locality</option>
+                                -->
+                                <option value="10">Altitude (in meters)</option>
+                            </optgroup>
+                            <optgroup label="Extra">
+                                <option value="20">Coordinates</option>
+                                <option value="21">Image(s)</option>
+                            </optgroup>
+                        </select></p>
+                    <p><input class="form-control" type="text" data-ng-model="filter.value" placeholder="{{ 'SCIENTIFIC_NAME' | translate }}"></p>
+                </div>
+                <hr/>
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Fabacaee</td>
+                            <td class="text-right">545454</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Fabacaee</td>
+                            <td class="text-right">545454</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Fabacaee</td>
+                            <td class="text-right">545454</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Fabacaee</td>
+                            <td class="text-right">545454</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Fabacaee</td>
+                            <td class="text-right">545454</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <hr/>
     </div>

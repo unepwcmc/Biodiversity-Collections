@@ -214,7 +214,8 @@ define([],function ( ) {
     'GOVERNMENT_OFFICIAL': 'Government Official',
     'THE_FIELD_COUNT_INVALID':'The field must be numeric',
     'THE_FIELD_TYPE_EMPTY':'The field can\'t be empty',
-    'INVALID_CURATOR_TOKEN': 'Invalid curator token'
+    'INVALID_CURATOR_TOKEN': 'Invalid curator token',
+    'CREATE_A_NEW_FILTER':'Create a new filter',
   }
 
 });
