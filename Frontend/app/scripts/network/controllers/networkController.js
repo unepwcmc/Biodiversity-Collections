@@ -133,16 +133,12 @@ define(['app',
 
         function saveImageNetwork(){
 
-            console.log('chegando aqui');
-
             var promises = [];
 
             for(var i = 0; i < $scope.images.length; i++){
 
                 var fd = new FormData();
                 fd.append('file', $scope.images[i]);
-
-                console.log($scope.images[i]);
 
                 promises.push(
                     $http.post($rootScope.getHost() + "networks/" + $stateParams.id + "/media", fd, {
