@@ -80,7 +80,7 @@ public class BiodiversityCollection implements BaseEntity {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
 
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="associated_members",
             joinColumns={@JoinColumn(name="collection_id", referencedColumnName="id")},
             inverseJoinColumns={@JoinColumn(name="member_id", referencedColumnName="id")})
