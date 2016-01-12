@@ -112,9 +112,9 @@
                          <div ng-show="editMode" class="form-group">
                              <label class="col-sm-3">{{ 'VISIBILITY' | translate  }}</label>
                              <div class="col-sm-9">
-                                 <input type="radio" id="unpublished" name="visibility" data-ng-model="collection.published" ng-value="false">
+                                 <input type="radio" id="unpublished" name="visibility" data-ng-model="collection.published" ng-value="true" checked>
                                     <label style="font-weight: normal;" for="unpublished">&nbsp;Unpublished</label><br/>
-                                 <input type="radio" id="published" name="visibility" data-ng-model="collection.published" ng-value="true">
+                                 <input type="radio" id="published" name="visibility" data-ng-model="collection.published" ng-value="false">
                                     <label style="font-weight: normal;" for="published">&nbsp;Published</label>
                              </div>
                          </div>
