@@ -38,7 +38,7 @@ public class MailUtils {
     public void sendEmail(String to, String from, String subject, String template, Map<String, Object> parameters) {
         final MimeMessagePreparator preparator = new MimeMessagePreparator() {
             public void prepare(MimeMessage mimeMessage) throws Exception {
-                final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+                final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, TEMPLATE_ENCODING);
                 message.setSubject(subject);
                 message.setTo(to);
                 message.setFrom(from);
