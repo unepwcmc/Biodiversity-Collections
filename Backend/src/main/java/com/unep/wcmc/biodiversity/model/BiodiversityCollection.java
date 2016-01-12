@@ -28,6 +28,7 @@ public class BiodiversityCollection implements BaseEntity {
     @Column(columnDefinition = "text")
     private String description;
 
+    @Column(columnDefinition = "text")
     private String preservationMethods;
 
     private String webSite;
