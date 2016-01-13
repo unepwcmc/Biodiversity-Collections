@@ -1,7 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.hibernate.annotations.Cascade;
@@ -24,11 +23,12 @@ public class Document implements BaseEntity {
 
     private String description;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<String> authors;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<String> keyworks;
 
     @Enumerated(EnumType.STRING)
