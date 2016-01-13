@@ -25,7 +25,7 @@
                         </td>
                         <td>{{publication.type}}</td>
                         <td>.{{publication.contentType}}</td>
-                        <td class="btn-td"><a pub-popover doc="publication" class="btn"><i class="fa fa-ellipsis-v"></i></a></td>
+                        <td class="btn-td"><a pub-popover doc="publication" class="btn pub-popover"><i class="fa fa-ellipsis-v"></i></a></td>
                         <td ng-show="editMode" class="btn-td"><a ng-click="deleteDocument(publication.id)" class="btn"><i class="fa fa-close"></i></a></td>
                         <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
                     </tr>
