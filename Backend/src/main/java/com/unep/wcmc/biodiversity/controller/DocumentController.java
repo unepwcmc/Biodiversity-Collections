@@ -48,12 +48,12 @@ public class DocumentController extends AbstractController<Document, DocumentSer
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/collection/{collectionId}")
     public Page<Document> getByCollection(@PathVariable Long collectionId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findAllByCollection(biodiversityCollectionService.get(collectionId), pageable);
+        return service.getRepository().findByCollectionId(collectionId, pageable);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/sample/{sampleId}")
     public Page<Document> getBySample(@PathVariable Long sampleId, @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findAllBySample(sampleService.get(sampleId), pageable);
+        return service.getRepository().findBySampleId(sampleId, pageable);
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")
