@@ -130,6 +130,9 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         $(this).prev().data("empty", 1);
                         scope.slots[index] = false;
 
+                        if(index == 0){
+                            $('#box-image').attr("src", "/images/empty_img.png");
+                        }
                     });
 
                     $('.img-thumbnail-mini').click(function(evt){
