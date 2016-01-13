@@ -1,7 +1,6 @@
 package com.unep.wcmc.biodiversity.controller;
 
 
-import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
 import com.unep.wcmc.biodiversity.model.Image;
 import com.unep.wcmc.biodiversity.service.AttachmentService;
 import com.unep.wcmc.biodiversity.service.ImageService;
@@ -12,7 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import java.util.Base64;
 
 @RestController
 @RequestMapping("/medias")
@@ -28,12 +27,12 @@ public class MultimediaController {
 
     @ResponseBody
     @RequestMapping(value = "{id}/image", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getImage( @PathVariable Long id ) {
+    public Object getImage( @PathVariable Long id ) {
 
         byte[] file = attachmentService.get(id).getFile();
 
         try{
-            return file;
+            return new String(Base64.getEncoder().encode(file));
         }
         catch (Exception e){
             log.error(e.getMessage());

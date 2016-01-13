@@ -37,6 +37,7 @@ INSERT INTO user_role (id, name, role) VALUES (3, 'GOVERNMENT_OFFICIAL', 'GOVERN
 
 -- User
 
+
 INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (1,'Richard Vogt', 1,'richar@email.com','richar@email.com', TRUE, '123456', 2);
 INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (2,'Julia Andrade', 1,'julia@email.com','julia@email.com', TRUE, '123456', 2);
 INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (3,'João Silva', 1,'joaos@email.com','joaos@email.com', TRUE, '123456', 2);
@@ -52,6 +53,7 @@ INSERT INTO users (id, first_name, institution_id, email, username, enabled, pas
 INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (13,'Josiane Ferreira', 3,'josianef@email.com','josianef@email.com', TRUE, '123456', 2);
 INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (14,'Joselito Madeira', 3,'joseltiom@email.com','joseltiom@email.com', TRUE, '123456', 2);
 INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (15,'João Medeiros', 3,'joaom@email.com', 'joaom@email.com',TRUE, '123456', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (16,'admin', 1,'admin@email.com','admin@email.com', TRUE, '123456', 1);
 
 -- Curator
 INSERT INTO curator (id, user_id, name) VALUES (1,11,'Richard Vogt');

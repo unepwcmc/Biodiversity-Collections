@@ -2,8 +2,8 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('imagesBox', ['$timeout', '$rootScope', 'toastr', 'Image','BaseController',
-        function ( $timeout, $rootScope, toastr, Image, BaseController ) {
+    angularAMD.directive('imagesBox', ['$timeout', '$rootScope', 'toastr', 'Image','BaseController','$window',
+        function ( $timeout, $rootScope, toastr, Image, BaseController , $window) {
 
             return {
 
@@ -70,15 +70,26 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                                             $timeout( function(){
 
-                                                if(index == 0){
+                                                $http.get($rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image")
+                                                    .success( function( data, status){
+
+                                                        if(index == 0){
+                                                            $('#box-image').attr('src',"data:image/*;base64," + data);
+                                                        }
+                                                        var thumbnail = $('#box-image-' + ( index  ));
+                                                        thumbnail.attr('src',"data:image/*;base64," + data);
+                                                        thumbnail.next().data('img-id', $scope.images[index].id );
+                                                });
+
+                                              /* if(index == 0){
                                                     $('#box-image').attr('src',$rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image");
                                                 }
                                                 var thumbnail = $('#box-image-' + ( index  ));
                                                 thumbnail.attr('src',$rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image");
-                                                thumbnail.next().data('img-id', $scope.images[index].id );
+                                                thumbnail.next().data('img-id', $scope.images[index].id );*/
 
 
-                                            },250);
+                                            },1500);
 
                                         })(indexSlot);
 
