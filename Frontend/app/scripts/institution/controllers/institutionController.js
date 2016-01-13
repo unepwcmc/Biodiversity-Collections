@@ -43,6 +43,11 @@ define(['app',
                     $scope.adminView = true;
                     $rootScope.editMode = true;
                     $scope.adminEditView = true;
+
+                } else if (toState.name == 'institution') {
+
+                     $scope.adminView = false;
+                     $scope.adminEditView = false;
                 }
             });
 

@@ -32,7 +32,7 @@
             <div class="col-md-2">&nbsp;</div>
             <div class="col-md-8">
                 <div class="row">
-                    <div class="pull-left"><a ng-show="editMode" style="margin-left: 12px;" class="btn btn-small-add btn-primary" ui-sref="collectionSample({id: collection.id})"><label>{{'ADD_NEW_SAMPLE' | translate}}</label></a></div>
+                    <div class="pull-left"><a ng-show="editMode" style="margin-left: 12px;" class="btn btn-small-add btn-primary" ui-sref="collectionSample({id: collection.id, collection: collection})"><label>{{'ADD_NEW_SAMPLE' | translate}}</label></a></div>
                     <div class="pull-right" ng-show="samples.totalPages > 1">
                         <form class="form-inline">
                             <div class="form-group">

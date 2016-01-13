@@ -23,6 +23,16 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
                             $scope.editMode = $rootScope.editMode;
                         });
 
+                        $scope.$on('SAMPLE_SAVED', function() {
+                            $scope.collectionSelected = $scope.sample.collection;
+                            $scope.institutionSelected = $scope.sample.institution;
+                        });
+
+                        $scope.$on('BIODIVERSITY_LOADED', function() {
+                            $scope.collectionSelected = $scope.sample.collection;
+                            $scope.institutionSelected = $scope.sample.institution;
+                        });
+
                         $scope.$on('SAMPLE_LOADED', function() {
                             console.log('collection loaded...');
 

@@ -125,6 +125,7 @@ define(['include', 'language'], function (angularAMD, language) {
                 .state('collectionSample', angularAMD.route(
                     {
                         url: '/collection/:id/sample',
+                        params: {collection : null},
                         templateUrl: 'views/sample/collection.sample.html',
                         controllerUrl: 'sample/controllers/collectionSampleController',
                         ncyBreadcrumb: {

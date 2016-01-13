@@ -30,7 +30,14 @@ define(['app', 'waypoints',
             console.log('state Change Success');
             $('#loader-wrapper').fadeToggle('400');
             $scope.generatedSample = true;
-            $scope.sample.save();
+
+            if ($stateParams.collection) {
+                $scope.sample.collection = $stateParams.collection;
+                $scope.sample.institution = $stateParams.collection.institution;
+                $scope.sample.save();
+            } else {
+                $scope.collection.get($stateParams.id);
+            }
         });
 
         $scope.search = function() {
@@ -111,6 +118,12 @@ define(['app', 'waypoints',
         $scope.$on('BIODIVERSITY_SAMPLES_ADDED', function() {
             $('#loader-wrapper').fadeToggle('400');
             toastr.success($translate.instant('BIODIVERSITY_SAMPLES_ADDED'), $translate.instant('SUCCESS'));
+        });
+
+        $scope.$on('BIODIVERSITY_LOADED', function() {
+            $scope.sample.collection = $scope.collection;
+            $scope.sample.institution = $scope.collection.institution;
+            $scope.sample.save();
         });
 
         $scope.$on('SAMPLE_SEARCHED', function() {
