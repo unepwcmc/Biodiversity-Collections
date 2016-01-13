@@ -171,7 +171,25 @@ define(['app',
 
             function saveImageInstitution(){
 
-                console.log($scope.images);
+                var execute = function ( URL, md ) {
+
+                    var defer = $q.defer();
+
+                    $http.post(URL, md, {
+                        headers : {
+                            'Content-Type' : undefined
+                        }
+                    })
+                    .success(function (data) {
+                        defer.resolve();
+                    })
+                    .error(function () {
+                        defer.reject();
+                    });
+
+                    return defer.promise;
+                };
+
 
                 var promises = [];
 
@@ -179,6 +197,8 @@ define(['app',
 
                     var fd = new FormData();
                     fd.append('file', $scope.images[i]);
+
+                   // promises.push($q.when(execute($rootScope.getHost() + "institutions/" + $stateParams.id + "/media", fd)));
 
                     promises.push(
                         $http.post($rootScope.getHost() + "institutions/" + $stateParams.id + "/media", fd, {
@@ -189,9 +209,7 @@ define(['app',
                     );
                 }
 
-                var execute = $q.all( promises );
-
-                execute.then(function( results ){
+                $q.all[promises].then(function( results ){
 
                     $scope.images = [];
                     $('#loader-wrapper').fadeToggle('400');

@@ -70,25 +70,23 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                                             $timeout( function(){
 
+                                                var img_box = $('#box-image');
+
+                                                if(index == 0){
+                                                    img_box.attr('src',"/images/icons/ajax-loader-large.gif");
+                                                }
+                                                var thumbnail = $('#box-image-' + ( index  ));
+                                                thumbnail.attr('src',"/images/icons/ajax-loader.gif");
+
                                                 $http.get($rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image")
                                                     .success( function( data, status){
 
                                                         if(index == 0){
-                                                            $('#box-image').attr('src',"data:image/*;base64," + data);
+                                                            img_box.attr('src',"data:image/*;base64," + data);
                                                         }
-                                                        var thumbnail = $('#box-image-' + ( index  ));
                                                         thumbnail.attr('src',"data:image/*;base64," + data);
                                                         thumbnail.next().data('img-id', $scope.images[index].id );
                                                 });
-
-                                              /* if(index == 0){
-                                                    $('#box-image').attr('src',$rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image");
-                                                }
-                                                var thumbnail = $('#box-image-' + ( index  ));
-                                                thumbnail.attr('src',$rootScope.getHost() + "medias/" + $scope.images[index].attachment.id + "/image");
-                                                thumbnail.next().data('img-id', $scope.images[index].id );*/
-
-
                                             },500);
 
                                         })(indexSlot);
