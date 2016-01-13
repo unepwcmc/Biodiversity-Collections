@@ -31,8 +31,13 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         $scope.loadImage = function( img ){
 
                             $timeout( function(){
-                                if( $scope.image != '')
-                                    img.attr('src',$rootScope.getHost() + "medias/" + $scope.id + "/image");
+                                if( $scope.image != ''){
+
+                                    $http.get($rootScope.getHost() + "medias/" + $scope.id + "/image")
+                                        .success( function( data, status){
+                                            img.attr('src',"data:image/*;base64," + data);
+                                    });
+                                }
                             },500)
                         };
 

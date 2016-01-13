@@ -89,7 +89,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                                                 thumbnail.next().data('img-id', $scope.images[index].id );*/
 
 
-                                            },1500);
+                                            },500);
 
                                         })(indexSlot);
 
