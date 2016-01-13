@@ -5,9 +5,9 @@ define([ 'angularAMD',
 
     'use strict';
 
-    angularAMD.directive('publications', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','Document','$q',
+    angularAMD.directive('publications', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','Document','$q','toastr', '$translate',
 
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, Document, $q) {
+        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, Document, $q, toastr, $translate) {
 
             return {
                 restrict: 'EA',
@@ -199,6 +199,15 @@ define([ 'angularAMD',
                                 $scope.checkboxCountPub = 0;
                             });
                         };
+
+                        $scope.showSuccessMessage = function( title, message ){
+                            toastr.success($translate.instant(message), $translate.instant(title));
+                        };
+
+                        $scope.showErrorMessage = function( title, message ){
+                            toastr.error($translate.instant(message), $translate.instant(title));
+                        };
+
 
                         function getFileExtension(filename)
                         {
