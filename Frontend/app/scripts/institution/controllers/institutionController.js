@@ -171,6 +171,8 @@ define(['app',
 
             function saveImageInstitution(){
 
+                console.log($scope.images);
+
                 var promises = [];
 
                 for(var i = 0; i < $scope.images.length; i++){
@@ -187,7 +189,9 @@ define(['app',
                     );
                 }
 
-                $q.all( promises ).then(function( results ){
+                var execute = $q.all( promises );
+
+                execute.then(function( results ){
 
                     $scope.images = [];
                     $('#loader-wrapper').fadeToggle('400');
