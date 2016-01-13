@@ -33,6 +33,8 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             $timeout( function(){
                                 if( $scope.image != ''){
 
+                                    img.attr('src',"/images/icons/ajax-loader-large.gif");
+
                                     $http.get($rootScope.getHost() + "medias/" + $scope.id + "/image")
                                         .success( function( data, status){
                                             img.attr('src',"data:image/*;base64," + data);
