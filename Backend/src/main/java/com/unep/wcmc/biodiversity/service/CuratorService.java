@@ -4,6 +4,7 @@ import com.unep.wcmc.biodiversity.helper.MailUtils;
 import com.unep.wcmc.biodiversity.model.*;
 import com.unep.wcmc.biodiversity.repository.CuratorRepository;
 import com.unep.wcmc.biodiversity.repository.InviteCuratorTokenRepository;
+import com.unep.wcmc.biodiversity.repository.UserRoleRepository;
 import com.unep.wcmc.biodiversity.security.SecurityUtils;
 import com.unep.wcmc.biodiversity.support.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CuratorService extends AbstractService<Curator, CuratorRepository> 
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRoleRepository userRoleRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -51,10 +55,14 @@ public class CuratorService extends AbstractService<Curator, CuratorRepository> 
     public Curator save(Curator curator) {
         User user = curator.getUser();
         if (user != null) {
+            user.setUsername(user.getEmail());
             user.setFirstName(curator.getName());
             user.setEnabled(true);
+            UserRole role = userRoleRepo.findByRole(UserRole.RoleType.CURATOR.name());
+            user.setUserRole(role);
+            String password = user.getPassword() != null ? user.getPassword() : "123456";
             user.setPassword(
-                    passwordEncoder.encode(user.getPassword()));
+                    passwordEncoder.encode(password));
         }
         return super.save(curator);
     }
