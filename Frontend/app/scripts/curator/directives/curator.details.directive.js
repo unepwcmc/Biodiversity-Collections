@@ -16,6 +16,9 @@ define(['angularAMD','waypoints', 'core/directives/core.image.box.directive'], f
 
                         $scope.$on('CURATOR_LOADED', function(){
                             convertDate();
+                            if (!$scope.curator.user) {
+                                $scope.curator.user = {};
+                            }
                             $scope.institutionSelected = $scope.curator.user.institution;
                         });
 
