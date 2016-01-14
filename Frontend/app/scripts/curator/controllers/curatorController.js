@@ -1,13 +1,14 @@
 define(['app',
     'core/factory/curatorFactory',
+    'core/factory/imageFactory',
     'curator/directives/curator.details.directive',
     'curator/directives/curator.contact.directive',
     'core/directives/core.breadcrumbs.directive'], function () {
 
     'use strict';
 
-    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','Curator','$timeout',
-        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, Curator, $timeout) {
+    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','Curator','$timeout','Image',
+        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, Curator, $timeout, Image) {
 
             angular.extend($scope, BaseController);
 
@@ -66,7 +67,18 @@ define(['app',
 
                 if (validateDate()) {
                     $('#loader-wrapper').fadeToggle('400');
-                    $scope.curator.update();
+
+                    if ($scope.image != null) {
+                        var imageService = new Image();
+
+                        imageService.save( $scope.image, function( data, status){
+
+                            $scope.curator.image = data;
+                            $scope.curator.update();
+                        });
+                    } else {
+                        $scope.curator.update();
+                    }
                 } else {
                     $scope.showErrorMessage('ERROR', 'INVALID_DATE');
                 }
@@ -84,16 +96,15 @@ define(['app',
             $scope.$on('CURATOR_UPDATED', function(){
                 console.log('updated');
 
+                console.log($scope.image);
+
                 if ($scope.createCurator) {
                     $state.go('home');
                 }
 
-                if ($scope.image != null) {
-                    $scope.curator.addImage($scope.image);
-                } else {
-                    $('#loader-wrapper').fadeToggle('400');
-                    toastr.success($translate.instant('CURATOR_SAVED'), $translate.instant('SUCCESS'));
-                }
+                $('#loader-wrapper').fadeToggle('400');
+                toastr.success($translate.instant('CURATOR_SAVED'), $translate.instant('SUCCESS'));
+
                 setStateButton(false);
             });
 
