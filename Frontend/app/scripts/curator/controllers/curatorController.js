@@ -96,12 +96,11 @@ define(['app',
             $scope.$on('CURATOR_UPDATED', function(){
                 console.log('updated');
 
-                console.log($scope.image);
+                $scope.image = null;
 
                 if ($scope.createCurator) {
                     $state.go('home');
                 }
-
                 $('#loader-wrapper').fadeToggle('400');
                 toastr.success($translate.instant('CURATOR_SAVED'), $translate.instant('SUCCESS'));
 

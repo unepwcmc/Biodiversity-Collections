@@ -2,18 +2,20 @@ define(['app',
     'sample/directives/sample.details.directive',
     'sample/directives/sample.taxonomy.directive',
     'core/directives/core.publications.directive',
-    'core/factory/sampleFactory'], function () {
+    'core/factory/sampleFactory',
+    'core/factory/imageFactory'], function () {
 
     'use strict';
 
 
-    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','Sample',
-        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, Sample) {
+    return ['$scope','$rootScope','$stateParams','$state','$translate','toastr','BaseController','Sample','Image',
+        function ($scope, $rootScope, $stateParams, $state, $translate, toastr, BaseController, Sample,Image) {
 
         angular.extend($scope, BaseController);
 
         $rootScope.editMode = false;
         $scope.sample = new Sample();
+        $scope.image = null;
 
         /**
          * Listener when the view is loaded
@@ -31,7 +33,19 @@ define(['app',
         $scope.$on('ACTION_SAVE', function(){
             console.log('Sample updating..');
             $('#loader-wrapper').fadeToggle('400');
-            $scope.sample.update();
+
+
+            if ($scope.image != null) {
+                var imageService = new Image();
+
+                imageService.save( $scope.image, function( data, status){
+
+                    $scope.sample.image = data;
+                    $scope.sample.update();
+                });
+            } else {
+                $scope.sample.update();
+            }
         });
 
         $scope.$on('ACTION_RELOADED', function(){
@@ -40,10 +54,18 @@ define(['app',
         });
 
         /**
+         * Listener when a file is loaded from the user.
+         */
+        $scope.$on('ATTACH_FILE', function( evt, data ){
+            $scope.image = data;
+        });
+
+        /**
          * Listener when the collection factory update the Sample
          */
         $scope.$on('SAMPLE_UPDATED', function(){
             console.log('updated');
+            $scope.image = null;
             $('#loader-wrapper').fadeToggle('400');
             toastr.success($translate.instant('SAMPLE_UPDATED'), $translate.instant('SUCCESS'));
         });
