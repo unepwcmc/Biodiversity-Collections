@@ -11,10 +11,9 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                     members:'='
                 },
                 templateUrl: 'views/member/member.list.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$translate',
-                    function($scope, $rootScope, $stateParams, $translate){
+                controller: ['$scope', '$rootScope', function($scope, $rootScope){
 
-                        $scope.editMode = false;
+
                         $scope.member = {};
 
                         /**
@@ -22,6 +21,10 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                          */
                         $scope.$on('EDIT_MEMBER', function() {
                             setStateButton(true);
+                        });
+
+                        $scope.$on('ACTION_SAVE', function(){
+                            setStateButton(false);
                         });
 
                         /**
@@ -92,6 +95,10 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                         scope.navigationBar = true;
                         scope.$emit('EDIT_MEMBER');
                         scope.$apply();
+                    });
+
+                    scope.$on('ITEM_BACK_EDIT', function(){
+                        $(element).find("#edit-member").click();
                     });
 
                     $(element).find('.btn-edit-member-cancel').click(function(){

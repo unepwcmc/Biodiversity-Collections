@@ -18,8 +18,15 @@ define(['angularAMD', 'core/directives/core.image.box.directive', 'core/factory/
                 var images = [];
 
                 $rootScope.$watch('editMode', function(newValue, oldValue){
-                    $scope.editMode = $rootScope.editMode;
+                    if(newValue != undefined)
+                        $scope.editMode = $rootScope.editMode;
                 },true);
+
+                $rootScope.$on('ngRepeatFinished', function() {
+                    if($scope.editMode){
+                        $rootScope.$broadcast('ITEM_BACK_EDIT');
+                    }
+                });
 
                 $scope.deleteMember = function( id ){
                     $scope.$emit('DELETE_MEMBER', id);
@@ -27,39 +34,48 @@ define(['angularAMD', 'core/directives/core.image.box.directive', 'core/factory/
 
                 $scope.$on('ACTION_SAVE', function(){
 
-                    $('#loader-wrapper').fadeToggle('400');
+                    if($scope.member.id != undefined){
 
-                    if(images.length > 0){
+                        $('#loader-wrapper').fadeToggle('400');
 
-                        var fd = new FormData();
-                        fd.append('file', images[0]);
+                        if(images.length > 0){
 
-                        $http.post($rootScope.getHost() + "medias/", fd, {
-                            headers : {
-                                'Content-Type' : undefined
-                            }
-                        })
-                        .success(function ( image ) {
+                            var fd = new FormData();
+                            fd.append('file', images[0]);
 
-                                $scope.member.image = image;
-
-                                $http.put( $rootScope.getHost() + "members/" + $scope.member.id, $scope.member)
-                                .success(function ( data, status, headers, config ) {
-
-                                    $rootScope.$broadcast("MEMBER_UPDATED");
-                                    $('#loader-wrapper').fadeToggle('400');
-
+                            $http.post($rootScope.getHost() + "medias/", fd, {
+                                headers : {
+                                    'Content-Type' : undefined
+                                }
+                            })
+                                .success(function ( image ) {
+                                    $scope.member.image = image;
+                                    saveMember();
                                 })
-                                .error(function ( data, status, headers, config ) {
-                                    console.error(data);
-                                });
-                        })
+                        }
+                        else{
+                            saveMember();
+                        }
                     }
                 });
 
                 $scope.$on('ATTACH_FILE', function(evt, data){
                     images.push(data);
                 });
+
+                function saveMember(){
+
+                    $http.put( $rootScope.getHost() + "members/" + $scope.member.id, $scope.member)
+                        .success(function ( data, status, headers, config ) {
+
+                            $rootScope.$broadcast("MEMBER_UPDATED");
+                            $('#loader-wrapper').fadeToggle('400');
+
+                        })
+                        .error(function ( data, status, headers, config ) {
+                            console.error(data);
+                        });
+                }
 
 
             }],

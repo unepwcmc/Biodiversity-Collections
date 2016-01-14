@@ -5,9 +5,10 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
     return ['$scope','BiodiversityCollection','BaseController','$stateParams','$http','$rootScope','$translate','$state','$q', function ($scope, BiodiversityCollection, BaseController, $stateParams, $http, $rootScope, $translate, $state, $q) {
             angular.extend($scope, BaseController);
 
-        $scope.collection_id = $stateParams.id;
-        $scope.images = [];
+            $scope.collection_id = $stateParams.id;
+            $scope.images = [];
             $scope.collection = new BiodiversityCollection();
+            $scope.confirm_memember = false;
 
             /**
              * Listener when the view is loaded
@@ -32,7 +33,12 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
             });
 
             $scope.$on('ACTION_RELOADED', function(){
-                $state.go($state.current, $stateParams, {reload: true, inherit: false});
+
+                if(!$scope.confirm_memember){
+                    $scope.collection.associatedMembers = [];
+                    $scope.collection.update();
+                }
+                $state.go('collection', {id: $stateParams.id});
             });
 
             $scope.$on('ATTACH_FILE', function(evt, data){
@@ -72,6 +78,10 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                 }
            });
 
+            $scope.$on('ACTION_SAVE', function(){
+                $scope.confirm_memember = true;
+            });
+
             /**
              * Listener when the collection factory update the
              * biodiversity collection model.
@@ -84,19 +94,6 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                 $('#loader-wrapper').fadeToggle('400');
                 $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
                 $rootScope.$broadcast('MEMBER_ADDED');
-            });
-
-            /**
-             * Listener when the collection factory update the
-             * biodiversity collection model.
-             *
-             */
-            $scope.$on('BIODIVERSITY_UPDATED', function(){
-                console.log('collection member updated');
-
-                $scope.images = [];
-                $('#loader-wrapper').fadeToggle('400');
-                $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
             });
 
             $scope.$on('MEMBER_UPDATED', function(){
@@ -114,11 +111,10 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
                  $scope.collection.associatedMembers.splice(index, 1);
 
-                 $scope.collection.update();
+                 $scope.collection.update(function( data, status){
+                     $('#loader-wrapper').fadeToggle('400');
+                 });
             });
-
-
-
     }
     ];
 });

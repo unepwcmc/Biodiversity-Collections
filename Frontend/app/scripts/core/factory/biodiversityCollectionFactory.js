@@ -140,15 +140,21 @@ define(['angularAMD'], function (angularAMD) {
                             callback( data, status, headers, config )
                     });
             },
-            update: function () {
+            update: function ( callback ) {
                 var self = this;
                 $http.put( $rootScope.getHost() + "collections/" + this.id, this)
-                    .success(function (data) {
+                    .success(function (data, status, headers, config) {
                         self.setData(data);
                         $rootScope.$broadcast("BIODIVERSITY_UPDATED");
+
+                        if(callback)
+                            callback( data, status, headers, config )
                     })
-                    .error(function (message) {
-                        $log.error(message);
+                    .error(function (data, status, headers, config) {
+                        $log.error(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
                     });
             },
             addMember: function (callback) {

@@ -1,4 +1,4 @@
-<section class="page-content" edit-form="false">
+<section class="page-content" edit-form="{{editMode}}">
 
     <!-- Loading screen -->
     <div id="loader-wrapper" class="loading">
@@ -6,7 +6,7 @@
     </div>
 
     <div class="container">
-        <nav id="member-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav id="member-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-show="editMode && members.length > 0">
             <div class="container">
                 <h2 class="navbar-text"><strong>{{'EDIT_MEMBERS' | translate}}</strong></h2>
 
@@ -30,8 +30,8 @@
             <strong ng-show="editMode" >{{'EDIT_ASSOCIATED_MEMBERS' | translate}}</strong>
 
             <a ng-show="!editMode && logged" id="edit-member" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
-            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
-            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-member-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+            <a ng-show="editMode && members.length > 0" class="btn btn-small btn-primary pull-right btn-white save-form"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode && members.length > 0" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-member-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>
@@ -41,7 +41,7 @@
             <div class="col-md-8">
 
                 <div class="container">
-                    <member-item member="member" collection="collection" edit-form  ng-repeat="member in members"></member-item>
+                    <member-item member="member" collection="collection" ng-repeat="member in members" on-finish-render="ngRepeatFinished"></member-item>
                 </div>
 
             </div>
