@@ -35,8 +35,9 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                         });
 
                         $scope.addNewMember = function(){
-                            $scope.$emit('ADD_NEW_MEMBER', $scope.member);
-
+                            if($scope.member_form_add.$valid){
+                                $scope.$emit('ADD_NEW_MEMBER', $scope.member);
+                            }
                         };
 
                         $scope.$on('MEMBER_ADDED', function(){
