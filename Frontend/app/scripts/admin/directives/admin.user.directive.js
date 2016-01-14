@@ -124,6 +124,10 @@ define(['angularAMD','core/factory/userFactory'], function (angularAMD) {
                     }],
                 link: function (scope, element, attrs) {
 
+                    $("#user-size-box").change(function() {
+                        scope.users.size = parseInt($(this).val());
+                        scope.paginateUsers(scope.users.number, $(this).val())
+                    });
                 }
             };
         }]);
