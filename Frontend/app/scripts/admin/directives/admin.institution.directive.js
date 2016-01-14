@@ -123,6 +123,10 @@ define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
                     }],
                 link: function (scope, element, attrs) {
 
+                    $("#institution-size-box").change(function() {
+                        scope.institutions.size = parseInt($(this).val());
+                        scope.paginateInstitution(scope.institutions.number, $(this).val())
+                    });
                 }
             };
         }]);
