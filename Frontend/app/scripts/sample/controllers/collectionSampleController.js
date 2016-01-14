@@ -3,7 +3,8 @@ define(['app', 'waypoints',
     'sample/directives/sample.taxonomy.directive',
     'core/directives/core.publications.directive',
     'core/factory/sampleFactory',
-    'core/factory/biodiversityCollectionFactory'], function () {
+    'core/factory/biodiversityCollectionFactory',
+    'core/directives/core.breadcrumbs.directive'], function () {
 
     'use strict';
 
@@ -22,6 +23,8 @@ define(['app', 'waypoints',
         $scope.searchTerm = '';
         $scope.page = 0;
         $scope.size = 20;
+
+        $scope.collection_id = $stateParams.id;
 
         /**
          * Listener when the state is changed

@@ -129,9 +129,9 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/sample/collection.sample.html',
                         controllerUrl: 'sample/controllers/collectionSampleController',
                         ncyBreadcrumb: {
-                            label: '{{collection.name}}',
+                            label:  'Sample',
                             parent: function($scope) {
-                                return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
+                                return 'collection({id: collection_id})';
                             }
                         }
                     }))
@@ -286,9 +286,24 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/sample/default.html',
                         controllerUrl: 'sample/controllers/sampleController',
                         ncyBreadcrumb: {
-                            label: '{{sample.name}}',
+                            label: 'Sample',
                             parent: function($scope) {
-                                return $scope.fromState == 'home'? 'home' : 'search({term: searchTerm})';
+
+                                switch ( $scope.fromState ){
+
+                                    case '':{
+                                        return 'home';
+                                    }
+                                    case 'home':{
+                                        return 'home';
+                                    }
+                                    case 'search': {
+                                        return 'search({type: searchType, term: searchTerm})';
+                                    }
+                                    default:{
+                                        return 'home'
+                                    }
+                                }
                             }
                         }
                     }));
