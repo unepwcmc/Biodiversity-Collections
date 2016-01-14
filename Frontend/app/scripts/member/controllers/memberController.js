@@ -34,10 +34,16 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
             $scope.$on('ACTION_RELOADED', function(){
 
-                if(!$scope.confirm_memember){
+               /* if(!$scope.confirm_memember){
                     $scope.collection.associatedMembers = [];
                     $scope.collection.update();
-                }
+
+                    $http.put( $rootScope.getHost() + "collections/" + $stateParams.id, this)
+                        .success(function (data, status, headers, config) {
+                            console.log('removing not member confirmed')
+                        })
+
+                }*/
                 $state.go('collection', {id: $stateParams.id});
             });
 
