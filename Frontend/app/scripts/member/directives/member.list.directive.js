@@ -56,6 +56,14 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                             $scope.member = {};
                         });
 
+                        $rootScope.$watch('logged', function(newValue, oldValue){
+                            if(newValue != oldValue){
+                                if(!newValue){
+                                    setStateButton(false);
+                                }
+                            }
+                        }, true);
+
                         function setStateButton( status ){
                             $scope.editMode = status;
                             $rootScope.editMode = $scope.editMode;
