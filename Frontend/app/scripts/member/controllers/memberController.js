@@ -9,6 +9,7 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
             $scope.images = [];
             $scope.collection = new BiodiversityCollection();
             $scope.confirm_memember = false;
+            $scope.member_not_confirmed = [];
 
             /**
              * Listener when the view is loaded
@@ -34,15 +35,30 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
             $scope.$on('ACTION_RELOADED', function(){
 
-               /* if(!$scope.confirm_memember){
-                    $scope.collection.associatedMembers = [];
-                    $scope.collection.update();
+                /*if(!$scope.confirm_memember){
 
-                    $http.put( $rootScope.getHost() + "collections/" + $stateParams.id, this)
-                        .success(function (data, status, headers, config) {
-                            console.log('removing not member confirmed')
-                        })
+                    if($scope.member_not_confirmed.length > 0){
 
+                        console.log($scope.collection.associatedMembers);
+                        console.log($scope.member_not_confirmed);
+
+                        _.each($scope.member_not_confirmed, function( ele ){
+                             var idx = _.findIndex(scope.collection.associatedMembers, function( obj ){
+                                  return obj.id == ele.id;
+                             });
+                            $scope.collection.associatedMembers.splice(idx, 1);
+                        });
+
+                        $scope.collection.update(function( data, status){
+                            $state.go('collection', {id: $stateParams.id});
+                        });
+                    }
+                    $scope.collection.update(function( data, status){
+                        $state.go('collection', {id: $stateParams.id});
+                    });
+                }
+                else{
+                    $state.go('collection', {id: $stateParams.id});
                 }*/
                 $state.go('collection', {id: $stateParams.id});
             });
@@ -55,7 +71,8 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
            $scope.$on('ADD_NEW_MEMBER', function( evt, data){
                 console.log('adding new member');
 
-                $('#loader-wrapper').fadeToggle('400');
+                $scope.confirm_memember = true;
+               $('#loader-wrapper').fadeToggle('400');
 
                 if($scope.collection.associatedMembers == null){
                     $scope.collection.associatedMembers = [];
@@ -74,18 +91,51 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                     .success(function ( image ) {
 
                         data.image = image;
-                        $scope.collection.associatedMembers.push(data);
-                        $scope.collection.addMember();
+                        $scope.collection.saveMember( data, function( member, status){
+
+                             if(status == 200){
+                                // $('#loader-wrapper').fadeToggle('400');
+                                 //$scope.member_not_confirmed.push(member);
+                                 $scope.collection.associatedMembers.push(member);
+                                 /*$scope.collection.update(function( data, status){
+                                     $('#loader-wrapper').fadeToggle('400');
+                                     $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
+                                 });*/
+                                 $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
+                             }
+                        });
                     })
                 }
                 else{
-                    $scope.collection.associatedMembers.push(data);
-                    $scope.collection.addMember();
+                    $scope.collection.saveMember( data, function( member, status){
+
+                        if(status == 200){
+
+                           // $scope.member_not_confirmed.push(member);
+                            $scope.collection.associatedMembers.push(member);
+                            //$scope.collection.update(function( data, status){
+                            //    $('#loader-wrapper').fadeToggle('400');
+                            //    $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
+                            //});
+
+                            $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
+                        }
+                    });
                 }
            });
 
             $scope.$on('ACTION_SAVE', function(){
-                $scope.confirm_memember = true;
+               // $scope.confirm_memember = true;
+               // $scope.member_not_confirmed = [];
+                if($scope.confirm_memember){
+                    $scope.collection.update(function( data, status){
+                        $rootScope.$broadcast('ACTION_SAVE_ITEM');
+                        $scope.confirm_memember = false;
+                    });
+                }
+                else{
+                    $rootScope.$broadcast('ACTION_SAVE_ITEM');
+                }
             });
 
             /**
@@ -109,7 +159,7 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
             $scope.$on('DELETE_MEMBER', function( evt, data){
 
-                 $('#loader-wrapper').fadeToggle('400');
+                // $('#loader-wrapper').fadeToggle('400');
 
                  var index =  _.findIndex( $scope.collection.associatedMembers, function( obj ){
                      return obj.id == data;
@@ -117,9 +167,9 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
                  $scope.collection.associatedMembers.splice(index, 1);
 
-                 $scope.collection.update(function( data, status){
+                 /*$scope.collection.update(function( data, status){
                      $('#loader-wrapper').fadeToggle('400');
-                 });
+                 });*/
             });
     }
     ];

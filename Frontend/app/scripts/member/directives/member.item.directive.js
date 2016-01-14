@@ -32,8 +32,9 @@ define(['angularAMD', 'core/directives/core.image.box.directive', 'core/factory/
                     $scope.$emit('DELETE_MEMBER', id);
                 };
 
-                $scope.$on('ACTION_SAVE', function(){
+                $scope.$on('ACTION_SAVE_ITEM', function(){
 
+                    console.log($scope.member);
                     if($scope.member.id != undefined){
 
                         $('#loader-wrapper').fadeToggle('400');
@@ -66,15 +67,15 @@ define(['angularAMD', 'core/directives/core.image.box.directive', 'core/factory/
                 function saveMember(){
 
                     $http.put( $rootScope.getHost() + "members/" + $scope.member.id, $scope.member)
-                        .success(function ( data, status, headers, config ) {
+                    .success(function ( data, status, headers, config ) {
 
-                            $rootScope.$broadcast("MEMBER_UPDATED");
-                            $('#loader-wrapper').fadeToggle('400');
+                        $rootScope.$broadcast("MEMBER_UPDATED");
+                        $('#loader-wrapper').fadeToggle('400');
 
-                        })
-                        .error(function ( data, status, headers, config ) {
-                            console.error(data);
-                        });
+                    })
+                    .error(function ( data, status, headers, config ) {
+                        console.error(data);
+                    });
                 }
 
 

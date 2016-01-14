@@ -160,7 +160,7 @@ define(['angularAMD'], function (angularAMD) {
             addMember: function (callback) {
                 var self = this;
                 $http.put( $rootScope.getHost() + "collections/" + this.id, this)
-                    .success(function (data) {
+                    .success(function (data, status, headers, config) {
 
                         self.setData(data);
 
@@ -169,13 +169,25 @@ define(['angularAMD'], function (angularAMD) {
                         if(callback)
                             callback( data, status, headers, config )
                     })
-                    .error(function (message) {
-                        $log.error(message);
+                    .error(function (data, status, headers, config) {
+                        $log.error(data);
 
                         $rootScope.$broadcast("BIODIVERSITY_MEMBER_UPDATED_ERROR");
 
                         if(callback)
                             callback( data, status, headers, config )
+                    });
+            },
+            saveMember: function( model, callback ){
+                $http.post( $rootScope.getHost() + "members/", model)
+                    .success( function (data, status, headers, config) {
+                            if(callback)
+                                callback( data, status, headers, config )
+                    })
+                    .error( function (data, status, headers, config) {
+                        $log.error(data.message);
+                            if(callback)
+                                callback( data, status, headers, config )
                     });
             },
             save: function () {

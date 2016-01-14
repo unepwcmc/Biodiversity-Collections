@@ -1,4 +1,4 @@
-define(['angularAMD','waypoints', 'member/directives/member.item.directive'], function (angularAMD) {
+define(['angularAMD','waypoints','core/directives/core.image.box.directive', 'member/directives/member.item.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -42,8 +42,7 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
 
                         $scope.$on('MEMBER_ADDED', function(){
                             $scope.member = {};
-                            $rootScope.$broadcast('RESET_THUMBNAIL');
-
+                           // $rootScope.$broadcast('RESET_THUMBNAIL');
                             $scope.member_form_add.$setPristine();
                             $scope.member_form_add.$setUntouched();
                         });
@@ -113,6 +112,11 @@ define(['angularAMD','waypoints', 'member/directives/member.item.directive'], fu
                     $(element).find('.btn-edit-member-cancel').click(function(){
                         backToDefault();
                         scope.$emit('CANCEL_EDIT_MEMBER');
+                    });
+
+                    scope.$on('MEMBER_ADDED', function(){
+                        $(element).find('img.img-box').attr("src", "/images/empty_img.png");
+                        $(element).find('.img-file').val(null);
                     });
 
                     function backToDefault(){
