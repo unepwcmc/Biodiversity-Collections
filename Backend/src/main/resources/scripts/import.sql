@@ -38,22 +38,22 @@ INSERT INTO user_role (id, name, role) VALUES (3, 'GOVERNMENT_OFFICIAL', 'GOVERN
 -- User
 
 
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (1,'Richard Vogt', 1,'richar@email.com','richar@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (2,'Julia Andrade', 1,'julia@email.com','julia@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (3,'João Silva', 1,'joaos@email.com','joaos@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (4,'Maria Souza', 1,'marias@email.com','marias@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (5,'Rogério Henriques', 2,'rogerioh@email.com','rogerioh@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (6,'Cássio da Silva', 2,'cassios@email.com','cassios@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (7,'Augusto Couto', 2,'augustoc@email.com', 'augustoc@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (8,'Wladimir Pereira', 3,'wladmirb@email.com', 'wladmirb@email.com',TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (9,'Débora Barbosa', 3,'deborab@email.com','deborab@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (10,'Gabriela Antunes', 3,'grabrielaa@email.com','grabrielaa@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (11,'Josimar Barbosa', 3,'josimarb@email.com', 'josimarb@email.com',TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (12,'José Linhares', 3,'josel@email.com','josel@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (13,'Josiane Ferreira', 3,'josianef@email.com','josianef@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (14,'Joselito Madeira', 3,'joseltiom@email.com','joseltiom@email.com', TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (15,'João Medeiros', 3,'joaom@email.com', 'joaom@email.com',TRUE, '123456', 2);
-INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (16,'admin', 1,'admin@email.com','admin@email.com', TRUE, '123456', 1);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (1,'Richard Vogt', 1,'richar@email.com','richar@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (2,'Julia Andrade', 1,'julia@email.com','julia@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (3,'João Silva', 1,'joaos@email.com','joaos@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (4,'Maria Souza', 1,'marias@email.com','marias@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (5,'Rogério Henriques', 2,'rogerioh@email.com','rogerioh@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (6,'Cássio da Silva', 2,'cassios@email.com','cassios@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (7,'Augusto Couto', 2,'augustoc@email.com', 'augustoc@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (8,'Wladimir Pereira', 3,'wladmirb@email.com', 'wladmirb@email.com',TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (9,'Débora Barbosa', 3,'deborab@email.com','deborab@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (10,'Gabriela Antunes', 3,'grabrielaa@email.com','grabrielaa@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (11,'Josimar Barbosa', 3,'josimarb@email.com', 'josimarb@email.com',TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (12,'José Linhares', 3,'josel@email.com','josel@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (13,'Josiane Ferreira', 3,'josianef@email.com','josianef@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (14,'Joselito Madeira', 3,'joseltiom@email.com','joseltiom@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (15,'João Medeiros', 3,'joaom@email.com', 'joaom@email.com',TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 2);
+INSERT INTO users (id, first_name, institution_id, email, username, enabled, password, user_role_id) VALUES (16,'admin', 1,'admin@email.com','admin@email.com', TRUE, '$2a$10$xxI6/lZ2J3T7/FsK8IQuEetMpjJOTeVaRkpwQ0ITQyTVFLKIfEApW', 1);
 
 -- Curator
 INSERT INTO curator (id, user_id, name) VALUES (1,11,'Richard Vogt');

@@ -96,7 +96,9 @@ define(['app',
          * Listener when a file is loaded from the user.
          */
         $scope.$on('ATTACH_FILE', function( evt, data ){
-            $scope.images = data;
+            for(var i = 0; i < data.length; i++){
+                $scope.images.push(data[i]);
+            }
         });
 
         $scope.$on('REMOVE_IMAGE', function(evt, data){
