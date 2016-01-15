@@ -8,8 +8,8 @@
     <div class="container">
         <nav id="institution-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
-                <h2 ng-show="adminEditView" class="navbar-text"><strong>{{'EDIT_INSTITUTION' | translate}}</strong></h2>
-                <h2 ng-show="!adminEditView" class="navbar-text"><strong>{{'NEW_INSTITUTION' | translate}}</strong></h2>
+                <h2 ng-show="(editMode && adminEditView && adminView) || (editMode && !adminView)" class="navbar-text"><strong>{{'EDIT_INSTITUTION' | translate}}</strong></h2>
+                <h2 ng-show="editMode && !adminEditView && adminView" class="navbar-text"><strong>{{'NEW_INSTITUTION' | translate}}</strong></h2>
 
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
