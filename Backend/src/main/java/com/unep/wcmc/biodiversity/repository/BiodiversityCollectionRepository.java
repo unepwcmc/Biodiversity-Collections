@@ -18,9 +18,9 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
     @EntityGraph(value = "BiodiversityCollection.detail", type = EntityGraph.EntityGraphType.LOAD)
     BiodiversityCollection getById(Long id);
 
-    Page<BiodiversityCollection> findByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name, Pageable page);
+    Page<BiodiversityCollection> findByNameContainingIgnoreCaseAndPublishedOrderByNameAsc(@Param("name") String name, @Param("published")Boolean published, Pageable page);
 
-    List<BiodiversityCollection> findTop5ByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name);
+    List<BiodiversityCollection> findTop5ByNameContainingIgnoreCaseAndPublishedOrderByNameAsc(@Param("name") String name, @Param("published")Boolean published);
 
     Page<BiodiversityCollection> findAllByCollectionDefinition(@Param("collectionDefinition") CollectionDefinition collectionDefinition, Pageable pageable);
 
