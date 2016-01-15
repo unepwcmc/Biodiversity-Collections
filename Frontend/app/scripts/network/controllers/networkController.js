@@ -12,7 +12,7 @@ define(['app',
 
         angular.extend($scope, BaseController);
 
-        $scope.image = [];
+        $scope.images = [];
         $scope.network = new Network();
         $scope.fromState = 'home';
 

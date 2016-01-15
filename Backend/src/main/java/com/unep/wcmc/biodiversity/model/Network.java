@@ -21,9 +21,10 @@ public class Network implements BaseEntity {
 
     private boolean status;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
+
     @Embedded
     private Contact contact;
 
