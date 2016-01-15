@@ -1,9 +1,7 @@
 package com.unep.wcmc.biodiversity.controller;
 
-import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
-import com.unep.wcmc.biodiversity.model.CollectionDefinition;
-import com.unep.wcmc.biodiversity.model.Network;
-import com.unep.wcmc.biodiversity.model.Sample;
+import com.unep.wcmc.biodiversity.model.*;
+import com.unep.wcmc.biodiversity.security.SecurityUtils;
 import com.unep.wcmc.biodiversity.service.*;
 import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,24 +38,29 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<BiodiversityCollection> name(@RequestParam String name,
                              @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByNameContainingIgnoreCaseAndPublishedOrderByNameAsc(name, true, pageable);
+        User user = SecurityUtils.getCurrentUser();
+        if (user == null) {
+            return service.getRepository().findByNameContainingIgnoreCaseAndPublishedOrderByNameAsc(name, true, pageable);
+        }
+        return service.getRepository().findByNameContainingIgnoreCaseOrderByNameAsc(name, pageable);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public List<BiodiversityCollection> autocomplete(@RequestParam String name) {
-        return service.getRepository().findTop5ByNameContainingIgnoreCaseAndPublishedOrderByNameAsc(name, true);
+        User user = SecurityUtils.getCurrentUser();
+        if (user == null) {
+            return service.getRepository().findTop5ByNameContainingIgnoreCaseAndPublishedOrderByNameAsc(name, true);
+        }
+        return service.getRepository().findTop5ByNameContainingIgnoreCaseOrderByNameAsc(name);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/definition")
-    public Page<BiodiversityCollection> findAllCollectionDefinition(@RequestParam(value = "name", defaultValue = "ALL") String name,
-                                                                    @PageableDefault(page = 0, size = 10) Pageable pageable) {
+    public Page<BiodiversityCollection> findAllCollectionDefinition(@RequestParam(value = "name", defaultValue = "ALL") String name, @PageableDefault(page = 0, size = 10) Pageable pageable) {
         switch (name){
-            case "ALL":{
+            case "ALL":
                 return service.list(pageable);
-            }
-            default:{
+            default:
                 return service.getRepository().findAllByCollectionDefinition(CollectionDefinition.valueOf(name.toUpperCase()),pageable);
-            }
         }
     }
 
