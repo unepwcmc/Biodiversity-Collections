@@ -15,13 +15,11 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
 
                             if($scope.institutionCuratorSelected != null){
 
-                                var obj = {
-                                    id: $scope.institutionCuratorSelected.originalObject.id,
-                                    name: $scope.institutionCuratorSelected.originalObject.name
-                                };
-                                $scope.institution.curators.push(obj);
+                                if($scope.institution.curators == null){
+                                    $scope.institution.curators = [];
+                                }
+                                $scope.institution.curators.push($scope.institutionCuratorSelected.originalObject);
                             }
-                            console.log($scope.institution);
                             $scope.institutionCuratorSelected = null;
                             $scope.$broadcast('angucomplete-alt:clearInput', 'institution_curator_autocomplete');
                         };
