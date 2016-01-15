@@ -6,6 +6,7 @@ import com.unep.wcmc.biodiversity.service.*;
 import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
@@ -38,29 +39,21 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<BiodiversityCollection> name(@RequestParam String name,
                              @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        User user = SecurityUtils.getCurrentUser();
-        if (user == null) {
-            return service.getRepository().findByNameContainingIgnoreCaseAndPublishedOrderByNameAsc(name, true, pageable);
-        }
-        return service.getRepository().findByNameContainingIgnoreCaseOrderByNameAsc(name, pageable);
+        return service.searchByName(name, pageable);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public List<BiodiversityCollection> autocomplete(@RequestParam String name) {
-        User user = SecurityUtils.getCurrentUser();
-        if (user == null) {
-            return service.getRepository().findTop5ByNameContainingIgnoreCaseAndPublishedOrderByNameAsc(name, true);
-        }
-        return service.getRepository().findTop5ByNameContainingIgnoreCaseOrderByNameAsc(name);
+        return service.searchByNameTop5(name);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/definition")
     public Page<BiodiversityCollection> findAllCollectionDefinition(@RequestParam(value = "name", defaultValue = "ALL") String name, @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        switch (name){
+        switch (name) {
             case "ALL":
-                return service.list(pageable);
+                return service.searchAll(pageable);
             default:
-                return service.getRepository().findAllByCollectionDefinition(CollectionDefinition.valueOf(name.toUpperCase()),pageable);
+                return service.searchByDefinition(name, pageable);
         }
     }
 
