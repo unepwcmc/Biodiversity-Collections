@@ -51,6 +51,14 @@ define(['app',
                 });
             });
 
+            $rootScope.$on('AuthenticationDone', function() {
+                $scope.load(0);
+            });
+
+            $rootScope.$on('LogoutDone', function() {
+                $scope.load(0);
+            });
+
             $scope.load = function( page ) {
 
                 $('#loader-wrapper').fadeToggle('400');

@@ -7,9 +7,14 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','BaseController','$http','$rootScope', '$stateParams','$timeout','$state', '$translate', function ($scope, BaseController, $http, $rootScope, $stateParams, $state, $translate) {
+    return ['$scope','BaseController','$http','$rootScope', '$stateParams','$timeout','$state', '$translate',
+        function ($scope, BaseController, $http, $rootScope, $stateParams, $timeout, $state, $translate) {
 
             angular.extend($scope, BaseController);
+
+            $rootScope.$on('LogoutDone', function() {
+                $state.go('home');
+            });
 
     }];
 });

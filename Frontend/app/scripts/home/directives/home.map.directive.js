@@ -12,6 +12,14 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
                     $scope.query = 'ALL';
                     $scope.collections.loadByDefinition($scope.query, $scope.collections.page, $scope.collections.size);
 
+                    $rootScope.$on('AuthenticationDone', function() {
+                        $scope.load(0);
+                    });
+
+                    $rootScope.$on('LogoutDone', function() {
+                        $scope.load(0);
+                    });
+
                     $scope.$on('BIODIVERSITY_FILTER_LOADED', function(){
                         console.log('biodiversity home loaded');
 
