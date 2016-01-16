@@ -219,7 +219,8 @@ define([],function ( ) {
     'FLORA': 'Flora',
     'MICROORGANISMS': 'Micro-organismo',
     'OTHERS': 'Outros',
-    'BIODIVERSITY_INSTITUTION_SAVED':'Instituição salva'
+    'BIODIVERSITY_INSTITUTION_SAVED':'Instituição salva',
+    'NEW_COLLECTION': 'Nova coleção'
   }
 
 });

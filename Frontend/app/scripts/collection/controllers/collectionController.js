@@ -17,6 +17,7 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.images = [];
                $scope.fromState = 'home';
                $scope.collection = new BiodiversityCollection();
+               $scope.isNew = $stateParams.isNew;
 
                /**
                 * Listener when the state is changed
