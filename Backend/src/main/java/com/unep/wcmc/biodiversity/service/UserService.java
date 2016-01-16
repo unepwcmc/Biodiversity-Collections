@@ -195,7 +195,7 @@ public final class UserService extends AbstractService<User, UserRepository> imp
             String template = user != null && user.getLanguage().equals(User.PT_BR) ?
                     MailUtils.ASK_SUPPORT_TEMPLATE_PT_BR : MailUtils.ASK_SUPPORT_TEMPLATE_EN_GB;
 
-            mailUtils.sendEmail(environment.getProperty("support.email"), email, "[Ask Support]" + subject, template, mailParameters);
+            mailUtils.sendEmail(user.getEmail(), email, "[Ask Support] " + subject, template, mailParameters);
 
         });
     }
