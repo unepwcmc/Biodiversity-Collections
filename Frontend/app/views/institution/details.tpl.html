@@ -87,7 +87,6 @@
                                      <tfoot ng-show="editMode">
                                      <tr>
                                          <td>
-
                                              <angucomplete-alt id="institution_curator_autocomplete"
                                                                placeholder="Search a Curator"
                                                                pause="150"
@@ -95,8 +94,7 @@
                                                                remote-api-handler="curatorAutocomplete"
                                                                title-field="name"
                                                                minlength="2"
-                                                               input-class="form-control"/>
-
+                                                               input-class="form-control curator-institutions"/>
                                          </td>
                                          <td>&nbsp;&nbsp;<a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addCurator();"><label>{{ 'ADD' | translate }}</label></a></td>
                                      </tr>
