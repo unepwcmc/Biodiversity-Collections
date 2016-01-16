@@ -220,7 +220,9 @@ define([],function ( ) {
     'MICROORGANISMS': 'Micro-organismo',
     'OTHERS': 'Outros',
     'BIODIVERSITY_INSTITUTION_SAVED':'Instituição salva',
-    'NEW_COLLECTION': 'Nova coleção'
+    'NEW_COLLECTION': 'Nova coleção',
+    'NEW_NETWORK': 'Nova rede',
+    'NEW_SAMPLE': 'Novo exemplar'
   }
 
 });

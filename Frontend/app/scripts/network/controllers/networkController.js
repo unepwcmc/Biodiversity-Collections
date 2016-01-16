@@ -7,14 +7,15 @@ define(['app',
 
     'use strict';
 
-    return ['$scope','$rootScope','$stateParams','$state','$translate','$timeout','toastr','BaseController','Network','$q','$http',
-        function ($scope, $rootScope, $stateParams, $state, $translate, $timeout, toastr, BaseController, Network, $q, $http) {
+    return ['$scope','$rootScope','$stateParams','$state','$translate','$timeout','toastr','BaseController','Network','$q','$http', '$window',
+        function ($scope, $rootScope, $stateParams, $state, $translate, $timeout, toastr, BaseController, Network, $q, $http, $window) {
 
         angular.extend($scope, BaseController);
 
         $scope.images = [];
         $scope.network = new Network();
         $scope.fromState = 'home';
+        $scope.isNew = $stateParams.isNew;
 
         /**
          * Listener when the state is changed
@@ -124,8 +125,7 @@ define(['app',
         });
 
         $scope.$on('NETWORK_DELETED', function() {
-            $('#loader-wrapper').fadeToggle('400');
-            $state.go('home');
+            $window.history.back();
         });
 
         function setStateButton( status ){

@@ -76,6 +76,8 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
 
                         $scope.createNewCollection = function () {
                             $('#loader-wrapper').fadeToggle('400');
+                            $scope.newCollection.name = $translate.instant('NEW_COLLECTION');
+                            $scope.newCollection.institution = $scope.institution;
                             $scope.newCollection.save();
                         };
 

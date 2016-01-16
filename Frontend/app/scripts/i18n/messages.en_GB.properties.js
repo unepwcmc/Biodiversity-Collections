@@ -222,7 +222,9 @@ define([],function ( ) {
     'MICROORGANISMS': 'Microorganisms',
     'OTHERS': 'Others',
     'BIODIVERSITY_INSTITUTION_SAVED':'Institution saved',
-    'NEW_COLLECTION': 'New collection'
+    'NEW_COLLECTION': 'New collection',
+    'NEW_NETWORK': 'New network',
+    'NEW_SAMPLE': 'New sample'
   }
 
 });

@@ -76,6 +76,8 @@ define(['angularAMD', 'core/factory/networkFactory'], function (angularAMD) {
 
                         $scope.createNewNetwork = function () {
                             $('#loader-wrapper').fadeToggle('400');
+                            $scope.newNetwork.name = $translate.instant('NEW_NETWORK');
+                            $scope.newNetwork.institutions = [ $scope.institution ];
                             $scope.newNetwork.save();
                         };
 
