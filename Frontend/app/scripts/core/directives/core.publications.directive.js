@@ -42,8 +42,6 @@ define([ 'angularAMD',
 
                         $scope.saveOrUpdate = function(){
 
-                            console.log($scope.document);
-
                             if($scope.document.id){
                                 $scope.updateDocument();
                             }
@@ -92,9 +90,10 @@ define([ 'angularAMD',
                             $scope.documents.save($scope.document, function( data, status){
 
                                 if(status === 200){
-
+                                    $('#loader-wrapper').fadeToggle('400');
                                     $scope.documents.upload($scope.file, function(data, status){
                                         successState();
+                                        $('#loader-wrapper').fadeToggle('400');
                                         $scope.showSuccessMessage('DOCUMENT_CREATED_SUCCESSFULLY','SUCCESS');
                                     });
                                 }else{
@@ -120,9 +119,11 @@ define([ 'angularAMD',
                                 if(status === 200){
 
                                     if($scope.file != null){
-
+                                        console.log('uploading...');
+                                        $('#loader-wrapper').fadeToggle('400');
                                         $scope.documents.upload($scope.file, function(data, status){
                                             successState();
+                                            $('#loader-wrapper').fadeToggle('400');
                                             $scope.showSuccessMessage('DOCUMENT_UPDATED_SUCCESSFULLY','SUCCESS');
                                         });
                                     }
