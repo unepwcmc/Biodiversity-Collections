@@ -13,7 +13,6 @@ import java.util.Set;
         attributeNodes = {
                 @NamedAttributeNode("researchers"),
                 @NamedAttributeNode("specimens"),
-                @NamedAttributeNode("images"),
                 @NamedAttributeNode("associatedMembers")
         }
     )
@@ -76,7 +75,7 @@ public class BiodiversityCollection implements BaseEntity {
     @JsonIgnore
     private Set<Document> documents;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
 
