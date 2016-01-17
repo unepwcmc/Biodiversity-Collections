@@ -206,7 +206,6 @@ public class User implements UserDetails, BaseEntity {
         this.institution = institution;
     }
 
-
     public Contact getContact() {
         return contact;
     }
