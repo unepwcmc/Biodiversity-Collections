@@ -16,6 +16,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         angular.extend($scope, BaseController);
 
                         $scope.slots = [false, false, false, false, false];
+                        $scope.selected_slot = null;
 
                         $rootScope.$watch('editMode', function(newValue, oldValue){
                             $scope.editMode = $rootScope.editMode;
@@ -74,6 +75,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                                                 if(index == 0){
                                                     img_box.attr('src',"/images/icons/ajax-loader-large.gif");
+                                                    $scope.selected_slot = 0;
                                                 }
                                                 var thumbnail = $('#box-image-' + ( index  ));
                                                 thumbnail.attr('src',"/images/icons/ajax-loader.gif");
@@ -130,12 +132,13 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         $(this).prev().data("empty", 1);
                         scope.slots[index] = false;
 
-                        if(index == 0){
+                        if(index == scope.selected_slot){
                             $('#box-image').attr("src", "/images/empty_img.png");
                         }
                     });
 
                     $('.img-thumbnail-mini').click(function(evt){
+                        scope.selected_slot = $(this).data('slot');
                         $('#box-image').attr('src',$(this).attr('src'));
                     });
 
@@ -162,6 +165,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                                             if(index == 0){
                                                 $('#box-image').attr('src',event.target.result);
+                                                scope.selected_slot = 0;
                                             }
                                             thumbnail.attr('src',event.target.result);
                                             thumbnail.data('empty', 0);
