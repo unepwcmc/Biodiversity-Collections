@@ -1,7 +1,5 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -48,6 +46,12 @@ public class Curator implements BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = true, name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "curator")
+    private Set<BiodiversityCollection> collections;
+
+    @OneToMany(mappedBy = "curator", cascade = CascadeType.REMOVE)
+    private Set<InviteCuratorToken> tokens;
 
     @Override
     public Long getId() {
@@ -134,6 +138,21 @@ public class Curator implements BaseEntity {
         getAssociatedInstitutions().remove(institution);
     }
 
+    public Set<BiodiversityCollection> getCollections() {
+        return collections;
+    }
+
+    public void setCollections(Set<BiodiversityCollection> collections) {
+        this.collections = collections;
+    }
+
+    public Set<InviteCuratorToken> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(Set<InviteCuratorToken> tokens) {
+        this.tokens = tokens;
+    }
 
     public User getUser() {
         return user;

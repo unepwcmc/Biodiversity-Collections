@@ -10,7 +10,8 @@ define(['app','collection/directives/collection.networks.directive',
 
     'use strict';
 
-    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','$translate','$state','$q','$timeout','Institution', function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, $translate, $state, $q, $timeout,Institution) {
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','$translate','$state','$q','$timeout','Institution', '$window',
+        function ($scope, BaseController, $stateParams, $http, $rootScope, BiodiversityCollection, $translate, $state, $q, $timeout, Institution, $window) {
                 angular.extend($scope, BaseController);
 
                $rootScope.editMode = false;
@@ -27,7 +28,7 @@ define(['app','collection/directives/collection.networks.directive',
 
                    $scope.fromState = fromState.name;
 
-                   if(fromState.name == 'institution'){
+                   if (fromState.name == 'institution') {
                        $scope.institution = new Institution();
                        $scope.institution.get(fromParams.id);
                    }
@@ -149,8 +150,7 @@ define(['app','collection/directives/collection.networks.directive',
                });
 
                $scope.$on('BIODIVERSITY_DELETED', function() {
-                   $('#loader-wrapper').fadeToggle('400');
-                   $state.go('home');
+                   $window.history.back();
                });
 
                /**

@@ -8,7 +8,8 @@
     <div class="container">
         <nav id="network-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
-                <h2 class="navbar-text"><strong>{{'EDIT_NETWORK' | translate}}</strong></h2>
+                <h2 ng-show="!isNew" class="navbar-text"><strong>{{'EDIT_NETWORK' | translate}}</strong></h2>
+                <h2 ng-show="isNew" class="navbar-text"><strong>{{'NEW_NETWORK' | translate}}</strong></h2>
 
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
@@ -22,7 +23,8 @@
         </nav>
         <h4 id="network-bar-default">
             <strong ng-show="!editMode" >{{ network.name }}</strong>
-            <strong ng-show="editMode" >{{ 'EDIT_NETWORK' | translate }}</strong> <span>
+            <strong ng-show="editMode && !isNew" >{{ 'EDIT_NETWORK' | translate }}</strong> <span>
+            <strong ng-show="editMode && isNew" >{{'NEW_NETWORK' | translate}}</strong> <span>
             <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'NETWORK'| translate}}</strong></button></span>
 
             <a ng-show="!editMode && logged" id="edit-network" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>

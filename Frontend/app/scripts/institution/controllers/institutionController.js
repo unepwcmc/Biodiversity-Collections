@@ -32,7 +32,8 @@ define(['app',
                      $scope.adminView = true;
                      $rootScope.editMode = true;
 
-                     $scope.institution.save( {}, function( data, status ){
+                     $scope.institution.save( { name: $translate.instant('NEW_INSTITUTION') },
+                         function( data, status ){
                          if(status == 200){
                              $('#loader-wrapper').fadeToggle('400');
                              $stateParams.id = data.id;
@@ -56,14 +57,12 @@ define(['app',
              */
             $scope.$on('$viewContentLoaded', function(event) {
                 console.log('view Content Loaded...');
-
-                if($stateParams.id != undefined){
+                if ($stateParams.id != undefined) {
                     $scope.institution.get( $stateParams.id );
                 }
             });
 
             $scope.$on('INSTITUTION_LOADED', function(){
-
                 $('#loader-wrapper').fadeToggle('400');
             });
 

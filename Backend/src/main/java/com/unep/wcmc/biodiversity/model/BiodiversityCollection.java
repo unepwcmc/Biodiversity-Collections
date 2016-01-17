@@ -47,11 +47,11 @@ public class BiodiversityCollection implements BaseEntity {
     @Embedded
     private Contact contact;
 
-    @ManyToOne
+    @ManyToOne(optional = true)
     @JoinColumn(name = "curator_id")
     private Curator curator;
 
-    @ManyToOne
+    @ManyToOne(optional = true)
     @JoinColumn(name = "institution_id")
     private Institution institution;
 

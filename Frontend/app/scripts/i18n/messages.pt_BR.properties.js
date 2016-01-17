@@ -160,6 +160,9 @@ define([],function ( ) {
     'EMAIL_ADDRESS':'Endereço de e-mail',
     'NEW_USER':'Novo usuário',
     'USER_SAVED_SUCCESSFULLY':'Usuário registrado com sucesso',
+    'USER_UPDATED_SUCCESSFULLY':'Usuário atualizado com sucesso',
+    'USER_DELETED_SUCCESSFULLY':'Usuário removido',
+    'USERS_DELETED_SUCCESSFULLY':'Usuários removido',
     'SIGN_IN':'Entrar',
     'FORGOT_PASSWORD':'Esqueceu a senha?',
     'SORRY_WE_CANT_REGISTER_THE_USER':'Desculpe, não foi possível registrar o usuário',
@@ -220,7 +223,10 @@ define([],function ( ) {
     'MICROORGANISMS': 'Micro-organismo',
     'OTHERS': 'Outros',
     'BIODIVERSITY_INSTITUTION_SAVED':'Instituição salva',
-    'NEW_COLLECTION': 'Nova coleção'
+    'NEW_COLLECTION': 'Nova coleção',
+    'NEW_NETWORK': 'Nova rede',
+    'NEW_SAMPLE': 'Novo exemplar',
+    'ARE_YOU_SURE': 'Você tem certeza?'
   }
 
 });

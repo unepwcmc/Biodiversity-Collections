@@ -128,8 +128,6 @@ define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], 
                     if (scope.isNew) {
                         scope.disableAutocomplete = false;
                         scope.navigationBar = true;
-                        scope.$emit('EDIT_COLLECTION');
-                        scope.$apply();
                     }
 
                     $(element).find('.btn-edit-collection-cancel').click(function(){

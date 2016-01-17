@@ -48,11 +48,10 @@ define(['angularAMD','core/factory/userFactory'], function (angularAMD) {
 
                              $scope.users.delete( id, function( data, status){
 
-                                   if(status == 200){
+                                   if (status == 200) {
                                        $scope.users.list($scope.users.number, $scope.users.size);
-                                   }
-                                    else{
-                                        console.error(data);
+                                   } else {
+                                       console.error(data);
                                        $('#loader-wrapper').fadeToggle('400');
                                    }
                              });

@@ -144,7 +144,7 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     public Page<BiodiversityCollection> searchByNotInNetworks(@PathVariable("name") String name,
                                                               @PathVariable("networkId") Long networkId,
                                                               @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByNameContainingAndNetworksNotInOrNetworksIsNullOrderByNameAsc(name,
+        return service.getRepository().findByNetworksNotIn(name,
                 new ArrayList<Network>() {{ add( networkService.get(networkId) ); }}, pageable);
     }
 

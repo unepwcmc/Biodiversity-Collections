@@ -51,5 +51,6 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
 
     Page<BiodiversityCollection> findByNameContainingAndInstitutionNotInOrInstitutionIsNullOrderByNameAsc(String name, Institution institution, Pageable page);
 
-    Page<BiodiversityCollection> findByNameContainingAndNetworksNotInOrNetworksIsNullOrderByNameAsc(String name, Collection<Network> networks, Pageable page);
+    @Query("select distinct c from BiodiversityCollection c left join c.networks n where c.name like concat('%',:name,'%') and (n not in :networks or n is null) order by c.name")
+    Page<BiodiversityCollection> findByNetworksNotIn(@Param("name") String name, @Param("networks") Collection<Network> networks, Pageable page);
 }

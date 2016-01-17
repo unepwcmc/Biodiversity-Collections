@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Model that represents an user within Fichas de Especies
@@ -67,6 +68,9 @@ public class User implements UserDetails, BaseEntity {
 
     @Embedded
     private Contact contact;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private Set<ForgetPasswordToken> tokens;
 
     @Transient
     @JsonDeserialize
@@ -206,13 +210,20 @@ public class User implements UserDetails, BaseEntity {
         this.institution = institution;
     }
 
-
     public Contact getContact() {
         return contact;
     }
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public Set<ForgetPasswordToken> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(Set<ForgetPasswordToken> tokens) {
+        this.tokens = tokens;
     }
 
     @Override

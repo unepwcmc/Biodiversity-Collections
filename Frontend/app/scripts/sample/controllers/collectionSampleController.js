@@ -36,6 +36,7 @@ define(['app', 'waypoints',
                 $scope.generatedSample = true;
 
                 if ($stateParams.collection) {
+                    $scope.sample.name = $translate.instant('NEW_SAMPLE');
                     $scope.sample.collection = $stateParams.collection;
                     $scope.sample.institution = $stateParams.collection.institution;
                     $scope.sample.save();

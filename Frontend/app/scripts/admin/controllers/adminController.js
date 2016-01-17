@@ -16,5 +16,9 @@ define(['app',
                 $state.go('home');
             });
 
+            $rootScope.$on('USER_DELETED', function() {
+                $scope.showSuccessMessage('SUCCESS', 'USER_DELETED_SUCCESSFULLY');
+            });
+
     }];
 });

@@ -68,6 +68,15 @@ public final class UserService extends AbstractService<User, UserRepository> imp
         return user;
     }
 
+    @Override
+    public Boolean delete(Long id) {
+        Curator curator = curatorService.getRepository().findByUserId(id);
+        if (curator != null) {
+            return curatorService.delete(curator.getId());
+        }
+        return super.delete(id);
+    }
+
     public User registerNewUser(User user) {
         validateUser(user, repo.findByEmail(user.getEmail()));
         validateUser(user, repo.findByUsername(user.getUsername()));
@@ -77,21 +86,28 @@ public final class UserService extends AbstractService<User, UserRepository> imp
         return save(user);
     }
 
-    public User create(User user) {
-        validateUser(user, repo.findByEmail(user.getEmail()));
-        validateUser(user, repo.findByUsername(user.getUsername()));
+    @Override
+    public User save(User user) {
         final String role = user.getRole();
         user.setUserRole(getUserRole(role));
         String passEncoded = passwordEncoder.encode(user.getPassword());
         user.setPassword(passEncoded);
         user.setLanguage("pt_BR");
+        return super.save(user);
+    }
+
+    public User create(User user) {
+        validateUser(user, repo.findByEmail(user.getEmail()));
+        validateUser(user, repo.findByUsername(user.getUsername()));
         user = save(user);
 
-        if (role.equals(UserRole.RoleType.CURATOR.name())) {
-            curatorService.create(user);
+        if (UserRole.RoleType.CURATOR.name().equals(user.getUserRole().getRole())) {
+            Curator curator = new Curator();
+            curator.setUser(user);
+            curator.setName(user.getFirstName() + " " + user.getLastName());
+            curatorService.getRepository().save(curator);
         }
         return user;
-
     }
 
     private void validateUser(User user, User other) {
@@ -195,7 +211,7 @@ public final class UserService extends AbstractService<User, UserRepository> imp
             String template = user != null && user.getLanguage().equals(User.PT_BR) ?
                     MailUtils.ASK_SUPPORT_TEMPLATE_PT_BR : MailUtils.ASK_SUPPORT_TEMPLATE_EN_GB;
 
-            mailUtils.sendEmail(environment.getProperty("support.email"), email, "[Ask Support]" + subject, template, mailParameters);
+            mailUtils.sendEmail(user.getEmail(), email, "[Ask Support] " + subject, template, mailParameters);
 
         });
     }
