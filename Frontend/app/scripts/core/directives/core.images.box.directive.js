@@ -55,8 +55,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         },true);
 
                         function loadImage(){
-                            console.log('load image');
-                            console.log($scope.images.length);
+
                             if($scope.images.length > 0){
 
                                 for(var i = 0; i < $scope.images.length; i++){
