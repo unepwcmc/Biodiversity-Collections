@@ -16,6 +16,20 @@ define(['app',
         $rootScope.editMode = false;
         $scope.sample = new Sample();
         $scope.image = null;
+        $scope.fromState = 'home';
+        $scope.collection_id = undefined;
+
+        /**
+         * Listener when the state is changed
+         */
+        $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            console.log('state Change Success');
+
+            $scope.fromState = fromState.name;
+
+            if($scope.fromState == 'collection')
+                $scope.collection_id = fromParams.id;
+        });
 
         /**
          * Listener when the view is loaded

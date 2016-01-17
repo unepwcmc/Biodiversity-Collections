@@ -297,6 +297,9 @@ define(['include', 'language'], function (angularAMD, language) {
                                     case 'home':{
                                         return 'home';
                                     }
+                                    case 'collection':{
+                                        return 'collection({id: collection_id})';
+                                    }
                                     case 'search': {
                                         return 'search({type: searchType, term: searchTerm})';
                                     }

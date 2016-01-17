@@ -24,14 +24,21 @@ define(['app', 'waypoints',
             $scope.page = 0;
             $scope.size = 20;
             $scope.image = null;
+            $scope.fromState = 'home';
 
-            $scope.collection_id = $stateParams.id;
+            $scope.collection_id = undefined
 
             /**
              * Listener when the state is changed
              */
             $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                 console.log('state Change Success');
+
+                $scope.fromState = fromState.name;
+
+                if($scope.fromState == 'collection')
+                    $scope.collection_id = fromParams.id;
+
                 $('#loader-wrapper').fadeToggle('400');
                 $scope.generatedSample = true;
 

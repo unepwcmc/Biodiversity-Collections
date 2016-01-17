@@ -11,6 +11,15 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
             $scope.confirm_memember = false;
             $scope.member_not_confirmed = [];
 
+            $scope.myResolver = function (defaultResolver, state, isCurrent) {
+
+                if (isCurrent) {
+                    return '"' + $scope.collection.name + '"';
+                }
+
+                return defaultResolver(state);
+            };
+
             /**
              * Listener when the view is loaded
              */
