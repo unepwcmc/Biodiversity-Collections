@@ -12,7 +12,8 @@ define(['angularAMD','bootstrap'], function (angularAMD) {
             return {
                 restrict: 'EA',
                 templateUrl: 'views/admin/overview.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate',  function($scope, $rootScope, $stateParams, $state, $translate){
+                controller: ['$scope', '$rootScope', '$stateParams', '$state', '$translate',
+                    function($scope, $rootScope, $stateParams, $state, $translate){
 
                         $scope.invite = { url: $location.host() + ":" + $location.port()};
 
@@ -45,7 +46,7 @@ define(['angularAMD','bootstrap'], function (angularAMD) {
                                 .success( function (data, status, headers, config) {
 
                                     $('#invite_curator').modal('hide');
-                                    toastr.success('SUCCESS', 'INVITE_SENT');
+                                    toastr.success($translate.instant('INVITE_SENT'), $translate.instant('SUCCESS'));
                                     $scope.invite = {email: null, institution:null};
                                 })
                                 .error(function(data, status, headers, config){
