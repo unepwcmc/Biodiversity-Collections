@@ -70,7 +70,7 @@ define(['app',
                 console.log('user updated..');
 
                 $('#loader-wrapper').fadeToggle('400');
-                $scope.showSuccessMessage('SUCCESS','USER_SAVED_SUCCESSFULLY');
+                $scope.showSuccessMessage('SUCCESS','USER_UPDATED_SUCCESSFULLY');
 
                 if($scope.adminView == true && $scope.editUserView == true){
                     $state.go('admin');

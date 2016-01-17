@@ -30,7 +30,6 @@ define(['angularAMD','auth/directives/phone.digits.directive'], function (angula
                         };
 
                         $scope.userSubmit = function(){
-
                             $scope.$emit('REGISTER_NEW_USER', $scope.user);
                         };
 
@@ -39,7 +38,6 @@ define(['angularAMD','auth/directives/phone.digits.directive'], function (angula
                         };
 
                         $scope.cancelForm = function(){
-
                             $scope.$emit('CANCEL_USER_FORM');
                             resetForm();
                         };

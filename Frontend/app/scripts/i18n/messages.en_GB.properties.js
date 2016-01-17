@@ -162,6 +162,8 @@ define([],function ( ) {
     'EMAIL_ADDRESS':'Email address',
     'NEW_USER':'New user',
     'USER_SAVED_SUCCESSFULLY':'User registered successfully',
+    'USER_UPDATED_SUCCESSFULLY':'User updated successfully',
+    'USER_DELETED_SUCCESSFULLY':'User deleted',
     'SORRY_WE_CANT_REGISTER_THE_USER':'Sorry, we cant register the user',
     'ACTIONS':'Actions',
     'CREATE_USER':'Create user',
@@ -224,7 +226,8 @@ define([],function ( ) {
     'BIODIVERSITY_INSTITUTION_SAVED':'Institution saved',
     'NEW_COLLECTION': 'New collection',
     'NEW_NETWORK': 'New network',
-    'NEW_SAMPLE': 'New sample'
+    'NEW_SAMPLE': 'New sample',
+    'ARE_YOU_SURE': 'Are you sure?'
   }
 
 });
