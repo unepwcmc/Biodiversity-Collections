@@ -162,6 +162,7 @@ define([],function ( ) {
     'USER_SAVED_SUCCESSFULLY':'Usuário registrado com sucesso',
     'USER_UPDATED_SUCCESSFULLY':'Usuário atualizado com sucesso',
     'USER_DELETED_SUCCESSFULLY':'Usuário removido',
+    'USERS_DELETED_SUCCESSFULLY':'Usuários removido',
     'SIGN_IN':'Entrar',
     'FORGOT_PASSWORD':'Esqueceu a senha?',
     'SORRY_WE_CANT_REGISTER_THE_USER':'Desculpe, não foi possível registrar o usuário',

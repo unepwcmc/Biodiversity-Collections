@@ -164,6 +164,7 @@ define([],function ( ) {
     'USER_SAVED_SUCCESSFULLY':'User registered successfully',
     'USER_UPDATED_SUCCESSFULLY':'User updated successfully',
     'USER_DELETED_SUCCESSFULLY':'User deleted',
+    'USERS_DELETED_SUCCESSFULLY':'Users deleted',
     'SORRY_WE_CANT_REGISTER_THE_USER':'Sorry, we cant register the user',
     'ACTIONS':'Actions',
     'CREATE_USER':'Create user',
