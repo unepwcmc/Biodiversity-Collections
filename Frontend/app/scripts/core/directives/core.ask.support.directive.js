@@ -6,7 +6,8 @@ define(['angularAMD','bootstrap'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('askForSupport', ['$rootScope','$http','toastr', function ($rootScope, $http, toastr) {
+    angularAMD.directive('askForSupport', ['$rootScope','$http','toastr', '$translate',
+        function ($rootScope, $http, toastr, $translate) {
 
             return {
                 restrict: 'E',
@@ -20,7 +21,7 @@ define(['angularAMD','bootstrap'], function (angularAMD) {
                                 .success( function (data, status, headers, config) {
 
                                     $('#support_modal').modal('hide');
-                                    toastr.success('SUCCESS', 'MESSAGE_SENT');
+                                    toastr.success($translate.instant('MESSAGE_SENT'), $translate.instant('SUCCESS'));
                                     $scope.support = {};
                                 })
                                 .error(function(data, status, headers, config){
