@@ -14,14 +14,14 @@
                         <input  type="hidden" value="{{ user.id }}">
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'FIRST_NAME' | translate }}</label>
+                            <label class="col-sm-3">{{ 'FIRST_NAME' | translate }} *</label>
 
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="user.firstName"
                                                          required></div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'LAST_NAME' | translate }}</label>
+                            <label class="col-sm-3">{{ 'LAST_NAME' | translate }} *</label>
 
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="user.lastName"
                                                          required></div>
@@ -62,7 +62,7 @@
 
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'EMAIL_ADDRESS' | translate }}&nbsp;-&nbsp;<em><small>{{ 'USERNAME' | translate}}</small></em></label>
+                            <label class="col-sm-3">{{ 'EMAIL_ADDRESS' | translate }}&nbsp;<em><small>{{ 'USERNAME' | translate}} *</small></em></label>
 
                             <div class="col-sm-9"><input type="email" class="form-control" data-ng-model="user.email"
                                                          required></div>
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'PASSWORD' | translate }}</label>
+                            <label class="col-sm-3">{{ 'PASSWORD' | translate }} *</label>
 
                             <div class="col-sm-9"><input type="password" class="form-control"
                                                          data-ng-model="user.password" required></div>
