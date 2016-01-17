@@ -144,7 +144,9 @@ define(['app',
              */
             $scope.$on('ATTACH_FILE', function( evt, data ){
                 for(var i = 0; i < data.length; i++){
-                    $scope.images.push(data[i]);
+                    if($scope.images.length <= 5){
+                        $scope.images.push(data[i]);
+                    }
                 }
             });
 
@@ -186,7 +188,7 @@ define(['app',
                     $scope.images = [];
                     $('#loader-wrapper').fadeToggle('400');
                     toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
-                    $scope.$emit("IMAGE_ADDED");
+                    $scope.institution.get( $stateParams.id );
 
                     if($scope.adminView){
                         $state.go('admin');
