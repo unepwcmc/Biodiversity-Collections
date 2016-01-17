@@ -210,23 +210,27 @@ define(['angularAMD'], function (angularAMD) {
                         $log.error(message);
                     });
             },
-            get: function( id){
+            get: function( id, callback){
 
                 var self = this;
 
                 $http.get( $rootScope.getHost() + "collections/" + id )
 
-                    .success(function (data) {
+                    .success( function (data, status, headers, config) {
                         if (data.message == 'no matches found') {
                             $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
                         } else {
                             self.setData(data);
                             $rootScope.$broadcast("BIODIVERSITY_LOADED");
+                            if(callback)
+                                callback( data, status, headers, config )
                         }
                     })
-                    .error(function (message) {
-                        $log.error(message);
+                    .error( function (data, status, headers, config) {
+                        $log.error( data );
                         $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
+                        if(callback)
+                            callback( data, status, headers, config )
                     });
             },
             curator: function( id){

@@ -24,10 +24,11 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                         $scope.$watch('images.length', function(newValue, oldValue){
                             if($scope.images && !$scope.editMode){
-
+                                $scope.slots = [false, false, false, false, false];
                                 $timeout( function(){
+                                    $('#ipt-file').val(null);
                                     loadImage();
-                                },100)
+                                },300)
                             }
                         },true);
 
@@ -54,7 +55,8 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                         },true);
 
                         function loadImage(){
-
+                            console.log('load image');
+                            console.log($scope.images.length);
                             if($scope.images.length > 0){
 
                                 for(var i = 0; i < $scope.images.length; i++){

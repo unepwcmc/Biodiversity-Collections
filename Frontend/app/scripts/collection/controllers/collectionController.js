@@ -93,6 +93,7 @@ define(['app','collection/directives/collection.networks.directive',
                 */
                $scope.$on('BIODIVERSITY_UPDATED', function(){
                    console.log('updated');
+                   console.log($scope.collection);
 
                    if ($scope.images === undefined)
                         $scope.images = [];
@@ -111,11 +112,15 @@ define(['app','collection/directives/collection.networks.directive',
                 */
                $scope.$on('ATTACH_FILE', function( evt, data ){
                    for(var i = 0; i < data.length; i++){
-                       $scope.images.push(data[i]);
+                       if($scope.images.length <= 5){
+                           $scope.images.push(data[i]);
+                       }
                    }
                });
 
                $scope.$on('REMOVE_IMAGE', function(evt, data){
+
+                   console.log('removing image');
 
                    var index = _.findIndex($scope.collection.images, function( obj ){
                        return obj.id == data;
@@ -180,10 +185,10 @@ define(['app','collection/directives/collection.networks.directive',
 
                    $q.all( promises ).then(function( results ){
 
-                       $scope.images = null;
-                       $('#loader-wrapper').fadeToggle('400');
+                       $scope.images = [];
                        $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_SAVED');
-                       $scope.$emit("IMAGE_ADDED");
+
+                       $scope.collection.get( $stateParams.id);
 
                    }).catch( function( errorCallback ){
                        console.log(errorCallback);
