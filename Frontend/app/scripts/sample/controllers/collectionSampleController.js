@@ -26,7 +26,7 @@ define(['app', 'waypoints',
             $scope.image = null;
             $scope.fromState = 'home';
 
-            $scope.collection_id = undefined
+            $scope.collection_id = undefined;
 
             /**
              * Listener when the state is changed
@@ -131,7 +131,7 @@ define(['app', 'waypoints',
             $scope.$on('SAMPLE_UPDATED', function () {
                 $('#loader-wrapper').fadeToggle('400');
                 $scope.image = null;
-                $state.go('sample', {id: $scope.sample.id});
+               // $state.go('sample', {id: $scope.sample.id});
             });
 
             $scope.$on('SAMPLE_DELETED', function () {
