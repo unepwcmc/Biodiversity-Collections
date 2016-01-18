@@ -228,7 +228,8 @@ define([],function ( ) {
     'NEW_COLLECTION': 'New collection',
     'NEW_NETWORK': 'New network',
     'NEW_SAMPLE': 'New sample',
-    'ARE_YOU_SURE': 'Are you sure?'
+    'ARE_YOU_SURE': 'Are you sure?',
+    'SAMPLE_UPDATED':'Sample updated'
   }
 
 });

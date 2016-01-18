@@ -226,7 +226,8 @@ define([],function ( ) {
     'NEW_COLLECTION': 'Nova coleção',
     'NEW_NETWORK': 'Nova rede',
     'NEW_SAMPLE': 'Novo exemplar',
-    'ARE_YOU_SURE': 'Você tem certeza?'
+    'ARE_YOU_SURE': 'Você tem certeza?',
+    'SAMPLE_UPDATED':'Amostras atualizadas'
   }
 
 });

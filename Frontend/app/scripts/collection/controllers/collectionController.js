@@ -94,7 +94,6 @@ define(['app','collection/directives/collection.networks.directive',
                 */
                $scope.$on('BIODIVERSITY_UPDATED', function(){
                    console.log('updated');
-                   console.log($scope.collection);
 
                    if ($scope.images === undefined)
                         $scope.images = [];
