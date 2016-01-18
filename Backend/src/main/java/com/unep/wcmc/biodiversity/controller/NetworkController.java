@@ -54,7 +54,7 @@ public class NetworkController extends AbstractController<Network, NetworkServic
     public Page<Network> searchByNotInCollection(@PathVariable("name") String name,
                                                          @PathVariable("collectionId") Long collectionId,
                                                          @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByNameContainingAndCollectionsNotInOrCollectionsIsNullOrderByNameAsc(name,
+        return service.getRepository().findByCollectionsNotIn(name,
                 new ArrayList<BiodiversityCollection>() {{ add( collectionService.get(collectionId) ); }}, pageable);
     }
 
@@ -62,7 +62,7 @@ public class NetworkController extends AbstractController<Network, NetworkServic
     public Page<Network> searchByNotInInstitution(@PathVariable("name") String name,
                                                           @PathVariable("institutionId") Long institutionId,
                                                           @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByNameContainingAndInstitutionsNotInOrInstitutionsIsNullOrderByNameAsc(name,
+        return service.getRepository().findByInstitutionsNotIn(name,
                 new ArrayList<Institution>() {{ add( institutionService.get(institutionId) ); }}, pageable);
     }
 
