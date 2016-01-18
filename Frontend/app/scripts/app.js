@@ -494,13 +494,13 @@ define(['include', 'language'], function (angularAMD, language) {
                         $rootScope.$broadcast("LogoutDone");
                     })
                     .error(function(data, status, headers, config){
-                            $rootScope.cleanCredentials();
+                        $rootScope.cleanCredentials();
 
-                            if (callback) {
-                                callback(data, status, headers, config);
-                            }
+                        if (callback) {
+                            callback(data, status, headers, config);
                         }
-                    );
+                        $rootScope.$broadcast("LogoutDone");
+                    });
             };
 
             /**
