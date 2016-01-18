@@ -231,7 +231,8 @@ define([],function ( ) {
     'ARE_YOU_SURE': 'Are you sure?',
     'SAMPLE_UPDATED':'Sample updated',
     'SAMPLE_DELETED_SUCCESSFULLY': 'Sample deleted successfully',
-    'SAMPLES_DELETED_SUCCESSFULLY': 'Samples deleted successfully'
+    'SAMPLES_DELETED_SUCCESSFULLY': 'Samples deleted successfully',
+    'ONLY_FIVE_FILES_WILL_BE_SELECTED': 'Only first 5 files will be selected'
   }
 
 });

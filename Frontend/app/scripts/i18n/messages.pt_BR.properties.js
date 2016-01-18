@@ -229,7 +229,8 @@ define([],function ( ) {
     'ARE_YOU_SURE': 'Você tem certeza?',
     'SAMPLE_UPDATED':'Exemplares atualizados',
     'SAMPLE_DELETED_SUCCESSFULLY': 'Exemplar excluído com sucesso',
-    'SAMPLES_DELETED_SUCCESSFULLY': 'Exemplares excluídos com sucesso'
+    'SAMPLES_DELETED_SUCCESSFULLY': 'Exemplares excluídos com sucesso',
+    'ONLY_FIVE_FILES_WILL_BE_SELECTED': 'Apenas os 5 primeiros arquivos serão adicionados'
   }
 
 });

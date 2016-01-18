@@ -52,7 +52,7 @@ public class InstitutionController extends AbstractController<Institution, Insti
 
     @RequestMapping(method= RequestMethod.POST, value="/{id}/media")
     public Institution uploadMedia(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
-        Institution institution = service.get(id);
+        Institution institution = service.getRepository().getById(id);
         if (!file.isEmpty())
             institution.addImage(imageService.save(file));
         return service.save(institution);

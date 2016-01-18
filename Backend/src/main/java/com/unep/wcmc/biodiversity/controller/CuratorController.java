@@ -26,7 +26,7 @@ public class CuratorController extends AbstractController<Curator, CuratorServic
 
     @Override
     public Object read(@PathVariable String id) {
-        return service.getRepository().getById(new Long(id));
+        return service.get(new Long(id));
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/name")

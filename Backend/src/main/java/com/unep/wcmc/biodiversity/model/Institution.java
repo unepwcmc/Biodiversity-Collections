@@ -56,7 +56,6 @@ public class Institution implements BaseEntity {
     private Set<Network> networks;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Image> images;
 
     @Override
