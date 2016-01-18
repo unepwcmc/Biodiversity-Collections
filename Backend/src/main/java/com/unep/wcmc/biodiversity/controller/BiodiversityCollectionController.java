@@ -48,7 +48,9 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/definition")
-    public Page<BiodiversityCollection> findAllCollectionDefinition(@RequestParam(value = "name", defaultValue = "ALL") String name, @PageableDefault(page = 0, size = 10) Pageable pageable) {
+    public Page<BiodiversityCollection> findAllCollectionDefinition(
+            @RequestParam(value = "name", defaultValue = "ALL") String name,
+            @PageableDefault(page = 0, size = 10) Pageable pageable) {
         switch (name) {
             case "ALL":
                 return service.searchAll(pageable);
@@ -132,16 +134,16 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         return collection;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/search/not/institution/{institutionId}/collection/{name}")
-    public Page<BiodiversityCollection> searchByNotInInstitution(@PathVariable("name") String name,
+    @RequestMapping(method = RequestMethod.GET, value = "/search/not/institution/{institutionId}/collection")
+    public Page<BiodiversityCollection> searchByNotInInstitution(@RequestParam("name") String name,
                                                                  @PathVariable("institutionId") Long institutionId,
                                                                  @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findByNameContainingAndInstitutionNotInOrInstitutionIsNullOrderByNameAsc(name,
                 institutionService.get(institutionId), pageable);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/search/not/network/{networkId}/collection/{name}")
-    public Page<BiodiversityCollection> searchByNotInNetworks(@PathVariable("name") String name,
+    @RequestMapping(method = RequestMethod.GET, value = "/search/not/network/{networkId}/collection")
+    public Page<BiodiversityCollection> searchByNotInNetworks(@RequestParam("name") String name,
                                                               @PathVariable("networkId") Long networkId,
                                                               @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findByNetworksNotIn(name,

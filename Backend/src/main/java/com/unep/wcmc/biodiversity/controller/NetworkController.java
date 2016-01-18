@@ -50,16 +50,16 @@ public class NetworkController extends AbstractController<Network, NetworkServic
                 pageable);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/search/not/collection/{collectionId}/network/{name}")
-    public Page<Network> searchByNotInCollection(@PathVariable("name") String name,
+    @RequestMapping(method = RequestMethod.GET, value = "/search/not/collection/{collectionId}/network")
+    public Page<Network> searchByNotInCollection(@RequestParam("name") String name,
                                                          @PathVariable("collectionId") Long collectionId,
                                                          @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findByCollectionsNotIn(name,
                 new ArrayList<BiodiversityCollection>() {{ add( collectionService.get(collectionId) ); }}, pageable);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/search/not/institution/{institutionId}/network/{name}")
-    public Page<Network> searchByNotInInstitution(@PathVariable("name") String name,
+    @RequestMapping(method = RequestMethod.GET, value = "/search/not/institution/{institutionId}/network")
+    public Page<Network> searchByNotInInstitution(@RequestParam("name") String name,
                                                           @PathVariable("institutionId") Long institutionId,
                                                           @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findByInstitutionsNotIn(name,
