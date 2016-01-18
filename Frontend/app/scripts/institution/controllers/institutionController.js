@@ -3,7 +3,8 @@ define(['app',
     'institution/directives/institution.contact.directive',
     'institution/directives/institution.collections.directive',
     'institution/directives/institution.networks.directive',
-    'core/directives/core.breadcrumbs.directive'], function () {
+    'core/directives/core.breadcrumbs.directive',
+    'core/directives/core.thumbnail.directive'], function () {
 
     'use strict';
 
