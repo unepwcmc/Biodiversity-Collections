@@ -11,6 +11,8 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
             $scope.collection = new BiodiversityCollection();
             $scope.confirm_memember = false;
             $scope.member_not_confirmed = [];
+            $scope.promises = [];
+            $scope.item_count_saved = 0;
 
             $scope.myResolver = function (defaultResolver, state, isCurrent) {
 
@@ -40,36 +42,16 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
             $scope.$on('BIODIVERSITY_LOADED', function(){
                 console.log('Collection Member Loaded');
 
+                if($scope.collection.associatedMembers == null){
+                    $scope.collection.associatedMembers = [];
+                }
+
+                $scope.item_count_saved =  $scope.collection.associatedMembers.length;
+
                 $('#loader-wrapper').fadeToggle('400');
             });
 
             $scope.$on('ACTION_RELOADED', function(){
-
-                /*if(!$scope.confirm_memember){
-
-                    if($scope.member_not_confirmed.length > 0){
-
-                        console.log($scope.collection.associatedMembers);
-                        console.log($scope.member_not_confirmed);
-
-                        _.each($scope.member_not_confirmed, function( ele ){
-                             var idx = _.findIndex(scope.collection.associatedMembers, function( obj ){
-                                  return obj.id == ele.id;
-                             });
-                            $scope.collection.associatedMembers.splice(idx, 1);
-                        });
-
-                        $scope.collection.update(function( data, status){
-                            $state.go('collection', {id: $stateParams.id});
-                        });
-                    }
-                    $scope.collection.update(function( data, status){
-                        $state.go('collection', {id: $stateParams.id});
-                    });
-                }
-                else{
-                    $state.go('collection', {id: $stateParams.id});
-                }*/
                 $state.go('collection', {id: $stateParams.id});
             });
 
@@ -82,11 +64,96 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                 console.log('adding new member');
 
                 $scope.confirm_memember = true;
-               $('#loader-wrapper').fadeToggle('400');
+                $('#loader-wrapper').fadeToggle('400');
+
+               insertMember(data, function( result ){
+
+                   if(result){
+                       $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
+                   }
+               });
+           });
+
+            $scope.$on('ADD_NEW_MEMBER_AND_SAVE', function( evt, data){
+                console.log('adding new member');
+
+                $scope.confirm_memember = true;
 
                 if($scope.collection.associatedMembers == null){
                     $scope.collection.associatedMembers = [];
                 }
+
+                insertMember(data, function( result ){
+
+                    if(result){
+                        $scope.$emit('SAVE_MEMBER');
+                    }
+                });
+            });
+
+            $scope.$on('SAVE_MEMBER', function(){
+
+                if($scope.confirm_memember){
+
+                    if($scope.collection.associatedMembers.length == 0){
+                        $('#loader-wrapper').fadeToggle('400');
+                    }
+
+                    $scope.collection.update(function( data, status){
+
+                        $('#loader-wrapper').fadeToggle('400');
+                        $rootScope.$broadcast('ACTION_SAVE_ITEM');
+                        $scope.confirm_memember = false;
+                    });
+                }
+                else{
+                    $('#loader-wrapper').fadeToggle('400');
+                    $rootScope.$broadcast('ACTION_SAVE_ITEM');
+                }
+            });
+
+            /**
+             * Listener when the collection factory update the
+             * biodiversity collection model.
+             *
+             */
+            $scope.$on('BIODIVERSITY_MEMBER_UPDATED', function(){
+                console.log('collection member updated');
+
+                $scope.images = [];
+                $('#loader-wrapper').fadeToggle('400');
+                $rootScope.$broadcast('MEMBER_ADDED');
+            });
+
+            $scope.$on('MEMBER_UPDATED', function(){
+                $scope.images = [];
+
+                if($scope.item_count_saved > 0){
+                    $scope.item_count_saved -= 1;
+                }
+
+                if($scope.item_count_saved == 0){
+                    $('#loader-wrapper').fadeToggle('400');
+                    $scope.item_count_saved =  $scope.collection.associatedMembers.length;
+                }
+            });
+
+
+            $scope.$on('DELETE_MEMBER', function( evt, data){
+
+                 var index =  _.findIndex( $scope.collection.associatedMembers, function( obj ){
+                     return obj.id == data;
+                 });
+
+                 $scope.confirm_memember = true;
+
+                 $scope.collection.associatedMembers.splice(index, 1);
+
+                 $scope.item_count_saved -= 1;
+            });
+
+
+            function insertMember( data, callback ){
 
                 if($scope.images.length > 0){
 
@@ -103,16 +170,10 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                         data.image = image;
                         $scope.collection.saveMember( data, function( member, status){
 
-                             if(status == 200){
-                                // $('#loader-wrapper').fadeToggle('400');
-                                 //$scope.member_not_confirmed.push(member);
-                                 $scope.collection.associatedMembers.push(member);
-                                 /*$scope.collection.update(function( data, status){
-                                     $('#loader-wrapper').fadeToggle('400');
-                                     $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
-                                 });*/
-                                 $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
-                             }
+                            if(status == 200){
+                                $scope.collection.associatedMembers.push(member);
+                                callback(true);
+                            }
                         });
                     })
                 }
@@ -120,67 +181,12 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
                     $scope.collection.saveMember( data, function( member, status){
 
                         if(status == 200){
-
-                           // $scope.member_not_confirmed.push(member);
                             $scope.collection.associatedMembers.push(member);
-                            //$scope.collection.update(function( data, status){
-                            //    $('#loader-wrapper').fadeToggle('400');
-                            //    $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
-                            //});
-
-                            $scope.$emit('BIODIVERSITY_MEMBER_UPDATED');
+                            callback(true);
                         }
                     });
                 }
-           });
-
-            $scope.$on('ACTION_SAVE', function(){
-               // $scope.confirm_memember = true;
-               // $scope.member_not_confirmed = [];
-                if($scope.confirm_memember){
-                    $scope.collection.update(function( data, status){
-                        $rootScope.$broadcast('ACTION_SAVE_ITEM');
-                        $scope.confirm_memember = false;
-                    });
-                }
-                else{
-                    $rootScope.$broadcast('ACTION_SAVE_ITEM');
-                }
-            });
-
-            /**
-             * Listener when the collection factory update the
-             * biodiversity collection model.
-             *
-             */
-            $scope.$on('BIODIVERSITY_MEMBER_UPDATED', function(){
-                console.log('collection member updated');
-
-                $scope.images = [];
-                $('#loader-wrapper').fadeToggle('400');
-                $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_MEMBER_SAVED');
-                $rootScope.$broadcast('MEMBER_ADDED');
-            });
-
-            $scope.$on('MEMBER_UPDATED', function(){
-                $scope.images = [];
-            });
-
-
-            $scope.$on('DELETE_MEMBER', function( evt, data){
-
-                // $('#loader-wrapper').fadeToggle('400');
-
-                 var index =  _.findIndex( $scope.collection.associatedMembers, function( obj ){
-                     return obj.id == data;
-                 });
-
-                 $scope.collection.associatedMembers.splice(index, 1);
-
-                 /*$scope.collection.update(function( data, status){
-                     $('#loader-wrapper').fadeToggle('400');
-                 });*/
-            });
+            }
     }
     ];
 });

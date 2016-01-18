@@ -24,6 +24,15 @@ define(['angularAMD','waypoints','core/directives/core.image.box.directive', 'me
                         });
 
                         $scope.$on('ACTION_SAVE', function(){
+
+                            if($scope.member_form_add.$dirty){
+                                $scope.$emit('ADD_NEW_MEMBER_AND_SAVE', $scope.member);
+
+                            }
+                            else{
+                                $scope.$emit('SAVE_MEMBER');
+                            }
+                            resetForm();
                             setStateButton(false);
                         });
 
@@ -41,10 +50,7 @@ define(['angularAMD','waypoints','core/directives/core.image.box.directive', 'me
                         };
 
                         $scope.$on('MEMBER_ADDED', function(){
-                            $scope.member = {};
-                           // $rootScope.$broadcast('RESET_THUMBNAIL');
-                            $scope.member_form_add.$setPristine();
-                            $scope.member_form_add.$setUntouched();
+                           resetForm();
                         });
 
                         /**
@@ -69,6 +75,13 @@ define(['angularAMD','waypoints','core/directives/core.image.box.directive', 'me
                             $rootScope.editMode = $scope.editMode;
                             //$scope.$apply();
                         }
+
+                       function resetForm(){
+
+                           $scope.member = {};
+                           $scope.member_form_add.$setPristine();
+                           $scope.member_form_add.$setUntouched();
+                       }
 
 
                     }],
@@ -96,7 +109,6 @@ define(['angularAMD','waypoints','core/directives/core.image.box.directive', 'me
                     });
 
                     scope.$on('ACTION_SAVE', function(){
-                        scope.$emit('SAVE_MEMBER');
                         backToDefault();
                     });
 

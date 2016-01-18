@@ -30,8 +30,8 @@
             <strong ng-show="editMode" >{{'EDIT_ASSOCIATED_MEMBERS' | translate}}</strong>
 
             <a ng-show="!editMode && logged" id="edit-member" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
-            <a ng-show="editMode && members.length > 0" class="btn btn-small btn-primary pull-right btn-white save-form"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
-            <a ng-show="editMode && members.length > 0" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-member-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-member-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>

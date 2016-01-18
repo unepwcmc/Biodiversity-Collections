@@ -34,10 +34,9 @@ define(['angularAMD', 'core/directives/core.image.box.directive', 'core/factory/
 
                 $scope.$on('ACTION_SAVE_ITEM', function(){
 
-                    console.log($scope.member);
                     if($scope.member.id != undefined){
 
-                        $('#loader-wrapper').fadeToggle('400');
+                       // $('#loader-wrapper').fadeToggle('400');
 
                         if(images.length > 0){
 
@@ -70,7 +69,7 @@ define(['angularAMD', 'core/directives/core.image.box.directive', 'core/factory/
                     .success(function ( data, status, headers, config ) {
 
                         $rootScope.$broadcast("MEMBER_UPDATED");
-                        $('#loader-wrapper').fadeToggle('400');
+                       // $('#loader-wrapper').fadeToggle('400');
 
                     })
                     .error(function ( data, status, headers, config ) {
