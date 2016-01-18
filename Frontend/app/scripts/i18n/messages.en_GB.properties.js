@@ -229,7 +229,9 @@ define([],function ( ) {
     'NEW_NETWORK': 'New network',
     'NEW_SAMPLE': 'New sample',
     'ARE_YOU_SURE': 'Are you sure?',
-    'SAMPLE_UPDATED':'Sample updated'
+    'SAMPLE_UPDATED':'Sample updated',
+    'SAMPLE_DELETED_SUCCESSFULLY': 'Sample deleted successfully',
+    'SAMPLES_DELETED_SUCCESSFULLY': 'Samples deleted successfully'
   }
 
 });

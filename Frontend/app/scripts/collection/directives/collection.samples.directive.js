@@ -7,9 +7,9 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
 
     'use strict';
 
-    angularAMD.directive('samples', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','Sample','$q',
+    angularAMD.directive('samples', ['$timeout', '$rootScope', '$stateParams', '$state', '$window', '$http', '$cookies','Sample','$q',
 
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, Sample, $q) {
+        function ($timeout, $rootScope, $stateParams, $state, $window, $http, $cookies, Sample, $q) {
 
             return {
                 restrict: 'EA',
@@ -21,6 +21,7 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
                         $scope.checkboxCount = 0;
 
                         $scope.samples = new Sample();
+                        $scope.newSample = new Sample();
                         angular.extend($scope.samples,{totalElements : 0, number: 0, size: 5, totalPages: 0});
                         $scope.samples.load( $stateParams.id,  $scope.samples.number, $scope.samples.size);
 
@@ -40,6 +41,17 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
                                 $scope.checkboxCount-=1;
                         };
 
+                        $scope.addNewSample = function() {
+                            $scope.newSample.name = $translate.instant('NEW_SAMPLE');
+                            $scope.newSample.collection = $scope.collection;
+                            $scope.newSample.institution = $scope.collection.institution;
+                            $scope.newSample.save();
+                        };
+
+                        $scope.$on('SAMPLE_SAVED', function(){
+                            $state.go('collectionSample', {id: $scope.collection.id, sampleId: $scope.newSample.id });
+                        });
+
                         $scope.removeSample = function( id ){
 
                                 if($scope.samples.number > 0){
@@ -53,9 +65,9 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
 
                                     if(status === 200){
                                         $scope.paginateSample($stateParams.id, $scope.samples.number, $scope.samples.size);
-                                        $scope.showSuccessMessage('SAMPLE_DELETED_SUCCESSFULLY','SUCCESS');
+                                        $scope.showSuccessMessage('SUCCESS', 'SAMPLE_DELETED_SUCCESSFULLY');
                                     }else{
-                                        $scope.showErrorMessage( data ,'ERROR');
+                                        $scope.showErrorMessage('ERROR', data);
                                     }
                                 });
 
@@ -126,7 +138,7 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
                             });
 
                             $q.all( promises ).then(function( results ){
-                                $scope.showSuccessMessage('SAMPLES_DELETED_SUCCESSFULLY','SUCCESS');
+                                $scope.showSuccessMessage('SUCCESS', 'SAMPLES_DELETED_SUCCESSFULLY');
                                 $scope.samples.load( $stateParams.id,  $scope.samples.number, $scope.samples.size);
                                 $scope.checkboxes_selected = !$scope.checkboxes_selected;
                                 $scope.checkboxCount = 0;

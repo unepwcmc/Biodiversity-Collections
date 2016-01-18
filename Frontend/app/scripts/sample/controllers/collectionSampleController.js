@@ -36,17 +36,15 @@ define(['app', 'waypoints',
 
                 $scope.fromState = fromState.name;
 
-                if($scope.fromState == 'collection')
+                if ($scope.fromState == 'collection')
                     $scope.collection_id = fromParams.id;
 
-                $('#loader-wrapper').fadeToggle('400');
+
                 $scope.generatedSample = true;
 
-                if ($stateParams.collection) {
-                    $scope.sample.name = $translate.instant('NEW_SAMPLE');
-                    $scope.sample.collection = $stateParams.collection;
-                    $scope.sample.institution = $stateParams.collection.institution;
-                    $scope.sample.save();
+                $('#loader-wrapper').fadeToggle('400');
+                if ($stateParams.sampleId) {
+                    $scope.sample.get($stateParams.sampleId);
                 } else {
                     $scope.collection.get($stateParams.id);
                 }
@@ -131,12 +129,20 @@ define(['app', 'waypoints',
             $scope.$on('SAMPLE_UPDATED', function () {
                 $('#loader-wrapper').fadeToggle('400');
                 $scope.image = null;
-               // $state.go('sample', {id: $scope.sample.id});
+                $state.go('sample', {id: $scope.sample.id});
             });
 
             $scope.$on('SAMPLE_DELETED', function () {
                 $('#loader-wrapper').fadeToggle('400');
                 $state.go('collection', $stateParams);
+            });
+
+            $scope.$on('SAMPLE_SEARCHED', function () {
+                $('#loader-wrapper').fadeToggle('400');
+            });
+
+            $scope.$on('SAMPLE_LOADED', function( ) {
+                $('#loader-wrapper').fadeToggle('400');
             });
 
             $scope.$on('BIODIVERSITY_SAMPLES_ADDED', function () {
@@ -148,10 +154,6 @@ define(['app', 'waypoints',
                 $scope.sample.collection = $scope.collection;
                 $scope.sample.institution = $scope.collection.institution;
                 $scope.sample.save();
-            });
-
-            $scope.$on('SAMPLE_SEARCHED', function () {
-                $('#loader-wrapper').fadeToggle('400');
             });
 
             /**

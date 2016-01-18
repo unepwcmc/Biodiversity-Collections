@@ -27,7 +27,9 @@ define(['app',
 
             $scope.fromState = fromState.name;
 
-            if($scope.fromState == 'collection')
+            if ($scope.fromState == 'collection')
+                $scope.collection_id = fromParams.id;
+            if ($scope.fromState == 'collectionSample')
                 $scope.collection_id = fromParams.id;
         });
 

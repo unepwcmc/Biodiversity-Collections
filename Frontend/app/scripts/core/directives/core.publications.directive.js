@@ -34,10 +34,18 @@ define([ 'angularAMD',
                             }
                         };
 
-                        $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                        $scope.getAssociatedId = function() {
+                            if ($stateParams.sampleId) {
+                                return $stateParams.sampleId;
+                            } else {
+                                return $stateParams.id;
+                            }
+                        };
+
+                        $scope.load($scope.getAssociatedId(), $scope.documents.number, $scope.documents.size);
 
                         $scope.paginatePublications = function(page, size){
-                            $scope.load($stateParams.id , page, size);
+                            $scope.load($scope.getAssociatedId() , page, size);
                         };
 
                         $scope.saveOrUpdate = function(){
@@ -84,7 +92,7 @@ define([ 'angularAMD',
                             if ($scope.type == 'collection') {
                                 $scope.document.collection = { id: $stateParams.id };
                             } else if ($scope.type == 'sample') {
-                                $scope.document.sample = { id: $stateParams.id };
+                                $scope.document.sample = { id: $scope.getAssociatedId() };
                             }
 
                             $scope.documents.save($scope.document, function( data, status){
@@ -111,7 +119,7 @@ define([ 'angularAMD',
                             if ($scope.type == 'collection') {
                                 $scope.document.collection = { id: $stateParams.id };
                             } else if ($scope.type == 'sample') {
-                                $scope.document.sample = { id: $stateParams.id };
+                                $scope.document.sample = { id: $scope.getAssociatedId() };
                             }
 
                             $scope.documents.update( $scope.document, function( data, status){
@@ -149,7 +157,7 @@ define([ 'angularAMD',
                             $scope.documents.delete( id, function( data, status){
 
                                 if(status === 200){
-                                    $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                                    $scope.load($scope.getAssociatedId(), $scope.documents.number, $scope.documents.size);
                                     $scope.showSuccessMessage('SUCCESS', 'DOCUMENT_DELETED_SUCCESSFULLY');
                                 }else{
                                     $scope.showErrorMessage('ERROR', data);
@@ -195,7 +203,7 @@ define([ 'angularAMD',
 
                             $q.all( promises ).then(function( results ){
                                 $scope.showSuccessMessage('SUCCESS', 'DOCUMENT_DELETED_SUCCESSFULLY');
-                                $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                                $scope.load($scope.getAssociatedId(), $scope.documents.number, $scope.documents.size);
                                 $scope.checkboxes_selected = !$scope.checkboxes_selected;
                                 $scope.checkboxCountPub = 0;
                             });
@@ -222,7 +230,7 @@ define([ 'angularAMD',
                             $('#publication_ipt_file').val("");
                             $scope.document = {};
                             $('#publicatioModal').modal('hide');
-                            $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
+                            $scope.load($scope.getAssociatedId(), $scope.documents.number, $scope.documents.size);
                             $scope.multimedia_form.$setPristine();
                             $scope.multimedia_form.$setUntouched();
                         }

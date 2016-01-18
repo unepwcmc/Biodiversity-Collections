@@ -227,7 +227,9 @@ define([],function ( ) {
     'NEW_NETWORK': 'Nova rede',
     'NEW_SAMPLE': 'Novo exemplar',
     'ARE_YOU_SURE': 'Você tem certeza?',
-    'SAMPLE_UPDATED':'Amostras atualizadas'
+    'SAMPLE_UPDATED':'Exemplares atualizados',
+    'SAMPLE_DELETED_SUCCESSFULLY': 'Exemplar excluído com sucesso',
+    'SAMPLES_DELETED_SUCCESSFULLY': 'Exemplares excluídos com sucesso'
   }
 
 });
