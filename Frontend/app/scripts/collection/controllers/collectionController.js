@@ -100,8 +100,7 @@ define(['app','collection/directives/collection.networks.directive',
 
                    if ($scope.images.length > 0) {
                        saveImage();
-                   }else{
-
+                   } else {
                        $('#loader-wrapper').fadeToggle('400');
                        $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_SAVED');
                    }
@@ -186,7 +185,6 @@ define(['app','collection/directives/collection.networks.directive',
 
                        $scope.images = [];
                        $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_SAVED');
-
                        $scope.collection.get( $stateParams.id);
 
                    }).catch( function( errorCallback ){

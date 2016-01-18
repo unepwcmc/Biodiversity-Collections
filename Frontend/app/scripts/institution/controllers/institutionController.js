@@ -107,12 +107,12 @@ define(['app',
 
                 if ($scope.images.length > 0) {
                     saveImageInstitution();
-                }else{
+                } else {
 
                     $('#loader-wrapper').fadeToggle('400');
                     toastr.success($translate.instant('INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
 
-                    if($scope.adminView){
+                    if ($scope.adminView) {
                         $state.go('admin');
                     }
                 }
@@ -186,7 +186,6 @@ define(['app',
                 $q.all( promises ).then(function( results ){
 
                     $scope.images = [];
-                    $('#loader-wrapper').fadeToggle('400');
                     toastr.success($translate.instant('BIODIVERSITY_INSTITUTION_SAVED'), $translate.instant('SUCCESS'));
                     $scope.institution.get( $stateParams.id );
 

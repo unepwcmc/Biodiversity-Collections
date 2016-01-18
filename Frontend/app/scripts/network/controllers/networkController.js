@@ -33,6 +33,7 @@ define(['app',
             console.log('view Content Loaded...');
 
             $('#loader-wrapper').fadeToggle('400');
+
             if ($stateParams.isNew) {
                 $rootScope.editMode = true;
                 $scope.network.id = $stateParams.id;
@@ -78,9 +79,10 @@ define(['app',
 
             if ($scope.images.length > 0) {
                 saveImageNetwork();
+            } else {
+                $('#loader-wrapper').fadeToggle('400');
+                toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
             }
-            $('#loader-wrapper').fadeToggle('400');
-            toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
 
         });
 
@@ -137,7 +139,7 @@ define(['app',
 
             var promises = [];
 
-            for(var i = 0; i < $scope.images.length; i++){
+            for (var i = 0; i < $scope.images.length; i++) {
 
                 var fd = new FormData();
                 fd.append('file', $scope.images[i]);
@@ -152,13 +154,11 @@ define(['app',
             }
 
             $q.all( promises ).then(function( results ){
-
                 $scope.images = [];
-                //$('#loader-wrapper').fadeToggle('400');
-                //toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
-                //$scope.network.loadById($stateParams.id);
+                toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
+                $scope.network.loadById($stateParams.id);
 
-            }).catch( function( errorCallback ) {
+            }).catch( function( errorCallback ){
                 console.log(errorCallback);
             });
         }
