@@ -42,7 +42,7 @@ public class CuratorService extends AbstractService<Curator, CuratorRepository> 
 
     @Override
     public Curator get(Long id) {
-        Curator result = super.get(id);
+        Curator result = repo.getById(id);
         User user = result.getUser();
         if (user != null) {
             user.setPassword("");

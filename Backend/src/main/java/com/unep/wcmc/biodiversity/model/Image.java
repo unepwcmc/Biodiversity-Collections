@@ -15,7 +15,7 @@ public class Image implements BaseEntity {
 
     private boolean status;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "file_id")
     private Attachment attachment;
 
