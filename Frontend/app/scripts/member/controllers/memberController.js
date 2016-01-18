@@ -2,7 +2,8 @@ define(['app','core/factory/biodiversityCollectionFactory','member/directives/me
 
     'use strict';
 
-    return ['$scope','BiodiversityCollection','BaseController','$stateParams','$http','$rootScope','$translate','$state','$q', function ($scope, BiodiversityCollection, BaseController, $stateParams, $http, $rootScope, $translate, $state, $q) {
+    return ['$scope','BiodiversityCollection','BaseController','$stateParams','$http','$rootScope','$translate','$state','$q', '$timeout',
+        function ($scope, BiodiversityCollection, BaseController, $stateParams, $http, $rootScope, $translate, $state, $q, $timeout) {
             angular.extend($scope, BaseController);
 
             $scope.collection_id = $stateParams.id;
