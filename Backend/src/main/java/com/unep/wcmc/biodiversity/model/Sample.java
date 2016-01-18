@@ -34,7 +34,7 @@ public class Sample implements BaseEntity {
     @JoinColumn(name = "taxonomy_id")
     private Taxonomy taxonomy;
 
-    @OneToMany(mappedBy = "sample")
+    @OneToMany(mappedBy = "sample", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Set<Document> documents;
 
