@@ -67,7 +67,7 @@ define(['angularAMD','waypoints','core/directives/core.image.box.directive', 'me
                         function setStateButton( status ){
                             $scope.editMode = status;
                             $rootScope.editMode = $scope.editMode;
-                            $scope.$apply();
+                            //$scope.$apply();
                         }
 
 
@@ -91,14 +91,16 @@ define(['angularAMD','waypoints','core/directives/core.image.box.directive', 'me
                         }
                     });
 
-                    scope.$on('ACTION_SAVE', function(){
+                    $rootScope.$on('AuthenticationDone', function() {
+                        $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 1000);
+                    });
 
+                    scope.$on('ACTION_SAVE', function(){
                         scope.$emit('SAVE_MEMBER');
                         backToDefault();
                     });
 
                     $(element).find("#edit-member").click( function(){
-
                         scope.disableAutocomplete = false;
                         scope.navigationBar = true;
                         scope.$emit('EDIT_MEMBER');
