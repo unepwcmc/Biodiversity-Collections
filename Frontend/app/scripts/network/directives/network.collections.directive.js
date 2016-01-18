@@ -17,9 +17,9 @@ define(['angularAMD','waypoints',
                         $scope.maxHeight = 500;
                         $scope.collectionSelected = null;
                         $scope.collections = new BiodiversityCollection();
-                        angular.extend( $scope.collections, { totalElements : 0, number: 0, size: 5, totalPages: 0 });
-                        $scope.collections.loadByNetwork( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+                        angular.extend( $scope.collections, { totalElements : 0, number: 0, size: 2000, totalPages: 0 });
 
+                        $scope.collections.loadByNetwork( $stateParams.id,  $scope.collections.number, $scope.collections.size);
 
                         $rootScope.$watch('editMode', function(newValue, oldValue) {
                             if (newValue)
@@ -42,6 +42,8 @@ define(['angularAMD','waypoints',
                                 $rootScope.$broadcast('MAP_POINTS_UPDATED', 'collections', markersArray);
                             }, 3000);
 
+                            $scope.network.collections = $scope.collections.content;
+
                         });
 
                         $scope.collectionAutocomplete = function( userInputString, timeoutPromise ) {
@@ -59,7 +61,7 @@ define(['angularAMD','waypoints',
                                 $scope.network.addCollection( $stateParams.id, $scope.collectionSelected.originalObject.id, function( data, status) {
                                     if(status === 200){
                                         toastr.success($translate.instant('COLLECTION_ADDED_TO_NETWORK'), $translate.instant('SUCCESS'));
-                                        $scope.collections.loadByNetwork( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+                                        $scope.collections.loadByNetwork( $stateParams.id,  $scope.collections.number, 2000);
                                     } else {
                                         toastr.success($translate.instant('COLLECTION_ADDED_TO_NETWORK_ERROR'), $translate.instant('ERROR'));
                                     }
@@ -79,7 +81,7 @@ define(['angularAMD','waypoints',
                             $scope.network.removeCollection( $stateParams.id, collectionId , function( data, status){
                                 if(status === 200){
                                     toastr.success($translate.instant('COLLECTION_REMOVED_TO_NETWORK'), $translate.instant('SUCCESS'));
-                                    $scope.collections.loadByNetwork( $stateParams.id,  $scope.collections.number, $scope.collections.size);
+                                    $scope.collections.loadByNetwork( $stateParams.id,  $scope.collections.number, 2000);
                                 } else {
                                     toastr.success($translate.instant('COLLECTION_REMOVED_TO_NETWORK_ERROR'), $translate.instant('ERROR'));
                                 }

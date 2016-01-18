@@ -78,11 +78,9 @@ define(['app',
 
             if ($scope.images.length > 0) {
                 saveImageNetwork();
-            }else{
-
-                $('#loader-wrapper').fadeToggle('400');
-                toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
             }
+            $('#loader-wrapper').fadeToggle('400');
+            toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
 
         });
 
@@ -156,11 +154,11 @@ define(['app',
             $q.all( promises ).then(function( results ){
 
                 $scope.images = [];
-                $('#loader-wrapper').fadeToggle('400');
-                toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
-                $scope.network.loadById($stateParams.id);
+                //$('#loader-wrapper').fadeToggle('400');
+                //toastr.success($translate.instant('NETWORK_SAVED'), $translate.instant('SUCCESS'));
+                //$scope.network.loadById($stateParams.id);
 
-            }).catch( function( errorCallback ){
+            }).catch( function( errorCallback ) {
                 console.log(errorCallback);
             });
         }
