@@ -34,7 +34,7 @@ define(['angularAMD','core/factory/networkFactory'], function (angularAMD) {
                         $scope.networkAutocomplete = function( userInputString, timeoutPromise){
                             if(userInputString == null)
                                 return null;
-                            return $http.get( $rootScope.getHost() + "networks/search/not/collection/" + $stateParams.id + "/network/" + userInputString ,
+                            return $http.get( $rootScope.getHost() + "networks/search/not/collection/" + $stateParams.id + "/network?name=" + userInputString,
                                 {
                                     timeout: timeoutPromise
                                 }

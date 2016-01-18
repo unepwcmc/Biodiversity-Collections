@@ -34,7 +34,7 @@ define(['angularAMD', 'core/factory/biodiversityCollectionFactory'], function (a
                         $scope.collectionAutocomplete = function( userInputString, timeoutPromise ) {
                             if(userInputString == null)
                                 return null;
-                            return $http.get( $rootScope.getHost() + "collections/search/not/institution/" + $stateParams.id + "/collection/" + userInputString ,
+                            return $http.get( $rootScope.getHost() + "collections/search/not/institution/" + $stateParams.id + "/collection?name=" + userInputString ,
                                 {
                                     timeout: timeoutPromise
                                 }

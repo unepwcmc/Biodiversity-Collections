@@ -74,7 +74,7 @@ define([ 'angularAMD',
                         $scope.saveNewDocument = function(){
 
                             if($scope.file == null){
-                                $scope.showWarningMessage('PLEASE_ADD_A_FILE','WARNING');
+                                $scope.showWarningMessage('WARNING', 'PLEASE_ADD_A_FILE');
                                 return;
                             }
 
@@ -94,10 +94,10 @@ define([ 'angularAMD',
                                     $scope.documents.upload($scope.file, function(data, status){
                                         successState();
                                         $('#loader-wrapper').fadeToggle('400');
-                                        $scope.showSuccessMessage('DOCUMENT_CREATED_SUCCESSFULLY','SUCCESS');
+                                        $scope.showSuccessMessage('SUCCESS', 'DOCUMENT_CREATED_SUCCESSFULLY');
                                     });
                                 }else{
-                                    $scope.showErrorMessage( data ,'ERROR');
+                                    $scope.showErrorMessage('ERROR', data);
                                 }
                             });
                         };
@@ -124,15 +124,15 @@ define([ 'angularAMD',
                                         $scope.documents.upload($scope.file, function(data, status){
                                             successState();
                                             $('#loader-wrapper').fadeToggle('400');
-                                            $scope.showSuccessMessage('DOCUMENT_UPDATED_SUCCESSFULLY','SUCCESS');
+                                            $scope.showSuccessMessage('SUCCESS', 'DOCUMENT_UPDATED_SUCCESSFULLY');
                                         });
                                     }
                                     else{
                                         successState();
-                                        $scope.showSuccessMessage('DOCUMENT_UPDATED_SUCCESSFULLY','SUCCESS');
+                                        $scope.showSuccessMessage('SUCCESS', 'DOCUMENT_UPDATED_SUCCESSFULLY');
                                     }
                                 }else{
-                                    $scope.showErrorMessage( data ,'ERROR');
+                                    $scope.showErrorMessage('ERROR', data);
                                 }
                             });
                         };
@@ -150,9 +150,9 @@ define([ 'angularAMD',
 
                                 if(status === 200){
                                     $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
-                                    $scope.showSuccessMessage('DOCUMENT_DELETED_SUCCESSFULLY','SUCCESS');
+                                    $scope.showSuccessMessage('SUCCESS', 'DOCUMENT_DELETED_SUCCESSFULLY');
                                 }else{
-                                    $scope.showErrorMessage( data ,'ERROR');
+                                    $scope.showErrorMessage('ERROR', data);
                                 }
                             });
                         };
@@ -194,7 +194,7 @@ define([ 'angularAMD',
                             }
 
                             $q.all( promises ).then(function( results ){
-                                $scope.showSuccessMessage('DOCUMENT_DELETED_SUCCESSFULLY','SUCCESS');
+                                $scope.showSuccessMessage('SUCCESS', 'DOCUMENT_DELETED_SUCCESSFULLY');
                                 $scope.load($stateParams.id, $scope.documents.number, $scope.documents.size);
                                 $scope.checkboxes_selected = !$scope.checkboxes_selected;
                                 $scope.checkboxCountPub = 0;

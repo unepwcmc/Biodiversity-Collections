@@ -63,13 +63,13 @@
                                 <table>
                                     <tbody>
                                         <tr ng-repeat="member in network.boardMembers" on-finish-render="ngRepeatFinished">
-                                            <td><input type="text" class="form-control" data-ng-model="member.name" ></td>
+                                            <td width="83%"><input type="text" class="form-control" data-ng-model="member.name" ></td>
                                             <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right"  class="btn-small-delete" ng-click="deleteMember($index);"><i class="fa fa-close"></i></a></td>
                                         </tr>
                                     </tbody>
                                     <tfoot ng-show="editMode">
                                         <tr>
-                                            <td><input type="text" data-ng-model="member.name" class="form-control"></td>
+                                            <td width="83%"><input type="text" data-ng-model="member.name" class="form-control"></td>
                                             <td>&nbsp;&nbsp;<a style="float: right" id="add-member" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addMember();"><label>{{ 'ADD' | translate }}</label></a></td>
                                         </tr>
                                     </tfoot>

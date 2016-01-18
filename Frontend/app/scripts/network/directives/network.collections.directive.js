@@ -47,7 +47,7 @@ define(['angularAMD','waypoints',
                         $scope.collectionAutocomplete = function( userInputString, timeoutPromise ) {
                             if(userInputString == null)
                                 return null;
-                            return $http.get( $rootScope.getHost() + "collections/search/not/network/" + $stateParams.id + "/collection/" + userInputString ,
+                            return $http.get( $rootScope.getHost() + "collections/search/not/network/" + $stateParams.id + "/collection?name=" + userInputString ,
                                 {
                                     timeout: timeoutPromise
                                 }
