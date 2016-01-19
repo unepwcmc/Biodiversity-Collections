@@ -18,8 +18,10 @@ public interface CuratorRepository extends AbstractRepository<Curator> {
 
     Curator findByUserId(Long userId);
 
-    List<Curator> findTop5ByNameContainingIgnoreCaseOrderByNameAsc(@Param("firstName") String name, Pageable p);
+    List<Curator> findTop5ByNameContainingIgnoreCaseAndUserEnabledOrderByNameAsc(
+            @Param("firstName") String name, @Param("enabled") Boolean enabled, Pageable p);
 
-    Page<Curator> findByNameContainingIgnoreCaseOrderByNameAsc(@Param("firstName") String name, Pageable p);
+    Page<Curator> findByNameContainingIgnoreCaseAndUserEnabledOrderByNameAsc(
+            @Param("firstName") String name, @Param("enabled") Boolean enabled, Pageable p);
 
 }

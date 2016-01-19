@@ -32,12 +32,12 @@ public class CuratorController extends AbstractController<Curator, CuratorServic
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<Curator> name(@RequestParam String name,
                               @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findByNameContainingIgnoreCaseOrderByNameAsc(name, pageable);
+        return service.getRepository().findByNameContainingIgnoreCaseAndUserEnabledOrderByNameAsc(name, true, pageable);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public List<Curator> autocomplete(@RequestParam String name, @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return service.getRepository().findTop5ByNameContainingIgnoreCaseOrderByNameAsc(name, pageable);
+        return service.getRepository().findTop5ByNameContainingIgnoreCaseAndUserEnabledOrderByNameAsc(name, true, pageable);
     }
 
 
