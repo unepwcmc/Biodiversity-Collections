@@ -104,10 +104,6 @@ define(['angularAMD','waypoints','core/directives/core.image.box.directive', 'me
                         }
                     });
 
-                    $rootScope.$on('AuthenticationDone', function() {
-                        $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 1000);
-                    });
-
                     scope.$on('ACTION_SAVE', function(){
                         backToDefault();
                     });

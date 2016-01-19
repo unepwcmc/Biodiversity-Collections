@@ -51,17 +51,15 @@ define(['app',
                 });
             });
 
-            $rootScope.$on('AuthenticationDone', function() {
-                $scope.load(0);
-            });
-
-            $rootScope.$on('LogoutDone', function() {
-                $scope.load(0);
+            angular.forEach(['AuthenticationDone','LogoutDone'],
+                function(value){
+                    $scope.$on(value, function(event){
+                        $('#loader-wrapper').fadeToggle('400');
+                        $scope.load(0);
+                });
             });
 
             $scope.load = function( page ) {
-
-                $('#loader-wrapper').fadeToggle('400');
                 search(page);
             };
 

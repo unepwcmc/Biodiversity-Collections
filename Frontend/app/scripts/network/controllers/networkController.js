@@ -42,7 +42,6 @@ define(['app',
                 $scope.network.loadById($stateParams.id);
                 $rootScope.editMode = false;
             }
-
         });
 
         /**
