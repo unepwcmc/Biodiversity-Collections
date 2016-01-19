@@ -54,12 +54,12 @@ define(['app',
             angular.forEach(['AuthenticationDone','LogoutDone'],
                 function(value){
                     $scope.$on(value, function(event){
-                        $('#loader-wrapper').fadeToggle('400');
                         $scope.load(0);
                 });
             });
 
             $scope.load = function( page ) {
+                $('#loader-wrapper').fadeToggle('400');
                 search(page);
             };
 
