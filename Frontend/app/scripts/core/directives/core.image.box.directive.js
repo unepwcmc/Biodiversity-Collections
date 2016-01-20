@@ -66,7 +66,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
 
                     $(element).find('.img-file').on('change', function (evt) {
 
-                        if (!$(this).val().match(/(?:gif|jpg|jpeg|png|bmp)$/)) {
+                        if (!$(this).val().toLowerCase().match(/(?:gif|jpg|jpeg|png|bmp)$/)) {
                             scope.showWarningMessage('INPUTTED_FILE_PATH_ERROR','WARNING');
                             return;
                         }
