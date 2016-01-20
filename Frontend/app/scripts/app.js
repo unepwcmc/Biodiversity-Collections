@@ -54,6 +54,16 @@ define(['include', 'language'], function (angularAMD, language) {
                             parent: 'home'
                         }
                     }))
+                .state('report', angularAMD.route(
+                    {
+                        url: '/report',
+                        templateUrl: 'views/report/default.html',
+                        controllerUrl: 'report/controllers/reportController',
+                        ncyBreadcrumb: {
+                            label: 'Dashboard',
+                            parent: 'home'
+                        }
+                    }))
                 .state('adminUserCreate', angularAMD.route(
                     {
                         url: '/admin/user/create',

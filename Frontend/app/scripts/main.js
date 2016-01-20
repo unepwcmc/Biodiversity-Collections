@@ -29,7 +29,8 @@ require.config({
         'leaflet-directive' : 'ext/angular-leaflet-directive',
         'leaflet' : 'ext/leaflet',
         'leaflet.markercluster': 'ext/leaflet.markercluster',
-        'angucomplete-alt':'ext/angucomplete-alt'
+        'angucomplete-alt':'ext/angucomplete-alt',
+        'highcharts-ng': 'ext/highcharts-ng'
     },
 
     // Add angular modules that does not support AMD out of the box, put it in a shim
@@ -58,7 +59,8 @@ require.config({
         'angucomplete-alt': { deps: ['angular']},
         'leaflet-directive' : { deps: ['angular','angular-sanitize']},
         'leaflet' : { exports: 'leaflet', deps: ['angular','angular-sanitize']},
-        'leaflet.markercluster': { deps: ['angular','angular-sanitize', 'leaflet-directive']}
+        'leaflet.markercluster': { deps: ['angular','angular-sanitize', 'leaflet-directive']},
+        'highcharts-ng':{ deps: ['jquery', 'angular']}
     },
 
     // kick start application

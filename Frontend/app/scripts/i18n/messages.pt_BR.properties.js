@@ -230,7 +230,8 @@ define([],function ( ) {
     'SAMPLE_UPDATED':'Exemplares atualizados',
     'SAMPLE_DELETED_SUCCESSFULLY': 'Exemplar excluído com sucesso',
     'SAMPLES_DELETED_SUCCESSFULLY': 'Exemplares excluídos com sucesso',
-    'ONLY_FIVE_FILES_WILL_BE_SELECTED': 'Apenas os 5 primeiros arquivos serão adicionados'
+    'ONLY_FIVE_FILES_WILL_BE_SELECTED': 'Apenas os 5 primeiros arquivos serão adicionados',
+    'BRAZIL_BIODIVERSITY_COLLECTION_DASHBOARD':'Painel da Coleção da Biodiversidade Brasileira'
   }
 
 });
