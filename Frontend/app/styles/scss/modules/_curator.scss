@@ -1,0 +1,17 @@
+.curator-date{
+  display: inline;
+  float: left;
+
+  input{
+    padding: 10px;
+    width: 40px;
+  }
+
+  input.large{
+    width: 60px;
+  }
+}
+
+.curator-institutions {
+  width: 250px;
+}

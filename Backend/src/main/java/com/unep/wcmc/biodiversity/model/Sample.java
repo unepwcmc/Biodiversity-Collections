@@ -2,7 +2,6 @@ package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,33 +20,26 @@ public class Sample implements BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "collection_id")
-    @RestResource(exported = false)
-    @JsonIgnore
     private BiodiversityCollection collection;
 
     @ManyToOne
     @JoinColumn(name = "curator_id")
-    @RestResource(exported = false)
     private Curator curator;
 
     @ManyToOne
     @JoinColumn(name = "institution_id")
-    @RestResource(exported = false)
     private Institution institution;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "taxonomy_id")
-    @RestResource(exported = false)
     private Taxonomy taxonomy;
 
-    @OneToMany
-    @JoinColumn(name = "sample_id")
-    @RestResource(exported = false)
+    @OneToMany(mappedBy = "sample", cascade = CascadeType.REMOVE)
+    @JsonIgnore
     private Set<Document> documents;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "image_id")
-    @RestResource(exported = false)
     private Image image;
 
     @Override

@@ -1,9 +1,10 @@
 package com.unep.wcmc.biodiversity.model;
 
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,16 +16,17 @@ public class Network implements BaseEntity {
 
     private String name;
 
+    @Column(columnDefinition = "text")
     private String description;
-
-    private String boardMembers;
 
     private boolean status;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "image_id")
-    @RestResource(exported = false)
-    private Image image;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Set<Image> images;
+
+    @Embedded
+    private Contact contact;
 
     @ManyToMany
     @JoinTable(name = "network_biodiversity_collection",
@@ -37,6 +39,12 @@ public class Network implements BaseEntity {
             joinColumns = @JoinColumn(name = "network_id"),
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
     private Set<Institution> institutions;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name="board_members",
+            joinColumns={@JoinColumn(name="network_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="member_id", referencedColumnName="id")})
+    private Set<Member> boardMembers;
 
     @Override
     public Long getId() {
@@ -64,28 +72,52 @@ public class Network implements BaseEntity {
         this.description = description;
     }
 
-    public String getBoardMembers() {
+    public Set<Member> getBoardMembers() {
         return boardMembers;
     }
 
-    public void setBoardMembers(String boardMembers) {
+    public void setBoardMembers(Set<Member> boardMembers) {
         this.boardMembers = boardMembers;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
     public Set<BiodiversityCollection> getCollections() {
-        return collections;
+        return collections == null? new HashSet<>(): this.collections;
     }
 
     public void setCollections(Set<BiodiversityCollection> collections) {
         this.collections = collections;
     }
 
+    public void addCollection(BiodiversityCollection collection){
+        getCollections().add(collection);
+    }
+
+    public void removeCollection(BiodiversityCollection collection){
+        getCollections().remove(collection);
+    }
+
     public Set<Institution> getInstitutions() {
-        return institutions;
+        return institutions == null? new HashSet<>(): this.institutions;
     }
 
     public void setInstitutions(Set<Institution> institutions) {
         this.institutions = institutions;
+    }
+
+    public void addInstitution(Institution institution){
+        getInstitutions().add(institution);
+    }
+
+    public void removeInstitution(Institution institution){
+        getInstitutions().remove(institution);
     }
 
     public void setStatus(boolean status) {
@@ -96,11 +128,22 @@ public class Network implements BaseEntity {
         return status;
     }
 
-    public Image getImage() {
-        return image;
+    public Set<Image> getImages() {
+        return images == null? new HashSet<Image>(): this.images;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImages(Set<Image> images) {
+        this.images = images;
     }
+
+    public void addImage(Image image){
+        if(getImages().size() < 5){
+            getImages().add(image);
+        }
+    }
+
+    public  void removeImage(Image image){
+        getImages().remove(image);
+    }
+
 }

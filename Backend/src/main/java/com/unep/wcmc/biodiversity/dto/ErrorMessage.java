@@ -3,10 +3,10 @@ package com.unep.wcmc.biodiversity.dto;
 public class ErrorMessage {
 
     private static final long serialVersionUID = -2088995976378504993L;
-    private final long id;
+    private final Object id;
     private final String message;
     
-    public ErrorMessage(long id, String message) {
+    public ErrorMessage(Object id, String message) {
         this.id = id;
         this.message = message;
     }
@@ -15,10 +15,10 @@ public class ErrorMessage {
         return message;
     }
     
-    public Long getId() {
+    public Object getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Object id) {
     }
 }

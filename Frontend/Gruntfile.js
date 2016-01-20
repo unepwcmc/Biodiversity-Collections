@@ -187,6 +187,10 @@ module.exports = function (grunt) {
           modules: [
             { name: 'app' },
             {
+              name: 'admin/controllers/adminController',
+              exclude: ['include']
+            },
+            {
               name: 'auth/controllers/authController',
               exclude: ['include']
             },
@@ -195,7 +199,23 @@ module.exports = function (grunt) {
               exclude: ['include']
             },
             {
+              name: 'curator/controllers/curatorController',
+              exclude: ['include']
+            },
+            {
               name: 'home/controllers/homeController',
+              exclude: ['include']
+            },
+            {
+              name: 'institution/controllers/institutionController',
+              exclude: ['include']
+            },
+            {
+              name: 'member/controllers/memberController',
+              exclude: ['include']
+            },
+            {
+              name: 'network/controllers/networkController',
               exclude: ['include']
             },
             {
@@ -203,7 +223,15 @@ module.exports = function (grunt) {
               exclude: ['include']
             },
             {
+              name: 'sample/controllers/collectionSampleController',
+              exclude: ['include']
+            },
+            {
               name: 'search/controllers/searchController',
+              exclude: ['include']
+            },
+            {
+              name: 'user/controllers/userController',
               exclude: ['include']
             }
           ]

@@ -1,0 +1,145 @@
+<section class="l-main" save-form>
+
+    <breadcrumbs></breadcrumbs>
+
+    <!--Loading screen-->
+    <div id="loader-wrapper" class="loading">
+        <div id="loader"></div>
+    </div>
+
+    <div class="container" style="margin-bottom: 20px;">
+        <nav id="collection-sample-bar-fixed" ng-show="createSample" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <h2 class="navbar-text"><strong>{{'ADD_NEW_SAMPLE' | translate}}</strong></h2>
+                <form ng-show="createSample" class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default btn-transparent btn-edit-collection-cancel save-form cancel" ng-click="cancel()"><strong>{{'CANCEL' | translate}}</strong></button>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="collection_form.$invalid" ng-click="create()"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <h4 id="collection-sample-bar-default">
+            <strong>{{'ADD_NEW_SAMPLE' | translate}}</strong>
+            <a ng-show="createSample" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid" ng-click="create()"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="createSample" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong>{{'CANCEL' | translate}}</strong></a>
+        </h4>
+    </div>
+
+    <div class="container" style="background-color: #F8F8F8;">
+        <hr style="margin: 5px;"/>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="small-field">
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input type="radio" id="create" name="mode" ng-model="createSample" ng-value="true">
+                                <label for="create">&nbsp;{{'CREATE_NEW_SAMPLE' | translate}}</label><br/>
+                            <input type="radio" id="add" name="mode" ng-model="createSample" ng-value="false">
+                                <label for="add">&nbsp;{{'ADD_EXISTING_SAMPLE' | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 5px;"/>
+    </div>
+
+    <div ng-show="createSample" class="container" style="margin-top: 30px;">
+        <sample-detail display="false"></sample-detail>
+        <sample-taxonomy display="false"></sample-taxonomy>
+        <publications type="sample"></publications>
+    </div>
+
+    <div ng-show="!createSample" class="container" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="small-field">
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="searchTerm">
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-small btn-primary pull-left btn-white save-form" ng-click="search()"><i class="fa fa-search"></i><strong>{{'SEARCH' | translate}}</strong></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br/>
+
+
+
+        <div ng-show="sample.totalElements" class="row">
+            <div class="col-md-12">
+                <div class="result-list">
+                    <nav id="collection-sample-search-bar-fixed" style="display: none;" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                        <div class="container" style="margin-top: 10px; margin-bottom: 10px;">
+                            <div class="col-sm-2">
+                                <input class="chk-samples" type="checkbox"/><label>&nbsp;<a style="color: white;" class="checkUncheck" href="javascript:" ng-click="checkAndUnCheckAll()">{{'SELECT_ALL' | translate}}</a></label>
+                            </div>
+                            <div class="col-sm-2">
+                                <span style="color: white;" ng-show="sample.totalElements"><strong>{{sample.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
+                                <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong style="color: white;">{{ 'CANCEL' | translate }}</strong></a>
+                            </div>
+                        </div>
+                    </nav>
+                    <div id="collection-sample-search-bar-default" class="form-group">
+                        <div class="col-sm-2">
+                            <input class="chk-samples" type="checkbox"/><label>&nbsp;<a class="checkUncheck" href="javascript:" ng-click="checkAndUnCheckAll()">{{'SELECT_ALL' | translate}}</a></label>
+                        </div>
+                        <div class="col-sm-2">
+                            <span ng-show="sample.totalElements"><strong>{{sample.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
+                        </div>
+                        <div class="col-sm-8">
+                            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
+                            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong>{{ 'CANCEL' | translate }}</strong></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12"><hr/></div>
+                    <div class="list-item col-sm-12" ng-repeat="sample in sample.content" style="margin-top: 10px;">
+                         <input class="chk-samples" type="checkbox" value="{{sample.id}}"/><label>&nbsp;<a data-ui-sref="sample({id: sample.id})"><strong>{{sample.name}}</strong></label>&nbsp;|&nbsp;id:{{sample.id}}</a>
+                    </div>
+                    <div class="col-sm-12"><hr/></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="sample.totalElements" class="row" align="center">
+            <div class="col-md-4">&nbsp;</div>
+            <div class="col-md-4">
+                <nav>
+                    <ul class="pagination">
+                        <li ng-class="{disabled: sample.page.number === 0}">
+                            <a href="javascript:" ng-click="(sample.page.number === 0) || load(sample.page.number - 1, sample.page.size)" aria-label="Previous">
+                                <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-class="{disabled: sample.page.number === sample.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(sample.page.number === sample.page.totalPages - 1) || load(sample.page.number + 1, sample.page.size)">{{sample.page.number + 1}}</a></li>
+                        <li ng-class="{disabled: sample.page.number + 2 >= sample.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(sample.page.number + 2 >= sample.page.totalPages - 1) || load(sample.page.number + 2, sample.page.size)">{{sample.page.number + 2}}</a></li>
+                        <li ng-class="{disabled: sample.page.number + 3 >= sample.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(sample.page.number + 3 >= sample.page.totalPages - 1) || load(sample.page.number + 3, sample.page.size)">{{sample.page.number + 3}}</a></li>
+                        <li ng-class="{disabled: sample.page.number + 4 >= sample.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(sample.page.number + 4 >= sample.page.totalPages - 1) || load(sample.page.number + 4, sample.page.size)">{{sample.page.number + 4}}</a></li>
+                        <li ng-class="{disabled: sample.page.number + 5 >= sample.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(sample.page.number + 5 >= sample.page.totalPages - 1) || load(sample.page.number + 5, sample.page.size)">{{sample.page.number + 5}}</a></li>
+                        <li ng-class="{disabled: sample.page.number === sample.page.totalPages - 1}">
+                            <a href="javascript:" ng-click="(sample.page.number === sample.page.totalPages - 1) || load(sample.page.number + 1, sample.page.size)" aria-label="Next">
+                                <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-4"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{sample.totalElements}}&nbsp;{{'RESULTS' | translate}}</label></div>
+        </div>
+
+    </div>
+
+</section>

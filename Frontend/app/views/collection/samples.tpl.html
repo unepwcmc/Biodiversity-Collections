@@ -1,4 +1,4 @@
-<section class="page-content">
+<section class="page-content" edit-form="{{editMode}}">
     <div class="container">
 
         <div class="row">
@@ -11,20 +11,17 @@
                             <th>{{ 'SAMPLE' | translate }}</th>
                             <th>{{ 'ID' | translate }}</th>
                             <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
+                            <th ng-show="editMode" width="5%" class="btn-td no-sorter"><a ng-disabled="!checkboxCount > 0" ng-click="deleteAll()" class="btn"><i class="fa fa-close"></i></a></th>
+                            <th class="no-sorter" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" id="checkbox-all" /></th>
                         </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="sample in samples.content">
-                        <td width="60%">{{ sample.name }}</td>
-                        <td width="20%">{{ sample.id }}</td>
-                        <td width="10%"><image-thumbnail width="50" height="50" attachment="sample.image.attachment.id" ></image-thumbnail></td>
-                        <td width="5%" ng-show="editMode">
-                            <a type="button" style="float: right;" class="btn-small-delete" ><i class="fa fa-close"></i></a></td>
-                        <td width="5%" ng-show="editMode">
-                            <input type="checkbox">
-                        </td>
+                        <td width="60%"><a data-ui-sref="sample({id : sample.id})">{{ sample.name }}</a></td>
+                        <td width="20%"><a data-ui-sref="sample({id : sample.id})">{{ sample.id }}</a></td>
+                        <td width="10%"><image-thumbnail width="50" height="50" attachment="sample.image.attachment.id" ><image-thumbnail attachment="sample.image.attachment"></image-thumbnail></td>
+                        <td ng-show="editMode" class="btn-td"><a class="btn delete-sample" ng-click="removeSample(sample.id)"><i class="fa fa-close"></i></a></td>
+                        <td ng-show="editMode"><input class="sample-checkbox-delete" data-sample-id="{{sample.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
                     </tr>
                     </tbody>
                 </table>
@@ -35,8 +32,8 @@
             <div class="col-md-2">&nbsp;</div>
             <div class="col-md-8">
                 <div class="row">
-                    <div class="pull-left"><a ng-show="editMode" style="margin-left: 12px;" class="btn btn-small-add btn-primary">Add new Sample</a></div>
-                    <div class="pull-right">
+                    <div class="pull-left"><a ng-show="editMode" style="margin-left: 12px;" class="btn btn-small-add btn-primary" ng-click="addNewSample()"><label>{{'ADD_NEW_SAMPLE' | translate}}</label></a></div>
+                    <div class="pull-right" ng-show="samples.totalPages > 1">
                         <form class="form-inline">
                             <div class="form-group">
                                 <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
@@ -58,15 +55,15 @@
 
                     <span ng-class="{disabled: samples.number === 0}">
                         <a type="submit" class="btn btn-default" ng-show="samples.number !== 0"
-                           ng-click="paginateSample(samples.number - 1,samples.size)"><strong style="color: #666"> < </strong></a>
+                           ng-click="paginateSample(samples.number - 1,samples.size)"><strong style="color: #666"> &lt; </strong></a>
                         <button disabled="disabled" class="btn btn-default" class="page-not-active"
-                                ng-show="samples.number === 0"><strong style="color: #666"> < </strong></button>
+                                ng-show="samples.number === 0"><strong style="color: #666"> &lt; </strong></button>
                     </span>
                     <span ng-class="{disabled: samples.number === samples.totalPages - 1}">
                         <a type="submit" class="btn btn-default" ng-show="samples.number !== samples.totalPages - 1"
-                           ng-click="paginateSample(samples.number + 1,samples.size)"><strong style="color: #666"> > </strong></a>
+                           ng-click="paginateSample(samples.number + 1,samples.size)"><strong style="color: #666"> &gt; </strong></a>
                         <button disabled="disabled" class="btn btn-default"
-                                ng-show="samples.number === samples.totalPages - 1"><strong style="color: #666"> > </strong>
+                                ng-show="samples.number === samples.totalPages - 1"><strong style="color: #666"> &gt; </strong>
                         </button>
                     </span>
 

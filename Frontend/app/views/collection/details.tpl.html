@@ -1,4 +1,4 @@
-<section class="page-content" edit-form>
+<section class="page-content" edit-form="{{editMode}}">
 
     <!-- Loading screen -->
     <div id="loader-wrapper" class="loading">
@@ -8,27 +8,28 @@
     <div class="container">
         <nav id="collection-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
-                <h2 class="navbar-text"><strong>{{'EDIT_COLLECTION' | translate}}</strong></h2>
+                <h2 ng-show="!isNew" class="navbar-text"><strong>{{'EDIT_COLLECTION' | translate}}</strong></h2>
+                <h2 ng-show="isNew" class="navbar-text"><strong>{{'NEW_COLLECTION' | translate}}</strong></h2>
 
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <button type="submit" class="btn btn-default btn-transparent btn-edit-collection-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
+                        <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="!collection_form.$valid"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
                     </div>
                 </form>
             </div>
         </nav>
         <h4 id="collection-bar-default">
-
                 <strong ng-show="!editMode" >{{ collection.name }}</strong>
-                <strong ng-show="editMode" >{{'EDIT_COLLECTION' | translate}}</strong> <span>
+                <strong ng-show="editMode && !isNew" >{{'EDIT_COLLECTION' | translate}}</strong> <span>
+                <strong ng-show="editMode && isNew" >{{'NEW_COLLECTION' | translate}}</strong> <span>
                 <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'COLLECTIONS'| translate}}</strong></button></span>
 
-            <a id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="collection_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
-            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+            <a ng-show="!editMode && logged" id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="!collection_form.$valid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
         </h4>
 
         <hr/>
@@ -38,7 +39,7 @@
     <div class="container">
          <div class="row">
              <div class="col-md-8">
-                 <form action="#" class="form-horizontal view-mode form-block" role="form" name="collection_form" novalidate>
+                 <form action="#" class="form-horizontal form-block form-data" role="form" name="collection_form" novalidate >
                      <div class="small-field">
 
                          <div ng-show="!editMode" id="collection-id" class="form-group">
@@ -53,7 +54,7 @@
 
                          <div ng-show="!editMode"  class="form-group">
                              <label class="col-sm-3">{{ 'CURATOR' | translate }}</label>
-                             <div class="col-sm-9"><input class="form-control" readonly value="{{collection.curator.name}}" /></div>
+                             <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="curator({id : collection.curator.id})">{{collection.curator.name}}</a></div>
                          </div>
 
                          <div ng-show="editMode" class="form-group">
@@ -64,34 +65,42 @@
                                                pause="150"
                                                selected-object="curatorSelectedFn"
                                                remote-api-handler="curatorAutocomplete"
-                                               remote-url-data-field="_embedded.curators"
                                                title-field="name"
-                                               minlength="2"
+                                               minlength="0"
                                                initial-value="curatorSelected"
-                                               disable-input="disableAutocomplete"
                                                input-class="form-control"/>
                                 </div>
                          </div>
 
                          <div ng-show="!editMode"  class="form-group">
                              <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
-                             <div class="col-sm-9"><a>{{collection.institution.name}}</a></div>
+                             <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="institution({id : collection.institution.id})">{{collection.institution.name}}</a></div>
                          </div>
 
                          <div ng-show="editMode" class="form-group">
                              <label class="col-sm-3">{{ 'INSTITUTION' | translate  }}</label>
                              <div class="col-sm-9">
                                  <angucomplete-alt id="institution"
-                                                   placeholder="Search an Intitution"
+                                                   placeholder="Search an Institution"
                                                    pause="150"
                                                    selected-object="institutionSelectedFn"
                                                    remote-api-handler="institutionAutocomplete"
-                                                   remote-url-data-field="_embedded.institutions"
                                                    title-field="name"
-                                                   minlength="2"
+                                                   minlength="0"
                                                    initial-value="institutionSelected"
-                                                   disable-input="disableAutocomplete"
                                                    input-class="form-control"/>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-sm-3">{{ 'ORGANISM_TYPE' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <select select-wrap class="form-control" ng-model="collection.collectionDefinition">
+                                     <option value="FAUNA" selected>{{ 'FAUNA' | translate }}</option>
+                                     <option value="FLORA">{{ 'FLORA' | translate }}</option>
+                                     <option value="MICROORGANISMS">{{ 'MICROORGANISMS' | translate }}</option>
+                                     <option value="OTHERS">{{ 'OTHERS' | translate }}</option>
+                                 </select>
                              </div>
                          </div>
 
@@ -105,7 +114,7 @@
                          <div ng-show="editMode" class="form-group">
                              <label class="col-sm-3">{{ 'VISIBILITY' | translate  }}</label>
                              <div class="col-sm-9">
-                                 <input type="radio" id="unpublished" name="visibility" data-ng-model="collection.published" ng-value="false">
+                                 <input type="radio" id="unpublished" name="visibility" data-ng-model="collection.published" ng-value="false" checked>
                                     <label style="font-weight: normal;" for="unpublished">&nbsp;Unpublished</label><br/>
                                  <input type="radio" id="published" name="visibility" data-ng-model="collection.published" ng-value="true">
                                     <label style="font-weight: normal;" for="published">&nbsp;Published</label>
@@ -122,20 +131,34 @@
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'RESEARCHES' | translate }}</label>
                              <div class="col-sm-9">
-                                <table class="researches">
+                                <table >
                                     <tbody>
                                         <tr ng-repeat="researcher in collection.researchers" on-finish-render="ngRepeatFinished">
-                                            <td><input type="text" class="form-control" data-ng-model="researcher.name" ></td>
-                                            <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right"  class="btn-small-delete" ng-click="deleteResearch($index);"><i class="fa fa-close"></i></a></td>
+                                            <td width="83%"><input type="text" class="form-control" data-ng-model="researcher.name" ></td>
+                                            <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right" class="btn-small-delete" ng-click="deleteResearch($index);"><i class="fa fa-close"></i></a></td>
                                         </tr>
                                     </tbody>
                                     <tfoot ng-show="editMode">
                                         <tr>
-                                            <td><input type="text" data-ng-model="researcher.name" class="form-control"></td>
+                                            <td width="83%"><input type="text" data-ng-model="researcher.name" class="form-control"></td>
                                             <td>&nbsp;&nbsp;<a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addResearcher();">{{ 'ADD' | translate }}</a></td>
                                         </tr>
                                     </tfoot>
                                 </table>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-sm-3">{{ 'ASSOCIATED_MEMBERS' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <table>
+                                     <tbody>
+                                         <tr ng-repeat="member in collection.associatedMembers" on-finish-render="ngRepeatFinished">
+                                             <td><input type="text" class="form-control" data-ng-model="member.name" readonly></td>
+                                         </tr>
+                                     </tbody>
+                                 </table>
+                                 <a data-ui-sref="member({ id: collection.id })" style="cursor: pointer;margin-left: 11px">{{ 'ASSOCIATED_MEMBERS_PAGE' | translate }}</a>
                              </div>
                          </div>
 
@@ -147,7 +170,7 @@
                          <div ng-show="!editMode" class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
                              <div class="col-sm-9">
-                                 <a href="{{collection.webSite}}" target="_blank">{{ collection.webSiteName }}</a>
+                                 <a ng-show="collection.webSite != null && collection.webSite != ''" style="margin-left: 10px;" href="{{collection.webSite}}" target="_blank">{{ collection.webSiteName }}&nbsp;<i class="fa fa-external-link-square"></i></a>
                              </div>
                          </div>
 
@@ -171,7 +194,7 @@
              </div>
 
              <div class="col-md-4">
-                 <collection-image></collection-image>
+                 <images-box title="Change Collection Photo" images="collection.images"></images-box>
              </div>
 
          </div>

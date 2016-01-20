@@ -1,13 +1,21 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraph(name = "BiodiversityCollection.detail",
+        attributeNodes = {
+                @NamedAttributeNode("researchers"),
+                @NamedAttributeNode("specimens"),
+                @NamedAttributeNode("associatedMembers")
+        }
+    )
 public class BiodiversityCollection implements BaseEntity {
 
     @Id
@@ -16,8 +24,10 @@ public class BiodiversityCollection implements BaseEntity {
 
     private String name;
 
+    @Column(columnDefinition = "text")
     private String description;
 
+    @Column(columnDefinition = "text")
     private String preservationMethods;
 
     private String webSite;
@@ -31,43 +41,49 @@ public class BiodiversityCollection implements BaseEntity {
     @Enumerated(EnumType.STRING)
     private CollectionType type;
 
-    @ManyToOne
-    @JoinColumn(name = "master_id")
-    private BiodiversityCollection master;
+    @Enumerated(EnumType.STRING)
+    private CollectionDefinition collectionDefinition;
 
-    @ManyToOne
+    @Embedded
+    private Contact contact;
+
+    @ManyToOne(optional = true)
     @JoinColumn(name = "curator_id")
-    @RestResource(exported = false)
     private Curator curator;
 
-    @ManyToOne
+    @ManyToOne(optional = true)
     @JoinColumn(name = "institution_id")
-    @RestResource(exported = false)
     private Institution institution;
 
-    @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Network> networks;
 
     @ElementCollection
     @CollectionTable(name = "researcher", joinColumns = @JoinColumn(name = "collection_id"))
-    @RestResource(exported = false)
     private Set<Researcher> researchers;
 
     @OneToMany(mappedBy = "collection")
+    @JsonIgnore
     private Set<Sample> samples;
 
     @ElementCollection
     @CollectionTable(name = "specimen", joinColumns = @JoinColumn(name = "collection_id"))
-    @RestResource(exported = false)
     private Set<Specimen> specimens;
 
     @OneToMany(mappedBy = "collection")
+    @JsonIgnore
     private Set<Document> documents;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "image_id")
-    @RestResource(exported = false)
-    private Image image;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Set<Image> images;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name="associated_members",
+            joinColumns={@JoinColumn(name="collection_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="member_id", referencedColumnName="id")})
+    private Set<Member> associatedMembers;
 
     @Override
     public Long getId() {
@@ -119,12 +135,12 @@ public class BiodiversityCollection implements BaseEntity {
         this.type = type;
     }
 
-    public BiodiversityCollection getMaster() {
-        return master;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setMaster(BiodiversityCollection master) {
-        this.master = master;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public Curator getCurator() {
@@ -143,8 +159,16 @@ public class BiodiversityCollection implements BaseEntity {
         this.institution = institution;
     }
 
+    public void addNetwork(Network network){
+        getNetworks().add(network);
+    }
+
+    public void removeNetwork(Network network){
+        getNetworks().remove(network);
+    }
+
     public Set<Network> getNetworks() {
-        return networks;
+        return networks == null? new HashSet<Network>(): this.networks;
     }
 
     public void setNetworks(Set<Network> networks) {
@@ -160,11 +184,19 @@ public class BiodiversityCollection implements BaseEntity {
     }
 
     public Set<Sample> getSamples() {
-        return samples;
+        return samples == null? new HashSet<>(): this.samples;
     }
 
     public void setSamples(Set<Sample> samples) {
         this.samples = samples;
+    }
+
+    public void addSample(Sample sample) {
+        getSamples().add(sample);
+    }
+
+    public void removeSample(Sample sample) {
+        getSamples().remove(sample);
     }
 
     public Set<Document> getDocuments() {
@@ -199,14 +231,6 @@ public class BiodiversityCollection implements BaseEntity {
         this.curatorialLodge = curatorialLodge;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
     public String getWebSiteName() {
         return webSiteName;
     }
@@ -221,5 +245,48 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setPublished(Boolean published) {
         this.published = published;
+    }
+
+    public Set<Image> getImages() {
+        return images == null? new HashSet<Image>(): this.images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
+    public void addImage(Image image){
+        if(getImages().size() < 5){
+            getImages().add(image);
+        }
+    }
+
+    public  void removeImage(Image image){
+        getImages().remove(image);
+    }
+
+    public Set<Member> getAssociatedMembers() {
+        return associatedMembers == null? new HashSet<Member>(): this.associatedMembers;
+    }
+
+    public void setAssociatedMembers(Set<Member> associatedMembers) {
+        this.associatedMembers = associatedMembers;
+    }
+
+    public void addMembers(Member member){
+        getAssociatedMembers().add(member);
+    }
+
+    public void removeMembers(Member member){
+        getAssociatedMembers().remove(member);
+    }
+
+
+    public CollectionDefinition getCollectionDefinition() {
+        return collectionDefinition;
+    }
+
+    public void setCollectionDefinition(CollectionDefinition collectionDefinition) {
+        this.collectionDefinition = collectionDefinition;
     }
 }

@@ -2,6 +2,8 @@ package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.common.collect.Lists;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.hibernate.validator.constraints.Email;
@@ -14,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Model that represents an user within Fichas de Especies
@@ -24,6 +27,9 @@ import java.util.Date;
                 @UniqueConstraint(columnNames = { "username" }),
                 @UniqueConstraint(columnNames = { "email" })})
 public class User implements UserDetails, BaseEntity {
+
+    public static final String PT_BR = "pt_BR";
+    public static final String EN_GB = "en_GB";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +53,8 @@ public class User implements UserDetails, BaseEntity {
 
     private String lastName;
 
+    private String language;
+
     @OneToOne
     @JoinColumn(name = "user_role_id", nullable = false)
     private UserRole userRole;
@@ -58,14 +66,19 @@ public class User implements UserDetails, BaseEntity {
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
-    @Temporal(TemporalType.DATE)
-    private Date birthDate;
+    @Embedded
+    private Contact contact;
 
-    private String jobTitle;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private Set<ForgetPasswordToken> tokens;
 
-    private String phoneNumber;
+    @Transient
+    @JsonDeserialize
+    private String role;
 
-    private String mobileNumber;
+    @Transient
+    @JsonDeserialize
+    private String actualPassword;
 
     public User() {
         super();
@@ -96,7 +109,7 @@ public class User implements UserDetails, BaseEntity {
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getFirstName() {
         return firstName;
     }
@@ -128,6 +141,14 @@ public class User implements UserDetails, BaseEntity {
         return Lists.newArrayList(new SimpleGrantedAuthority(userRole.getRole()));
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
+
     @Override
     public String getPassword() {
         return password;
@@ -137,9 +158,25 @@ public class User implements UserDetails, BaseEntity {
         this.password = password;
     }
 
+    public String getActualPassword() {
+        return actualPassword;
+    }
+
+    public void setActualPassword(String actualPassword) {
+        this.actualPassword = actualPassword;
+    }
+
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     @Override
@@ -173,36 +210,20 @@ public class User implements UserDetails, BaseEntity {
         this.institution = institution;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public Set<ForgetPasswordToken> getTokens() {
+        return tokens;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setTokens(Set<ForgetPasswordToken> tokens) {
+        this.tokens = tokens;
     }
 
     @Override

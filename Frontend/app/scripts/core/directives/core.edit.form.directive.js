@@ -27,13 +27,27 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                 var $save_form = $(element).find('.save-form');
                 var $save_mode = $(element).find('.save-mode');
 
-                $save_form.hide();
-                $save_mode.hide();
+                if (attrs.editForm !== 'true') {
+                    $save_form.hide();
+                    $save_mode.hide();
+                }
 
-                $(element).find('form.view-mode').find('textarea,input[type="text"],input[type="email"],input[type="password"]').attr('readonly', 'input[type="text"]');
-                $(element).find('form.view-mode').find('input[type="number"]').attr('disabled', 'disabled');
-                $(element).find('form.view-mode').find('input[type="radio"]').attr('disabled',true);
-                $(element).find('form.view-mode').find('select').attr('disabled','disabled');
+                $form = $(element).find('.view-mode');
+                if ($form.length == 0) {
+                    $form = $(element).find('.form-data');
+                    if (attrs.editForm !== 'true') {
+                        $form.addClass('view-mode');
+                    } else {
+                        $form.addClass('edit-mode');
+                    }
+                }
+
+                if ($form.hasClass('view-mode')) {
+                    $form.find('textarea,input[type="text"],input[type="email"],input[type="password"]').attr('readonly', 'input[type="text"]');
+                    $form.find('input[type="number"]').attr('disabled', 'disabled');
+                    $form.find('input[type="radio"]').attr('disabled', true);
+                    $form.find('select').attr('disabled', 'disabled');
+                }
 
                 $edit_form.click(function (event) {
                     event.preventDefault();
@@ -43,7 +57,7 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $edit_form.hide();
                     $edit_mode.hide();
 
-                    $form = $(element).find('form.view-mode');
+                    $form = $('.view-mode');
                     $elements = 'textarea,input[type="text"],input[type="email"],input[type="password"],select';
 
                     if ($form.hasClass('view-mode')) {
@@ -65,9 +79,9 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     resetEditMode();
 
                     if ($(this).hasClass('cancel')) {
-                        $rootScope.$broadcast("BIODIVERSITY_COLLECTION_RELOADED");
+                        $rootScope.$broadcast('ACTION_RELOADED');
                     } else {
-                        $rootScope.$broadcast("BIODIVERSITY_COLLECTION_SAVE");
+                        $rootScope.$broadcast('ACTION_SAVE');
                     }
 
                     isEditing(false, element);
@@ -79,6 +93,9 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $edit_mode.show();
                     $save_form.hide();
                     $save_mode.hide();
+
+                    $form = $('.edit-mode');
+                    $elements = 'textarea,input[type="text"],input[type="email"],input[type="password"],select';
 
                     if ($form.hasClass('edit-mode')) {
 
@@ -113,10 +130,10 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                     $(element).find('.view-mode').find('input[type="number"]').attr('disabled', 'disabled');
                     $(element).find('.view-mode').find('select').attr('disabled', 'disabled');
 
-                    $(element).find('form.edit-mode').find('textarea,input[type="text"],input[type="radio"],input[type="email"],input[type="password"],select,select[ multiple="multiple"]').removeAttr('readonly');
-                    $(element).find('form.edit-mode').find('.rem-row').removeAttr('disabled');
-                    $(element).find('form.edit-mode').find('input[type="number"]').removeAttr('disabled');
-                    $(element).find('form.edit-mode').find('select').removeAttr('disabled');
+                    $(element).find('.edit-mode').find('textarea,input[type="text"],input[type="radio"],input[type="email"],input[type="password"],select,select[ multiple="multiple"]').removeAttr('readonly');
+                    $(element).find('.edit-mode').find('.rem-row').removeAttr('disabled');
+                    $(element).find('.edit-mode').find('input[type="number"]').removeAttr('disabled');
+                    $(element).find('.edit-mode').find('select').removeAttr('disabled');
 
                     $(element).find('.no-editable').attr('readonly', 'readonly');
                 });
@@ -132,42 +149,5 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
                 }, true);
             }
         };
-    }])
-    .directive('elastic', [
-        '$timeout', '$parse',
-        function($timeout, $parse) {
-            return {
-                restrict: 'A',
-                link: function($scope, element, attrs) {
-                    $scope.initialHeight = $scope.initialHeight || element[0].style.height;
-
-                    var resize = function(eventType) {
-                        //var paddingTop = Number($(element).css('padding-top').replace("px", "")) || 0,
-                        //    paddingBottom = Number($(element).css('padding-bottom').replace("px", "")) || 0,
-                        //    convertedPadding = paddingTop + paddingBottom,
-                        //    paddingToConsider = (eventType === 'input') ? convertedPadding : 0;
-
-                        element[0].style.height = $scope.initialHeight;
-                        var heightToUse = (element[0].scrollHeight !== 0) ? (element[0].scrollHeight) : 35;
-
-                        element[0].style.height = "" + heightToUse + "px";
-                    };
-
-                    var modelValue = $parse(attrs.ngModel);
-                    $scope.$watch(modelValue, function(value) {
-                        if (value) {
-                            resize();
-                        }
-                    });
-
-                    element.on("input change paste cut click", function(evt) {
-                        resize(evt.type);
-                    });
-
-                    $timeout(resize, 0);
-                }
-            };
-        }
-    ])
-    ;
+    }]);
 });

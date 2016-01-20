@@ -1,5 +1,4 @@
 <ul class="list-inline user-meta" >
-    <li ng-show="!logged"><a href="javascript:" ui-sref="signup"><i class="fa fa-user-plus"></i>{{ 'SIGN_UP' | translate }}</a></li>
     <li ng-show="!logged"><a href="javascript:" login-show style="cursor: pointer"><i class="fa fa-sign-in"></i> {{ 'LOGIN' | translate }} </a></li>
     <li class="user-detail" ng-show="logged">
         <i class="fa fa-user"></i>
@@ -13,12 +12,15 @@
 <div id="box_template" style="display: none">
 
 <div class="user-popover">
-    <p>{{name}}<span><i ng-click="closePopover()" class="fa fa-close pull-right" style="color:#249953;"></i></span></p>
+    <p><b>{{name}}</b><span><i ng-click="closePopover()" class="fa fa-close pull-right" style="color:#249953;"></i></span></p>
     <div class="user-links">
     <br/>
-    <a href="javascript:"  ng-style="{'visibility': isUserAdministrator?'visible':'hidden'}" ng-click="showGroups()">{{'GROUPS' | translate }}</a><br/>
-    <a href="javascript:" data-ui-sref="settings">{{'SETTINGS' | translate }}</a><br/>
-    <a href="javascript:"  ng-click="logoutFunc()" class="logoutBt">{{'LOGOUT' | translate }}</a>
+    <span><a ng-click="showFormSupport()"><i class="fa fa-life-saver"></i>&nbsp;{{'ASK_FOR_SUPPORT' | translate }}</a><br/></span>
+    <span><a href="#"><i class="fa fa-area-chart"></i>&nbsp;{{'REPORTING' | translate }}</a><br/></span>
+    <span ng-show="isUserAdministrator">
+        <a ui-sref="admin"><i class="fa fa-cog"></i>&nbsp;{{'ADMINISTRATION' | translate }}</a><br/>
+    </span>
+    <span><a href="javascript:" ng-click="logoutFunc()" class="logoutBt"><i class="fa fa-sign-out"></i>&nbsp;{{'LOGOUT' | translate }}</a></span>
     </div>
 </div>
 </div>

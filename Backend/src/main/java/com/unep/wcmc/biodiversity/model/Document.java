@@ -1,10 +1,13 @@
 package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
+import org.hibernate.annotations.Cascade;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.Set;
 
 @Entity
@@ -20,9 +23,12 @@ public class Document implements BaseEntity {
 
     private String description;
 
-    private String author;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Set<String> authors;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<String> keyworks;
 
     @Enumerated(EnumType.STRING)
@@ -30,13 +36,32 @@ public class Document implements BaseEntity {
 
     private String contentType;
 
+    private String mimeType;
+
     private boolean status;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_id")
+    private Attachment attachment;
 
     @ManyToOne
     @JoinColumn(name = "collection_id")
-    @RestResource(exported = false)
-    @JsonIgnore
     private BiodiversityCollection collection;
+
+    @ManyToOne
+    @JoinColumn(name = "sample_id")
+    private Sample sample;
+
+    public Document(){}
+
+    public Document(MultipartFile file) {
+        try {
+            this.setAttachment(new Attachment(file.getBytes()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public Long getId() {
@@ -72,14 +97,6 @@ public class Document implements BaseEntity {
         return description;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public Set<String> getKeyworks() {
         return keyworks;
     }
@@ -112,11 +129,45 @@ public class Document implements BaseEntity {
         this.contentType = contentType;
     }
 
+    @JsonIgnore
     public BiodiversityCollection getCollection() {
         return collection;
     }
 
+    @JsonProperty
     public void setCollection(BiodiversityCollection collection) {
         this.collection = collection;
+    }
+
+    public Set<String> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<String> authors) {
+        this.authors = authors;
+    }
+
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
+    }
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    public Sample getSample() {
+        return sample;
+    }
+
+    public void setSample(Sample sample) {
+        this.sample = sample;
     }
 }

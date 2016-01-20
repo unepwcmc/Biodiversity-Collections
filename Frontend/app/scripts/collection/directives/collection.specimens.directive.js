@@ -7,15 +7,12 @@ define(['angularAMD'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('specimens', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','toastr',
-
-        function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, toastr) {
+    angularAMD.directive('specimens', ['$timeout', '$rootScope', '$stateParams', '$window', '$http', '$cookies','toastr', function ($timeout, $rootScope, $stateParams, $window, $http, $cookies, toastr) {
 
             return {
                 restrict: 'EA',
                 templateUrl: 'views/collection/specimens.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$translate',
-                    function($scope, $rootScope, $stateParams, $translate){
+                controller: ['$scope', '$rootScope', '$stateParams', '$translate', function($scope, $rootScope, $stateParams, $translate){
 
                         $scope.specimensCount = 0;
 
@@ -47,6 +44,9 @@ define(['angularAMD'], function (angularAMD) {
                                 return;
                             }
 
+                            if ($scope.collection.specimens === undefined)
+                                $scope.collection.specimens = [];
+
                             var specimens = $scope.collection.specimens;
                             specimens[specimens.length] = $scope.specimen;
                             $scope.specimen = {};
@@ -71,13 +71,17 @@ define(['angularAMD'], function (angularAMD) {
                                     $scope.specimensCount += parseInt(obj.count);
                                 }
                             });
-                        }
 
+                        };
 
                     }],
                 link: function (scope, element, attrs) {
 
-                    setViewMode();
+                    if (scope.$parent.editMode) {
+                        setEditMode();
+                    } else {
+                        setViewMode();
+                    }
 
                     scope.$on('ngRepeatFinished', function() {
                         if(!scope.editMode)
@@ -103,6 +107,7 @@ define(['angularAMD'], function (angularAMD) {
                     function setEditMode(){
                         $(element).find('input[type="text"]').prop('readonly', false);
                     }
+
                 }
             };
         }]);

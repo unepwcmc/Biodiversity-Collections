@@ -1,0 +1,118 @@
+<section class="page-content">
+
+    <!-- Loading screen -->
+    <div id="loader-wrapper" class="loading" style="display: none">
+        <div id="loader"></div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8">
+                <form class="form-horizontal" role="form" name="user_form" novalidate>
+                    <div class="small-field">
+                        <input  type="hidden" value="{{ user.id }}">
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'FIRST_NAME' | translate }} *</label>
+
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="user.firstName"
+                                                         required></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'LAST_NAME' | translate }} *</label>
+
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="user.lastName"
+                                                         required></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
+
+                            <div class="col-sm-9">
+                                <angucomplete-alt id="user_institution"
+                                                  placeholder="Search an Institution"
+                                                  pause="150"
+                                                  selected-object="institutionSelectedFn"
+                                                  remote-api-handler="institutionAutocomplete"
+                                                  title-field="name"
+                                                  minlength="0"
+                                                  initial-value="institutionSelected"
+                                                  input-class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'ADDRESS' | translate }}</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" data-ng-model="user.contact.address1">
+                                <input type="text" class="form-control" data-ng-model="user.contact.address2">
+                                <input type="text" class="form-control" data-ng-model="user.contact.address3">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'POSTAL_CODE' | translate }}</label>
+
+                            <div class="col-sm-9"><input type="text" class="form-control" phone-digits
+                                                         data-ng-model="user.contact.postalCode"></div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'EMAIL_ADDRESS' | translate }}&nbsp;<em><small>{{ 'USERNAME' | translate}} *</small></em></label>
+
+                            <div class="col-sm-9"><input type="email" class="form-control" data-ng-model="user.email"
+                                                         required></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'PHONE_NUMBER' | translate }}</label>
+
+                            <div class="col-sm-9"><input type="text" class="form-control" phone-digits
+                                                         data-ng-model="user.contact.phoneNumber"></div>
+                        </div>
+
+                        <div ng-if="adminView" class="form-group">
+                            <label class="col-sm-3">{{ 'ROLE' | translate}}</label>
+                            <div class="col-sm-9">
+                                <select select-wrap data-ng-model="user.role">
+                                    <option value="ADMIN">{{'ADMIN' | translate }}</option>
+                                    <option value="CURATOR" selected>{{'CURATOR' | translate }}</option>
+                                    <option value="GOVERNMENT_OFFICIAL" selected>{{'GOVERNMENT_OFFICIAL' | translate }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'PASSWORD' | translate }} *</label>
+
+                            <div class="col-sm-9"><input type="password" class="form-control"
+                                                         data-ng-model="user.password" required></div>
+                        </div>
+
+                        <div ng-show="adminView" class="form-group">
+                            <label class="col-sm-3">{{ 'ACTIVE' | translate }}</label>
+
+                            <div class="col-sm-9">
+                                 <input type="radio" name="active" data-ng-model="user.enabled" ng-value="true" checked>&nbsp;Yes
+                                 <input type="radio" name="active" data-ng-model="user.enabled" ng-value="false">&nbsp;No
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                   <div>
+                       <hr/>
+                       <button ng-show="editUserView" ng-click="editUserSubmit()"  class="btn btn-small btn-primary pull-right btn-white" ng-disabled="!user_form.$valid"><strong>{{'UPDATE' | translate}}</strong></button>
+                       <button ng-show="!editUserView" ng-click="userSubmit()" class="btn btn-small btn-primary pull-right btn-white" ng-disabled="!user_form.$valid"><strong>{{'REGISTER' | translate}}</strong></button>
+                       <a  class="btn btn-small btn-primary pull-right btn-transparent" ng-click="cancelForm()"><strong>{{'CANCEL' | translate}}</strong></a>
+                   </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

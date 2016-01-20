@@ -50,21 +50,11 @@ define(['angularAMD'], function (angularAMD) {
                         $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
                     });
             },
-            update: function () {
-
-                $http.put( $rootScope.getHost() + "collections/" + this.id, this)
-                    .success(function (data) {
-                        $rootScope.$broadcast("BIODIVERSITY_UPDATED");
-                    })
-                    .error(function (message) {
-                        $log.error(message);
-                    });
-            },
-            get: function( id){
+            loadAll: function( page, size ){
 
                 var self = this;
 
-                $http.get( $rootScope.getHost() + "collections/" + id )
+                $http.get( $rootScope.getHost() + 'collections?page=' +  page  + '&size=' +   size)
 
                     .success(function (data) {
                         if (data.message == 'no matches found') {
@@ -77,6 +67,170 @@ define(['angularAMD'], function (angularAMD) {
                     .error(function (message) {
                         $log.error(message);
                         $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
+                    });
+            },
+            loadByDefinition: function( query, page, size){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + 'collections/search/definition?name=' + query + '&page=' +  page  + '&size=' +   size)
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("BIODIVERSITY_FILTER_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("BIODIVERSITY_FILTER_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("BIODIVERSITY_FILTER_LOAD_ERROR");
+                    });
+
+            },
+            loadByInstitution: function( id, page, size, callback ){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + 'collections/search/institutions?id=' + id + "&page=" + page + "&size=" + size )
+
+                    .success(function ( data, status, headers, config ) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("INSTITUTION_COLLECTION_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+
+                            $rootScope.$broadcast("INSTITUTION_COLLECTION_LOADED");
+
+                            if(callback)
+                                callback( data, status, headers, config )
+                        }
+                    })
+                    .error(function (data, status, headers, config) {
+                        $log.error( data );
+
+                        $rootScope.$broadcast("INSTITUTION_COLLECTION_LOAD_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            loadByNetwork: function( id, page, size, callback ){
+                var self = this;
+                $http.get( $rootScope.getHost() + 'collections/search/networks?id=' + id + "&page=" + page + "&size=" + size )
+                    .success(function ( data, status, headers, config ) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("NETWORK_COLLECTION_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+
+                            $rootScope.$broadcast("NETWORK_COLLECTION_LOADED");
+
+                            if(callback)
+                                callback( data, status, headers, config )
+                        }
+                    })
+                    .error(function (data, status, headers, config) {
+                        $log.error( data );
+
+                        $rootScope.$broadcast("NETWORK_COLLECTION_LOAD_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            update: function ( callback ) {
+                var self = this;
+                $http.put( $rootScope.getHost() + "collections/" + this.id, this)
+                    .success(function (data, status, headers, config) {
+                        self.setData(data);
+                        $rootScope.$broadcast("BIODIVERSITY_UPDATED");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function (data, status, headers, config) {
+                        $log.error(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            addMember: function (callback) {
+                var self = this;
+                $http.put( $rootScope.getHost() + "collections/" + this.id, this)
+                    .success(function (data, status, headers, config) {
+
+                        self.setData(data);
+
+                        $rootScope.$broadcast("BIODIVERSITY_MEMBER_UPDATED");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function (data, status, headers, config) {
+                        $log.error(data);
+
+                        $rootScope.$broadcast("BIODIVERSITY_MEMBER_UPDATED_ERROR");
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            saveMember: function( model, callback ){
+                $http.post( $rootScope.getHost() + "members/", model)
+                    .success( function (data, status, headers, config) {
+                            if(callback)
+                                callback( data, status, headers, config )
+                    })
+                    .error( function (data, status, headers, config) {
+                        $log.error(data.message);
+                            if(callback)
+                                callback( data, status, headers, config )
+                    });
+            },
+            save: function () {
+                var self = this;
+                $http.post( $rootScope.getHost() + "collections/", this)
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("BIODIVERSITY_SAVED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            delete: function (id) {
+                $http.delete( $rootScope.getHost() + "collections/" + id)
+                    .success(function (data) {
+                        $rootScope.$broadcast("BIODIVERSITY_DELETED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            get: function( id, callback){
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + "collections/" + id )
+
+                    .success( function (data, status, headers, config) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("BIODIVERSITY_LOADED");
+                            if(callback)
+                                callback( data, status, headers, config )
+                        }
+                    })
+                    .error( function (data, status, headers, config) {
+                        $log.error( data );
+                        $rootScope.$broadcast("BIODIVERSITY_LOAD_ERROR");
+                        if(callback)
+                            callback( data, status, headers, config )
                     });
             },
             curator: function( id){
@@ -169,6 +323,87 @@ define(['angularAMD'], function (angularAMD) {
                     .error(function (message) {
                         $log.error(message);
                         $rootScope.$broadcast("BIODIVERSITY_AUTOCOMPLETE_LOAD_ERROR");
+                    });
+            },
+            addNetwork: function( id, networkId, callback){
+
+                var self = this;
+
+                $http.put( $rootScope.getHost() + "collections/" + id + "/network/" + networkId, {} )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            removeNetwork: function( id, networkId, callback){
+
+                var self = this;
+
+                $http.delete( $rootScope.getHost() + "collections/" + id + "/network/" + networkId )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config )
+                    });
+            },
+            addSamples: function( id, samples, callback){
+                var self = this;
+                $http.post( $rootScope.getHost() + "collections/" + id + "/samples", samples )
+                    .success(function ( data, status, headers, config ) {
+                        self.setData(data);
+                        if(callback)
+                            callback( data, status, headers, config );
+                        $rootScope.$broadcast("BIODIVERSITY_SAMPLES_ADDED");
+                    })
+                    .error(function ( data, status, headers, config ) {
+                        $log.error(data.message);
+                        if(callback)
+                            callback( data, status, headers, config );
+                        $rootScope.$broadcast("BIODIVERSITY_SAMPLES_ADD_ERROR");
+                    });
+            },
+            removeSample: function( id, sampleId, callback){
+
+                var self = this;
+
+                $http.delete( $rootScope.getHost() + "collections/" + id + "/sample/" + sampleId )
+
+                    .success(function ( data, status, headers, config ) {
+
+                        self.setData(data);
+
+                        if(callback)
+                            callback( data, status, headers, config );
+                        $rootScope.$broadcast("BIODIVERSITY_SAMPLES_REMOVED");
+                    })
+                    .error(function ( data, status, headers, config ) {
+
+                        $log.error(data.message);
+
+                        if(callback)
+                            callback( data, status, headers, config );
+                        $rootScope.$broadcast("BIODIVERSITY_SAMPLES_REMOVED_ERROR");
                     });
             }
         };

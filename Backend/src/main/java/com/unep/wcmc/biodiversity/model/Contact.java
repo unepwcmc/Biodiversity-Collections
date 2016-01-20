@@ -8,7 +8,13 @@ public class Contact implements Serializable {
 
     private String phoneNumber;
 
-    private String address;
+    private String mobileNumber;
+
+    private String address1;
+
+    private String address2;
+
+    private String address3;
 
     private String city;
 
@@ -18,6 +24,10 @@ public class Contact implements Serializable {
 
     private String country;
 
+    private Float latitude;
+
+    private Float longitude;
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -26,12 +36,36 @@ public class Contact implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(String address3) {
+        this.address3 = address3;
     }
 
     public String getCity() {
@@ -64,5 +98,21 @@ public class Contact implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
     }
 }

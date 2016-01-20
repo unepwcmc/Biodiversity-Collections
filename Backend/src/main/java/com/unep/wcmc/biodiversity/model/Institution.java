@@ -1,12 +1,22 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.springframework.data.rest.core.annotation.RestResource;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraph(name = "Institution.detail",
+        attributeNodes = {
+                @NamedAttributeNode("curators"),
+                @NamedAttributeNode("networks")
+        }
+    )
 public class Institution implements BaseEntity {
 
     @Id
@@ -15,6 +25,7 @@ public class Institution implements BaseEntity {
 
     private String name;
 
+    @Column(columnDefinition = "text")
     private String description;
 
     private String type;
@@ -25,19 +36,27 @@ public class Institution implements BaseEntity {
 
     private String webSite;
 
+    private String webSiteName;
+
     @Embedded
     private Contact contact;
 
-    @OneToMany
-    @JoinColumn(name = "institution_id")
+    @ManyToMany
+    @JoinTable(name = "curator_institution",
+            joinColumns = @JoinColumn(name = "institution_id"),
+            inverseJoinColumns = @JoinColumn(name = "curator_id"))
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")
+    @JsonIgnore
     private Set<BiodiversityCollection> collections;
 
     @ManyToMany(mappedBy = "institutions")
-    @RestResource(rel = "institutionNetworks")
+    @JsonIgnore
     private Set<Network> networks;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<Image> images;
 
     @Override
     public Long getId() {
@@ -106,11 +125,22 @@ public class Institution implements BaseEntity {
     }
 
     public Set<Curator> getCurators() {
-        return curators;
+        if (this.curators == null) {
+            this.curators = new HashSet<>();
+        }
+        return this.curators;
     }
 
     public void setCurators(Set<Curator> curators) {
         this.curators = curators;
+    }
+
+    public void addCurators(Curator c){
+        getCurators().add(c);
+    }
+
+    public void removeCurators(Curator c){
+        getCurators().remove(c);
     }
 
     public Set<BiodiversityCollection> getCollections() {
@@ -127,5 +157,31 @@ public class Institution implements BaseEntity {
 
     public void setNetworks(Set<Network> networks) {
         this.networks = networks;
+    }
+
+    public String getWebSiteName() {
+        return webSiteName;
+    }
+
+    public void setWebSiteName(String webSiteName) {
+        this.webSiteName = webSiteName;
+    }
+
+    public Set<Image> getImages() {
+        return images == null? new HashSet<Image>(): this.images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
+    public void addImage(Image image){
+        if(getImages().size() < 5){
+            getImages().add(image);
+        }
+    }
+
+    public  void removeImage(Image image){
+        getImages().remove(image);
     }
 }

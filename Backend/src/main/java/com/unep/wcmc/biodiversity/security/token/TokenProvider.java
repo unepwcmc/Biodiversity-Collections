@@ -1,6 +1,7 @@
 package com.unep.wcmc.biodiversity.security.token;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.unep.wcmc.biodiversity.config.MvcConfig;
 import com.unep.wcmc.biodiversity.dto.TokenResponse;
 import com.unep.wcmc.biodiversity.exception.InvalidAuthenticationTokenException;
 import com.unep.wcmc.biodiversity.model.User;
@@ -63,7 +64,7 @@ public class TokenProvider {
         authTokenCache.put(new Element(token, authentication, getTimeToIdle(), getTimeToLive()));
         response.addHeader(AUTH_HEADER_NAME, token);
         TokenResponse tokenResponse = new TokenResponse(token, user);
-        String tokenJsonResponse = new ObjectMapper().writeValueAsString(tokenResponse);
+        String tokenJsonResponse = new MvcConfig.HibernateAwareObjectMapper().writeValueAsString(tokenResponse);
         response.addHeader("Content-Type", "application/json");
         response.getWriter().print(tokenJsonResponse);
         return token;

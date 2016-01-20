@@ -1,6 +1,6 @@
 require.config({
     baseUrl: 'scripts/',
-    waitSeconds: 200,
+    waitSeconds: 0,
 
     // alias libraries paths.  Must set 'angular'
     paths: {

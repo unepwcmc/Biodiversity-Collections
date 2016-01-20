@@ -3,7 +3,7 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD','waypoints', 'collection/directives/collection.image.directive'], function (angularAMD) {
+define(['angularAMD','waypoints', 'core/directives/core.images.box.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -14,8 +14,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
             return {
                 restrict: 'EA',
                 templateUrl: 'views/collection/details.tpl.html',
-                controller: ['$scope', '$rootScope', '$stateParams', '$translate',
-                    function($scope, $rootScope, $stateParams, $translate){
+                controller: ['$scope', '$rootScope',function($scope, $rootScope){
 
                         $scope.curatorSelected = null;
                         $scope.institutionSelected = null;
@@ -24,25 +23,37 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
 
                         $scope.$on('BIODIVERSITY_LOADED', function() {
                             console.log('collection loaded...');
+                            if($scope.institutionSelected == null){
+                                $scope.institutionSelected = $scope.collection.institution;
+                            }
 
-                            $scope.institutionSelected = $scope.collection.institution;
                             $scope.curatorSelected = $scope.collection.curator;
-
-                            $('#loader-wrapper').fadeToggle('400');
                         });
 
+                        $scope.$on('INSTITUTION_LOADED', function(){
+
+                            if($scope.fromState == 'institution'){
+
+                                $scope.collection.published = false;
+
+                                _.each($scope.institution.curators, function( ele ){
+                                    delete ele.institution;
+                                    delete ele.associatedInstitutions;
+                                });
+
+                                $scope.institutionSelected = $scope.institution;
+                                $scope.collection.institution = $scope.institution;
+                            }
+                        });
 
                         $scope.$on('CANCEL_EDIT_COLLECTION', function() {
-
                             $scope.$broadcast('angucomplete-alt:changeInput', 'curators', $scope.collection.curator);
                             $scope.$broadcast('angucomplete-alt:changeInput', 'institution', $scope.collection.institution);
                         });
 
                         $scope.curatorAutocomplete = function( userInputString, timeoutPromise){
-
-                            if(userInputString == null)
+                            if (userInputString == null)
                                return null;
-
                             return $http.get( $rootScope.getHost() + "curators/search/autocomplete?name=" + userInputString ,
                                 {
                                     timeout: timeoutPromise
@@ -51,8 +62,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                         };
 
                         $scope.institutionAutocomplete = function( userInputString, timeoutPromise){
-
-                            return $http.get( $rootScope.getHost() + "institutions/search/autocomplete?name=" + userInputString,
+                            return $http.get( $rootScope.getHost() + "institutions/search/autocompleteName?name=" + userInputString,
                                 {
                                     timeout: timeoutPromise
                                 }
@@ -60,6 +70,8 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                         };
 
                         $scope.addResearcher = function(){
+                            if ($scope.collection.researchers === undefined)
+                                $scope.collection.researchers = [];
                             var researchers = $scope.collection.researchers;
                             researchers[researchers.length] = $scope.researcher;
                             $scope.researcher = {};
@@ -84,7 +96,7 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                     }],
                 link: function (scope, element, attrs) {
 
-                    var waypoint = new Waypoint({
+                    new Waypoint({
                         element: $(element).find("#collection-bar-default"),
                         handler: function( direction ) {
 
@@ -101,19 +113,22 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                         }
                     });
 
-                    scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
-
+                    scope.$on('ACTION_SAVE', function(){
                         scope.$emit('SAVE_COLLECTION');
                         backToDefault();
                     });
 
                     $(element).find("#edit-collection").click( function(){
-
                         scope.disableAutocomplete = false;
                         scope.navigationBar = true;
                         scope.$emit('EDIT_COLLECTION');
                         scope.$apply();
                     });
+
+                    if (scope.isNew) {
+                        scope.disableAutocomplete = false;
+                        scope.navigationBar = true;
+                    }
 
                     $(element).find('.btn-edit-collection-cancel').click(function(){
                         backToDefault();
@@ -121,7 +136,6 @@ define(['angularAMD','waypoints', 'collection/directives/collection.image.direct
                     });
 
                     function backToDefault(){
-
                         scope.navigationBar = false;
                         scope.disableAutocomplete = true;
                         $(element).find("#collection-bar-fixed").hide();

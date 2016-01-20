@@ -1,0 +1,153 @@
+<section class="page-content" edit-form="{{editMode}}">
+
+    <!-- Loading screen -->
+    <div id="loader-wrapper" class="loading">
+        <div id="loader"></div>
+    </div>
+
+    <div class="container">
+        <nav id="institution-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <h2 ng-show="(editMode && adminEditView && adminView) || (editMode && !adminView)" class="navbar-text"><strong>{{'EDIT_INSTITUTION' | translate}}</strong></h2>
+                <h2 ng-show="editMode && !adminEditView && adminView" class="navbar-text"><strong>{{'NEW_INSTITUTION' | translate}}</strong></h2>
+
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-transparent btn-edit-institution-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <h4 id="institution-bar-default">
+            <strong ng-show="!editMode" >{{ institution.name }}</strong>
+            <strong ng-show="(editMode && adminEditView && adminView) || (editMode && !adminView)" >{{'EDIT_INSTITUTION' | translate}}</strong>
+            <strong ng-show="editMode && !adminEditView && adminView" >{{'NEW_INSTITUTION' | translate}}</strong>
+            <span>
+                <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'INSTITUTION'| translate}}</strong></button>
+            </span>
+
+            <a ng-show="!editMode && logged" id="edit-institution" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
+            <a ng-show="(editMode && adminEditView && adminView) || (editMode && !adminView)" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="!institution_form.$valid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
+            <a ng-show="(editMode && adminEditView && adminView) || (editMode && !adminView)" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+        </h4>
+
+        <hr/>
+    </div>
+    <div class="container">
+         <div class="row">
+             <div class="col-md-8">
+                 <form action="#" class="form-horizontal form-block form-data" role="form" name="institution_form" novalidate>
+                     <div class="small-field">
+
+                         <div ng-show="!editMode" class="form-group">
+                             <label class="col-sm-3">{{ 'INSTITUTION_ID' | translate }}</label>
+                             <div class="col-sm-9"><input type="text" class="form-control" value="{{institution.id}}"></div>
+                         </div>
+
+                         <div ng-show="editMode" class="form-group">
+                             <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
+                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.name" required></div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-sm-3">{{ 'DESCRIPTION' | translate  }}</label>
+                             <div class="col-sm-9">
+                                 <textarea elastic type="text" class="form-control" data-ng-model="institution.description" ></textarea>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-sm-3">{{ 'TYPE' | translate }}</label>
+                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.type" ></div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-sm-3">{{ 'DISCIPLINE' | translate }}</label>
+                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.discipline" ></div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-sm-3">{{ 'GOVERNANCE' | translate }}</label>
+                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.governance" ></div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-sm-3">{{ 'CURATORS' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <table class="researches">
+                                     <tbody>
+                                     <tr ng-repeat="curator in institution.curators" on-finish-render="ngRepeatFinished">
+                                         <td><a style="margin-left: 10px;" data-ui-sref="curator({id : curator.id})">{{curator.name}}</a><input type="hidden" class="form-control" data-ng-model="curator.name" ></td>
+                                         <td>&nbsp;&nbsp;<a ng-show="editMode" style="float: right"  ng-click="deleteCurator($index);"><i class="fa fa-close"></i></a></td>
+                                     </tr>
+                                     </tbody>
+                                     <tfoot ng-show="editMode">
+                                     <tr>
+                                         <td>
+                                             <angucomplete-alt id="institution_curator_autocomplete"
+                                                               placeholder="Search a Curator"
+                                                               pause="150"
+                                                               selected-object="institutionCuratorSelected"
+                                                               remote-api-handler="curatorAutocomplete"
+                                                               title-field="name"
+                                                               minlength="0"
+                                                               input-class="form-control curator-institutions"/>
+                                         </td>
+                                         <td>&nbsp;&nbsp;<a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addCurator();"><label>{{ 'ADD' | translate }}</label></a></td>
+                                     </tr>
+                                     </tfoot>
+                                 </table>
+                             </div>
+                         </div>
+
+                         <div ng-show="!editMode" class="form-group">
+                             <label class="col-sm-3">{{ 'INSTITUTION_WEBSITE' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <a style="margin-left: 10px;" href="{{institution.webSite}}" target="_blank">{{ institution.webSiteName }}</a>
+                             </div>
+                         </div>
+
+                         <div ng-show="editMode" class="form-group">
+                             <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <span><em>{{ 'TITLE' | translate }}</em></span>
+                                 <input type="text" class="form-control" data-ng-model="institution.webSiteName">
+                                 <span><em>{{ 'URL' | translate }}</em></span>
+                                 <input type="text" class="form-control" data-ng-model="institution.webSite">
+                             </div>
+                         </div>
+
+                         <div ng-show="editMode" class="form-group">
+                             <label class="col-sm-3"><em style="font-weight: 100">* {{ 'REQUIRED_FIELDS' | translate }}</em></label>
+                             <div class="col-sm-9">&nbsp;</div>
+                         </div>
+                     </div>
+                 </form>
+             </div>
+
+             <div class="col-md-4">
+                 <images-box title="Add new photo" images="institution.images"></images-box>
+             </div>
+
+         </div>
+
+        <hr/>
+
+
+    </div>
+</section>
+
+<institution-contact></institution-contact>
+<institution-collections></institution-collections>
+<institution-networks></institution-networks>
+
+<div class="container" ng-show="editMode && !adminEditView" edit-form="{{editMode}}">
+    <hr/>
+    <h4>
+        <a ng-show="editMode && !adminEditView" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="institution_form.$invalid"><strong>{{'CREATE' | translate}}</strong></a>
+        <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
+    </h4>
+</div>

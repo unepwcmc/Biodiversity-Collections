@@ -1,4 +1,4 @@
-<section class="page-content">
+<section class="page-content" edit-form="{{editMode}}">
     <div class="container">
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'SPECIMENS' | translate }}</strong></h5></div>
@@ -8,8 +8,7 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-6 small-field">
-                <form class="view-mode form-block" role="form">
-
+                <form class="form-block form-data" role="form">
                     <table class="table table-hover specimen-table">
                         <thead>
                         <tr>
@@ -31,7 +30,7 @@
                             <tr ng-show="editMode">
                                 <td width="70%"><input type="text" data-ng-model="specimen.type" class="form-control"></td>
                                 <td width="25%" align="right"><input type="text" style="text-align: right;" data-ng-model="specimen.count" class="form-control"></td>
-                                <td width="5%" align="left"><a type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addSpecimens();">{{ 'ADD' | translate }}</a></td>
+                                <td width="5%" align="left"><a type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addSpecimens();"><label>{{ 'ADD' | translate }}</label></a></td>
                             </tr>
                         </tfoot>
                     </table>

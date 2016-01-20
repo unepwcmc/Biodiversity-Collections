@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "user_role", uniqueConstraints = { @UniqueConstraint(columnNames = { "role" }), @UniqueConstraint(columnNames = { "name" }) })
 public class UserRole implements BaseEntity {
     
-    public enum RoleType { ADMIN, SUPERADMIN, EXPERT, PUBLIC_USER, ANONYMOUS }
+    public enum RoleType { ADMIN, CURATOR, GOVERNMENT_OFFICIAL}
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

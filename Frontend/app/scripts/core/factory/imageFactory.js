@@ -33,6 +33,28 @@ define(['app'], function (app) {
             },
             load: function( id ){
 
+            },
+            save: function( file, callback ){
+
+                var fd = new FormData();
+                fd.append('file', file );
+
+                $http.post($rootScope.getHost() + "medias/", fd, {
+                    headers : {
+                        'Content-Type' : undefined
+                    }
+                })
+                .success(function ( data, status, headers, config ) {
+                        if(callback)
+                            callback( data, status, headers, config )
+                })
+                .error(function ( data, status, headers, config ) {
+                        if(callback)
+                            callback( data, status, headers, config );
+
+                    $log.error( data );
+
+                });
             }
 
         };

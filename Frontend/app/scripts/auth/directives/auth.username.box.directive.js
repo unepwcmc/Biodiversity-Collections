@@ -6,33 +6,38 @@ define(['angularAMD', 'popover'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('usernameBox', ['$timeout', '$compile', '$rootScope', '$state', '$http', 'toastr',
-      function ($timeout, $compile, $rootScope, $state, $http, toastr) {
+    angularAMD.directive('usernameBox', ['$timeout', '$compile', '$rootScope', '$state', '$http', 'toastr','$cookies', function ($timeout, $compile, $rootScope, $state, $http, toastr, $cookies) {
 
         return {
             restrict: 'A',
             transclude: true,
             templateUrl: 'views/auth/username.box.tpl.html',
             scope:{
+                logged: '=',
+                isAdmin: '=',
                 placement: '=',
                 name: '='
             },
             controller: ['$scope', '$rootScope', '$translate',
               function( $scope, $rootScope, $translate ){
 
-                $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN' || $rootScope.userRole == 'EXPERT');
+                $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN');
 
                 $scope.$on('AuthenticationDone', function() {
-                    $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN' || $rootScope.userRole == 'EXPERT');
+                    $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN');
                 });
 
                 $scope.$on('LogoutDone', function() {
-                    $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN' || $rootScope.userRole == 'EXPERT');
+                    $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN');
                 });
 
                 $scope.logoutFunc = function(){
                     $rootScope.logout();
                     $scope.closePopover();
+                };
+
+                $scope.editUserSettings = function(){
+                    $state.go('editUserSettings', { id: $cookies.get('userId')});
                 };
 
                 $scope.closePopover = function(){
@@ -53,6 +58,10 @@ define(['angularAMD', 'popover'], function (angularAMD) {
                             html: true
                         }
                     );
+                };
+
+                $scope.showFormSupport = function(){
+                    $rootScope.$broadcast('ASK_FOR_SUPPORT_EVENT');
                 };
 
             }],

@@ -1,0 +1,147 @@
+<section class="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'ASSOCIATED_PUBLICATIONS_DOCUMENTS' | translate }}</strong></h5></div>
+            <div class="col-md-10">
+                <table class="table table-hover publication" ts-wrapper>
+                    <thead>
+                    <tr>
+                        <th ts-criteria="title">{{ 'TITLE' | translate }}</th>
+                        <th ts-criteria="authors">{{ 'AUTHOR' | translate }}</th>
+                        <th ts-criteria="type">{{ 'TYPE' | translate }}</th>
+                        <th ts-criteria="contentType">{{ 'FORMAT' | translate }}</th>
+                        <th class="no-sorter" width="5%">&nbsp;</th>
+                        <th ng-show="editMode" width="5%" class="btn-td no-sorter"><a ng-disabled="checkboxCountPub > 0" ng-click="deleteAll()" class="btn"><i class="fa fa-close"></i></a></th>
+                        <th class="no-sorter" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" /></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="publication in documents.content" ts-repeat>
+                        <td>{{publication.title}}</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li ng-repeat="author in publication.authors">{{author}}</li>
+                            </ul>
+                        </td>
+                        <td>{{publication.type}}</td>
+                        <td>.{{publication.contentType}}</td>
+                        <td class="btn-td"><a pub-popover doc="publication" class="btn pub-popover"><i class="fa fa-ellipsis-v"></i></a></td>
+                        <td ng-show="editMode" class="btn-td"><a ng-click="deleteDocument(publication.id)" class="btn"><i class="fa fa-close"></i></a></td>
+                        <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="pull-left publication-collection-add">
+                <a ng-show="editMode" ng-click="showPublicationForm()" class="btn btn-primary"><label>{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</label></a>
+            </div>
+            <div class="pull-right" ng-show="documents.totalPages > 1">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
+                    </div>
+                    <div class="form-group" style="width: 100px">
+                        <div class="select-wrapper">
+                            <select class="col-md-5" id="publication-size-box">
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{documents.number + 1}} {{ 'OF' | translate }} {{documents.totalPages}}</label>
+                    </div>
+
+                    <span  ng-class="{disabled: documents.number === 0}">
+                        <a type="submit" class="btn btn-default" ng-show="documents.number !== 0" ng-click="paginatePublications(documents.number - 1,documents.size)"><strong style="color: #666"> &lt; </strong></a>
+                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="documents.number === 0"><strong style="color: #666"> &lt; </strong></button>
+                    </span>
+                    <span ng-class="{disabled: documents.number === documents.totalPages - 1}">
+                        <a type="submit" class="btn btn-default" ng-show="documents.number !== documents.totalPages - 1" ng-click="paginatePublications(documents.number + 1,documents.size)"><strong style="color: #666"> &gt; </strong></a>
+                        <button disabled="disabled" class="btn btn-default" ng-show="documents.number === documents.totalPages - 1"><strong style="color: #666"> &gt; </strong></button>
+                    </span>
+
+                </form>
+            </div>
+        </div>
+
+        <hr/>
+
+    </div>
+</section>
+
+<div class="modal fade" id="publicatioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button  type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 ng-show="!document.id" class="modal-title">{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</h4>
+                <h4 ng-show="document.id" class="modal-title">{{ 'EDIT_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+                <form name="multimedia_form"  class="form-horizontal" role="form" novalidate>
+                    <input type="hidden" ng-model="document.id" />
+                    <div class="small-field">
+                        <div class="form-group">
+                            <label for="inputTitle" class="col-sm-4 control-label-document text-left">{{ 'TITLE' | translate }}</label>
+                            <div class="col-sm-6">
+                                <input id="inputTitle" type="text" tabindex="1" class="form-control" data-ng-model="document.title" maxlength="255" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputAuthor" class="col-sm-4 control-label-document">{{ 'AUTHOR' | translate }}</label>
+                            <div class="col-sm-6">
+
+                                <span class="clearfix" ng-repeat="author in document.authors track by $index">
+                                    <input style="width: 89%" id="inputAuthor" type="text" tabindex="2" class="form-control pull-left" ng-model="document.authors[$index]" maxlength="255" required>
+                                    <a ng-show="$index > 0" ng-click='document.authors.splice($index, 1)' class="btn-link-primary btn-right-side pull-right " ><i class="fa fa-close"></i>&nbsp;</a>
+                                </span>
+
+                                <a ng-click='document.authors.push("")' class="clearfix btn-link-primary"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'ADD_A_NEW_AUTHOR' | translate}}</a>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selectDocumentType" class="col-sm-4 control-label-document">{{ 'DOCUMENT_TYPE' | translate }}</label>
+                            <div class="col-sm-6">
+                                <select id="selectDocumentType" select-wrap class="form-control" data-ng-model="document.type" tabindex="3">
+                                    <option value="PUBLICATION">{{ 'PUBLICATION' | translate }}</option>
+                                    <option value="LEGAL">{{ 'LEGAL' | translate }}</option>
+                                    <option value="OTHER">{{ 'OTHER' | translate }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input id="publication_ipt_file"  type="file" style="display: none">
+                            <label for="btPublicationDocument" class="col-sm-4 control-label-document">{{ 'PUBLICATION_DOCUMENT' | translate }}</label>
+                            <div class="col-sm-6">
+                                <a id="btPublicationDocument" tabindex="4" class="btn btn-primary" onclick="$('#publication_ipt_file').click()">
+                                    <i class="fa fa-upload"></i>{{ 'SELECT_FILE' | translate }}</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputDescription" class="col-sm-4 control-label-document">{{ 'DESCRIPTION' | translate }}</label>
+                            <div class="col-sm-6">
+                                <textarea id="inputDescription" elastic tabindex="3" class="form-control" data-ng-model="document.description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" tabindex="6" class="btn btn-primary"  ng-disabled="multimedia_form.$invalid" ng-click="saveOrUpdate()">{{ 'SAVE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

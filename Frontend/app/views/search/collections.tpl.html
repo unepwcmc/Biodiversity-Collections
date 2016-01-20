@@ -1,0 +1,34 @@
+<div class="container">
+
+    <h4><strong>{{collection.totalElements}}</strong> {{ 'RESULT_FOR_COLLECTION' | translate }}</h4>
+
+    <div class="result-list">
+
+        <div ng-repeat="col in collection.content" class="list-item">
+            <h5><strong><a data-ui-sref="collection({id:col.id})">{{col.name}}</a></strong> | <a data-ui-sref="collection({id:col.id})">id: {{col.id}}</a></h5>
+            <p><strong>{{col.institution.name}}</strong></p>
+            <p>{{col.description}}</p>
+        </div>
+
+    </div>
+
+    <div class="row" align="center">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8" align="center">
+            <paging
+                    page="collection.number + 1"
+                    page-size="collection.size"
+                    total="collection.totalElements"
+                    paging-action="load(page - 1)"
+                    text-next="{{ 'NEXT' | translate}}"
+                    text-prev="{{ 'PREVIOUS' | translate}}"
+                    scroll-top="true"
+                    show-prev-next="true"
+                    show-first-last="true">
+            </paging>
+        </div>
+        <div class="col-md-2"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{collection.totalElements}}&nbsp;results</label></div>
+    </div>
+
+
+</div>

@@ -1,24 +1,28 @@
-<div class="col-md-6">
+<div class="col-md-8">
+
     <form id="form-header" class="form-inline" ng-show="showHeaderForm">
         <div class="small-field">
-            <div class="form-group">
+            <div class="form-group home-autocomplete-search">
                 <angucomplete-alt id="searchTop"
                                   placeholder="{{ 'SEARCH' | translate }}"
                                   pause="150"
                                   selected-object="searchSelectedFn"
                                   remote-api-handler="searchAutocomplete"
-                                  remote-url-data-field="_embedded.biodiversityCollections"
                                   title-field="name"
                                   text-no-results="{{ 'NO_RESULTS_FOUND' | translate }}"
-                                  minlength="3"
-                                  initial-value="searchSelected"
+                                  minlength="0"
+                                  input-changed="inputChangedFn"
+                                  initial-value="searchSelected()"
                                   disable-input="disableAutocomplete"
                                   input-class="form-control"/>
             </div>
-            <div class="form-group" style="width: 120px;">
+            <div class="form-group" style="width: 110px;">
                 <select select-wrap data-ng-model="searchType">
-                    <!--<option value="">&#45;&#45; Please select &#45;&#45;</option>-->
-                    <option value="collection">Collection</option>
+                    <option value="collection">{{ 'COLLECTION' | translate }}</option>
+                    <option value="institution">{{ 'INSTITUTION' | translate }}</option>
+                    <option value="network">{{ 'NETWORK' | translate }}</option>
+                    <option value="curator">{{ 'CURATOR' | translate }}</option>
+                    <option value="document">{{ 'DOCUMENT' | translate }}</option>
                 </select>
             </div>
             <div class="form-group">

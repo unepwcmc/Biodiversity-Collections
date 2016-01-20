@@ -1,11 +1,11 @@
-<section class="l-main">
+<sBRAZILIANass="l-main">
 
     <section class="page-content">
         <div class="container">
             <div class="row">
                 <div class="col-md-1"> </div>
-                <div class="col-md-10"><h2 class="text-center">Phasellus auctor lacinia sodales. Quisque
-                    <strong>commodo Brazil nibh id interdum</strong></h2></div>
+                <div class="col-md-12"><h2 class="text-center">{{ 'BRAZILIAN_COLLECTIONS_DATABASE' | translate }}
+                    <strong>&nbsp;</strong></h2></div>
                 <div class="col-md-1"></div>
             </div>
         </div>
@@ -23,21 +23,19 @@
                                                       pause="150"
                                                       selected-object="searchSelectedFn"
                                                       remote-api-handler="searchAutocomplete"
-                                                      remote-url-data-field="_embedded.biodiversityCollections"
                                                       title-field="name"
                                                       text-no-results="{{ 'NO_RESULTS_FOUND' | translate }}"
-                                                      minlength="3"
+                                                      minlength="0"
                                                       input-changed="inputChangedFn"
-                                                      initial-value="searchSelected"
-                                                      disable-input="disableAutocomplete"
                                                       input-class="form-control"/>
                                 </div>
-                                <div class="form-group" style="width: 150px;">
+                                <div class="form-group" style="width: 120px;">
                                     <select select-wrap ng-model="searchType">
-                                        <!--<option value="" selected="selected">{{ 'PLEASE_SELECT' | translate }}</option>-->
                                         <option value="collection" selected>{{ 'COLLECTION' | translate }}</option>
-                                        <!--<option value="institution">{{ 'INSTITUTION' | translate }}</option>-->
-                                        <!--<option value="network">{{ 'NETWORK' | translate }}</option>-->
+                                        <option value="institution">{{ 'INSTITUTION' | translate }}</option>
+                                        <option value="network">{{ 'NETWORK' | translate }}</option>
+                                        <option value="curator">{{ 'CURATOR' | translate }}</option>
+                                        <option value="document">{{ 'DOCUMENT' | translate }}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -55,195 +53,6 @@
         <hr class="horizontal-line"/>
     </section>
 
-    <section class="page-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-1"> </div>
-                <div class="col-md-10"><h3 class="text-center" translate="BRAZIL_BIODIVERSITY_COLLECTION"></h3></div>
-                <div class="col-md-1"></div>
-            </div>
-        </div>
-        <div class="container">
-
-            <div class="row" align="center"><map /></div>
-            <div class="clearfix"></div>
-            <div class="row" align="center" style="margin-top: 10px;">
-
-                <div class="col-md-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="row" align="center">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <hr class="horizontal-line"/>
-    </section>
-
-    <section class="page-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-1"> </div>
-                <div class="col-md-10"><h3 class="text-center" translate="NEWS"></h3></div>
-                <div class="col-md-1"></div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-6">
-                    <ul class="media-list">
-                        <li class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/images/empty_img.png" alt="..." width="300" height="200">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading text-justify">Lorem ipsum dolor sit amet</h5>
-                                <small>12/11/2015</small>
-                                <p class="text-justify">Curabitur vel eros eu ex mollis faucibus. Curabitur interdum libero neque, a semper sem tempus vel. Nam quam velit, condimentum sed lacinia et, varius ut turpis.</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/images/empty_img.png" alt="..." width="300" height="200">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading text-justify">Lorem ipsum dolor sit amet</h5>
-                                <small>12/11/2015</small>
-                                <p class="text-justify">Curabitur vel eros eu ex mollis faucibus. Curabitur interdum libero neque, a semper sem tempus vel. Nam quam velit, condimentum sed lacinia et, varius ut turpis.</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/images/empty_img.png" alt="..." width="300" height="200">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading text-justify">Lorem ipsum dolor sit amet</h5>
-                                <small>12/11/2015</small>
-                                <p class="text-justify">Curabitur vel eros eu ex mollis faucibus. Curabitur interdum libero neque, a semper sem tempus vel. Nam quam velit, condimentum sed lacinia et, varius ut turpis.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-md-6">
-                    <ul class="media-list">
-                        <li class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/images/empty_img.png" alt="..." width="300" height="200">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading text-justify">Lorem ipsum dolor sit amet</h5>
-                                <small>12/11/2015</small>
-                                <p class="text-justify">Curabitur vel eros eu ex mollis faucibus. Curabitur interdum libero neque, a semper sem tempus vel. Nam quam velit, condimentum sed lacinia et, varius ut turpis.</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/images/empty_img.png" alt="..." width="300" height="200">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading text-justify">Lorem ipsum dolor sit amet</h5>
-                                <small>12/11/2015</small>
-                                <p class="text-justify">Curabitur vel eros eu ex mollis faucibus. Curabitur interdum libero neque, a semper sem tempus vel. Nam quam velit, condimentum sed lacinia et, varius ut turpis.</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/images/empty_img.png" alt="..." width="300" height="200">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading text-justify">Lorem ipsum dolor sit amet</h5>
-                                <small>12/11/2015</small>
-                                <p class="text-justify">Curabitur vel eros eu ex mollis faucibus. Curabitur interdum libero neque, a semper sem tempus vel. Nam quam velit, condimentum sed lacinia et, varius ut turpis.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="horizontal-line"/>
-
-            <div class="row" align="center">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">{{ 'PREVIOUS' | translate}}</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">{{ 'NEXT' | translate}}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-    </section>
+    <home-map></home-map>
 
 </section>

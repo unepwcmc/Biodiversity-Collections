@@ -1,0 +1,55 @@
+<section class="page-content" edit-form="{{editMode}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'CONTACT' | translate }}</strong></h5></div>
+            <div class="col-md-6">
+                <form action="#" class="form-horizontal form-block form-data" role="form" name="collection_form" novalidate>
+                    <div class="small-field">
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'PHONE_NUMBER' | translate }}</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.contact.phoneNumber"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'ADDRESS' | translate }} *</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" data-ng-model="institution.contact.address1">
+                                <input type="text" class="form-control" data-ng-model="institution.contact.address2">
+                                <input type="text" class="form-control" data-ng-model="institution.contact.address3">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'CITY' | translate }}</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.contact.city"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'DISTRICT' | translate }}</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.contact.district"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'POSTAL_CODE' | translate }}</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.contact.postalCode"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'COUNTRY' | translate }}</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.contact.country"></div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                <map height="250px" weigth="300px" address="fullAddress" latitude="institution.contact.latitude" longitude="institution.contact.longitude"></map>
+            </div>
+        </div>
+
+        <hr/>
+    </div>
+
+</section>

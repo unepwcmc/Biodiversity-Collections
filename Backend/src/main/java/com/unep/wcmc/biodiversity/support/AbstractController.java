@@ -5,12 +5,13 @@ import com.unep.wcmc.biodiversity.dto.SuccessResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.List;
 
 /**
  * Abstract controller that encapsulates all boilerplate code needed to
@@ -29,12 +30,12 @@ public abstract class AbstractController<E extends BaseEntity,
 	@Autowired
 	protected S service;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
-    public List<E> all(){
-        return service.list();
+    @RequestMapping(method = RequestMethod.GET)
+    public Page<E> all(@PageableDefault(page = 0, size = 10) Pageable pageable){
+        return service.list(pageable);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/")
+    @RequestMapping(method = RequestMethod.POST)
     public E create(@RequestBody E e){
         return service.save(e);
     }

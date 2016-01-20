@@ -16,7 +16,6 @@ define(['app'], function (app) {
          * @constructor
          */
         function Sample(data) {
-
             if (data) {
                 this.setData(data);
             }
@@ -31,15 +30,24 @@ define(['app'], function (app) {
             setData: function (data) {
                 angular.extend(this, data);
             },
-            load: function( id, page, size ){
-
+            get: function( id ){
                 var self = this;
-
+                $http.get( $rootScope.getHost() + "samples/" + id )
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("SAMPLE_LOADED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("SAMPLE_LOAD_ERROR");
+                    });
+            },
+            load: function( id, page, size ){
+                var self = this;
                 $http.get( $rootScope.getHost() + "samples/search/collection/" + id + '?page=' +  page + '&size=' +   size)
-
                     .success(function (data) {
                         if (data.message == 'no matches found') {
-                            $rootScope.$broadcast("NETWORK_LOAD_ERROR");
+                            $rootScope.$broadcast("SAMPLE_LOAD_ERROR");
                         } else {
                             self.setData(data);
                             $rootScope.$broadcast("SAMPLE_LOADED");
@@ -47,7 +55,52 @@ define(['app'], function (app) {
                     })
                     .error(function (message) {
                         $log.error(message);
-                        $rootScope.$broadcast("NETWORK_LOAD_ERROR");
+                        $rootScope.$broadcast("SAMPLE_LOAD_ERROR");
+                    });
+            },
+            search: function( query, page, size ){
+                var self = this;
+                $http.get( $rootScope.getHost() + "samples/search/name?name=" + query + "&page=" + page + "&size=" + size )
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("SAMPLE_SEARCHED", data);
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("SAMPLE_SEARCH_ERROR");
+                    });
+            },
+            update: function () {
+                var self = this;
+                $http.put( $rootScope.getHost() + "samples/" + this.id, this)
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("SAMPLE_UPDATED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            save: function () {
+                var self = this;
+                $http.post( $rootScope.getHost() + "samples", this)
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("SAMPLE_SAVED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                    });
+            },
+            delete: function () {
+                var self = this;
+                $http.delete( $rootScope.getHost() + "samples/" + this.id)
+                    .success(function (data) {
+                        self.setData(data);
+                        $rootScope.$broadcast("SAMPLE_DELETED");
+                    })
+                    .error(function (message) {
+                        $log.error(message);
                     });
             }
         };

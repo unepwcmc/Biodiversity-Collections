@@ -1,0 +1,32 @@
+<div class="container">
+
+    <h4><strong>{{network.totalElements}}</strong> {{ 'RESULT_FOR_NETWORK' | translate }}</h4>
+
+    <div class="result-list">
+
+        <div ng-repeat="col in network.content" class="list-item">
+            <h5><strong><a data-ui-sref="network({id:col.id})">{{col.name}}</a></strong> | <a data-ui-sref="network({id:col.id})">id: {{col.id}}</a></h5>
+            <p>{{col.description}}</p>
+        </div>
+
+    </div>
+
+    <div class="row" align="center">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8" align="center">
+            <paging
+                    page="network.number + 1"
+                    page-size="network.size"
+                    total="network.totalElements"
+                    paging-action="load(page - 1)"
+                    text-next="{{ 'NEXT' | translate}}"
+                    text-prev="{{ 'PREVIOUS' | translate}}"
+                    scroll-top="true"
+                    show-prev-next="true"
+                    show-first-last="true">
+            </paging>
+        </div>
+        <div class="col-md-2"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{network.totalElements}}&nbsp;results</label></div>
+    </div>
+
+</div>

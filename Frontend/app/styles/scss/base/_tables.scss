@@ -341,6 +341,47 @@ a.see-details{
 	font-size: 12px;
 	letter-spacing: -0.25px;
 }
+table.publication thead tr .header {
+  background-image: url("/images/icons/small.gif");
+  background-repeat: no-repeat;
+  text-align: left;
+  background-attachment:inherit;
+  background-position:50px 10px;
+  cursor: pointer;}
+table.publication thead tr th, table.tablesorter tfoot tr th {
+  padding: 4px;}
+table.publication thead tr .headerSortUp {
+  background-image: url("/images/icons/asc.gif");}
+table.publication thead tr .headerSortDown {
+  background-image: url("/images/icons/desc.gif");}
+table.publication th.no-sorter {
+  background-image: url("")!important;}
+table.network th {
+  border-bottom: none!important;}
+table.network td {
+  border-bottom: solid 1px #EAEAEA;
+  border-top: none!important;}
+table.network td.btn-td {
+  border: solid 1px #EAEAEA!important; }
+table.network a.btn {
+  display:block !important;
+  margin-top:45%;
+  height:100%;
+  padding:2px;}
+table td.btn-td{
+  border: solid 1px #EAEAEA;}
+td.btn-td a.btn {
+  color: #000 !important; }
+th.btn-td {
+  border: solid 1px #EAEAEA;}
+th.btn-td a.btn {
+  color: #000 !important;}
+table.sample-table tr{
+  border-bottom: solid 1px #cccccc;}
+table.publication th{
+  border-bottom: solid 1px #EAEAEA!important;}
+
+
 
 table.publication th.tablesort-sortable {
 	background-image: url("/images/icons/small.gif");
@@ -367,7 +408,8 @@ table.publication th.no-sorter {
 
 table.researches input.form-control[readonly] {
 	text-decoration: none;
-	color: #0000FF; }
+	color: #0000FF;
+    }
 
 th.tablesort-sortable {
 	-webkit-user-select: none;

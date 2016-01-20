@@ -30,15 +30,42 @@ define(['app'], function (app) {
             setData: function (data) {
                 angular.extend(this, data);
             },
-            list: function (page, size) {
+            get: function( id){
+
                 var self = this;
-                $http.get( $rootScope.getHost() + "users/search" + "?page=" +  page + "&size=" +   size)
+
+                $http.get( $rootScope.getHost() + "users/" + id )
+
                     .success(function (data) {
-                        self.setData( data );
-                        $rootScope.$broadcast("UsersListed");
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("USER_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("USER_LOADED");
+                        }
                     })
                     .error(function (message) {
                         $log.error(message);
+                        $rootScope.$broadcast("USER_LOAD_ERROR");
+                    });
+            },
+            list: function (page, size, callback) {
+                var self = this;
+                $http.get( $rootScope.getHost() + "users" + "?page=" +  page + "&size=" +   size)
+                    .success( function (data, status, headers, config ) {
+
+                        self.setData( data );
+
+                        $rootScope.$broadcast("USERS_LISTED");
+
+                        if(callback)
+                            callback( data, status, headers, config)
+                    })
+                    .error( function (data, status, headers, config ){
+                        $log.error( data );
+
+                        if(callback)
+                            callback( data, status, headers, config)
                     });
             },
             search: function (filter, page, size) {
@@ -66,10 +93,36 @@ define(['app'], function (app) {
             update: function (model, callback) {
                 $http.put( $rootScope.getHost() + "users/" + model.id, model)
                     .success(function (data, status, headers, config) {
-                        callback(data, status, headers, config);
+
+                        if(callback)
+                            callback(data, status, headers, config);
+
+                        $rootScope.$broadcast("USER_UPDATED");
                     })
                     .error(function(data, status, headers, config){
-                        callback(data, status, headers, config);
+
+                        if(callback)
+                            callback(data, status, headers, config);
+
+                        $rootScope.$broadcast("USER_UPDATED");
+                    }
+                );
+            },
+            save: function (model, callback) {
+                $http.post( $rootScope.getHost() + "users/", model)
+                    .success(function (data, status, headers, config) {
+
+                        if(callback)
+                            callback(data, status, headers, config);
+
+                        $rootScope.$broadcast("USER_SAVED");
+                    })
+                    .error(function(data, status, headers, config){
+
+                        if(callback)
+                            callback(data, status, headers, config);
+
+                        $rootScope.$broadcast("USER_SAVED_ERROR");
                     }
                 );
             },
@@ -85,7 +138,26 @@ define(['app'], function (app) {
                 );
             },
             delete: function (id, callback) {
-                $http.delete( $rootScope.getHost() + "users/" + id, this)
+                $http.delete( $rootScope.getHost() + "users/" + id)
+                    .success(function (data, status, headers, config) {
+
+                        $rootScope.$broadcast("USER_DELETED");
+
+                        if(callback)
+                          callback(data, status, headers, config);
+                    })
+                    .error(function(data, status, headers, config){
+
+                        $rootScope.$broadcast("USER_DELETED");
+
+                        if(callback)
+                            callback(data, status, headers, config);
+                    }
+                );
+            },
+            askForSupport: function( email, subject, message){
+
+                $http.post( $rootScope.getHost() + "users/ask/support", {email: email, subject: subject, message: message})
                     .success(function (data, status, headers, config) {
                         callback(data, status, headers, config);
                     })

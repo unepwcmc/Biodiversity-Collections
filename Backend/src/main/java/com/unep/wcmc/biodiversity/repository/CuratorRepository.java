@@ -4,14 +4,24 @@ import com.unep.wcmc.biodiversity.model.Curator;
 import com.unep.wcmc.biodiversity.support.AbstractRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.data.rest.core.annotation.RestResource;
 
-@RepositoryRestResource(path = "curators")
+import java.util.List;
+
 public interface CuratorRepository extends AbstractRepository<Curator> {
 
-    @RestResource(path = "autocomplete", rel = "autocomplete")
-    Page<Curator> findTop5ByNameContainingOrderByNameAsc(@Param("name") String name, Pageable p);
+    @EntityGraph(value = "Curator.detail", type = EntityGraph.EntityGraphType.LOAD)
+    Curator getById(Long id);
+
+    Curator findByUserEmail(String email);
+
+    Curator findByUserId(Long userId);
+
+    List<Curator> findTop5ByNameContainingIgnoreCaseAndUserEnabledOrderByNameAsc(
+            @Param("firstName") String name, @Param("enabled") Boolean enabled, Pageable p);
+
+    Page<Curator> findByNameContainingIgnoreCaseAndUserEnabledOrderByNameAsc(
+            @Param("firstName") String name, @Param("enabled") Boolean enabled, Pageable p);
 
 }

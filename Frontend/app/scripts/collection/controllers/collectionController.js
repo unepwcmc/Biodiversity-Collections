@@ -1,23 +1,24 @@
 define(['app','collection/directives/collection.networks.directive',
               'collection/directives/collection.details.directive',
-              'collection/directives/collection.publications.directive',
               'collection/directives/collection.samples.directive',
               'collection/directives/collection.specimens.directive',
               'collection/directives/collection.occurrence.directive',
+              'collection/directives/collection.contact.directive',
               'core/directives/core.breadcrumbs.directive',
-              'core/factory/biodiversityCollectionFactory'], function () {
+              'core/directives/core.publications.directive',
+              'core/factory/biodiversityCollectionFactory','core/factory/institutionFactory'], function () {
 
     'use strict';
 
-    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','toastr','$translate','$state',
-
-           function ($scope, BaseController, $stateParams, $http, $rootScope,BiodiversityCollection, toastr, $translate, $state) {
+    return ['$scope','BaseController','$stateParams','$http','$rootScope','BiodiversityCollection','$translate','$state','$q','$timeout','Institution', '$window',
+        function ($scope, BaseController, $stateParams, $http, $rootScope, BiodiversityCollection, $translate, $state, $q, $timeout, Institution, $window) {
                 angular.extend($scope, BaseController);
 
                $rootScope.editMode = false;
-               $scope.image = null;
+               $scope.images = [];
                $scope.fromState = 'home';
-               $scope.collection = undefined;
+               $scope.collection = new BiodiversityCollection();
+               $scope.isNew = $stateParams.isNew;
 
                /**
                 * Listener when the state is changed
@@ -26,6 +27,11 @@ define(['app','collection/directives/collection.networks.directive',
                    console.log('state Change Success');
 
                    $scope.fromState = fromState.name;
+
+                   if (fromState.name == 'institution') {
+                       $scope.institution = new Institution();
+                       $scope.institution.get(fromParams.id);
+                   }
                });
 
                /**
@@ -34,22 +40,30 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.$on('$viewContentLoaded', function() {
                    console.log('view Content Loaded...');
 
-                   $scope.collection = new BiodiversityCollection();
-                   $scope.collection.get( $stateParams.id );
+                   $('#loader-wrapper').fadeToggle('400');
+                   if ($stateParams.isNew) {
+                       $rootScope.editMode = true;
+                       $scope.collection.id = $stateParams.id;
+                       $timeout( function(){ $('#loader-wrapper').fadeToggle('400'); }, 1000);
+                   } else {
+                       $scope.collection.get( $stateParams.id );
+                       $rootScope.editMode = false;
+                   }
                });
 
                /**
                 * Should be fired when the button save is click
                 */
-               $scope.$on('BIODIVERSITY_COLLECTION_SAVE', function(){
+               $scope.$on('ACTION_SAVE', function(){
                    console.log('collection updating..');
 
                    $('#loader-wrapper').fadeToggle('400');
+
                    $scope.collection.update();
                });
 
 
-               $scope.$on('BIODIVERSITY_COLLECTION_RELOADED', function(){
+               $scope.$on('ACTION_RELOADED', function(){
                    console.log('edit form canceling...');
                    $state.go($state.current, $stateParams, {reload: true, inherit: false});
                });
@@ -65,6 +79,12 @@ define(['app','collection/directives/collection.networks.directive',
 
                    if($scope.collection.published == null)
                        $scope.collection.published = false;
+
+                   $timeout(function(){
+                       $scope.$apply();
+                   },800);
+
+                   $('#loader-wrapper').fadeToggle('400');
                });
 
                /**
@@ -75,12 +95,14 @@ define(['app','collection/directives/collection.networks.directive',
                $scope.$on('BIODIVERSITY_UPDATED', function(){
                    console.log('updated');
 
-                   if($scope.image != null){
-                       $scope.collection.addImage($scope.image);
-                   }else{
+                   if ($scope.images === undefined)
+                        $scope.images = [];
 
+                   if ($scope.images.length > 0) {
+                       saveImage();
+                   } else {
                        $('#loader-wrapper').fadeToggle('400');
-                       toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
+                       $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_SAVED');
                    }
                });
 
@@ -88,16 +110,22 @@ define(['app','collection/directives/collection.networks.directive',
                 * Listener when a file is loaded from the user.
                 */
                $scope.$on('ATTACH_FILE', function( evt, data ){
-                    $scope.image = data;
+                   for(var i = 0; i < data.length; i++){
+                       if($scope.images.length <= 5){
+                           $scope.images.push(data[i]);
+                       }
+                   }
                });
 
-               /**
-                * Listener when the image was added to the biodiversity collection model.
-                */
-               $scope.$on('IMAGE_ADDED', function(){
-                   $scope.image = null;
-                   $('#loader-wrapper').fadeToggle('400');
-                   toastr.success($translate.instant('BIODIVERSITY_COLLECTION_SAVED'), $translate.instant('SUCCESS'));
+               $scope.$on('REMOVE_IMAGE', function(evt, data){
+
+                   console.log('removing image');
+
+                   var index = _.findIndex($scope.collection.images, function( obj ){
+                       return obj.id == data;
+                   });
+
+                   $scope.collection.images.splice(index, 1);
                });
 
                /**
@@ -111,20 +139,60 @@ define(['app','collection/directives/collection.networks.directive',
                 * Listener when the button cancel is clicked
                 */
                $scope.$on('CANCEL_EDIT_COLLECTION', function() {
-                   setStateButton(false);
+                   if ($stateParams.isNew) {
+                       $('#loader-wrapper').fadeToggle('400');
+                       $scope.collection.delete($stateParams.id);
+                   } else {
+                       setStateButton(false);
+                   }
+               });
+
+               $scope.$on('BIODIVERSITY_DELETED', function() {
+                   $window.history.back();
                });
 
                /**
                 * Listener when the button save is clicked
                 */
                $scope.$on('SAVE_COLLECTION', function() {
-                   setStateButton(false)
+                   setStateButton(false);
                });
 
                function setStateButton( status ){
                    $rootScope.editMode = status;
                    $scope.$apply();
                }
+
+               function saveImage(){
+
+                   var promises = [];
+
+                   for(var i = 0; i < $scope.images.length; i++){
+
+                       var fd = new FormData();
+                       fd.append('file', $scope.images[i]);
+
+                       promises.push(
+                           $http.post($rootScope.getHost() + "collections/" + $stateParams.id + "/media", fd, {
+                               headers : {
+                                   'Content-Type' : undefined
+                               }
+                           })
+                       );
+                   }
+
+                   $q.all( promises ).then(function( results ){
+
+                       $scope.images = [];
+                       $scope.showSuccessMessage('SUCCESS','BIODIVERSITY_COLLECTION_SAVED');
+                       $scope.collection.get( $stateParams.id);
+
+                   }).catch( function( errorCallback ){
+                       console.log(errorCallback);
+                   });
+               }
+
+
            }
     ];
 });

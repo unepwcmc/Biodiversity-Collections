@@ -1,0 +1,130 @@
+<section class="page-content" edit-form>
+
+    <!-- Loading screen -->
+    <div ng-show="display == 'true'" id="loader-wrapper" class="loading">
+        <div id="loader"></div>
+    </div>
+
+    <div ng-show="display == 'true'" class="container">
+        <nav id="sample-bar-fixed" style="display: none" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <h2 class="navbar-text"><strong>{{'EDIT_SAMPLE' | translate}}</strong></h2>
+
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-transparent btn-edit-sample-cancel save-form cancel"><strong>{{'CANCEL' | translate}}</strong></button>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-white save-form" ng-disabled="sample_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <h4 id="sample-bar-default">
+                <strong ng-show="!editMode" >{{ sample.name }}</strong>
+                <strong ng-show="editMode" >{{ 'EDIT_SAMPLE' | translate }}</strong> <span>
+                <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'SAMPLE'| translate}}</strong></button></span>
+            <a ng-show="logged" id="edit-sample" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="sample_form.$invalid"><strong>{{ 'SAVE_CHANGES' | translate }}</strong></a>
+            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-sample-cancel"><strong>{{ 'CANCEL' | translate }}</strong></a>
+        </h4>
+        <hr/>
+    </div>
+
+    <div class="container">
+         <div class="row">
+             <div class="col-md-8">
+                 <form action="#" ng-class="{'view-mode': display == 'true'}" class="form-horizontal form-block" role="form" name="sample_form" novalidate>
+                     <div class="small-field">
+                         <div ng-show="display == 'true' && !editMode" id="sample-id" class="form-group">
+                             <label class="col-sm-3">{{ 'SAMPLE_ID' | translate }}</label>
+                             <div class="col-sm-9"><input type="text" class="form-control" value="{{sample.id}}" readonly></div>
+                         </div>
+
+                         <div ng-show="display == 'false' || editMode" id="sample-name" class="form-group">
+                             <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
+                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="sample.name" required></div>
+                         </div>
+
+                         <div ng-show="!editMode"  class="form-group">
+                             <label class="col-sm-3">{{ 'COLLECTION' | translate }}</label>
+                             <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="collection({id : sample.collection.id})">{{sample.collection.name}}</a></div>
+                         </div>
+
+                         <div ng-show="editMode" class="form-group">
+                             <label class="col-sm-3">{{ 'COLLECTION' |  translate }}</label>
+                             <div class="col-sm-9">
+                                 <angucomplete-alt id="curators"
+                                                   placeholder="Search an Collection"
+                                                   pause="150"
+                                                   selected-object="collectionSelectedFn"
+                                                   remote-api-handler="collectionAutocomplete"
+                                                   title-field="name"
+                                                   minlength="0"
+                                                   initial-value="collectionSelected"
+                                                   disable-input="disableAutocomplete"
+                                                   input-class="form-control"/>
+                             </div>
+                         </div>
+
+                         <div ng-show="!editMode" class="form-group">
+                             <label class="col-sm-3">{{ 'CURATOR' | translate }}</label>
+                             <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="curator({id : sample.curator.id})">{{sample.curator.name}}</a></div>
+                         </div>
+
+                         <div ng-show="editMode" class="form-group">
+                             <label class="col-sm-3">{{ 'CURATOR' |  translate }}</label>
+                             <div class="col-sm-9">
+                                 <angucomplete-alt id="curators"
+                                                   placeholder="Search an Curator"
+                                                   pause="150"
+                                                   selected-object="curatorSelectedFn"
+                                                   remote-api-handler="curatorAutocomplete"
+                                                   title-field="name"
+                                                   minlength="0"
+                                                   initial-value="curatorSelected"
+                                                   disable-input="disableAutocomplete"
+                                                   input-class="form-control"/>
+                             </div>
+                         </div>
+
+                         <div ng-show="!editMode"  class="form-group">
+                             <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
+                             <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="institution({id : sample.institution.id})">{{sample.institution.name}}</a></div>
+                         </div>
+
+                         <div ng-show="editMode" class="form-group">
+                             <label class="col-sm-3">{{ 'INSTITUTION' | translate  }}</label>
+                             <div class="col-sm-9">
+                                 <angucomplete-alt id="institution"
+                                                   placeholder="Search an Intitution"
+                                                   pause="150"
+                                                   selected-object="institutionSelectedFn"
+                                                   remote-api-handler="institutionAutocomplete"
+                                                   title-field="name"
+                                                   minlength="0"
+                                                   initial-value="institutionSelected"
+                                                   disable-input="disableAutocomplete"
+                                                   input-class="form-control"/>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-sm-3"><em style="font-weight: 100">* {{ 'REQUIRED_FIELDS' | translate }}</em></label>
+                             <div class="col-sm-9">&nbsp;</div>
+                         </div>
+                     </div>
+                 </form>
+             </div>
+
+             <div class="col-md-4">
+                 <image-box title="Add new photo" image="{{sample.image}}" id="{{sample.image.attachment.id}}"></image-box>
+             </div>
+
+         </div>
+
+        <hr/>
+
+
+    </div>
+</section>
