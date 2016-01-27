@@ -232,7 +232,8 @@ define([],function ( ) {
     'SAMPLE_UPDATED':'Sample updated',
     'SAMPLE_DELETED_SUCCESSFULLY': 'Sample deleted successfully',
     'SAMPLES_DELETED_SUCCESSFULLY': 'Samples deleted successfully',
-    'ONLY_FIVE_FILES_WILL_BE_SELECTED': 'Only first 5 files will be selected'
+    'ONLY_FIVE_FILES_WILL_BE_SELECTED': 'Only first 5 files will be selected',
+    'BRAZIL_BIODIVERSITY_COLLECTION_DASHBOARD':'Brazil Biodiversity Collection Dashboard'
   }
 
 });

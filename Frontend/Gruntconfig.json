@@ -41,7 +41,8 @@
     "angucomplete-alt/angucomplete-alt.js",
     "waypoints/lib/jquery.waypoints.js",
     "tablesorter/jquery.tablesorter.js",
-    "angular-tablesort/js/angular-tablesort.js"
+    "angular-tablesort/js/angular-tablesort.js",
+    "highcharts-ng/dist/highcharts-ng.js"
   ],
   "cssFiles": [
     "bootstrap/dist/css/bootstrap.css",
