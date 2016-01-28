@@ -14,6 +14,18 @@ import java.util.Set;
 public class InstitutionService extends AbstractService<Institution, InstitutionRepository> {
 
     @Override
+    public Institution get(Long id) {
+        Institution result = repo.getById(id);
+        if (result != null) {
+            for (Curator curator : result.getCurators()) {
+                curator.getUser().setInstitution(null);
+            }
+        }
+        return result;
+    }
+
+
+    @Override
     public Institution save(Institution institution) {
         Set<Curator> curators = institution.getCurators();
         institution.setCurators(null);
