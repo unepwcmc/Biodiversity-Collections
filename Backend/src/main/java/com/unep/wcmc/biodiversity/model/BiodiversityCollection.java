@@ -44,6 +44,9 @@ public class BiodiversityCollection implements BaseEntity {
     @Enumerated(EnumType.STRING)
     private CollectionDefinition collectionDefinition;
 
+    @Enumerated(EnumType.STRING)
+    private InstitutionType institutionType;
+
     @Embedded
     private Contact contact;
 
@@ -288,5 +291,13 @@ public class BiodiversityCollection implements BaseEntity {
 
     public void setCollectionDefinition(CollectionDefinition collectionDefinition) {
         this.collectionDefinition = collectionDefinition;
+    }
+
+    public InstitutionType getInstitutionType() {
+        return institutionType;
+    }
+
+    public void setInstitutionType(InstitutionType institutionType) {
+        this.institutionType = institutionType;
     }
 }

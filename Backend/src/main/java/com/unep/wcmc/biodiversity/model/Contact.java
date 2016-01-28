@@ -28,6 +28,19 @@ public class Contact implements Serializable {
 
     private Float longitude;
 
+    public Contact() {
+        super();
+    }
+
+    public Contact(String country, String city, String district, String address3, String address2, String address1) {
+        this.country = country;
+        this.city = city;
+        this.district = district;
+        this.address3 = address3;
+        this.address2 = address2;
+        this.address1 = address1;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

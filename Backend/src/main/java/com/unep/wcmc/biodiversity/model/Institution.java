@@ -1,10 +1,7 @@
 package com.unep.wcmc.biodiversity.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -41,6 +38,9 @@ public class Institution implements BaseEntity {
     @Embedded
     private Contact contact;
 
+    @Enumerated(EnumType.STRING)
+    private InstitutionType institutionType;
+
     @ManyToMany
     @JoinTable(name = "curator_institution",
             joinColumns = @JoinColumn(name = "institution_id"),
@@ -57,6 +57,17 @@ public class Institution implements BaseEntity {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Image> images;
+
+    public Institution() {
+        super();
+    }
+
+    public Institution(Long id, String name, Contact contact, InstitutionType institutionType) {
+        this.id = id;
+        this.name = name;
+        this.contact = contact;
+        this.institutionType = institutionType;
+    }
 
     @Override
     public Long getId() {
@@ -183,5 +194,13 @@ public class Institution implements BaseEntity {
 
     public  void removeImage(Image image){
         getImages().remove(image);
+    }
+
+    public InstitutionType getInstitutionType() {
+        return institutionType;
+    }
+
+    public void setInstitutionType(InstitutionType institutionType) {
+        this.institutionType = institutionType;
     }
 }

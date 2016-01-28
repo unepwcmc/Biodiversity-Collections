@@ -53,4 +53,10 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
 
     @Query("select distinct c from BiodiversityCollection c left join c.networks n where c.name like concat('%',:name,'%') and (n not in :networks or n is null) order by c.name")
     Page<BiodiversityCollection> findByNetworksNotIn(@Param("name") String name, @Param("networks") Collection<Network> networks, Pageable page);
+
+    @Query(value = "select b.institution_type as type, count(*) as total from biodiversity_collection b group by b.institution_type", nativeQuery = true)
+    List<Object[]> countByInstitutionType();
+
+    @Query(value = "select b.collection_definition as type, count(*) as total from biodiversity_collection b group by b.collection_definition", nativeQuery = true)
+    List<Object[]> countByCollectionDefinition();
 }

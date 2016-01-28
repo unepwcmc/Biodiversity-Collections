@@ -2,10 +2,7 @@ package com.unep.wcmc.biodiversity.controller;
 
 import com.unep.wcmc.biodiversity.dto.ErrorMessage;
 import com.unep.wcmc.biodiversity.dto.SuccessResponse;
-import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
-import com.unep.wcmc.biodiversity.model.Curator;
-import com.unep.wcmc.biodiversity.model.Institution;
-import com.unep.wcmc.biodiversity.model.Network;
+import com.unep.wcmc.biodiversity.model.*;
 import com.unep.wcmc.biodiversity.service.*;
 import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,6 +127,16 @@ public class InstitutionController extends AbstractController<Institution, Insti
         }
         final Long entityId = Long.valueOf(id);
         return new ErrorMessage(entityId, "no matches found");
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/summary")
+    public List<InstitutionSummary> summary() {
+        return service.listInstitutionSummary();
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/count/type")
+    public List<Object[]> countByType() {
+        return service.getRepository().countByInstitutionType();
     }
 
 }

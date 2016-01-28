@@ -150,4 +150,14 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
                 new ArrayList<Network>() {{ add( networkService.get(networkId) ); }}, pageable);
     }
 
+    @RequestMapping(method= RequestMethod.GET, value="/count/type")
+    public List<Object[]> countByType() {
+        return service.getRepository().countByInstitutionType();
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/count/definition")
+    public List<Object[]> countByDefinition() {
+        return service.getRepository().countByCollectionDefinition();
+    }
+
 }
