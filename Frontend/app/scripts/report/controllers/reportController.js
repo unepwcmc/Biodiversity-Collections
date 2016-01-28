@@ -1,4 +1,5 @@
 define(['app',
+    'report/directives/report.chart.bubble.directive',
     'report/directives/report.chart.pie.directive',
     'report/directives/report.chart.bar.directive',
     'report/directives/report.table.directive'], function () {

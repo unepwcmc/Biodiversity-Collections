@@ -45,7 +45,7 @@
     "ng-breadcrumbs": "~0.4.1",
     "angular-tablesort": "~1.1.1",
     "angular-paging": "~2.1.0",
-    "highcharts-ng": "~0.0.8"
+    "highcharts-ng": "~0.0.11"
   },
   "resolutions": {
     "angular": "~1.4.x",
