@@ -11,8 +11,10 @@ import java.util.Set;
 @Entity
 @NamedEntityGraph(name = "Curator.detail",
         attributeNodes = {
-                @NamedAttributeNode("associatedInstitutions")
-        }
+                @NamedAttributeNode("associatedInstitutions"),
+                @NamedAttributeNode(value = "user", subgraph = "user")
+        },
+        subgraphs = @NamedSubgraph(name = "user", attributeNodes = @NamedAttributeNode("institution"))
 )
 public class Curator implements BaseEntity {
 
