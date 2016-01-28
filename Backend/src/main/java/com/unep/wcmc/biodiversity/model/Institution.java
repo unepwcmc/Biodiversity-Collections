@@ -2,6 +2,7 @@ package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 import org.hibernate.annotations.Cascade;
@@ -45,6 +46,7 @@ public class Institution implements BaseEntity {
     @JoinTable(name = "curator_institution",
             joinColumns = @JoinColumn(name = "institution_id"),
             inverseJoinColumns = @JoinColumn(name = "curator_id"))
+    @JsonManagedReference
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")

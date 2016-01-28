@@ -1,5 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -41,6 +42,7 @@ public class Curator implements BaseEntity {
     @JoinTable(name = "curator_institution",
             joinColumns = @JoinColumn(name = "curator_id"),
             inverseJoinColumns = @JoinColumn(name = "institution_id"))
+    @JsonManagedReference
     private Set<Institution> associatedInstitutions;
 
     @OneToOne(cascade = CascadeType.ALL)
