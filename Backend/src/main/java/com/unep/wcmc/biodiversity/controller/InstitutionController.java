@@ -36,7 +36,7 @@ public class InstitutionController extends AbstractController<Institution, Insti
 
     @Override
     public Object read(@PathVariable String id) {
-        return service.getRepository().getById(new Long(id));
+        return service.get(new Long(id));
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
