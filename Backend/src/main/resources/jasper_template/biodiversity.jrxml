@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="biodiversity" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ace6140e-4aed-4255-8543-ed823d50d151">
+	<property name="ireport.zoom" value="1.2100000000000026"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="45"/>
+	<field name="institution_name" class="java.lang.String"/>
+	<field name="fauna" class="java.lang.String"/>
+	<field name="flora" class="java.lang.String"/>
+	<field name="microorganisms" class="java.lang.String"/>
+	<field name="other" class="java.lang.String"/>
+	<field name="private" class="java.lang.String"/>
+	<field name="federal" class="java.lang.String"/>
+	<field name="state" class="java.lang.String"/>
+	<field name="country" class="java.lang.String"/>
+	<field name="fauna_range" class="java.lang.String"/>
+	<field name="institution_type" class="java.lang.String"/>
+	<field name="institution_type_value" class="java.lang.String"/>
+	<field name="overall_picture_name" class="java.lang.String"/>
+	<field name="overall_picture_axis_x" class="java.lang.String"/>
+	<field name="overall_picture_axis_y" class="java.lang.String"/>
+	<field name="overall_picture_size" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="77" width="555" height="2" uuid="9a2ca52d-9a94-4e0e-be45-9a4fdbf388f6"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="24" width="555" height="37" uuid="4d9f16fd-febd-4ac0-a824-0274d2630383"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Brazil Biodiversity Collection Report]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="4" width="100" height="20" uuid="dc963d84-e76c-4082-abd9-2c384cf23f27"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="390" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="26" width="257" height="187" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="f35d134e-d58b-4bff-87cf-c8561f048467"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{institution_type} != null ? $F{institution_type} : new String("")]]></keyExpression>
+					<valueExpression><![CDATA[$F{institution_type_value} != null ? Integer.valueOf($F{institution_type_value}) : Integer.valueOf("0")]]></valueExpression>
+				</pieDataset>
+				<piePlot isShowLabels="false" isCircular="true">
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<staticText>
+				<reportElement x="0" y="6" width="100" height="20" uuid="2df8c3bd-3744-458c-82ea-4d8f0723744b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institution types]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="370" width="135" height="20" uuid="48cbfbfc-90ac-4f1b-a2fa-f497e2e4b848"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institutions & Collections Statistcs]]></text>
+			</staticText>
+			<bubbleChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="224" width="555" height="146" uuid="414da204-2726-4815-a6a0-bfbdd74c8110"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<xyzDataset>
+					<xyzSeries>
+						<seriesExpression><![CDATA[$F{overrall_picture_name} != null ? $F{overrall_picture_name} : new String("")]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{overrall_picture_axis_x} != null ? Double.parseDouble($F{overrall_picture_axis_x}) : new Double("0")]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{overrall_picture_axis_y} != null ? Double.parseDouble($F{overrall_picture_axis_y}) : new Double("0")]]></yValueExpression>
+						<zValueExpression><![CDATA[$F{overrall_picture_size}!= null ? Double.parseDouble($F{overrall_picture_size}) : new Double("0")]]></zValueExpression>
+					</xyzSeries>
+				</xyzDataset>
+				<bubblePlot scaleType="RangeAxis">
+					<plot orientation="Horizontal"/>
+					<xAxisFormat>
+						<axisFormat/>
+					</xAxisFormat>
+					<yAxisFormat>
+						<axisFormat/>
+					</yAxisFormat>
+				</bubblePlot>
+			</bubbleChart>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="22" uuid="8801d0fe-db79-48f4-8f68-ebecf762779f"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Institution name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="0" width="52" height="22" uuid="38f013af-8f2e-47f3-acbc-1477ec57a276"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Flora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="53" height="22" uuid="47cc07c5-9d8d-4a0c-9236-abfa7ca66b0e"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Fauna]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="0" width="88" height="22" uuid="6912dc6e-b93b-407a-a04a-384cc939ddea"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Microorganisms]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="0" width="51" height="22" uuid="ba1ec764-86c5-4ea8-a977-96d3bbc8713a"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Other]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="344" y="0" width="51" height="22" uuid="e2b628cc-d24a-4291-8ec6-99c65879de2b"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Private]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="0" width="51" height="22" uuid="14dc0ab2-0a30-4808-a825-dcf3c70f6fb1"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Federal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="0" width="51" height="22" uuid="ee3d80d4-ad03-47a0-8b82-62bd1e7a764f"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[State]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="497" y="0" width="58" height="22" uuid="c4194c0c-2f17-4b34-a1b4-aef196ca6d52"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Country]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="37" uuid="e0756799-dec4-4025-99dc-8f109ca53d21"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{institution_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="37" width="555" height="1" uuid="22772fd8-a1d2-45ed-b779-4281b5b72bae"/>
+			</line>
+			<textField>
+				<reportElement x="100" y="18" width="53" height="20" uuid="2f5e18e6-64d9-40f1-8658-83947f9f03ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fauna}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="18" width="52" height="20" uuid="b1760990-fda0-43a4-8850-a87611439c57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{flora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="205" y="18" width="88" height="20" uuid="2e603835-23ef-4442-b5e4-0d83c8950717"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{microorganisms}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="18" width="51" height="20" uuid="27a4848d-9267-4cbe-ae30-390e2cf3f82e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{other}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="344" y="18" width="51" height="20" uuid="76f0e69e-be0c-4219-92a8-b8bf80828320"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{private}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="18" width="51" height="20" uuid="79f681e5-1684-44bb-8763-95b861e6e62a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{federal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="19" width="51" height="19" uuid="c7b03324-e890-433e-9972-56fa4e16bc54"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="19" width="58" height="18" uuid="81d04f96-035f-4d1c-88b6-149399612fa3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{country}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="100" y="19" width="455" height="1" forecolor="#999999" uuid="9acc57a2-c1c3-410d-96d1-b3ef2d636d61"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="100" y="0" width="53" height="18" uuid="c642f3f6-d282-4375-bf02-ffff0f1cbc55"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fauna_range}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
