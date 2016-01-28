@@ -55,7 +55,33 @@ public class ReportController {
                                 values.put("country", "6");
                                 values.put("federal", "7");
                                 values.put("other", "8");
+                                values.put("institution_type", "federal");
+                                values.put("institution_type_value", "8");
+                                values.put("overall_picture_name", "10");
+                                values.put("overall_picture_axis_x", "3");
+                                values.put("overall_picture_axis_y", "5");
+                                values.put("overall_picture_size", "20");
+
+        HashMap<String,String>  values2 = new HashMap<>();
+        values2.put("institution_name", "INPA Institution");
+        values2.put("fauna", "13");
+        values2.put("flora", "22");
+        values2.put("microorganisms", "23");
+        values2.put("state","42");
+        values2.put("private", "52");
+        values2.put("country", "62");
+        values2.put("federal", "72");
+        values2.put("other", "82");
+        values2.put("institution_type", "state");
+        values2.put("institution_type_value", "82");
+        values.put("overall_picture_name", "12");
+        values.put("overall_picture_axis_x", "8");
+        values.put("overall_picture_axis_y", "10");
+        values.put("overall_picture_size", "40");
+
         data.add(values);
+        data.add(values2);
+
 
 
        // JasperPrint jasperPrint = getObjectPdf("jasper_template/biodiversity.jrxml", new HashMap<String, Object>(), dataSource);
@@ -63,6 +89,7 @@ public class ReportController {
 
         sendPdfResponse(response, jasperPrint, "collecions");
     }
+
 
     public JasperPrint getObjectPdf(String path, Map<String, Object> parameters, JRDataSource dataSource) {
         JasperPrint jasperPrint = null;
