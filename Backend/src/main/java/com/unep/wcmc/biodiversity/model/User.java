@@ -62,7 +62,7 @@ public class User implements UserDetails, BaseEntity {
     @Column(nullable = false)
     private boolean enabled;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
