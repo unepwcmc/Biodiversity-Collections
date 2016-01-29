@@ -405,6 +405,40 @@ define(['angularAMD'], function (angularAMD) {
                             callback( data, status, headers, config );
                         $rootScope.$broadcast("BIODIVERSITY_SAMPLES_REMOVED_ERROR");
                     });
+            },
+            countType: function( callback ) {
+                return $http.get( $rootScope.getHost() + "collections/count/type" )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("BIODIVERSITY_COUNT_TYPE_ERROR");
+                        } else {
+                            $rootScope.$broadcast("BIODIVERSITY_COUNT_TYPE_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("BIODIVERSITY_COUNT_TYPE_ERROR");
+                    });
+            },
+            countDefinition: function( callback ) {
+                return $http.get( $rootScope.getHost() + "collections/count/definition" )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("BIODIVERSITY_COUNT_DEFINITION_ERROR");
+                        } else {
+                            $rootScope.$broadcast("BIODIVERSITY_COUNT_DEFINITION_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("BIODIVERSITY_COUNT_DEFINITION_ERROR");
+                    });
             }
         };
 

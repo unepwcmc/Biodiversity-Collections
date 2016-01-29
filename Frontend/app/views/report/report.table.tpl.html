@@ -2,37 +2,26 @@
    <thead>
       <tr>
           <th>{{ 'INSTITUTION_NAME' | translate }}</th>
-          <th>{{ 'ADDRESS' | translate }}</th>
-          <th>{{ 'CITY' | translate }}</th>
-          <th>{{ 'COUNTRY' | translate }}</th>
-          <th>{{ 'STATE' | translate }}</th>
-          <th>{{ 'COUNTRY' | translate }}</th>
-          <th>{{ 'INSTITUTION_TYPE' | translate }}</th>
-          <th>{{ 'TOTAL_NUMBER_OF_COLLECTION' | translate }}</th>
+          <th>{{ 'COLLECTIONS' | translate }}</th>
+          <th>{{ 'SPECIMENS' | translate }}</th>
           <th>{{ 'FAUNA' | translate }}</th>
           <th>{{ 'FLORA' | translate }}</th>
           <th>{{ 'MICROORGANISMS' | translate }}</th>
           <th>{{ 'OTHER' | translate }}</th>
-          <th>{{ 'PRIVATE' | translate }}</th>
-          <th>{{ 'FEDERAL' | translate }}</th>
+          <th>{{ 'FUNGI' | translate }}</th>
       </tr>
    </thead>
     <tbody>
-        <tr>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
-            <td>Post a comment to start a discussion.</td>
+
+        <tr ng-repeat="s in institutions">
+            <td>{{s.institution.name}}</td>
+            <td>{{s.collections}}</td>
+            <td>{{s.specimens}}</td>
+            <td>{{s.faunaCollections}}</td>
+            <td>{{s.floraCollections}}</td>
+            <td>{{s.microorganismsCollections}}</td>
+            <td>{{s.otherCollections}}</td>
+            <td>{{s.fungiCollections}}</td>
         </tr>
     </tbody>
 </table>

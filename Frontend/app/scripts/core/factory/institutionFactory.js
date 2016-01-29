@@ -298,6 +298,59 @@ define(['angularAMD'], function (angularAMD) {
                         if(callback)
                             callback( data, status, headers, config )
                     });
+            },
+            summary: function( callback ) {
+                var self = this;
+                return $http.get( $rootScope.getHost() + "institutions/summary" )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("INSTITUTION_SUMMARY_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("INSTITUTION_SUMMARY_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("INSTITUTION_SUMMARY_ERROR");
+                    });
+            },
+            countType: function( callback ) {
+                return $http.get( $rootScope.getHost() + "institutions/count/type" )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("INSTITUTION_COUNT_TYPE_ERROR");
+                        } else {
+                            $rootScope.$broadcast("INSTITUTION_COUNT_TYPE_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("INSTITUTION_COUNT_TYPE_ERROR");
+                    });
+            },
+            countCollections: function( callback ) {
+                return $http.get( $rootScope.getHost() + "institutions/count/collections" )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("INSTITUTION_COUNT_COLLECTIONS_ERROR");
+                        } else {
+                            $rootScope.$broadcast("INSTITUTION_COUNT_COLLECTIONS_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("INSTITUTION_COUNT_COLLECTIONS_ERROR");
+                    });
             }
         };
 
