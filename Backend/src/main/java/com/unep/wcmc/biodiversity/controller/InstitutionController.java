@@ -139,4 +139,14 @@ public class InstitutionController extends AbstractController<Institution, Insti
         return service.getRepository().countByInstitutionType();
     }
 
+    @RequestMapping(method= RequestMethod.GET, value="/count/collections")
+    public List<Object[]> countByCollections() {
+        return service.getRepository().countByCollections();
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/count/specimens")
+    public List<Object[]> countBySpecimens() {
+        return service.getRepository().countBySpecimens();
+    }
+
 }

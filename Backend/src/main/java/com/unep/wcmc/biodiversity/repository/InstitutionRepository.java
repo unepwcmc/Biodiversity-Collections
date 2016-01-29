@@ -25,21 +25,27 @@ public interface InstitutionRepository extends AbstractRepository<Institution> {
 
     Page<BiodiversityCollection> findAllByCollectionsIn(Collection<BiodiversityCollection> collection, Pageable page);
 
-    @Query(value = "select i.id, i.name, i.address, i.address1, i.address2, i.address3, i.city, i.district, i.country, i.institution_type, " +
-                        "count(b.id) as collection, count(s.id) as specimen, count(fauna.id) as fauna, count(flora.id) as flora, " +
-                        "count(micro.id) as micro, count(others.id) as others, count(fungi.id) as fungi " +
-                    "from institution i " +
-                    "left outer join biodiversity_collection b on b.institution_id = i.id " +
-                    "left outer join biodiversity_collection fauna on fauna.institution_id = i.id and fauna.collection_definition = 'FAUNA' " +
-                    "left outer join biodiversity_collection flora on flora.institution_id = i.id and flora.collection_definition = 'FLORA' " +
-                    "left outer join biodiversity_collection micro on micro.institution_id = i.id and micro.collection_definition = 'MICROORGANISMS' " +
-                    "left outer join biodiversity_collection others on others.institution_id = i.id and others.collection_definition = 'OTHERS' " +
-                    "left outer join biodiversity_collection fungi on fungi.institution_id = i.id and fungi.collection_definition = 'FUNGI' " +
-                    "left outer join specimen s on s.collection_id = b.id " +
-                    "group by i.id, i.name, i.address, i.address1, i.address2, i.address3, i.city, i.district, i.country, i.institution_type", nativeQuery = true)
+    @Query(value = "SELECT i.id, i.name, i.address, i.address1, i.address2, i.address3, i.city, i.district, i.country, i.institution_type, " +
+            "(SELECT COUNT(*) FROM biodiversity_collection b WHERE b.institution_id = i.id) AS collection, " +
+            "(SELECT COUNT(*) FROM specimen s JOIN biodiversity_collection b ON b.id = s.collection_id WHERE b.institution_id = i.id) AS specimen, " +
+            "(SELECT COUNT(*) FROM biodiversity_collection b WHERE b.institution_id = i.id AND b.collection_definition = 'FAUNA') AS fauna, " +
+            "(SELECT COUNT(*) FROM biodiversity_collection b WHERE b.institution_id = i.id AND b.collection_definition = 'FLORA') AS flora, " +
+            "(SELECT COUNT(*) FROM biodiversity_collection b WHERE b.institution_id = i.id AND b.collection_definition = 'MICROORGANISMS') AS micro, " +
+            "(SELECT COUNT(*) FROM biodiversity_collection b WHERE b.institution_id = i.id AND b.collection_definition = 'OTHERS') AS others, " +
+            "(SELECT COUNT(*) FROM biodiversity_collection b WHERE b.institution_id = i.id AND b.collection_definition = 'FUNGI') AS fungi " +
+            "FROM institution i ", nativeQuery = true)
     List<Object[]> listInstitutionSummary();
 
     @Query(value = "select i.institution_type as type, count(*) as total from institution i group by i.institution_type", nativeQuery = true)
     List<Object[]> countByInstitutionType();
+
+    @Query(value = "select i.name, i.id, count(b.id) as total from institution i left outer join biodiversity_collection b on b.institution_id = i.id group by i.name, i.id", nativeQuery = true)
+    List<Object[]> countByCollections();
+
+    @Query(value = "select i.name, i.id, count(s.id) as total from institution i " +
+            "left outer join biodiversity_collection b on b.institution_id = i.id " +
+            "left outer join specimen s on s.collection_id = b.id " +
+            "group by i.name, i.id", nativeQuery = true)
+    List<Object[]> countBySpecimens();
 
 }
