@@ -1,16 +1,37 @@
 package com.unep.wcmc.biodiversity.service;
 
 import com.unep.wcmc.biodiversity.model.InstitutionSummary;
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.JRMapArrayDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.engine.type.WhenNoDataTypeEnum;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReportService {
+
+    public final String PDF = "PDF";
+    public final String XLS = "XLS";
+
+    private static Logger log = LoggerFactory.getLogger(ReportService.class);
 
     @Autowired
     private InstitutionService institutionService;
@@ -113,5 +134,44 @@ public class ReportService {
         });
 
         return new JRBeanCollectionDataSource(dataCollectionDefinition);
+    }
+
+    public JasperPrint getReport(){
+
+        HashMap<String, Object> parameters =  new HashMap<String, Object>();
+
+        parameters.put("institution_chart_datasource",createInstitutionType());
+        parameters.put("overall_picture_datasource", createBubbleCollection());
+        parameters.put("organisms_type_datasource", collectionCountType());
+        parameters.put("collection_type_datasource", collectionCountDefinition());
+
+
+        return getJasperPrint("jasper_template/biodiversity.jrxml", parameters, createSummarySource());
+    }
+
+    private JasperPrint getJasperPrint(String path, Map<String, Object> parameters, JRDataSource dataSource) {
+        JasperPrint jasperPrint = null;
+
+        InputStream inStream = null;
+        try {
+            inStream = getClass().getClassLoader().getResourceAsStream(path);
+            JasperDesign jasperDesign = JRXmlLoader.load(inStream);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            jasperReport.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
+            jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
+        } catch (JRException jre) {
+            log.error("Error creating Report", jre);
+        } finally {
+            if (inStream != null) {
+                try {
+                    inStream.close();
+                } catch (IOException e) {
+                    log.error("Error closing stream", e);
+                }
+            }
+        }
+
+        return jasperPrint;
     }
 }
