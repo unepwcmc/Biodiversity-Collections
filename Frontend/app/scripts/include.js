@@ -3,7 +3,7 @@ define(
         'angularAMD','angular','underscore','angular-translate','angular-breadcrumb',
         'angular-ui-router','angular-toastr','angular-cookies','angucomplete-alt','angular-tablesort',
         'angular-resource','angular-sanitize','popover','nemLogging','waypoints',
-        'angular-toastr-tpl','leaflet-directive', 'leaflet', 'leaflet.markercluster',
+        'angular-toastr-tpl','leaflet-directive', 'leaflet', 'leaflet.markercluster', 'highcharts-ng',
         'core/directives/core.include.template.directive',
         'core/directives/core.load.screen.directive',
         'core/directives/core.select.wrap.directive',
