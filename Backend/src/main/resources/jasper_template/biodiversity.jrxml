@@ -49,14 +49,14 @@
 			<staticText>
 				<reportElement x="0" y="24" width="555" height="37" uuid="4d9f16fd-febd-4ac0-a824-0274d2630383"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="18" isBold="true"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Brazil Biodiversity Collection Report]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="455" y="4" width="100" height="20" uuid="dc963d84-e76c-4082-abd9-2c384cf23f27"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
@@ -76,13 +76,13 @@
 						<rightPen lineWidth="1.0" lineColor="#999999"/>
 					</box>
 					<chartTitle>
-						<font fontName="Arial"/>
+						<font fontName="SansSerif"/>
 					</chartTitle>
 					<chartSubtitle>
-						<font fontName="Arial"/>
+						<font fontName="SansSerif"/>
 					</chartSubtitle>
 					<chartLegend position="Bottom">
-						<font fontName="Arial"/>
+						<font fontName="SansSerif"/>
 					</chartLegend>
 				</chart>
 				<pieDataset>
@@ -97,21 +97,21 @@
 				<piePlot isShowLabels="true" isCircular="true">
 					<plot/>
 					<itemLabel>
-						<font fontName="Arial"/>
+						<font fontName="SansSerif"/>
 					</itemLabel>
 				</piePlot>
 			</pieChart>
 			<staticText>
 				<reportElement x="0" y="6" width="100" height="20" uuid="2df8c3bd-3744-458c-82ea-4d8f0723744b"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Institution types]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="639" width="135" height="20" uuid="48cbfbfc-90ac-4f1b-a2fa-f497e2e4b848"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Institutions & Collections Statistcs]]></text>
 			</staticText>
@@ -125,11 +125,9 @@
 						<bottomPen lineWidth="1.0" lineColor="#999999"/>
 						<rightPen lineWidth="1.0" lineColor="#999999"/>
 					</box>
-					<chartTitle>
-						<font fontName="Arial"/>
-					</chartTitle>
+					<chartTitle/>
 					<chartSubtitle>
-						<font fontName="Arial"/>
+						<font fontName="SansSerif"/>
 					</chartSubtitle>
 					<chartLegend/>
 				</chart>
@@ -159,7 +157,7 @@
 			<staticText>
 				<reportElement x="0" y="335" width="100" height="20" uuid="29a798b8-efd9-4b57-84f1-953a33a2f7fc"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Overall picture]]></text>
 			</staticText>
@@ -240,14 +238,14 @@
 			<staticText>
 				<reportElement x="274" y="6" width="100" height="20" uuid="3ec95512-9d1e-422e-a857-2219f8b2a096"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Organims types]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="274" y="172" width="100" height="20" uuid="e7a9cdf4-fa4f-4935-9438-eeae9bb93115"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Collections Type]]></text>
 			</staticText>
@@ -264,7 +262,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="9" isBold="true" isStrikeThrough="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<text><![CDATA[Institution name]]></text>
@@ -278,7 +276,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="9" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Flora]]></text>
 			</staticText>
@@ -291,7 +289,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="9" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Fauna]]></text>
 			</staticText>
@@ -304,7 +302,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="9" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Microorganisms]]></text>
 			</staticText>
@@ -317,7 +315,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="9" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Other]]></text>
 			</staticText>
@@ -330,7 +328,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="9" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Total Number: of collection]]></text>
 			</staticText>
@@ -343,7 +341,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="9" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Specimens]]></text>
 			</staticText>
@@ -354,7 +352,7 @@
 			<textField>
 				<reportElement x="0" y="0" width="135" height="20" uuid="e0756799-dec4-4025-99dc-8f109ca53d21"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{institution_name}]]></textFieldExpression>
@@ -362,7 +360,7 @@
 			<textField>
 				<reportElement x="311" y="0" width="53" height="20" uuid="2f5e18e6-64d9-40f1-8658-83947f9f03ee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 					<paragraph rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fauna}]]></textFieldExpression>
@@ -370,7 +368,7 @@
 			<textField>
 				<reportElement x="364" y="0" width="52" height="20" uuid="b1760990-fda0-43a4-8850-a87611439c57"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 					<paragraph rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{flora}]]></textFieldExpression>
@@ -378,7 +376,7 @@
 			<textField>
 				<reportElement x="416" y="0" width="88" height="20" uuid="2e603835-23ef-4442-b5e4-0d83c8950717"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 					<paragraph rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{microorganisms}]]></textFieldExpression>
@@ -386,7 +384,7 @@
 			<textField>
 				<reportElement x="504" y="0" width="51" height="20" uuid="27a4848d-9267-4cbe-ae30-390e2cf3f82e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 					<paragraph rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{other}]]></textFieldExpression>
@@ -394,7 +392,7 @@
 			<textField>
 				<reportElement x="135" y="0" width="122" height="20" uuid="76f0e69e-be0c-4219-92a8-b8bf80828320"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 					<paragraph rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{collections}]]></textFieldExpression>
@@ -402,7 +400,7 @@
 			<textField>
 				<reportElement x="257" y="0" width="54" height="20" uuid="79f681e5-1684-44bb-8763-95b861e6e62a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 					<paragraph rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{specimens}]]></textFieldExpression>
@@ -417,7 +415,7 @@
 			<textField>
 				<reportElement x="455" y="22" width="100" height="20" uuid="ef418c9f-9b4a-4b2d-903c-2b115d53074e"/>
 				<textElement textAlignment="Right">
-					<font fontName="Arial"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
