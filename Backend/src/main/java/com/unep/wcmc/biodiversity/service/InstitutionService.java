@@ -34,22 +34,4 @@ public class InstitutionService extends AbstractService<Institution, Institution
         return super.save(institution);
     }
 
-    public List<InstitutionSummary> listInstitutionSummary() {
-        List<InstitutionSummary> result = new ArrayList<>();
-        List<Object[]> queryResult = repo.listInstitutionSummary();
-        for (Object[] record : queryResult) {
-            Contact contact = new Contact();
-            InstitutionType institutionType = record[9] != null ? InstitutionType.valueOf((String) record[9]) : null;
-            Institution institution = new Institution(((BigInteger) record[0]).longValue(), (String) record[1], contact,
-                    institutionType);
-            InstitutionSummary summary = new InstitutionSummary(institution, ((BigInteger) record[10]).longValue(),
-                    ((BigInteger) record[11]).longValue(), ((BigInteger) record[12]).longValue(),
-                    ((BigInteger) record[13]).longValue(), ((BigInteger) record[14]).longValue(),
-                    ((BigInteger) record[15]).longValue(), ((BigInteger) record[16]).longValue());
-            result.add(summary);
-        }
-        return result;
-    }
-
-
 }

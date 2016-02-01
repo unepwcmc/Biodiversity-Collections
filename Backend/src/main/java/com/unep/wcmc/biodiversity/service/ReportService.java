@@ -37,7 +37,7 @@ public class ReportService {
     public JRBeanCollectionDataSource createSummarySource(){
 
         ArrayList<HashMap> data = new ArrayList<>();
-        List<InstitutionSummary> summaries = institutionService.listInstitutionSummary();
+        List<InstitutionSummary> summaries = institutionService.getRepository().listInstitutionSummary();
 
         summaries.forEach( summary ->{
 
