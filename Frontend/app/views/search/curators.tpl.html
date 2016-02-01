@@ -5,7 +5,7 @@
     <div class="result-list">
 
         <div ng-repeat="col in curator.content" class="list-item">
-            <h5><strong><a data-ui-sref="curator({id:col.id})">{{col.name}}</a></strong> | <a data-ui-sref="curator({id:col.id})">id: {{col.id}}</a></h5>
+            <h5><strong><a data-ui-sref="curator({id:col.id})">{{col.name}}</a></strong></h5>
             <p><strong>{{col.user.institution.name}}</strong></p>
             <p>{{col.jobTitle}}</p>
         </div>
