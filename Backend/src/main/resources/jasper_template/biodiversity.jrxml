@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="biodiversity" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ace6140e-4aed-4255-8543-ed823d50d151">
-	<property name="ireport.zoom" value="1.2100000000000029"/>
+	<property name="ireport.zoom" value="1.2100000000000035"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="649"/>
+	<property name="ireport.y" value="201"/>
 	<subDataset name="institution_type_chart" uuid="1d945e6c-423a-4f45-b2d3-a5999e76dc02">
 		<queryString language="SQL">
 			<![CDATA[]]>
@@ -135,7 +135,7 @@
 			</staticText>
 			<bubbleChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="355" width="555" height="273" uuid="414da204-2726-4815-a6a0-bfbdd74c8110"/>
+					<reportElement x="0" y="355" width="257" height="273" uuid="414da204-2726-4815-a6a0-bfbdd74c8110"/>
 					<box>
 						<pen lineColor="#999999"/>
 						<topPen lineWidth="1.0" lineColor="#999999"/>
@@ -322,6 +322,24 @@
 				</textElement>
 				<text><![CDATA[Collections Type]]></text>
 			</staticText>
+			<bubbleChart>
+				<chart>
+					<reportElement x="274" y="355" width="281" height="273" uuid="267d5766-2d8a-426a-aed3-c26d3f52047e"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<xyzDataset/>
+				<bubblePlot>
+					<plot/>
+					<xAxisFormat>
+						<axisFormat/>
+					</xAxisFormat>
+					<yAxisFormat>
+						<axisFormat/>
+					</yAxisFormat>
+				</bubblePlot>
+			</bubbleChart>
 		</band>
 	</pageHeader>
 	<columnHeader>

@@ -84,7 +84,7 @@ public class ReportService {
 
             values.put("name", String.valueOf(obj[0]));
             values.put("axis_x", String.valueOf(obj[1]));
-            values.put("axis_y", String.valueOf(obj[2]));
+            values.put("axis_y", String.valueOf(obj[1]));
             values.put("size", String.valueOf(obj[2]));
 
             dataBubble.add(values);
