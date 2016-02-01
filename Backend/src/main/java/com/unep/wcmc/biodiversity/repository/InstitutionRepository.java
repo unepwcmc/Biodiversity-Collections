@@ -70,7 +70,7 @@ public interface InstitutionRepository extends AbstractRepository<Institution> {
             "group by i.name, i.id", nativeQuery = true)
     List<Object[]> countByCollections();
 
-    @Query(value = "select i.name, i.id, count(s.id) as total from institution i " +
+    @Query(value = "select i.name, i.id, count(s.id) as total, count(b.id) from institution i " +
             "left outer join biodiversity_collection b on b.institution_id = i.id " +
             "left outer join specimen s on s.collection_id = b.id " +
             "group by i.name, i.id", nativeQuery = true)
