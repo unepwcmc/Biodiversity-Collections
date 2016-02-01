@@ -233,6 +233,10 @@ module.exports = function (grunt) {
             {
               name: 'user/controllers/userController',
               exclude: ['include']
+            },
+            {
+              name: 'report/controllers/reportController',
+              exclude: ['include']
             }
           ]
         }
