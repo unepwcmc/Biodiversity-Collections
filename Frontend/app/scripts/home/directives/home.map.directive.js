@@ -11,11 +11,12 @@ define(['angularAMD',
                 templateUrl: 'views/home/home.map.tpl.html',
                 controller: ['$scope', '$rootScope', function($scope, $rootScope){
 
+                    $scope.collections = new BiodiversityCollection();
+                    $scope.coordinates = new BiodiversityCollection();
                     angular.extend( $scope.collections, {totalElements : 0, number: 0, size: 9, totalPages: 0});
                     $scope.query = 'ALL';
-                    $scope.coordinates = new BiodiversityCollection();
 
-                    $scope.collections.loadByDefinition($scope.query, $scope.collections.page, $scope.collections.size);
+                    $scope.collections.loadByDefinition($scope.query, 0, $scope.collections.size);
                     $scope.coordinates.loadCoordinatesByDefinition($scope.query);
 
 
@@ -38,7 +39,8 @@ define(['angularAMD',
                                 markersArray[value[0]] = {
                                     lat: value[3],
                                     lng: value[4],
-                                    index: index
+                                    index: index,
+                                    message: "<strong><a href='/#/collection/" + value[0] + "'>" + value[1] + "</a></strong><br/>" + value[2]
                                 };
                         });
 
