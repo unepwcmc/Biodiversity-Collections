@@ -370,6 +370,23 @@ define(['angularAMD'], function (angularAMD) {
                         $log.error(message);
                         $rootScope.$broadcast("INSTITUTION_COUNT_COLLECTIONS_ERROR");
                     });
+            },
+            countSpecimens: function( callback ) {
+                return $http.get( $rootScope.getHost() + "institutions/count/specimens" )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("INSTITUTION_COUNT_SPECIMENS_ERROR");
+                        } else {
+                            $rootScope.$broadcast("INSTITUTION_COUNT_SPECIMENS_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("INSTITUTION_COUNT_SPECIMENS_ERROR");
+                    });
             }
         };
 
