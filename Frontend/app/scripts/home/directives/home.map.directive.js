@@ -13,7 +13,7 @@ define(['angularAMD',
 
                     $scope.collections = new BiodiversityCollection();
                     $scope.coordinates = new BiodiversityCollection();
-                    angular.extend( $scope.collections, {totalElements : 0, number: 0, size: 9, totalPages: 0});
+                    angular.extend( $scope.collections, {totalElements : 0, number: 0, size: 15, totalPages: 0});
                     $scope.query = 'ALL';
 
                     $scope.collections.loadByDefinition($scope.query, 0, $scope.collections.size);
