@@ -13,9 +13,10 @@ define(['angularAMD','highcharts-ng',
                 $scope.institution = new Institution();
                 $scope.institution.countType(function(data) {
 
+                    var colors = ['grey', '#F5F5F5', '#DFE0E1', '#CCCCCC'];
                     var seriesData = [];
                     angular.forEach(data, function(value, key) {
-                        seriesData.push({ name: value[0], y: value[1]});
+                        seriesData.push({ name: value[0], y: value[1], color: colors[key] });
                     });
 
                     $scope.pieConfig = {
@@ -33,27 +34,19 @@ define(['angularAMD','highcharts-ng',
                             text: 'Institution Types'
                         },
                         legend: {
-                            enabled: true
+                            enabled: false
                         },
-                        tooltip: {
-                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                        },
-                        plotOptions: {
-                            pie: {
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                    style: {
-                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                                    }
-                                }
-                            }
-                        },
+
+
                         series: [{
-                            name: 'Types',
                             showInLegend: true,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.percentage:.1f} %'
+                            },
+                            tooltip: {
+                                pointFormat: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            },
                             data: seriesData
                         }]
                     };

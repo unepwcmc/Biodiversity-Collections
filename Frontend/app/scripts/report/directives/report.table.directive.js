@@ -1,6 +1,7 @@
 define(['angularAMD',
     'core/directives/core.table.sorter.directive',
-    'core/factory/institutionFactory'], function (angularAMD) {
+    'core/factory/institutionFactory',
+    'report/directives/report.table.popover.directive'], function (angularAMD) {
 
     'use strict';
 

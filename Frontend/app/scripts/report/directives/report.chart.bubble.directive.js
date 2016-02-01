@@ -15,7 +15,7 @@ define(['angularAMD','highcharts-ng',
 
                         var seriesData = [];
                         angular.forEach(data, function(value, key) {
-                            seriesData.push({ name: value[0], y: value[1], z: value[2]});
+                            seriesData.push({ name: value[0], x: (key + 1), y: value[1], z: value[2], w: value[3]});
                         });
 
                         $scope.bubbleChart = {
@@ -30,13 +30,6 @@ define(['angularAMD','highcharts-ng',
 
                             plotOptions: {
                                 bubble: {
-                                    dataLabels: {
-                                        enabled: true,
-                                        style: { textShadow: 'none' },
-                                        formatter: function() {
-                                            return this.point.name;
-                                        }
-                                    },
                                     minSize: '10%',
                                     maxSize: '100%'
                                 }
@@ -53,7 +46,10 @@ define(['angularAMD','highcharts-ng',
                             series: [
                                 {
                                     name: 'Total number of collections',
-                                    marker: { fillColor: 'lightblue' },
+                                    marker: { fillColor: 'lightgrey' },
+                                    tooltip: {
+                                        pointFormat: '<b>{point.name}</b><br/>{point.z} Collections<br/>{point.w} Specimens'
+                                    },
                                     data: seriesData,
                                     showInLegend: true
                                 }

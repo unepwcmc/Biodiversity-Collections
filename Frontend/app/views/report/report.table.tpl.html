@@ -5,6 +5,7 @@
             <thead>
             <tr>
                 <th ts-criteria="name">{{ 'INSTITUTION_NAME' | translate }}</th>
+                <th class="no-sorter">&nbsp;</th>
                 <th ts-criteria="collections">{{'TOTAL_NUMBER_OF' | translate }}:&nbsp;{{ 'COLLECTIONS' | translate }}</th>
                 <th ts-criteria="specimens">{{ 'SPECIMENS' | translate }}</th>
                 <th ts-criteria="faunaCollections">{{ 'FAUNA' | translate }}</th>
@@ -17,6 +18,7 @@
             <tbody>
             <tr ng-repeat="s in institutions.content" ts-repeat>
                 <td align="left">{{s.institution.name}}</td>
+                <td class="btn-td" width="5%"><a report-popover summary="s" class="btn pub-popover"><i class="fa fa-ellipsis-v"></i></a></td>
                 <td align="right">{{s.collections}}</td>
                 <td align="right">{{s.specimens}}</td>
                 <td align="right">{{s.faunaCollections}}</td>
