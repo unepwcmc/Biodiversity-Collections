@@ -1,8 +1,11 @@
-define(['angularAMD','core/directives/core.map.directive','core/directives/core.paging.directive'], function (angularAMD) {
+define(['angularAMD',
+    'core/directives/core.map.directive',
+    'core/directives/core.paging.directive',
+    'core/factory/biodiversityCollectionFactory'], function (angularAMD) {
 
     'use strict';
 
-    angularAMD.directive('homeMap', ['$timeout', '$rootScope', function ($timeout, $rootScope) {
+    angularAMD.directive('homeMap', ['$timeout', '$rootScope','BiodiversityCollection', function ($timeout, $rootScope, BiodiversityCollection) {
             return {
                 restrict: 'E',
                 templateUrl: 'views/home/home.map.tpl.html',
@@ -10,7 +13,11 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
 
                     angular.extend( $scope.collections, {totalElements : 0, number: 0, size: 9, totalPages: 0});
                     $scope.query = 'ALL';
+                    $scope.coordinates = new BiodiversityCollection();
+
                     $scope.collections.loadByDefinition($scope.query, $scope.collections.page, $scope.collections.size);
+                    $scope.coordinates.loadCoordinatesByDefinition($scope.query);
+
 
                     $rootScope.$on('AuthenticationDone', function() {
                         $scope.load(0);
@@ -20,17 +27,17 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
                         $scope.load(0);
                     });
 
-                    $scope.$on('BIODIVERSITY_FILTER_LOADED', function(){
+                    $scope.$on('BIODIVERSITY_COORDINATES_FILTER_LOADED', function(){
                         console.log('biodiversity home loaded');
 
                         var markersArray = {};
-                        var index = $scope.collections.number * $scope.collections.size;
-                        angular.forEach($scope.collections.content, function(value) {
+                        var index = 0;
+                        angular.forEach($scope.coordinates, function(value) {
                             index++;
-                            if (value.contact)
-                                markersArray[value.id] = {
-                                    lat: value.contact.latitude,
-                                    lng: value.contact.longitude,
+                            if (value[3])
+                                markersArray[value[0]] = {
+                                    lat: value[3],
+                                    lng: value[4],
                                     index: index
                                 };
                         });
@@ -42,6 +49,7 @@ define(['angularAMD','core/directives/core.map.directive','core/directives/core.
 
                     $scope.load = function(page) {
                         $scope.collections.loadByDefinition($scope.query, page, $scope.collections.size );
+                        $scope.coordinates.loadCoordinatesByDefinition($scope.query);
                     };
 
 
