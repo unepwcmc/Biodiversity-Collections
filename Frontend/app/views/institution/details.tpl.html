@@ -65,6 +65,18 @@
                          </div>
 
                          <div class="form-group">
+                             <label class="col-sm-3">{{ 'INSTITUTION_TYPE' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <select select-wrap class="form-control" ng-model="institution.institutionType">
+                                     <option value="STATE" selected>{{ 'INSTITUTION_STATE' | translate }}</option>
+                                     <option value="COUNTRY">{{ 'INSTITUTION_COUNTRY' | translate }}</option>
+                                     <option value="PRIVATE">{{ 'INSTITUTION_PRIVATE' | translate }}</option>
+                                     <option value="FEDERAL">{{ 'INSTITUTION_FEDERAL' | translate }}</option>
+                                 </select>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
                              <label class="col-sm-3">{{ 'DISCIPLINE' | translate }}</label>
                              <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="institution.discipline" ></div>
                          </div>

@@ -237,7 +237,12 @@ define([],function ( ) {
     'INSTITUTION_NAME': 'Nome da institutição',
     'FUNGI': 'Fungi',
     'TOTALS': 'Totais',
-    'TOTAL_NUMBER_OF': 'Número Total de'
+    'TOTAL_NUMBER_OF': 'Número Total de',
+    'INSTITUTION_TYPE': 'Tipo de instituição',
+    'INSTITUTION_STATE': 'Estadual',
+    'INSTITUTION_COUNTRY': 'Municipal',
+    'INSTITUTION_PRIVATE': 'Privada',
+    'INSTITUTION_FEDERAL': 'Federal'
   }
 
 });
