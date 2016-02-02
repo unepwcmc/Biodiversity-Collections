@@ -11,7 +11,7 @@ define(['angularAMD',
                 templateUrl: 'views/home/home.map.tpl.html',
                 controller: ['$scope', '$rootScope', function($scope, $rootScope){
 
-                    $scope.collections = new BiodiversityCollection();
+                    //$scope.collections = new BiodiversityCollection();
                     $scope.coordinates = new BiodiversityCollection();
                     angular.extend( $scope.collections, {totalElements : 0, number: 0, size: 15, totalPages: 0});
                     $scope.query = 'ALL';

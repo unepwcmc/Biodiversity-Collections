@@ -276,7 +276,7 @@ module.exports = function (grunt) {
 
     watch: {
       www: {
-        files: ['%= cvars.app %>/**/*'],
+        files: ['%= cvars.dist %>/**/*'],
         tasks: [],
         options: {
           spawn: false,
@@ -289,7 +289,7 @@ module.exports = function (grunt) {
         livereload: true,
         options: {
           port: gruntConfig.configVars.port,
-          base: '<%= cvars.app %>'
+          base: '<%= cvars.dist %>'
         }
       }
     }
