@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="biodiversity" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ace6140e-4aed-4255-8543-ed823d50d151">
 	<property name="ireport.zoom" value="1.2100000000000035"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="153"/>
+	<property name="ireport.y" value="729"/>
 	<subDataset name="institution_type_chart" uuid="1d945e6c-423a-4f45-b2d3-a5999e76dc02">
 		<queryString language="SQL">
 			<![CDATA[]]>
@@ -134,7 +134,7 @@
 				<text><![CDATA[Institution types]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="639" width="135" height="20" uuid="48cbfbfc-90ac-4f1b-a2fa-f497e2e4b848"/>
+				<reportElement x="0" y="639" width="167" height="20" uuid="48cbfbfc-90ac-4f1b-a2fa-f497e2e4b848"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
