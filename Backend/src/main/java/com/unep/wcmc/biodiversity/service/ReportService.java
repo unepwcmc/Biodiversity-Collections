@@ -81,17 +81,22 @@ public class ReportService {
         ArrayList<HashMap> dataBubble = new ArrayList<>();
         List<Object[]> objectsBubble = institutionService.getRepository().countByCollections();
 
-        objectsBubble.forEach( obj ->{
+        int index = 1;
+        for( Object[] obj : objectsBubble){
 
-            HashMap<String,String>  values = new HashMap<>();
+            if(obj[0] != null){
 
-            values.put("name", String.valueOf(obj[0]));
-            values.put("axis_x", String.valueOf(obj[1]));
-            values.put("axis_y", String.valueOf(obj[1]));
-            values.put("size", String.valueOf(obj[2]));
+                HashMap<String,String>  values = new HashMap<>();
 
-            dataBubble.add(values);
-        });
+                values.put("name", String.valueOf(obj[0]));
+                values.put("axis_x", String.valueOf(Math.floor((Math.random() * 100) + 1)));
+                values.put("axis_y", String.valueOf(Math.floor((Math.random() * 100) + 1)));
+                values.put("size", String.valueOf(obj[2]));
+
+                dataBubble.add(values);
+                index++;
+            }
+        }
 
         return new JRBeanCollectionDataSource(dataBubble);
     }
@@ -101,17 +106,22 @@ public class ReportService {
         ArrayList<HashMap> dataBubble = new ArrayList<>();
         List<Object[]> objectsBubble = institutionService.getRepository().countBySpecimens();
 
-        objectsBubble.forEach( obj ->{
+        int index = 1;
+        for( Object[] obj : objectsBubble){
 
-            HashMap<String,String>  values = new HashMap<>();
+            if(obj[0] != null){
 
-            values.put("name", String.valueOf(obj[0]));
-            values.put("axis_x", String.valueOf(obj[1]));
-            values.put("axis_y", String.valueOf(obj[1]));
-            values.put("size", String.valueOf(obj[2]));
+                HashMap<String,String>  values = new HashMap<>();
 
-            dataBubble.add(values);
-        });
+                values.put("name", String.valueOf(obj[0]));
+                values.put("axis_x", String.valueOf(Math.floor((Math.random() * 100) + 1)));
+                values.put("axis_y", String.valueOf(Math.floor((Math.random() * 100) + 1)));
+                values.put("size", String.valueOf(obj[2]));
+
+                dataBubble.add(values);
+                index++;
+            }
+        }
 
         return new JRBeanCollectionDataSource(dataBubble);
     }
