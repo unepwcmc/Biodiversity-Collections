@@ -62,12 +62,15 @@ public class ReportService {
 
         objectsPie.forEach( obj ->{
 
-            HashMap<String,String>  values = new HashMap<>();
+            if(obj[0] != null){
 
-            values.put("type", String.valueOf(obj[0]));
-            values.put("value", String.valueOf(obj[1]));
+                HashMap<String,String>  values = new HashMap<>();
 
-            dataPie.add(values);
+                values.put("type", String.valueOf(obj[0]));
+                values.put("value", String.valueOf(obj[1]));
+
+                dataPie.add(values);
+            }
         });
 
         return new JRBeanCollectionDataSource(dataPie);
@@ -120,12 +123,15 @@ public class ReportService {
 
         objectsCollections.forEach( obj ->{
 
-            HashMap<String,String>  values = new HashMap<>();
+            if(obj[0] != null){
 
-            values.put("type", String.valueOf(obj[0]));
-            values.put("value", String.valueOf(obj[1]));
+                HashMap<String,String>  values = new HashMap<>();
 
-            dataBarCollection.add(values);
+                values.put("type", String.valueOf(obj[0]));
+                values.put("value", String.valueOf(obj[1]));
+
+                dataBarCollection.add(values);
+            }
         });
 
         return new JRBeanCollectionDataSource(dataBarCollection);
@@ -138,12 +144,15 @@ public class ReportService {
 
         objectsDefinition.forEach( obj ->{
 
-            HashMap<String,String>  values = new HashMap<>();
+            if(obj[0] != null){
 
-            values.put("type", String.valueOf(obj[0]));
-            values.put("value", String.valueOf(obj[1]));
+                HashMap<String,String>  values = new HashMap<>();
 
-            dataCollectionDefinition.add(values);
+                values.put("type", String.valueOf(obj[0]));
+                values.put("value", String.valueOf(obj[1]));
+
+                dataCollectionDefinition.add(values);
+            }
         });
 
         return new JRBeanCollectionDataSource(dataCollectionDefinition);
