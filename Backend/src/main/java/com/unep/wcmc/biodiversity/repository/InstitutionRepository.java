@@ -29,7 +29,7 @@ public interface InstitutionRepository extends AbstractRepository<Institution> {
     @Query(value = "SELECT NEW com.unep.wcmc.biodiversity.model.InstitutionSummary(i.id, i.name, i.contact.address1, " +
             "i.contact.address2, i.contact.address3, i.contact.city, i.contact.district, i.contact.country, i.institutionType, " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.institution.id = i.id), " +
-            "(SELECT COUNT(s.id) FROM BiodiversityCollection b JOIN b.specimens s WHERE b.institution.id = i.id), " +
+            "(SELECT COUNT(s.count) FROM BiodiversityCollection b JOIN b.specimens s WHERE b.institution.id = i.id), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.institution.id = i.id AND b.collectionDefinition = 'FAUNA'), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.institution.id = i.id AND b.collectionDefinition = 'FLORA'), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.institution.id = i.id AND b.collectionDefinition = 'MICROORGANISMS'), " +
@@ -41,7 +41,7 @@ public interface InstitutionRepository extends AbstractRepository<Institution> {
     @Query(value = "SELECT NEW com.unep.wcmc.biodiversity.model.InstitutionSummary(i.id, i.name, i.contact.address1, " +
             "i.contact.address2, i.contact.address3, i.contact.city, i.contact.district, i.contact.country, i.institutionType, " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.institution.id = i.id), " +
-            "(SELECT COUNT(s.id) FROM BiodiversityCollection b JOIN b.specimens s WHERE b.institution.id = i.id), " +
+            "(SELECT COUNT(s.count) FROM BiodiversityCollection b JOIN b.specimens s WHERE b.institution.id = i.id), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.institution.id = i.id AND b.collectionDefinition = 'FAUNA'), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.institution.id = i.id AND b.collectionDefinition = 'FLORA'), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.institution.id = i.id AND b.collectionDefinition = 'MICROORGANISMS'), " +
@@ -52,7 +52,7 @@ public interface InstitutionRepository extends AbstractRepository<Institution> {
 
     @Query(value = "SELECT NEW com.unep.wcmc.biodiversity.model.InstitutionSummary(COUNT(i.id), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b), " +
-            "(SELECT COUNT(s.id) FROM BiodiversityCollection b JOIN b.specimens s), " +
+            "(SELECT COUNT(s.count) FROM BiodiversityCollection b JOIN b.specimens s), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.collectionDefinition = 'FAUNA'), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.collectionDefinition = 'FLORA'), " +
             "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.collectionDefinition = 'MICROORGANISMS'), " +
