@@ -5,8 +5,9 @@
     <div class="result-list">
 
         <div ng-repeat="col in institution.content" class="list-item">
-            <h5><strong><a data-ui-sref="institution({id:col.id})">{{col.name}}</a></strong></h5>
-            <p style="height:2.7em; overflow:hidden;">{{col.description}}</p>
+            <h5><strong><a data-ui-sref="institution({id:col.id})">{{col.name | trim}}</a></strong></h5>
+            <p ng-if="col.description.length > 360" style="height:2.7em; overflow:hidden; float: left;">{{col.description}}</p>
+            <p ng-if="col.description.length <= 360">{{col.description}}</p>
         </div>
 
     </div>
