@@ -48,7 +48,7 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
 
     Page<BiodiversityCollection> findAllByCollectionDefinitionOrderByName(@Param("collectionDefinition") CollectionDefinition collectionDefinition, Pageable pageable);
 
-    @Query("select c.id, c.name, c.institution.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c order by c.name")
+    @Query("select c.id, c.name, i.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c left join c.institution i order by c.name")
     List<Object[]> listAllCoordinates();
 
     @Query("select c.id, c.name, c.institution.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c where c.published = :published order by c.name")

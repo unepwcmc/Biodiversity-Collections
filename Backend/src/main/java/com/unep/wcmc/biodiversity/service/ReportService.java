@@ -5,6 +5,7 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.type.WhenNoDataTypeEnum;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -179,7 +180,7 @@ public class ReportService {
         parameters.put("collection_type_datasource", collectionCountDefinition());
 
 
-        return getJasperPrint("jasper_template/biodiversity.jrxml", parameters, createSummarySource());
+        return getJasperPrint("jasper_template/biodiversity.jasper", parameters, createSummarySource());
     }
 
     private JasperPrint getJasperPrint(String path, Map<String, Object> parameters, JRDataSource dataSource) {
@@ -188,8 +189,9 @@ public class ReportService {
         InputStream inStream = null;
         try {
             inStream = getClass().getClassLoader().getResourceAsStream(path);
-            JasperDesign jasperDesign = JRXmlLoader.load(inStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(inStream);
+//            JasperDesign jasperDesign = JRXmlLoader.load(inStream);
+//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             jasperReport.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
             jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
