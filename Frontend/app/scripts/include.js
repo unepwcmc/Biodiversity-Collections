@@ -15,6 +15,7 @@ define(
         'core/directives/core.on.finish.render.directive',
         'core/directives/core.search.box.directive',
         'core/filters/core.pagination.filter',
+        'core/filters/core.trim.filter',
         'core/controllers/BaseController',
         'auth/directives/auth.login.form.directive',
         'auth/directives/auth.login.show.directive',

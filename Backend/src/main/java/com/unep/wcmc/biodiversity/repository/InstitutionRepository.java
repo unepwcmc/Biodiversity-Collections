@@ -51,13 +51,13 @@ public interface InstitutionRepository extends AbstractRepository<Institution> {
     Page<InstitutionSummary> pageInstitutionSummary(Pageable pageable);
 
     @Query(value = "SELECT NEW com.unep.wcmc.biodiversity.model.InstitutionSummary(COUNT(i.id), " +
-            "(SELECT COUNT(b.id) FROM BiodiversityCollection b), " +
-            "(SELECT COUNT(s.count) FROM BiodiversityCollection b JOIN b.specimens s), " +
-            "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.collectionDefinition = 'FAUNA'), " +
-            "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.collectionDefinition = 'FLORA'), " +
-            "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.collectionDefinition = 'MICROORGANISMS'), " +
-            "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.collectionDefinition = 'OTHERS'), " +
-            "(SELECT COUNT(b.id) FROM BiodiversityCollection b WHERE b.collectionDefinition = 'FUNGI')) " +
+            "(SELECT COUNT(b.id) FROM BiodiversityCollection b JOIN b.institution i), " +
+            "(SELECT COUNT(s.count) FROM BiodiversityCollection b JOIN b.institution i JOIN b.specimens s), " +
+            "(SELECT COUNT(b.id) FROM BiodiversityCollection b JOIN b.institution i WHERE b.collectionDefinition = 'FAUNA'), " +
+            "(SELECT COUNT(b.id) FROM BiodiversityCollection b JOIN b.institution i WHERE b.collectionDefinition = 'FLORA'), " +
+            "(SELECT COUNT(b.id) FROM BiodiversityCollection b JOIN b.institution i WHERE b.collectionDefinition = 'MICROORGANISMS'), " +
+            "(SELECT COUNT(b.id) FROM BiodiversityCollection b JOIN b.institution i WHERE b.collectionDefinition = 'OTHERS'), " +
+            "(SELECT COUNT(b.id) FROM BiodiversityCollection b JOIN b.institution i WHERE b.collectionDefinition = 'FUNGI')) " +
             "FROM Institution i ")
     InstitutionSummary getInstitutionSummaryTotal();
 
