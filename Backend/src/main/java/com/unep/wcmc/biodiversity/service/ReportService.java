@@ -93,6 +93,26 @@ public class ReportService {
         return new JRBeanCollectionDataSource(dataBubble);
     }
 
+    public JRBeanCollectionDataSource createBubbleSpecimen(){
+
+        ArrayList<HashMap> dataBubble = new ArrayList<>();
+        List<Object[]> objectsBubble = institutionService.getRepository().countBySpecimens();
+
+        objectsBubble.forEach( obj ->{
+
+            HashMap<String,String>  values = new HashMap<>();
+
+            values.put("name", String.valueOf(obj[0]));
+            values.put("axis_x", String.valueOf(obj[1]));
+            values.put("axis_y", String.valueOf(obj[1]));
+            values.put("size", String.valueOf(obj[2]));
+
+            dataBubble.add(values);
+        });
+
+        return new JRBeanCollectionDataSource(dataBubble);
+    }
+
     public JRBeanCollectionDataSource collectionCountType(){
 
         ArrayList<HashMap> dataBarCollection = new ArrayList<>();
@@ -135,6 +155,7 @@ public class ReportService {
 
         parameters.put("institution_chart_datasource",createInstitutionType());
         parameters.put("overall_picture_datasource", createBubbleCollection());
+        parameters.put("bubble_specimen_datasource", createBubbleSpecimen());
         parameters.put("organisms_type_datasource", collectionCountType());
         parameters.put("collection_type_datasource", collectionCountDefinition());
 

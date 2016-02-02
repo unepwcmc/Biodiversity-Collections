@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="biodiversity" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ace6140e-4aed-4255-8543-ed823d50d151">
 	<property name="ireport.zoom" value="1.2100000000000035"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="201"/>
+	<property name="ireport.y" value="585"/>
 	<subDataset name="institution_type_chart" uuid="1d945e6c-423a-4f45-b2d3-a5999e76dc02">
 		<queryString language="SQL">
 			<![CDATA[]]>
@@ -24,10 +24,17 @@
 		<field name="value" class="java.lang.String"/>
 		<field name="type" class="java.lang.String"/>
 	</subDataset>
+	<subDataset name="bubble_specimen_datasource" uuid="ab1235c3-2e2f-4e4c-bca0-bdc455b3ab3a">
+		<field name="name" class="java.lang.String"/>
+		<field name="axis_x" class="java.lang.String"/>
+		<field name="axis_y" class="java.lang.String"/>
+		<field name="size" class="java.lang.String"/>
+	</subDataset>
 	<parameter name="institution_chart_datasource" class="java.lang.Object"/>
 	<parameter name="overall_picture_datasource" class="java.lang.Object"/>
 	<parameter name="organisms_type_datasource" class="java.lang.Object"/>
 	<parameter name="collection_type_datasource" class="java.lang.Object"/>
+	<parameter name="bubble_specimen_datasource" class="java.lang.Object"/>
 	<field name="institution_name" class="java.lang.String"/>
 	<field name="fauna" class="java.lang.String"/>
 	<field name="flora" class="java.lang.String"/>
@@ -166,7 +173,7 @@
 						<zValueExpression><![CDATA[$F{size}!= null ? Double.valueOf($F{size}) : new Double("0")]]></zValueExpression>
 					</xyzSeries>
 				</xyzDataset>
-				<bubblePlot scaleType="DomainAxis">
+				<bubblePlot scaleType="BothAxes">
 					<plot orientation="Horizontal"/>
 					<xAxisFormat>
 						<axisFormat>
@@ -323,20 +330,52 @@
 				<text><![CDATA[Collections Type]]></text>
 			</staticText>
 			<bubbleChart>
-				<chart>
+				<chart evaluationTime="Report">
 					<reportElement x="274" y="355" width="281" height="273" uuid="267d5766-2d8a-426a-aed3-c26d3f52047e"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
+					<chartTitle>
+						<font size="8"/>
+					</chartTitle>
+					<chartSubtitle>
+						<font size="8"/>
+					</chartSubtitle>
+					<chartLegend>
+						<font size="8"/>
+					</chartLegend>
 				</chart>
-				<xyzDataset/>
-				<bubblePlot>
-					<plot/>
+				<xyzDataset>
+					<dataset>
+						<datasetRun subDataset="bubble_specimen_datasource" uuid="c2298770-056d-45ef-898e-d482b41569ac">
+							<dataSourceExpression><![CDATA[$P{bubble_specimen_datasource}]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<xyzSeries>
+						<seriesExpression><![CDATA[$F{name} != null ? $F{name} : new String("")]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{axis_x} != null ? Double.valueOf($F{axis_x}) : new Double("0")]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{axis_y} != null ? Double.valueOf($F{axis_y}) : new Double("0")]]></yValueExpression>
+						<zValueExpression><![CDATA[$F{size} != null ? Double.valueOf($F{size}) : new Double("0")]]></zValueExpression>
+					</xyzSeries>
+				</xyzDataset>
+				<bubblePlot scaleType="BothAxes">
+					<plot orientation="Horizontal"/>
 					<xAxisFormat>
-						<axisFormat/>
+						<axisFormat>
+							<labelFont>
+								<font size="8"/>
+							</labelFont>
+							<tickLabelFont>
+								<font size="8"/>
+							</tickLabelFont>
+						</axisFormat>
 					</xAxisFormat>
 					<yAxisFormat>
-						<axisFormat/>
+						<axisFormat>
+							<labelFont>
+								<font size="8"/>
+							</labelFont>
+							<tickLabelFont>
+								<font size="8"/>
+							</tickLabelFont>
+						</axisFormat>
 					</yAxisFormat>
 				</bubblePlot>
 			</bubbleChart>
