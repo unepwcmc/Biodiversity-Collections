@@ -26,7 +26,10 @@ define(['angularAMD',
 
             }],
             link: function (scope, element, attrs) {
-
+                $("#report-size-box").change(function() {
+                    scope.institutions.size = parseInt($(this).val());
+                    scope.paginateReport(scope.institutions.number, $(this).val());
+                });
             }
         };
     }]);
