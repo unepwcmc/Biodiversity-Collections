@@ -35,12 +35,15 @@ define(['angularAMD',
                         var index = 0;
                         angular.forEach($scope.coordinates, function(value) {
                             index++;
+                            var institution = value[2];
+                            if (institution === null || institution === 'null')
+                                institution = '';
                             if (value[3])
                                 markersArray[value[0]] = {
                                     lat: value[3],
                                     lng: value[4],
                                     index: index,
-                                    message: "<strong><a href='/#/collection/" + value[0] + "'>" + value[1] + "</a></strong><br/>" + value[2]
+                                    message: "<strong><a href='/#/collection/" + value[0] + "'>" + value[1] + "</a></strong><br/>" + institution
                                 };
                         });
 

@@ -11,11 +11,11 @@ define(['angularAMD',
         angular.extend($scope, BaseController);
 
         $scope.downloadPdf = function() {
-            $window.open($rootScope.getHost() + '/report/pdf');
+            $window.open($rootScope.getHost() + 'report/pdf');
         };
 
         $scope.downloadXls = function() {
-            $window.open($rootScope.getHost() + '/report/xls');
+            $window.open($rootScope.getHost() + 'report/xls');
         };
 
     }];
