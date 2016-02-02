@@ -1,7 +1,6 @@
 package com.unep.wcmc.biodiversity.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.unep.wcmc.biodiversity.support.BaseEntity;
 
 import javax.persistence.*;
@@ -10,11 +9,7 @@ import java.util.Set;
 
 @Entity
 @NamedEntityGraph(name = "Institution.detail",
-        attributeNodes = {
-                @NamedAttributeNode("curators"),
-                @NamedAttributeNode("networks")
-        }
-    )
+        attributeNodes = {@NamedAttributeNode("curators"), @NamedAttributeNode("networks")})
 public class Institution implements BaseEntity {
 
     @Id
@@ -46,7 +41,6 @@ public class Institution implements BaseEntity {
     @JoinTable(name = "curator_institution",
             joinColumns = @JoinColumn(name = "institution_id"),
             inverseJoinColumns = @JoinColumn(name = "curator_id"))
-    @JsonManagedReference
     private Set<Curator> curators;
 
     @OneToMany(mappedBy = "institution")

@@ -42,21 +42,42 @@ public class BiodiversityCollectionService extends AbstractService<BiodiversityC
         User user = SecurityUtils.getCurrentUser();
         CollectionDefinition colDefinition = CollectionDefinition.valueOf(definition.toUpperCase());
         if (user == null) {
-            return repo.findAllByCollectionDefinitionAndPublished(colDefinition, true, pageable);
+            return repo.findAllByCollectionDefinitionAndPublishedOrderByName(colDefinition, true, pageable);
         } else if (user.getUserRole().getRole().equals(UserRole.RoleType.CURATOR.name())) {
             return repo.findAllByCollectionDefinitionForCurator(colDefinition, user.getId(), pageable);
         }
-        return repo.findAllByCollectionDefinition(colDefinition, pageable);
+        return repo.findAllByCollectionDefinitionOrderByName(colDefinition, pageable);
     }
 
     public Page<BiodiversityCollection> searchAll(Pageable pageable) {
         User user = SecurityUtils.getCurrentUser();
         if (user == null) {
-            return repo.findAllByPublished(true, pageable);
+            return repo.findAllByPublishedOrderByName(true, pageable);
         } else if (user.getUserRole().getRole().equals(UserRole.RoleType.CURATOR.name())) {
             return repo.findAllForCurator(user.getId(), pageable);
         }
-        return repo.findAll(pageable);
+        return repo.findAllOrderByName(pageable);
+    }
+
+    public List<Object[]> searchCoordinatesByDefinition(String definition) {
+        User user = SecurityUtils.getCurrentUser();
+        CollectionDefinition colDefinition = CollectionDefinition.valueOf(definition.toUpperCase());
+        if (user == null) {
+            return repo.listAllCoordinatesByDefinitionAndPublished(colDefinition, true);
+        } else if (user.getUserRole().getRole().equals(UserRole.RoleType.CURATOR.name())) {
+            return repo.listAllCoordinatesByDefinitionForCurator(colDefinition, user.getId());
+        }
+        return repo.listAllCoordinatesByDefinition(colDefinition);
+    }
+
+    public List<Object[]> searchCoordinates() {
+        User user = SecurityUtils.getCurrentUser();
+        if (user == null) {
+            return repo.listAllCoordinatesPublished(true);
+        } else if (user.getUserRole().getRole().equals(UserRole.RoleType.CURATOR.name())) {
+            return repo.listAllCoordinatesForCurator(user.getId());
+        }
+        return repo.listAllCoordinates();
     }
 
 }

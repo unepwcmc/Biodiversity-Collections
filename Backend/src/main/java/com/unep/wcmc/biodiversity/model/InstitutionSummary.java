@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class InstitutionSummary implements Serializable {
 
     private Institution institution;
+    private Long institutionTotal;
     private Long collections;
     private Long specimens;
     private Long faunaCollections;
@@ -17,10 +18,26 @@ public class InstitutionSummary implements Serializable {
         super();
     }
 
-    public InstitutionSummary(Institution institution, Long collections, Long specimens, Long faunaCollections,
+    public InstitutionSummary(Long id, String name, String address1, String address2, String address3,
+                              String city, String district, String country, InstitutionType type,
+                              Long collections, Long specimens, Long faunaCollections,
                               Long floraCollections, Long microorganismsCollections, Long otherCollections,
                               Long fungiCollections) {
-        this.institution = institution;
+        Contact contact = new Contact(country, city, district, address3, address2, address1);
+        this.institution = new Institution(id, name, contact, type);
+        this.collections = collections;
+        this.specimens = specimens;
+        this.faunaCollections = faunaCollections;
+        this.floraCollections = floraCollections;
+        this.microorganismsCollections = microorganismsCollections;
+        this.otherCollections = otherCollections;
+        this.fungiCollections = fungiCollections;
+    }
+
+    public InstitutionSummary(Long institutionTotal, Long collections, Long specimens, Long faunaCollections,
+                              Long floraCollections, Long microorganismsCollections, Long otherCollections,
+                              Long fungiCollections) {
+        this.institutionTotal = institutionTotal;
         this.collections = collections;
         this.specimens = specimens;
         this.faunaCollections = faunaCollections;
@@ -36,6 +53,14 @@ public class InstitutionSummary implements Serializable {
 
     public void setInstitution(Institution institution) {
         this.institution = institution;
+    }
+
+    public Long getInstitutionTotal() {
+        return institutionTotal;
+    }
+
+    public void setInstitutionTotal(Long institutionTotal) {
+        this.institutionTotal = institutionTotal;
     }
 
     public Long getCollections() {

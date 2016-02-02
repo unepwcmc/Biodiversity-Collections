@@ -93,12 +93,25 @@
                          </div>
 
                          <div class="form-group">
+                             <label class="col-sm-3">{{ 'INSTITUTION_TYPE' | translate }}</label>
+                             <div class="col-sm-9">
+                                 <select select-wrap class="form-control" ng-model="collection.institutionType">
+                                     <option value="STATE" selected>{{ 'INSTITUTION_STATE' | translate }}</option>
+                                     <option value="COUNTRY">{{ 'INSTITUTION_COUNTRY' | translate }}</option>
+                                     <option value="PRIVATE">{{ 'INSTITUTION_PRIVATE' | translate }}</option>
+                                     <option value="FEDERAL">{{ 'INSTITUTION_FEDERAL' | translate }}</option>
+                                 </select>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
                              <label class="col-sm-3">{{ 'ORGANISM_TYPE' | translate }}</label>
                              <div class="col-sm-9">
                                  <select select-wrap class="form-control" ng-model="collection.collectionDefinition">
                                      <option value="FAUNA" selected>{{ 'FAUNA' | translate }}</option>
                                      <option value="FLORA">{{ 'FLORA' | translate }}</option>
                                      <option value="MICROORGANISMS">{{ 'MICROORGANISMS' | translate }}</option>
+                                     <option value="FUNGI">{{ 'FUNGI' | translate }}</option>
                                      <option value="OTHERS">{{ 'OTHERS' | translate }}</option>
                                  </select>
                              </div>

@@ -89,6 +89,7 @@ define(['angularAMD'], function (angularAMD) {
                                   popupAnchor: [3, -40],
                                   html: '<p style="margin: 5px; font-weight: bold;">' + index + '</p>'
                               };
+                              obj.draggable = false;
                               count++;
                           });
                           angular.extend($scope, {markers: points});

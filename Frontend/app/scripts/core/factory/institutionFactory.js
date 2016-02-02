@@ -299,9 +299,9 @@ define(['angularAMD'], function (angularAMD) {
                             callback( data, status, headers, config )
                     });
             },
-            summary: function( callback ) {
+            summary: function( page, size, callback ) {
                 var self = this;
-                return $http.get( $rootScope.getHost() + "institutions/summary" )
+                return $http.get( $rootScope.getHost() + "institutions/summary/paging" + "?page=" +  page + "&size=" +   size )
                     .success(function (data) {
                         if (data.message == 'no matches found') {
                             $rootScope.$broadcast("INSTITUTION_SUMMARY_ERROR");
@@ -316,6 +316,25 @@ define(['angularAMD'], function (angularAMD) {
                     .error(function (message) {
                         $log.error(message);
                         $rootScope.$broadcast("INSTITUTION_SUMMARY_ERROR");
+                    });
+            },
+            summaryTotal: function( callback ) {
+                var self = this;
+                return $http.get( $rootScope.getHost() + "institutions/summary/total" )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("INSTITUTION_SUMMARY_TOTAL_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("INSTITUTION_SUMMARY_TOTAL_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("INSTITUTION_SUMMARY_TOTAL_ERROR");
                     });
             },
             countType: function( callback ) {
@@ -350,6 +369,23 @@ define(['angularAMD'], function (angularAMD) {
                     .error(function (message) {
                         $log.error(message);
                         $rootScope.$broadcast("INSTITUTION_COUNT_COLLECTIONS_ERROR");
+                    });
+            },
+            countSpecimens: function( callback ) {
+                return $http.get( $rootScope.getHost() + "institutions/count/specimens" )
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("INSTITUTION_COUNT_SPECIMENS_ERROR");
+                        } else {
+                            $rootScope.$broadcast("INSTITUTION_COUNT_SPECIMENS_LOADED", data);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("INSTITUTION_COUNT_SPECIMENS_ERROR");
                     });
             }
         };

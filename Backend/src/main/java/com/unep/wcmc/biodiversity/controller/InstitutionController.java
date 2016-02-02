@@ -131,7 +131,17 @@ public class InstitutionController extends AbstractController<Institution, Insti
 
     @RequestMapping(method= RequestMethod.GET, value="/summary")
     public List<InstitutionSummary> summary() {
-        return service.listInstitutionSummary();
+        return service.getRepository().listInstitutionSummary();
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/summary/paging")
+    public Page<InstitutionSummary> summaryPaging(@PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return service.getRepository().pageInstitutionSummary(pageable);
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/summary/total")
+    public InstitutionSummary summaryTotal() {
+        return service.getRepository().getInstitutionSummaryTotal();
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/count/type")

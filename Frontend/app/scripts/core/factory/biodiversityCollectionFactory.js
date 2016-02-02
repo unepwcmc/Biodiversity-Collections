@@ -89,6 +89,26 @@ define(['angularAMD'], function (angularAMD) {
                     });
 
             },
+            loadCoordinatesByDefinition: function( query ) {
+
+                var self = this;
+
+                $http.get( $rootScope.getHost() + 'collections/search/coordinates/definition?name=' + query )
+
+                    .success(function (data) {
+                        if (data.message == 'no matches found') {
+                            $rootScope.$broadcast("BIODIVERSITY_COORDINATES_FILTER_LOAD_ERROR");
+                        } else {
+                            self.setData(data);
+                            $rootScope.$broadcast("BIODIVERSITY_COORDINATES_FILTER_LOADED");
+                        }
+                    })
+                    .error(function (message) {
+                        $log.error(message);
+                        $rootScope.$broadcast("BIODIVERSITY_COORDINATES_FILTER_LOAD_ERROR");
+                    });
+
+            },
             loadByInstitution: function( id, page, size, callback ){
 
                 var self = this;

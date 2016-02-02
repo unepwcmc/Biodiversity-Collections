@@ -59,6 +59,17 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         }
     }
 
+    @RequestMapping(method= RequestMethod.GET, value="/search/coordinates/definition")
+    public List<Object[]> findAllCoordinatesDefinition(@RequestParam(value = "name", defaultValue = "ALL") String name) {
+        switch (name) {
+            case "ALL":
+                return service.searchCoordinates();
+            default:
+                return service.searchCoordinatesByDefinition(name);
+        }
+    }
+
+
     @RequestMapping(method= RequestMethod.GET, value="/search/institutions")
     public Page<BiodiversityCollection> institutions(@RequestParam Long id,
                                                      @PageableDefault(page = 0, size = 10) Pageable pageable) {

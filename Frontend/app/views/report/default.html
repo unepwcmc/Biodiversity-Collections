@@ -2,7 +2,15 @@
     <section class="page-content">
 
         <div class="container">
-            <h4>{{ 'BRAZIL_BIODIVERSITY_COLLECTION_DASHBOARD' | translate }}</h4>
+            <h4>
+                <strong>{{ 'BRAZIL_BIODIVERSITY_COLLECTION_DASHBOARD' | translate }}</strong>
+                <span style="font-size: 14px;">
+                    <a href="javascript:" class="pull-right" target="_blank" ng-click="downloadXls()">
+                        <strong><i class="fa fa-download"></i>&nbsp;{{ 'DOWNLOAD_XLS' | translate }}</strong></a>
+                    <a href="javascript:" class="pull-right" target="_blank" ng-click="downloadPdf()">
+                        <strong><i class="fa fa-download"></i>&nbsp;{{ 'DOWNLOAD_PDF' | translate }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                </span>
+            </h4>
             <hr/>
         </div>
 
@@ -15,9 +23,7 @@
                 </div>
                 <div class="col-xs-6"><report-bar></report-bar></div>
                 <div class="col-xs-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body"><report-bubble></report-bubble></div>
-                    </div>
+                    <report-bubble></report-bubble>
                 </div>
             </div>
         </div>

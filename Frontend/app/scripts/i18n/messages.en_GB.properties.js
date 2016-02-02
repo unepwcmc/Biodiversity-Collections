@@ -233,7 +233,18 @@ define([],function ( ) {
     'SAMPLE_DELETED_SUCCESSFULLY': 'Sample deleted successfully',
     'SAMPLES_DELETED_SUCCESSFULLY': 'Samples deleted successfully',
     'ONLY_FIVE_FILES_WILL_BE_SELECTED': 'Only first 5 files will be selected',
-    'BRAZIL_BIODIVERSITY_COLLECTION_DASHBOARD':'Brazil Biodiversity Collection Dashboard'
+    'BRAZIL_BIODIVERSITY_COLLECTION_DASHBOARD':'Brazil Biodiversity Collection Dashboard',
+    'DOWNLOAD_PDF': 'Download PDF',
+    'DOWNLOAD_XLS': 'Download XLS',
+    'INSTITUTION_NAME': 'Institution name',
+    'FUNGI': 'Fungi',
+    'TOTALS': 'Totals',
+    'TOTAL_NUMBER_OF': 'Total Number of',
+    'INSTITUTION_TYPE': 'Institution type',
+    'INSTITUTION_STATE': 'State',
+    'INSTITUTION_COUNTRY': 'Country',
+    'INSTITUTION_PRIVATE': 'Private',
+    'INSTITUTION_FEDERAL': 'Federal'
   }
 
 });

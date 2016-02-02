@@ -231,7 +231,18 @@ define([],function ( ) {
     'SAMPLE_DELETED_SUCCESSFULLY': 'Exemplar excluído com sucesso',
     'SAMPLES_DELETED_SUCCESSFULLY': 'Exemplares excluídos com sucesso',
     'ONLY_FIVE_FILES_WILL_BE_SELECTED': 'Apenas os 5 primeiros arquivos serão adicionados',
-    'BRAZIL_BIODIVERSITY_COLLECTION_DASHBOARD':'Painel da Coleção da Biodiversidade Brasileira'
+    'BRAZIL_BIODIVERSITY_COLLECTION_DASHBOARD':'Painel da Coleção da Biodiversidade Brasileira',
+    'DOWNLOAD_PDF': 'Download PDF',
+    'DOWNLOAD_XLS': 'Download XLS',
+    'INSTITUTION_NAME': 'Nome da institutição',
+    'FUNGI': 'Fungi',
+    'TOTALS': 'Totais',
+    'TOTAL_NUMBER_OF': 'Número Total de',
+    'INSTITUTION_TYPE': 'Tipo de instituição',
+    'INSTITUTION_STATE': 'Estadual',
+    'INSTITUTION_COUNTRY': 'Municipal',
+    'INSTITUTION_PRIVATE': 'Privada',
+    'INSTITUTION_FEDERAL': 'Federal'
   }
 
 });

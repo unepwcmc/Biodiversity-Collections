@@ -34,9 +34,15 @@ define(['angularAMD','highcharts-ng',
                                 enabled: false
                             },
                             series: [{
-                                name: "Types",
-                                colorByPoint: true,
+                                color: 'lightgrey',
                                 showInLegend: false,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                },
+                                tooltip: {
+                                    pointFormat: '<b>{point.name}</b>: {point.y}'
+                                },
                                 data: seriesData
                             }]
                         };
@@ -64,9 +70,15 @@ define(['angularAMD','highcharts-ng',
                                 enabled: false
                             },
                             series: [{
-                                name: "Types",
-                                colorByPoint: true,
+                                color: 'lightgrey',
                                 showInLegend: false,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                },
+                                tooltip: {
+                                    pointFormat: '<b>{point.name}</b>: {point.y}'
+                                },
                                 data: seriesData
                             }]
                         };

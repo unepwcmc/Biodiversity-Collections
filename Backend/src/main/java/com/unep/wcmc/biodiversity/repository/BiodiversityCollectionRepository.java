@@ -16,6 +16,9 @@ import java.util.List;
 
 public interface BiodiversityCollectionRepository extends AbstractRepository<BiodiversityCollection> {
 
+    @Query("select c from BiodiversityCollection c order by c.name")
+    Page<BiodiversityCollection> findAllOrderByName(Pageable pageable);
+
     @EntityGraph(value = "BiodiversityCollection.detail", type = EntityGraph.EntityGraphType.LOAD)
     BiodiversityCollection getById(Long id);
 
@@ -33,17 +36,35 @@ public interface BiodiversityCollectionRepository extends AbstractRepository<Bio
 
     List<BiodiversityCollection> findTop5ByNameContainingIgnoreCaseOrderByNameAsc(@Param("name") String name);
 
-    Page<BiodiversityCollection> findAllByPublished(@Param("published") Boolean published, Pageable pageable);
+    Page<BiodiversityCollection> findAllByPublishedOrderByName(@Param("published") Boolean published, Pageable pageable);
 
-    @Query("select c from BiodiversityCollection c where (c.published = true or (c.published = false and c.curator.user.id = :curatorId))")
+    @Query("select c from BiodiversityCollection c where (c.published = true or (c.published = false and c.curator.user.id = :curatorId)) order by c.name")
     Page<BiodiversityCollection> findAllForCurator(@Param("curatorId") Long curatorId, Pageable pageable);
 
-    Page<BiodiversityCollection> findAllByCollectionDefinitionAndPublished(@Param("collectionDefinition") CollectionDefinition collectionDefinition, @Param("published") Boolean published, Pageable pageable);
+    Page<BiodiversityCollection> findAllByCollectionDefinitionAndPublishedOrderByName(@Param("collectionDefinition") CollectionDefinition collectionDefinition, @Param("published") Boolean published, Pageable pageable);
 
-    @Query("select c from BiodiversityCollection c where c.collectionDefinition = :collectionDefinition and (c.published = true or (c.published = false and c.curator.user.id = :curatorId))")
+    @Query("select c from BiodiversityCollection c where c.collectionDefinition = :collectionDefinition and (c.published = true or (c.published = false and c.curator.user.id = :curatorId)) order by c.name")
     Page<BiodiversityCollection> findAllByCollectionDefinitionForCurator(@Param("collectionDefinition") CollectionDefinition collectionDefinition, @Param("curatorId") Long curatorId, Pageable pageable);
 
-    Page<BiodiversityCollection> findAllByCollectionDefinition(@Param("collectionDefinition") CollectionDefinition collectionDefinition, Pageable pageable);
+    Page<BiodiversityCollection> findAllByCollectionDefinitionOrderByName(@Param("collectionDefinition") CollectionDefinition collectionDefinition, Pageable pageable);
+
+    @Query("select c.id, c.name, c.institution.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c order by c.name")
+    List<Object[]> listAllCoordinates();
+
+    @Query("select c.id, c.name, c.institution.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c where c.published = :published order by c.name")
+    List<Object[]> listAllCoordinatesPublished(@Param("published") Boolean published);
+
+    @Query("select c.id, c.name, c.institution.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c where (c.published = true or (c.published = false and c.curator.user.id = :curatorId)) order by c.name")
+    List<Object[]> listAllCoordinatesForCurator(@Param("curatorId") Long curatorId);
+
+    @Query("select c.id, c.name, c.institution.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c where c.collectionDefinition = :collectionDefinition order by c.name")
+    List<Object[]> listAllCoordinatesByDefinition(@Param("collectionDefinition") CollectionDefinition collectionDefinition);
+
+    @Query("select c.id, c.name, c.institution.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c where c.collectionDefinition = :collectionDefinition and (c.published = true or (c.published = false and c.curator.user.id = :curatorId)) order by c.name")
+    List<Object[]> listAllCoordinatesByDefinitionForCurator(@Param("collectionDefinition") CollectionDefinition collectionDefinition, @Param("curatorId") Long curatorId);
+
+    @Query("select c.id, c.name, c.institution.name, c.contact.latitude, c.contact.longitude from BiodiversityCollection c where c.collectionDefinition = :collectionDefinition and c.published = :published order by c.name")
+    List<Object[]> listAllCoordinatesByDefinitionAndPublished(@Param("collectionDefinition") CollectionDefinition collectionDefinition, @Param("published") Boolean published);
 
     Page<BiodiversityCollection> findByInstitutionIdOrderByNameAsc(@Param("id") Long id, Pageable page);
 

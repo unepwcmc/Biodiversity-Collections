@@ -5,9 +5,9 @@
     <div class="result-list">
 
         <div ng-repeat="doc in document.content" class="list-item">
-            <h5><strong><a href="javascript:" ng-click="downloadDocument(doc.id)">{{doc.title}}</a></strong>&nbsp;|&nbsp;<a href="javascript:" ng-click="downloadDocument(doc.id)">id: {{doc.id}}</a></h5>
+            <h5><strong><a href="javascript:" ng-click="downloadDocument(doc.id)">{{doc.title}}</a></strong></h5>
             <p><strong>{{doc.type}}</strong></p>
-            <p>{{doc.description}}</p>
+            <p style="height:2.7em; overflow:hidden;">{{doc.description}}</p>
         </div>
 
     </div>

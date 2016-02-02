@@ -1,5 +1,7 @@
-define(['angularAMD','highcharts-ng',
-    'core/factory/institutionFactory'], function (angularAMD) {
+define(['angularAMD',
+    'core/directives/core.table.sorter.directive',
+    'core/factory/institutionFactory',
+    'report/directives/report.table.popover.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -11,7 +13,16 @@ define(['angularAMD','highcharts-ng',
             controller: ['$scope', '$rootScope', function($scope, $rootScope){
 
                 $scope.institutions = new Institution();
-                $scope.institutions.summary();
+                $scope.institutionsTotal = new Institution();
+
+                angular.extend($scope.institutions, {totalElements : 0, number: 0, size: 10, totalPages: 0});
+
+                $scope.institutions.summary($scope.institutions.number, $scope.institutions.size);
+                $scope.institutionsTotal.summaryTotal();
+
+                $scope.paginateReport = function(page, size){
+                    $scope.institutions.summary(page, size);
+                };
 
             }],
             link: function (scope, element, attrs) {
