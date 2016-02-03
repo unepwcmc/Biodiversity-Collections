@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -171,6 +172,8 @@ public class ReportService {
 
     public JasperPrint getReport(){
 
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("jasper_template/biodiversity_table.jasper").getFile());
         HashMap<String, Object> parameters =  new HashMap<String, Object>();
 
         parameters.put("institution_chart_datasource",createInstitutionType());
@@ -178,6 +181,7 @@ public class ReportService {
         parameters.put("bubble_specimen_datasource", createBubbleSpecimen());
         parameters.put("organisms_type_datasource", collectionCountType());
         parameters.put("collection_type_datasource", collectionCountDefinition());
+        parameters.put("SUBREPORT_DIR", file.getAbsolutePath().replace("biodiversity_table.jasper",""));
 
 
         return getJasperPrint("jasper_template/biodiversity.jasper", parameters, createSummarySource());

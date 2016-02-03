@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="biodiversity" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ace6140e-4aed-4255-8543-ed823d50d151">
-	<property name="ireport.zoom" value="1.4641000000000048"/>
+	<property name="ireport.zoom" value="1.1000000000000039"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="137"/>
+	<property name="ireport.y" value="369"/>
 	<subDataset name="institution_type_chart" uuid="1d945e6c-423a-4f45-b2d3-a5999e76dc02">
 		<queryString language="SQL">
 			<![CDATA[]]>
@@ -35,31 +35,10 @@
 	<parameter name="organisms_type_datasource" class="java.lang.Object"/>
 	<parameter name="collection_type_datasource" class="java.lang.Object"/>
 	<parameter name="bubble_specimen_datasource" class="java.lang.Object"/>
-	<field name="institution_name" class="java.lang.String"/>
-	<field name="fauna" class="java.lang.String"/>
-	<field name="flora" class="java.lang.String"/>
-	<field name="microorganisms" class="java.lang.String"/>
-	<field name="other" class="java.lang.String"/>
-	<field name="specimens" class="java.lang.String"/>
-	<field name="collections" class="java.lang.String"/>
-	<variable name="fauna_total" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{fauna} != null ? Integer.valueOf($F{fauna}) : new Integer("0")]]></variableExpression>
-	</variable>
-	<variable name="flora_total" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{flora} != null ? Integer.valueOf($F{flora}): new Integer("0")]]></variableExpression>
-	</variable>
-	<variable name="microorganisms_total" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{microorganisms} != null ? Integer.valueOf($F{microorganisms}): new Integer("0")]]></variableExpression>
-	</variable>
-	<variable name="other_total" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{other} != null ? Integer.valueOf($F{other}) : new Integer("0")]]></variableExpression>
-	</variable>
-	<variable name="specimen_total" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{specimens} != null ? Integer.valueOf($F{specimens}): new Integer("0")]]></variableExpression>
-	</variable>
-	<variable name="collection_total" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{collections} != null ? Integer.valueOf($F{collections}) : new Integer("0")]]></variableExpression>
-	</variable>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["bila"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="biodiversity_sub_path" class="java.lang.String"/>
 	<title>
 		<band height="79" splitType="Stretch">
 			<rectangle>
@@ -85,7 +64,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="639" splitType="Immediate">
+		<band height="723" splitType="Immediate">
 			<printWhenExpression><![CDATA[new Boolean($V{PAGE_NUMBER}.intValue() == 1)]]></printWhenExpression>
 			<pieChart>
 				<chart evaluationTime="Report">
@@ -424,319 +403,13 @@
 			</staticText>
 		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="42" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="19" width="135" height="22" uuid="8801d0fe-db79-48f4-8f68-ebecf762779f"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-					<paragraph leftIndent="5"/>
-				</textElement>
-				<text><![CDATA[Institution name]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="364" y="19" width="52" height="22" uuid="38f013af-8f2e-47f3-acbc-1477ec57a276"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Flora]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="311" y="19" width="53" height="22" uuid="47cc07c5-9d8d-4a0c-9236-abfa7ca66b0e"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Fauna]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="416" y="19" width="88" height="22" uuid="6912dc6e-b93b-407a-a04a-384cc939ddea"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Microorganisms]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="504" y="19" width="51" height="22" uuid="ba1ec764-86c5-4ea8-a977-96d3bbc8713a"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Other]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="135" y="19" width="122" height="22" uuid="e2b628cc-d24a-4291-8ec6-99c65879de2b"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Total Number: of collection]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="257" y="19" width="54" height="22" uuid="14dc0ab2-0a30-4808-a825-dcf3c70f6fb1"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Specimens]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="0" width="174" height="20" uuid="48cbfbfc-90ac-4f1b-a2fa-f497e2e4b848"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Institutions & Collections Statistcs]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="504" y="0" width="51" height="20" uuid="27a4848d-9267-4cbe-ae30-390e2cf3f82e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{other}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="0" width="135" height="20" uuid="e0756799-dec4-4025-99dc-8f109ca53d21"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8"/>
-					<paragraph leftIndent="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{institution_name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="311" y="0" width="53" height="20" uuid="2f5e18e6-64d9-40f1-8658-83947f9f03ee"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fauna}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="364" y="0" width="52" height="20" uuid="b1760990-fda0-43a4-8850-a87611439c57"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{flora}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="416" y="0" width="88" height="20" uuid="2e603835-23ef-4442-b5e4-0d83c8950717"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{microorganisms}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="135" y="0" width="122" height="20" uuid="76f0e69e-be0c-4219-92a8-b8bf80828320"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{collections}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="257" y="0" width="54" height="20" uuid="79f681e5-1684-44bb-8763-95b861e6e62a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{specimens}]]></textFieldExpression>
-			</textField>
+		<band height="47" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="45" uuid="c5f97eeb-0e6b-4f05-a528-a74857715b42"/>
+				<dataSourceExpression><![CDATA[$P{REPORT_DATA_SOURCE}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "biodiversity_table.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="14" splitType="Stretch">
-			<line>
-				<reportElement x="0" y="0" width="555" height="1" uuid="22772fd8-a1d2-45ed-b779-4281b5b72bae"/>
-			</line>
-		</band>
-	</columnFooter>
-	<pageFooter>
-		<band splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="47" splitType="Stretch">
-			<rectangle>
-				<reportElement x="0" y="1" width="555" height="46" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="b3eac977-d747-4925-a431-36397e12a900"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="0" y="0" width="135" height="22" uuid="c0cc3140-55a4-4d55-84b0-6a95605d43dd"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-					<paragraph leftIndent="5"/>
-				</textElement>
-				<text><![CDATA[Totals]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="364" y="0" width="52" height="22" uuid="e5074622-1fe6-4a5d-b802-176473e5ad64"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Flora]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="311" y="0" width="53" height="22" uuid="b9c86f3c-e076-4f1f-8f37-0bfbf56fd9ac"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Fauna]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="416" y="0" width="88" height="22" uuid="a07b1e80-167b-4683-8d12-3f56f9d0bc4f"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Microorganisms]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="504" y="0" width="51" height="22" uuid="6f76a40d-ffe2-426b-b7cd-f5831948cd89"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Other]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="135" y="0" width="122" height="22" uuid="bc6a6f46-c548-445b-8151-7377e0a03c7a"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Total Number: of collection]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="257" y="0" width="54" height="22" uuid="c8f28c6b-7549-4a08-a39d-29ebf2e2744e"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Specimens]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="135" y="22" width="122" height="25" uuid="efe99d46-fbb7-4f83-b79b-cfa52c36a083"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{collection_total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="257" y="22" width="54" height="25" uuid="05c87cc9-7f47-45a2-9b2c-3cb43829e890"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{specimen_total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="311" y="22" width="53" height="25" uuid="16014736-4a2f-4d5f-8cc4-996c0ec0e01d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{fauna_total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="364" y="22" width="52" height="25" uuid="f7975a94-caba-4a75-ac10-f1ee35ad286f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{flora_total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="416" y="22" width="88" height="25" uuid="13c04994-55dd-4b0c-9e7c-21d11bcc60d6"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{microorganisms_total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="504" y="22" width="51" height="25" uuid="ccc269f6-b33a-424d-ba39-aa9dd481ab3f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{other_total}]]></textFieldExpression>
-			</textField>
-		</band>
-	</summary>
 </jasperReport>
