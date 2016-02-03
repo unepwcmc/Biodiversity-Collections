@@ -35,8 +35,8 @@
 	<parameter name="organisms_type_datasource" class="java.lang.Object"/>
 	<parameter name="collection_type_datasource" class="java.lang.Object"/>
 	<parameter name="bubble_specimen_datasource" class="java.lang.Object"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["bila"]]></defaultValueExpression>
+	<parameter name="SUBREPORT_DIR" class="java.io.InputStream" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="biodiversity_sub_path" class="java.lang.String"/>
 	<title>
@@ -408,7 +408,7 @@
 			<subreport>
 				<reportElement x="0" y="0" width="555" height="45" uuid="c5f97eeb-0e6b-4f05-a528-a74857715b42"/>
 				<dataSourceExpression><![CDATA[$P{REPORT_DATA_SOURCE}]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "biodiversity_table.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

@@ -181,7 +181,11 @@ public class ReportService {
         parameters.put("bubble_specimen_datasource", createBubbleSpecimen());
         parameters.put("organisms_type_datasource", collectionCountType());
         parameters.put("collection_type_datasource", collectionCountDefinition());
-        parameters.put("SUBREPORT_DIR", location.getPath() + "/");
+        try {
+            parameters.put("SUBREPORT_DIR", this.getClass().getResource("/jasper_template/biodiversity_table.jasper").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         return getJasperPrint("jasper_template/biodiversity.jasper", parameters, createSummarySource());
