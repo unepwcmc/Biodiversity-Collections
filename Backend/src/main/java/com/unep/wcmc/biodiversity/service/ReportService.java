@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -172,16 +173,15 @@ public class ReportService {
 
     public JasperPrint getReport(){
 
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("jasper_template/biodiversity_table.jasper").getFile());
         HashMap<String, Object> parameters =  new HashMap<String, Object>();
+        URL location = this.getClass().getResource("/jasper_template");
 
         parameters.put("institution_chart_datasource",createInstitutionType());
         parameters.put("overall_picture_datasource", createBubbleCollection());
         parameters.put("bubble_specimen_datasource", createBubbleSpecimen());
         parameters.put("organisms_type_datasource", collectionCountType());
         parameters.put("collection_type_datasource", collectionCountDefinition());
-        parameters.put("SUBREPORT_DIR", file.getAbsolutePath().replace("biodiversity_table.jasper",""));
+        parameters.put("SUBREPORT_DIR", location.getPath() + "/");
 
 
         return getJasperPrint("jasper_template/biodiversity.jasper", parameters, createSummarySource());
