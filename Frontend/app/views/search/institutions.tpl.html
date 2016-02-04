@@ -1,6 +1,7 @@
 <div class="container">
 
-    <h4><strong>{{institution.totalElements}}</strong> {{ 'RESULT_FOR_INSTITUTION' | translate }}</h4>
+    <h4 ng-if="institution.content != null"><strong>{{institution.totalElements}}</strong> {{ 'RESULT_FOR_INSTITUTION' | translate }}</h4>
+    <h4 ng-if="institution.content == null">{{ 'SEARCHING_FOR_RESULTS' | translate }}</h4>
 
     <div class="result-list">
 

@@ -120,7 +120,8 @@ define([],function ( ) {
     'RESEARCH_SPECIALITY':'Research speciality',
     'EDIT_CURATOR':'Edit Curator',
     'ASSOCIATED_INSTITUTIONS':'Associated institutions',
-    'RESULT_FOR_CURATOR':'Result for curator',
+    'RESULT_FOR_CURATOR':'result for Curator',
+    'RESULT_FOR_DOCUMENT':'result for Document',
     'CREATE_A_COLLECTION': 'Create a new collection',
     'DOWNLOAD': 'Download',
     'DOCUMENT': 'Document',
@@ -244,7 +245,8 @@ define([],function ( ) {
     'INSTITUTION_STATE': 'State',
     'INSTITUTION_COUNTRY': 'Country',
     'INSTITUTION_PRIVATE': 'Private',
-    'INSTITUTION_FEDERAL': 'Federal'
+    'INSTITUTION_FEDERAL': 'Federal',
+    'SEARCHING_FOR_RESULTS': 'Searching for results...'
   }
 
 });

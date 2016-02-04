@@ -1,6 +1,7 @@
 <div class="container">
 
-    <h4><strong>{{network.totalElements}}</strong> {{ 'RESULT_FOR_NETWORK' | translate }}</h4>
+    <h4 ng-if="network.content != null"><strong>{{network.totalElements}}</strong> {{ 'RESULT_FOR_NETWORK' | translate }}</h4>
+    <h4 ng-if="network.content == null">{{ 'SEARCHING_FOR_RESULTS' | translate }}</h4>
 
     <div class="result-list">
 

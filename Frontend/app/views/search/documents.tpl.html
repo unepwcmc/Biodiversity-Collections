@@ -1,6 +1,7 @@
 <div class="container">
 
-    <h4><strong>{{document.totalElements}}</strong> {{ 'RESULT_FOR_CURATOR' | translate }}</h4>
+    <h4 ng-if="document.content != null"><strong>{{document.totalElements}}</strong> {{ 'RESULT_FOR_DOCUMENT' | translate }}</h4>
+    <h4 ng-if="document.content == null">{{ 'SEARCHING_FOR_RESULTS' | translate }}</h4>
 
     <div class="result-list">
 
