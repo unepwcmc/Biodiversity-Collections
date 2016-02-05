@@ -59,23 +59,23 @@ h5{
 a{
 	
 	&:hover{
-		color: #003DCC;
+	    color: #007B31;
 		text-decoration: none;
 		outline: none !important;
 	}
 
 
 	&:hover{
-	  color: #003DCC;
+	  color: #33A15F;
 		text-decoration: underline;
 	}
 
 	&:focus,&:visited{
-		color: #003DCC;
+	  color: #00692A;
 	}
 
 	&[target="blank"]{
-	  color: #003DCC;
+	  color: #007B31;
 	}
 }
 

@@ -23,47 +23,47 @@
 		border-radius: 40px;
 	}
 
-	&.green-btn{
-		background-color: $green;
+  &.green-btn{
+	background-color: $green;
+  }
+
+  &.btn-primary{
+	background-color: #008937;
+	border: 1px solid #008937;
+
+	&.hollow{
+	  background-color: transparent;
+	  color: #008937 !important;
 	}
 
-	&.btn-primary{
-		background-color: #666666;
-		border: 1px solid #EAEAEA;
+	&.inset{
+	  color: #fff !important;
+	  border:1px solid #fff;
 
-		&.hollow{
-			background-color: transparent;
-			color: #666666 !important;
-		}
+	  &:hover{
+		background-color: #fff;
+		color: $green !important;
+	  }
 
-		&.inset{
-			color: #fff !important;
-			border:1px solid #fff;
-
-			&:hover{
-				background-color: #fff;
-				color: $green !important;
-			}
-
-			&:active{
-				background-color: #dfe0e1;
-				color: $green !important;
-				border: 1px solid #fff !important;
-			}
-		}
-
-		&:hover{
-			background-color: #606670;
-			border: 1px solid #606670;
-			color: #fff !important;
-		}
-
-		&:active{
-			background-color: #666666;
-			border: 1px solid #666666;
-			color: #fff !important;
-		}
+	  &:active{
+		background-color: #dfe0e1;
+		color: $green !important;
+		border: 1px solid #fff !important;
+	  }
 	}
+
+	&:hover{
+	  background-color: #33a15f;
+	  border: 1px solid #33a15f;
+	  color: #fff !important;
+	}
+
+	&:active{
+	  background-color: #00692a;
+	  border: 1px solid #00692a;
+	  color: #fff !important;
+	}
+  }
 
 	&.small{
 		height: 30px;
