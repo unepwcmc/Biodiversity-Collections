@@ -1,27 +1,27 @@
 /** BUTTONS */
 .btn{
-	
-	@extend .transitions;
-	height: 40px;
-	padding: 0px 20px;
-	line-height: 40px;
-	box-shadow: none;
-	color: #fff !important;
-	font-weight: 500;
-	font-size: 16px;
-	text-align: center;
-	outline: none !important;
-	box-shadow: none !important;
-	border-radius: 0px;
+
+  @extend .transitions;
+  height: 40px;
+  padding: 0px 20px;
+  line-height: 40px;
+  box-shadow: none;
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0px;
 
 
-	i{
-		margin: 0px 5px;
-	}
-	
-	&.rounded{
-		border-radius: 40px;
-	}
+  i{
+	margin: 0px 5px;
+  }
+
+  &.rounded{
+	border-radius: 40px;
+  }
 
   &.green-btn{
 	background-color: $green;
@@ -65,17 +65,17 @@
 	}
   }
 
-	&.small{
-		height: 30px;
-		line-height: 28px;
-		margin-top: -11px;
-		font-size: 14px;
-	}
+  &.small{
+	height: 30px;
+	line-height: 28px;
+	margin-top: -11px;
+	font-size: 14px;
+  }
 
-	
+
 }
 .btn-link-primary{
-  color:#666!important;}
+  color: #008937 !important;}
 .btn-right-side{
   position: relative;
   top: 3px;
