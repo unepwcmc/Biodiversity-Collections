@@ -1241,7 +1241,6 @@ i.bt-img-close {
           color: #008937;
           margin: 0px 3px; }
       .l-header .user-meta li:first-child a:after {
-        content: "|";
         display: inline-block;
         width: 10px; }
       .l-header .user-meta li .user-detail {
@@ -1250,6 +1249,8 @@ i.bt-img-close {
           opacity: 0.8; }
     .l-header .user-meta .language-dropdown > select {
       cursor: pointer; }
+    .l-header .user-meta span.language-dropdown:before {
+      content: "|"; }
 
 .webui-popover-content .fa-close {
   cursor: pointer; }

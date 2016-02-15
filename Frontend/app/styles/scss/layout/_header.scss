@@ -84,7 +84,6 @@
 
 			&:first-child{
 				a:after{
-					content: "|";
 					display: inline-block;
 					width: 10px;
 				}
@@ -101,6 +100,10 @@
 		.language-dropdown > select{
 			cursor: pointer;
 		}
+
+	  span.language-dropdown:before{
+		content:"|";
+	  }
 	}
 }
 

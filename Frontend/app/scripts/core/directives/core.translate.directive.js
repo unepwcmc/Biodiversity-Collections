@@ -10,6 +10,8 @@ define(['angularAMD', 'bootstrap'], function (angularAMD) {
       controller: ['$scope', '$rootScope', '$translate', '$window',
         function($scope, $rootScope, $translate, $window){
 
+          $scope.isUserAdministrator = ($rootScope.userRole == 'ADMIN');
+
           $scope.changeLanguage = function ( key ) {
             $translate.preferredLanguage( key );
             $translate.use( key );
