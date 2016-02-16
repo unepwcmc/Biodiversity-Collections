@@ -1315,10 +1315,10 @@ i.bt-img-close {
 /** FOOTER */
 .l-footer {
   background-color: #008937;
-  background-image: url(../images/footer-bg.png);
   background-position: top right;
   background-repeat: no-repeat;
   background-size: 100% 15px;
+  margin-top: 150px;
   /**
 	 * ----------------------------------------------------------------------------------------
 	 * Footer Branding
@@ -1520,7 +1520,9 @@ i.bt-img-close {
 
 a.btn-ask-support {
   margin-top: 15px;
-  margin-right: 20px; }
+  margin-right: 20px;
+  background-color: #fff !important;
+  color: #008937 !important; }
 
 input#searchTop_value {
   width: 300px !important; }
