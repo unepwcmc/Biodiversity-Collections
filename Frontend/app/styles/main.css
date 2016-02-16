@@ -1146,15 +1146,23 @@ body.noscroll {
   -moz-border-radius: 0;
   border-radius: 0; }
 
+.breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: 20px;
+  list-style: none;
+  background-color: transparent;
+  border-radius: 4px; }
+
 .breadcrumb a {
-  color: #666;
-  font-weight: bold;
+  color: #008937;
+  font-weight: bolder;
   text-decoration: none; }
 
 .breadcrumb > li + li:before {
-  color: #ccc;
+  color: #666;
   content: "> ";
-  padding: 0 5px; }
+  padding: 0 5px;
+  font-weight: bold; }
 
 i.bt-img-close {
   color: #000 !important;
