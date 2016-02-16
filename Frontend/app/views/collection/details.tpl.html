@@ -54,7 +54,7 @@
 
                          <div ng-show="!editMode"  class="form-group">
                              <label class="col-sm-3">{{ 'CURATOR' | translate }}</label>
-                             <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="curator({id : collection.curator.id})">{{collection.curator.name}}</a></div>
+                             <div class="col-sm-9"><strong><a style="margin-left: 10px;" data-ui-sref="curator({id : collection.curator.id})">{{collection.curator.name}}</a></strong></div>
                          </div>
 
                          <div ng-show="editMode" class="form-group">
@@ -74,7 +74,7 @@
 
                          <div ng-show="!editMode"  class="form-group">
                              <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
-                             <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="institution({id : collection.institution.id})">{{collection.institution.name}}</a></div>
+                             <div class="col-sm-9"><strong><a style="margin-left: 10px;" data-ui-sref="institution({id : collection.institution.id})">{{collection.institution.name}}</a></strong></div>
                          </div>
 
                          <div ng-show="editMode" class="form-group">
@@ -154,7 +154,7 @@
                                     <tfoot ng-show="editMode">
                                         <tr>
                                             <td width="83%"><input type="text" data-ng-model="researcher.name" class="form-control"></td>
-                                            <td>&nbsp;&nbsp;<a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addResearcher();">{{ 'ADD' | translate }}</a></td>
+                                            <td>&nbsp;&nbsp;<strong><a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addResearcher();">{{ 'ADD' | translate }}</a></strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -171,7 +171,7 @@
                                          </tr>
                                      </tbody>
                                  </table>
-                                 <a data-ui-sref="member({ id: collection.id })" style="cursor: pointer;margin-left: 11px">{{ 'ASSOCIATED_MEMBERS_PAGE' | translate }}</a>
+                                 <strong><a data-ui-sref="member({ id: collection.id })" style="cursor: pointer;margin-left: 11px">{{ 'ASSOCIATED_MEMBERS_PAGE' | translate }}</a></strong>
                              </div>
                          </div>
 
@@ -183,7 +183,7 @@
                          <div ng-show="!editMode" class="form-group">
                              <label class="col-sm-3">{{ 'COLLECTION_WEBSITE' | translate }}</label>
                              <div class="col-sm-9">
-                                 <a ng-show="collection.webSite != null && collection.webSite != ''" style="margin-left: 10px;" href="{{collection.webSite}}" target="_blank">{{ collection.webSiteName }}&nbsp;<i class="fa fa-external-link-square"></i></a>
+                                 <strong><a ng-show="collection.webSite != null && collection.webSite != ''" style="margin-left: 10px;" href="{{collection.webSite}}" target="_blank">{{ collection.webSiteName }}&nbsp;<i class="fa fa-external-link-square"></i></a></strong>
                              </div>
                          </div>
 
