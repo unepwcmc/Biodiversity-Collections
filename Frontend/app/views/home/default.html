@@ -16,8 +16,8 @@
 
                     <div align="center">
                         <form class="form-inline" ng-submit="search()">
-                            <div class="form-group">
-                                <div align="left" class="form-group">
+                            <div class="form-group" >
+                                <div align="left" class="form-group" style="margin-right: 10px">
                                     <angucomplete-alt id="searchTop"
                                                       placeholder="{{ 'SEARCH' | translate }}"
                                                       pause="150"
@@ -29,7 +29,7 @@
                                                       input-changed="inputChangedFn"
                                                       input-class="form-control"/>
                                 </div>
-                                <div class="form-group" style="width: 120px;">
+                                <div class="form-group" style="width: 120px;margin-right: 10px">
                                     <select select-wrap ng-model="searchType">
                                         <option value="collection" selected>{{ 'COLLECTION' | translate }}</option>
                                         <option value="institution">{{ 'INSTITUTION' | translate }}</option>
