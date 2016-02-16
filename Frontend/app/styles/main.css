@@ -136,7 +136,17 @@ h5 {
   line-height: 30px; }
 
 /** DEFAULT LINK STYES */
-a:hover {
+a:visited {
+  color: #007B31;
+  text-decoration: none;
+  outline: none !important; }
+
+a:active {
+  color: #007B31;
+  text-decoration: none;
+  outline: none !important; }
+
+a:link {
   color: #007B31;
   text-decoration: none;
   outline: none !important; }
@@ -161,6 +171,12 @@ a[target="blank"] {
   margin-left: 08px;
   padding-right: 0;
   padding-left: 0; }
+
+.fa {
+  color: #008937; }
+
+.font-color-green {
+  color: #008937; }
 
 /** FORM STYLES */
 input[type="text"], textarea.form-control,
@@ -1154,7 +1170,7 @@ i.bt-img-close {
 .number-icon {
   background-image: url("../images/marker_icon.png");
   text-align: center;
-  color: white; }
+  color: #008937; }
 
 .pagination > li > a, .pagination > li > span {
   position: relative;
@@ -1168,17 +1184,37 @@ i.bt-img-close {
   background-color: #fff;
   border: 1px solid #ddd; }
 
+.pagination > li > a, .pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-right: 10px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #008937;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #fff;
+  border: 2px solid #008937; }
+
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
   z-index: 2;
-  color: #fff;
+  color: #008937;
   cursor: default;
-  background-color: #008937;
-  border-color: #008937; }
+  background-color: transparent;
+  border-color: #EAEAEA; }
+
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+  color: #ABD8BD;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ABD8BD; }
 
 /** HEADER */
 .l-header {
   height: 50px;
   border-bottom: 1px solid #e5e5e5;
+  border-top: 4px solid #008937;
   /**
 	 * ----------------------------------------------------------------------------------------
 	 * Branding
@@ -1205,7 +1241,7 @@ i.bt-img-close {
     text-decoration: none;
     padding-top: 14px; }
     .l-header .branding:before {
-      background-color: #008937;
+      background-color: transparent;
       width: 20px;
       height: 20px;
       content: "";

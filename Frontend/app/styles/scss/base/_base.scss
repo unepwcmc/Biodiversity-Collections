@@ -58,10 +58,23 @@ h5{
 /** DEFAULT LINK STYES */
 a{
 	
-	&:hover{
-	    color: #007B31;
-		text-decoration: none;
-		outline: none !important;
+
+	&:visited{
+	  color: #007B31;
+	  text-decoration: none;
+	  outline: none !important;
+	}
+
+	&:active{
+	  color: #007B31;
+	  text-decoration: none;
+	  outline: none !important;
+	}
+
+	&:link{
+	  color: #007B31;
+	  text-decoration: none;
+	  outline: none !important;
 	}
 
 
@@ -100,6 +113,14 @@ p{
   margin-left:08px;
   padding-right: 0;
   padding-left: 0;
+}
+
+.fa{
+  color: $green;
+}
+
+.font-color-green{
+  color: $green;
 }
 
 
