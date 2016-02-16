@@ -84,10 +84,10 @@ define(['angularAMD'], function (angularAMD) {
                               obj.icon = {
                                   type: 'div',
                                   className: "number-icon",
-                                  iconSize: [30, 41],
+                                  iconSize: [30, 29],
                                   iconAnchor: [10, 44],
                                   popupAnchor: [3, -40],
-                                  html: '<p style="margin: 5px; font-weight: bold;">' + index + '</p>'
+                                  html: '<p style="margin: 5px; font-weight: bold; color: #fff;">' + index + '</p>'
                               };
                               obj.draggable = false;
                               count++;
