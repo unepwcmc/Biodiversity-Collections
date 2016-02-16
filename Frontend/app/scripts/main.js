@@ -29,6 +29,7 @@ require.config({
         'leaflet-directive' : 'ext/angular-leaflet-directive',
         'leaflet' : 'ext/leaflet',
         'leaflet.markercluster': 'ext/leaflet.markercluster',
+        'leaflet.layer': 'ext/esri-leaflet',
         'angucomplete-alt':'ext/angucomplete-alt',
         'highcharts-ng': 'ext/highcharts-ng'
     },
@@ -59,6 +60,7 @@ require.config({
         'angucomplete-alt': { deps: ['angular']},
         'leaflet-directive' : { deps: ['angular','angular-sanitize']},
         'leaflet' : { exports: 'leaflet', deps: ['angular','angular-sanitize']},
+        'leaflet.layer' : { exports: 'leaflet.layer', deps: ['leaflet']},
         'leaflet.markercluster': { deps: ['angular','angular-sanitize', 'leaflet-directive']},
         'highcharts-ng':{ deps: ['jquery', 'angular']}
     },

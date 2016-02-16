@@ -2,7 +2,7 @@
  * Directive for control the button edit and save int the tabs
  *
  */
-define(['angularAMD'], function (angularAMD) {
+define(['angularAMD','leaflet.layer'], function (angularAMD) {
 
     'use strict';
 
@@ -106,6 +106,7 @@ define(['angularAMD'], function (angularAMD) {
                     leafletData.getMap().then(function(map) {
                         $timeout(function() {
                             map.invalidateSize();
+                            L.esri.basemapLayer("NationalGeographic").addTo(map);
                         }, 300);
                     });
                 }

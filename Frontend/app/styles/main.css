@@ -1686,3 +1686,29 @@ ul.admin-menu-list > li > a > i {
 
 #login-box .login-form #rem-me {
   margin-top: 12px; }
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0; }
+
+a.leaflet-control-zoom-in {
+  background-color: #008937 !important;
+  color: #fff;
+  border-radius: 0;
+  margin-bottom: 2px; }
+
+a.leaflet-control-zoom-out {
+  background-color: #008937 !important;
+  color: #fff;
+  border-radius: 0; }
+
+.leaflet-bar a:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }
+
+.leaflet-bar a:last-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none; }
+
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+  border: none; }
