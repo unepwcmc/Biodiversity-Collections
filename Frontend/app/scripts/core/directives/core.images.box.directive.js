@@ -73,9 +73,11 @@ define(['angularAMD', 'core/factory/imageFactory','core/directives/core.image.po
                                             $timeout( function(){
 
                                                 var img_box = $('#box-image');
+                                                var bt_box = $('#box-expand');
 
                                                 if(index == 0){
                                                     img_box.attr('src',"/images/icons/ajax-loader-large.gif");
+                                                    img_box.attr('href',"/images/icons/ajax-loader-large.gif");
                                                     $scope.selected_slot = 0;
                                                 }
                                                 var thumbnail = $('#box-image-' + ( index  ));
@@ -87,6 +89,7 @@ define(['angularAMD', 'core/factory/imageFactory','core/directives/core.image.po
                                                         if(index == 0){
                                                             thumbnail.addClass('active');
                                                             img_box.attr('src',"data:image/*;base64," + data);
+                                                            bt_box.attr('href',"data:image/*;base64," + data);
                                                         }
                                                         thumbnail.attr('src',"data:image/*;base64," + data);
                                                         thumbnail.next().data('img-id', $scope.images[index].id );
@@ -149,6 +152,7 @@ define(['angularAMD', 'core/factory/imageFactory','core/directives/core.image.po
 
                         scope.selected_slot = $(this).data('slot');
                         $('#box-image').attr('src',$(this).attr('src'));
+                        $('#box-expand').attr('href',$(this).attr('src'));
                     });
 
                     function showSelectedImage( files ){
