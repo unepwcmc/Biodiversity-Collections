@@ -61,6 +61,7 @@ define(['angularAMD','leaflet.layer'], function (angularAMD) {
                       defaults: {
                       }
                   });
+                  invalidateSize();
 
                   $rootScope.$on('LATITUDE_LONGITUDE_UPDATED', function(type, latitude, longitude) {
                       angular.extend($scope, {
@@ -71,6 +72,7 @@ define(['angularAMD','leaflet.layer'], function (angularAMD) {
                               }
                           }
                       });
+                      invalidateSize();
                   });
 
                   $rootScope.$on('MAP_POINTS_UPDATED', function(type, mapName, points) {
