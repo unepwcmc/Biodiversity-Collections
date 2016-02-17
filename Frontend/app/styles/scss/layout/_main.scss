@@ -82,7 +82,9 @@ i.bt-img-close{
 	text-align: center;
 	color: $green;
 }
-
+.translate-option{
+  min-width:100px;
+}
 .pagination > li > a, .pagination > li > span {
   position: relative;
   float: left;

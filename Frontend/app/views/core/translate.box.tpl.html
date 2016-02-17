@@ -1,6 +1,8 @@
-<span ng-show="logged && isUserAdministrator" class="dropdown-wrap language-dropdown">
-    <select name="language" id="language" class="translate-option">
-      <option value="en_GB" selected>{{ 'ENGLISH' | translate }}</option>
-      <option value="pt_BR">{{ 'PORTUGUESE' | translate }}</option>
-    </select>
-</span>
+    <div class="small-field" ng-show="logged && isUserAdministrator">
+        <div class="select-wrapper">
+            <select name="language" id="language" class="translate-option">
+              <option value="en_GB" selected>{{ 'ENGLISH' | translate }}</option>
+              <option value="pt_BR">{{ 'PORTUGUESE' | translate }}</option>
+            </select>
+        </div>
+    </div>

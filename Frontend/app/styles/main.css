@@ -1194,6 +1194,9 @@ i.bt-img-close {
   text-align: center;
   color: #008937; }
 
+.translate-option {
+  min-width: 100px; }
+
 .pagination > li > a, .pagination > li > span {
   position: relative;
   float: left;
