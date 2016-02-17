@@ -125,3 +125,13 @@ i.bt-img-close{
   background-color: #fff;
   border-color: #ABD8BD;
 }
+
+
+.img-thumbnail{
+  border-radius:0!important;
+  border:none!important;
+}
+.img-thumbnail-mini.active{
+  border: solid 4px $green!important;
+  border-radius:0!important;
+}

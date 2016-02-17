@@ -85,6 +85,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                                                     .success( function( data, status){
 
                                                         if(index == 0){
+                                                            thumbnail.addClass('active');
                                                             img_box.attr('src',"data:image/*;base64," + data);
                                                         }
                                                         thumbnail.attr('src',"data:image/*;base64," + data);
@@ -139,6 +140,13 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                     });
 
                     $('.img-thumbnail-mini').click(function(evt){
+
+                        $('.img-thumbnail-mini').each(function(){
+                            $(this).removeClass('active');
+                        });
+
+                        $(this).addClass('active');
+
                         scope.selected_slot = $(this).data('slot');
                         $('#box-image').attr('src',$(this).attr('src'));
                     });
