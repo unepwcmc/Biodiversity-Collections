@@ -620,16 +620,20 @@ a.btn-transparent:hover {
 
 button.btn-tag {
   cursor: default;
-  color: #666666 !important; }
+  color: #666666 !important;
+  background-color: #F2F2F2 !important; }
 
 .default-form-block .form-control {
   background-color: transparent !important;
   border: none; }
 
+a.btn.cancel {
+  color: #008937 !important; }
+
 .btn-small-delete {
   margin-top: 3px;
-  color: #666666 !important;
-  border: solid 1px #666666;
+  color: #008937 !important;
+  border: solid 1px #008937;
   width: 38px;
   height: 29px;
   padding: 2px 13px 0px; }
@@ -1176,7 +1180,6 @@ body.noscroll {
   font-weight: bold; }
 
 i.bt-img-close {
-  color: #000 !important;
   border: solid 1px #EAEAEA;
   width: 100%;
   padding-top: 4px;
@@ -1268,18 +1271,8 @@ figure {
     color: #666666;
     position: relative;
     display: inline-block;
-    padding-left: 30px;
     text-decoration: none;
-    padding-top: 14px; }
-    .l-header .branding:before {
-      background-color: transparent;
-      width: 20px;
-      height: 20px;
-      content: "";
-      border-radius: 50%;
-      position: absolute;
-      top: 13px;
-      left: 0px; }
+    padding-top: 11px; }
   .l-header .main-nav {
     height: 50px; }
     .l-header .main-nav li a {
