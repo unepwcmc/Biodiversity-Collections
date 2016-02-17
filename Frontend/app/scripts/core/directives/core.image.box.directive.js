@@ -1,4 +1,4 @@
-define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
+define(['angularAMD', 'core/factory/imageFactory', 'core/directives/core.image.popup.directive' ], function (angularAMD) {
 
     'use strict';
 
