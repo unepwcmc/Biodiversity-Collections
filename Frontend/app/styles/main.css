@@ -670,6 +670,13 @@ form.simple-pagination > div.form-group {
   font-size: 14px !important;
   padding: 10 !important; }
 
+.read-more-search {
+  width: 100% !important;
+  text-align: justify !important;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 14px !important;
+  padding: 10 !important; }
+
 .read-more-link {
   color: #33A15F;
   text-decoration: none;
@@ -1261,10 +1268,12 @@ figure {
   margin: 0 !important; }
 
 /** HEADER */
+#barra-brasil {
+  border-top: 4px solid #008937; }
+
 .l-header {
   height: 70px;
   border-bottom: 1px solid #e5e5e5;
-  border-top: 4px solid #008937;
   /**
 	 * ----------------------------------------------------------------------------------------
 	 * Branding
@@ -1757,3 +1766,6 @@ a.leaflet-control-zoom-out {
 
 div.leaflet-top.leaflet-right {
   display: none; }
+
+.list-item {
+  width: 75%; }
