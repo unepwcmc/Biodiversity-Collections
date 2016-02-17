@@ -22,7 +22,7 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
 
                         $scope.samples = new Sample();
                         $scope.newSample = new Sample();
-                        angular.extend($scope.samples,{totalElements : 0, number: 0, size: 10, totalPages: 0});
+                        angular.extend($scope.samples,{totalElements : 0, number: 0, size: 5, totalPages: 0});
                         $scope.samples.load( $stateParams.id,  $scope.samples.number, $scope.samples.size);
 
                         $scope.$on('SAMPLE_LOADED', function( ) {
