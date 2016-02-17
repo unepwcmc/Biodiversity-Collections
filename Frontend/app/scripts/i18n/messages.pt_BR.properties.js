@@ -245,7 +245,8 @@ define([],function ( ) {
     'INSTITUTION_PRIVATE': 'Privada',
     'INSTITUTION_FEDERAL': 'Federal',
     'SEARCHING_FOR_RESULTS': 'Buscando por resultados...',
-    'I_AM_LOOKING_FOR':'Procurando por...'
+    'I_AM_LOOKING_FOR':'Procurando por...',
+    'STATE': 'Estado'
   }
 
 });
