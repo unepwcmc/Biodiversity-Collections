@@ -10,6 +10,7 @@ define(
         'core/directives/core.dialog.confirm.directive',
         'core/directives/core.translate.directive',
         'core/directives/core.main.directive',
+        'core/directives/core.footer.directive',
         'core/directives/core.edit.form.directive',
         'core/directives/core.elastic.directive',
         'core/directives/core.on.finish.render.directive',
