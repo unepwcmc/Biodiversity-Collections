@@ -13,7 +13,7 @@ define(['angularAMD','highcharts-ng',
                 $scope.institution = new Institution();
                 $scope.institution.countType(function(data) {
 
-                    var colors = ['grey', '#F5F5F5', '#DFE0E1', '#CCCCCC'];
+                    var colors = ['green', '#FFB266', '#FFCC99', '#FFE5CC'];
                     var seriesData = [];
                     angular.forEach(data, function(value, key) {
                         seriesData.push({ name: value[0], y: value[1], color: colors[key] });
