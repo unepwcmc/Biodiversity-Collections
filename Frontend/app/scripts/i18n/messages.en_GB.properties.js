@@ -7,7 +7,7 @@ define([],function ( ) {
     'ENGLISH':'English',
     'PORTUGUESE':'Portuguese',
     'SEARCH':'Search',
-    'BRAZIL_BIODIVERSITY_COLLECTION':'Biodiversity Collections',
+    'BRAZIL_BIODIVERSITY_COLLECTION':'Brazilian Biodiversity Collections',
     'NEWS':'News',
     'HOME':'Home',
     'SEARCH_RESULTS':'Search Results',
