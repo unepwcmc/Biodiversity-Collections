@@ -2,7 +2,7 @@ define(
     [
         'angularAMD','angular','underscore','angular-translate','angular-breadcrumb',
         'angular-ui-router','angular-toastr','angular-cookies','angucomplete-alt','angular-tablesort',
-        'angular-resource','angular-sanitize','popover','nemLogging','waypoints',
+        'angular-resource','angular-sanitize','popover','nemLogging','waypoints', 'angular-read-more', 'angular-animate',
         'angular-toastr-tpl','leaflet-directive', 'leaflet', 'leaflet.markercluster',
         'core/directives/core.include.template.directive',
         'core/directives/core.load.screen.directive',

@@ -12,7 +12,8 @@ define(['include', 'language'], function (angularAMD, language) {
             'leaflet-directive',
             'angucomplete-alt',
             'ncy-angular-breadcrumb',
-            'tableSort'
+            'tableSort',
+            'hm.readmore'
         ]
     );
 
@@ -358,8 +359,8 @@ define(['include', 'language'], function (angularAMD, language) {
                     };
                 }]);
 
-            $provide.factory('errorHandlerInterceptor', ['$rootScope', '$q', '$window', '$location', 'toastr',
-                function ($rootScope, $q, $window, $location, toastr) {
+            $provide.factory('errorHandlerInterceptor', ['$rootScope', '$q', '$window', '$location',
+                function ($rootScope, $q, $window, $location) {
                     return {
                         request: function(config) {
                             return config;

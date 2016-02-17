@@ -43,7 +43,9 @@
     "angular-tablesort/js/angular-tablesort.js",
     "highcharts-ng/dist/highcharts-ng.js",
     "leaflet-layer/dist/esri-leaflet.js",
-    "magnific-popup/dist/jquery.magnific-popup.js"
+    "magnific-popup/dist/jquery.magnific-popup.js",
+    "angular-read-more/dist/readmore.js",
+    "angular-animate/angular-animate.js"
   ],
   "cssFiles": [
     "bootstrap/dist/css/bootstrap.css",

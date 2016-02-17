@@ -55,7 +55,9 @@
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'DESCRIPTION' | translate  }}</label>
                              <div class="col-sm-9">
-                                 <textarea elastic type="text" class="form-control" data-ng-model="institution.description" ></textarea>
+                                 <textarea ng-show="editMode" elastic type="text" class="form-control" data-ng-model="institution.description" ></textarea>
+                                 <p ng-show="!editMode" class="read-more" hm-read-more hm-text="{{ institution.description }}"
+                                    hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
                              </div>
                          </div>
 

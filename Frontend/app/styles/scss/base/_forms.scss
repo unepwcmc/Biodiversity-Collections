@@ -622,3 +622,17 @@ form.simple-pagination > span.disabled > button[disabled="disabled"].btn.btn-def
 form.simple-pagination > div.form-group{
   margin-right:10px;
 }
+
+.read-more {
+	width: 480px !important;
+	text-align: justify !important;
+	margin-left: 10px !important;
+	font-family: 'Libre Baskerville', serif;font-size: 14px !important;
+	padding: 10 !important;
+}
+
+.read-more-link {
+	color: #33A15F;
+	text-decoration: none;
+	font-weight: bold;
+}

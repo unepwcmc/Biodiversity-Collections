@@ -620,7 +620,8 @@ a.btn-transparent:hover {
 
 button.btn-tag {
   cursor: default;
-  color: #666666 !important; }
+  color: #666666 !important;
+  background-color: #F2F2F2 !important; }
 
 .default-form-block .form-control {
   background-color: transparent !important;
@@ -657,6 +658,19 @@ form.simple-pagination > span.disabled > button[disabled="disabled"].btn.btn-def
 
 form.simple-pagination > div.form-group {
   margin-right: 10px; }
+
+.read-more {
+  width: 480px !important;
+  text-align: justify !important;
+  margin-left: 10px !important;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 14px !important;
+  padding: 10 !important; }
+
+.read-more-link {
+  color: #33A15F;
+  text-decoration: none;
+  font-weight: bold; }
 
 .esp-table-wrapper table.dataTable thead .sorting {
   background-image: none; }
@@ -1242,7 +1256,7 @@ figure {
 
 /** HEADER */
 .l-header {
-  height: 50px;
+  height: 70px;
   border-bottom: 1px solid #e5e5e5;
   border-top: 4px solid #008937;
   /**
