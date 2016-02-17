@@ -8,8 +8,9 @@
         <div ng-repeat="doc in document.content" class="list-item">
             <h5><strong><a href="javascript:" ng-click="downloadDocument(doc.id)">{{doc.title | trim}}</a></strong></h5>
             <p><strong>{{doc.type}}</strong></p>
-            <p ng-if="doc.description.length > 360" style="height:2.7em; overflow:hidden; float: left;">{{doc.description}}</p>
-            <p ng-if="doc.description.length <= 360">{{doc.description}}</p>
+            <p class="read-more-search" hm-read-more hm-text="{{ doc.description }}"
+               hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
+            </p>
         </div>
 
     </div>

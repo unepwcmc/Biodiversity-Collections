@@ -8,8 +8,9 @@
         <div ng-repeat="col in curator.content" class="list-item">
             <h5><strong><a data-ui-sref="curator({id:col.id})">{{col.name | trim}}</a></strong></h5>
             <p><strong>{{col.user.institution.name | trim}}</strong></p>
-            <p ng-if="col.jobTitle.length > 360" style="height:2.7em; overflow:hidden; float: left;">{{col.jobTitle}}</p>
-            <p ng-if="col.jobTitle.length <= 360">{{col.jobTitle}}</p>
+            <p class="read-more-search" hm-read-more hm-text="{{ col.jobTitle }}"
+               hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
+            </p>
         </div>
 
     </div>

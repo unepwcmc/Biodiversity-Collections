@@ -7,8 +7,9 @@
 
         <div ng-repeat="col in network.content" class="list-item">
             <h5><strong><a data-ui-sref="network({id:col.id})">{{col.name | trim}}</a></strong></h5>
-            <p ng-if="col.description.length > 360" style="height:2.7em; overflow:hidden; float: left;">{{col.description}}</p>
-            <p ng-if="col.description.length <= 360">{{col.description}}</p>
+            <p class="read-more-search" hm-read-more hm-text="{{ col.description }}"
+               hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
+            </p>
         </div>
 
     </div>
