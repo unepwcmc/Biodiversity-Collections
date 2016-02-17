@@ -108,7 +108,8 @@ define(['angularAMD','leaflet.layer'], function (angularAMD) {
                     leafletData.getMap().then(function(map) {
                         $timeout(function() {
                             map.invalidateSize();
-                            L.esri.basemapLayer("NationalGeographic").addTo(map);
+                            map.scrollWheelZoom.disable();
+                            L.esri.basemapLayer("Topographic").addTo(map);
                         }, 300);
                     });
                 }
