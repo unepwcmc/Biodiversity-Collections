@@ -584,11 +584,14 @@ button.btn-tag{
   background-color:transparent!important;
   border:none;
 }
+a.btn.cancel{
+  color:$green!important;
+}
 
 .btn-small-delete{
   margin-top:3px;
-  color: #666666!important;
-  border:solid 1px #666666;
+  color: $green!important;
+  border:solid 1px $green;
   width:38px;
   height:29px;
   padding:2px 13px 0px;
