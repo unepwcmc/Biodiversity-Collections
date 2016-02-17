@@ -54,9 +54,9 @@ define(['angularAMD','leaflet.layer'], function (angularAMD) {
                           }
                       },
                       center: {
-                          lat: -10.186819,
-                          lng: -48.333694,
-                          zoom: 3
+                          lat: -9.7943195,
+                          lng: -58.1868282,
+                          zoom: 4
                       },
                       defaults: {
                       }
