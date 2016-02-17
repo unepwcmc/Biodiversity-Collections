@@ -86,10 +86,10 @@ define(['angularAMD','leaflet.layer'], function (angularAMD) {
                               obj.icon = {
                                   type: 'div',
                                   className: "number-icon",
-                                  iconSize: [30, 29],
+                                  iconSize: [24, 23],
                                   iconAnchor: [10, 44],
                                   popupAnchor: [3, -40],
-                                  html: '<p style="margin: 5px; font-weight: bold; color: #fff;">' + index + '</p>'
+                                  html: '<p style="margin: 3px; font-weight: bold; color: #fff;">' + index + '</p>'
                               };
                               obj.draggable = false;
                               count++;
