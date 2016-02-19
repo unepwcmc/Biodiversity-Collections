@@ -1768,4 +1768,6 @@ div.leaflet-top.leaflet-right {
   display: none; }
 
 .list-item {
-  width: 75%; }
+  width: 55%; }
+  .list-item h5 {
+    margin-bottom: 2px; }
