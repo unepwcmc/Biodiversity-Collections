@@ -247,7 +247,8 @@ define([],function ( ) {
     'INSTITUTION_FEDERAL': 'Federal',
     'SEARCHING_FOR_RESULTS': 'Buscando por resultados...',
     'I_AM_LOOKING_FOR':'Procurando por...',
-    'STATE': 'Estado'
+    'STATE': 'Estado',
+    'COUNTY': 'Município'
   }
 
 });
