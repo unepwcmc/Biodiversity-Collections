@@ -8,6 +8,7 @@ define([],function ( ) {
     'PORTUGUESE':'Português',
     'SEARCH':'Pesquisar',
     'BRAZIL_BIODIVERSITY_COLLECTION':'Coleção da Biodiversidade Brasileira',
+    'BIODIVERSITY_COLLECTIONS':'COLEÇÃO DA BIODIVERSIDADE',
     'NEWS':'Notícias',
     'HOME':'Início',
     'SEARCH_RESULTS':'resultados da pesquisa',

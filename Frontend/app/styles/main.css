@@ -1410,6 +1410,9 @@ figure {
   .l-footer .footer-top {
     padding: 60px 0 20px 0;
     border-bottom: 1px solid #249953; }
+  .l-footer .footer-top.span.label {
+    color: #fff;
+    font-size: 16px; }
   .l-footer .footer-middle {
     padding: 20px 0 10px 0;
     border-bottom: 1px solid #249953; }
@@ -1487,6 +1490,10 @@ figure {
       color: #008937; }
     #login-box .login-form #rem-me {
       margin-top: 12px; }
+
+div#wrapper-footer-brasil {
+  padding: 0 !important;
+  max-width: 96% !important; }
 
 /** BUTTONS */
 .btn {

@@ -64,6 +64,11 @@
 		border-bottom: 1px solid #249953;
 	}
 
+  .footer-top.span.label{
+	color: #fff;
+	font-size: 16px;
+  }
+
 	.footer-middle{
 		padding: 20px 0 10px 0 ;
 		border-bottom: 1px solid #249953;
@@ -185,4 +190,9 @@
 			margin-top: 12px;
 		}
 	}
+}
+
+div#wrapper-footer-brasil {
+  padding: 0!important;
+  max-width: 96%!important;
 }
