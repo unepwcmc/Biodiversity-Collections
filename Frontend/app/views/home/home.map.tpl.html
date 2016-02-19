@@ -36,14 +36,14 @@
 
         <div class="row" align="center" style="margin-top: 10px;">
             <div class="col-xs-4" style="height: 80px;" ng-repeat="col in collections.content">
-                <div class="list-item" style="margin-top: 5px;">
+                <div  style="margin-top: 5px;">
                     <div class="col-md-1">
                             <span class="fa-stack fa-1x">
                               <i class="fa fa-circle fa-stack-2x"></i>
                               <strong class="fa-stack-1x text-primary" style="color: white;">{{$index + 1 + (collections.number * collections.size)}}</strong>
                             </span>
                     </div>
-                    <div class="col-md-10" style="text-align: left;">
+                    <div class="col-md-11" style="text-align: left;">
                         <div>
                             <a style="margin-left: 10px;" data-ui-sref="collection({id:col.id})"><strong>{{col.name}}</strong></a>
                             <h6 style="margin-left: 10px;" class="font-color-green">{{col.institution.name}}&nbsp;</h6>
