@@ -24,6 +24,10 @@ public class Contact implements Serializable {
 
     private String country;
 
+    private String county;
+
+    private String state;
+
     private Float latitude;
 
     private Float longitude;
