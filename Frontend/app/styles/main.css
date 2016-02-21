@@ -1412,7 +1412,7 @@ figure {
         background-color: #ffffff;
         color: #008937; }
   .l-footer .footer-top {
-    padding: 60px 0 20px 0;
+    padding: 5px 0 20px 0;
     border-bottom: 1px solid #249953; }
   .l-footer .footer-top.span.label {
     color: #fff;
@@ -1497,7 +1497,25 @@ figure {
 
 div#wrapper-footer-brasil {
   padding: 0 !important;
-  max-width: 96% !important; }
+  max-width: 100% !important; }
+
+.label-footer {
+  color: #ffffff; }
+
+h5.label-footer {
+  margin-top: 35px;
+  font-size: 18px;
+  line-height: 0; }
+
+a.btn-ask-support {
+  margin-top: 15px;
+  background-color: #fff !important;
+  color: #008937 !important; }
+
+div.footer-top > div.row > hr {
+  background-color: #007B31;
+  height: 1px;
+  border: 0; }
 
 /** BUTTONS */
 .btn {
@@ -1577,12 +1595,6 @@ div#wrapper-footer-brasil {
   height: 100px;
   padding: 10px;
   background-color: #EAEAEA; }
-
-a.btn-ask-support {
-  margin-top: 15px;
-  margin-right: 20px;
-  background-color: #fff !important;
-  color: #008937 !important; }
 
 input#searchTop_value {
   width: 300px !important; }
