@@ -1186,8 +1186,8 @@ body.noscroll {
   border-radius: 0; }
 
 .breadcrumb {
-  padding: 8px 15px;
-  margin-bottom: 20px;
+  padding: 20px 15px;
+  margin-bottom: 0;
   list-style: none;
   background-color: transparent;
   border-radius: 4px; }
