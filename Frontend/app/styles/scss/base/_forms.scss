@@ -643,11 +643,29 @@ form.simple-pagination > div.form-group{
 	width: 100% !important;
 	text-align: justify !important;
 	font-family: 'Libre Baskerville', serif;font-size: 14px !important;
-	padding: 10 !important;
+	padding: 10px !important;
 }
 
 .read-more-link {
 	color: #33A15F;
 	text-decoration: none;
 	font-weight: bold;
+}
+
+form#taxonomy_sample_form > div > div.form-group{
+  width:70%;
+  border-bottom: solid 1px #EAEAEA;
+}
+
+form#taxonomy_sample_form > div > div.form-group > div > input.form-control[readonly="readonly"]{
+  text-align:right;
+  font-weight:bold;
+  padding-top:0;
+  padding-right: 0;
+}
+form#taxonomy_sample_form > div > div.form-group > label.col-sm-4{
+  margin-left:-12px!important;
+}
+form#taxonomy_sample_form > div.small-field > div.form-group > div.col-sm-9{
+  padding-right:0;
 }
