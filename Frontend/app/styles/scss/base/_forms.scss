@@ -619,17 +619,21 @@ ul.pagination > li[title="Last Page"] {
   display:none!important;
 }
 
-form.simple-pagination > span > a.btn.btn-default{
-  border: solid 3px #008937!important;
-  color: #008937;
+form.simple-pagination > div > span > a.btn.btn-default.small.small-bt-header{
+  	border: solid 3px #008937 !important;
+  	color: #008937 !important;
+	margin-top: 0px !important;
+	line-height: 20px !important;
 }
 
-form.simple-pagination > span.disabled > button[disabled="disabled"].btn.btn-default{
-  border: solid 3px #ABD8BD!important;
-  color: #ABD8BD!important;
+form.simple-pagination > div > span.disabled > button[disabled="disabled"].btn.btn-default.small.small-bt-header{
+  	border: solid 3px #ABD8BD !important;
+  	color: #ABD8BD !important;
+	margin-top: 0px !important;
+	line-height: 20px !important;
 }
 
-form.simple-pagination > div.form-group{
+form.simple-pagination > div.form-group {
   margin-right:10px;
 }
 

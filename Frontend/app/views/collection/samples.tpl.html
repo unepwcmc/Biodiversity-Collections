@@ -34,10 +34,10 @@
                 <div class="row">
                     <div class="pull-left"><a ng-show="editMode" style="margin-left: 12px;" class="btn btn-small-add btn-primary" ng-click="addNewSample()"><label>{{'ADD_NEW_SAMPLE' | translate}}</label></a></div>
                     <div class="pull-right" ng-show="samples.totalPages > 1">
-                        <form class="form-inline simple-pagination">
+                        <form class="form-inline small-field simple-pagination">
 
                             <div class="form-group">
-                                <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
+                                <span>{{ 'ROWS_PER_PAGE' | translate }}:&nbsp;</span>
                             </div>
                             <div class="form-group" style="width: 100px">
                                 <div class="select-wrapper">
@@ -51,23 +51,24 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>{{samples.number + 1}} {{ 'OF' | translate }} {{ samples.totalPages }}</label>
+                                <span><b>{{(samples.number * samples.size) + 1}}-{{samples.size * (samples.number + 1)}}</b> {{ 'OF' | translate }} {{ samples.totalElements }}</span>
                             </div>
 
-                    <span ng-class="{disabled: samples.number === 0}">
-                        <a type="submit" class="btn btn-default" ng-show="samples.number !== 0"
-                           ng-click="paginateSample(samples.number - 1,samples.size)"><strong style="color: #666"> &lt; </strong></a>
-                        <button disabled="disabled" class="btn btn-default" class="page-not-active"
-                                ng-show="samples.number === 0"><strong style="color: #666"> &lt; </strong></button>
-                    </span>
-                    <span ng-class="{disabled: samples.number === samples.totalPages - 1}">
-                        <a type="submit" class="btn btn-default" ng-show="samples.number !== samples.totalPages - 1"
-                           ng-click="paginateSample(samples.number + 1,samples.size)"><strong style="color: #666"> &gt; </strong></a>
-                        <button disabled="disabled" class="btn btn-default"
-                                ng-show="samples.number === samples.totalPages - 1"><strong style="color: #666"> &gt; </strong>
-                        </button>
-                    </span>
-
+                            <div class="form-group">
+                                <span ng-class="{disabled: samples.number === 0}">
+                                    <a type="submit" class="btn btn-default small small-bt-header" ng-show="samples.number !== 0"
+                                       ng-click="paginateSample(samples.number - 1,samples.size)"><strong style="color: #666"> &lt; </strong></a>
+                                    <button disabled="disabled" class="btn btn-default small small-bt-header" class="page-not-active"
+                                            ng-show="samples.number === 0"><strong style="color: #666"> &lt; </strong></button>
+                                </span>
+                                <span ng-class="{disabled: samples.number === samples.totalPages - 1}">
+                                    <a type="submit" class="btn btn-default small small-bt-header" ng-show="samples.number !== samples.totalPages - 1"
+                                       ng-click="paginateSample(samples.number + 1,samples.size)"><strong style="color: #666"> &gt; </strong></a>
+                                    <button disabled="disabled" class="btn btn-default small small-bt-header"
+                                            ng-show="samples.number === samples.totalPages - 1"><strong style="color: #666"> &gt; </strong>
+                                    </button>
+                                </span>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -167,6 +167,10 @@ a[target="blank"] {
 .navbar h2.navbar-text {
   color: #fff; }
 
+.navbar-inverse {
+  background-color: #008937 !important;
+  border-color: #008937 !important; }
+
 .collection-image > li {
   margin-top: 8px;
   margin-left: 08px;
@@ -415,7 +419,9 @@ form.form-block.view-mode textarea[disabled="disabled"] {
   background-color: transparent;
   box-shadow: none;
   font-family: "Libre Baskerville", serif;
-  font-size: 14px; }
+  font-size: 14px;
+  margin-top: 0px;
+  padding-top: 0px; }
 
 form.form-block.view-mode textarea[readonly="readonly"] {
   width: 100%;
@@ -610,11 +616,11 @@ a.btn-transparent {
   color: #666666 !important; }
 
 a.btn-transparent:hover {
-  background: #666666 !important; }
+  background-color: #33a15f !important; }
 
 .navbar-form button.btn-white {
   background-color: #fff;
-  color: #666666 !important; }
+  color: #008937 !important; }
 
 #collection-bar-fixed div.container form.navbar-form {
   padding-top: 12px; }
@@ -656,13 +662,17 @@ ul.pagination > li[title="First Page"] {
 ul.pagination > li[title="Last Page"] {
   display: none !important; }
 
-form.simple-pagination > span > a.btn.btn-default {
+form.simple-pagination > div > span > a.btn.btn-default.small.small-bt-header {
   border: solid 3px #008937 !important;
-  color: #008937; }
+  color: #008937 !important;
+  margin-top: 0px !important;
+  line-height: 20px !important; }
 
-form.simple-pagination > span.disabled > button[disabled="disabled"].btn.btn-default {
+form.simple-pagination > div > span.disabled > button[disabled="disabled"].btn.btn-default.small.small-bt-header {
   border: solid 3px #ABD8BD !important;
-  color: #ABD8BD !important; }
+  color: #ABD8BD !important;
+  margin-top: 0px !important;
+  line-height: 20px !important; }
 
 form.simple-pagination > div.form-group {
   margin-right: 10px; }
@@ -680,7 +690,7 @@ form.simple-pagination > div.form-group {
   text-align: justify !important;
   font-family: 'Libre Baskerville', serif;
   font-size: 14px !important;
-  padding: 10px !important; }
+  padding-bottom: 10px; }
 
 .read-more-link {
   color: #33A15F;
@@ -1305,7 +1315,7 @@ textarea#ipt_message {
 
 .l-header {
   height: 70px;
-  border-bottom: 1px solid #e5e5e5;
+  /*border-bottom: 1px solid #e5e5e5;*/
   /**
 	 * ----------------------------------------------------------------------------------------
 	 * Branding
@@ -1341,33 +1351,31 @@ textarea#ipt_message {
       color: #666666;
       font-size: 14px;
       text-decoration: none; }
-  .l-header .user-meta {
-    height: 50px; }
-    .l-header .user-meta li {
-      cursor: default; }
-      .l-header .user-meta li a {
-        display: block;
-        line-height: 49px;
-        height: 50px;
-        font-weight: 700;
-        color: #666666;
-        font-size: 14px;
-        text-decoration: none;
-        cursor: pointer; }
-        .l-header .user-meta li a i {
-          color: #008937;
-          margin: 0px 3px; }
-      .l-header .user-meta li:first-child a:after {
-        display: inline-block;
-        width: 10px; }
-      .l-header .user-meta li .user-detail {
-        cursor: pointer; }
-        .l-header .user-meta li .user-detail:hover {
-          opacity: 0.8; }
-    .l-header .user-meta .language-dropdown > select {
+  .l-header .user-meta li {
+    cursor: default; }
+    .l-header .user-meta li a {
+      display: block;
+      line-height: 49px;
+      height: 50px;
+      font-weight: 700;
+      color: #666666;
+      font-size: 14px;
+      text-decoration: none;
       cursor: pointer; }
-    .l-header .user-meta span.language-dropdown:before {
-      content: "|"; }
+      .l-header .user-meta li a i {
+        color: #008937;
+        margin: 0px 3px; }
+    .l-header .user-meta li:first-child a:after {
+      display: inline-block;
+      width: 10px; }
+    .l-header .user-meta li .user-detail {
+      cursor: pointer; }
+      .l-header .user-meta li .user-detail:hover {
+        opacity: 0.8; }
+  .l-header .user-meta .language-dropdown > select {
+    cursor: pointer; }
+  .l-header .user-meta span.language-dropdown:before {
+    content: "|"; }
 
 .webui-popover-content .fa-close {
   cursor: pointer; }
@@ -1591,7 +1599,7 @@ div.footer-top > div.row > hr {
   .btn.small {
     height: 30px;
     line-height: 28px;
-    margin-top: -11px;
+    margin-top: 0px;
     font-size: 14px; }
 
 .btn-link-primary {

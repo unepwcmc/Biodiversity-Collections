@@ -20,7 +20,7 @@ define(['angularAMD','core/factory/networkFactory'], function (angularAMD) {
                         $scope.networkSelected = null;
                         $scope.networks = new Network();
                         $scope.newNetwork = new Network();
-                        angular.extend($scope.networks, {totalElements : 0, number: 0, size: 10, totalPages: 0});
+                        angular.extend($scope.networks, {totalElements : 0, number: 0, size: 5, totalPages: 0});
                         $scope.networks.loadByCollection( $stateParams.id,  $scope.networks.number, $scope.networks.size);
 
                         $scope.$on('NETWORK_LOADED', function( ) {
