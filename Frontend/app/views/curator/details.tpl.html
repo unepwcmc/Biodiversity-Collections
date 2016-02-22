@@ -118,7 +118,7 @@
 
                         <div class="form-group">
                             <label class="col-sm-3">{{ 'ASSOCIATED_INSTITUTIONS' | translate }}</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-10">
 
                                 <span class="clearfix" ng-repeat="institution in curator.associatedInstitutions track by $index" on-finish-render="ngRepeatFinished">
                                      <strong ng-show="!editMode"><a style="margin-left: 10px;" data-ui-sref="institution({id : institution.id})">{{institution.name}}</a></strong>
