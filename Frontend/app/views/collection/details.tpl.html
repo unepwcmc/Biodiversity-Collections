@@ -21,7 +21,7 @@
                 </form>
             </div>
         </nav>
-        <h4 id="collection-bar-default">
+        <h3 id="collection-bar-default">
                 <strong ng-show="!editMode" >{{ collection.name }}</strong>
                 <strong ng-show="editMode && !isNew" >{{'EDIT_COLLECTION' | translate}}</strong> <span>
                 <strong ng-show="editMode && isNew" >{{'NEW_COLLECTION' | translate}}</strong> <span>
@@ -30,7 +30,7 @@
             <a ng-show="!editMode && logged" id="edit-collection" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="!collection_form.$valid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
-        </h4>
+        </h3>
 
         <hr/>
     </div>

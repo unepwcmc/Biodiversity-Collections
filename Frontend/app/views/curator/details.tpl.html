@@ -20,7 +20,7 @@
                 </form>
             </div>
         </nav>
-        <h4 id="curator-bar-default">
+        <h3 id="curator-bar-default">
             <strong ng-show="!editMode" >{{ curator.name }}</strong>
             <strong ng-show="editMode && !createCurator" >{{'EDIT_CURATOR' | translate}}</strong> <span>
             <strong ng-show="editMode && createCurator" >{{'NEW_CURATOR' | translate}}</strong> <span>
@@ -29,7 +29,7 @@
             <a ng-show="!editMode && logged" id="edit-curator" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
             <a ng-show="editMode && !createCurator" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="curator_details_form.$invalid || curator_contact_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
             <a ng-show="editMode && !createCurator" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-curator-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
-        </h4>
+        </h3>
 
         <hr/>
     </div>

@@ -20,11 +20,11 @@
                 </form>
             </div>
         </nav>
-        <h4>
+        <h3>
             <strong >{{ collection.name }}</strong>
             <button class="btn btn-small btn-tag"><strong>{{ 'COLLECTION'| translate}}</strong></button>
-        </h4>
-        <h4 id="member-bar-default">
+        </h3>
+        <h3 id="member-bar-default">
 
             <strong ng-show="!editMode" >{{'ASSOCIATED_MEMBERS' | translate}}</strong>
             <strong ng-show="editMode" >{{'EDIT_ASSOCIATED_MEMBERS' | translate}}</strong>
@@ -32,7 +32,7 @@
             <a ng-show="!editMode && logged" id="edit-member" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-member-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
-        </h4>
+        </h3>
 
         <hr/>
     </div>

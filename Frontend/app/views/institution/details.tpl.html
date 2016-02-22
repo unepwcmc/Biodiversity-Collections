@@ -21,7 +21,7 @@
                 </form>
             </div>
         </nav>
-        <h4 id="institution-bar-default">
+        <h3 id="institution-bar-default">
             <strong ng-show="!editMode" >{{ institution.name }}</strong>
             <strong ng-show="(editMode && adminEditView && adminView) || (editMode && !adminView)" >{{'EDIT_INSTITUTION' | translate}}</strong>
             <strong ng-show="editMode && !adminEditView && adminView" >{{'NEW_INSTITUTION' | translate}}</strong>
@@ -32,7 +32,7 @@
             <a ng-show="!editMode && logged" id="edit-institution" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
             <a ng-show="(editMode && adminEditView && adminView) || (editMode && !adminView)" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="!institution_form.$valid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
             <a ng-show="(editMode && adminEditView && adminView) || (editMode && !adminView)" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-institution-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
-        </h4>
+        </h3>
 
         <hr/>
     </div>
