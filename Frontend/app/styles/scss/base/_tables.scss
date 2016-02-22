@@ -494,5 +494,39 @@ table.table.table-hover.sample-table > thead > tr > th > input[type="checkbox"]{
   margin-left:8px;
 }
 
+table.publication > tbody > tr > td.btn-td{
+  padding-top:22px;
+  padding-left:20px;
+}
+
+table.publication > thead > tr > th.btn-td{
+  padding-top:22px;
+  padding-left:20px;
+}
+
+table.table.table-hover.publication > thead > tr > th.btn-td.no-sorter{
+  border-top:solid 1px #ddd;
+}
+
+table.table.table-hover.publication > tbody > tr:last-child {
+  vertical-align: bottom;
+  border-bottom: solid 1px #eaeaea;
+}
+
+table.table.table-hover.publication > tbody > tr > td > input.pub-checkbox-delete{
+  margin-top:18px;
+  margin-left:8px;
+}
+
+table.table.table-hover.publication > thead > tr > th > input[type="checkbox"]{
+  margin-top:18px;
+  margin-left:8px;
+}
+
+table.publication > thead > tr > th.btn-td{
+  vertical-align:middle;
+  padding-top:4px;
+  padding-left:20px;
+}
 
 
