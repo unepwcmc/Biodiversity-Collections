@@ -396,10 +396,10 @@ form.form-block input[type="email"],
 form.form-block input[type="search"],
 form.form-block input[type="tel"],
 form.form-block select {
-  font-family: "Libre Baskerville", serif; }
+  font-family: "Roboto", sans-serif; }
 
 form.form-block textarea {
-  font-family: "Libre Baskerville", serif;
+  font-family: "Roboto", sans-serif;
   width: 500px !important;
   border: 1px solid #ddd;
   padding: 10px;
@@ -418,7 +418,7 @@ form.form-block.view-mode textarea[disabled="disabled"] {
   border: none;
   background-color: transparent;
   box-shadow: none;
-  font-family: "Libre Baskerville", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   margin-top: 0px;
   padding-top: 0px; }
@@ -695,15 +695,19 @@ form.simple-pagination > div.form-group {
   width: 480px !important;
   text-align: justify !important;
   margin-left: 10px !important;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px !important;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
   padding: 10 !important; }
 
 .read-more-search {
   width: 100% !important;
   text-align: justify !important;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px !important;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
   padding-bottom: 10px; }
 
 .read-more-link {
@@ -726,6 +730,9 @@ form#taxonomy_sample_form > div > div.form-group > label.col-sm-4 {
 
 form#taxonomy_sample_form > div.small-field > div.form-group > div.col-sm-9 {
   padding-right: 0; }
+
+input.curator-institutions {
+  width: 265px; }
 
 .esp-table-wrapper table.dataTable thead .sorting {
   background-image: none; }

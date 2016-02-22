@@ -126,22 +126,22 @@
                                     <a ng-show="editMode" ng-click="removeAssociatedInstitution($index);" class="btn-link-primary btn-right-side pull-right " style="left: -9px"><i class="fa fa-close"></i>&nbsp;</a>
                                 </span>
 
-                                <table class="researches">
+                                <table>
                                     <tfoot ng-show="editMode">
-                                    <tr>
-                                        <td>
-                                            <angucomplete-alt id="associatedInstitutionAtcl"
-                                                              placeholder="Search an Institution"
-                                                              pause="150"
-                                                              selected-object="associatedInstitutionSelected"
-                                                              remote-api-handler="institutionAutocomplete"
-                                                              title-field="name"
-                                                              minlength="0"
-                                                              input-class="form-control curator-institutions"/>
-                                        </td>
-                                        <td>&nbsp;
-                                            <a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-sm btn-primary" ng-click="addAssociatedInstitution();"><label>{{ 'ADD' | translate }}</label></a></td>
-                                    </tr>
+                                        <tr>
+                                            <td>
+                                                <angucomplete-alt id="associatedInstitutionAtcl"
+                                                                  placeholder="Search an Institution"
+                                                                  pause="150"
+                                                                  selected-object="associatedInstitutionSelected"
+                                                                  remote-api-handler="institutionAutocomplete"
+                                                                  title-field="name"
+                                                                  minlength="0"
+                                                                  input-class="form-control curator-institutions"/>
+                                            </td>
+                                            <td style="padding-left: 7px">
+                                                <a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-sm btn-primary" ng-click="addAssociatedInstitution();"><label>{{ 'ADD' | translate }}</label></a></td>
+                                        </tr>
                                     </tfoot>
                                 </table>
 
