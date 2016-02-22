@@ -45,7 +45,7 @@
             <hr/>
         </div>
         <div class="row">
-            <div class="pull-right" ng-show="collections.totalPages > 1">
+            <div class="pull-right">
                 <form class="form-inline small-field simple-pagination">
                     <div class="form-group">
                         <span>{{ 'ROWS_PER_PAGE' | translate }}</span>
@@ -62,17 +62,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <span ng-if="(collections.size * (collections.number + 1)) < collections.totalElements"><b>{{(collections.number * collections.size) + 1}}-{{collections.size * (collections.number + 1)}}</b> {{ 'OF' | translate }} {{collections.totalElements}}</span>
-                        <span ng-if="(collections.size * (collections.number + 1)) > collections.totalElements"><b>{{(collections.number * collections.size) + 1}}-{{collections.totalElements}}</b> {{ 'OF' | translate }} {{collections.totalElements}}</span>
+                        <span><b>{{(collections.number * collections.size) + 1}}-{{collections.size * (collections.number + 1)}}</b> {{ 'OF' | translate }} {{collections.totalElements}}</span>
                     </div>
                     <div class="form-group">
                         <span  ng-class="{disabled: collections.number === 0}">
                             <a type="submit" class="btn btn-default small small-bt-header" ng-show="collections.number !== 0" ng-click="paginateInstitutionCollections(collections.number - 1, collections.size)"><strong style="color: #666"> &lt; </strong></a>
                             <button  disabled="disabled" class="btn btn-default small small-bt-header" class="page-not-active" ng-show="collections.number === 0"><strong style="color: #666"> &lt; </strong></button>
                         </span>
-                        <span ng-class="{disabled: collections.number === collections.totalPages - 1}">
-                            <a type="submit" class="btn btn-default small small-bt-header" ng-show="collections.number !== collections.totalPages - 1" ng-click="paginateInstitutionCollections(collections.number + 1,collections.size)"><strong style="color: #666"> &gt; </strong></a>
-                            <button disabled="disabled" class="btn btn-default small small-bt-header" ng-show="collections.number === collections.totalPages - 1"><strong style="color: #666"> &gt; </strong></button>
+                        <span ng-class="{disabled: (collections.number === collections.totalPages - 1) || (collections.totalPages === 0)}">
+                            <a type="submit" class="btn btn-default small small-bt-header" ng-show="(collections.number !== collections.totalPages - 1) && (collections.totalPages > 0)" ng-click="paginateInstitutionCollections(collections.number + 1,collections.size)"><strong style="color: #666"> &gt; </strong></a>
+                            <button disabled="disabled" class="btn btn-default small small-bt-header" ng-show="(collections.number === collections.totalPages - 1) || (collections.totalPages === 0)"><strong style="color: #666"> &gt; </strong></button>
                         </span>
                     </div>
 
