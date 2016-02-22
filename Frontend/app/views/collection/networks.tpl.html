@@ -8,13 +8,14 @@
                     <tbody>
                         <tr ng-repeat="network in networks.content">
                             <td width="80%">
-                                <p class="text-left small"><a data-ui-sref="network({id : network.id})"><strong>{{network.name}}  | id: {{network.id}}</strong></a><p>
-                                <p class="text-justify small">{{network.description}}</p>
+                                <p class="text-left"><a data-ui-sref="network({id : network.id})"><strong>{{network.name}}</strong>&nbsp;|&nbsp;id:&nbsp;{{network.id}}</a><p>
+                                <p class="read-more-search" hm-read-more hm-text="{{network.description}}"
+                                   hm-limit="220" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
                             </td>
                             <td width="15%">
-                                <image-thumbnail width="78" height="44" attachment="network.images[0].attachment.id" ></image-thumbnail>
+                                <image-thumbnail width="110" height="84" attachment="network.images[0].attachment.id" ></image-thumbnail>
                             </td>
-                            <td ng-show="editMode" class="btn-td"><a class="btn" ng-click="removeNetwork(network.id)"><i class="fa fa-close"></i></a></td>
+                            <td ng-show="editMode" class="btn-td"><a class="btn small small-bt-header" ng-click="removeNetwork(network.id)"><i class="fa fa-close"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

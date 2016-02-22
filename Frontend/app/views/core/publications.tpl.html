@@ -11,8 +11,8 @@
                         <th ts-criteria="type">{{ 'TYPE' | translate }}</th>
                         <th ts-criteria="contentType">{{ 'FORMAT' | translate }}</th>
                         <th class="no-sorter" width="5%">&nbsp;</th>
-                        <th ng-show="editMode" width="5%" class="btn-td no-sorter"><a ng-disabled="checkboxCountPub > 0" ng-click="deleteAll()" class="btn"><i class="fa fa-close"></i></a></th>
-                        <th class="no-sorter" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" /></th>
+                        <th ng-show="editMode" style="text-align: center;"  width="5%" class="btn-td no-sorter"><a ng-disabled="checkboxCountPub > 0" ng-click="deleteAll()" class="btn small small-bt-header"><i class="fa fa-close"></i></a></th>
+                        <th class="no-sorter" style="padding: 8px;" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" /></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,8 +25,8 @@
                         </td>
                         <td>{{publication.type}}</td>
                         <td>.{{publication.contentType}}</td>
-                        <td class="btn-td"><a pub-popover doc="publication" class="btn pub-popover"><i class="fa fa-ellipsis-v"></i></a></td>
-                        <td ng-show="editMode" class="btn-td"><a ng-click="deleteDocument(publication.id)" class="btn"><i class="fa fa-close"></i></a></td>
+                        <td class="btn-td"><a pub-popover doc="publication" class="btn pub-popover small small-bt-header"><i class="fa fa-ellipsis-v"></i></a></td>
+                        <td ng-show="editMode" class="btn-td"><a ng-click="deleteDocument(publication.id)" class="btn small small-bt-header"><i class="fa fa-close"></i></a></td>
                         <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
                     </tr>
                     </tbody>
