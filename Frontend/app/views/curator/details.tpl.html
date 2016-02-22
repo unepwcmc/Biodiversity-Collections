@@ -118,13 +118,14 @@
                         <div class="form-group">
                             <label class="col-sm-3">{{ 'ASSOCIATED_INSTITUTIONS' | translate }}</label>
                             <div class="col-sm-9">
-                                <table>
-                                    <tbody>
-                                    <tr ng-repeat="institution in curator.associatedInstitutions" on-finish-render="ngRepeatFinished">
-                                        <td><strong><a style="margin-left: 10px;" data-ui-sref="institution({id : institution.id})">{{institution.name}}</a></strong></td>
-                                        <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right"  class="btn-small-delete" ng-click="removeAssociatedInstitution($index);"><i class="fa fa-close"></i></a></td>
-                                    </tr>
-                                    </tbody>
+
+                                <span class="clearfix" ng-repeat="institution in curator.associatedInstitutions track by $index" on-finish-render="ngRepeatFinished">
+                                     <strong ng-show="!editMode"><a style="margin-left: 10px;" data-ui-sref="institution({id : institution.id})">{{institution.name}}</a></strong>
+                                     <input ng-show="editMode" style="width: 90%" type="text" tabindex="2" class="form-control pull-left" data-ng-model="institution.name" maxlength="255">
+                                    <a ng-show="editMode" ng-click="removeAssociatedInstitution($index);" class="btn-link-primary btn-right-side pull-right " style="left: -9px"><i class="fa fa-close"></i>&nbsp;</a>
+                                </span>
+
+                                <table class="researches">
                                     <tfoot ng-show="editMode">
                                     <tr>
                                         <td>
@@ -136,12 +137,14 @@
                                                               title-field="name"
                                                               minlength="0"
                                                               input-class="form-control curator-institutions"/>
-
                                         </td>
-                                        <td>&nbsp;&nbsp;<a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addAssociatedInstitution();">{{ 'ADD' | translate }}</a></td>
+                                        <td>&nbsp;
+                                            <a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-sm btn-primary" ng-click="addAssociatedInstitution();"><label>{{ 'ADD' | translate }}</label></a></td>
                                     </tr>
                                     </tfoot>
                                 </table>
+
+
                             </div>
                         </div>
 
