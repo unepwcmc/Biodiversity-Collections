@@ -1087,6 +1087,17 @@ table .tablesort-sortable:hover:after, table .tablesort-asc:after, table .tables
 .showIfLast td:after {
   content: "No data"; }
 
+table.table.table-hover.specimen-table {
+  margin-bottom: 0; }
+
+table.table.table-hover.specimen-table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 0; }
+
+table.table.table-hover.specimen-table > tbody > tr:last-child {
+  vertical-align: bottom;
+  border-bottom: solid 1px #ddd; }
+
 #loader-wrapper {
   position: fixed;
   top: 0;

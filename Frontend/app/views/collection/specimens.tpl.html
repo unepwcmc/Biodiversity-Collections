@@ -3,36 +3,38 @@
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'SPECIMENS' | translate }}</strong></h5></div>
             <div class="col-md-3"><h6><strong>{{ 'ESTIMATED_SPECIMENS_IN_COLLECTIONS' | translate }}</strong></h6></div>
-            <div class="col-md-2"><h6><strong>{{specimensCount}} {{ 'SPECIMENS' | translate }}</strong></h6></div>
+            <div class="col-md-2"><h6>{{specimensCount}} {{ 'SPECIMENS' | translate }}</h6></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-6 small-field">
                 <form class="form-block form-data" role="form">
-                    <table class="table table-hover specimen-table">
+                    <table class="table table-hover specimen-table" ts-wrapper>
                         <thead>
-                        <tr>
-                            <th>{{ 'TYPE' | translate }}</th>
-                            <th>{{ 'COUNT_OF_TYPE' | translate }}</th>
-                            <th>&nbsp;</th>
-                        </tr>
+                            <tr>
+                                <th width="85%"  ts-criteria="type">{{ 'TYPE' | translate }}</th>
+                                <th width="13%" ts-criteria="count">{{ 'COUNT_OF_TYPE' | translate }}</th>
+                                <th ng-show="editMode" width="10px" class="no-sorter">&nbsp;</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="specimen in collection.specimens" on-finish-render="ngRepeatFinished">
-                                <td width="70%"><input type="text" data-ng-model="specimen.type" class="form-control"></td>
-                                <td width="25%" align="right"><input type="text" style="text-align: right;" data-ng-model="specimen.count" ng-keyup="specimensSunCount()" class="form-control"></td>
-                                <td ng-show="editMode" width="5%" align="left">
-                                    <a type="button" style="float: right;" class="btn-small-delete" ng-click="deleteSpecimen($index);"><i class="fa fa-close"></i></a>
-                                </td>
+                                <td><input type="text" data-ng-model="specimen.type" class="form-control"></td>
+                                <td align="right"><input type="text" style="text-align: right;" data-ng-model="specimen.count" ng-keyup="specimensSunCount()" class="form-control"></td>
+                                <td class="btn-td" ng-show="editMode"><a ng-click="deleteSpecimen($index);"><i class="fa fa-close"></i></a></td>
                             </tr>
                         </tbody>
-                        <tfoot>
+                        <tfoot></tfoot>
+                    </table>
+
+                    <table class="table table-thin" style="margin-bottom:0">
+                        <tbody>
                             <tr ng-show="editMode">
-                                <td width="70%"><input type="text" data-ng-model="specimen.type" class="form-control"></td>
-                                <td width="25%" align="right"><input type="text" style="text-align: right;" data-ng-model="specimen.count" class="form-control"></td>
-                                <td width="5%" align="left"><a type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addSpecimens();"><label>{{ 'ADD' | translate }}</label></a></td>
+                                <td width="85%"><input type="text" data-ng-model="specimen.type" class="form-control"></td>
+                                <td width="13%"  align="right"><input type="text" style="text-align: right;" data-ng-model="specimen.count" class="form-control"></td>
+                                <td align="left"><a type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addSpecimens();"><label>{{ 'ADD' | translate }}</label></a></td>
                             </tr>
-                        </tfoot>
+                        </tbody>
                     </table>
 
                 </form>
