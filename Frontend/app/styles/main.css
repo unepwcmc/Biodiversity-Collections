@@ -1156,6 +1156,9 @@ table.publication > thead > tr > th.btn-td {
   padding-top: 4px;
   padding-left: 20px; }
 
+td > image-thumbnail > img {
+  padding: 10px 15px 0 8px; }
+
 #loader-wrapper {
   position: fixed;
   top: 0;
