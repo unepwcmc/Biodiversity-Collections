@@ -316,6 +316,8 @@ form.form-block{
 			box-shadow: none;
 			font-family: $font-2;
 			font-size: 14px;
+			margin-top: 0px;
+			padding-top: 0px;
 		}
 
 		textarea[readonly="readonly"]{
@@ -564,7 +566,7 @@ a.btn-transparent:hover{
 
 .navbar-form button.btn-white{
   background-color:#fff;
-  color:#666666!important;
+  color:$green !important;
 }
 
 #collection-bar-fixed {
