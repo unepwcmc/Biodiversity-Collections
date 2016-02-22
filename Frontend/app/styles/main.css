@@ -1159,6 +1159,10 @@ table.publication > thead > tr > th.btn-td {
 td > image-thumbnail > img {
   padding: 10px 15px 0 8px; }
 
+table.table.table-hover.sample-table > tbody > tr > td > image-thumbnail > img {
+  padding-top: 2px !important;
+  width: 80px !important; }
+
 #loader-wrapper {
   position: fixed;
   top: 0;
