@@ -64,7 +64,8 @@
                     </div>
 
                     <div class="form-group">
-                        <span><b>{{(networks.number * networks.size) + 1}}-{{networks.size * (networks.number + 1)}}</b> {{ 'OF' | translate }} {{ networks.totalElements }}</span>
+                        <span ng-if="(networks.size * (networks.number + 1)) < networks.totalElements"><b>{{(networks.number * networks.size) + 1}}-{{networks.size * (networks.number + 1)}}</b> {{ 'OF' | translate }} {{networks.totalElements}}</span>
+                        <span ng-if="(networks.size * (networks.number + 1)) > networks.totalElements"><b>{{(networks.number * networks.size) + 1}}-{{networks.totalElements}}</b> {{ 'OF' | translate }} {{networks.totalElements}}</span>
                     </div>
 
                     <div class="form-group">

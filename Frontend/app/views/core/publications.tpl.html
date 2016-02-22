@@ -55,7 +55,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <span><b>{{(documents.number * documents.size) + 1}}-{{documents.size * (documents.number + 1)}}</b> {{ 'OF' | translate }} {{ documents.totalElements }}</span>
+                        <span ng-if="(documents.size * (documents.number + 1)) < documents.totalElements"><b>{{(documents.number * documents.size) + 1}}-{{documents.size * (documents.number + 1)}}</b> {{ 'OF' | translate }} {{documents.totalElements}}</span>
+                        <span ng-if="(documents.size * (documents.number + 1)) > documents.totalElements"><b>{{(documents.number * documents.size) + 1}}-{{documents.totalElements}}</b> {{ 'OF' | translate }} {{documents.totalElements}}</span>
                     </div>
                     <div class="form-group">
                         <span  ng-class="{disabled: documents.number === 0}">
