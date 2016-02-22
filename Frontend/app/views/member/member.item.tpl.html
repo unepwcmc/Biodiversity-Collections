@@ -1,28 +1,28 @@
 <div class="row">
     <span ng-show="editMode">
-        <a ng-click="deleteMember(member.id)" class="btn-link-primary pull-right" style="cursor: pointer;"><i class="fa fa-times-circle"></i>{{'DELETE_ASSOCIATED_MEMBER' | translate }}</a>
+        <a ng-click="deleteMember(member.id)" class="btn-link-primary pull-right btn-delete-member" style="cursor: pointer;"><i class="fa fa-times-circle"></i><strong>{{'DELETE_ASSOCIATED_MEMBER' | translate }}</strong></a>
         <hr />
         <div class="clearfix"></div>
     </span>
-    <div class="col-md-8" edit-form="{{editMode}}">
+    <div class="col-md-8 member-item" edit-form="{{editMode}}">
         <form action="#" class="form-horizontal form-block form-data" role="form" name="member_form" novalidate>
             <div class="small-field">
 
 
                 <div class="form-group">
-                    <label class="col-sm-3">{{ 'ASSOCIATED_MEMBER_ID' | translate }} *</label>
+                    <label class="col-sm-4">{{ 'ASSOCIATED_MEMBER_ID' | translate }} *</label>
                     <div class="col-sm-9"><span style="padding: 6px 12px;font-family: 'Libre Baskerville',serif;">{{member.id}}</span></div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
+                    <label class="col-sm-4">{{ 'NAME' | translate }} *</label>
 
                     <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="member.name" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3">{{ 'RELATIONSHIP_TO_THE_COLLECTION' | translate }} *</label>
+                    <label class="col-sm-4">{{ 'RELATIONSHIP_TO_THE_COLLECTION' | translate }} *</label>
                     <div class="col-sm-9">
                         <textarea ng-show="editMode" elastic class="form-control" data-ng-model="member.relationshipToTheCollection"></textarea>
                         <p ng-show="!editMode" class="read-more" hm-read-more hm-text="{{ member.relationshipToTheCollection }}"
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3">{{ 'WHAT_THE_PERSON_IS_DOING' | translate }} *</label>
+                    <label class="col-sm-4">{{ 'WHAT_THE_PERSON_IS_DOING' | translate }} *</label>
                     <div class="col-sm-9">
                         <textarea ng-show="editMode" elastic class="form-control" data-ng-model="member.doingWithTheCollection"></textarea>
                         <p ng-show="!editMode" class="read-more" hm-read-more hm-text="{{ member.doingWithTheCollection }}"

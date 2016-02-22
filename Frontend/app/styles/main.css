@@ -707,7 +707,7 @@ form.simple-pagination > div.form-group {
   padding-bottom: 10px; }
 
 .read-more-link {
-  color: #33A15F;
+  color: #008937;
   text-decoration: none;
   font-weight: bold; }
 
@@ -1640,6 +1640,11 @@ div.footer-top > div.row > hr {
   border-top: solid 1px #EAEAEA;
   cursor: pointer;
   border-bottom: solid 1px #EAEAEA; }
+
+.btn-delete-member {
+  position: relative;
+  margin-right: 30px;
+  top: -10px; }
 
 .horizontal-line {
   border-top: 1px solid #e5e5e5;
