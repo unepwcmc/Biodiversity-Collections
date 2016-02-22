@@ -250,7 +250,8 @@ define([],function ( ) {
     'SEARCHING_FOR_RESULTS': 'Searching for results...',
     'I_AM_LOOKING_FOR':'I am looking for...',
     'STATE': 'State',
-    'COUNTY': 'County'
+    'COUNTY': 'County',
+    'EDIT_USER': 'Edit user'
   }
 
 });

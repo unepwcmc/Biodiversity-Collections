@@ -248,7 +248,8 @@ define([],function ( ) {
     'SEARCHING_FOR_RESULTS': 'Buscando por resultados...',
     'I_AM_LOOKING_FOR':'Procurando por...',
     'STATE': 'Estado',
-    'COUNTY': 'Município'
+    'COUNTY': 'Município',
+    'EDIT_USER': 'Editar usuário'
   }
 
 });

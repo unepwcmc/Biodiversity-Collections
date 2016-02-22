@@ -1,14 +1,13 @@
-<div class="container">
-    <div class="row">
-        <br/>
+<div class="row">
+    <div class="col-md-12" style="margin-top: 20px">
         <table class="table">
             <thead>
             <tr>
                 <th><input ng-click="checkAndUnCheckAll()" type="checkbox" id="checkbox-all"></th>
                 <th>
                     <div class="btn-group">
-                        <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" ng-disabled="!checkboxCount > 0" aria-haspopup="true" aria-expanded="false">
-                            {{ 'ACTION' | translate }} <span class="caret"></span>
+                        <button type="button" style="color: #333 !important;" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" ng-disabled="!checkboxCount > 0" aria-haspopup="true" aria-expanded="false">
+                            <b>{{ 'ACTION' | translate }}</b><span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a href="javascript:" ng-click="deleteAll()" ng-confirm-click="ARE_YOU_SURE">{{ 'DELETE' | translate }}</a></li>
@@ -28,7 +27,7 @@
                 <td><input type="checkbox" class="user-checkbox-delete" data-user-id="{{u.id}}" ng-click="singleCheckBoxEvent($event)"></td>
                 <td>
                     <div class="btn-group">
-                        <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                        <button type="button" style="color: #333 !important;" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                             {{ 'ACTION' | translate }} <span class="caret"></span>
                         </button>
@@ -47,47 +46,49 @@
             </tr>
             </tbody>
         </table>
+    </div>
 
-        <div class="row" style="margin-bottom: 20px">
-            <div class="pull-right" ng-show="users.totalElements > 1">
-                <form class="form-inline simple-pagination">
-                    <div class="form-group">
-                        <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
-                    </div>
-                    <div class="form-group" style="width: 100px">
-                        <div class="select-wrapper">
-                            <select class="col-md-5" id="user-size-box">
-                                <option value="5" selected>5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>{{users.number + 1}} {{ 'OF' | translate }} {{ users.totalPages }}</label>
-                    </div>
 
+    <div class="col-md-12" style="margin-bottom: 20px">
+        <div class="pull-right" ng-show="users.totalElements > 1">
+            <form class="form-inline small-field simple-pagination">
+                <div class="form-group">
+                    <span>{{ 'ROWS_PER_PAGE' | translate }}</span>
+                </div>
+                <div class="form-group" style="width: 100px">
+                    <div class="select-wrapper">
+                        <select class="col-md-5" id="user-size-box">
+                            <option value="5" selected>5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span ng-if="(users.size * (users.number + 1)) < users.totalElements"><b>{{(users.number * users.size) + 1}}-{{users.size * (users.number + 1)}}</b> {{ 'OF' | translate }} {{users.totalElements}}</span>
+                    <span ng-if="(users.size * (users.number + 1)) > users.totalElements"><b>{{(users.number * users.size) + 1}}-{{users.totalElements}}</b> {{ 'OF' | translate }} {{users.totalElements}}</span>
+                </div>
+                <div class="form-group">
                     <span ng-class="{disabled: users.number === 0}">
-                        <a type="submit" class="btn btn-default" ng-show="users.number !== 0"
+                        <a type="submit" class="btn btn-default small small-bt-header" ng-show="users.number !== 0"
                            ng-click="paginateUsers(users.number - 1,users.size)"><strong style="color: #666">
                             &lt; </strong></a>
-                        <button disabled="disabled" class="btn btn-default" class="page-not-active"
+                        <button disabled="disabled" class="btn btn-default small small-bt-header" class="page-not-active"
                                 ng-show="users.number === 0"><strong style="color: #666"> &lt; </strong></button>
                     </span>
                     <span ng-class="{disabled: users.number === users.totalPages - 1}">
-                        <a type="submit" class="btn btn-default" ng-show="users.number !== users.totalPages - 1"
+                        <a type="submit" class="btn btn-default small small-bt-header" ng-show="users.number !== users.totalPages - 1"
                            ng-click="paginateUsers(users.number + 1,users.size)"><strong style="color: #666">
                             &gt; </strong></a>
-                        <button disabled="disabled" class="btn btn-default"
+                        <button disabled="disabled" class="btn btn-default small small-bt-header"
                                 ng-show="users.number === users.totalPages - 1"><strong style="color: #666">
                             &gt; </strong>
                         </button>
                     </span>
-
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
