@@ -149,20 +149,17 @@
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'RESEARCHES' | translate }}</label>
                              <div class="col-sm-9">
-                                <table >
-                                    <tbody>
-                                        <tr ng-repeat="researcher in collection.researchers" on-finish-render="ngRepeatFinished">
-                                            <td width="83%"><input type="text" class="form-control" data-ng-model="researcher.name" ></td>
-                                            <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right" class="btn-small-delete" ng-click="deleteResearch($index);"><i class="fa fa-close"></i></a></td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot ng-show="editMode">
-                                        <tr>
-                                            <td width="83%"><input type="text" data-ng-model="researcher.name" class="form-control"></td>
-                                            <td>&nbsp;&nbsp;<strong><a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addResearcher();">{{ 'ADD' | translate }}</a></strong></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+
+                                 <span class="clearfix" ng-repeat="researcher in collection.researchers track by $index" on-finish-render="ngRepeatFinished">
+                                     <input ng-show="!editMode" type="text" class="form-control" data-ng-model="researcher.name" maxlength="255" readonly>
+                                     <input ng-show="editMode" style="width: 90%" type="text" tabindex="2" class="form-control pull-left" data-ng-model="researcher.name" maxlength="255">
+                                    <a ng-show="editMode" ng-click="deleteResearch($index);" class="btn-link-primary btn-right-side pull-right " style="left: -9px"><i class="fa fa-close"></i>&nbsp;</a>
+                                </span>
+
+                                 <span ng-show="editMode" class="clearfix small-field">
+                                    <input style="width: 75%" type="text" tabindex="2" class="form-control pull-left" data-ng-model="researcher.name" maxlength="255">
+                                    <a ng-show="editMode" ng-click="addResearcher();" class="btn-right-side pull-right" style="color: #fff;border: 0;background-color:  #008937;left: -14px">{{ 'ADD' | translate}}</a>
+                                </span>
                              </div>
                          </div>
 
