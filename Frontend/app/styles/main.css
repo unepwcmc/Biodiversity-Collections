@@ -610,7 +610,7 @@ a.btn-transparent {
   color: #666666 !important; }
 
 a.btn-transparent:hover {
-  background: #666666 !important; }
+  background-color: #33a15f !important; }
 
 .navbar-form button.btn-white {
   background-color: #fff;
@@ -646,6 +646,20 @@ a.btn.cancel {
   text-align: center !important;
   line-height: 30px !important; }
 
+.btn-sm {
+  height: 30px !important;
+  padding: 0px 10px !important;
+  line-height: 30px !important;
+  box-shadow: none;
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 12px !important;
+  text-align: center;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0px;
+  margin-top: 3px; }
+
 .small-bt-header {
   padding: 1px 5px 0 4px !important;
   width: 30px !important; }
@@ -680,7 +694,7 @@ form.simple-pagination > div.form-group {
   text-align: justify !important;
   font-family: 'Libre Baskerville', serif;
   font-size: 14px !important;
-  padding: 10px !important; }
+  padding-bottom: 10px; }
 
 .read-more-link {
   color: #33A15F;
@@ -1305,7 +1319,7 @@ textarea#ipt_message {
 
 .l-header {
   height: 70px;
-  border-bottom: 1px solid #e5e5e5;
+  /*border-bottom: 1px solid #e5e5e5;*/
   /**
 	 * ----------------------------------------------------------------------------------------
 	 * Branding
@@ -1341,33 +1355,31 @@ textarea#ipt_message {
       color: #666666;
       font-size: 14px;
       text-decoration: none; }
-  .l-header .user-meta {
-    height: 50px; }
-    .l-header .user-meta li {
-      cursor: default; }
-      .l-header .user-meta li a {
-        display: block;
-        line-height: 49px;
-        height: 50px;
-        font-weight: 700;
-        color: #666666;
-        font-size: 14px;
-        text-decoration: none;
-        cursor: pointer; }
-        .l-header .user-meta li a i {
-          color: #008937;
-          margin: 0px 3px; }
-      .l-header .user-meta li:first-child a:after {
-        display: inline-block;
-        width: 10px; }
-      .l-header .user-meta li .user-detail {
-        cursor: pointer; }
-        .l-header .user-meta li .user-detail:hover {
-          opacity: 0.8; }
-    .l-header .user-meta .language-dropdown > select {
+  .l-header .user-meta li {
+    cursor: default; }
+    .l-header .user-meta li a {
+      display: block;
+      line-height: 49px;
+      height: 50px;
+      font-weight: 700;
+      color: #666666;
+      font-size: 14px;
+      text-decoration: none;
       cursor: pointer; }
-    .l-header .user-meta span.language-dropdown:before {
-      content: "|"; }
+      .l-header .user-meta li a i {
+        color: #008937;
+        margin: 0px 3px; }
+    .l-header .user-meta li:first-child a:after {
+      display: inline-block;
+      width: 10px; }
+    .l-header .user-meta li .user-detail {
+      cursor: pointer; }
+      .l-header .user-meta li .user-detail:hover {
+        opacity: 0.8; }
+  .l-header .user-meta .language-dropdown > select {
+    cursor: pointer; }
+  .l-header .user-meta span.language-dropdown:before {
+    content: "|"; }
 
 .webui-popover-content .fa-close {
   cursor: pointer; }
