@@ -62,7 +62,7 @@
                             <input type="text" class="form-control" ng-model="searchTerm">
                         </div>
                         <div class="col-sm-3">
-                            <a class="btn btn-small btn-primary pull-left btn-white save-form" ng-click="search()"><i class="fa fa-search"></i><strong>{{'SEARCH' | translate}}</strong></a>
+                            <a style="margin-top:3px" class="btn small btn-primary pull-left btn-white save-form" ng-click="search()"><i style="color: #fff" class="fa fa-search"></i><strong>{{'SEARCH' | translate}}</strong></a>
                         </div>
                     </div>
                 </div>
@@ -79,12 +79,12 @@
                             <div class="col-sm-2">
                                 <input class="chk-samples" type="checkbox"/><label>&nbsp;<a style="color: white;" class="checkUncheck" href="javascript:" ng-click="checkAndUnCheckAll()">{{'SELECT_ALL' | translate}}</a></label>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <span style="color: white;" ng-show="sample.totalElements"><strong>{{sample.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
                             </div>
-                            <div class="col-sm-8">
-                                <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
-                                <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong style="color: white;">{{ 'CANCEL' | translate }}</strong></a>
+                            <div class="col-sm-7">
+                                <a class="btn small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i style="color:#fff" class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
+                                <a class="btn small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong style="color: white;">{{ 'CANCEL' | translate }}</strong></a>
                             </div>
                         </div>
                     </nav>
@@ -92,12 +92,12 @@
                         <div class="col-sm-2">
                             <input class="chk-samples" type="checkbox"/><label>&nbsp;<a class="checkUncheck" href="javascript:" ng-click="checkAndUnCheckAll()">{{'SELECT_ALL' | translate}}</a></label>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <span ng-show="sample.totalElements"><strong>{{sample.totalElements}}</strong>&nbsp;{{'RESULTS_FOR_SAMPLE' | translate}}</span>
                         </div>
-                        <div class="col-sm-8">
-                            <a class="btn btn-small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
-                            <a class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong>{{ 'CANCEL' | translate }}</strong></a>
+                        <div class="col-sm-7">
+                            <a class="btn small btn-primary pull-right btn-white save-form" ng-click="addSelectedSamples()"><i style="color: #fff" class="fa fa-plus-circle"></i><strong>{{'ADD_SELECTED_SAMPLES' | translate}}</strong></a>
+                            <a class="btn small btn-primary pull-right btn-transparent save-form cancel btn-edit-collection-cancel" ng-click="cancel()"><strong>{{ 'CANCEL' | translate }}</strong></a>
                         </div>
                     </div>
                     <div class="col-sm-12"><hr/></div>
