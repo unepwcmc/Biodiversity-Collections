@@ -11,6 +11,13 @@ define([],function ( ) {
     'BIODIVERSITY_COLLECTIONS':'BIODIVERSITY COLLECTION',
     'NEWS':'News',
     'HOME':'Home',
+    'RESULTS_PAGE': 'Results Page',
+    'ADMINISTRATION_OVERVIEW': 'Administration Overview',
+    'DASHBOARD': 'Dashboard',
+    'USER_CREATE': 'User Create',
+    'USER_EDIT': 'User Edit',
+    'INSTITUTION_CREATE': 'Institution Create',
+    'INSTITUTION_EDIT': 'Institution Edit',
     'SEARCH_RESULTS':'Search Results',
     'RESULT_FOR_COLLECTION':'result for Collection',
     'RESULT_FOR_NETWORK':'result for Network',
@@ -74,6 +81,7 @@ define([],function ( ) {
     'EDIT_COLLECTION':'Edit Collection',
     'PLEASE_FILL_THE_FIELDS':'Please, fill the required fields.',
     'BOARD_MEMBERS': 'Board Members',
+    'MEMBER': 'Member',
     'CONTACT': 'Contact',
     'PHONE_NUMBER': 'Phone Number',
     'ADDRESS': 'Address',
@@ -222,6 +230,9 @@ define([],function ( ) {
     'INVALID_CURATOR_TOKEN': 'Invalid curator token',
     'CREATE_A_NEW_FILTER':'Create a new filter',
     'ORGANISM_TYPE': 'Organism type',
+    'ORGANISM_TYPES': 'Organism Types',
+    'COLLECTION_TYPES': 'Collection Types',
+    'INSTITUTION_TYPES': 'Institution Types',
     'FAUNA': 'Fauna',
     'FLORA': 'Flora',
     'MICROORGANISMS': 'Microorganisms',
@@ -253,7 +264,8 @@ define([],function ( ) {
     'COUNTY': 'County',
     'EDIT_USER': 'Edit user',
     'READ_MORE': 'Read more',
-    'LESS_TEXT': 'Less ^'
+    'LESS_TEXT': 'Less ^',
+    'INSTITUTION_COLLECTION_STATISTICS': 'Institution & Collection Statistics'
   }
 
 });

@@ -30,7 +30,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/home/default.html',
                         controllerUrl: 'home/controllers/homeController',
                         ncyBreadcrumb: {
-                            label: 'Home'
+                            label: "{{'HOME' | translate}}"
                         }
 
                     }))
@@ -40,7 +40,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/search/default.html',
                         controllerUrl: 'search/controllers/searchController',
                         ncyBreadcrumb: {
-                            label: 'Result Page',
+                            label: "{{'RESULTS_PAGE' | translate}}",
                             parent: 'home'
                         }
                     }))
@@ -50,7 +50,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/admin/default.html',
                         controllerUrl: 'admin/controllers/adminController',
                         ncyBreadcrumb: {
-                            label: 'Administration Overview',
+                            label: "{{'ADMINISTRATION_OVERVIEW' | translate}}",
                             parent: 'home'
                         }
                     }))
@@ -60,7 +60,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/report/default.html',
                         controllerUrl: 'report/controllers/reportController',
                         ncyBreadcrumb: {
-                            label: 'Dashboard',
+                            label: "{{'DASHBOARD' | translate}}",
                             parent: 'home'
                         }
                     }))
@@ -70,7 +70,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
                         ncyBreadcrumb: {
-                            label: 'User Create',
+                            label: "{{'USER_CREATE' | translate}}",
                             parent: 'admin'
                         }
                     }))
@@ -80,7 +80,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
                         ncyBreadcrumb: {
-                            label: 'User Edit',
+                            label: "{{'USER_EDIT' | translate}}",
                             parent: 'admin'
                         }
                     }))
@@ -90,7 +90,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/institution/default.html',
                         controllerUrl: 'institution/controllers/institutionController',
                         ncyBreadcrumb: {
-                            label: 'Institution Create',
+                            label: "{{'INSTITUTION_CREATE' | translate}}",
                             parent: 'admin'
                         }
                     }))
@@ -100,7 +100,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/institution/default.html',
                         controllerUrl: 'institution/controllers/institutionController',
                         ncyBreadcrumb: {
-                            label: 'Institution Edit',
+                            label: "{{'INSTITUTION_EDIT' | translate}}",
                             parent: 'admin'
                         }
                     }))
@@ -111,7 +111,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/collection/default.html',
                         controllerUrl: 'collection/controllers/collectionController',
                         ncyBreadcrumb: {
-                            label: 'Collection',
+                            label: "{{'COLLECTION' | translate}}",
                             parent: function($scope) {
 
                                 switch ( $scope.fromState ){
@@ -139,7 +139,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/sample/collection.sample.html',
                         controllerUrl: 'sample/controllers/collectionSampleController',
                         ncyBreadcrumb: {
-                            label:  'Sample',
+                            label:  "{{'SAMPLE' | translate}}",
                             parent: function($scope) {
                                 return 'collection({id: collection_id})';
                             }
@@ -152,7 +152,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/network/default.html',
                         controllerUrl: 'network/controllers/networkController',
                         ncyBreadcrumb: {
-                            label: 'Network',
+                            label:  "{{'NETWORK' | translate}}",
                             parent: function($scope) {
 
                                 switch ( $scope.fromState ){
@@ -179,7 +179,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/curator/default.html',
                         controllerUrl: 'curator/controllers/curatorController',
                         ncyBreadcrumb: {
-                            label: 'Curator',
+                            label:  "{{'CURATOR' | translate}}",
                             parent: function($scope) {
 
                                 switch ( $scope.fromState ){
@@ -217,7 +217,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/institution/default.html',
                         controllerUrl: 'institution/controllers/institutionController',
                         ncyBreadcrumb: {
-                            label: 'Institution',
+                            label:  "{{'INSTITUTION' | translate}}",
                             parent: function($scope) {
 
                                 switch ( $scope.fromState ){
@@ -244,7 +244,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/member/default.html',
                         controllerUrl: 'member/controllers/memberController',
                         ncyBreadcrumb: {
-                            label:  'Member',
+                            label:  "{{'MEMBER' | translate}}",
                             parent: function($scope) {
                                 return 'collection({id: collection_id})';
                             }
@@ -256,7 +256,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
                         ncyBreadcrumb: {
-                            label: 'User Edit',
+                            label: "{{'USER_EDIT' | translate}}",
                             parent: 'admin'
                         }
                     }))
@@ -296,7 +296,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         templateUrl: 'views/sample/default.html',
                         controllerUrl: 'sample/controllers/sampleController',
                         ncyBreadcrumb: {
-                            label: 'Sample',
+                            label: "{{'SAMPLE' | translate}}",
                             parent: function($scope) {
 
                                 switch ( $scope.fromState ){

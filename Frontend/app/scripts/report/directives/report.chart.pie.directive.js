@@ -3,7 +3,7 @@ define(['angularAMD','highcharts-ng',
 
     'use strict';
 
-    angularAMD.directive('reportPie', ['$timeout', '$rootScope', 'Institution', function ($timeout, $rootScope, Institution) {
+    angularAMD.directive('reportPie', ['$timeout', '$rootScope', '$translate', 'Institution', function ($timeout, $rootScope, $translate, Institution) {
 
         return {
             restrict: 'EA',
@@ -31,7 +31,7 @@ define(['angularAMD','highcharts-ng',
                             }
                         },
                         title: {
-                            text: 'Institution Types'
+                            text: $translate.instant('INSTITUTION_TYPES')
                         },
                         legend: {
                             enabled: false

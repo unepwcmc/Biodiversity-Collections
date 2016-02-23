@@ -3,7 +3,7 @@ define(['angularAMD','highcharts-ng',
 
     'use strict';
 
-    angularAMD.directive('reportBar', ['$timeout', '$rootScope', 'BiodiversityCollection', function ($timeout, $rootScope, BiodiversityCollection) {
+    angularAMD.directive('reportBar', ['$timeout', '$rootScope', '$translate', 'BiodiversityCollection', function ($timeout, $rootScope, $translate, BiodiversityCollection) {
 
             return {
                 restrict: 'EA',
@@ -22,7 +22,7 @@ define(['angularAMD','highcharts-ng',
                             options: {
                                 chart: {type: 'bar'}},
                             title: {
-                                text: 'Organism Types'
+                                text: $translate.instant('ORGANISM_TYPES')
                             },
                             xAxis: {
                                 type: 'category'
@@ -58,7 +58,7 @@ define(['angularAMD','highcharts-ng',
                         $scope.pieBar2 = {
                             options: {chart: {type: 'bar'}},
                             title: {
-                                text: 'Collection Types'
+                                text: $translate.instant('COLLECTION_TYPES')
                             },
                             xAxis: {
                                 type: 'category'

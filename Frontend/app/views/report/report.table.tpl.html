@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12"><h5>Institution & Collection Statistics</h5><hr/></div>
+    <div class="col-md-12"><h5>{{'INSTITUTION_COLLECTION_STATISTICS' | translate}}</h5><hr/></div>
     <div class="col-md-12" style="overflow: auto; overflow-y: hidden;">
         <table class="table table-hover" ts-wrapper>
             <thead>
@@ -18,7 +18,7 @@
             <tbody>
             <tr ng-repeat="s in institutions.content" ts-repeat>
                 <td align="left">{{s.institution.name}}</td>
-                <td class="btn-td" width="5%"><a report-popover summary="s" class="btn pub-popover"><i class="fa fa-ellipsis-v"></i></a></td>
+                <td class="btn-td"><a report-popover summary="s" class="btn pub-popover small small-bt-header"><i class="fa fa-ellipsis-v"></i></a></td>
                 <td align="right">{{s.collections}}</td>
                 <td align="right">{{s.specimens}}</td>
                 <td align="right">{{s.faunaCollections}}</td>
@@ -33,10 +33,10 @@
 </div>
 <hr/>
 <div class="row">
-    <div class="pull-right" ng-show="institutions.totalElements > 10">
-        <form class="form-inline">
+    <div class="pull-right">
+        <form class="form-inline small-field simple-pagination">
             <div class="form-group">
-                <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
+                <span>{{ 'ROWS_PER_PAGE' | translate }}:</span>
             </div>
             <div class="form-group" style="width: 100px">
                 <div class="select-wrapper">
@@ -49,18 +49,18 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>{{institutions.number + 1}} {{ 'OF' | translate }} {{institutions.totalPages}}</label>
+                <span><b>{{(institutions.number * institutions.size) + 1}}-{{institutions.size * (institutions.number + 1)}}</b>&nbsp;{{ 'OF' | translate }}&nbsp;{{institutions.totalElements}}</span>
             </div>
-
+            <div class="form-group">
                 <span  ng-class="{disabled: institutions.number === 0}">
-                    <a type="submit" class="btn btn-default" ng-show="institutions.number !== 0" ng-click="paginateReport(institutions.number - 1,institutions.size)"><strong style="color: #666"> &lt; </strong></a>
-                    <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="institutions.number === 0"><strong style="color: #666"> &lt; </strong></button>
+                    <a type="submit" class="btn btn-default small small-bt-header" ng-show="institutions.number !== 0" ng-click="paginateReport(institutions.number - 1,institutions.size)"><strong style="color: #666"> &lt; </strong></a>
+                    <button  disabled="disabled" class="btn btn-default small small-bt-header" class="page-not-active" ng-show="institutions.number === 0"><strong style="color: #666"> &lt; </strong></button>
                 </span>
                 <span ng-class="{disabled: institutions.number === institutions.totalPages - 1}">
-                    <a type="submit" class="btn btn-default" ng-show="institutions.number !== institutions.totalPages - 1" ng-click="paginateReport(institutions.number + 1,institutions.size)"><strong style="color: #666"> &gt; </strong></a>
-                    <button disabled="disabled" class="btn btn-default" ng-show="institutions.number === institutions.totalPages - 1"><strong style="color: #666"> &gt; </strong></button>
+                    <a type="submit" class="btn btn-default small small-bt-header" ng-show="institutions.number !== institutions.totalPages - 1" ng-click="paginateReport(institutions.number + 1,institutions.size)"><strong style="color: #666"> &gt; </strong></a>
+                    <button disabled="disabled" class="btn btn-default small small-bt-header" ng-show="institutions.number === institutions.totalPages - 1"><strong style="color: #666"> &gt; </strong></button>
                 </span>
-
+            </div>
         </form>
     </div>
 </div>
