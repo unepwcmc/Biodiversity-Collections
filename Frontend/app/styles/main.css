@@ -1083,6 +1083,26 @@ th.tablesort-sortable {
 table .tablesort-sortable:hover:after, table .tablesort-asc:after, table .tablesort-desc:after {
   visibility: visible; }
 
+table.table-sorter th.tablesort-sortable {
+  background-image: url("/images/icons/small.gif");
+  background-repeat: no-repeat;
+  text-align: left;
+  background-attachment: inherit;
+  background-position: 70px 10px;
+  cursor: pointer; }
+
+table.table-sorter th.tablesort-desc {
+  background-image: url("/images/icons/desc.gif"); }
+
+table.table-sorter th.tablesort-asc {
+  background-image: url("/images/icons/asc.gif"); }
+
+table.table-sorter thead tr th, table.tablesorter tfoot tr th {
+  padding: 4px; }
+
+table.table-sorter th.no-sorter {
+  background-image: url("") !important; }
+
 /*
  * Styling for the table row shown in empty tables
  */
@@ -1948,3 +1968,44 @@ div.leaflet-top.leaflet-right {
   .list-item h5 {
     margin-bottom: 2px;
     margin-top: 25px; }
+
+/** TABS */
+#tabs > ul {
+  height: 40px;
+  border-bottom: 1px solid #dfe0e1; }
+
+#tabs > ul li a {
+  /*    color: #735d5e;*/
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 10px;
+  display: block;
+  outline: none;
+  text-decoration: none;
+  position: relative;
+  font-family: "Roboto", sans-serif; }
+
+#tabs > ul li a:hover {
+  background-color: transparent !important;
+  border: none;
+  text-transform: none;
+  color: #33a15f; }
+
+#tabs > ul li.active a {
+  background-color: transparent;
+  border: 0;
+  color: #008937; }
+
+#tabs > ul li.active a:after {
+  background: url("/images/angle-up.png") #fff no-repeat 0 7px;
+  width: 12px;
+  height: 15px;
+  content: " ";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  margin-left: -7.5px;
+  font-size: 20px;
+  line-height: 21px;
+  color: #dfe0e1;
+  text-align: left !important; }

@@ -181,7 +181,7 @@ define([],function ( ) {
     'INVITE_CURATOR':'Invite curator',
     'CREATE_INSTITUTION':'Create institution',
     'RESET_YOUR_PASSWORD':'Reset your password',
-    'SIBBR_API_STATISTICS':'SiBBR API Statistics',
+    'SIBBR_API_STATISTICS':'SiB-Br API Statistics',
     'LAST_UPDATED':'Last updated',
     'REQUESTS':'Requests',
     'AVAIL_THREADS':'Avail threads',
