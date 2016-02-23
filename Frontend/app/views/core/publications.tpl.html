@@ -23,11 +23,11 @@
                                 <li ng-repeat="author in publication.authors">{{author}}</li>
                             </ul>
                         </td>
-                        <td>{{publication.type}}</td>
+                        <td>{{publication.type | lowercase}}</td>
                         <td>.{{publication.contentType}}</td>
-                        <td  class="btn-td"><a pub-popover doc="publication" class="pub-popover small small-bt-header"><i class="fa fa-ellipsis-v"></i></a></td>
-                        <td  class="btn-td" ng-show="editMode"><a ng-click="deleteDocument(publication.id)" class="bt-delete-pub"><i class="fa fa-close"></i></a></td>
-                        <td   ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
+                        <td class="btn-td"><a pub-popover doc="publication" class="pub-popover small small-bt-header"><i class="fa fa-ellipsis-v"></i></a></td>
+                        <td class="btn-td" ng-show="editMode"><a ng-click="deleteDocument(publication.id)" class="bt-delete-pub"><i class="fa fa-close"></i></a></td>
+                        <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
                     </tr>
                     </tbody>
                 </table>
