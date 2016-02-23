@@ -41,8 +41,8 @@
                 <td>{{ u.firstName}}</td>
                 <td>{{ u.lastName}}</td>
                 <td>{{ u.email}}</td>
-                <td>{{ u.userRole.name}}</td>
-                <td>{{ u.enabled}}</td>
+                <td>{{u.userRole.name | lowercase}}</td>
+                <td><span ng-if="u.enabled">{{'ACTIVE_LOWERCASE' | translate}}</span><span ng-if="!u.enabled">{{'DEACTIVATED_LOWERCASE' | translate}}</span></td>
             </tr>
             </tbody>
         </table>

@@ -265,7 +265,9 @@ define([],function ( ) {
     'LESS_TEXT': 'Diminuir ^',
     'INSTITUTION_COLLECTION_STATISTICS': 'Estatísticas de Instituições & Colleções',
     'SIBBR_API_STATISTICS':'Estatísticas da API SiB-Br',
-    'LAST_UPDATED':'Última atualização'
+    'LAST_UPDATED':'Última atualização',
+    'ACTIVE_LOWERCASE': 'ativo',
+    'DEACTIVATED_LOWERCASE': 'desativado'
   }
 
 });

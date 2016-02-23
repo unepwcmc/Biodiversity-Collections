@@ -265,7 +265,10 @@ define([],function ( ) {
     'EDIT_USER': 'Edit user',
     'READ_MORE': 'Read more',
     'LESS_TEXT': 'Less ^',
-    'INSTITUTION_COLLECTION_STATISTICS': 'Institution & Collection Statistics'
+    'INSTITUTION_COLLECTION_STATISTICS': 'Institution & Collection Statistics',
+    'ACTIVE_LOWERCASE': 'active',
+    'DEACTIVATED_LOWERCASE': 'deactivated'
+
   }
 
 });
