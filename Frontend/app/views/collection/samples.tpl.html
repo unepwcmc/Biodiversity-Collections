@@ -5,18 +5,18 @@
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'SAMPLES' | translate }}</strong>
             </h5></div>
             <div class="col-md-7">
-                <table class="table table-hover sample-table">
+                <table class="table table-hover table-sorter sample-table" ts-wrapper>
                     <thead>
                         <tr>
-                            <th>{{ 'SAMPLE' | translate }}</th>
-                            <th>{{ 'ID' | translate }}</th>
-                            <th>&nbsp;</th>
+                            <th ts-criteria="name">{{ 'SAMPLE' | translate }}</th>
+                            <th ts-criteria="id">{{ 'ID' | translate }}</th>
+                            <th class="no-sorter">&nbsp;</th>
                             <th ng-show="editMode" class="btn-td no-sorter"><strong><a ng-disabled="!checkboxCount > 0" ng-click="deleteAll()" class="btn small small-bt-header"><i class="fa fa-close"></i></a></strong></th>
                             <th class="no-sorter" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" id="checkbox-all" /></th>
                         </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="sample in samples.content">
+                    <tr ng-repeat="sample in samples.content" ts-repeat>
                         <td width="60%"><a data-ui-sref="sample({id : sample.id})">{{ sample.name }}</a></td>
                         <td width="20%"><a data-ui-sref="sample({id : sample.id})">{{ sample.id }}</a></td>
                         <td width="15%"><image-thumbnail width="50" height="50" attachment="sample.image.attachment.id" ><image-thumbnail attachment="sample.image.attachment"></image-thumbnail></td>

@@ -425,6 +425,29 @@ table .tablesort-sortable:hover:after, table .tablesort-asc:after, table .tables
 	visibility:visible;
 }
 
+table.table-sorter th.tablesort-sortable {
+	background-image: url("/images/icons/small.gif");
+	background-repeat: no-repeat;
+	text-align: left;
+	background-attachment: inherit;
+	background-position: 70px 10px;
+	cursor: pointer;
+}
+
+table.table-sorter th.tablesort-desc {
+	background-image: url("/images/icons/desc.gif");
+}
+
+table.table-sorter th.tablesort-asc {
+	background-image: url("/images/icons/asc.gif");
+}
+
+table.table-sorter thead tr th, table.tablesorter tfoot tr th {
+	padding: 4px; }
+
+table.table-sorter th.no-sorter {
+	background-image: url("") !important; }
+
 
 /*
  * Styling for the table row shown in empty tables

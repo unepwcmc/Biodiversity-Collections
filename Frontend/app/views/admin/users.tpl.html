@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-12" style="margin-top: 20px">
-        <table class="table">
+        <table class="table table-sorter" ts-wrapper>
             <thead>
             <tr>
-                <th><input ng-click="checkAndUnCheckAll()" type="checkbox" id="checkbox-all"></th>
-                <th>
+                <th class="no-sorter"><input ng-click="checkAndUnCheckAll()" type="checkbox" id="checkbox-all"></th>
+                <th class="no-sorter">
                     <div class="btn-group">
                         <button type="button" style="color: #333 !important;" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" ng-disabled="!checkboxCount > 0" aria-haspopup="true" aria-expanded="false">
                             <b>{{ 'ACTION' | translate }}</b><span class="caret"></span>
@@ -14,16 +14,16 @@
                         </ul>
                     </div>
                 </th>
-                <th>{{ 'FIRST_NAME' | translate }}</th>
-                <th>{{ 'LAST_NAME' | translate }}</th>
-                <th>{{ 'USERNAME' | translate }}&nbsp;-&nbsp;Email</th>
-                <th>{{ 'ROLE' | translate }}</th>
-                <th>{{ 'STATUS' | translate }}</th>
+                <th style="background-position: 110px 22px;" ts-criteria="firstName">{{ 'FIRST_NAME' | translate }}</th>
+                <th style="background-position: 95px 22px;" ts-criteria="lastName">{{ 'LAST_NAME' | translate }}</th>
+                <th style="background-position: 110px 22px;" ts-criteria="email">{{ 'USERNAME' | translate }}&nbsp;-&nbsp;Email</th>
+                <th style="background-position: 60px 22px;" ts-criteria="userRole">{{ 'ROLE' | translate }}</th>
+                <th style="background-position: 60px 22px;" ts-criteria="enabled">{{ 'STATUS' | translate }}</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr ng-repeat="u in users.content">
+            <tr ng-repeat="u in users.content" ts-repeat>
                 <td><input type="checkbox" class="user-checkbox-delete" data-user-id="{{u.id}}" ng-click="singleCheckBoxEvent($event)"></td>
                 <td>
                     <div class="btn-group">

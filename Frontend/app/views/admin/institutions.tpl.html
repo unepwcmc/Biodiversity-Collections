@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-12" style="margin-top: 20px">
-        <table class="table">
+        <table class="table table-sorter" ts-wrapper>
             <thead>
             <tr>
-                <th><input ng-click="checkAndUnCheckAllInstitution()" type="checkbox" id="checkbox-institution-all"></th>
-                <th>
+                <th class="no-sorter"><input ng-click="checkAndUnCheckAllInstitution()" type="checkbox" id="checkbox-institution-all"></th>
+                <th class="no-sorter">
                     <div class="btn-group">
                         <button type="button" style="color: #333 !important;" class="btn-default btn-sm dropdown-toggle" ng-disabled="!in_checkboxCount > 0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <b>{{ 'ACTION' | translate }}</b> <span class="caret"></span>
@@ -14,13 +14,13 @@
                         </ul>
                     </div>
                 </th>
-                <th>{{ 'ID' | translate }}</th>
-                <th>{{ 'NAME' | translate }}</th>
+                <th style="background-position: 40px 22px;" ts-criteria="id">{{ 'ID' | translate }}</th>
+                <th style="background-position: 60px 22px;" ts-criteria="name">{{ 'NAME' | translate }}</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr ng-repeat="institution in institutions.content">
+            <tr ng-repeat="institution in institutions.content" ts-repeat>
                 <td><input type="checkbox" class="institution-checkbox-delete" data-institution-id="{{institution.id}}" ng-click="singleCheckInstitutionBoxEvent($event)"></td>
                 <td>
                     <div class="btn-group">

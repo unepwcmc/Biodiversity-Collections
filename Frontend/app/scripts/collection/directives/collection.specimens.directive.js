@@ -3,7 +3,7 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD'], function (angularAMD) {
+define(['angularAMD', 'core/directives/core.table.sorter.directive'], function (angularAMD) {
 
     'use strict';
 

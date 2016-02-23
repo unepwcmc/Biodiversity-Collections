@@ -9,7 +9,7 @@
                         <th ts-criteria="title">{{ 'TITLE' | translate }}</th>
                         <th ts-criteria="authors">{{ 'AUTHOR' | translate }}</th>
                         <th ts-criteria="type">{{ 'TYPE' | translate }}</th>
-                        <th ts-criteria="contentType">{{ 'FORMAT' | translate }}</th>
+                        <th ts-criteria="contentType" style="background-position: 70px 10px;">{{ 'FORMAT' | translate }}</th>
                         <th width="3px" class="no-sorter" width="5%">&nbsp;</th>
                         <th width="5px" ng-show="editMode" width="5%" class="btn-td no-sorter"><a ng-disabled="checkboxCountPub > 0" ng-click="deleteAll()" class="bt-delete-pub-all"><i class="fa fa-close"></i></a></th>
                         <th width="5px" class="no-sorter" style="padding: 8px;" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" /></th>

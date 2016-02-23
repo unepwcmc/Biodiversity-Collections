@@ -3,7 +3,9 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnail.directive'], function (angularAMD) {
+define(['angularAMD','core/factory/sampleFactory',
+    'core/directives/core.thumbnail.directive',
+    'core/directives/core.table.sorter.directive'], function (angularAMD) {
 
     'use strict';
 

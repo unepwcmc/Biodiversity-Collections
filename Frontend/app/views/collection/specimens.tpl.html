@@ -9,16 +9,16 @@
             <div class="col-md-2"></div>
             <div class="col-md-7">
                 <form class="form-block form-data small-field" role="form">
-                    <table class="table table-hover specimen-table" ts-wrapper>
+                    <table class="table table-hover table-sorter specimen-table" ts-wrapper>
                         <thead>
                             <tr>
-                                <th width="85%"  ts-criteria="type">{{ 'TYPE' | translate }}</th>
-                                <th width="13%" ts-criteria="count">{{ 'COUNT_OF_TYPE' | translate }}</th>
+                                <th width="80%"  ts-criteria="type">{{ 'TYPE' | translate }}</th>
+                                <th style="background-position: 117px 10px;" width="25%" ts-criteria="count">{{ 'COUNT_OF_TYPE' | translate }}</th>
                                 <th ng-show="editMode" width="10px" class="no-sorter">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="specimen in collection.specimens" on-finish-render="ngRepeatFinished">
+                            <tr ng-repeat="specimen in collection.specimens" on-finish-render="ngRepeatFinished" ts-repeat>
                                 <td><input type="text" data-ng-model="specimen.type" class="form-control"></td>
                                 <td align="right"><input type="text" style="text-align: right;" data-ng-model="specimen.count" ng-keyup="specimensSunCount()" class="form-control"></td>
                                 <td class="btn-td" ng-show="editMode"><a ng-click="deleteSpecimen($index);"><i class="fa fa-close"></i></a></td>
