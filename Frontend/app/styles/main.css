@@ -676,7 +676,7 @@ ul.pagination > li[title="First Page"] {
 ul.pagination > li[title="Last Page"] {
   display: none !important; }
 
-form.simple-pagination > div > span > a.btn.btn-default.small.small-bt-header {
+form.simple-pagination > div > span > button.btn.btn-default.small.small-bt-header {
   border: solid 3px #008937 !important;
   color: #008937 !important;
   margin-top: 0px !important;
@@ -1443,7 +1443,10 @@ textarea#ipt_message {
 
 /** HEADER */
 #barra-brasil {
-  border-top: 4px solid #008937; }
+  border-bottom: 4px solid #008937 !important; }
+
+#barra-brasil .brasil-flag {
+  height: 33px !important; }
 
 .l-header {
   height: 70px;
