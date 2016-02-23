@@ -55,6 +55,11 @@ define(['angularAMD', 'bootstrap'], function (angularAMD) {
                         });
                     }
                 }
+                else{
+                    $(".translate-option").each(function () {
+                        $(this).val('pt_BR');
+                    });
+                }
 
                 scope.$on('languageChanged', function (evt, data) {
                     $(".translate-option").each(function () {

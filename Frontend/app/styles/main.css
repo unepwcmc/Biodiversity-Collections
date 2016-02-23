@@ -1105,6 +1105,64 @@ table.table.table-hover.specimen-table > tbody > tr:last-child {
   vertical-align: bottom;
   border-bottom: solid 1px #ddd; }
 
+table.sample-table > tbody > tr > td.btn-td {
+  padding-top: 22px;
+  padding-left: 20px; }
+
+table.table.table-hover.sample-table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 0; }
+
+table.table.table-hover.sample-table > thead > tr > th.btn-td.no-sorter {
+  border-top: solid 1px #ddd; }
+
+table.table.table-hover.sample-table > tbody > tr:last-child {
+  vertical-align: bottom;
+  border-bottom: solid 1px #eaeaea; }
+
+table.table.table-hover.sample-table > tbody > tr > td > input.sample-checkbox-delete {
+  margin-top: 18px;
+  margin-left: 8px; }
+
+table.table.table-hover.sample-table > thead > tr > th > input[type="checkbox"] {
+  margin-top: 18px;
+  margin-left: 8px; }
+
+table.publication > tbody > tr > td.btn-td {
+  padding-top: 22px;
+  padding-left: 20px; }
+
+table.publication > thead > tr > th.btn-td {
+  padding-top: 22px;
+  padding-left: 20px; }
+
+table.table.table-hover.publication > thead > tr > th.btn-td.no-sorter {
+  border-top: solid 1px #ddd; }
+
+table.table.table-hover.publication > tbody > tr:last-child {
+  vertical-align: bottom;
+  border-bottom: solid 1px #eaeaea; }
+
+table.table.table-hover.publication > tbody > tr > td > input.pub-checkbox-delete {
+  margin-top: 18px;
+  margin-left: 8px; }
+
+table.table.table-hover.publication > thead > tr > th > input[type="checkbox"] {
+  margin-top: 18px;
+  margin-left: 8px; }
+
+table.publication > thead > tr > th.btn-td {
+  vertical-align: middle;
+  padding-top: 4px;
+  padding-left: 20px; }
+
+td > image-thumbnail > img {
+  padding: 10px 15px 0 8px; }
+
+table.table.table-hover.sample-table > tbody > tr > td > image-thumbnail > img {
+  padding-top: 2px !important;
+  width: 80px !important; }
+
 #loader-wrapper {
   position: fixed;
   top: 0;

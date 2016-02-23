@@ -20,7 +20,7 @@
                         <td width="60%"><a data-ui-sref="sample({id : sample.id})">{{ sample.name }}</a></td>
                         <td width="20%"><a data-ui-sref="sample({id : sample.id})">{{ sample.id }}</a></td>
                         <td width="15%"><image-thumbnail width="50" height="50" attachment="sample.image.attachment.id" ><image-thumbnail attachment="sample.image.attachment"></image-thumbnail></td>
-                        <td ng-show="editMode" class="btn-td"><a class="btn small small-bt-header delete-sample" ng-click="removeSample(sample.id)"><i class="fa fa-close"></i></a></td>
+                        <td ng-show="editMode" class="btn-td"><a class="delete-sample" ng-click="removeSample(sample.id)"><i class="fa fa-close"></i></a></td>
                         <td ng-show="editMode"><input class="sample-checkbox-delete" data-sample-id="{{sample.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
                     </tr>
                     </tbody>
@@ -32,7 +32,7 @@
             <div class="col-md-2">&nbsp;</div>
             <div class="col-md-8">
                 <div class="row">
-                    <div class="pull-left"><a ng-show="editMode" style="margin-left: 12px;" class="btn btn-small-add btn-primary" ng-click="addNewSample()"><label>{{'ADD_NEW_SAMPLE' | translate}}</label></a></div>
+                    <div class="pull-left"><a ng-show="editMode" style="margin-left: 12px;" class="btn small btn-primary" ng-click="addNewSample()"><label>{{'ADD_NEW_SAMPLE' | translate}}</label></a></div>
                     <div class="pull-right" ng-show="samples.totalPages > 1">
                         <form class="form-inline small-field simple-pagination">
 
