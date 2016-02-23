@@ -71,14 +71,14 @@ define(['angularAMD', 'jquery'], function (angularAMD) {
 
                     }
 
-                    elem.append(markup);
-                    elem.find('.read-more').on('click', function() {
+                    $(elem).append(markup);
+                    $(elem).find('.read-more').on('click', function() {
                         $(this).hide();
-                        elem.find('.more-text').addClass('show').slideDown();
+                        $(elem).find('.more-text').addClass('show').slideDown();
                     });
-                    elem.find('.read-less').on('click', function() {
-                        elem.find('.read-more').show();
-                        elem.find('.more-text').hide().removeClass('show');
+                    $(elem).find('.read-less').on('click', function() {
+                        $(elem).find('.read-more').show();
+                        $(elem).find('.more-text').hide().removeClass('show');
                     });
 
                 }
