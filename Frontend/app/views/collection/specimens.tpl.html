@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2"><h5 class="collection section-header"><strong>{{ 'SPECIMENS' | translate }}</strong></h5></div>
-            <div class="col-md-3"><h6><strong>{{ 'ESTIMATED_SPECIMENS_IN_COLLECTIONS' | translate }}</strong></h6></div>
-            <div class="col-md-2"><h6>{{specimensCount}} {{ 'SPECIMENS' | translate }}</h6></div>
+            <div class="col-md-3"><span><strong>{{ 'ESTIMATED_SPECIMENS_IN_COLLECTIONS' | translate }}</strong></span></div>
+            <div class="col-md-2"><span>{{specimensCount}} {{ 'SPECIMENS' | translate }}</span></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-6 small-field">
-                <form class="form-block form-data" role="form">
+            <div class="col-md-7">
+                <form class="form-block form-data small-field" role="form">
                     <table class="table table-hover specimen-table" ts-wrapper>
                         <thead>
                             <tr>
@@ -32,7 +32,7 @@
                             <tr ng-show="editMode">
                                 <td width="85%"><input type="text" data-ng-model="specimen.type" class="form-control"></td>
                                 <td width="13%"  align="right"><input type="text" style="text-align: right;" data-ng-model="specimen.count" class="form-control"></td>
-                                <td align="left"><a type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addSpecimens();"><label>{{ 'ADD' | translate }}</label></a></td>
+                                <td align="left"><a type="button" class="pull-right btn btn-small-add btn-primary small" ng-click="addSpecimens();"><label>{{ 'ADD' | translate }}</label></a></td>
                             </tr>
                         </tbody>
                     </table>
