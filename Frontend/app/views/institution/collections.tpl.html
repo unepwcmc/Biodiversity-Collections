@@ -66,11 +66,11 @@
                     </div>
                     <div class="form-group">
                         <span  ng-class="{disabled: collections.number === 0}">
-                            <a type="submit" class="btn btn-default small small-bt-header" ng-show="collections.number !== 0" ng-click="paginateInstitutionCollections(collections.number - 1, collections.size)"><strong style="color: #666"> &lt; </strong></a>
+                            <button class="btn btn-default small small-bt-header" ng-show="collections.number !== 0" ng-click="paginateInstitutionCollections(collections.number - 1, collections.size)"><strong style="color: #666"> &lt; </strong></button>
                             <button  disabled="disabled" class="btn btn-default small small-bt-header" class="page-not-active" ng-show="collections.number === 0"><strong style="color: #666"> &lt; </strong></button>
                         </span>
                         <span ng-class="{disabled: (collections.number === collections.totalPages - 1) || (collections.totalPages === 0)}">
-                            <a type="submit" class="btn btn-default small small-bt-header" ng-show="(collections.number !== collections.totalPages - 1) && (collections.totalPages > 0)" ng-click="paginateInstitutionCollections(collections.number + 1,collections.size)"><strong style="color: #666"> &gt; </strong></a>
+                            <button class="btn btn-default small small-bt-header" ng-show="(collections.number !== collections.totalPages - 1) && (collections.totalPages > 0)" ng-click="paginateInstitutionCollections(collections.number + 1,collections.size)"><strong style="color: #666"> &gt; </strong></button>
                             <button disabled="disabled" class="btn btn-default small small-bt-header" ng-show="(collections.number === collections.totalPages - 1) || (collections.totalPages === 0)"><strong style="color: #666"> &gt; </strong></button>
                         </span>
                     </div>

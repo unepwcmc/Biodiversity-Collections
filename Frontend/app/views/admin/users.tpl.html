@@ -71,16 +71,16 @@
                 </div>
                 <div class="form-group">
                     <span ng-class="{disabled: users.number === 0}">
-                        <a type="submit" class="btn btn-default small small-bt-header" ng-show="users.number !== 0"
+                        <button class="btn btn-default small small-bt-header" ng-show="users.number !== 0"
                            ng-click="paginateUsers(users.number - 1,users.size)"><strong style="color: #666">
-                            &lt; </strong></a>
+                            &lt; </strong></button>
                         <button disabled="disabled" class="btn btn-default small small-bt-header" class="page-not-active"
                                 ng-show="users.number === 0"><strong style="color: #666"> &lt; </strong></button>
                     </span>
                     <span ng-class="{disabled: (users.number === users.totalPages - 1) || (users.totalPages === 0)}">
-                        <a type="submit" class="btn btn-default small small-bt-header" ng-show="(users.number !== users.totalPages - 1) && (users.totalPages > 0)"
+                        <button class="btn btn-default small small-bt-header" ng-show="(users.number !== users.totalPages - 1) && (users.totalPages > 0)"
                            ng-click="paginateUsers(users.number + 1,users.size)"><strong style="color: #666">
-                            &gt; </strong></a>
+                            &gt; </strong></button>
                         <button disabled="disabled" class="btn btn-default small small-bt-header"
                                 ng-show="(users.number === users.totalPages - 1) || (users.totalPages === 0)"><strong style="color: #666">
                             &gt; </strong>
