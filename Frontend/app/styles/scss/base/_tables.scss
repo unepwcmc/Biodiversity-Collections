@@ -523,6 +523,19 @@ table.table.table-hover.publication > thead > tr > th > input[type="checkbox"]{
   margin-left:8px;
 }
 
+table.publication > tbody > tr > td.btn-td:hover{
+  background-color:#008937;
+  cursor:pointer;
+}
+table.publication > tbody > tr > td.btn-td > a{
+  margin-top:-10px;
+  margin-right:10px;
+  vertical-align:middle;
+}
+table.publication > tbody > tr > td.btn-td:hover > a > i.fa.fa-ellipsis-v{
+  color:#fff;
+}
+
 table.publication > thead > tr > th.btn-td{
   vertical-align:middle;
   padding-top:4px;

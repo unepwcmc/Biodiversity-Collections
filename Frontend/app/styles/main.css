@@ -710,10 +710,17 @@ form.simple-pagination > div.form-group {
   line-height: 20px;
   padding-bottom: 10px; }
 
-.read-more-link {
+a.read-more, a.read-less {
+  cursor: pointer;
   color: #008937;
   text-decoration: none;
   font-weight: bold; }
+
+span.more-text {
+  display: none; }
+
+span.more-text.show {
+  display: inline !important; }
 
 form#taxonomy_sample_form > div > div.form-group {
   width: 70%;
@@ -1150,6 +1157,18 @@ table.table.table-hover.publication > tbody > tr > td > input.pub-checkbox-delet
 table.table.table-hover.publication > thead > tr > th > input[type="checkbox"] {
   margin-top: 18px;
   margin-left: 8px; }
+
+table.publication > tbody > tr > td.btn-td:hover {
+  background-color: #008937;
+  cursor: pointer; }
+
+table.publication > tbody > tr > td.btn-td > a {
+  margin-top: -10px;
+  margin-right: 10px;
+  vertical-align: middle; }
+
+table.publication > tbody > tr > td.btn-td:hover > a > i.fa.fa-ellipsis-v {
+  color: #fff; }
 
 table.publication > thead > tr > th.btn-td {
   vertical-align: middle;
