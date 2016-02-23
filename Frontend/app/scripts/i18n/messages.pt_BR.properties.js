@@ -249,7 +249,9 @@ define([],function ( ) {
     'I_AM_LOOKING_FOR':'Procurando por...',
     'STATE': 'Estado',
     'COUNTY': 'Município',
-    'EDIT_USER': 'Editar usuário'
+    'EDIT_USER': 'Editar usuário',
+    'READ_MORE': 'Leia mais',
+    'LESS_TEXT': 'Diminuir ^'
   }
 
 });

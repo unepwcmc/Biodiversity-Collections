@@ -97,8 +97,8 @@
                             <label class="col-sm-3">{{ 'RESEARCH_DISCIPLINE' | translate }}</label>
                             <div class="col-sm-9">
                                 <textarea ng-show="editMode" elastic type="text" class="form-control" data-ng-model="curator.researchDiscipline" ></textarea>
-                                <p ng-show="!editMode" class="read-more" hm-read-more hm-text="{{ curator.researchDiscipline }}"
-                                   hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
+                                <p ng-show="!editMode" read-more class="read-more" ellipsis="..." content="{{curator.researchDiscipline}}"
+                                   limit="250" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
                             </div>
                         </div>
 
@@ -106,8 +106,8 @@
                             <label class="col-sm-3">{{ 'RESEARCH_SPECIALITY' | translate }}</label>
                             <div class="col-sm-9">
                                 <textarea ng-show="editMode" elastic type="text" class="form-control" data-ng-model="curator.researchSpeciality"></textarea>
-                                <p ng-show="!editMode" class="read-more" hm-read-more hm-text="{{ curator.researchSpeciality }}"
-                                   hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
+                                <p ng-show="!editMode" read-more class="read-more" ellipsis="..." content="{{curator.researchSpeciality}}"
+                                   limit="250" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
                             </div>
                         </div>
 

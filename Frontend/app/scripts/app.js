@@ -12,8 +12,7 @@ define(['include', 'language'], function (angularAMD, language) {
             'leaflet-directive',
             'angucomplete-alt',
             'ncy-angular-breadcrumb',
-            'tableSort',
-            'hm.readmore'
+            'tableSort'
         ]
     );
 

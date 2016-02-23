@@ -9,8 +9,8 @@
                     <tr ng-repeat="collection in collections.content">
                         <td width="80%">
                             <p class="text-left"><a data-ui-sref="collection({id : collection.id})"><strong>{{collection.name}}</strong>&nbsp;|&nbsp;id:&nbsp;{{collection.id}}</a><p>
-                            <p class="read-more-search" hm-read-more hm-text="{{collection.description}}"
-                               hm-limit="220" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
+                            <p read-more class="read-more-search" ellipsis="..." content="{{collection.description}}"
+                               limit="220" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
                         </td>
                         <td width="15%">
                             <image-thumbnail width="110" height="84" attachment="collection.images[0].attachment.id" ></image-thumbnail>

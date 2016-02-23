@@ -7,9 +7,8 @@
 
         <div ng-repeat="col in network.content" class="list-item">
             <h5><strong><a data-ui-sref="network({id:col.id})">{{col.name | trim}}</a></strong></h5>
-            <p class="read-more-search" hm-read-more hm-text="{{ col.description }}"
-               hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
-            </p>
+            <p read-more class="read-more-search" ellipsis="..." content="{{col.description}}"
+               limit="250" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
         </div>
 
     </div>

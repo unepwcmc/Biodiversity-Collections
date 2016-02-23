@@ -673,10 +673,18 @@ form.simple-pagination > div.form-group {
 	padding-bottom: 10px;
 }
 
-.read-more-link {
+
+a.read-more, a.read-less {
+	cursor: pointer;
 	color: $green;
 	text-decoration: none;
 	font-weight: bold;
+}
+span.more-text {
+	display: none;
+}
+span.more-text.show {
+	display: inline !important
 }
 
 form#taxonomy_sample_form > div > div.form-group{

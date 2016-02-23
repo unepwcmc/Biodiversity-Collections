@@ -25,9 +25,8 @@
                     <label class="col-sm-4">{{ 'RELATIONSHIP_TO_THE_COLLECTION' | translate }} *</label>
                     <div class="col-sm-9">
                         <textarea ng-show="editMode" elastic class="form-control" data-ng-model="member.relationshipToTheCollection"></textarea>
-                        <p ng-show="!editMode" class="read-more" hm-read-more hm-text="{{ member.relationshipToTheCollection }}"
-                           hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
-                        </p>
+                        <p ng-show="!editMode" read-more class="read-more" ellipsis="..." content="{{member.relationshipToTheCollection}}"
+                           limit="250" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
                     </div>
                 </div>
 
@@ -35,9 +34,8 @@
                     <label class="col-sm-4">{{ 'WHAT_THE_PERSON_IS_DOING' | translate }} *</label>
                     <div class="col-sm-9">
                         <textarea ng-show="editMode" elastic class="form-control" data-ng-model="member.doingWithTheCollection"></textarea>
-                        <p ng-show="!editMode" class="read-more" hm-read-more hm-text="{{ member.doingWithTheCollection }}"
-                           hm-limit="300" hm-more-text="Read more" hm-less-text="Read less" hm-dots-class="dots" hm-link-class="read-more-link">
-                        </p>
+                        <p ng-show="!editMode" read-more class="read-more" ellipsis="..." content="{{member.doingWithTheCollection}}"
+                           limit="250" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
                     </div>
                 </div>
 

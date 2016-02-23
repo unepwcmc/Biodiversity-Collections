@@ -251,7 +251,9 @@ define([],function ( ) {
     'I_AM_LOOKING_FOR':'I am looking for...',
     'STATE': 'State',
     'COUNTY': 'County',
-    'EDIT_USER': 'Edit user'
+    'EDIT_USER': 'Edit user',
+    'READ_MORE': 'Read more',
+    'LESS_TEXT': 'Less ^'
   }
 
 });
