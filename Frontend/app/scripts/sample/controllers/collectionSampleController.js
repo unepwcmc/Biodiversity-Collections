@@ -4,7 +4,7 @@ define(['app', 'waypoints',
     'core/directives/core.publications.directive',
     'core/factory/sampleFactory',
     'core/factory/biodiversityCollectionFactory',
-    'core/directives/core.breadcrumbs.directive'], function () {
+    'core/directives/core.breadcrumbs.directive','core/directives/core.paging.directive'], function () {
 
     'use strict';
 
@@ -14,6 +14,7 @@ define(['app', 'waypoints',
             angular.extend($scope, BaseController);
 
             $scope.sample = new Sample();
+            angular.extend($scope.sample,{totalElements : 0, number: 0, size: 20, totalPages: 0});
             $scope.collection = new BiodiversityCollection();
 
             $rootScope.editMode = true;
@@ -21,9 +22,6 @@ define(['app', 'waypoints',
             $scope.createSample = true;
             $scope.generatedSample = false;
             $scope.searchTerm = '';
-            $scope.page = 0;
-            $scope.size = 20;
-            $scope.image = null;
             $scope.fromState = 'home';
 
             $scope.collection_id = undefined;
@@ -49,11 +47,6 @@ define(['app', 'waypoints',
                     $scope.collection.get($stateParams.id);
                 }
             });
-
-            $scope.search = function () {
-                $('#loader-wrapper').fadeToggle('400');
-                $scope.sample.search($scope.searchTerm, $scope.page, $scope.size);
-            };
 
             $scope.cancel = function () {
                 $('#loader-wrapper').fadeToggle('400');
@@ -85,6 +78,16 @@ define(['app', 'waypoints',
                 } else {
                     $scope.sample.update();
                 }
+            };
+
+            $scope.load = function( page ) {
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.sample.search($scope.searchTerm, page, $scope.sample.size);
+            };
+
+            $scope.search = function () {
+                $('#loader-wrapper').fadeToggle('400');
+                $scope.sample.search($scope.searchTerm, $scope.sample.number, $scope.sample.size);
             };
 
             $scope.checkAndUnCheckAll = function () {
