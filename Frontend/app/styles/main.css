@@ -1170,6 +1170,9 @@ table.publication > tbody > tr > td.btn-td > a {
 table.publication > tbody > tr > td.btn-td:hover > a > i.fa.fa-ellipsis-v {
   color: #fff; }
 
+table.publication > tbody > tr > td.btn-td:hover > a > i.fa.fa-close {
+  color: #fff; }
+
 table.publication > thead > tr > th.btn-td {
   vertical-align: middle;
   padding-top: 4px;
