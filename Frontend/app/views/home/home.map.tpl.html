@@ -1,28 +1,32 @@
 <section class="page-content">
     <div class="container">
+        <hr/>
         <div class="row">
+
             <div class="col-md-8"><h3 translate="BRAZIL_BIODIVERSITY_COLLECTION"></h3></div>
             <div class="col-md-4">
-                <div class="form-inline pull-right" style="margin-top: 35px;">
-                    <div class="form-group">
-                        <label class="form-group">Show only:&nbsp;&nbsp;</label>
+                <div class="form-inline pull-right" style="margin-top: 35px;width:100%">
+
+                    <div class="form-group pull-right" style="width:60%">
+                        <div class="select-wrapper">
+                            <select class="form-group" id="home-map-filter">
+                                <option value="ALL" selected>All collections</option>
+                                <option value="FAUNA">Fauna</option>
+                                <option value="FLORA">Flora</option>
+                                <option value="MICROORGANISMS">Microorganisms</option>
+                                <option value="FUNGI">Fungi</option>
+                                <option value="OTHERS">Others</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <select class="form-group" id="home-map-filter">
-                            <option value="ALL" selected>All collections</option>
-                            <option value="FAUNA">Fauna</option>
-                            <option value="FLORA">Flora</option>
-                            <option value="MICROORGANISMS">Microorganisms</option>
-                            <option value="FUNGI">Fungi</option>
-                            <option value="OTHERS">Others</option>
-                        </select>
-                    </div>
+                    <label class="pull-right" for="home-map-filter" style="padding-top: 11px;margin-right: 5px"><strong>Show only:</strong></label>
                 </div>
             </div>
         </div>
     </div>
 
     <div>
+
         <map name="collections" height="500px" width="100%"/>
     </div>
 
@@ -31,8 +35,8 @@
         <div class="clearfix"></div>
 
         <div class="row" align="center" style="margin-top: 10px;">
-            <div class="col-xs-4" style="height: 130px;" ng-repeat="col in collections.content">
-                <div class="list-item" style="margin-top: 20px;">
+            <div class="col-xs-4" style="height: 80px;" ng-repeat="col in collections.content">
+                <div  style="margin-top: 5px;">
                     <div class="col-md-1">
                             <span class="fa-stack fa-1x">
                               <i class="fa fa-circle fa-stack-2x"></i>
@@ -42,7 +46,7 @@
                     <div class="col-md-11" style="text-align: left;">
                         <div>
                             <a style="margin-left: 10px;" data-ui-sref="collection({id:col.id})"><strong>{{col.name}}</strong></a>
-                            <h6 style="margin-left: 10px; color: #0078a3;">{{col.institution.name}}</h6>
+                            <h6 style="margin-left: 10px;" class="font-color-green">{{col.institution.name}}&nbsp;</h6>
                         </div>
                         <hr/>
                     </div>
@@ -51,6 +55,8 @@
         </div>
 
         <div class="row" align="center">
+            <br/>
+            <br/>
                 <paging
                         page="collections.number + 1"
                         page-size="collections.size"
@@ -62,8 +68,7 @@
                         show-first-last="true">
                 </paging>
         </div>
-
-
+        <hr/>
     </div>
-    <hr class="horizontal-line"/>
+
 </section>

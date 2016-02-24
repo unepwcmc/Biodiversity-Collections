@@ -21,9 +21,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-3">{{ 'POSTAL_CODE' | translate }}</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.contact.postalCode"></div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-sm-3">{{ 'CITY' | translate }}</label>
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.contact.city"></div>
                         </div>
+
+                        <div class="form-group">&nbsp;</div>
 
                         <div class="form-group">
                             <label class="col-sm-3">{{ 'DISTRICT' | translate }}</label>
@@ -31,8 +38,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'POSTAL_CODE' | translate }}</label>
-                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.contact.postalCode"></div>
+                            <label class="col-sm-3">{{ 'COUNTY' | translate }}</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.contact.county"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3">{{ 'STATE' | translate }}</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="collection.contact.state"></div>
                         </div>
 
                         <div class="form-group">

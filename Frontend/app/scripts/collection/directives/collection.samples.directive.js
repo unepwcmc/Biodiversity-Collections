@@ -3,7 +3,9 @@
  * @author: jozecarlos.it@gmail.com
  *
  */
-define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnail.directive'], function (angularAMD) {
+define(['angularAMD','core/factory/sampleFactory',
+    'core/directives/core.thumbnail.directive',
+    'core/directives/core.table.sorter.directive'], function (angularAMD) {
 
     'use strict';
 
@@ -22,7 +24,7 @@ define(['angularAMD','core/factory/sampleFactory','core/directives/core.thumbnai
 
                         $scope.samples = new Sample();
                         $scope.newSample = new Sample();
-                        angular.extend($scope.samples,{totalElements : 0, number: 0, size: 5, totalPages: 0});
+                        angular.extend($scope.samples,{totalElements : 0, number: 0, size: 10, totalPages: 0});
                         $scope.samples.load( $stateParams.id,  $scope.samples.number, $scope.samples.size);
 
                         $scope.$on('SAMPLE_LOADED', function( ) {

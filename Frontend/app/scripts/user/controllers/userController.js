@@ -12,6 +12,7 @@ define(['app',
             $scope.user = new User();
             $scope.adminView = false;
             $scope.editUserView = false;
+            $scope.editMode = false;
             $scope.curatorSignupView = false;
 
             /**
@@ -22,15 +23,18 @@ define(['app',
 
                 if (toState.name == 'adminUserCreate') {
                     $scope.adminView = true;
+                    $scope.editMode = true;
                 } else if (toState.name == 'adminUserEdit') {
                    // $('#loader-wrapper').fadeToggle('400');
                     $scope.adminView = true;
                     $scope.editUserView = true;
+                    $scope.editMode = true;
                     $scope.user.get($stateParams.id);
                 } else if (toState.name == 'editUserSettings') {
                     // $('#loader-wrapper').fadeToggle('400');
                     $scope.adminView = false;
                     $scope.editUserView = true;
+                    $scope.editMode = true;
                     $scope.user.get($stateParams.id);
                 } else if (toState.name = 'curatorSignup') {
                     $scope.curatorSignupView = true;

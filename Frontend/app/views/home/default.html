@@ -1,11 +1,10 @@
-<sBRAZILIANass="l-main">
+<section class="l-main">
 
     <section class="page-content">
         <div class="container">
             <div class="row">
                 <div class="col-md-1"> </div>
-                <div class="col-md-12"><h2 class="text-center">{{ 'BRAZILIAN_COLLECTIONS_DATABASE' | translate }}
-                    <strong>&nbsp;</strong></h2></div>
+                <div class="col-md-12"><h2 class="text-center font-color-green">{{ 'BRAZILIAN_COLLECTIONS_DATABASE' | translate }}</h2><br/></div>
                 <div class="col-md-1"></div>
             </div>
         </div>
@@ -16,8 +15,8 @@
 
                     <div align="center">
                         <form class="form-inline" ng-submit="search()">
-                            <div class="form-group">
-                                <div align="left" class="form-group">
+                            <div class="form-group" >
+                                <div align="left" class="form-group" style="margin-right: 10px">
                                     <angucomplete-alt id="searchTop"
                                                       placeholder="{{ 'SEARCH' | translate }}"
                                                       pause="150"
@@ -29,9 +28,10 @@
                                                       input-changed="inputChangedFn"
                                                       input-class="form-control"/>
                                 </div>
-                                <div class="form-group" style="width: 120px;">
+                                <div class="form-group" style="width: 160px;margin-right: 10px">
                                     <select select-wrap ng-model="searchType">
-                                        <option value="collection" selected>{{ 'COLLECTION' | translate }}</option>
+                                        <option value="collection" selected>{{ 'I_AM_LOOKING_FOR' | translate }}</option>
+                                        <option value="collection">{{ 'COLLECTION' | translate }}</option>
                                         <option value="institution">{{ 'INSTITUTION' | translate }}</option>
                                         <option value="network">{{ 'NETWORK' | translate }}</option>
                                         <option value="curator">{{ 'CURATOR' | translate }}</option>
@@ -39,7 +39,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" style="cursor: pointer"><i class="fa fa-search"></i></button>
+                                    <button type="submit" class="btn btn-primary" style="cursor: pointer;width: 40px;padding: 0 8px;"><i style="color:#fff" class="fa fa-search"></i></button>
                                     <!--<button type="submit" class="btn btn-primary"  style="cursor: pointer" ng-disabled="isSearchEnabled()"><i class="fa fa-search"></i></button>-->
                                 </div>
                             </div>
@@ -50,7 +50,6 @@
                 <div class="col-md-4">&nbsp;</div>
             </div>
         </div>
-        <hr class="horizontal-line"/>
     </section>
 
     <home-map></home-map>

@@ -48,7 +48,7 @@ define(['angularAMD','highcharts-ng',
                                 series: [
                                     {
                                         name: 'Total number of collections',
-                                        marker: { fillColor: 'lightgrey' },
+                                        marker: { fillColor: 'green' },
                                         tooltip: {
                                             pointFormat: '<b>{point.name}</b><br/>{point.z} Collections<br/>{point.w} Specimens'
                                         },

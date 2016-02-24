@@ -21,16 +21,16 @@
                 </form>
             </div>
         </nav>
-        <h4 id="network-bar-default">
+        <h3 id="network-bar-default">
             <strong ng-show="!editMode" >{{ network.name }}</strong>
             <strong ng-show="editMode && !isNew" >{{ 'EDIT_NETWORK' | translate }}</strong> <span>
             <strong ng-show="editMode && isNew" >{{'NEW_NETWORK' | translate}}</strong> <span>
             <button ng-show="!editMode" class="btn btn-small btn-tag"><strong>{{ 'NETWORK'| translate}}</strong></button></span>
 
             <a ng-show="!editMode && logged" id="edit-network" class="btn btn-small btn-primary pull-right edit-form"><strong>{{ 'EDIT' | translate }}</strong></a>
-            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="network_form.$invalid"><strong>{{ 'SAVE_CHANGES' | translate }}</strong></a>
+            <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="network_form.$invalid"><strong>{{ 'SAVE' | translate }}</strong></a>
             <a ng-show="editMode" class="btn btn-small btn-primary pull-right btn-transparent cancel btn-edit-network-cancel save-form"><strong>{{ 'CANCEL' | translate }}</strong></a>
-        </h4>
+        </h3>
         <hr/>
     </div>
 
@@ -53,34 +53,29 @@
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'DESCRIPTION' | translate  }}</label>
                              <div class="col-sm-9">
-                                 <textarea elastic type="text" class="form-control" data-ng-model="network.description" ></textarea>
+                                 <textarea ng-show="editMode" elastic type="text" class="form-control" data-ng-model="network.description" ></textarea>
+                                 <p ng-show="!editMode" read-more class="read-more" ellipsis="..." content="{{network.description}}"
+                                    limit="200" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
                              </div>
                          </div>
 
                          <div class="form-group">
                              <label class="col-sm-3">{{ 'BOARD_MEMBERS' | translate }}</label>
-                             <div class="col-sm-9">
-                                <table>
-                                    <tbody>
-                                        <tr ng-repeat="member in network.boardMembers" on-finish-render="ngRepeatFinished">
-                                            <td width="83%"><input type="text" class="form-control" data-ng-model="member.name" ></td>
-                                            <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right"  class="btn-small-delete" ng-click="deleteMember($index);"><i class="fa fa-close"></i></a></td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot ng-show="editMode">
-                                        <tr>
-                                            <td width="83%"><input type="text" data-ng-model="member.name" class="form-control"></td>
-                                            <td>&nbsp;&nbsp;<a style="float: right" id="add-member" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addMember();"><label>{{ 'ADD' | translate }}</label></a></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                             <div class="col-sm-6">
+
+                                 <span class="clearfix" ng-repeat="member in network.boardMembers track by $index" on-finish-render="ngRepeatFinished">
+                                    <input style="width: 89%" type="text" tabindex="2" class="form-control pull-left" data-ng-model="member.name" maxlength="255">
+                                    <a ng-show="editMode" ng-click="deleteMember($index);" class="btn-link-primary btn-right-side pull-right " style="left: -13px"><i class="fa fa-close"></i>&nbsp;</a>
+                                </span>
+
+                                 <span ng-show="editMode" class="clearfix small-field">
+                                    <input style="width: 75%" type="text" tabindex="2" class="form-control pull-left" data-ng-model="member.name" maxlength="255">
+                                    <a ng-show="editMode" ng-click="addMember();" class="btn-right-side pull-right" style="color: #fff;border: 0;background-color:  #008937;left: -14px">{{ 'ADD' | translate}}</a>
+                                </span>
+
                              </div>
                          </div>
 
-                         <div class="form-group">
-                             <label class="col-sm-3"><em style="font-weight: 100">* {{ 'REQUIRED_FIELDS' | translate }}</em></label>
-                             <div class="col-sm-9">&nbsp;</div>
-                         </div>
                      </div>
                  </form>
              </div>

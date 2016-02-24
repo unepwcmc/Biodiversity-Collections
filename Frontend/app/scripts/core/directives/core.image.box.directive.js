@@ -1,4 +1,4 @@
-define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
+define(['angularAMD', 'core/factory/imageFactory', 'core/directives/core.image.popup.directive' ], function (angularAMD) {
 
     'use strict';
 
@@ -28,7 +28,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                             $scope.$emit("ATTACH_FILE", file );
                         };
 
-                        $scope.loadImage = function( img ){
+                        $scope.loadImage = function( img, button ){
 
                             $timeout( function(){
                                 if( $scope.image != ''){
@@ -38,6 +38,7 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                                     $http.get($rootScope.getHost() + "medias/" + $scope.id + "/image")
                                         .success( function( data, status){
                                             img.attr('src',"data:image/*;base64," + data);
+                                            button.attr('href',"data:image/*;base64," + data)
                                     });
                                 }
                             },500)
@@ -47,17 +48,18 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                 link: function (scope, element, attrs) {
 
                     scope.$watch('id', function(newValue, oldValue){
-                        scope.loadImage($(element).find('img.img-box'));
+                        scope.loadImage($(element).find('img.img-box'),$(element).find('#box-expand'));
                     },true);
 
                     scope.$on('IMAGE_ADDED', function(){
-                        scope.loadImage($(element).find('img.img-box'));
+                        scope.loadImage($(element).find('img.img-box'),$(element).find('#box-expand'));
                         $(element).find('.img-file').val(null);
                     },true);
 
                     scope.$on('RESET_THUMBNAIL', function(){
                         $(element).find('img.img-box').attr("src", "/images/empty_img.png");
                         $(element).find('.img-file').val(null);
+                        $(element).find('#box-expand').attr("href","/images/empty_img.png");
                     },true);
 
                     $(element).find('a.btn-img').click(function(){

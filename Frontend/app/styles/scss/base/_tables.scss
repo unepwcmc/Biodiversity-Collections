@@ -425,6 +425,29 @@ table .tablesort-sortable:hover:after, table .tablesort-asc:after, table .tables
 	visibility:visible;
 }
 
+table.table-sorter th.tablesort-sortable {
+	background-image: url("/images/icons/small.gif");
+	background-repeat: no-repeat;
+	text-align: left;
+	background-attachment: inherit;
+	background-position: 70px 10px;
+	cursor: pointer;
+}
+
+table.table-sorter th.tablesort-desc {
+	background-image: url("/images/icons/desc.gif");
+}
+
+table.table-sorter th.tablesort-asc {
+	background-image: url("/images/icons/asc.gif");
+}
+
+table.table-sorter thead tr th, table.tablesorter tfoot tr th {
+	padding: 4px; }
+
+table.table-sorter th.no-sorter {
+	background-image: url("") !important; }
+
 
 /*
  * Styling for the table row shown in empty tables
@@ -450,5 +473,106 @@ table .tablesort-sortable:hover:after, table .tablesort-asc:after, table .tables
 }
 
 
+table.table.table-hover.specimen-table{
+  margin-bottom:0;
+}
 
+table.table.table-hover.specimen-table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 0;
+}
+
+
+table.table.table-hover.specimen-table > tbody > tr:last-child {
+  vertical-align: bottom;
+  border-bottom: solid 1px #ddd;
+}
+
+table.sample-table > tbody > tr > td.btn-td{
+  padding-top:22px;
+  padding-left:20px;
+}
+
+table.table.table-hover.sample-table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 0;
+}
+
+table.table.table-hover.sample-table > thead > tr > th.btn-td.no-sorter{
+  border-top:solid 1px #ddd;
+}
+
+table.table.table-hover.sample-table > tbody > tr:last-child {
+  vertical-align: bottom;
+  border-bottom: solid 1px #eaeaea;
+}
+
+table.table.table-hover.sample-table > tbody > tr > td > input.sample-checkbox-delete{
+  margin-top:18px;
+  margin-left:8px;
+}
+
+table.table.table-hover.sample-table > thead > tr > th > input[type="checkbox"]{
+  margin-top:18px;
+  margin-left:8px;
+}
+
+table.publication > tbody > tr > td.btn-td{
+  padding-top:19px;
+  padding-left:12px;
+}
+
+table.publication > thead > tr > th.btn-td{
+  padding-top:19px;
+  padding-left:12px;
+}
+
+table.table.table-hover.publication > thead > tr > th.btn-td.no-sorter{
+  border-top:solid 1px #ddd;
+}
+
+table.table.table-hover.publication > tbody > tr:last-child {
+  vertical-align: bottom;
+  border-bottom: solid 1px #eaeaea;
+}
+
+table.table.table-hover.publication > tbody > tr > td > input.pub-checkbox-delete{
+  margin-top:8px;
+  margin-left:5px;
+}
+
+table.table.table-hover.publication > thead > tr > th > input[type="checkbox"]{
+  margin-top:8px;
+  margin-left:5px;
+}
+
+table.publication > tbody > tr > td.btn-td:hover{
+  background-color:#008937;
+  cursor:pointer;
+}
+table.publication > tbody > tr > td.btn-td > a{
+  margin-top:-10px;
+  margin-right:10px;
+  vertical-align:middle;
+}
+table.publication > tbody > tr > td.btn-td:hover > a > i.fa.fa-ellipsis-v{
+  color:#fff;
+}
+table.publication > tbody > tr > td.btn-td:hover > a > i.fa.fa-close{
+  color:#fff;
+}
+table.publication > thead > tr > th.btn-td{
+  vertical-align:middle;
+  padding-top:4px;
+  padding-left:12px;
+}
+
+td > image-thumbnail >img {
+  padding: 10px 15px 0 8px
+}
+
+table.table.table-hover.sample-table > tbody > tr > td > image-thumbnail >img {
+  padding-top:2px!important;
+  width: 80px!important;
+}
 

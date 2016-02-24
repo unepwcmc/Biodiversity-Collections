@@ -141,9 +141,13 @@
 		}
 
 		.list-item{
+				width: 60%;
 				font-family: $font-1;
 				margin-bottom: 20px;
 				padding-left: 10px;
+		    h5{
+			  margin-bottom: 2px;
+			}
 			h6{
 				color: $green;
 				font-size: 18px;

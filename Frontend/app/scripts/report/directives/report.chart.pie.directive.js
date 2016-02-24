@@ -3,7 +3,7 @@ define(['angularAMD','highcharts-ng',
 
     'use strict';
 
-    angularAMD.directive('reportPie', ['$timeout', '$rootScope', 'Institution', function ($timeout, $rootScope, Institution) {
+    angularAMD.directive('reportPie', ['$timeout', '$rootScope', '$translate', 'Institution', function ($timeout, $rootScope, $translate, Institution) {
 
         return {
             restrict: 'EA',
@@ -13,7 +13,7 @@ define(['angularAMD','highcharts-ng',
                 $scope.institution = new Institution();
                 $scope.institution.countType(function(data) {
 
-                    var colors = ['grey', '#F5F5F5', '#DFE0E1', '#CCCCCC'];
+                    var colors = ['green', '#FFB266', '#FFCC99', '#FFE5CC'];
                     var seriesData = [];
                     angular.forEach(data, function(value, key) {
                         seriesData.push({ name: value[0], y: value[1], color: colors[key] });
@@ -31,7 +31,7 @@ define(['angularAMD','highcharts-ng',
                             }
                         },
                         title: {
-                            text: 'Institution Types'
+                            text: $translate.instant('INSTITUTION_TYPES')
                         },
                         legend: {
                             enabled: false

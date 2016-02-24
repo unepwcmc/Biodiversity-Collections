@@ -42,10 +42,11 @@
     "waypoints": "~4.0.0",
     "tablesorter": "https://github.com/christianbach/tablesorter.git",
     "angular-breadcrumb": "~0.4.1",
-    "ng-breadcrumbs": "~0.4.1",
     "angular-tablesort": "~1.1.1",
     "angular-paging": "~2.1.0",
-    "highcharts-ng": "~0.0.11"
+    "highcharts-ng": "~0.0.11",
+    "leaflet-layer":"https://github.com/Esri/esri-leaflet.git",
+    "angular-read-more": "1.0.3"
   },
   "resolutions": {
     "angular": "~1.4.x",

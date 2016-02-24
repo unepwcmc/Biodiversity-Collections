@@ -2,7 +2,7 @@
  * Directive for control the button edit and save int the tabs
  *
  */
-define(['angularAMD'], function (angularAMD) {
+define(['angularAMD','leaflet.layer'], function (angularAMD) {
 
     'use strict';
 
@@ -54,13 +54,14 @@ define(['angularAMD'], function (angularAMD) {
                           }
                       },
                       center: {
-                          lat: -10.186819,
-                          lng: -48.333694,
-                          zoom: 3
+                          lat: -9.7943195,
+                          lng: -58.1868282,
+                          zoom: 4
                       },
                       defaults: {
                       }
                   });
+                  invalidateSize();
 
                   $rootScope.$on('LATITUDE_LONGITUDE_UPDATED', function(type, latitude, longitude) {
                       angular.extend($scope, {
@@ -71,6 +72,7 @@ define(['angularAMD'], function (angularAMD) {
                               }
                           }
                       });
+                      invalidateSize();
                   });
 
                   $rootScope.$on('MAP_POINTS_UPDATED', function(type, mapName, points) {
@@ -84,10 +86,10 @@ define(['angularAMD'], function (angularAMD) {
                               obj.icon = {
                                   type: 'div',
                                   className: "number-icon",
-                                  iconSize: [30, 41],
+                                  iconSize: [24, 23],
                                   iconAnchor: [10, 44],
                                   popupAnchor: [3, -40],
-                                  html: '<p style="margin: 5px; font-weight: bold;">' + index + '</p>'
+                                  html: '<p style="margin: 3px; font-weight: bold; color: #fff;">' + index + '</p>'
                               };
                               obj.draggable = false;
                               count++;
@@ -106,6 +108,8 @@ define(['angularAMD'], function (angularAMD) {
                     leafletData.getMap().then(function(map) {
                         $timeout(function() {
                             map.invalidateSize();
+                            map.scrollWheelZoom.disable();
+                            L.esri.basemapLayer("Topographic").addTo(map);
                         }, 300);
                     });
                 }

@@ -6,15 +6,15 @@
 /** Fonts */
 
 $font-1 : 'Roboto', sans-serif;
-$font-2 : 'Libre Baskerville', serif;
+//$font-2 : 'Libre Baskerville', serif;
+$font-2 : 'Roboto', sans-serif;
 
 /** Colors */
 
-$green : #666666; // green
+$green : #008937; // green
 $white : #ffffff;
 $gray-fonts : #666666; // header Gray
 $body-fonts : #735d5e; // body Gray
-
 
 /** Theme Settings */
 
@@ -39,9 +39,13 @@ $font-color 	: $body-fonts;
 @import "base/loader";
 @import "layout/main";
 @import "layout/header";
+@import "layout/footer";
 @import "modules/buttons";
 @import "modules/home";
 @import "modules/collection";
 @import "modules/curator";
 @import "modules/admin";
 @import "modules/login";
+@import "modules/map";
+@import "modules/search";
+@import "modules/tabs";

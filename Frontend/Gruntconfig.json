@@ -20,7 +20,6 @@
     "angular-cookies/angular-cookies.js",
     "angularAMD/angularAMD.js",
     "angular-breadcrumb/dist/angular-breadcrumb.js",
-    "ng-breadcrumbs/dist/ng-breadcrumbs.js",
     "angularAMD/ngload.js",
     "bootstrap/dist/js/bootstrap.js",
     "requirejs/require.js",
@@ -42,7 +41,11 @@
     "waypoints/lib/jquery.waypoints.js",
     "tablesorter/jquery.tablesorter.js",
     "angular-tablesort/js/angular-tablesort.js",
-    "highcharts-ng/dist/highcharts-ng.js"
+    "highcharts-ng/dist/highcharts-ng.js",
+    "leaflet-layer/dist/esri-leaflet.js",
+    "magnific-popup/dist/jquery.magnific-popup.js",
+    "angular-read-more/dist/readmore.js",
+    "angular-animate/angular-animate.js"
   ],
   "cssFiles": [
     "bootstrap/dist/css/bootstrap.css",
@@ -54,7 +57,8 @@
     "leaflet.markercluster/dist/MarkerCluster.css",
     "leaflet.markercluster/dist/MarkerCluster.Default.css",
     "angucomplete-alt/angucomplete-alt.css",
-    "webui-popover/dist/jquery.webui-popover.css"
+    "webui-popover/dist/jquery.webui-popover.css",
+    "magnific-popup/dist/magnific-popup.css"
   ],
   "cssFonts": [
     "bootstrap/fonts/glyphicons-halflings-regular.*",

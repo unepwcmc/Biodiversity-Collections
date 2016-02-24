@@ -18,7 +18,7 @@ define(['angularAMD','core/factory/institutionFactory'], function (angularAMD) {
                 controller: ['$scope', '$rootScope', '$stateParams', '$translate',
                     function($scope, $rootScope, $stateParams, $translate){
 
-                        $scope.page  = {totalElements : 0, number: 0, size: 5, totalPages: 0};
+                        $scope.page  = {totalElements : 0, number: 0, size: 10, totalPages: 0};
                         $scope.institutions = new Institution();
                         $scope.institutions.load( $stateParams.id,  $scope.page.number, $scope.page.size);
 

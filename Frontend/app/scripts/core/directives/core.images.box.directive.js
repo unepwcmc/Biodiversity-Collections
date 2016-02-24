@@ -1,4 +1,4 @@
-define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
+define(['angularAMD', 'core/factory/imageFactory','core/directives/core.image.popup.directive' ], function (angularAMD) {
 
     'use strict';
 
@@ -73,9 +73,11 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                                             $timeout( function(){
 
                                                 var img_box = $('#box-image');
+                                                var bt_box = $('#box-expand');
 
                                                 if(index == 0){
                                                     img_box.attr('src',"/images/icons/ajax-loader-large.gif");
+                                                    img_box.attr('href',"/images/icons/ajax-loader-large.gif");
                                                     $scope.selected_slot = 0;
                                                 }
                                                 var thumbnail = $('#box-image-' + ( index  ));
@@ -85,7 +87,9 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                                                     .success( function( data, status){
 
                                                         if(index == 0){
+                                                            thumbnail.addClass('active');
                                                             img_box.attr('src',"data:image/*;base64," + data);
+                                                            bt_box.attr('href',"data:image/*;base64," + data);
                                                         }
                                                         thumbnail.attr('src',"data:image/*;base64," + data);
                                                         thumbnail.next().data('img-id', $scope.images[index].id );
@@ -139,8 +143,16 @@ define(['angularAMD', 'core/factory/imageFactory' ], function (angularAMD) {
                     });
 
                     $('.img-thumbnail-mini').click(function(evt){
+
+                        $('.img-thumbnail-mini').each(function(){
+                            $(this).removeClass('active');
+                        });
+
+                        $(this).addClass('active');
+
                         scope.selected_slot = $(this).data('slot');
                         $('#box-image').attr('src',$(this).attr('src'));
+                        $('#box-expand').attr('href',$(this).attr('src'));
                     });
 
                     function showSelectedImage( files ){

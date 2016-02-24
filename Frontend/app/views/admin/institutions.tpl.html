@@ -1,32 +1,30 @@
-<div class="container">
-
-    <div class="row">
-        <br/>
-        <table class="table">
+<div class="row">
+    <div class="col-md-12" style="margin-top: 20px">
+        <table class="table table-sorter" ts-wrapper>
             <thead>
             <tr>
-                <th><input ng-click="checkAndUnCheckAllInstitution()" type="checkbox" id="checkbox-institution-all"></th>
-                <th>
+                <th class="no-sorter"><input ng-click="checkAndUnCheckAllInstitution()" type="checkbox" id="checkbox-institution-all"></th>
+                <th class="no-sorter">
                     <div class="btn-group">
-                        <button type="button" class="btn-default btn-sm dropdown-toggle" ng-disabled="!in_checkboxCount > 0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ 'ACTION' | translate }} <span class="caret"></span>
+                        <button type="button" style="color: #333 !important;" class="btn-default btn-sm dropdown-toggle" ng-disabled="!in_checkboxCount > 0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <b>{{ 'ACTION' | translate }}</b> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a href="javascript:"  ng-confirm-click="ARE_YOU_SURE" ng-click="deleteAllInstitution()">{{ 'DELETE' | translate }}</a></li>
                         </ul>
                     </div>
                 </th>
-                <th>{{ 'ID' | translate }}</th>
-                <th>{{ 'NAME' | translate }}</th>
+                <th style="background-position: 40px 22px;" ts-criteria="id">{{ 'ID' | translate }}</th>
+                <th style="background-position: 60px 22px;" ts-criteria="name">{{ 'NAME' | translate }}</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr ng-repeat="institution in institutions.content">
+            <tr ng-repeat="institution in institutions.content" ts-repeat>
                 <td><input type="checkbox" class="institution-checkbox-delete" data-institution-id="{{institution.id}}" ng-click="singleCheckInstitutionBoxEvent($event)"></td>
                 <td>
                     <div class="btn-group">
-                        <button type="button" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" style="color: #333 !important;" class="btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ 'ACTION' | translate }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
@@ -40,44 +38,44 @@
             </tr>
             </tbody>
         </table>
+    </div>
 
-        <div class="row">
-            <div class="pull-right" ng-show="institutions.totalElements > 1">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
+    <div class="col-md-12" style="margin-bottom: 20px">
+        <div class="pull-right">
+            <form class="form-inline small-field simple-pagination">
+                <div class="form-group">
+                    <span>{{ 'ROWS_PER_PAGE' | translate }}</span>
+                </div>
+                <div class="form-group" style="width: 100px">
+                    <div class="select-wrapper">
+                        <select class="col-md-5" id="institution-size-box">
+                            <option value="5" selected>5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                        </select>
                     </div>
-                    <div class="form-group" style="width: 100px">
-                        <div class="select-wrapper">
-                            <select class="col-md-5" id="institution-size-box">
-                                <option value="5" selected>5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>{{institutions.number + 1}} {{ 'OF' | translate }} {{ institutions.totalPages }}</label>
-                    </div>
-
-            <span ng-class="{disabled: institutions.number === 0}">
-                <a type="submit" class="btn btn-default" ng-show="institutions.number !== 0"
-                   ng-click="paginateInstitution(institutions.number - 1,institutions.size)"><strong style="color: #666"> &lt; </strong></a>
-                <button disabled="disabled" class="btn btn-default" class="page-not-active"
-                        ng-show="institutions.number === 0"><strong style="color: #666"> &lt; </strong></button>
-            </span>
-            <span ng-class="{disabled: institutions.number === institutions.totalPages - 1}">
-                <a type="submit" class="btn btn-default" ng-show="institutions.number !== institutions.totalPages - 1"
-                   ng-click="paginateInstitution(institutions.number + 1,institutions.size)"><strong style="color: #666"> &gt; </strong></a>
-                <button disabled="disabled" class="btn btn-default"
-                        ng-show="institutions.number === institutions.totalPages - 1"><strong style="color: #666"> &gt; </strong>
-                </button>
-            </span>
-
-                </form>
-            </div>
+                </div>
+                <div class="form-group">
+                    <span><b>{{(institutions.number * institutions.size) + 1}}-{{institutions.size * (institutions.number + 1)}}</b> {{ 'OF' | translate }} {{institutions.totalElements}}</span>
+                </div>
+                <div class="form-group">
+                    <span ng-class="{disabled: institutions.number === 0}">
+                        <button class="btn btn-default small small-bt-header" ng-show="institutions.number !== 0"
+                           ng-click="paginateInstitution(institutions.number - 1,institutions.size)"><strong style="color: #666"> &lt; </strong></button>
+                        <button disabled="disabled" class="btn btn-default small small-bt-header" class="page-not-active"
+                                ng-show="institutions.number === 0"><strong style="color: #666"> &lt; </strong></button>
+                    </span>
+                    <span ng-class="{disabled: (institutions.number === institutions.totalPages - 1) || (institutions.totalPages === 0)}">
+                        <button class="btn btn-default small small-bt-header" ng-show="(institutions.number !== institutions.totalPages - 1) && (institutions.totalPages > 0)"
+                           ng-click="paginateInstitution(institutions.number + 1,institutions.size)"><strong style="color: #666"> &gt; </strong></button>
+                        <button disabled="disabled" class="btn btn-default small small-bt-header"
+                                ng-show="(institutions.number === institutions.totalPages - 1) || (institutions.totalPages === 0)"><strong style="color: #666"> &gt; </strong>
+                        </button>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 </div>

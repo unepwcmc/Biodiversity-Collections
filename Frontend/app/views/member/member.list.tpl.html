@@ -20,11 +20,11 @@
                 </form>
             </div>
         </nav>
-        <h4>
+        <h3>
             <strong >{{ collection.name }}</strong>
             <button class="btn btn-small btn-tag"><strong>{{ 'COLLECTION'| translate}}</strong></button>
-        </h4>
-        <h4 id="member-bar-default">
+        </h3>
+        <h4 id="member-bar-default" style="margin-left: 5px">
 
             <strong ng-show="!editMode" >{{'ASSOCIATED_MEMBERS' | translate}}</strong>
             <strong ng-show="editMode" >{{'EDIT_ASSOCIATED_MEMBERS' | translate}}</strong>
@@ -59,23 +59,22 @@
                     <div class="small-field">
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
-
+                            <label class="col-sm-4">{{ 'NAME' | translate }} *</label>
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="member.name" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'RELATIONSHIP_TO_THE_COLLECTION' | translate }} *</label>
-
-                            <div class="col-sm-9"><textarea elastic class="form-control" data-ng-model="member.relationshipToTheCollection" required></textarea>
+                            <label class="col-sm-4">{{ 'RELATIONSHIP_TO_THE_COLLECTION' | translate }} *</label>
+                            <div class="col-sm-9">
+                                <textarea elastic class="form-control" data-ng-model="member.relationshipToTheCollection" required></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3">{{ 'WHAT_THE_PERSON_IS_DOING' | translate }} *</label>
-
-                            <div class="col-sm-9"><textarea elastic class="form-control" data-ng-model="member.doingWithTheCollection" required></textarea>
+                            <label class="col-sm-4">{{ 'WHAT_THE_PERSON_IS_DOING' | translate }} *</label>
+                            <div class="col-sm-9">
+                                <textarea elastic class="form-control" data-ng-model="member.doingWithTheCollection" required></textarea>
                             </div>
                         </div>
 
@@ -90,8 +89,13 @@
 
         <div class="row" ng-show="editMode">
             <hr />
-            <a class="btn btn-primary pull-right" ng-disabled="!member_form_add.$valid" ng-click="addNewMember()">{{ 'ADD_NEW_MEMBER' | translate }}</a>
+            <div class="clearfix">
+                <a class="btn btn-primary pull-right" ng-disabled="!member_form_add.$valid" ng-click="addNewMember()">{{ 'ADD_NEW_MEMBER' | translate }}</a>
+            </div>
+            <hr/>
         </div>
+
+
 
     </div>
 </section>

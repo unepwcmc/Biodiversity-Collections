@@ -6,10 +6,19 @@
     </div>
 
     <div class="container">
+        <h3 id="user-bar-default">
+            <strong ng-show="(editMode && editUserView && adminView) || (editMode && !adminView)" >{{'EDIT_USER' | translate}}</strong>
+            <strong ng-show="editMode && !editUserView && adminView" >{{'NEW_USER' | translate}}</strong>
+        </h3>
+        <hr/>
+    </div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <form class="form-horizontal" role="form" name="user_form" novalidate>
+    <div class="container">
+        <form class="form-horizontal" role="form" name="user_form" novalidate>
+            <div class="row">
+
+                <div class="col-md-8">
+
                     <div class="small-field">
                         <input  type="hidden" value="{{ user.id }}">
 
@@ -102,17 +111,16 @@
                             </div>
                         </div>
 
-
                     </div>
+                </div>
 
-                   <div>
-                       <hr/>
-                       <button ng-show="editUserView" ng-click="editUserSubmit()"  class="btn btn-small btn-primary pull-right btn-white" ng-disabled="!user_form.$valid"><strong>{{'UPDATE' | translate}}</strong></button>
-                       <button ng-show="!editUserView" ng-click="userSubmit()" class="btn btn-small btn-primary pull-right btn-white" ng-disabled="!user_form.$valid"><strong>{{'REGISTER' | translate}}</strong></button>
-                       <a  class="btn btn-small btn-primary pull-right btn-transparent" ng-click="cancelForm()"><strong>{{'CANCEL' | translate}}</strong></a>
-                   </div>
-                </form>
+                <div class="col-md-12">
+                    <hr/>
+                    <button ng-show="editUserView" ng-click="editUserSubmit()"  class="btn btn-small btn-primary pull-right btn-white" ng-disabled="!user_form.$valid"><strong>{{'UPDATE' | translate}}</strong></button>
+                    <button ng-show="!editUserView" ng-click="userSubmit()" class="btn btn-small btn-primary pull-right btn-white" ng-disabled="!user_form.$valid"><strong>{{'REGISTER' | translate}}</strong></button>
+                    <a  class="btn btn-small btn-primary pull-right btn-transparent" ng-click="cancelForm()"><strong>{{'CANCEL' | translate}}</strong></a>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </section>

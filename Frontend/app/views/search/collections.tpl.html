@@ -8,12 +8,13 @@
         <div ng-repeat="col in collection.content" class="list-item">
             <h5><strong><a data-ui-sref="collection({id:col.id})">{{col.name | trim}}</a></strong></h5>
             <p><strong>{{col.institution.name | trim}}</strong></p>
-            <p ng-if="col.description.length > 360" style="height:2.7em; overflow:hidden; float: left;">{{col.description}}</p>
-            <p ng-if="col.description.length <= 360">{{col.description}}</p>
+            <p read-more class="read-more-search" ellipsis="..." content="{{col.description}}"
+               limit="250" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
         </div>
 
     </div>
 
+    <hr/>
     <div class="row" align="center">
         <div class="col-md-2">&nbsp;</div>
         <div class="col-md-8" align="center">
@@ -29,7 +30,7 @@
                     show-first-last="true">
             </paging>
         </div>
-        <div class="col-md-2"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{collection.totalElements}}&nbsp;results</label></div>
+        <div class="col-md-2"><label class="pull-right" style="line-height: 79px; vertical-align: middle;">{{collection.totalElements}}&nbsp;{{'RESULTS' | translate}}</label></div>
     </div>
 
 

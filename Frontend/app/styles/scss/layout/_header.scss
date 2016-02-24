@@ -1,7 +1,16 @@
 /** HEADER */
+#barra-brasil{
+  border-bottom: 4px solid $green !important;
+}
+
+#barra-brasil .brasil-flag {
+	height: 33px !important;
+}
+
 .l-header{
-	height: 50px;
-	border-bottom: 1px solid #e5e5e5;
+	height: 70px;
+	/*border-bottom: 1px solid #e5e5e5;*/
+
 
 	/**
 	 * ----------------------------------------------------------------------------------------
@@ -16,20 +25,8 @@
 		color: $gray-fonts;
 		position: relative;
 		display: inline-block;
-		padding-left: 30px;
 		text-decoration: none;
-		padding-top: 14px;
-
-		&:before{
-			background-color: $green;
-			width: 20px;
-			height: 20px;
-			content: "";
-			border-radius: 50%;
-			position: absolute;
-			top: 13px;
-			left: 0px;
-		}
+		padding-top: 11px;
 	}
 
 	/**
@@ -61,7 +58,7 @@
 	 * ----------------------------------------------------------------------------------------
 	 */
 	.user-meta{
-		height: 50px;
+		//height: 50px;
 
 		li{
 			cursor: default;
@@ -84,7 +81,6 @@
 
 			&:first-child{
 				a:after{
-					content: "|";
 					display: inline-block;
 					width: 10px;
 				}
@@ -101,6 +97,10 @@
 		.language-dropdown > select{
 			cursor: pointer;
 		}
+
+	  span.language-dropdown:before{
+		content:"|";
+	  }
 	}
 }
 

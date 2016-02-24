@@ -1,81 +1,81 @@
 /** BUTTONS */
 .btn{
-	
-	@extend .transitions;
-	height: 40px;
-	padding: 0px 20px;
-	line-height: 40px;
-	box-shadow: none;
-	color: #fff !important;
-	font-weight: 500;
-	font-size: 16px;
-	text-align: center;
-	outline: none !important;
-	box-shadow: none !important;
-	border-radius: 0px;
+
+  @extend .transitions;
+  height: 40px;
+  padding: 0px 20px;
+  line-height: 40px;
+  box-shadow: none;
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0px;
 
 
-	i{
-		margin: 0px 5px;
-	}
-	
-	&.rounded{
-		border-radius: 40px;
-	}
+  i{
+	margin: 0px 5px;
+  }
 
-	&.green-btn{
-		background-color: $green;
-	}
+  &.rounded{
+	border-radius: 40px;
+  }
 
-	&.btn-primary{
-		background-color: #666666;
-		border: 1px solid #EAEAEA;
+  &.green-btn{
+	background-color: $green;
+  }
 
-		&.hollow{
-			background-color: transparent;
-			color: #666666 !important;
-		}
+  &.btn-primary{
+	background-color: #008937;
+	border: 1px solid #008937;
 
-		&.inset{
-			color: #fff !important;
-			border:1px solid #fff;
-
-			&:hover{
-				background-color: #fff;
-				color: $green !important;
-			}
-
-			&:active{
-				background-color: #dfe0e1;
-				color: $green !important;
-				border: 1px solid #fff !important;
-			}
-		}
-
-		&:hover{
-			background-color: #606670;
-			border: 1px solid #606670;
-			color: #fff !important;
-		}
-
-		&:active{
-			background-color: #666666;
-			border: 1px solid #666666;
-			color: #fff !important;
-		}
+	&.hollow{
+	  background-color: transparent;
+	  color: #008937 !important;
 	}
 
-	&.small{
-		height: 30px;
-		line-height: 28px;
-		margin-top: -11px;
-		font-size: 14px;
+	&.inset{
+	  color: #fff !important;
+	  border:1px solid #fff;
+
+	  &:hover{
+		background-color: #fff;
+		color: $green !important;
+	  }
+
+	  &:active{
+		background-color: #dfe0e1;
+		color: $green !important;
+		border: 1px solid #fff !important;
+	  }
 	}
 
-	
+	&:hover{
+	  background-color: #33a15f;
+	  border: 1px solid #33a15f;
+	  color: #fff !important;
+	}
+
+	&:active{
+	  background-color: #00692a;
+	  border: 1px solid #00692a;
+	  color: #fff !important;
+	}
+  }
+
+  &.small{
+	height: 30px;
+	line-height: 28px;
+	margin-top: 0px;
+	font-size: 14px;
+  }
+
+
 }
 .btn-link-primary{
-  color:#666!important;}
+  color: #008937 !important;}
 .btn-right-side{
   position: relative;
   top: 3px;
@@ -86,3 +86,9 @@
   border-top: solid 1px #EAEAEA;
   cursor: pointer;
   border-bottom: solid 1px #EAEAEA;}
+
+.btn-delete-member{
+  position:relative;
+  margin-right:30px;
+  top:-10px;
+}

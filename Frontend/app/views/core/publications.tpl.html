@@ -9,10 +9,10 @@
                         <th ts-criteria="title">{{ 'TITLE' | translate }}</th>
                         <th ts-criteria="authors">{{ 'AUTHOR' | translate }}</th>
                         <th ts-criteria="type">{{ 'TYPE' | translate }}</th>
-                        <th ts-criteria="contentType">{{ 'FORMAT' | translate }}</th>
-                        <th class="no-sorter" width="5%">&nbsp;</th>
-                        <th ng-show="editMode" width="5%" class="btn-td no-sorter"><a ng-disabled="checkboxCountPub > 0" ng-click="deleteAll()" class="btn"><i class="fa fa-close"></i></a></th>
-                        <th class="no-sorter" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" /></th>
+                        <th ts-criteria="contentType" style="background-position: 70px 10px;">{{ 'FORMAT' | translate }}</th>
+                        <th width="3px" class="no-sorter" width="5%">&nbsp;</th>
+                        <th width="5px" ng-show="editMode" width="5%" class="btn-td no-sorter"><a ng-disabled="checkboxCountPub > 0" ng-click="deleteAll()" class="bt-delete-pub-all"><i class="fa fa-close"></i></a></th>
+                        <th width="5px" class="no-sorter" style="padding: 8px;" ng-show="editMode" width="5%"><input ng-click="checkAndUnCheckAll()" type="checkbox" /></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -23,10 +23,10 @@
                                 <li ng-repeat="author in publication.authors">{{author}}</li>
                             </ul>
                         </td>
-                        <td>{{publication.type}}</td>
+                        <td>{{publication.type | lowercase}}</td>
                         <td>.{{publication.contentType}}</td>
-                        <td class="btn-td"><a pub-popover doc="publication" class="btn pub-popover"><i class="fa fa-ellipsis-v"></i></a></td>
-                        <td ng-show="editMode" class="btn-td"><a ng-click="deleteDocument(publication.id)" class="btn"><i class="fa fa-close"></i></a></td>
+                        <td class="btn-td"><a pub-popover doc="publication" class="pub-popover small small-bt-header"><i class="fa fa-ellipsis-v"></i></a></td>
+                        <td class="btn-td" ng-show="editMode"><a ng-click="deleteDocument(publication.id)" class="bt-delete-pub"><i class="fa fa-close"></i></a></td>
                         <td ng-show="editMode"><input class="pub-checkbox-delete" data-publication-id="{{publication.id}}" ng-click="singleCheckBoxEvent($event)" type="checkbox" /></td>
                     </tr>
                     </tbody>
@@ -36,12 +36,12 @@
         </div>
         <div class="row">
             <div class="pull-left publication-collection-add">
-                <a ng-show="editMode" ng-click="showPublicationForm()" class="btn btn-primary"><label>{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</label></a>
+                <a ng-show="editMode" ng-click="showPublicationForm()" class="btn small btn-primary"><label>{{ 'ADD_A_NEW_ASSOCIATED_PUBLICATION_DOCUMENT' | translate }}</label></a>
             </div>
-            <div class="pull-right" ng-show="documents.totalPages > 1">
-                <form class="form-inline">
+            <div class="pull-right">
+                <form class="form-inline small-field simple-pagination">
                     <div class="form-group">
-                        <label>{{ 'ROWS_PER_PAGE' | translate }}</label>
+                        <span>{{ 'ROWS_PER_PAGE' | translate }}</span>
                     </div>
                     <div class="form-group" style="width: 100px">
                         <div class="select-wrapper">
@@ -55,17 +55,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>{{documents.number + 1}} {{ 'OF' | translate }} {{documents.totalPages}}</label>
+                        <span><b>{{(documents.number * documents.size) + 1}}-{{documents.size * (documents.number + 1)}}</b>&nbsp;{{ 'OF' | translate }}&nbsp;{{documents.totalElements}}</span>
                     </div>
-
-                    <span  ng-class="{disabled: documents.number === 0}">
-                        <a type="submit" class="btn btn-default" ng-show="documents.number !== 0" ng-click="paginatePublications(documents.number - 1,documents.size)"><strong style="color: #666"> &lt; </strong></a>
-                        <button  disabled="disabled" class="btn btn-default" class="page-not-active" ng-show="documents.number === 0"><strong style="color: #666"> &lt; </strong></button>
-                    </span>
-                    <span ng-class="{disabled: documents.number === documents.totalPages - 1}">
-                        <a type="submit" class="btn btn-default" ng-show="documents.number !== documents.totalPages - 1" ng-click="paginatePublications(documents.number + 1,documents.size)"><strong style="color: #666"> &gt; </strong></a>
-                        <button disabled="disabled" class="btn btn-default" ng-show="documents.number === documents.totalPages - 1"><strong style="color: #666"> &gt; </strong></button>
-                    </span>
+                    <div class="form-group">
+                        <span  ng-class="{disabled: documents.number === 0}">
+                            <button class="btn btn-default small small-bt-header" ng-show="documents.number !== 0" ng-click="paginatePublications(documents.number - 1,documents.size)"><strong style="color: #666">&lt;</strong></button>
+                            <button disabled="disabled" class="btn btn-default small small-bt-header" class="page-not-active" ng-show="documents.number === 0"><strong style="color: #666">&lt;</strong></button>
+                        </span>
+                        <span ng-class="{disabled: (documents.number === documents.totalPages - 1) || (documents.totalPages === 0)}">
+                            <button class="btn btn-default small small-bt-header" ng-show="(documents.number !== documents.totalPages - 1) && (documents.totalPages > 0)" ng-click="paginatePublications(documents.number + 1,documents.size)"><strong style="color: #666">&gt;</strong></button>
+                            <button disabled="disabled" class="btn btn-default small small-bt-header" ng-show="(documents.number === documents.totalPages - 1) || (documents.totalPages === 0)"><strong style="color: #666">&gt;</strong></button>
+                        </span>
+                    </div>
 
                 </form>
             </div>
@@ -125,8 +126,8 @@
                             <input id="publication_ipt_file"  type="file" style="display: none">
                             <label for="btPublicationDocument" class="col-sm-4 control-label-document">{{ 'PUBLICATION_DOCUMENT' | translate }}</label>
                             <div class="col-sm-6">
-                                <a id="btPublicationDocument" tabindex="4" class="btn btn-primary" onclick="$('#publication_ipt_file').click()">
-                                    <i class="fa fa-upload"></i>{{ 'SELECT_FILE' | translate }}</a>
+                                <a id="btPublicationDocument" tabindex="4" class="btn btn-primary small" onclick="$('#publication_ipt_file').click()">
+                                    <i style="color:#fff" class="fa fa-upload"></i>{{ 'SELECT_FILE' | translate }}</a>
                             </div>
                         </div>
 

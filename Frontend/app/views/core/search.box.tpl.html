@@ -2,7 +2,7 @@
 
     <form id="form-header" class="form-inline" ng-show="showHeaderForm">
         <div class="small-field">
-            <div class="form-group home-autocomplete-search">
+            <div class="form-group home-autocomplete-search" style="margin-right: 10px">
                 <angucomplete-alt id="searchTop"
                                   placeholder="{{ 'SEARCH' | translate }}"
                                   pause="150"
@@ -16,8 +16,9 @@
                                   disable-input="disableAutocomplete"
                                   input-class="form-control"/>
             </div>
-            <div class="form-group" style="width: 110px;">
+            <div class="form-group" style="width: 150px;margin-right: 10px">
                 <select select-wrap data-ng-model="searchType">
+                    <option value="collection" selected>{{ 'I_AM_LOOKING_FOR' | translate }}</option>
                     <option value="collection">{{ 'COLLECTION' | translate }}</option>
                     <option value="institution">{{ 'INSTITUTION' | translate }}</option>
                     <option value="network">{{ 'NETWORK' | translate }}</option>
@@ -26,7 +27,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <a type="button" ng-click="search()" class="btn btn-primary small" style="cursor: pointer; margin-top: 3px;height: 32px;"><i class="fa fa-search"></i></a>
+                <a type="button" ng-click="search()" class="btn btn-primary small small-bt-header" style="cursor: pointer; margin-top: 3px;height: 32px;"><i style="color:#fff" class="fa fa-search"></i></a>
             </div>
         </div>
     </form>

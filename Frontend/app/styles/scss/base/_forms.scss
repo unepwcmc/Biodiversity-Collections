@@ -316,6 +316,8 @@ form.form-block{
 			box-shadow: none;
 			font-family: $font-2;
 			font-size: 14px;
+			margin-top: 0px;
+			padding-top: 0px;
 		}
 
 		textarea[readonly="readonly"]{
@@ -559,12 +561,12 @@ a.btn-transparent{
 }
 
 a.btn-transparent:hover{
-  background: #666666!important;
+  background-color: #33a15f!important;
 }
 
 .navbar-form button.btn-white{
   background-color:#fff;
-  color:#666666!important;
+  color:$green !important;
 }
 
 #collection-bar-fixed {
@@ -578,16 +580,20 @@ a.btn-transparent:hover{
 button.btn-tag{
   cursor:default;
   color:#666666!important;
+	background-color: #F2F2F2 !important;
 }
 .default-form-block .form-control{
   background-color:transparent!important;
   border:none;
 }
+a.btn.cancel{
+  color:$green!important;
+}
 
 .btn-small-delete{
   margin-top:3px;
-  color: #666666!important;
-  border:solid 1px #666666;
+  color: $green!important;
+  border:solid 1px $green;
   width:38px;
   height:29px;
   padding:2px 13px 0px;
@@ -601,9 +607,104 @@ button.btn-tag{
   line-height:30px!important;
 }
 
+.btn-sm{
+  height: 30px!important;
+  padding: 0px 10px!important;
+  line-height: 30px!important;
+  box-shadow: none;
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 12px!important;
+  text-align: center;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0px;
+  margin-top:3px;
+}
+
+.small-bt-header{
+  padding: 1px 5px 0 4px!important; ;
+  width:30px!important;
+}
+
 ul.pagination > li[title="First Page"] {
   display:none!important;
 }
 ul.pagination > li[title="Last Page"] {
   display:none!important;
+}
+
+form.simple-pagination > div > span > button.btn.btn-default.small.small-bt-header{
+  	border: solid 3px #008937 !important;
+  	color: #008937 !important;
+	margin-top: 0px !important;
+	line-height: 20px !important;
+}
+
+form.simple-pagination > div > span.disabled > button[disabled="disabled"].btn.btn-default.small.small-bt-header{
+  	border: solid 3px #ABD8BD !important;
+  	color: #ABD8BD !important;
+	margin-top: 0px !important;
+	line-height: 20px !important;
+}
+
+form.simple-pagination > div.form-group {
+  margin-right:10px;
+}
+
+.read-more {
+	width: 480px !important;
+	text-align: justify !important;
+	margin-left: 10px !important;
+	font-family: "Roboto", sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	padding: 10 !important;
+}
+
+.read-more-search {
+	width: 100% !important;
+	text-align: justify !important;
+	font-family: "Roboto", sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	padding-bottom: 10px;
+}
+
+
+a.read-more, a.read-less {
+	cursor: pointer;
+	color: $green;
+	text-decoration: none;
+	font-weight: bold;
+}
+span.more-text {
+	display: none;
+}
+span.more-text.show {
+	display: inline !important
+}
+
+form#taxonomy_sample_form > div > div.form-group{
+  width:70%;
+  border-bottom: solid 1px #EAEAEA;
+}
+
+form#taxonomy_sample_form > div > div.form-group > div > input.form-control[readonly="readonly"]{
+  text-align:right;
+  font-weight:bold;
+  padding-top:0;
+  padding-right: 0;
+}
+form#taxonomy_sample_form > div > div.form-group > label.col-sm-4{
+  margin-left:-12px!important;
+}
+form#taxonomy_sample_form > div.small-field > div.form-group > div.col-sm-9{
+  padding-right:0;
+}
+
+input.curator-institutions{
+  width:265px;
 }

@@ -20,7 +20,7 @@
                 </form>
             </div>
         </nav>
-        <h4 id="curator-bar-default">
+        <h3 id="curator-bar-default">
             <strong ng-show="!editMode" >{{ curator.name }}</strong>
             <strong ng-show="editMode && !createCurator" >{{'EDIT_CURATOR' | translate}}</strong> <span>
             <strong ng-show="editMode && createCurator" >{{'NEW_CURATOR' | translate}}</strong> <span>
@@ -29,7 +29,7 @@
             <a ng-show="!editMode && logged" id="edit-curator" class="btn btn-small btn-primary pull-right edit-form"><strong>{{'EDIT' | translate}}</strong></a>
             <a ng-show="editMode && !createCurator" class="btn btn-small btn-primary pull-right btn-white save-form" ng-disabled="curator_details_form.$invalid || curator_contact_form.$invalid"><strong>{{'SAVE_CHANGES' | translate}}</strong></a>
             <a ng-show="editMode && !createCurator" class="btn btn-small btn-primary pull-right btn-transparent save-form cancel btn-edit-curator-cancel"><strong>{{'CANCEL' | translate}}</strong></a>
-        </h4>
+        </h3>
 
         <hr/>
     </div>
@@ -39,14 +39,14 @@
                 <form action="#" class="form-horizontal form-block form-data" role="form" name="curator_details_form" novalidate>
                     <div class="small-field">
 
-                        <div  class="form-group">
+                        <div ng-show="editMode" class="form-group">
                             <label class="col-sm-3">{{ 'NAME' | translate }} *</label>
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="curator.name" required></div>
                         </div>
 
                         <div ng-show="!editMode"  class="form-group">
                             <label class="col-sm-3">{{ 'INSTITUTION' | translate }}</label>
-                            <div class="col-sm-9"><a style="margin-left: 10px;" data-ui-sref="institution({id : curator.user.institution.id})">{{curator.user.institution.name}}</a></div>
+                            <div class="col-sm-9"><strong><a style="margin-left: 10px;" data-ui-sref="institution({id : curator.user.institution.id})">{{curator.user.institution.name}}</a></strong></div>
                         </div>
 
                         <div ng-show="editMode" class="form-group">
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div  class="form-group">
-                            <label class="col-sm-3">{{ 'JOB_TITLE' | translate }} *</label>
+                            <label class="col-sm-3">{{ 'JOB_TITLE' | translate }}&nbsp;<span ng-show="editMode">*</span></label>
                             <div class="col-sm-9"><input type="text" class="form-control" data-ng-model="curator.jobTitle" required></div>
                         </div>
 
@@ -86,20 +86,29 @@
                                     <input type="text"  data-ng-model="curator.date.month" maxlength="2" ng-keypress="onlyNumber($event)">-
                                     <input type="text"  class="large" data-ng-model="curator.date.year" maxlength="4" ng-keypress="onlyNumber($event)">
                                 </div>
-                                <div class="clearfix">
-                                    <div style="display: block"><em><small>eg. 10-10-1985</small></em></div>
-                                </div>
+
+                            </div>
+                            <div class="clearfix">
+                                <div style="display: block;margin-left: 210px"><em><small>eg. 10-10-1985</small></em></div>
                             </div>
                         </div>
 
                         <div  class="form-group">
                             <label class="col-sm-3">{{ 'RESEARCH_DISCIPLINE' | translate }}</label>
-                            <div class="col-sm-9"><textarea elastic type="text" class="form-control" data-ng-model="curator.researchDiscipline" ></textarea></div>
+                            <div class="col-sm-9">
+                                <textarea ng-show="editMode" elastic type="text" class="form-control" data-ng-model="curator.researchDiscipline" ></textarea>
+                                <p ng-show="!editMode" read-more class="read-more" ellipsis="..." content="{{curator.researchDiscipline}}"
+                                   limit="250" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
+                            </div>
                         </div>
 
                         <div  class="form-group">
                             <label class="col-sm-3">{{ 'RESEARCH_SPECIALITY' | translate }}</label>
-                            <div class="col-sm-9"><textarea elastic type="text" class="form-control" data-ng-model="curator.researchSpeciality"></textarea></div>
+                            <div class="col-sm-9">
+                                <textarea ng-show="editMode" elastic type="text" class="form-control" data-ng-model="curator.researchSpeciality"></textarea>
+                                <p ng-show="!editMode" read-more class="read-more" ellipsis="..." content="{{curator.researchSpeciality}}"
+                                   limit="250" more-text="{{'READ_MORE' | translate}}" less-text="{{'LESS_TEXT' | translate}}"></p>
+                            </div>
                         </div>
 
                         <div  class="form-group" ng-if="(editMode && logged && ((userRole == 'CURATOR' && username == curator.user.username) || userRole == 'ADMIN')) || createCurator">
@@ -109,31 +118,34 @@
 
                         <div class="form-group">
                             <label class="col-sm-3">{{ 'ASSOCIATED_INSTITUTIONS' | translate }}</label>
-                            <div class="col-sm-9">
-                                <table>
-                                    <tbody>
-                                    <tr ng-repeat="institution in curator.associatedInstitutions" on-finish-render="ngRepeatFinished">
-                                        <td><a style="margin-left: 10px;" data-ui-sref="institution({id : institution.id})">{{institution.name}}</a></td>
-                                        <td>&nbsp;&nbsp;<a ng-show="editMode" type="button" style="float: right"  class="btn-small-delete" ng-click="removeAssociatedInstitution($index);"><i class="fa fa-close"></i></a></td>
-                                    </tr>
-                                    </tbody>
-                                    <tfoot ng-show="editMode">
-                                    <tr>
-                                        <td>
-                                            <angucomplete-alt id="associatedInstitutionAtcl"
-                                                              placeholder="Search an Institution"
-                                                              pause="150"
-                                                              selected-object="associatedInstitutionSelected"
-                                                              remote-api-handler="institutionAutocomplete"
-                                                              title-field="name"
-                                                              minlength="0"
-                                                              input-class="form-control curator-institutions"/>
+                            <div class="col-sm-10">
 
-                                        </td>
-                                        <td>&nbsp;&nbsp;<a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-small-add btn-primary" ng-click="addAssociatedInstitution();">{{ 'ADD' | translate }}</a></td>
-                                    </tr>
+                                <span class="clearfix" ng-repeat="institution in curator.associatedInstitutions track by $index" on-finish-render="ngRepeatFinished">
+                                     <strong ng-show="!editMode"><a style="margin-left: 10px;" data-ui-sref="institution({id : institution.id})">{{institution.name}}</a></strong>
+                                     <input ng-show="editMode" style="width: 90%" type="text" tabindex="2" class="form-control pull-left" data-ng-model="institution.name" maxlength="255">
+                                    <a ng-show="editMode" ng-click="removeAssociatedInstitution($index);" class="btn-link-primary btn-right-side pull-right " style="left: -9px"><i class="fa fa-close"></i>&nbsp;</a>
+                                </span>
+
+                                <table>
+                                    <tfoot ng-show="editMode">
+                                        <tr>
+                                            <td>
+                                                <angucomplete-alt id="associatedInstitutionAtcl"
+                                                                  placeholder="Search an Institution"
+                                                                  pause="150"
+                                                                  selected-object="associatedInstitutionSelected"
+                                                                  remote-api-handler="institutionAutocomplete"
+                                                                  title-field="name"
+                                                                  minlength="0"
+                                                                  input-class="form-control curator-institutions"/>
+                                            </td>
+                                            <td style="padding-left: 7px">
+                                                <a style="float: right" id="add-synonym" type="button" class="pull-right btn btn-sm btn-primary" ng-click="addAssociatedInstitution();"><label>{{ 'ADD' | translate }}</label></a></td>
+                                        </tr>
                                     </tfoot>
                                 </table>
+
+
                             </div>
                         </div>
 
