@@ -12,10 +12,14 @@ define(['angularAMD','highcharts-ng',
 
 
                     $scope.collection = new BiodiversityCollection();
-                    $scope.collection.countType(function (data){
+                    $scope.collection.countDefinition(function (data){
                         var seriesData = [];
                         angular.forEach(data, function(value, key) {
-                            seriesData.push({ name: value[0], y: value[1]});
+                            var name = value[0];
+                            if (name === null) {
+                                name = $translate.instant('NOT_DEFINED');
+                            }
+                            seriesData.push({ name: name, y: value[1]});
                         });
 
                         $scope.pieBar1 = {
@@ -49,10 +53,14 @@ define(['angularAMD','highcharts-ng',
                     });
 
 
-                    $scope.collection.countDefinition(function (data){
+                    $scope.collection.countType(function (data){
                         var seriesData = [];
                         angular.forEach(data, function(value, key) {
-                            seriesData.push({ name: value[0], y: value[1]});
+                            var name = value[0];
+                            if (name === null) {
+                                name = $translate.instant('NOT_DEFINED');
+                            }
+                            seriesData.push({ name: name, y: value[1]});
                         });
 
                         $scope.pieBar2 = {

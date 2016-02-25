@@ -267,7 +267,8 @@ define([],function ( ) {
     'LESS_TEXT': 'Less ^',
     'INSTITUTION_COLLECTION_STATISTICS': 'Institution & Collection Statistics',
     'ACTIVE_LOWERCASE': 'active',
-    'DEACTIVATED_LOWERCASE': 'deactivated'
+    'DEACTIVATED_LOWERCASE': 'deactivated',
+    'NOT_DEFINED': 'NOT DEFINED'
 
   }
 
