@@ -267,7 +267,8 @@ define([],function ( ) {
     'SIBBR_API_STATISTICS':'Estatísticas da API SiB-Br',
     'LAST_UPDATED':'Última atualização',
     'ACTIVE_LOWERCASE': 'ativo',
-    'DEACTIVATED_LOWERCASE': 'desativado'
+    'DEACTIVATED_LOWERCASE': 'desativado',
+    'NOT_DEFINED': 'NÃO DEFINIDO'
   }
 
 });

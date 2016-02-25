@@ -16,7 +16,11 @@ define(['angularAMD','highcharts-ng',
                     var colors = ['green', '#FFB266', '#FFCC99', '#FFE5CC'];
                     var seriesData = [];
                     angular.forEach(data, function(value, key) {
-                        seriesData.push({ name: value[0], y: value[1], color: colors[key] });
+                        var name = value[0];
+                        if (name === null) {
+                            name = $translate.instant('NOT_DEFINED');
+                        }
+                        seriesData.push({ name: name, y: value[1], color: colors[key] });
                     });
 
                     $scope.pieConfig = {
