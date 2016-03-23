@@ -1,14 +1,15 @@
 package com.unep.wcmc.biodiversity.controller;
 
-import com.unep.wcmc.biodiversity.model.*;
-import com.unep.wcmc.biodiversity.security.SecurityUtils;
+import com.unep.wcmc.biodiversity.model.BiodiversityCollection;
+import com.unep.wcmc.biodiversity.model.Network;
+import com.unep.wcmc.biodiversity.model.Sample;
 import com.unep.wcmc.biodiversity.service.*;
 import com.unep.wcmc.biodiversity.support.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,17 +37,20 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         return service.getRepository().getById(new Long(id));
     }
 
+    @PreAuthorize("isAnonymous() or isAuthenticated()")
     @RequestMapping(method= RequestMethod.GET, value="/search/name")
     public Page<BiodiversityCollection> name(@RequestParam String name,
                              @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.searchByName(name, pageable);
     }
 
+    @PreAuthorize("isAnonymous() or isAuthenticated()")
     @RequestMapping(method= RequestMethod.GET, value="/search/autocomplete")
     public List<BiodiversityCollection> autocomplete(@RequestParam String name) {
         return service.searchByNameTop5(name);
     }
 
+    @PreAuthorize("isAnonymous() or isAuthenticated()")
     @RequestMapping(method= RequestMethod.GET, value="/search/definition")
     public Page<BiodiversityCollection> findAllCollectionDefinition(
             @RequestParam(value = "name", defaultValue = "ALL") String name,
@@ -59,6 +63,7 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         }
     }
 
+    @PreAuthorize("isAnonymous() or isAuthenticated()")
     @RequestMapping(method= RequestMethod.GET, value="/search/coordinates/definition")
     public List<Object[]> findAllCoordinatesDefinition(@RequestParam(value = "name", defaultValue = "ALL") String name) {
         switch (name) {
@@ -69,13 +74,14 @@ public class BiodiversityCollectionController extends AbstractController<Biodive
         }
     }
 
-
+    @PreAuthorize("isAnonymous() or isAuthenticated()")
     @RequestMapping(method= RequestMethod.GET, value="/search/institutions")
     public Page<BiodiversityCollection> institutions(@RequestParam Long id,
                                                      @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return service.getRepository().findByInstitutionIdOrderByNameAsc(id, pageable);
     }
 
+    @PreAuthorize("isAnonymous() or isAuthenticated()")
     @RequestMapping(method= RequestMethod.GET, value="/search/networks")
     public Page<BiodiversityCollection> networks(@RequestParam Long id,
                                                  @PageableDefault(page = 0, size = 10) Pageable pageable) {

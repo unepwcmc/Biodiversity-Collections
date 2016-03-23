@@ -29,6 +29,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/home',
                         templateUrl: 'views/home/default.html',
                         controllerUrl: 'home/controllers/homeController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label: "{{'HOME' | translate}}"
                         }
@@ -39,6 +40,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/search/:type/:term',
                         templateUrl: 'views/search/default.html',
                         controllerUrl: 'search/controllers/searchController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label: "{{'RESULTS_PAGE' | translate}}",
                             parent: 'home'
@@ -49,6 +51,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/admin',
                         templateUrl: 'views/admin/default.html',
                         controllerUrl: 'admin/controllers/adminController',
+                        authorization: true,
                         ncyBreadcrumb: {
                             label: "{{'ADMINISTRATION_OVERVIEW' | translate}}",
                             parent: 'home'
@@ -59,6 +62,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/report',
                         templateUrl: 'views/report/default.html',
                         controllerUrl: 'report/controllers/reportController',
+                        authorization: true,
                         ncyBreadcrumb: {
                             label: "{{'DASHBOARD' | translate}}",
                             parent: 'home'
@@ -69,6 +73,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/admin/user/create',
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
+                        authorization: true,
                         ncyBreadcrumb: {
                             label: "{{'USER_CREATE' | translate}}",
                             parent: 'admin'
@@ -79,6 +84,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/admin/user/edit/:id',
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
+                        authorization: true,
                         ncyBreadcrumb: {
                             label: "{{'USER_EDIT' | translate}}",
                             parent: 'admin'
@@ -89,6 +95,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/admin/institution/create',
                         templateUrl: 'views/institution/default.html',
                         controllerUrl: 'institution/controllers/institutionController',
+                        authorization: true,
                         ncyBreadcrumb: {
                             label: "{{'INSTITUTION_CREATE' | translate}}",
                             parent: 'admin'
@@ -99,6 +106,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/admin/institution/edit/:id',
                         templateUrl: 'views/institution/default.html',
                         controllerUrl: 'institution/controllers/institutionController',
+                        authorization: true,
                         ncyBreadcrumb: {
                             label: "{{'INSTITUTION_EDIT' | translate}}",
                             parent: 'admin'
@@ -110,6 +118,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         params: {isNew : false},
                         templateUrl: 'views/collection/default.html',
                         controllerUrl: 'collection/controllers/collectionController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label: "{{'COLLECTION' | translate}}",
                             parent: function($scope) {
@@ -138,6 +147,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         params: {sampleId: null},
                         templateUrl: 'views/sample/collection.sample.html',
                         controllerUrl: 'sample/controllers/collectionSampleController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label:  "{{'SAMPLE' | translate}}",
                             parent: function($scope) {
@@ -151,6 +161,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         params: {isNew : false},
                         templateUrl: 'views/network/default.html',
                         controllerUrl: 'network/controllers/networkController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label:  "{{'NETWORK' | translate}}",
                             parent: function($scope) {
@@ -178,6 +189,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/curator/:id',
                         templateUrl: 'views/curator/default.html',
                         controllerUrl: 'curator/controllers/curatorController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label:  "{{'CURATOR' | translate}}",
                             parent: function($scope) {
@@ -206,6 +218,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         params: {isNew : true},
                         templateUrl: 'views/curator/default.html',
                         controllerUrl: 'curator/controllers/curatorController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label: 'New Curator',
                             parent: 'home'
@@ -216,6 +229,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/institution/:id',
                         templateUrl: 'views/institution/default.html',
                         controllerUrl: 'institution/controllers/institutionController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label:  "{{'INSTITUTION' | translate}}",
                             parent: function($scope) {
@@ -243,6 +257,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/collection/:id/member',
                         templateUrl: 'views/member/default.html',
                         controllerUrl: 'member/controllers/memberController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label:  "{{'MEMBER' | translate}}",
                             parent: function($scope) {
@@ -255,6 +270,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/user/edit/:id',
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
+                        authorization: true,
                         ncyBreadcrumb: {
                             label: "{{'USER_EDIT' | translate}}",
                             parent: 'admin'
@@ -265,6 +281,7 @@ define(['include', 'language'], function (angularAMD, language) {
                         url: '/user/signup',
                         templateUrl: 'views/user/default.html',
                         controllerUrl: 'user/controllers/userController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label: 'New user',
                             parent: function($scope) {
@@ -276,25 +293,29 @@ define(['include', 'language'], function (angularAMD, language) {
                     {
                         url: '/reset/:token',
                         templateUrl: 'views/auth/reset.password.html',
-                        controllerUrl: 'auth/controllers/authController'
+                        controllerUrl: 'auth/controllers/authController',
+                        authorization: false
                     }))
                 .state('resetYourPassword', angularAMD.route(
                     {
                         url: '/reset',
                         templateUrl: 'views/auth/reset.password.html',
-                        controllerUrl: 'auth/controllers/authController'
+                        controllerUrl: 'auth/controllers/authController',
+                        authorization: false
                     }))
                 .state('forgot', angularAMD.route(
                     {
                         url: '/forgot',
                         templateUrl: 'views/auth/forgot.password.html',
-                        controllerUrl: 'auth/controllers/authController'
+                        controllerUrl: 'auth/controllers/authController',
+                        authorization: false
                     }))
                 .state('sample', angularAMD.route(
                     {
                         url: '/sample/:id',
                         templateUrl: 'views/sample/default.html',
                         controllerUrl: 'sample/controllers/sampleController',
+                        authorization: false,
                         ncyBreadcrumb: {
                             label: "{{'SAMPLE' | translate}}",
                             parent: function($scope) {
@@ -426,15 +447,15 @@ define(['include', 'language'], function (angularAMD, language) {
         }]);
 
     app.CONST = {
-        //LOCALHOST: "http://localhost:8080/", //LOCAL
-        LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
+        LOCALHOST: "http://localhost:8080/", //LOCAL
+        //LOCALHOST:"http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/", // DEV
         //LOCALHOST:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         SERVER:"http://ec2-54-94-149-79.sa-east-1.compute.amazonaws.com:8080/", // QA
         //SERVER: "http://ec2-54-94-203-12.sa-east-1.compute.amazonaws.com:8080/"  // DEV
     };
 
-    app.run(['$rootScope', '$timeout', '$http', '$window', '$cookies',
-        function ($rootScope, $timeout, $http, $window, $cookies) {
+    app.run(['$rootScope', '$timeout', '$http', '$window', '$cookies', '$state',
+        function ($rootScope, $timeout, $http, $window, $cookies, $state) {
 
             /**
              * Return the current host
@@ -535,6 +556,13 @@ define(['include', 'language'], function (angularAMD, language) {
                 $rootScope.fullName = null;
                 $rootScope.logged = false;
             };
+
+            $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
+                if (!$rootScope.logged && toState.authorization != false) {
+                    event.preventDefault();
+                    $state.go('home');
+                }
+            });
 
         }]);
 

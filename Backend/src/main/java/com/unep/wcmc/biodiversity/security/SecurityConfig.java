@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.PermissionEvaluator;
+import org.springframework.security.access.expression.SecurityExpressionHandler;
+import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
+import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
+import org.springframework.security.access.vote.RoleHierarchyVoter;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,13 +21,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.io.Serializable;
 
 /**
  * Configuration responsible for setting all authorized requests as well as login service
@@ -32,7 +42,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableSpringDataWebSupport
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, proxyTargetClass = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -64,7 +74,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and().servletApi()
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/login").denyAll()
+                .antMatchers("/media/**").permitAll()
+                .antMatchers("/api-docs/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/swagger-ui.js").permitAll()
+                .antMatchers("/lib/**").permitAll()
+                // Protected endpoints
+                .antMatchers(HttpMethod.GET, "/users/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/**").authenticated()
+                .antMatchers(HttpMethod.PUT, "/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/**").authenticated()
+                // Public endpoints
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/**").permitAll()
             .and().apply(securityConfigurerAdapter());
         // Logout process
         LogoutHandler logoutHandler = new LogoutHandler(tokenProvider);
